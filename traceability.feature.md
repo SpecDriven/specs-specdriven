@@ -1,4 +1,5 @@
 # Store links to automated tests
+
 - store links as github urls.
 - Ex: `https://github.com/vydra/GatlingGen/blob/main/app/src/test/java/ggen/GatlingCodeGeneratorTest.java`
 - Display in a table; links are clickable
@@ -6,7 +7,7 @@
 - These links are optional and will be controlled by user setting; default is ON
 
 The links live inside the feature file, as a trailing `### Tests` markdown
-table in the scenario — like the scenario table (specs/scenario-table.spec.md),
+table in the scenario — like the scenario table (scenario-table.feature.md),
 plain markdown that renders naturally on GitHub:
 
 ```
@@ -41,27 +42,19 @@ plain markdown that renders naturally on GitHub:
   tables on the cards and the Automated tests field in the scenario dialog —
   the stored links are untouched.
 
-## Scenario: add a test link
+## add a test link @v1 [proposed]
 
 - When: the user pastes a GitHub url into the edit dialog's Automated tests
   field and presses Add
 - Then: the link joins the scenario's list, and after Save the feature file
   holds it in the scenario's `### Tests` table
 
-## Scenario: the add field still holds a url when Save is pressed
-
-- When: the user pastes a GitHub url into the Automated tests add field and
-  presses the dialog's Save without pressing Add
-- Then: the link is saved all the same
-- And: an invalid or duplicate url there blocks the save with a message
-  under the field instead of being dropped
-
-## Scenario: correct a test link
+## correct a test link @v1 [proposed]
 
 - When: the user presses ✎ on a link, edits the url and presses Save
 - Then: that row holds the new url, and the others are untouched
 
-## Scenario: edit the tests of a published scenario
+## edit the tests of a published scenario @v1 [proposed]
 
 - Given: "Show links to automated tests" is ON (the default)
 - When: the user opens a `[published]` scenario through its card's `Edit` link
@@ -69,12 +62,7 @@ plain markdown that renders naturally on GitHub:
   and Save test links writes them to the feature file — while the name,
   version and body stay read-only
 
-## Scenario: see the tests of a scenario
-
-- When: a scenario has test links and the setting is ON (the default)
-- Then: the end of the scenario card shows a table of clickable links
-
-## Scenario: hide the test links
+## hide the test links @v1 [proposed]
 
 - When: the user turns "Show links to automated tests" off in Settings
 - Then: the tables disappear from the scenario cards and the Automated tests
@@ -82,3 +70,16 @@ plain markdown that renders naturally on GitHub:
   feature files
 - And: a `[published]` scenario now has nothing editable, so its card link
   reads `View` and the dialog offers only Close
+
+## see the tests of a scenario @v1 [proposed]
+
+- When: a scenario has test links and the setting is ON (the default)
+- Then: the end of the scenario card shows a table of clickable links
+
+## the add field still holds a url when Save is pressed @v1 [proposed]
+
+- When: the user pastes a GitHub url into the Automated tests add field and
+  presses the dialog's Save without pressing Add
+- Then: the link is saved all the same
+- And: an invalid or duplicate url there blocks the save with a message
+  under the field instead of being dropped

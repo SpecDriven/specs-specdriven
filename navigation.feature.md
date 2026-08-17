@@ -16,7 +16,7 @@ via chat and email.
 Identity comes from the data repo, never from session state:
 
 - `<feature>` is the feature file path minus `.feature.md`, and spans several
-  url segments when the feature lives in a folder (specs/folders.spec.md):
+  url segments when the feature lives in a folder (folders.feature.md):
   `/features/billing/quotes` is `billing/quotes.feature.md`.
   File stems are already slugified and unique within their folder, so the
   mapping is bijective. The first `scenarios` segment with a following slug
@@ -52,7 +52,7 @@ Identity comes from the data repo, never from session state:
 
 ## Links from outside the app
 
-The desktop app (specs/desktop-app.spec.md) serves the frontend from an
+The desktop app (desktop-app.feature.md) serves the frontend from an
 internal `app://specdriven` origin that nothing outside its own window can
 reach, so it also registers `specdriven://` with the operating system. The two
 carry the same paths — the scheme is a prefix swap, and every rule above
@@ -68,39 +68,14 @@ what `/features/accidents/record-car-accident` does, versioned scenario
 permalinks included. Registering the scheme is what lets the OS route such a
 link — clicked in chat, email, a browser or a terminal — to the app.
 
-## Scenario: open a feature link
+## a second link reuses the running app @v1 [proposed]
 
-- Given: the data repo contains `navigation.feature.md`
-- When: the user opens `/features/navigation`
-- Then: the app shows that feature — same view as clicking it in the sidebar
+- Given: the desktop app is already open on some other feature
+- When: another `specdriven://` link is opened
+- Then: the same window moves to the linked feature — no second window and no
+  reload — and Back returns to what was on screen before
 
-## Scenario: open a scenario link
-
-- Given: `navigation.feature.md` contains scenario "ESC key closes the dialog" v2
-- When: the user opens `/features/navigation/scenarios/esc-key-closes-the-dialog/v2`
-- Then: the feature opens with that scenario card selected, highlighted, and
-  scrolled into view — the same highlight the up/down keys move, so Enter
-  opens the full body
-
-## Scenario: versionless scenario link opens the latest version
-
-- Given: the scenario name exists as v1 and v2
-- When: the user opens the scenario url without the `/v<N>` segment
-- Then: v2 is selected, and the address bar shows the canonical `/v2` url
-
-## Scenario: link to a missing feature
-
-- When: the user opens `/features/<something>` that doesn't resolve to a file
-- Then: the app shows home with a note that the feature was not found and the
-  link may be stale
-
-## Scenario: link to a missing scenario
-
-- When: the feature resolves but the scenario slug (or version) doesn't
-- Then: the feature opens with no selection and a note that the scenario was
-  not found — it may have been renamed or deleted
-
-## Scenario: browser history and reload
+## browser history and reload @v1 [proposed]
 
 - Selecting a feature (sidebar click, create) pushes a history entry —
   back/forward walk through previously viewed features
@@ -108,7 +83,48 @@ link — clicked in chat, email, a browser or a terminal — to the app.
   place (no history entry per keystroke)
 - Reloading the page restores the same feature and scenario selection
 
-## Scenario: share a link
+## deep link before a data repo is configured @v1 [proposed]
+
+- Given: the settings file has no data repo recorded
+- When: the user opens a deep link
+- Then: the repo prompt shows first (app-start.feature.md); once a repo is
+  accepted, the deep link is honored
+
+## link to a missing feature @v1 [proposed]
+
+- When: the user opens `/features/<something>` that doesn't resolve to a file
+- Then: the app shows home with a note that the feature was not found and the
+  link may be stale
+
+## link to a missing scenario @v1 [proposed]
+
+- When: the feature resolves but the scenario slug (or version) doesn't
+- Then: the feature opens with no selection and a note that the scenario was
+  not found — it may have been renamed or deleted
+
+## open a feature link @v1 [proposed]
+
+- Given: the data repo contains `navigation.feature.md`
+- When: the user opens `/features/navigation`
+- Then: the app shows that feature — same view as clicking it in the sidebar
+
+## open a link from outside the app @v1 [proposed]
+
+- Given: the desktop app is installed and a data repo is configured
+- When: the user clicks a `specdriven://features/<feature>` link in another
+  app — chat, email, a browser, the terminal
+- Then: SpecDriven comes to the front showing that feature, launching first if
+  it wasn't running; the app the link was clicked in stays where it was
+
+## open a scenario link @v1 [proposed]
+
+- Given: `navigation.feature.md` contains scenario "ESC key closes the dialog" v2
+- When: the user opens `/features/navigation/scenarios/esc-key-closes-the-dialog/v2`
+- Then: the feature opens with that scenario card selected, highlighted, and
+  scrolled into view — the same highlight the up/down keys move, so Enter
+  opens the full body
+
+## share a link @v1 [proposed]
 
 - Sidebar entries and scenario card titles are real links: right-click →
   Copy Link and cmd-click → new tab work natively
@@ -119,30 +135,14 @@ link — clicked in chat, email, a browser or a terminal — to the app.
 - In the desktop app those actions copy the `specdriven://` form, so what
   lands on the clipboard is a link that works anywhere else on the machine
 
-## Scenario: open a link from outside the app
+## versionless scenario link opens the latest version @v1 [proposed]
 
-- Given: the desktop app is installed and a data repo is configured
-- When: the user clicks a `specdriven://features/<feature>` link in another
-  app — chat, email, a browser, the terminal
-- Then: SpecDriven comes to the front showing that feature, launching first if
-  it wasn't running; the app the link was clicked in stays where it was
+- Given: the scenario name exists as v1 and v2
+- When: the user opens the scenario url without the `/v<N>` segment
+- Then: v2 is selected, and the address bar shows the canonical `/v2` url
 
-## Scenario: a second link reuses the running app
-
-- Given: the desktop app is already open on some other feature
-- When: another `specdriven://` link is opened
-- Then: the same window moves to the linked feature — no second window and no
-  reload — and Back returns to what was on screen before
-
-## Scenario: window title follows the selection
+## window title follows the selection @v1 [proposed]
 
 - `SpecDriven` on home, `SpecDriven — <feature name>` on a feature,
   `SpecDriven — <feature name> · <scenario name> v<N>` with a selection —
   chat and email link previews show the title
-
-## Scenario: deep link before a data repo is configured
-
-- Given: the settings file has no data repo recorded
-- When: the user opens a deep link
-- Then: the repo prompt shows first (specs/app-start.spec.md); once a repo is
-  accepted, the deep link is honored
