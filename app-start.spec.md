@@ -3,6 +3,10 @@ contain the name of the last data repo, the user is asked the name of the data r
 
 Data repo format: https://github.com/SpecDriven/data-insurance (regular gitHub url)
 
+The data repo is pulled — one Sync, the same tick the Sync button and the
+reload cron run — when the app starts and whenever a new data folder is
+picked, so the app never opens on data the last run left behind.
+
 # Settings file
 
 Local state lives in `.specdriven/settings.json`, looked up in this order:
@@ -25,6 +29,27 @@ the app read; when neither exists, the project one is created.
   view to home (the old selection belonged to the old repo)
 - and a value the server rejects leaves the current repo in place, with the
   error shown as a status note
+
+## Scenario: the data repo is pulled on start
+
+- Given: a data repo is configured, and its remote has commits this machine
+  does not have yet
+- When: the app starts
+- Then: the data repo is pulled before the first screen is read, so the
+  feature list shows the remote's latest data without the user pressing Sync
+- and the pull does not hold up the rest of startup; a pull that hangs stops
+  blocking reads after a short wait, leaving stale data on screen until the
+  next reload tick rather than an app that never opens
+- and a pull that fails is logged; the app still opens on the data on disk
+
+## Scenario: a newly picked data folder is pulled
+
+- Given: the user confirms a data folder — in the first-run form or in the
+  Data directory dialog
+- When: the folder is accepted
+- Then: it is pulled before the app reads it, so the folder's first feature
+  list is the latest data
+- and a folder that is not a git repo, or whose pull fails, is still selected
 
 ## Scenario: picking the data directory with the native folder chooser
 
