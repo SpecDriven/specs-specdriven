@@ -27,15 +27,15 @@ the table in the body, and editing the body source updates the grid.
 - Published scenarios are immutable: the widget is not shown (the preview
   still renders the table).
 
-## Scenario: variable creates a column
+## edit the table as a grid @v1 [proposed]
+
+- When: the user edits cells, adds or removes rows and columns in the widget
+- Then: the markdown table in the body is rewritten to match, and the body
+  editor shows the change immediately
+
+## variable creates a column @v1 [proposed]
 
 - When: the body gains a variable such as {amount}
 - Then: the table gets an "amount" column, creating the table if the body had
   none
 - Otherwise: a column of that name already exists, and nothing changes
-
-## Scenario: edit the table as a grid
-
-- When: the user edits cells, adds or removes rows and columns in the widget
-- Then: the markdown table in the body is rewritten to match, and the body
-  editor shows the change immediately

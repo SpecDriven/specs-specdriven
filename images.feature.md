@@ -24,25 +24,25 @@ files are browsable under `.images/`.
 - While an upload runs the toolbar shows "Uploading…"; a failed upload shows
   the error in the toolbar and inserts nothing.
 
-## Scenario: paste an image from the clipboard
+## paste an image from the clipboard @v1 [proposed]
 
 - When: the user pastes clipboard content containing an image into the body
 - Then: the image is uploaded to `.images/` in the data repo, committed and
   pushed
 - and `![alt](/api/images/<name>)` is inserted at the caret
 
-## Scenario: upload an image file
-
-- When: the user clicks 🖼 and picks one or more image files
-- Then: each file is uploaded and inserted like a pasted image
-
-## Scenario: repeated upload of the same image
+## repeated upload of the same image @v1 [proposed]
 
 - When: an image with bytes already stored under `.images/` is uploaded again
 - Then: the existing file is reused — same name, no new commit
 
-## Scenario: unsupported file is refused
+## unsupported file is refused @v1 [proposed]
 
 - When: the uploaded file is not a supported image type, is empty, or exceeds
   10 MB
 - Then: nothing is stored and the toolbar shows the reason
+
+## upload an image file @v1 [proposed]
+
+- When: the user clicks 🖼 and picks one or more image files
+- Then: each file is uploaded and inserted like a pasted image

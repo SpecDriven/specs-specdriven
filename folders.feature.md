@@ -27,30 +27,30 @@ data repo, so the structure renders naturally on GitHub too.
   a `git mv` into the target directory, committed and pushed, keeping the
   feature's file name.
 - The moved feature keeps its selection; its url follows the new folder path
-  (specs/navigation.spec.md).
+  (navigation.feature.md).
 - A folder can be deleted only when no files remain anywhere beneath it —
   move the features out first. Deleting asks for confirmation; a non-empty
   folder is refused with an explanation. Empty folders being untracked by
   git, deletion is a local filesystem operation.
-- The Edit link edits the feature name only (specs/ui.spec.md), never the
+- The Edit link edits the feature name only (ui.feature.md), never the
   file name or its folder; moving a feature between folders is done by
   dragging.
 
-## Scenario: move feature to another folder
-
-- When: user drags a feature onto another folder (or the tree root)
-- Then: the file is moved with `git mv`, keeping its file name
-- and the move is committed and pushed
-
-## Scenario: deselect a folder with ESC
-
-- When: a folder is selected and the user presses ESC outside a dialog or text field
-- Then: the folder is deselected and "+ New folder" creates at the tree root
-- Otherwise: with a dialog open or a field focused, ESC closes/cancels that instead
-
-## Scenario: delete a folder
+## delete a folder @v1 [proposed]
 
 - When: user asks to delete a folder with no files anywhere beneath it
 - Then: the folder is removed (a local filesystem operation — git does not
   track empty directories)
 - Otherwise: the deletion is refused; features must be moved out first
+
+## deselect a folder with ESC @v1 [proposed]
+
+- When: a folder is selected and the user presses ESC outside a dialog or text field
+- Then: the folder is deselected and "+ New folder" creates at the tree root
+- Otherwise: with a dialog open or a field focused, ESC closes/cancels that instead
+
+## move feature to another folder @v1 [proposed]
+
+- When: user drags a feature onto another folder (or the tree root)
+- Then: the file is moved with `git mv`, keeping its file name
+- and the move is committed and pushed
