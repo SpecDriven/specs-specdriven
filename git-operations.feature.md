@@ -87,37 +87,23 @@ Settings` instead of hanging on a credential prompt.
 A commit that fails is reported as a failure. The app never says a spec
 was committed and pushed when it was not.
 
-## Scenario: choose the engine in settings
+## a failed pull is an error, not a merge conflict @v1 [proposed]
+
+- When: a publish's `git pull` fails without leaving conflicted files —
+  no credentials, no network, a missing remote
+- Then: the publish reports that failure as an error
+- and no merge-conflict dialog opens claiming the file is missing on the
+  remote
+
+## choose the engine in settings @v1 [proposed]
 
 - When: the user picks `System git` as the Git engine in the Settings dialog
-- Then: the choice is saved to the settings file (specs/app-start.spec.md)
+- Then: the choice is saved to the settings file (app-start.feature.md)
 - and clone, pull and push authenticate with the app's own sign-in
 - and each engine's option is refused when its binary is not installed,
   which never refuses the built-in one
 
-## Scenario: the GitHub CLI is the default when installed
-
-- When: no Git engine is chosen and gh is installed
-- Then: clone, pull, push, commit and delete all run with gh's credentials
-- and cloning a GitHub repo goes through `gh repo clone`
-- and the commits are authored by the gh account
-
-## Scenario: gh installed but signed out
-
-- When: the GitHub CLI engine is in effect and `gh auth token` has nothing
-- Then: git runs with the machine's own credentials and git identity, as
-  it would on the system-git engine
-- and the Settings dialog says gh is signed out and how to fix it
-
-## Scenario: the built-in engine is the default with no git installed
-
-- When: no Git engine is chosen and the machine has neither gh nor git
-- Then: the built-in engine is in effect
-- and clone, pull, push, commit, move and delete all still work
-- and what it writes is an ordinary git repository, which the git binary
-  reads normally once there is one
-
-## Scenario: connect to GitHub via the browser
+## connect to GitHub via the browser @v1 [proposed]
 
 - When: the user clicks "Connect to GitHub" in the Settings dialog
 - Then: the browser opens GitHub's authorize page
@@ -129,7 +115,14 @@ was committed and pushed when it was not.
 - and a callback with a wrong or reused state nonce is refused and does
   not cancel the sign-in in progress
 
-## Scenario: sign in with GitHub (device code)
+## gh installed but signed out @v1 [proposed]
+
+- When: the GitHub CLI engine is in effect and `gh auth token` has nothing
+- Then: git runs with the machine's own credentials and git identity, as
+  it would on the system-git engine
+- and the Settings dialog says gh is signed out and how to fix it
+
+## sign in with GitHub (device code) @v1 [proposed]
 
 - When: the user clicks "Use a device code instead" in the Settings dialog
 - Then: a short code appears with a link to github.com/login/device
@@ -137,10 +130,17 @@ was committed and pushed when it was not.
   account
 - and pushes on the system-git engine authenticate with that account
 
-## Scenario: a failed pull is an error, not a merge conflict
+## the built-in engine is the default with no git installed @v1 [proposed]
 
-- When: a publish's `git pull` fails without leaving conflicted files —
-  no credentials, no network, a missing remote
-- Then: the publish reports that failure as an error
-- and no merge-conflict dialog opens claiming the file is missing on the
-  remote
+- When: no Git engine is chosen and the machine has neither gh nor git
+- Then: the built-in engine is in effect
+- and clone, pull, push, commit, move and delete all still work
+- and what it writes is an ordinary git repository, which the git binary
+  reads normally once there is one
+
+## the GitHub CLI is the default when installed @v1 [proposed]
+
+- When: no Git engine is chosen and gh is installed
+- Then: clone, pull, push, commit and delete all run with gh's credentials
+- and cloning a GitHub repo goes through `gh repo clone`
+- and the commits are authored by the gh account

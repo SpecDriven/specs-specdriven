@@ -17,49 +17,49 @@ reports both via `/api/state`.
 - "User info" opens a dialog showing the OS user, the signed-in GitHub
   account, and the name/email that author the app's commits to the data
   repo — the GitHub identity when signed in
-  (specs/git-operations.spec.md), else the system git identity
+  (git-operations.feature.md), else the system git identity
   (user.name / user.email from git config). Missing values show "not
   set"; no GitHub account shows "not signed in".
 - Initials come from the identity name when set, otherwise from the OS
   user name.
 
-## Scenario: see the current user
-
-- When: the app is open and no GitHub account is known
-- Then: the lower left corner shows the OS user behind a small avatar chip
-
-## Scenario: see the GitHub account
-
-- When: a GitHub account is known
-- Then: the chip shows that login instead of the OS user
-
-## Scenario: open the user menu
-
-- When: the user clicks the chip
-- Then: a menu appears with "User info" and "Settings"
-- and ESC or clicking anywhere else closes it
-
-## Scenario: view user info
-
-- When: the user picks "User info" from the menu
-- Then: a dialog shows the OS user, the GitHub account, and the name and
-  email used for commits to the data repo
-
-## Git engine [automatic | GitHub CLI | system git | built-in]
+## Git engine setting
 
 - The Settings dialog offers the Git engine: `Automatic — GitHub CLI when
   installed (recommended)`, `GitHub CLI (gh)`, `System git` or
-  `Built-in (no git needed)` (specs/git-operations.spec.md)
+  `Built-in (no git needed)` (git-operations.feature.md)
 - each option is disabled when its binary is not installed; the built-in
   engine ships with the app, so it is always offered
 - The Settings dialog holds the GitHub account section: it reports what
   the GitHub CLI is signed in as, and "Sign in with GitHub" starts the
   device flow; signed in, it shows the account and a "Sign out" button
 
-## Scenario: sign in from settings
+## open the user menu @v1 [proposed]
+
+- When: the user clicks the chip
+- Then: a menu appears with "User info" and "Settings"
+- and ESC or clicking anywhere else closes it
+
+## see the current user @v1 [proposed]
+
+- When: the app is open and no GitHub account is known
+- Then: the lower left corner shows the OS user behind a small avatar chip
+
+## see the GitHub account @v1 [proposed]
+
+- When: a GitHub account is known
+- Then: the chip shows that login instead of the OS user
+
+## sign in from settings @v1 [proposed]
 
 - When: the user clicks "Sign in with GitHub" in Settings
 - Then: the dialog shows the one-time code and a link to
   github.com/login/device
 - and once the user authorizes there, the dialog shows
   "Signed in as <login>"
+
+## view user info @v1 [proposed]
+
+- When: the user picks "User info" from the menu
+- Then: a dialog shows the OS user, the GitHub account, and the name and
+  email used for commits to the data repo

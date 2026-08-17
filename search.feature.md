@@ -31,7 +31,7 @@ name, or scenario body finds its spec in a couple of keystrokes.
 - The list serves at most a handful of screens of results (default 20,
   capped at 50) — ranking, not scrolling, is the tool.
 
-## Scenario: a body match is found with a snippet
+## a body match is found with a snippet @v1 [proposed]
 
 - Given: some scenario body in the data repo contains the word "premium"
   and no scenario or feature name contains it
@@ -40,20 +40,7 @@ name, or scenario body finds its spec in a couple of keystrokes.
   `› <scenario> v<N>` crumb, and a snippet containing "premium"
   highlighted
 
-## Scenario: name matches rank above body matches
-
-- Given: a scenario named "Premium rules" and another scenario that only
-  mentions "premium" in its body
-- When: the user searches `premium`
-- Then: both are listed and the scenario named "Premium rules" ranks first
-
-## Scenario: prefix and fuzzy matches hit
-
-- Given: specs containing the word "premium"
-- When: the user searches `prem`, or the typo `premum`
-- Then: the "premium" specs are found either way
-
-## Scenario: clicking a result opens it like its deep link
+## clicking a result opens it like its deep link @v1 [proposed]
 
 - Given: a scenario hit for `quotes.feature.md` scenario "Basic quote" v2
 - When: the user clicks the result (or moves the highlight with ↑/↓ and
@@ -61,30 +48,43 @@ name, or scenario body finds its spec in a couple of keystrokes.
 - Then: the feature opens with that scenario card selected, highlighted,
   and scrolled into view, and the address bar shows
   `/features/quotes/scenarios/basic-quote/v2` — exactly as if the deep
-  link had been opened (specs/navigation.spec.md). The query is kept so
+  link had been opened (navigation.feature.md). The query is kept so
   other results can be visited.
 
-## Scenario: Escape or ✕ restores the tree
+## Escape or ✕ restores the tree @v1 [proposed]
 
 - Given: an active query with results showing
 - When: the user presses Escape in the field, or clicks the `✕` button
 - Then: the query clears and the sidebar shows the folder tree again
 
-## Scenario: no matches
+## name matches rank above body matches @v1 [proposed]
+
+- Given: a scenario named "Premium rules" and another scenario that only
+  mentions "premium" in its body
+- When: the user searches `premium`
+- Then: both are listed and the scenario named "Premium rules" ranks first
+
+## no matches @v1 [proposed]
 
 - When: the user searches a word that appears nowhere
 - Then: the sidebar shows `No matches for "<query>"` instead of results
 
-## Scenario: the index follows external file changes
+## prefix and fuzzy matches hit @v1 [proposed]
+
+- Given: specs containing the word "premium"
+- When: the user searches `prem`, or the typo `premum`
+- Then: the "premium" specs are found either way
+
+## search before a data repo is configured @v1 [proposed]
+
+- Given: the settings file has no data repo recorded
+- Then: the repo prompt shows first (app-start.feature.md); the search
+  field only exists alongside the sidebar tree once a repo is accepted
+
+## the index follows external file changes @v1 [proposed]
 
 - Given: a search for "premium" returns results
 - When: a spec file is changed, added, or deleted outside the app (editor,
   `git pull`, the reload cron) and the user searches again
 - Then: the results reflect the new content — new text is found, text
   that no longer exists is not
-
-## Scenario: search before a data repo is configured
-
-- Given: the settings file has no data repo recorded
-- Then: the repo prompt shows first (specs/app-start.spec.md); the search
-  field only exists alongside the sidebar tree once a repo is accepted

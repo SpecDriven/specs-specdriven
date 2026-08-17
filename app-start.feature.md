@@ -1,3 +1,5 @@
+# App start
+
 When the application starts, if the settings file does not
 contain the name of the last data repo, the user is asked the name of the data repo.
 
@@ -7,7 +9,7 @@ The data repo is pulled — one Sync, the same tick the Sync button and the
 reload cron run — when the app starts and whenever a new data folder is
 picked, so the app never opens on data the last run left behind.
 
-# Settings file
+## Settings file
 
 Local state lives in `.specdriven/settings.json`, looked up in this order:
 
@@ -18,7 +20,16 @@ Local state lives in `.specdriven/settings.json`, looked up in this order:
 uses for the install prefix. Settings are saved back to whichever of the two
 the app read; when neither exists, the project one is created.
 
-## Scenario: changing the data repo
+## a newly picked data folder is pulled @v1 [proposed]
+
+- Given: the user confirms a data folder — in the first-run form or in the
+  Data directory dialog
+- When: the folder is accepted
+- Then: it is pulled before the app reads it, so the folder's first feature
+  list is the latest data
+- and a folder that is not a git repo, or whose pull fails, is still selected
+
+## changing the data repo @v1 [proposed]
 
 - Given: a data repo is configured, and the sidebar header shows its folder
   name only — parent folders appear in a tooltip, and the full path in the
@@ -30,28 +41,29 @@ the app read; when neither exists, the project one is created.
 - and a value the server rejects leaves the current repo in place, with the
   error shown as a status note
 
-## Scenario: the data repo is pulled on start
+## migrating the pre-settings.json layout @v1 [proposed]
 
-- Given: a data repo is configured, and its remote has commits this machine
-  does not have yet
+- Given: a plain `.specdriven` file (the old layout) is in the project root
 - When: the app starts
-- Then: the data repo is pulled before the first screen is read, so the
-  feature list shows the remote's latest data without the user pressing Sync
-- and the pull does not hold up the rest of startup; a pull that hangs stops
-  blocking reads after a short wait, leaving stale data on screen until the
-  next reload tick rather than an app that never opens
-- and a pull that fails is logged; the app still opens on the data on disk
+- Then: it is read as the settings file
+- and the next save moves it to `./.specdriven/settings.json`, preserving
+  every setting
 
-## Scenario: a newly picked data folder is pulled
+## no settings file anywhere @v1 [proposed]
 
-- Given: the user confirms a data folder — in the first-run form or in the
-  Data directory dialog
-- When: the folder is accepted
-- Then: it is pulled before the app reads it, so the folder's first feature
-  list is the latest data
-- and a folder that is not a git repo, or whose pull fails, is still selected
+- Given: neither settings file exists
+- When: the app starts
+- Then: the user is asked for the data repo
 
-## Scenario: picking the data directory with the native folder chooser
+## only the home settings file exists @v1 [proposed]
+
+- Given: `~/.specdriven/settings.json` names a data repo, and the project has
+  no settings file
+- When: the app starts
+- Then: the user is not asked for a data repo
+- and settings saved from the Settings dialog go back to the home settings file
+
+## picking the data directory with the native folder chooser @v1 [proposed]
 
 - Given: the runtime has a native folder chooser (the desktop app, or the
   local web server on macOS)
@@ -64,31 +76,21 @@ the app read; when neither exists, the project one is created.
 - and canceling the chooser leaves the field unchanged
 - and on runtimes with no native chooser the "Browse…" button is not shown
 
-## Scenario: no settings file anywhere
+## the data repo is pulled on start @v1 [proposed]
 
-- Given: neither settings file exists
+- Given: a data repo is configured, and its remote has commits this machine
+  does not have yet
 - When: the app starts
-- Then: the user is asked for the data repo
+- Then: the data repo is pulled before the first screen is read, so the
+  feature list shows the remote's latest data without the user pressing Sync
+- and the pull does not hold up the rest of startup; a pull that hangs stops
+  blocking reads after a short wait, leaving stale data on screen until the
+  next reload tick rather than an app that never opens
+- and a pull that fails is logged; the app still opens on the data on disk
 
-## Scenario: only the home settings file exists
-
-- Given: `~/.specdriven/settings.json` names a data repo, and the project has
-  no settings file
-- When: the app starts
-- Then: the user is not asked for a data repo
-- and settings saved from the Settings dialog go back to the home settings file
-
-## Scenario: the project settings file wins
+## the project settings file wins @v1 [proposed]
 
 - Given: both settings files exist
 - When: the app starts
 - Then: the project settings file is used
 - and saving settings leaves the home settings file untouched
-
-## Scenario: migrating the pre-settings.json layout
-
-- Given: a plain `.specdriven` file (the old layout) is in the project root
-- When: the app starts
-- Then: it is read as the settings file
-- and the next save moves it to `./.specdriven/settings.json`, preserving
-  every setting
