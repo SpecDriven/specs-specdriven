@@ -5,7 +5,7 @@ When we try to clone a private repo without being signed in we get
 `Could not clone https://github.com/SpecDriven/data-insurance:
 authentication required — sign in with GitHub in Settings`
 
-A private repo needs credentials (specs/git-operations.spec.md): cloning
+A private repo needs credentials (git-operations.feature.md): cloning
 without them fails fast with the sign-in hint instead of hanging on a
 credential prompt. Public repos clone without signing in.
 
