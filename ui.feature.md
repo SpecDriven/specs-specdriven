@@ -103,9 +103,12 @@ Applies to every dialog (scenario edit, Settings, and any future dialog).
 - Editing an existing scenario keeps the version it was already assigned.
 - A `Draft` checkbox marks the scenario a draft: saved in the app but kept out
   of the `.feature.md` (crud-feature.feature.md "Scenario status"). It is
-  editable for a new scenario (unchecked by default) and for an existing
-  draft; the status moves one way, so once a scenario has been saved as
-  proposed the checkbox is disabled.
+  editable for a new scenario and for an existing draft; the status moves one
+  way, so once a scenario has been saved as proposed the checkbox is disabled.
+- A new scenario — including the next version of a published one — starts with
+  `Draft` checked. Autosave (editor-autosave.feature.md) writes the open dialog
+  out on its own, and only the user unchecking the box proposes the scenario
+  into the `.feature.md`.
 - Draft scenarios show a `draft` badge on their cards.
 - A `[proposed]` scenario has a `Delete` button: after a confirmation, the
   scenario is removed from the feature. The removal is saved like any edit —
