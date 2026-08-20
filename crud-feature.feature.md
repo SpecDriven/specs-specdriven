@@ -89,6 +89,15 @@ Ex:
 - asks for confirmation first
 - the file is removed with `git rm`, committed and pushed
 
+## Deleting a draft targets one version @v1 [proposed]
+
+A draft is identified by its name and its version, so two drafts under one
+name are two scenarios and only the targeted one is deleted.
+
+Asking to delete a draft that is not in the document is an error, and nothing
+changes. The operation is for drafts only — a `[proposed]` scenario is deleted
+by saving the feature without it (ui.feature.md "Scenario edit dialog").
+
 ## publish each scenario individually; support Publish All @v1 [proposed]
 
 - PM should be able to publish each scenario individually
