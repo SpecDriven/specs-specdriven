@@ -113,6 +113,12 @@ Applies to every dialog (scenario edit, Settings, and any future dialog).
 - A `[proposed]` scenario has a `Delete` button: after a confirmation, the
   scenario is removed from the feature. The removal is saved like any edit —
   auto-saved locally and pushed by the reload cron.
+- A draft has the same `Delete` button, so a scenario autosave has placed can
+  always be taken back out. A draft is deleted from the app's document rather
+  than by saving the feature without it (automerge-store.feature.md), because
+  the `.feature.md` never held it; the reload cron pushes that deletion like
+  any other save. Delete appears once the scenario is part of the feature — a
+  dialog on a scenario that has never been saved is dismissed with `Cancel`.
 - Published scenarios have no Delete button — they are immutable. Their name,
   version, body and scenario table are read-only; only the Automated tests
   field can be changed (traceability.feature.md), and the dialog's save
