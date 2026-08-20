@@ -70,7 +70,12 @@ of the file — on the next sync tick. Because markdown cannot see drafts, markd
 reconciliation never deletes them: a draft leaves the document only when
 something that can see it (the document itself) removes or promotes it. A
 `[proposed]` chip on the draft's name and version promotes the existing
-entry in place, keeping its identity and edit history. Concurrent status
+entry in place, keeping its identity and edit history. Deleting a draft is
+the other way out: the app removes the entry from the document by name and
+version — the deletion markdown cannot express — and the reload cron commits
+and pushes the document as it does any other saved change. The operation is
+for drafts only; a proposed scenario is deleted by saving the feature
+without it. Concurrent status
 changes merge as a one-way latch: the side further along
 draft → proposed → published wins.
 
