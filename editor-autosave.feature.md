@@ -1,10 +1,10 @@
 # Editor Autosave
 
-## Autosave Triggered at Defined Interval @v1 [proposed]
+## Autosave Triggered at Defined Interval @v1 [published]
 
 SpecDriven saves the contents of the editor at the defined interval.
 
-## Configure Autosave in Settings Dialog @v1 [proposed]
+## Configure Autosave in Settings Dialog @v1 [published]
 
 The SpecDriven App Settings contain a setting for Autosave Interval in Seconds.
 
