@@ -6,3 +6,4 @@ SpecDriven App will store logs of coding sessions.
 A coding session log includes the following information.
 - The name of the coding session
 - The LLM model used for the session
+- The time taken for the se
