@@ -36,6 +36,11 @@ scenario is stored in the feature's Automerge document only
 `[proposed]`, and a chipless scenario hand-added to the markdown is absorbed
 into the document as a draft and leaves the file on the next sync tick.
 
+A scenario created in the app starts as a `draft`. The editor autosaves the
+open dialog (editor-autosave.feature.md), so anything else would put a
+half-written scenario into the `.feature.md` without the user asking for it;
+moving to `proposed` is the user's explicit action.
+
 The scenario edit dialog has a `Draft` checkbox (ui.feature.md "Scenario
 edit dialog"). A scenario saved with it checked keeps the `draft` status: the
 editor and the server exchange it with an explicit `[draft]` chip — a wire
