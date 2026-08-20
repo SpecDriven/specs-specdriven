@@ -1,6 +1,6 @@
 # Launch AI Agent Session
 
-## Assemble Selected Specs for Coding Session to Clipboard @v1 [proposed]
+## Assemble Selected Specs for Coding Session to Clipboard @v1 [published]
 
 1. User opens a feature file.
 2. User selects the whole feature, and all of its specs, or selects one or more specs from the feature.
