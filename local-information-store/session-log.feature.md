@@ -2,4 +2,4 @@
 
 ## Autosave Scenario Demonstration @v1 [proposed]
 
-When a sc
+When a scenario is
