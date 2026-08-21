@@ -79,6 +79,19 @@ nothing.
 
 SpecDriven saves the contents of the editor at the defined interval.
 
+## Canceling an Autosaved Edit Restores the Scenario @v1 [proposed]
+
+Cancel undoes the dialog, ticks included. A scenario that was already saved —
+a draft the user saved, or a proposed one — goes back to what the dialog
+opened it as: the text typed since is taken back out of the feature even
+though a tick had saved it.
+
+A rename is taken back with the rest. A renamed draft is deleted under the
+name the tick saved it under, because the `.feature.md` never held it, and a
+save that leaves a draft out removes nothing.
+
+A dialog no tick ever saved has nothing to restore — Cancel just closes it.
+
 ## Canceling Autosaved Scenario Deletes it @v1 [published]
 
 Given: a new scenario was autosaved and is in 'draft' status
