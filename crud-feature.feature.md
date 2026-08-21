@@ -143,3 +143,16 @@ Ex:
 
 Customer calls accident hotline and leaves a message with accident info.
 ```
+
+## Headings without a version are plain content @v1 [proposed]
+
+Only a `##` heading that ends with a version (`@vNNN`) starts a scenario.
+
+- A `##` heading without a version is ordinary markdown — it stays part of
+  the feature description or of the scenario body it appears in, and is
+  rendered as a heading there, not treated as a scenario boundary. (This
+  very file relies on it: "Feature file format" and "Scenario status" are
+  sections, not scenarios.)
+- Headings inside fenced code blocks (``` or ~~~) are content too, even
+  when they carry a version — examples of the file format must not parse
+  as real scenarios.
