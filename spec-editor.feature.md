@@ -1,1 +1,12 @@
 # Spec Editor
+
+## Create New Spec @v1 [published]
+
+Add scenario.
+This opens the editor dialog for the new spec.
+The new spec editor dialog has a title for the user to fill in.
+The new spec starts in draft mode.
+The draft spec is persisted in Automerge.
+The user can use Delete which removes the draft spec.
+The escape key or the close-editor widget will leave the scenario in its autosaved state. Like the Settings dialog, the bottom of the spec dialog will have a note to use Esc to exit.
+Two buttons available: "Propose" and "Publish".
