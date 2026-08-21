@@ -177,10 +177,10 @@ come from one token block.
 - Focus is always visible: accent rings on fields, focus outlines on
   controls.
 
-## Add A Scenario Button @v1 [proposed]
+## Add A Scenario Button @v1 [published]
 
 * With a feature file editor open, the button to add a scenario should always be visible. The button should be located with respect to the editor window viewport.
 
-## Feature Text Scroll Pane @v1 [proposed]
+## Feature Text Scroll Pane @v1 [published]
 
 The detail view for a feature file should provide a scroll pane for the feature text, rendering Markdown to HTML, and providing specd for the scenario cards and the "add a scenario" button.
