@@ -79,6 +79,14 @@ nothing.
 
 SpecDriven saves the contents of the editor at the defined interval.
 
+## Canceling Autosaved Scenario Deletes it @v1 [published]
+
+Given: a new scenario was autosaved and is in 'draft' status
+When: I Cancel from the scenario editor
+Then: This draft scenario is deleted
+
+Note: if this scenario was saved by the user, next Cancel jsut exits the editor dialog.
+
 ## Configure Autosave in Settings Dialog @v1 [published]
 
 The SpecDriven App Settings contain a setting for Autosave Interval in Seconds.
