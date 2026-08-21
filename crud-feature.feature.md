@@ -98,7 +98,7 @@ Asking to delete a draft that is not in the document is an error, and nothing
 changes. The operation is for drafts only — a `[proposed]` scenario is deleted
 by saving the feature without it (ui.feature.md "Scenario edit dialog").
 
-## Headings without a version are plain content @v1 [proposed]
+## Headings without a version are plain content @v1 [published]
 
 Only a `##` heading that ends with a version (`@vNNN`) starts a scenario.
 
