@@ -184,3 +184,19 @@ come from one token block.
 ## Feature Text Scroll Pane @v1 [published]
 
 The detail view for a feature file should provide a scroll pane for the feature text, rendering Markdown to HTML, and providing specd for the scenario cards and the "add a scenario" button.
+
+## Feature Text Scroll Pane @v2 [proposed]
+
+The free markdown between the feature heading and the first scenario (the
+feature description) renders as Markdown — same pipeline as scenario bodies —
+in its own pane on the feature page:
+
+- The pane has its own scrollbar and scrolls independently of the scenario
+  list.
+- The pane is never taller than a third of the screen; a longer description
+  scrolls inside the pane instead of pushing the scenario list off screen.
+- A short description hugs its content — a one-line description does not
+  reserve a third of the screen.
+- The scenario list keeps its own scroll pane below; a tall scenario list
+  never squeezes the description pane, and the "add a scenario" button stays
+  reachable.
