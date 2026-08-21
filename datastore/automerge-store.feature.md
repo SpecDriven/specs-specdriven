@@ -35,11 +35,9 @@ pull and push as the markdown. No sync server is required; the optional
 websocket sync below accelerates delivery without changing the source of
 record.
 
-## A feature deleted outside the app @v1 [proposed]
+## A feature file deleted outside the app @v1 [published]
 
-When a git pull removes a feature file, the next sync tick removes its document
-directory too — the markdown is the interchange format, and its deletion
-carries the intent.
+When a git pull removes a feature file, the next sync tick removes its document directory too — the markdown is the interchange format, and its deletion carries the intent.
 
 ## a repo that predates documents @v1 [proposed]
 
