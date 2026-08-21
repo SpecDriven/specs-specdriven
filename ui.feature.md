@@ -176,3 +176,7 @@ come from one token block.
 - Published scenarios keep their distinct shading: a parchment wash.
 - Focus is always visible: accent rings on fields, focus outlines on
   controls.
+
+## Add A Scenario Button @v1 [proposed]
+
+* With a feature file editor open, the button to add a scenario should always be visible. The button should be located with respect to the editor window viewport.
