@@ -185,7 +185,7 @@ come from one token block.
 
 The detail view for a feature file should provide a scroll pane for the feature text, rendering Markdown to HTML, and providing specd for the scenario cards and the "add a scenario" button.
 
-## Feature Text Scroll Pane @v2 [proposed]
+## Feature Text Scroll Pane @v2 [published]
 
 The free markdown between the feature heading and the first scenario (the
 feature description) renders as Markdown — same pipeline as scenario bodies —
