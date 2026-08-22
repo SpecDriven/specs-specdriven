@@ -200,3 +200,7 @@ in its own pane on the feature page:
 - The scenario list keeps its own scroll pane below; a tall scenario list
   never squeezes the description pane, and the "add a scenario" button stays
   reachable.
+
+## Spec will be added under the folder that is highlighted @v1 [published]
+
+When adding a spec (scenario), it must be added under the highlighted (focused) folder.
