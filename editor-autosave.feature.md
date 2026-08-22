@@ -79,6 +79,16 @@ nothing.
 
 SpecDriven saves the contents of the editor at the defined interval.
 
+## Autosave Waits While the Name Is Being Typed @v1 [proposed]
+
+While the caret is in the dialog's title field the scenario's name is only
+half typed, so no tick saves it — a new scenario is not filed as a draft under
+the first few letters of its name, and a rename is not saved part-way through.
+
+The tick after focus moves on — to the body, or anywhere else — saves the name
+as typed. A published scenario has no editable title, so nothing holds its
+ticks back.
+
 ## Canceling an Autosaved Edit Restores the Scenario @v1 [proposed]
 
 Cancel undoes the dialog, ticks included. A scenario that was already saved —
