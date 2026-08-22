@@ -14,7 +14,7 @@ If error code, display the error to the user in an error box.
 - 'Start session' (click button)
 - Name the session
 
-## Create and name a code gen session @v2 [proposed]
+## Create and name a code gen session @v2 [published]
 
 - Select a whole spec with the checkbox on its sidebar entry
 - Select single scenarios with the checkbox on their scenario cards
