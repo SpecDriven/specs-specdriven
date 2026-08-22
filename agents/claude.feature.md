@@ -26,7 +26,7 @@ If error code, display the error to the user in an error box.
 - Name the session
 - A spec cut down to selected scenarios is marked as such in the prompt
 
-## Switch code generation on or off @v1 [proposed]
+## Switch code generation on or off @v1 [published]
 
 Given: the Settings dialog
 When: the 'Code generation' switch is turned off and the settings are saved
