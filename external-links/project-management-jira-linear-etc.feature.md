@@ -4,7 +4,7 @@
 
 Each spec (scenario) can have its own link.
 
-## Add link to feature @v1 [proposed]
+## Add link to feature @v1 [published]
 
 Add link at feature level
 
