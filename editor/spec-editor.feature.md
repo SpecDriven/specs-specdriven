@@ -1,5 +1,7 @@
 # Spec Editor
 
+Spec editor will be separate pane that will replace the feature pane with '<' icon to
+
 ## Create New Spec @v1 [published]
 
 Add scenario.
