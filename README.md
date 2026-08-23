@@ -1,3 +1,5 @@
-# specs-specdriven
+# Specdriven Application
 
-Specifications of specdriven_app. Dogfoodoing!
+## Mission
+
+- Local first application whose only required de
