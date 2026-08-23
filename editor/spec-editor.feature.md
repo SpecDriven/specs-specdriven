@@ -20,3 +20,34 @@ When: click on Delete button
 Then: a confirmation dialog pops up with: "Danger Zone! Confirm that you want to delete a Published" spec.
 The user can click "Confirm" button or the "Cancel" button.
 If confirmed, the spec is deleted.
+
+## Spec editor pane @v1 [proposed]
+
+The scenario editor is a pane, not a dialog. Opening a scenario — Edit on its
+card, Enter on the highlighted card, New version, or "+ Add Scenario" —
+replaces the feature pane with the editor in the same slot. The sidebar stays
+where it is and keeps working.
+
+- The bar at the top holds, left to right: a `<` back button whose tooltip
+  names the feature ("Back to <feature name>"); the scenario title — an
+  editable title for a draft or proposed scenario, a read-only heading for a
+  published one — with the version and the status badge beside it; and on the
+  right, where the feature page keeps Publish All, the actions: Delete, set
+  apart from Propose and Publish, or `Save links` for a published scenario.
+- Below the bar one column scrolls: the body's Markdown editor, at least 40%
+  of the window tall and growing to fill the pane, then the scenario table,
+  the ticket link and the automated tests.
+- `<` and ESC go back to the feature, leaving the scenario in its autosaved
+  state — one last save catches what was typed since the previous tick. The
+  scenario's card is highlighted and scrolled into view; a new scenario that
+  was never saved highlights nothing.
+- There is no "esc to exit" note: the way back is on screen.
+- The address bar does not change while the pane is open.
+- The pane is part of the page, not a dialog: nothing behind it is dimmed, it
+  is not resizable, and Tab reaches the sidebar — it traps no focus. A delete
+  confirmation still opens above it as a dialog, traps Tab and takes the ESC
+  while it is up; so do the sidebar's menus and Settings.
+- Navigating while the pane is open — a feature in the sidebar, a search
+  result, the data folder name, browser Back — first saves what the pane
+  holds, exactly like `<`, then navigates.
+- The reload cron and Sync leave an open pane alone, as they did the dialog.

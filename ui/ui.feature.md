@@ -4,7 +4,8 @@
 - Scenarios are ordered by name, then by version.
 - Published scenarios are shaded differently from un-published, editable scenarios.
 
-Edit scenarios in a separate dialog box.
+Edit scenarios in the editor pane (editor/spec-editor.feature.md "Spec editor
+pane").
 
 If a scenario is already published, then it is immutable — apart from its
 links to automated tests, which stay editable (traceability.feature.md).
@@ -71,7 +72,8 @@ A deep folder hierarchy needs more room than the default left-pane width.
 
 ## Dialogs
 
-Applies to every dialog (scenario edit, Settings, and any future dialog).
+Applies to every dialog (Settings, the merge conflict dialog, prompts and
+confirmations, and any future dialog).
 
 - While a dialog is in the foreground, Tab and Shift+Tab must only move focus
   between the fields inside that dialog. Focus wraps from the last field back to
@@ -84,10 +86,16 @@ Applies to every dialog (scenario edit, Settings, and any future dialog).
   (The desktop runtime has no `prompt()` at all —
   desktop-app.feature.md.) Prompts submit on Enter and can't submit
   empty; delete confirmations carry a solid-red destructive button.
-- Dialogs can stack — a delete confirmation above the scenario edit dialog.
+- Dialogs can stack — a delete confirmation above the scenario editor
+  pane, or above another dialog.
   Tab cycles only the top dialog, and ESC closes only the top dialog.
 
 ## Scenario edit dialog
+
+> Superseded for the editor's chrome by editor/spec-editor.feature.md "Spec
+> editor pane": the editor is a pane in the feature's slot, not a dialog — not
+> resizable, no "esc to exit" note. The field rules below (title, version,
+> Draft, Delete, published read-only, ESC in a ✎ row) still apply.
 
 - Name must be the title of the dialog
 - Must be resizable
