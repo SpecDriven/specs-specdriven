@@ -1,6 +1,6 @@
 # Spec Editor
 
-Spec editor will be separate pane that will replace the feature pane with '<' icon to
+Spec editor will be separate pane that will replace the feature pane with '<' icon to go back to the feature.
 
 ## Create New Spec @v1 [published]
 
