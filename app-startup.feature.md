@@ -17,3 +17,17 @@
 Given: specs filder is saved in .specdriven
 Then: Open the README.md file in an editor so it can be edited if necessary.
 We will automatically save the README.md file using the same frequesncy as we use for scenario editor.
+
+## The data folder name links to the README @v1 [proposed]
+
+- Given: a data folder is configured, and the sidebar header shows its name
+  next to the logo
+- When: the user clicks the folder name
+- Then: the app navigates home (`/`) — the folder's README.md opens in the
+  editor, the same view a start with that folder selected shows
+- and the feature that was open is dropped from the selection; Back returns
+  to it, since the click pushed a history entry
+- and anything typed in the README editor before leaving it was saved, and
+  anything typed in it again is autosaved as before
+- and the name is a real link to `/`: right-click → Copy Link and cmd-click →
+  new tab work natively, like the sidebar's feature entries
