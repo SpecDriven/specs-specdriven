@@ -201,6 +201,10 @@ in its own pane on the feature page:
   never squeezes the description pane, and the "add a scenario" button stays
   reachable.
 
+## Recent folder list @v1 [published]
+
+There is a small down arrow icon next to folder name that brings up a list of previous folders. Support up to 10 folders.
+
 ## Spec will be added under the folder that is highlighted @v1 [published]
 
 When adding a spec (scenario), it must be added under the highlighted (focused) folder.
