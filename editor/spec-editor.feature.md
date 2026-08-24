@@ -42,7 +42,10 @@ where it is and keeps working.
   scenario's card is highlighted and scrolled into view; a new scenario that
   was never saved highlights nothing.
 - There is no "esc to exit" note: the way back is on screen.
-- The address bar does not change while the pane is open.
+- The pane is a page of its own: while it is open the address bar carries the
+  scenario's url and the window title names it (navigation.feature.md), so the
+  card's "Copy link" shares the page that is on screen, and a link to it opens
+  the pane straight away. The feature's url comes back when the pane does.
 - The pane is part of the page, not a dialog: nothing behind it is dimmed, it
   is not resizable, and Tab reaches the sidebar — it traps no focus. A delete
   confirmation still opens above it as a dialog, traps Tab and takes the ESC
