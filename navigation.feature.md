@@ -6,12 +6,18 @@ via chat and email.
 
 ## URL scheme
 
-| URL                                             | Meaning                                    |
-| ----------------------------------------------- | ------------------------------------------ |
-| `/`                                             | Home — no feature selected                 |
-| `/features/<feature>`                           | Feature page for `<feature>.feature.md`    |
-| `/features/<feature>/scenarios/<scenario>`      | Latest version of that scenario            |
-| `/features/<feature>/scenarios/<scenario>/v<N>` | Exactly version N — a permalink            |
+| URL                                             | Meaning                                       |
+| ----------------------------------------------- | --------------------------------------------- |
+| `/`                                             | Home — no feature selected                    |
+| `/features/<feature>`                           | Feature page for `<feature>.feature.md`       |
+| `/features/<feature>/scenarios/<scenario>`      | Page of the latest version of that scenario   |
+| `/features/<feature>/scenarios/<scenario>/v<N>` | Page of exactly version N — a permalink       |
+
+A scenario url addresses that scenario's own page — the spec editor pane
+(editor/spec-editor.feature.md) — not the feature page with a card picked out
+of it. Highlighting a card is not a page and keeps the feature url; opening
+the scenario, from a link or from the feature page, is what the scenario url
+means.
 
 Identity comes from the data repo, never from session state:
 
@@ -45,8 +51,9 @@ Identity comes from the data repo, never from session state:
   `.feature.md` or legacy `.feature` suffix is accepted.
 - If several scenario names slugify identically, the first match in file
   order wins.
-- After resolution the address bar shows the canonical url of what is
-  actually selected: the feature url, or the versioned scenario url.
+- After resolution the address bar shows the canonical url of the page that
+  is open: the feature url, or the versioned scenario url while a scenario
+  page is open.
 - The server serves the app shell for every `/features/...` path; resolution
   happens in the client via `/api/features/:file`.
 
@@ -79,9 +86,13 @@ link — clicked in chat, email, a browser or a terminal — to the app.
 
 - Selecting a feature (sidebar click, create) pushes a history entry —
   back/forward walk through previously viewed features
-- Moving the scenario selection with the up/down keys rewrites the url in
-  place (no history entry per keystroke)
-- Reloading the page restores the same feature and scenario selection
+- Opening a scenario's page pushes one too, so Back leaves it exactly as `<`
+  does; leaving it rewrites the url in place, and so does a rename that moves
+  an open page's url — Back never lands on a url the rename retired
+- Moving the highlight through the cards with the up/down keys does not touch
+  the url (no history entry per keystroke)
+- Reloading the page restores the same feature, and the scenario page if one
+  was open
 
 ## deep link before a data repo is configured @v1 [proposed]
 
@@ -120,16 +131,20 @@ link — clicked in chat, email, a browser or a terminal — to the app.
 
 - Given: `navigation.feature.md` contains scenario "ESC key closes the dialog" v2
 - When: the user opens `/features/navigation/scenarios/esc-key-closes-the-dialog/v2`
-- Then: the feature opens with that scenario card selected, highlighted, and
-  scrolled into view — the same highlight the up/down keys move, so Enter
-  opens the full body
+- Then: that scenario's page opens directly — the editor pane on it, in the
+  feature's slot (editor/spec-editor.feature.md) — with its card selected and
+  scrolled into view underneath, so `<` and ESC land back on it
+- The same for a link opened from outside the app, a search hit
+  (search.feature.md), and a reload of the url
 
 ## share a link @v1 [proposed]
 
 - Sidebar entries and scenario card titles are real links: right-click →
   Copy Link and cmd-click → new tab work natively
 - Every scenario card has a "Copy link" action that puts the absolute
-  versioned url on the clipboard; its label flips to "Copied" for 2 sec
+  versioned url on the clipboard; its label flips to "Copied" for 2 sec. What
+  is shared is a link to that scenario's page: whoever opens it lands on the
+  scenario, not on the feature it lives in
 - The feature name in the editor bar has the same "Copy link" action for
   the feature url
 - In the desktop app those actions copy the `specdriven://` form, so what
@@ -144,5 +159,20 @@ link — clicked in chat, email, a browser or a terminal — to the app.
 ## window title follows the selection @v1 [proposed]
 
 - `SpecDriven` on home, `SpecDriven — <feature name>` on a feature,
-  `SpecDriven — <feature name> · <scenario name> v<N>` with a selection —
-  chat and email link previews show the title
+  `SpecDriven — <feature name> · <scenario name> v<N>` on a scenario page —
+  the title names what the url names, so chat and email link previews of a
+  scenario link show the scenario
+
+## a scenario page carries its own url @v1 [proposed]
+
+- Given: the feature page for `quotes.feature.md` is open, with the highlight
+  on some card — the address bar reads `/features/quotes`
+- When: the user opens the scenario "Basic quote" v2 — Edit on its card,
+  Enter on the highlighted card, or a double-click
+- Then: the address bar reads
+  `/features/quotes/scenarios/basic-quote/v2`, the window title names the
+  scenario, and "Copy link" on that card shares exactly the url of the page
+  now on screen
+- When: the user leaves the page with `<` or ESC
+- Then: the address bar reads `/features/quotes` again, and browser Back from
+  the open page would have done the same — saving what the pane held first

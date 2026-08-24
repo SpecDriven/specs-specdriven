@@ -45,11 +45,11 @@ name, or scenario body finds its spec in a couple of keystrokes.
 - Given: a scenario hit for `quotes.feature.md` scenario "Basic quote" v2
 - When: the user clicks the result (or moves the highlight with ↑/↓ and
   presses Enter)
-- Then: the feature opens with that scenario card selected, highlighted,
-  and scrolled into view, and the address bar shows
-  `/features/quotes/scenarios/basic-quote/v2` — exactly as if the deep
-  link had been opened (navigation.feature.md). The query is kept so
-  other results can be visited.
+- Then: that scenario's page opens, with its card selected underneath, and
+  the address bar shows `/features/quotes/scenarios/basic-quote/v2` —
+  exactly as if the deep link had been opened (navigation.feature.md). A
+  feature hit opens the feature page. The query is kept so other results
+  can be visited.
 
 ## Escape or ✕ restores the tree @v1 [proposed]
 
