@@ -76,4 +76,3 @@ claude -p "and now do that" --resume "$SESSION_ID"
   re-capture it each turn if you're chaining more than two calls.
 - `--no-session-persistence` disables saving entirely — don't combine it with
   any of this.
-
