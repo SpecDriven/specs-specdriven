@@ -5,3 +5,5 @@ Cloning the data repo still doubles as the access check.
 
 Remaining idea: verify *write* access explicitly at setup time (today a
 missing write permission only surfaces on the first push).
+
+test
