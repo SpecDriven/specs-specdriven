@@ -26,6 +26,10 @@ If error code, display the error to the user in an error box.
 - Name the session
 - A spec cut down to selected scenarios is marked as such in the prompt
 
+## S4 @v1 [published]
+
+fsfdsfdsfs
+
 ## Switch code generation on or off @v1 [published]
 
 Given: the Settings dialog
