@@ -75,6 +75,20 @@ what `/features/accidents/record-car-accident` does, versioned scenario
 permalinks included. Registering the scheme is what lets the OS route such a
 link — clicked in chat, email, a browser or a terminal — to the app.
 
+## a scenario page carries its own url @v1 [proposed]
+
+- Given: the feature page for `quotes.feature.md` is open, with the highlight
+  on some card — the address bar reads `/features/quotes`
+- When: the user opens the scenario "Basic quote" v2 — Edit on its card,
+  Enter on the highlighted card, or a double-click
+- Then: the address bar reads
+  `/features/quotes/scenarios/basic-quote/v2`, the window title names the
+  scenario, and "Copy link" on that card shares exactly the url of the page
+  now on screen
+- When: the user leaves the page with `<` or ESC
+- Then: the address bar reads `/features/quotes` again, and browser Back from
+  the open page would have done the same — saving what the pane held first
+
 ## a second link reuses the running app @v1 [proposed]
 
 - Given: the desktop app is already open on some other feature
@@ -162,17 +176,3 @@ link — clicked in chat, email, a browser or a terminal — to the app.
   `SpecDriven — <feature name> · <scenario name> v<N>` on a scenario page —
   the title names what the url names, so chat and email link previews of a
   scenario link show the scenario
-
-## a scenario page carries its own url @v1 [proposed]
-
-- Given: the feature page for `quotes.feature.md` is open, with the highlight
-  on some card — the address bar reads `/features/quotes`
-- When: the user opens the scenario "Basic quote" v2 — Edit on its card,
-  Enter on the highlighted card, or a double-click
-- Then: the address bar reads
-  `/features/quotes/scenarios/basic-quote/v2`, the window title names the
-  scenario, and "Copy link" on that card shares exactly the url of the page
-  now on screen
-- When: the user leaves the page with `<` or ESC
-- Then: the address bar reads `/features/quotes` again, and browser Back from
-  the open page would have done the same — saving what the pane held first
