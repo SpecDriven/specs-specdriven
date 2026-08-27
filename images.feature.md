@@ -6,7 +6,7 @@ else, so they sync through git with the features that reference them. The
 `![...](/api/images/<name>)` references resolve inside the app; on GitHub the
 files are browsable under `.images/`.
 
-- In the scenario edit dialog's Write tab, pasting clipboard content that
+- In the scenario editor pane's Write tab, pasting clipboard content that
   contains an image uploads it and inserts `![alt](/api/images/<name>)` at
   the caret. Plain text pastes are untouched.
 - The 🖼 toolbar button opens the OS file picker (images only, multiple
@@ -20,7 +20,7 @@ files are browsable under `.images/`.
 - Supported types: png, jpg, jpeg, gif, webp, svg, avif — anything else is
   refused, as are empty files and files over 10 MB.
 - The Preview tab (and every rendered scenario body) shows the image, scaled
-  down to fit the dialog width.
+  down to fit the pane width.
 - While an upload runs the toolbar shows "Uploading…"; a failed upload shows
   the error in the toolbar and inserts nothing.
 

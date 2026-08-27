@@ -37,12 +37,12 @@ scenario is stored in the feature's Automerge document only
 into the document as a draft and leaves the file on the next sync tick.
 
 A scenario created in the app starts as a `draft`. The editor autosaves the
-open dialog (editor-autosave.feature.md), so anything else would put a
+open pane (editor-autosave.feature.md), so anything else would put a
 half-written scenario into the `.feature.md` without the user asking for it;
 moving to `proposed` is the user's explicit action.
 
-The scenario edit dialog has a `Draft` checkbox (ui.feature.md "Scenario
-edit dialog"). A scenario saved with it checked keeps the `draft` status: the
+The scenario editor pane has a `Draft` checkbox (ui.feature.md "Scenario
+editor"). A scenario saved with it checked keeps the `draft` status: the
 editor and the server exchange it with an explicit `[draft]` chip — a wire
 format that never lands in a `.feature.md` — and save stores it in the
 document without writing it to the file. The editor keeps showing drafts:
@@ -96,7 +96,7 @@ name are two scenarios and only the targeted one is deleted.
 
 Asking to delete a draft that is not in the document is an error, and nothing
 changes. The operation is for drafts only — a `[proposed]` scenario is deleted
-by saving the feature without it (ui.feature.md "Scenario edit dialog").
+by saving the feature without it (ui.feature.md "Scenario editor").
 
 ## Headings without a version are plain content @v1 [published]
 

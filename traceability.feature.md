@@ -23,31 +23,39 @@ plain markdown that renders naturally on GitHub:
   in a new tab. The link text is the url without the `https://github.com/`
   prefix.
 - Only GitHub urls (`https://github.com/…`) are accepted.
-- The scenario edit dialog has an "Automated tests" field: the current links,
+- The scenario editor pane has an "Automated tests" field: the current links,
   each with an ✎ to correct it in place and a remove ✕, plus an add field.
   A published scenario is immutable, but its test links are not part of the
   spec — they keep changing as the tests get written — so the field stays
   editable there too. Nothing else about a published scenario is: its name,
   version and body stay read-only.
-- Because of that the `[published]` card's dialog link reads `Edit`, and falls
-  back to `View` only when the setting below leaves nothing to change.
-- A url is rejected — Add and Save stay disabled — unless it is a GitHub url
-  the scenario does not already list.
-- Pressing the dialog's Save with a url still sitting in the add field or in
-  an open ✎ row folds it into the save as if Add (or the row's Save) had been
-  pressed — it is never silently dropped. A pending url that can't join the
-  list blocks the save with a message under the field.
+- Because of that the `[published]` card's link reads `Edit`, never `View`:
+  the pane it opens always has something to offer, if only the ticket link
+  (external-links/project-management-jira-linear-etc.feature.md).
+- A url is rejected — Add and the ✎ row's Save stay disabled — unless it is a
+  GitHub url the scenario does not already list.
+- The links need no save action of their own: autosave writes them out
+  locally like any other edit (editor/editor-autosave.feature.md) and the
+  reload cron or Sync pushes them, which is why a published scenario's pane
+  has no save button (editor/spec-editor.feature.md).
+- Leaving the pane with a url still sitting in the add field or in an open ✎
+  row folds it into that last save as if Add (or the row's Save) had been
+  pressed — it is never silently dropped. Propose and Publish fold it in the
+  same way, and there a pending url that can't join the list blocks the save
+  with a message under the field; on the way out of the pane there is nowhere
+  left to show that message, so such a url is left behind rather than holding
+  the pane open.
 - The Settings dialog has a "Show links to automated tests" checkbox; the
   choice is saved to the settings file (`showTestLinks`), and only hides the
-  tables on the cards and the Automated tests field in the scenario dialog —
+  tables on the cards and the Automated tests field in the editor pane —
   the stored links are untouched.
 
 ## add a test link @v1 [proposed]
 
-- When: the user pastes a GitHub url into the edit dialog's Automated tests
+- When: the user pastes a GitHub url into the editor pane's Automated tests
   field and presses Add
-- Then: the link joins the scenario's list, and after Save the feature file
-  holds it in the scenario's `### Tests` table
+- Then: the link joins the scenario's list, and the next autosave writes it
+  into the scenario's `### Tests` table in the feature file
 
 ## correct a test link @v1 [proposed]
 
@@ -58,28 +66,32 @@ plain markdown that renders naturally on GitHub:
 
 - Given: "Show links to automated tests" is ON (the default)
 - When: the user opens a `[published]` scenario through its card's `Edit` link
-- Then: the dialog's Automated tests field takes adds, ✎ edits and ✕ removes,
-  and Save test links writes them to the feature file — while the name,
-  version and body stay read-only
+- Then: the pane's Automated tests field takes adds, ✎ edits and ✕ removes,
+  and they reach the feature file with no save action pressed — autosaved
+  locally, pushed on Sync — while the name, version and body stay read-only
 
 ## hide the test links @v1 [proposed]
 
 - When: the user turns "Show links to automated tests" off in Settings
 - Then: the tables disappear from the scenario cards and the Automated tests
-  field disappears from the scenario dialog, but the links stay in the
+  field disappears from the editor pane, but the links stay in the
   feature files
-- And: a `[published]` scenario now has nothing editable, so its card link
-  reads `View` and the dialog offers only Close
+- And: a `[published]` scenario keeps its `Edit` link — the pane still holds
+  its ticket link — and that pane offers no save action and no Close: `<` and
+  ESC are the way back (editor/spec-editor.feature.md)
 
 ## see the tests of a scenario @v1 [proposed]
 
 - When: a scenario has test links and the setting is ON (the default)
 - Then: the end of the scenario card shows a table of clickable links
 
-## the add field still holds a url when Save is pressed @v1 [proposed]
+## the add field still holds a url when the pane is left @v1 [proposed]
 
 - When: the user pastes a GitHub url into the Automated tests add field and
-  presses the dialog's Save without pressing Add
-- Then: the link is saved all the same
-- And: an invalid or duplicate url there blocks the save with a message
-  under the field instead of being dropped
+  leaves the pane — `<`, ESC or navigating away — without pressing Add
+- Then: the link is saved all the same, by the save that leaving makes
+- And: an invalid or duplicate url there is left behind rather than saved,
+  since the pane is closing and there is nowhere to report it
+- And: pressing Propose or Publish instead folds the pending url in the same
+  way, but an invalid or duplicate one blocks that save with a message under
+  the field instead of being dropped
