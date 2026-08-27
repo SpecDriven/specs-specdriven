@@ -90,14 +90,14 @@ confirmations, and any future dialog).
   pane, or above another dialog.
   Tab cycles only the top dialog, and ESC closes only the top dialog.
 
-## Scenario edit dialog
+## Scenario editor
 
 > Superseded for the editor's chrome by editor/spec-editor.feature.md "Spec
 > editor pane": the editor is a pane in the feature's slot, not a dialog — not
 > resizable, no "esc to exit" note. The field rules below (title, version,
 > Draft, Delete, published read-only, ESC in a ✎ row) still apply.
 
-- Name must be the title of the dialog
+- Name must be the title of the pane
 - Must be resizable
 - Scenario body must contain an embedded Markdown Editor
 - Below the body, a table widget edits the scenario's markdown table
@@ -107,14 +107,14 @@ confirmations, and any future dialog).
   the app.
 - A new scenario takes the next version for the name it is given: one past the
   highest version already carrying that name, or v1 when the name is new.
-  Retyping the name in the dialog re-derives the version.
+  Retyping the name in the pane re-derives the version.
 - Editing an existing scenario keeps the version it was already assigned.
 - A `Draft` checkbox marks the scenario a draft: saved in the app but kept out
   of the `.feature.md` (crud-feature.feature.md "Scenario status"). It is
   editable for a new scenario and for an existing draft; the status moves one
   way, so once a scenario has been saved as proposed the checkbox is disabled.
 - A new scenario — including the next version of a published one — starts with
-  `Draft` checked. Autosave (editor-autosave.feature.md) writes the open dialog
+  `Draft` checked. Autosave (editor-autosave.feature.md) writes the open pane
   out on its own, and only the user unchecking the box proposes the scenario
   into the `.feature.md`.
 - Draft scenarios show a `draft` badge on their cards.
@@ -125,14 +125,15 @@ confirmations, and any future dialog).
   always be taken back out. A draft is deleted from the app's document rather
   than by saving the feature without it (automerge-store.feature.md), because
   the `.feature.md` never held it; the reload cron pushes that deletion like
-  any other save. Delete appears once the scenario is part of the feature — a
-  dialog on a scenario that has never been saved is dismissed with `Cancel`.
+  any other save. Delete appears once the scenario is part of the feature —
+  a pane on a scenario that has never been saved has nothing to delete, and
+  `<` or ESC is the way out of it.
 - Published scenarios have no Delete button — they are immutable. Their name,
   version, body and scenario table are read-only; only the Automated tests
-  field can be changed (traceability.feature.md), and the dialog's save
-  button reads `Save test links`.
+  field can be changed (traceability.feature.md), and there is no save button
+  at all — those links are autosaved locally and pushed on Sync.
 - ESC inside a field that is editing one row in place (the ✎ on a test link)
-  backs out of that row; a second ESC closes the dialog.
+  backs out of that row; a second ESC leaves the pane.
 
 ## Merge conflict dialog
 

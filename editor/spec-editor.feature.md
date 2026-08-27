@@ -33,14 +33,17 @@ where it is and keeps working.
   editable title for a draft or proposed scenario, a read-only heading for a
   published one — with the version and the status badge beside it; and on the
   right, where the feature page keeps Publish All, the actions: Delete, set
-  apart from Propose and Publish, or `Save links` for a published scenario.
+  apart from Propose and Publish. A published scenario carries no save action
+  at all: the only things it can still change are its links, and those save
+  themselves (traceability.feature.md).
 - Below the bar one column scrolls: the body's Markdown editor, at least 40%
   of the window tall and growing to fill the pane, then the scenario table,
   the ticket link and the automated tests.
 - `<` and ESC go back to the feature, leaving the scenario in its autosaved
-  state — one last save catches what was typed since the previous tick. The
-  scenario's card is highlighted and scrolled into view; a new scenario that
-  was never saved highlights nothing.
+  state — one last save catches what was typed since the previous tick, a url
+  still sitting in the test-link fields included (traceability.feature.md).
+  The scenario's card is highlighted and scrolled into view; a new scenario
+  that was never saved highlights nothing.
 - There is no "esc to exit" note: the way back is on screen.
 - The pane is a page of its own: while it is open the address bar carries the
   scenario's url and the window title names it (navigation.feature.md), so the

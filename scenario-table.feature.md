@@ -1,6 +1,6 @@
 # Scenario table
 
-- a separate table widget in the Scenario dialog to make it convenient to work with tables
+- a separate table widget in the scenario editor pane to make it convenient to work with tables
 - add/remove rows and columns
 - automatically create columns for variables in the body
   - var format {var}
