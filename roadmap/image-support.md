@@ -1,5 +1,6 @@
 # Image Support
 
 ## Rationale
-Spec
-Specs can include images.
+Specs can include images, which are good for communicating structure, domain context, or software behavior to both team members and coding agents.
+
+## Image Lifecycle
