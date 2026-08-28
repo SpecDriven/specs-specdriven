@@ -6,4 +6,6 @@ Specs can include images, which are good for communicating structure, domain con
 ## Image Storage
 Images are typically binary files which are inefficient to store within Git source repositories, which are best for text files with compact differences.
 
-SpecDriven should choose
+SpecDriven should choose an image storage solution which can support:
+* Effectively communicating a need in the UI.
+*
