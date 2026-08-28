@@ -12,6 +12,7 @@ SpecDriven, several approaches may be useful.
   - Sign-up: email address for updates (use mailing list manager and confirm before making a subscription active! - JM)
   - Blog / updates on progress / broad roadmap and milestones.
   - Link to demo app.
+  - Current hosting is Cloudflare: priority work for 2026-08 / 09.
 
 ## Demonstration Content
 
