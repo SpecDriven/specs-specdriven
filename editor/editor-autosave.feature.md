@@ -9,7 +9,7 @@ again.
 ## A Scenario With No Name Is Not Autosaved @v1 [proposed]
 
 A scenario with no name has nothing to be saved under, so no tick saves it.
-The pane's Propose and Publish buttons are disabled for the same reason.
+The dialog's Save button is disabled for the same reason.
 
 ## An Invalid Autosave Interval Is Refused @v1 [proposed]
 
@@ -29,17 +29,17 @@ The first tick on a new scenario places it in the feature; every later tick
 rewrites that same entry.
 
 The saved feature comes back in canonical order (by name, then version), so
-the open pane follows its scenario to wherever it moved, finding it by name
-and version. A new scenario keeps deriving its version while the pane is
+the open dialog follows its scenario to wherever it moved, finding it by name
+and version. A new scenario keeps deriving its version while the dialog is
 open, with its own entry left out of the derivation — otherwise it would bump
 past itself on every tick.
 
-If the entry has gone from underneath the pane, the next save re-adds the
+If the entry has gone from underneath the dialog, the next save re-adds the
 work rather than overwriting a neighbour.
 
 ## Autosave Only Saves What Changed @v1 [proposed]
 
-A tick compares what the pane holds — the name, the version it will save
+A tick compares what the dialog holds — the name, the version it will save
 under, the status, the body and the test links — against what it last had
 saved. Nothing new, no save.
 
@@ -48,9 +48,9 @@ reading a scenario costs no commit.
 
 ## Autosave Runs Only While the Editor Is Open @v1 [proposed]
 
-Ticks start when the scenario editor pane opens and stop when it closes.
+Ticks start when the scenario edit dialog opens and stop when it closes.
 
-A save still in flight when the pane closes never stamps its result onto
+A save still in flight when the dialog closes never stamps its result onto
 whatever the user opened next.
 
 Changing the interval in Settings takes effect on the editor that is already
@@ -58,14 +58,14 @@ open.
 
 ## Autosave Saves Locally @v1 [proposed]
 
-An autosave writes the feature locally, exactly as the save on leaving the
-pane does; the reload cron commits and pushes it (git-operations.feature.md).
+An autosave writes the feature locally, exactly as the dialog's Save does; the
+reload cron commits and pushes it (git-operations.feature.md).
 
 Autosave is not a publish — a tick never advances a scenario's status.
 
 ## Autosave Stands Down While a Delete Is Confirmed @v1 [proposed]
 
-From the moment Delete is pressed in the scenario editor pane until the
+From the moment Delete is pressed in the scenario edit dialog until the
 removal is away, no tick fires: a save landing while the confirmation is on
 screen would put the scenario back, or re-sort the feature under the entry
 being deleted.
@@ -81,7 +81,7 @@ SpecDriven saves the contents of the editor at the defined interval.
 
 ## Autosave Waits While the Name Is Being Typed @v1 [proposed]
 
-While the caret is in the pane's title field the scenario's name is only
+While the caret is in the dialog's title field the scenario's name is only
 half typed, so no tick saves it — a new scenario is not filed as a draft under
 the first few letters of its name, and a rename is not saved part-way through.
 
