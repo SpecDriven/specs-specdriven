@@ -8,4 +8,5 @@ Images are typically binary files which are inefficient to store within Git sour
 
 SpecDriven should choose an image storage solution which can support:
 * Effectively communicating a need in the UI.
-*
+* Effectively describing structure or domain context.
+* Efficiently using storage space for the current image and history.
