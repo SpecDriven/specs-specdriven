@@ -21,7 +21,7 @@ SpecDriven, several approaches may be useful.
   - Link to demo app.
   - Current hosting is Cloudflare: priority work for 2026-08 / 09.
 
-- Website technology
+- Website technology: AstroJS
 
 ## Demonstration Content
 
