@@ -11,6 +11,9 @@ Mechanisms:
  - Migration from older versions to newer versions
  - Validation of plugins? (the null-object cycle?)
 
+Example Extension Points:
+ - Strategy for naming worktrees
+
 Inspirations:
  - Strategy Pattern
  - Late Binding
