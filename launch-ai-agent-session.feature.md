@@ -15,7 +15,10 @@ Schema for a Coding Session Record
 * UUID
 * Name
 * Start Date and Time
+* Type and version of the coding agent
+* Session Report, consisting of:
 * (nullable) End Date and Time (because Crash Only Software) 
-* Type and version of th
+* Token usage, input, cached, and output. (per the usual standards for LLM su
+
 
 Agent's Notion of a Coding Session vs. SpecDriven's Notion of a Coding Session
