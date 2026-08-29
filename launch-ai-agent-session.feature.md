@@ -2,7 +2,9 @@
 
 SpecDriven Start Coding Session Feature
 
-Workflow: UI
+Workflow: UI for starting the session.
+
+System Behavior: Collect events, major events (start session, finish session); collect te
 
 Session Start / Session Results
 
