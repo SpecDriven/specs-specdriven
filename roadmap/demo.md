@@ -6,9 +6,9 @@ In order to communicate and demonstrate the value and intended use of
 SpecDriven, several approaches may be useful.
 
 ### Key Message of SpecDriven
-* Specs are the system of record for _intent_ in a way that can be accessible for all team members.
-* FSpecifications are the boundary object. :)
 
+* Behavioral Specifications are the common artifact for (the good kind of) development team practice.
+* SpecDriven gives workflow around behavioral specs, anchoring to everybody's tool set via 
 ### Website
 
 - Website: landing page for interested parties.
