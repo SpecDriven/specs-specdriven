@@ -21,6 +21,8 @@ SpecDriven, several approaches may be useful.
   - Link to demo app.
   - Current hosting is Cloudflare: priority work for 2026-08 / 09.
 
+- Website technology
+
 ## Demonstration Content
 
 A demo of the SpecDriven app may have different objectives and contents, depending on what we want to show off, and to whom.
