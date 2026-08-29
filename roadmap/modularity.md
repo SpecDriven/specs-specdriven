@@ -15,7 +15,9 @@ Example Extension Points: Git Worktrees (Claude and other agents; IntelliJ IDEA 
 Why worktrees: an endorsed, supported way of working with multiple local work-in-progress sets of Git workspaces locally in parallel, with different folders.
  - Strategy for naming worktrees, templated variables?
     - Use variable template substitution including Git or Jira or Linear issue number
-    - Give other suggestions
+    - Give other suggestions?
+
+Workflow Plug-ins as separate artifacts in SpecDriven
 
 Inspirations:
  - Strategy Pattern
