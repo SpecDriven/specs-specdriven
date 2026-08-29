@@ -24,6 +24,8 @@ Agent's Notion of a Coding Session vs. SpecDriven's Notion of a Coding Session
  - coding agents: "resume a session"
  - SpecDriven: ?
 
+![specdriven-agent-dispatch-notes.excalidraw](/api/images/specdriven-agent-dispatch-notes-excalidraw-ffc27c60.svg)
+
 ## Launch Session Scenario Outline @v1 [proposed]
 
 1. User opens a feature file.
