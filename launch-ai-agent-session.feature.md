@@ -11,6 +11,8 @@
 9. SpecDriven app prepares a coding session prompt by combining the session name first, followed by the feature title, followed by each spec selected by the user, including the spec name and body.
 10. SpecDriven app copies the coding session prompt to the system clipboard.
 
+Session Start / Session Results
+
 Schema for a Coding Session Record
 * UUID
 * Name
@@ -24,3 +26,5 @@ Schema for a Coding Session Record
 
 
 Agent's Notion of a Coding Session vs. SpecDriven's Notion of a Coding Session
+ - coding agents: "resume a session"
+ - SpecDriven: ?
