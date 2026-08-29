@@ -6,6 +6,8 @@ Workflow: UI for starting the session.
 
 System Behavior: Collect events, major events (start session, finish session); collect telemetry, send integration events.
 
+Coding Session Entity
+Start Session Event
 Schema for a Coding Session Record
 * UUID
 * Name
