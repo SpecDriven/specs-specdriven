@@ -1,4 +1,4 @@
-# Start sessions in Claude or Codex
+# Start sessions in Claude or Codex or Pi
 
 ## Recording Session Information
  - Follow the example of Claude, saving current session information as JSON data locally (not in Automerge, not persisted in Git/GitHub).
