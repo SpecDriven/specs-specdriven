@@ -6,7 +6,10 @@ In order to have a template workflow with pluggable behavior...
 
 SpecDriven needs a notion of a core with extension points.
 
-Mec
+Mechanisms:
+ - Versioned interfaces
+ - Migration from older versions to newer versions
+ - Valida
 
 Inspirations:
  - Strategy Pattern
