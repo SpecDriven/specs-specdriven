@@ -18,7 +18,9 @@ Schema for a Coding Session Record
 * Type and version of the coding agent
 * Session Report, consisting of:
 * (nullable) End Date and Time (because Crash Only Software) 
-* Token usage, input, cached, and output. (per the usual standards for LLM su
+* Token usage, input, cached, and output. (per the usual standards for LLM supplieers).
+* Summary of the session.
+* Linked artifacts - Git PR, Git commits, Issue(s)
 
 
 Agent's Notion of a Coding Session vs. SpecDriven's Notion of a Coding Session
