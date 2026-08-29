@@ -5,7 +5,12 @@
 In order to communicate and demonstrate the value and intended use of
 SpecDriven, several approaches may be useful.
 
-### We
+### Key Message of SpecDriven
+* Specs are the system of record for _intent_ in a way that can be accessible for all team members.
+* FSpecifications are the boundary object. :)
+
+### Website
+
 - Website: landing page for interested parties.
   - Statement of principles: "We believe that software engineering is valuable in the age of agentic coding; a specification driven workflow with small slices integrated with issue and feature tracking assists this." (etc.)
   - Picture of spec workflow, description of users, value to users and to software development orgs.
