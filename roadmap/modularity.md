@@ -9,4 +9,7 @@ SpecDriven needs a notion of a core with extension points.
 Inspirations:
  - Strategy Pattern
  - Late Binding
- - Open to local experiments (vibe coded plug-ins)
+ - Developer Customization
+   - Open to local experiments (vibe coded plug-ins)
+ - Enterprsie Customization
+   - x
