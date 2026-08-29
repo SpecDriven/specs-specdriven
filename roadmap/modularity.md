@@ -11,7 +11,7 @@ Mechanisms:
  - Migration from older versions to newer versions
  - Validation of plugins? (the null-object cycle?)
 
-Example Extension Points: Git Worktrees (Claude and other agents; 
+Example Extension Points: Git Worktrees (Claude and other agents; IntelliJ IDEA support)
  - Strategy for naming worktrees, templated variables?
 
 Inspirations:
