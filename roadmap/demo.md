@@ -8,7 +8,8 @@ SpecDriven, several approaches may be useful.
 ### Key Message of SpecDriven
 
 * Behavioral Specifications are the common artifact for (the good kind of) development team practice.
-* SpecDriven gives workflow around behavioral specs, anchoring to everybody's tool set via 
+* SpecDriven gives workflow around behavioral specs, anchoring to everybody's tool set via links and integration.
+
 ### Website
 
 - Website: landing page for interested parties.
