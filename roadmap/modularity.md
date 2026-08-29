@@ -9,7 +9,7 @@ SpecDriven needs a notion of a core with extension points.
 Mechanisms:
  - Versioned interfaces
  - Migration from older versions to newer versions
- - Valida
+ - Validation of plugins? (the null-object cycle?)
 
 Inspirations:
  - Strategy Pattern
