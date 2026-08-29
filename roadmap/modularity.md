@@ -7,8 +7,9 @@ In order to have a template workflow with pluggable behavior...
 SpecDriven needs a notion of a core with extension points.
 
 More generally:
-* We want to apply REFACTORING TO PATTERNS as a policy for evolving SpecDriven
-* We want to improve SpecDriven 
+* We want to apply **REFACTORING TO PATTERNS** as a policy for evolving SpecDriven
+* We want to improve SpecDriven **incrementally** and **directionally**.
+
 Mechanisms:
  - Versioned interfaces
  - Migration from older versions to newer versions
