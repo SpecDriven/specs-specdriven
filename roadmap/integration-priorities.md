@@ -14,4 +14,7 @@ How do we want to support local tooling, or enterprise tooling?
 
 ## Next Priorities
 
+### Specifications and Design Collaboration
+
 * OpenSpec
+* Excalidraw including
