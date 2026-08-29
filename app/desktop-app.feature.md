@@ -57,6 +57,13 @@ on macOS, `~/.config/SpecDriven` on Linux) via `SPECDRIVEN_ROOT`:
 
 - One main window; launching the app a second time focuses the existing
   window instead of opening another.
+- The window opens at 1280×860, centered, and can never be made smaller
+  than 1280×700 — below that the layout starts hiding buttons and
+  scrollbars.
+- The window remembers its size, position, and maximized state across
+  restarts (`window-state.json` in the app-data directory). Remembered
+  geometry is clamped to the minimums and to the displays actually
+  present; a missing or unreadable file simply means the centered default.
 - On macOS the window uses the hidden-inset title bar: the traffic lights sit
   inside the sidebar header, and the header doubles as the drag region.
   Elsewhere the window wears the system title bar and the sidebar header is
@@ -101,6 +108,20 @@ The GitHub sign-in token is stored OS-encrypted (Electron safeStorage,
 keychain-backed on macOS); when the OS offers no key store it falls back
 to the user-only token file next to the home settings file.
 
+## a maximized session comes back maximized @v1 [proposed]
+
+- Given: the user quit the app with the window maximized
+- When: they launch the app again
+- Then: the window opens maximized, and un-maximizing returns it to its
+  previous size
+
+### Tests
+
+| Test |
+| --- |
+| https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L111 |
+| https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L120 |
+
 ## building the Linux app from a Mac @v1 [proposed]
 
 - Given: a developer on macOS
@@ -126,3 +147,42 @@ to the user-only token file next to the home settings file.
 - When: the user installs the deb, or marks the AppImage executable and runs it
 - Then: the app window opens on the internal `app://` origin, the same as on
   macOS
+
+## the remembered position was on a monitor that is gone @v1 [proposed]
+
+- Given: the app was last used on an external monitor that is now unplugged
+- When: the app launches
+- Then: the window opens centered at the default 1280×860 on a connected
+  display
+
+### Tests
+
+| Test |
+| --- |
+| https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L87 |
+
+## the window cannot shrink below a usable size @v1 [proposed]
+
+- Given: the desktop app is open
+- When: the user drags a window edge as far as it will go
+- Then: the window stops at 1280×700, with every button and scrollbar still
+  visible
+
+### Tests
+
+| Test |
+| --- |
+| https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L76 |
+
+## the window reopens where it was left @v1 [proposed]
+
+- Given: the user resized and moved the window, then quit the app
+- When: they launch the app again
+- Then: the window opens at the same size and position
+
+### Tests
+
+| Test |
+| --- |
+| https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L120 |
+| https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L72 |
