@@ -15,4 +15,7 @@ Schema for a Coding Session Record
 * UUID
 * Name
 * Start Date and Time
-* (nullable) End d
+* (nullable) End Date and Time (because Crash Only Software) 
+* Type and version of th
+
+Agent's Notion of a Coding Session vs. SpecDriven's Notion of a Coding Session
