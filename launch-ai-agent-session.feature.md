@@ -2,7 +2,7 @@
 
 SpecDriven Start Coding Session Feature
 
-Workflow:
+Workflow: UI
 
 Session Start / Session Results
 
