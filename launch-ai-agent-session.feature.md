@@ -1,5 +1,6 @@
 # Start Coding Session
 
+Description
 1. User opens a feature file.
 2. User selects the whole feature, and all of its specs, or selects one or more specs from the feature.
 3. User requests a coding session.
@@ -12,6 +13,7 @@
 10. SpecDriven app copies the coding session prompt to the system clipboard.
 
 Session Start / Session Results
+
 
 Schema for a Coding Session Record
 * UUID
