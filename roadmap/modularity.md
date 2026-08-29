@@ -24,11 +24,11 @@ Why worktrees: an endorsed, supported way of working with multiple local work-in
 Workflow Plug-ins as separate artifacts in SpecDriven
 
 Inspirations:
- - Strategy Pattern
- - Late Binding
- - Developer Customization
-   - Serving Suggestion based on the interface
-   - Open to local experiments (vibe coded plug-ins)
- - Enterprise Customization
-   - Validate integrations with enterprise apps / services / systems
-   - Enable repair and
+- Strategy Pattern
+- Late Binding
+- Developer Customization
+    - Serving Suggestion based on the interface
+    - Open to local experiments (vibe coded plug-ins)
+- Enterprise Customization
+    - Validate integrations with enterprise apps / services / systems
+    - Enable repair and update of integrations
