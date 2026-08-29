@@ -10,3 +10,9 @@
 8. If the user does not provide a name, SpecDriven app fills in an automatically generated session name like "Session 2026-08-20 15:30:30 PDT".
 9. SpecDriven app prepares a coding session prompt by combining the session name first, followed by the feature title, followed by each spec selected by the user, including the spec name and body.
 10. SpecDriven app copies the coding session prompt to the system clipboard.
+
+Schema for a Coding Session Record
+* UUID
+* Name
+* Start Date and Time
+* (nullable) End d
