@@ -7,6 +7,9 @@ How do we want to support local tooling, or enterprise tooling?
 ### Source Code and Spec Integration
 * Git and GitHub
 
+### Coding Agents for Session Dispatch and Capture
 * Claude
 * Codex
 * Pi
+
+###
