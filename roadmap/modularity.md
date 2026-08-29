@@ -12,6 +12,7 @@ Mechanisms:
  - Validation of plugins? (the null-object cycle?)
 
 Example Extension Points: Git Worktrees (Claude and other agents; IntelliJ IDEA support)
+Why worktrees: an endorsed, supported way of working with multiple local work-in-progress sets of Git workspaces with 
  - Strategy for naming worktrees, templated variables?
 
 Inspirations:
