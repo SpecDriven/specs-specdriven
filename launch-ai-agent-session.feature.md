@@ -8,7 +8,7 @@ System Behavior: Collect events, major events (start session, finish session); c
 
 Coding Session Entity
 Start Session Event
-Schema for a Coding Session Record
+
 * UUID
 * Name
 * Start Date and Time
