@@ -13,4 +13,5 @@ How do we want to support local tooling, or enterprise tooling?
 * Pi
 
 ## Next Priorities
-*
+
+* OpenSpec
