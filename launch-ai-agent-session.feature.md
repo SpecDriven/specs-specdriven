@@ -4,9 +4,7 @@ SpecDriven Start Coding Session Feature
 
 Workflow: UI for starting the session.
 
-System Behavior: Collect events, major events (start session, finish session); collect te
-
-Session Start / Session Results
+System Behavior: Collect events, major events (start session, finish session); collect telemetry, send integration events.
 
 Schema for a Coding Session Record
 * UUID
