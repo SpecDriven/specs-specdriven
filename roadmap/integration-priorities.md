@@ -15,7 +15,9 @@ How do we want to support local tooling, or enterprise tooling?
 ## Next Priorities
 
 ### Session Workspace
-* TestContainers, custom UI view
+* TestContainers, custom UI view into session in progress
+* Podman as container manager
+
 ### Specifications and Design Collaboration
 
 * OpenSpec
