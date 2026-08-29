@@ -1,6 +1,8 @@
 # Start Coding Session
 
-Description
+SpecDriven Start Coding Session Feature
+
+Workflow:
 
 Session Start / Session Results
 
