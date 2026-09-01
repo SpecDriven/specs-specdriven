@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Security Scanners for the SpecDriven Pipeline</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1f2430;
+    --muted: #5b6472;
+    --accent: #1a5fb4;
+    --border: #d8dde5;
+    --card: #f5f7fa;
+    --code-bg: #eef1f5;
+    --high: #b3261e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171c;
+      --fg: #e4e8ee;
+      --muted: #9aa3b0;
+      --accent: #6ba4e8;
+      --border: #333a44;
+      --card: #1c2129;
+      --code-bg: #232935;
+      --high: #f28b82;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  h1 { font-size: 1.7rem; line-height: 1.25; margin: 0 0 0.25rem; }
+  h2 { font-size: 1.25rem; margin: 2.2rem 0 0.6rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+  h3 { font-size: 1.02rem; margin: 1.4rem 0 0.4rem; }
+  .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.8rem; }
+  p { margin: 0.6rem 0; }
+  code {
+    background: var(--code-bg);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    font: 0.88em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+  }
+  pre code { background: none; padding: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 0.8rem 0; font-size: 0.93rem; }
+  th, td { border: 1px solid var(--border); padding: 0.45rem 0.65rem; text-align: left; vertical-align: top; }
+  th { background: var(--card); }
+  .tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.05rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    margin-left: 0.4rem;
+    vertical-align: middle;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    margin: 0.9rem 0;
+  }
+  .card h3 { margin-top: 0; }
+  ul { margin: 0.5rem 0; padding-left: 1.4rem; }
+  li { margin: 0.3rem 0; }
+  .done { color: var(--accent); font-weight: 600; }
+  .highlight { color: var(--high); font-weight: 600; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Free Security Scanners for the SpecDriven Pipeline</h1>
+  <p class="meta">Research notes — 2026-08-31 · Context: Bun + TypeScript + Electron app, Dockerfile, single GitHub Actions workflow (<code>test.yml</code>). Goals: prevent supply-chain attacks and catch insecure code written by AI agents.</p>
+
+  <h2>1. Supply chain — malicious or vulnerable dependencies</h2>
+
+  <div class="card">
+    <h3>bun audit <span class="tag">implemented ✓</span></h3>
+    <p>Bun's built-in vulnerability audit (equivalent of <code>npm audit</code>). Added as a separate <code>audit</code> job in <code>test.yml</code> so a vulnerable dependency fails as its own check without masking test results. Exits non-zero on vulnerabilities of <em>any</em> severity; relax later with <code>bun audit --audit-level=high</code> if it gets noisy.</p>
+    <p><span class="done">Outcome:</span> the first local run found 16 vulnerabilities (9 high) in transitive dev dependencies under <code>electron</code>/<code>electron-builder</code> — <code>undici</code>, <code>fast-uri</code>, <code>brace-expansion</code>, <code>js-yaml</code>. All fixes were already within the parents' semver ranges, so regenerating <code>bun.lock</code> from the unchanged <code>package.json</code> cleared all of them. All 575 tests pass on the refreshed lockfile.</p>
+  </div>
+
+  <div class="card">
+    <h3>Bun <code>minimumReleaseAge</code> <span class="tag">recommended next</span></h3>
+    <p>In <code>bunfig.toml</code>, set a cooldown (e.g. 3–7 days) so freshly published package versions can't be installed. One of the most effective defenses against npm account-takeover attacks, where malicious versions are usually yanked within hours or days of publication.</p>
+    <pre><code>[install]
+# don't install versions published less than 3 days ago
+minimumReleaseAge = 259200</code></pre>
+  </div>
+
+  <table>
+    <tr><th>Tool</th><th>What it does</th><th>Cost / notes</th></tr>
+    <tr><td><strong>Dependabot</strong></td><td>Vulnerability alerts + automated update PRs, built into GitHub.</td><td>Free for all repos. Enable in Settings → Security. Zero maintenance.</td></tr>
+    <tr><td><strong>OSV-Scanner</strong> (Google)</td><td>Scans lockfiles against the OSV database; understands <code>bun.lock</code> natively.</td><td>Free. Official action: <code>google/osv-scanner-action</code>.</td></tr>
+    <tr><td><strong>Socket</strong> (socket.dev)</td><td>Behavioral analysis, not CVE lookup: flags install scripts, network/filesystem access, typosquats, obfuscated code in new dependencies.</td><td>Free for open-source repos; GitHub app that comments on PRs.</td></tr>
+    <tr><td><strong>Dependency Review action</strong></td><td><code>actions/dependency-review-action</code> fails a PR that introduces a dependency with known vulnerabilities.</td><td>Free for public repos.</td></tr>
+  </table>
+
+  <h2>2. CI hardening — the pipeline is itself a supply-chain target</h2>
+  <ul>
+    <li><strong>zizmor</strong> — audits GitHub Actions workflows for injection vulnerabilities, unpinned actions, excessive permissions, and cache poisoning. Fast, excellent signal, free.</li>
+    <li><strong>Pin actions by commit SHA</strong> instead of tags (<code>actions/checkout@&lt;sha&gt;</code>) and set <code>permissions: contents: read</code> as the workflow default. Dependabot keeps the SHAs updated.</li>
+    <li><strong>StepSecurity harden-runner</strong> — egress monitoring/blocking for Actions runners; free for public repos. Would have caught several real-world exfiltration attacks.</li>
+  </ul>
+
+  <h2>3. Insecure code — from agents or humans</h2>
+  <table>
+    <tr><th>Tool</th><th>What it catches</th><th>Cost / notes</th></tr>
+    <tr><td><strong>Semgrep</strong></td><td>The classic agent mistakes: command injection, path traversal, unsafe deserialization, hardcoded credentials. <code>semgrep scan --config p/typescript --config p/security-audit</code></td><td>OSS rules free for any repo; runs locally and in CI.</td></tr>
+    <tr><td><strong>CodeQL</strong></td><td>Deeper dataflow analysis than Semgrep.</td><td>Free <span class="highlight">only for public repos</span>; private needs GitHub Advanced Security.</td></tr>
+    <tr><td><strong>Gitleaks</strong></td><td>Secrets in commits and history — agents occasionally paste keys into code or test fixtures.</td><td>Free; GitHub Action + pre-commit hook available.</td></tr>
+    <tr><td><strong>Electronegativity</strong> (Doyensec)</td><td>Electron-specific misconfigurations: <code>nodeIntegration: true</code>, disabled <code>contextIsolation</code>, unsafe <code>webPreferences</code>, insecure protocol handlers. Exactly the kind of change an agent makes to "make it work."</td><td>Free. Directly relevant to the desktop build.</td></tr>
+    <tr><td><strong>Trivy</strong></td><td>Dockerfile/image scanning: OS package CVEs, misconfigurations, secrets in layers.</td><td>Free. Pair with <strong>Hadolint</strong> for Dockerfile linting.</td></tr>
+  </table>
+
+  <h2>4. Agent-specific guardrails</h2>
+  <ul>
+    <li>Run Claude Code's built-in <code>/security-review</code> on branches before merging.</li>
+    <li>Make the scanners <strong>required PR checks</strong> — CI enforcement is the backstop that doesn't depend on the agent behaving.</li>
+    <li>Pre-commit hook with Gitleaks + <code>semgrep --config auto</code> catches problems before they reach a commit an agent might push.</li>
+  </ul>
+
+  <h2>5. Rollout order (value ÷ effort)</h2>
+  <ol>
+    <li>Dependabot + <code>bun audit</code> in CI <span class="done">— done</span></li>
+    <li><code>minimumReleaseAge</code> in <code>bunfig.toml</code></li>
+    <li>Semgrep + Gitleaks jobs in CI</li>
+    <li>zizmor + SHA-pin all actions</li>
+    <li>Electronegativity and Trivy (Electron app + Docker image)</li>
+  </ol>
+</main>
+</body>
+</html>
