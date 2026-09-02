@@ -2,7 +2,9 @@
 
 Provide a zip file with source and clear instructions on how to build the Electron desktop app.
 The benefit of this approach is to provide the customer with the opportunity to run the source code 
-through their 
+through their own security checks and use their supply chain mechanisms for downloading libraries.
+
+# Public Release
 
 Build and deploy similar to Claude Claude via a curl command
 Ex: `curl -fsSL https://claude.ai/install.sh | bash`
