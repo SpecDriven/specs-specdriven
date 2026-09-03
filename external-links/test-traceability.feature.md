@@ -2,4 +2,4 @@
 
 Trace tests to indivitual specs (scenarios / rules).
 
-In '.md' file
+In '.md' file store tests as [test:<url to test>]
