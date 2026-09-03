@@ -22,9 +22,16 @@ Display test as QuoteHomeownersPolicyTest .
 
 ## the reference stays in the feature file @v1 [proposed]
 
-- When: a scenario with a `[test:<url>]` reference is saved, proposed or published
-- Then: the token is written back verbatim where it stood in the body, and is not moved into the `### Tests` table
-- And: GitHub renders it as the plain text `[test:<url>]`
+- When: a scenario with a `[test: <url> ]` reference is saved, proposed or published
+- Then: a reference on a line of its own is the scenario's test link — shown in the Automated tests table, editable in the pane — and is written back as a `[test: <url> ]` line at the end of the scenario, never as a `### Tests` table
+- And: a reference inside a rule's line stays in the body exactly where it stood
+- And: GitHub renders either as plain text
+
+## a Tests table in an older file is still read @v1 [proposed]
+
+- When: a feature file still carries a trailing `### Tests` table
+- Then: its urls are the scenario's test links all the same
+- And: the next time the app writes the file they come out as `[test: <url> ]` lines
 
 ## the test name is the file name @v1 [proposed]
 
