@@ -115,12 +115,8 @@ to the user-only token file next to the home settings file.
 - Then: the window opens maximized, and un-maximizing returns it to its
   previous size
 
-### Tests
-
-| Test |
-| --- |
-| https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L111 |
-| https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L120 |
+[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L111 ]
+[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L120 ]
 
 ## building the Linux app from a Mac @v1 [proposed]
 
@@ -155,11 +151,7 @@ to the user-only token file next to the home settings file.
 - Then: the window opens centered at the default 1280×860 on a connected
   display
 
-### Tests
-
-| Test |
-| --- |
-| https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L87 |
+[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L87 ]
 
 ## the window cannot shrink below a usable size @v1 [proposed]
 
@@ -168,11 +160,7 @@ to the user-only token file next to the home settings file.
 - Then: the window stops at 1280×700, with every button and scrollbar still
   visible
 
-### Tests
-
-| Test |
-| --- |
-| https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L76 |
+[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L76 ]
 
 ## the window reopens where it was left @v1 [proposed]
 
@@ -180,9 +168,5 @@ to the user-only token file next to the home settings file.
 - When: they launch the app again
 - Then: the window opens at the same size and position
 
-### Tests
-
-| Test |
-| --- |
-| https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L120 |
-| https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L72 |
+[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L120 ]
+[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L72 ]
