@@ -89,4 +89,6 @@ sessions" scan, used by the in-app importer) does set `title: l.title` with
 3. **Do nothing.** Once the imported session takes a turn in Desktop it gets an
    auto-generated title (`titleSource: "auto"`) — decent, just not yours.
 
+
+
 ![specdriven-agent-dispatch-notes.excalidraw](/api/images/specdriven-agent-dispatch-notes-excalidraw-ffc27c60.svg)
