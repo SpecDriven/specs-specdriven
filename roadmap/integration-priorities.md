@@ -20,5 +20,5 @@ How do we want to support local tooling, or enterprise tooling?
 
 ### Specifications and Design Collaboration
 
-* OpenSpec - use in the code repo; sessions per slice; 
+* OpenSpec - use in the code repo; sessions per slice; SpecDriven can propose specs into the code repo as "openspec proposal" and "openspec propose"
 * Excalidraw including import/export
