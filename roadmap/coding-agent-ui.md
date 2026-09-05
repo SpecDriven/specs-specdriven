@@ -5,4 +5,6 @@ is similar to Claude Code Desktop.
 
 Add a separate pane that can be expanded lef-to-right.
 
-Add a fie
+Add a field to enter chat commands. Support all of the '/' commands available for Claude.
+
+Agent's working directory is the folder
