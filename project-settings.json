@@ -2,5 +2,6 @@
   "members": [
     { "name": "Jeff", "email": "jeff@specdriven.app" },
     { "name": "David", "email": "david@specdriven.app" }
-  ]
+  ],
+  "code-repo": "../specdriven_app"
 }
