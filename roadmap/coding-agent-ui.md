@@ -7,4 +7,6 @@ Add a separate pane that can be expanded lef-to-right.
 
 Add a field to enter chat commands. Support all of the '/' commands available for Claude.
 
-Agent's working directory is the folder
+Agent's working directory is the "code-repo" in project-settings.
+
+Display a scrolling session history.
