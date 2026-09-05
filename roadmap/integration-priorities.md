@@ -20,5 +20,5 @@ How do we want to support local tooling, or enterprise tooling?
 
 ### Specifications and Design Collaboration
 
-* OpenSpec - use in the code repo; sessions per slice
+* OpenSpec - use in the code repo; sessions per slice; 
 * Excalidraw including import/export
