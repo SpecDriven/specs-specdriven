@@ -2,7 +2,7 @@
 
 **Assigned:** David
 
-'roadmap' is a special folder which contains regular markdown files. This folder will be on top of feature folders. User settings will control the visibility of this folder
+'roadmap' is a special folder which contains regular markdown files. It shows in the sidebar as a Roadmap tab beside the Specs tab. User settings will control the visibility of this folder
 
 ## Create roadmap folder if necessary @v1 [published]
 
@@ -24,3 +24,29 @@ On Sync, commit all files in this folder.
 - and the address bar returns to `/`, so a reload does not ask the new folder
   for a page that belonged to the old one
 - and a folder picked in the first-run form lists its pages the same way
+
+## The roadmap is a sidebar tab @v1 [proposed]
+
+- Given: the Roadmap setting is on
+- When: the user looks at the sidebar
+- Then: under the search field sit two tabs, Specs and Roadmap; the Home,
+  Roadmap and My specs links that used to sit there are gone — the data
+  folder name in the header is the way home, and the Features filter's
+  assignee list stands in for My specs
+- and the Specs tab holds what the sidebar held before: the New folder and
+  New feature buttons, Start session, the Features head with its filter, and
+  the tree
+- and the Roadmap tab holds a "+ New page" button and the page list grouped by
+  subfolder, each page with its Rename / Copy link / Delete menu; the
+  collapsible Roadmap section above the tree, its twist and its small + button
+  are gone
+- and the chosen tab is remembered across reloads, the way the sidebar width
+  is
+- and opening a roadmap page — from its row, the command palette or a deep
+  link — turns the sidebar to the Roadmap tab, while opening a feature turns
+  it to the Specs tab; a refresh of the open page from sync leaves the tab
+  alone
+- and with the Roadmap setting off there is no tab bar, just the Specs
+  content
+- and on a small screen the tabs sit in the drawer, and switching tabs keeps
+  the drawer open
