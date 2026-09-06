@@ -20,7 +20,7 @@ Display test as QuoteHomeownersPolicyTest.
 ## a reference names the test function @v1 [proposed]
 
 - When: a scenario or rule carries `[test: quotesAHomeownersPolicy : https://github.com/SpecDriven/insurance-cap-java/blob/main/srv/src/test/java/com/acme/insurance/policy/QuoteHomeownersPolicyTest.java#L32 ]`
-- Then: the scenario card, the editor preview and the Automated tests field show a link reading `quotesAHomeownersPolicy`, with the file name `QuoteHomeownersPolicyTest.java` beside it
+- Then: the scenario card, the editor preview and the Automated tests field show a link reading `quotesAHomeownersPolicy` — the name alone, never the file name
 - And: the link opens the full url, line anchor included, and the tooltip shows the full url
 - And: a reference without a name, `[test: <url> ]`, is still read and still shown as the file name
 
