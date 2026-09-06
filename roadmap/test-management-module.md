@@ -1,5 +1,7 @@
 # Test Management Module
 
+**Assigned:** David
+
 Lightweight test management system suitable for a small team.
 
 Research the data schema of TestRail and XRay
@@ -11,4 +13,4 @@ TestPlanExecution
 
 TestCases may reference Features or Scenarios.
 
-Use an entire pane to i
+Use an entire pane to implement this module
