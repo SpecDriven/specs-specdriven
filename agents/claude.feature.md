@@ -1,5 +1,14 @@
 # Integration with Claude agent
 
+## Claude cli options @v1 [proposed]
+
+In the target repo, locate folder '.specdriven'
+If it contains a file called specdriven-config.json
+Check for:
+{
+  "claude-cli": "--settings .claude/hai-claude-config.json --dangerously-skip-permissions"
+}
+
 ## Create a prompt from selected specs @v1 [published]
 
 Given: a code session has been created with at least one spec in it
