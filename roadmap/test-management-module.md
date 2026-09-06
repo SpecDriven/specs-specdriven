@@ -14,3 +14,5 @@ TestPlanExecution
 TestCases may reference Features or Scenarios.
 
 Use an entire pane to implement this module
+
+All data will be stored in automerge, not md files
