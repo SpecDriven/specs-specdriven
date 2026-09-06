@@ -1,5 +1,7 @@
 # GitHub Issues
 
+**Assigned:** David
+
 # GitHub Issue (bug) tracking
 
 **Assigned:** David
