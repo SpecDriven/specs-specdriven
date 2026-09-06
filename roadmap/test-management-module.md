@@ -4,4 +4,11 @@ Lightweight test management system suitable for a small team.
 
 Research the data schema of TestRail and XRay
 
-TestCases may reference Features or Scenarios
+Minimum: 
+
+TestPlan<-TextCases*
+TestPlanExecution
+
+TestCases may reference Features or Scenarios.
+
+Use an entire pane to i
