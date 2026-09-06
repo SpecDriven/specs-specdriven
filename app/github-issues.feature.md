@@ -11,8 +11,114 @@ Use 'code-repo' in project-settings.json to find repo that holds the GH Issues.
 
 Allow to access GitHub issues from the app.
 
-## Create a new issue
+## Close an issue @v1 [proposed]
 
-## Update an issue
+- Given: an open issue is open in the pane
+- When: the user presses "Close issue" and confirms
+- Then: the issue is closed on GitHub as completed; the ⋯ menu also offers
+  "Close as not planned", which closes it with that reason
+- and the pane shows the closed badge (a check for completed, a slash for not
+  planned) and when it was closed; the issue leaves the open list and appears
+  under Closed
+- and "Reopen" — on a closed issue's pane, or in its ⋯ menu — reopens it on
+  GitHub and it returns to the open list
 
-## Close an an issue
+## Comment on an issue @v1 [proposed]
+
+- Given: an issue is open in the pane
+- When: the user looks below the description
+- Then: the issue's comments are listed, each with its author, when it was
+  written (linking to it on GitHub) and its Markdown rendered, under a
+  "N comments" heading
+- and a Markdown field at the end with a "Comment" button posts a new comment
+  to GitHub and appends it; a blank comment cannot be posted
+
+## Create a new issue @v1 [proposed]
+
+- Given: the Issues tab is open
+- When: the user presses "+ New issue" (or "New issue" in the command
+  palette), types a title, optionally a Markdown body, and presses "Create
+  issue"
+- Then: the issue is created on GitHub in the code repository, with the
+  title and body as typed; a blank body is left out rather than sent empty
+- and the new issue opens in the pane, its number assigned by GitHub, with a
+  "Created #N" toast; it is at the top of the open list
+- and Enter in the title field creates the issue; a blank title cannot be
+  submitted
+
+## GitHub issues are controlled by a switch in user settings @v1 [proposed]
+
+- Given: the "GitHub issues" setting is off, as it is by default
+- When: the user looks at the sidebar
+- Then: there is no Issues tab, and nothing in the app asks GitHub for issues
+- When: the user turns the setting on
+- Then: the tab appears, given a GitHub code repo; the setting's hint names
+  that repository, or says that project-settings.json names no GitHub code
+  repo yet
+- and turning it off again hides the tab; an issues view that is open leaves
+  the pane and the app goes home
+- and the server refuses the module's requests while the switch is off, not
+  just the UI
+
+## Issue views have urls and find their way into search @v1 [proposed]
+
+- Given: the setting is on
+- When: the user opens `/issues`, `/issues/new` or `/issues/<number>`
+- Then: that view opens with the sidebar on the Issues tab, the window title
+  names it ("#N <title>"), and Back / Forward move between views; a number
+  that names nothing shows a note with a way back to the list
+- and every row's ⋯ menu offers Edit title, Copy link and Open on GitHub,
+  beside Close or Reopen
+- and the command palette opened from the Issues tab searches the loaded
+  issues by number, title and body, and opens the one picked
+- and the reload tick refreshes the list, and the issue that is open, only
+  while an issues view is on screen — an idle app spends none of GitHub's
+  rate limit
+
+## Requests to GitHub carry the user's sign-in @v1 [proposed]
+
+- Given: the user is signed in to GitHub in Settings, or through the GitHub
+  CLI
+- When: the app lists, reads or writes issues
+- Then: the request carries that sign-in — the app's own token first, else
+  the CLI's — so private repositories and writes work
+- and signed out, reads of a public repository still work within GitHub's
+  anonymous rate limit, while a write, a private repository or a used-up
+  limit shows GitHub's reason in the pane with a button to Settings, where
+  the sign-in lives
+- and in demo mode nothing ever talks to GitHub
+
+## The Issues tab shows the code repo's GitHub issues @v1 [proposed]
+
+- Given: the GitHub issues setting is on, and the data folder's
+  project-settings.json names a `code-repo` whose git `origin` is a GitHub
+  repository — in any spelling git writes: https, `git@github.com:`, or
+  `ssh://`
+- When: the user looks at the sidebar
+- Then: an Issues tab appears to the right of Tasks (and left of Tests, when
+  that is on), with an Issues link in the collapsed rail and `g i` as its
+  shortcut
+- and the tab lists the repository's open issues, most recently updated
+  first, each as `#<number> <title>`, with an Open / Closed switch above the
+  list; the pane shows the same list as a table — number, title with its
+  labels, state, who opened it and when, assignees, comment count — with an
+  Open / Closed / All filter and a link to the repository on GitHub
+- and pull requests, which GitHub lists among issues, are left out
+- and a code repo that is not a GitHub one, or none at all, means no tab and
+  nothing asks GitHub
+- and the repository is found from the code repo's git config on disk — a
+  worktree's too — so it works on every git engine, including the built-in
+  one on a machine with no git
+
+## Update an issue @v1 [proposed]
+
+- Given: an issue is open in the pane
+- When: the user presses "Edit" beside the description, changes the Markdown
+  and presses "Save"
+- Then: the body is saved to GitHub and the rendered description follows;
+  "Cancel" drops the draft. Nothing autosaves — every save is an edit on
+  GitHub, so it happens only on "Save"
+- and "Edit title" in the ⋯ menu — of the pane, the list row or the sidebar
+  row — asks for a new title in a dialog and saves it
+- and while an edit or a comment is being typed, the reload tick leaves the
+  issues alone
