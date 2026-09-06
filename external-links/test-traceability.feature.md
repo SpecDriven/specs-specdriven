@@ -8,7 +8,9 @@ Ex: [test:https://github.com/SpecDriven/insurance-cap-java/blob/main/srv/src/tes
 
 Internal TS interface RenderTestInEditor will format the test for user display.
 
-Display test as QuoteHomeownersPolicyTest .
+Display test as QuoteHomeownersPolicyTest.
+
+[test: <test name> : link in GitHub]
 
 ## a reference inside code is code @v1 [proposed]
 
