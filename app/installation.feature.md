@@ -21,4 +21,6 @@ A user can install specdriven app via curl.
 
 Example: curl -fsSL https://github.com/SpecDriven/specdriven-app-release/install.sh | sh
 
-By default
+By default, the script will attempt to execute the entire install.
+
+If the user want to scan the code before installing, they will doenload the zip file manually.
