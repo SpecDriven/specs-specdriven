@@ -20,3 +20,5 @@ under the current users authority.
 A user can install specdriven app via curl.
 
 Example: curl -fsSL https://github.com/SpecDriven/specdriven-app-release/install.sh | sh
+
+By default
