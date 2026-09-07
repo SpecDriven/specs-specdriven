@@ -23,4 +23,4 @@ Example: curl -fsSL https://github.com/SpecDriven/specdriven-app-release/install
 
 By default, the script will attempt to execute the entire install.
 
-If the user want to scan the code before installing, they will doenload the zip file manually.
+If the user want to scan the code before installing, they will download the zip file manually.
