@@ -9,3 +9,9 @@ Releases will be in this repo: https://github.com/SpecDriven/specdriven-app-rele
 
 install.sh script will be available in https://github.com/SpecDriven/specdriven-app-release in
 order to install via curl -- as is popuilar these days.
+
+## install via curl @v1 [proposed]
+
+A user can install specdriven app via curl.
+
+Example: curl -fsSL https://github.com/SpecDriven/specdriven-app-release/install.sh | sh
