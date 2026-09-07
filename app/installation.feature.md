@@ -69,17 +69,17 @@ the desktop build, since electron-builder stats every path in the project.
 - Then: the run stops with the failure and the path to the checkout, which is
   still there to build by hand
 
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L773 ]
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L786 ]
+[test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L773 ]
+[test: a failed `bun install` is reported the same way : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L786 ]
 
 ## bun is not installed @v1 [published]
 
 If `bun` is not installed, offer to install it and if user accepts install bun 
 under the current users authority.
 
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L583 ]
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L602 ]
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L615 ]
+[test: a yes at the terminal installs Bun, as the user and in their home : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L583 ]
+[test: a no at the terminal leaves Bun alone : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L602 ]
+[test: with no terminal to ask at, Bun is left to the reader : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L615 ]
 
 ## install via curl @v1 [proposed]
 
@@ -91,7 +91,7 @@ By default, the script will attempt to execute the entire install.
 
 If the user want to scan the code before installing, they will download the zip file manually.
 
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L226 ]
+[test: the latest release is downloaded, verified and unpacked under ~/.specdriven/app : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L226 ]
 
 ## the checksum has to match before anything is unpacked @v1 [proposed]
 
@@ -99,9 +99,9 @@ If the user want to scan the code before installing, they will download the zip 
 - When: the user runs the installer
 - Then: it stops saying so, and `~/.specdriven` holds nothing from that run
 
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L328 ]
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L351 ]
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L366 ]
+[test: a checksum mismatch aborts without unpacking anything : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L328 ]
+[test: a release without SHASUMS256.txt is refused rather than installed unverified : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L351 ]
+[test: a SHASUMS256.txt that does not list the zip is as good as none : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L366 ]
 
 ## the install ends with the app running @v1 [proposed]
 
@@ -112,9 +112,9 @@ If the user want to scan the code before installing, they will download the zip 
   executable first, and on a machine with no display it is built and left with
   its path printed rather than started
 
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L699 ]
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L727 ]
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L755 ]
+[test: the run ends with the built .app open : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L699 ]
+[test: the run ends with the AppImage made runnable and started : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L727 ]
+[test: with no display the app is built but left unstarted : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L755 ]
 
 ## the source zip is self-contained @v1 [proposed]
 
@@ -123,7 +123,7 @@ If the user want to scan the code before installing, they will download the zip 
 - Then: nothing in it points outside itself, so the build has no dangling path
   to trip over
 
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L813 ]
+[test: symlinks pointing out of the repo are kept out of the release source zip : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L813 ]
 
 ## without Bun the install stops at the source @v1 [proposed]
 
@@ -132,4 +132,4 @@ If the user want to scan the code before installing, they will download the zip 
 - Then: it stops there and prints the commands to install the dependencies,
   run the web app and build the desktop app
 
-[test: https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L513 ]
+[test: the next steps say whether Bun is there to run them : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L513 ]
