@@ -12,7 +12,7 @@ order to install via curl -- as is popuilar these days.
 
 ## What the script does
 
-One command takes a machine from nothing to a running app:
+One command takes a machine from nothing to a built app:
 
 - Follow `releases/latest` to the newest `v<version>`, or take
   `SPECDRIVEN_VERSION`.
@@ -21,8 +21,9 @@ One command takes a machine from nothing to a running app:
 - Unpack to `~/.specdriven/app/specdriven-<version>`, with
   `~/.specdriven/app/current` pointing at it and the verified zip kept
   alongside for anyone who wants to check it themselves.
-- Install the dependencies, build the desktop app, and start it — the `.app`
-  on macOS, the `.AppImage` on Linux.
+- Install the dependencies and build the desktop app. On Linux the
+  `.AppImage` is started; on macOS nothing is started, and the `.dmg` is opened
+  last so the app can be dragged into Applications.
 
 It is POSIX sh, because it runs on whatever `/bin/sh` the machine has before
 anything is known about it, and it works with curl or wget, with unzip or
@@ -69,8 +70,8 @@ the desktop build, since electron-builder stats every path in the project.
 - Then: the run stops with the failure and the path to the checkout, which is
   still there to build by hand
 
-[test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L773 ]
-[test: a failed `bun install` is reported the same way : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L786 ]
+[test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L803 ]
+[test: a failed `bun install` is reported the same way : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L816 ]
 
 ## bun is not installed @v1 [published]
 
@@ -103,18 +104,22 @@ If the user want to scan the code before installing, they will download the zip 
 [test: a release without SHASUMS256.txt is refused rather than installed unverified : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L351 ]
 [test: a SHASUMS256.txt that does not list the zip is as good as none : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L366 ]
 
-## the install ends with the app running @v1 [proposed]
+## the install ends with the app built and handed over @v1 [proposed]
 
 - Given: a machine with Bun, and a release to install
 - When: the user runs the installer
-- Then: the dependencies are installed, the desktop app is built into
-  `release/`, and the built app is started — on Linux the AppImage is made
-  executable first, and on a machine with no display it is built and left with
-  its path printed rather than started
+- Then: the dependencies are installed and the desktop app is built into
+  `release/`. On macOS the `.app` is not started; the last thing the
+  installer does is open `release/SpecDriven-<version>-arm64.dmg`. On Linux
+  the AppImage is made executable and started, and on a machine with no
+  display it is built and left with its path printed rather than started.
+  The messages come through whatever locale the shell runs in, single-byte
+  ones included.
 
-[test: the run ends with the built .app open : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L699 ]
-[test: the run ends with the AppImage made runnable and started : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L727 ]
-[test: with no display the app is built but left unstarted : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L755 ]
+[test: the run ends with the .dmg opened, and nothing started : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L699 ]
+[test: the messages survive a single-byte locale : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L733 ]
+[test: the run ends with the AppImage made runnable and started : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L757 ]
+[test: with no display the app is built but left unstarted : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L785 ]
 
 ## the source zip is self-contained @v1 [proposed]
 
@@ -123,7 +128,7 @@ If the user want to scan the code before installing, they will download the zip 
 - Then: nothing in it points outside itself, so the build has no dangling path
   to trip over
 
-[test: symlinks pointing out of the repo are kept out of the release source zip : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L813 ]
+[test: symlinks pointing out of the repo are kept out of the release source zip : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L843 ]
 
 ## without Bun the install stops at the source @v1 [proposed]
 
