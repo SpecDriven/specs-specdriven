@@ -1,5 +1,7 @@
 # Check for git readiness on startup
 
+**Assigned:** David
+
 If git is not configured, we get
 
 ```[reload] git commit failed: Author identity unknown
