@@ -1,0 +1,1 @@
+# Scoping User Capabilities
