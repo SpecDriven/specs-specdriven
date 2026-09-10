@@ -2,6 +2,12 @@
 
 Spec editor will be separate pane that will replace the feature pane with '<' icon to go back to the feature.
 
+## Adding Scanarios @v1 [proposed]
+
+A small dialog should pop up to enter scenario name.
+
+Scenario name should appear above top left corner of the editor.
+
 ## Create New Spec @v1 [published]
 
 Add scenario.
