@@ -1,0 +1,29 @@
+{
+  "format": "specdriven-event-model/1",
+  "name": "Claude Session",
+  "model": {
+    "slices": []
+  },
+  "layout": {
+    "slices": {},
+    "lanes": [
+      {
+        "id": "ui",
+        "title": "Screens / Automations",
+        "kind": "SCREEN_AUTOMATION"
+      },
+      {
+        "id": "cmd",
+        "title": "Commands / Read models",
+        "kind": "COMMAND_READMODEL"
+      },
+      {
+        "id": "events",
+        "title": "Events",
+        "kind": "EVENTS"
+      }
+    ],
+    "elements": {}
+  },
+  "links": {}
+}
