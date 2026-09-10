@@ -48,7 +48,7 @@ versions — their plain-markdown pushes keep working and are absorbed as
 drift. If two peers import the same feature concurrently, the merge picks
 one document identity deterministically and folds both sides' content in.
 
-## documents from before the status field @v1 [proposed]
+## Documents from before the status field @v1 [published]
 
 Documents written by earlier app versions carried `published`/`proposed`
 booleans per scenario instead of `status`. Loading such a document migrates
