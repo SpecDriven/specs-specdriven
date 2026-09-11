@@ -5,7 +5,12 @@ Definitions / Background
 - either manual or AI-assisted (agentic)
 - humans; pairs
 
-Purpose: what's this for
+Purpose: what's this for?
+
+Questions:
+- Is a task appropriate to link to a coding session? Answer: yes, appropriate.
+- How do we do that, and when? At start? At an arbitrary point? End? 
+- A 
 
 Metrics:
 
