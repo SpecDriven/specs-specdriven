@@ -7,10 +7,11 @@ Definitions / Background
 
 Purpose: what's this for?
 
-Questions:
+Task Linking:
 - Is a task appropriate to link to a coding session? Answer: yes, appropriate.
 - How do we do that, and when? At start? At an arbitrary point? End? 
-- A Jira subtask is one sort we should support (
+- A Jira subtask is one sort we should support.
+- We support our own SpecDriven app tasks as well, preferably in URL form.
 
 Metrics:
 
