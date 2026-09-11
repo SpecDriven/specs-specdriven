@@ -1,4 +1,4 @@
-![session-process.excalidraw](/api/images/session-process-excalidraw-98f9634b.svg)
+<img src="/api/images/session-process-excalidraw-98f9634b.svg" alt="session-process.excalidraw" width="175">
 
 # Coding Session Tracking and Reporting
 
