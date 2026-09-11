@@ -1,3 +1,3 @@
 # Spec folders
 
-Support opening and switching between multiple specifica
+Support opening and switching between multiple specifications folders.
