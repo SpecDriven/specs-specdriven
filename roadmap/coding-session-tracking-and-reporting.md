@@ -36,4 +36,8 @@ Agent metrics:
 What would be useful views of the metrics from coding sessions?
 - snapshot of a session (what specs, ...)
   - company point of view: outward data capture "worked on X items for Y hours"
-  - agent usage within a coding session; does it c
+  - agent usage within a coding session; does it change over time? what's different?
+- work product
+  - PRs
+  - static analysis (CodeScene quality metrics)
+  - downstream results (bugs?) - what's the join point?
