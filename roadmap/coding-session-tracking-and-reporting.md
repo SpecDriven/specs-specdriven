@@ -10,7 +10,9 @@ Definitions / Background
 Purpose: what's this for? (see below for reports, etc.)
 - Presume local for the individual user
 
-Where Do 
+Where Do Session Metrics Live?
+- Local database (or sequence of record dump files?)
+- Default: on (
 
 Task Linking:
 - Is a task appropriate to link to a coding session? Answer: yes, appropriate.
