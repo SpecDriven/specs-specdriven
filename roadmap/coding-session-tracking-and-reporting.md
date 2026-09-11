@@ -4,13 +4,15 @@ Definitions / Background
 
 - either manual or AI-assisted (agentic)
 - humans; pairs
-- link to specs used in the session
 
+Purpose: what's this for
 
 Metrics:
 
 - overall time from open to close
 - arbitrary key values per house rules
+- link to specs used in the session
+- PRs resulting from the session
 
 Agent metrics:
 
