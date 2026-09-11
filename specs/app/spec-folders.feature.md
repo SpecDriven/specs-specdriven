@@ -2,7 +2,7 @@
 
 Support opening and switching between multiple specifications folders. (Currently called data directory)
 
-![image](/api/images/image-c9aa1fcb.png)
+<img src="/api/images/image-c9aa1fcb.png" alt="image" width="516">
 
 ## Manage specification folders @v1 [proposed]
 
