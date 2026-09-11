@@ -31,4 +31,7 @@ Agent metrics:
 - token counts: input, cached, output
 - local model or cloud model (e.g. the switchbox folks as a cloud proxy provider?)
 
-"A session generates a metrics record."
+"A (coding) session generates a metrics record."
+
+What would be useful views of the metrics from coding sessions?
+- snapshot of a session (what specs, ...
