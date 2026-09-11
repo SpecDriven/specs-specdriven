@@ -23,10 +23,12 @@ Metrics:
 - PRs resulting from the session
 
 Session work product:
-- plans 
+- plans (a technical spec, like "plan.md" in Openspec, or plan output for some agents).
 
 Agent metrics:
 
 - which model, version , provider, effort (agent supplier, settings)
 - token counts: input, cached, output
 - local model or cloud model (e.g. the switchbox folks as a cloud proxy provider?)
+
+"A session generates a metrics record."
