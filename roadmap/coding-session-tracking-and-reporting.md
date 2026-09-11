@@ -1,4 +1,4 @@
-<img src="/api/images/session-process-excalidraw-98f9634b.svg" alt="session-process.excalidraw" width="175">
+<img src="/api/images/session-process-excalidraw-98f9634b.svg" alt="session-process.excalidraw" width="447">
 
 # Coding Session Tracking and Reporting
 
