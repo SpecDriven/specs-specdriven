@@ -39,6 +39,7 @@ What would be useful views of the metrics from coding sessions?
   - agent usage within a coding session; does it change over time? what's different?
 - work product
   - PRs
+  - new specs discovered and recorded during a session
 - Reports supporting engineering approach to coding workflow
   - static analysis (CodeScene quality metrics)
-  - downstream results (bugs?) - what's the join point from a session to its results (commit;
+  - downstream results (bugs?) - what's the join point from a session to its results (commit; PR?)
