@@ -7,7 +7,10 @@ Definitions / Background
 - either manual or AI-assisted (agentic)
 - humans; pairs
 
-Purpose: what's this for?
+Purpose: what's this for? (see below for reports, etc.)
+- Presume local for the individual user
+
+Where Do 
 
 Task Linking:
 - Is a task appropriate to link to a coding session? Answer: yes, appropriate.
