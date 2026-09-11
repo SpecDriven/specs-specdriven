@@ -22,6 +22,9 @@ Metrics:
 - link to specs used in the session
 - PRs resulting from the session
 
+Session work product:
+- plans 
+
 Agent metrics:
 
 - which model, version , provider, effort (agent supplier, settings)
