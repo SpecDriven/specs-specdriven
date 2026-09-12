@@ -1,5 +1,11 @@
 # Feature Editor
 
+## Edit Description button opens description editor @v1 [proposed]
+
+Given: A feature exists with a description available.
+When: The user hits the "Edit Description" button in the top right.
+Then: The description editting pane opens and defaults to "Write" mode.
+
 ## Edit feature descrition @v1 [proposed]
 
 Editor for the feature description must be on after a new feature is created.
