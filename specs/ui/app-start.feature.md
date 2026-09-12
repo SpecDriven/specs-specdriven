@@ -41,6 +41,16 @@ the app read; when neither exists, the project one is created.
 - and a value the server rejects leaves the current repo in place, with the
   error shown as a status note
 
+## forgetting a data repo @v1 [proposed]
+
+- Given: a data repo is configured, and the sidebar header shows its folder
+  name only — parent folders appear in a tooltip, and the full path in the
+  edit dialog
+
+- When: the user clicks the edit (✎) button next to the name
+- Then: a dialog opens pre-filled with the current data repo
+- A button in this dialog causes the app to stop showing this existing data repo in the dropdown
+
 ## migrating the pre-settings.json layout @v1 [proposed]
 
 - Given: a plain `.specdriven` file (the old layout) is in the project root
