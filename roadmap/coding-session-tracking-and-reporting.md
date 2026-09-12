@@ -1,6 +1,11 @@
 <img src="/api/images/session-process-excalidraw-98f9634b.svg" alt="session-process.excalidraw" width="447">
 
-# Coding Session Tracking and Reporting
+# Goal-oriented Session Tracking and Reporting
+
+A session should have a clear goal. It may come from a task description.
+
+During a session we may:
+- 
 
 Definitions / Background
 
