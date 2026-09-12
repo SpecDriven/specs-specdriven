@@ -1,4 +1,4 @@
-# Always use worktrees
+# Multiple Claude sessions without worktrees
 
 **Author:** vydra
 
