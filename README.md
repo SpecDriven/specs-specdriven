@@ -12,4 +12,4 @@
 ## Working agreemnents
 
 - All features need specifications
-- The majority of scenarios need links to t
+- The majority of scenarios need links to automated tests
