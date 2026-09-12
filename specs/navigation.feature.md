@@ -1,5 +1,7 @@
 # Navigation
 
+**Assigned:** David
+
 We want to have a unique url for each Feature and each scenario, to enable
 deep linking and navigation from outside the app as well as sharing the links
 via chat and email.
@@ -130,6 +132,12 @@ link — clicked in chat, email, a browser or a terminal — to the app.
 - Then: the feature opens with that scenario card selected, highlighted, and
   scrolled into view — the same highlight the up/down keys move, so Enter
   opens the full body
+
+## Scenario navigation @v1 [proposed]
+
+When we are in a scenario editor pane, we want to easily switch to another scenario wihout going back to the feature view.
+In the tree on the left show scenarios under the feature.
+Allow to collapse and expand the outline.
 
 ## share a link @v1 [proposed]
 
