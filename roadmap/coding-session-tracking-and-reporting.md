@@ -8,9 +8,15 @@ During a session we may:
 - create new specs
 - write code by hand
 - launch one or more agent sessions
+- run linters
+- run mutation testing
+- run property testing
 - Debug generated tests
 - Do acceptance testing
 - Do exploratory testing (maybe another agent session)
+
+For each of the above, we can capture statistics that will help us to re
+
 
 Definitions / Background
 
