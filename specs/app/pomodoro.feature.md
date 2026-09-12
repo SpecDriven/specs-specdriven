@@ -34,8 +34,9 @@ however many AI sessions are running in parallel.
 - The interval lengths, the sound and the tick are device-local preferences,
   reached from the bar's ⋯ menu. Changing them affects the **next** interval;
   the running one keeps what it started with.
-- The bar is a lot of a narrow sidebar, so it **folds into a small icon**, and
-  folding it does not stop the timer.
+- The bar is a lot of a narrow sidebar, so it is a pane rather than furniture:
+  a **timer icon in the sidebar's header**, left of the coding agent's robot,
+  opens and closes it, and closing it does not stop the timer.
 
 ## a pomodoro cannot be paused, only abandoned @v1 [proposed]
 
@@ -148,27 +149,6 @@ however many AI sessions are running in parallel.
 [test: nothing happens without a timer : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L261 ]
 [test: flashes when told to, and the menu offers the settings and to stop : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L58 ]
 
-## the bar folds into a small icon @v1 [proposed]
-
-- Given: the Pomodoro is switched on
-- When: the user presses the bar's hide button
-- Then: the bar folds into one small icon at the foot of the sidebar, and the
-  clock, the progress line, the cycle's dots and the buttons go with it — the
-  space is given back to the work
-- and a running pomodoro keeps running: the icon carries its clock, coloured
-  for a break, and the window title still counts down
-- When: the user presses that icon
-- Then: the bar comes back as it was
-- Otherwise: the sidebar is collapsed to the rail, which shows its chip
-  either way
-
-[test: idle — a bare timer icon that brings the bar back : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L122 ]
-[test: while a pomodoro runs, the icon carries its clock : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L134 ]
-[test: a break reads as one, and the flash carries over : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L140 ]
-[test: the bar can be folded away without stopping the timer : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L66 ]
-[test: folds away and stays folded : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroPref.test.tsx#L74 ]
-[test: is its own question — folding the bar leaves the feature on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroPref.test.tsx#L87 ]
-
 ## the bar shows where the timer stands @v1 [proposed]
 
 - Then: the Pomodoro bar shows the phase, the clock counting down, a progress
@@ -181,6 +161,29 @@ however many AI sessions are running in parallel.
 [test: the rail chip is the clock alone, and a timer icon between intervals : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L74 ]
 [test: fills one dot per completed pomodoro, capped at the cycle length : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroRules.test.ts#L78 ]
 [test: between intervals — no clock, and the button that starts what comes next : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L48 ]
+
+## the header's icon opens and closes the bar @v1 [proposed]
+
+- Given: the Pomodoro is switched on
+- Then: a timer icon sits in the sidebar's header, left of the coding agent's
+  robot, and the bar opens directly beneath the header
+- When: the user presses that icon, or the bar's own close button
+- Then: the bar goes, and the clock, the progress line, the cycle's dots and
+  the buttons go with it — the space is given back to the work
+- and a running pomodoro keeps running: the header's icon carries its clock,
+  coloured for a break, and the window title still counts down
+- When: the user presses the icon again
+- Then: the bar comes back as it was
+- Otherwise: the sidebar is collapsed to the rail, which shows its chip
+  either way
+
+[test: closed and idle — a bare timer icon that opens the bar : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L122 ]
+[test: open, the same icon closes the bar again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L135 ]
+[test: while a pomodoro runs, the icon carries its clock : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L142 ]
+[test: a break reads as one, and the flash carries over : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L148 ]
+[test: the bar can be closed without stopping the timer : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L66 ]
+[test: closes and stays closed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroPref.test.tsx#L74 ]
+[test: is its own question — closing the bar leaves the feature on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroPref.test.tsx#L87 ]
 
 ## the long break comes when the cycle is full @v1 [proposed]
 
