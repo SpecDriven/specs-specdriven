@@ -68,6 +68,12 @@ on macOS, `~/.config/SpecDriven` on Linux) via `SPECDRIVEN_ROOT`:
   inside the sidebar header, and the header doubles as the drag region.
   Elsewhere the window wears the system title bar and the sidebar header is
   an ordinary header.
+- A drag region swallows the clicks of everything inside it, so every control
+  the header holds — the folder name and its recent-folders menu, ✎, Sync,
+  and the icons at the right that open the Pomodoro bar, the coding agent
+  pane and the collapsed sidebar — stays clickable rather than dragging the
+  window. The rule covers the header's controls as a class, so an icon added
+  later is clickable without anyone remembering this.
 - Deep links (navigation.feature.md) keep working inside the app: the
   internal protocol serves the app shell for every `/features/...` url.
 - The app registers the `specdriven://` scheme with the OS, so a link shared
@@ -136,6 +142,17 @@ to the user-only token file next to the home settings file.
 - When: the user clicks the test link in the desktop app
 - Then: the link opens in the default browser and the app window stays where
   it was
+
+## the header's icons work inside the drag region @v1 [proposed]
+
+- Given: the macOS desktop app, whose sidebar header is the window drag region
+- When: the user clicks the timer, the Bot, or the sidebar collapse icon at
+  the header's right
+- Then: each opens what it names — the Pomodoro bar, the coding agent pane,
+  the collapsed sidebar — instead of starting to drag the window
+
+[test: every control in the header stays clickable : https://github.com/SpecDriven/specdriven_app/blob/main/tests/dragRegion.test.ts#L121 ]
+[test: the header's icon buttons stay clickable : https://github.com/SpecDriven/specdriven_app/blob/main/tests/dragRegion.test.ts#L134 ]
 
 ## the packaged Linux app opens on a clean machine @v1 [proposed]
 
