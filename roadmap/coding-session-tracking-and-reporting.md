@@ -15,7 +15,7 @@ During a session we may:
 - Do acceptance testing
 - Do exploratory testing (maybe another agent session)
 
-For each of the above, we can capture statistics that will help us to re
+For each of the above, we can capture statistics that will help us to reflect and optimize the development process.
 
 
 Definitions / Background
