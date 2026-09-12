@@ -126,8 +126,9 @@ however many AI sessions are running in parallel.
 ## start a pomodoro @v1 [proposed]
 
 - Given: the Pomodoro is switched on in Settings
-- When: the user presses "Start a pomodoro" at the foot of the sidebar, the
-  `p` key, the rail's timer chip, or "Start a pomodoro" in the command palette
+- When: the user presses "Start a pomodoro" in the bar under the sidebar's
+  header, the `p` key, the rail's timer chip, or "Start a pomodoro" in the
+  command palette
 - Then: the first pomodoro is running at once, on the lengths last set, and
   the bar takes the place of the button
 - Otherwise: there is nothing to fill in — no name and no dialog; a pomodoro
@@ -201,12 +202,13 @@ however many AI sessions are running in parallel.
 ## the Pomodoro is controlled by a switch in user settings @v1 [proposed]
 
 - Given: a device that has never chosen
-- Then: the Pomodoro is **off**: no bar at the foot of the sidebar, no `p`
-  key, and no "Start a pomodoro" or "Pomodoro settings…" in the command
-  palette — a timer nobody asked for is a row of sidebar taken from the work
+- Then: the Pomodoro is **off**: no timer icon in the sidebar's header, no
+  bar, no `p` key, and no "Start a pomodoro" or "Pomodoro settings…" in the
+  command palette — a timer nobody asked for is a row of sidebar taken from
+  the work
 - When: the user turns "Pomodoro timer" on in Settings
-- Then: the bar appears at the foot of the sidebar, out rather than folded, so
-  the switch shows what it just switched on
+- Then: the header's timer icon appears and the bar opens beneath it, so the
+  switch shows what it just switched on
 - and the choice is remembered on this device, like Vim mode and the theme,
   rather than in the settings file — it is a habit of the person at this
   keyboard, not a property of the project
