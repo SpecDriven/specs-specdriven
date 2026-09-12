@@ -50,6 +50,8 @@ it does.
 - and removing the line from the newer entry, in the app or on GitHub,
   removes the badge on the next sync
 
+[test: a decision supersedes an earlier one without touching it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L217 ]
+
 ## Deep links @v1 [proposed]
 
 - Given: the setting is on
@@ -61,6 +63,9 @@ it does.
 - and a reload of that url serves the app and reopens the entry
 - and an entry that does not exist shows the not-found page, and with the
   setting off the url goes home
+
+[test: an entry url round-trips to its file, and a foreign url does not : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L248 ]
+[test: notebook routes match by method : https://github.com/SpecDriven/specdriven_app/blob/main/tests/api.test.ts#L58 ]
 
 ## Entries are shared through git @v1 [proposed]
 
@@ -74,6 +79,12 @@ it does.
 - and a person with the setting off still pulls the entries — the switch
   hides the tab, it does not stop the sync — so nothing is lost by turning
   it off and on again
+
+[test: entries reach the other clone on a sync tick : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L262 ]
+[test: the sync tick absorbs notebook drift whatever the other switches say : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L282 ]
+[test: two clones editing one entry merge instead of conflicting : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L320 ]
+[test: a merged entry holds each side's edit exactly once : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L353 ]
+[test: an entry edited outside the app is absorbed on the next tick : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L298 ]
 
 ## Search and the command palette @v1 [proposed]
 
@@ -109,6 +120,11 @@ it does.
 - and with no entries yet the tab says the notebook is empty and what it is
   for, in a sentence, above the button
 
+[test: groups by month, newest month first, order within kept : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.tsx#L59 ]
+[test: undated entries come last rather than disappearing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.tsx#L70 ]
+[test: a decision is a decision; anything else reads as an observation : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.tsx#L18 ]
+[test: names the kind and carries its own class : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.tsx#L29 ]
+
 ## The notebook is controlled by a switch in user settings @v1 [proposed]
 
 - Given: a fresh install, or a settings file that never mentions the
@@ -126,6 +142,9 @@ it does.
   is off; the folder and its entries are left alone
 - and the switch is stored in `.specdriven/settings.json` on this machine
   like the roadmap's, so it does not follow the user to another device
+
+[test: the notebook setting is on unless explicitly turned off : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L60 ]
+[test: a sync tick never creates the notebook folder : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L69 ]
 
 ## Write an entry @v1 [proposed]
 
@@ -148,3 +167,11 @@ it does.
 - and the kind is changed later from a chip in the entry's header, never by
   editing the metadata line; the author and date are set by the app and
   shown, not edited
+
+[test: the notebook is flat: a slash in the title makes no subfolder : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L185 ]
+
+[test: an entry is created dated, signed and pushed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L139 ]
+[test: a duplicate slug for the same day is refused, and so is a blank title : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L166 ]
+[test: an entry's kind is changed through its document : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L199 ]
+[test: an entry parses into its metadata and body, and serializes back : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L85 ]
+[test: a hand-written file is still an entry, dated by its file name : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L113 ]
