@@ -6,8 +6,11 @@ A session should have a clear goal. It may come from a task description.
 
 During a session we may:
 - create new specs
-- write cod
-- launch one or 
+- write code by hand
+- launch one or more agent sessions
+- Debug generated tests
+- Do acceptance testing
+- Do exploratory testing (maybe another agent session)
 
 Definitions / Background
 
