@@ -5,7 +5,9 @@
 A session should have a clear goal. It may come from a task description.
 
 During a session we may:
-- 
+- create new specs
+- write cod
+- launch one or 
 
 Definitions / Background
 
