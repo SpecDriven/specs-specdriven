@@ -8,3 +8,8 @@
 ## Requirements
 
 - Support for GitHub and GitLab
+
+## Working agreemnents
+
+- All features need specifications
+- The majority of scenarios need links to t
