@@ -19,3 +19,13 @@ Link to the diagram will be embedded into the feature file similar to how we han
 Given a link to an Excalidraw diagram in a text file, user is able to edit the existing diagram.
 
 After the user saves the editted diagram, overwrite the existing diagram shown in that text file.
+
+## Import Excalidraw file @v1 [proposed]
+
+Given a diagram saved as a `.excalidraw` file (the format excalidraw.com and the Excalidraw desktop app save), user is able to bring it into the editor.
+
+In the Excalidraw pane, an Import button lets the user pick a `.excalidraw` file; its drawing replaces what is on the canvas (after confirming, if the canvas is not empty) and, for a new diagram, the diagram takes the file's name. Insert then embeds it like a diagram drawn in the pane.
+
+The editor's image picker also accepts `.excalidraw` files: picking one opens the pane with it loaded, ready to insert.
+
+A file that holds no Excalidraw drawing is reported, and the canvas is left as it was.
