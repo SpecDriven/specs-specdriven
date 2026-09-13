@@ -77,8 +77,10 @@ automerge % tree -L 3
 
 68 directories, 3 files
 
-== proposed layout ==
+== proposed top level layout ==
 specs
 notebook
 roadmap
 tasks
+event-models
+test-management
