@@ -79,6 +79,15 @@ plain markdown that renders naturally on GitHub:
 - And: a `[published]` scenario now has nothing editable, so its card link
   reads `View` and the dialog offers only Close
 
+## Open test in idea @v1 [proposed]
+
+'idea' must be in the PATH
+use ```ln -s "/Applications/IntelliJ IDEA.app/Contents/MacOS/idea" /usr/local/bin/idea``` on Mac to create a symlink
+
+In user settings, turn 'Open test links in IntelliJ IDEA' to On
+
+call shell command like 'idea --line 42 /abs/path/to/Foo.java'
+
 ## see the tests of a scenario @v1 [proposed]
 
 - When: a scenario has test links and the setting is ON (the default)
