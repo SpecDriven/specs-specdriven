@@ -4,5 +4,5 @@
     { "name": "David", "email": "david@specdriven.app" },
     { "name": "Roman", "email": "roman@specdriven.app" }
   ],
-  "code-repo": "../specdriven_app"
+  "code-repo": "../specdriven-app"
 }
