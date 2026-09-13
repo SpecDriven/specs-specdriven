@@ -11,14 +11,24 @@ the document alone.
 
 ## Storage layout
 
-Each feature's document lives beside the markdown, inside the data repo:
+Each document lives inside the data repo under `.specdriven/automerge/`, in
+a tree that mirrors the repo's own top-level folders: a document's directory
+is its source file's path, with `models/` reading as `event-models/`, plus
+one fixed directory for the test management module's document, which has no
+markdown side.
 
 ```
-policy/auto-policy.feature.md                          <- projection
-.specdriven/automerge/features/policy/auto-policy.feature.md/
-    docid                                              <- shared identity
-    snapshot-<hash>.bin                                <- full document
-    changes-<hash>.bin                                 <- incremental changes
+specs/policy/auto-policy.feature.md                    <- projection
+.specdriven/automerge/
+    specs/policy/auto-policy.feature.md/               <- the feature's document
+        docid                                          <- shared identity
+        snapshot-<hash>.bin                            <- full document
+        changes-<hash>.bin                             <- incremental changes
+    roadmap/<name>.md/                                 <- roadmap pages
+    tasks/<name>.md/                                   <- tasks
+    notebook/<name>.md/                                <- notebook entries
+    event-models/<path>.model.json/                    <- Event Models (models/)
+    test-management/project/                           <- test management
 ```
 
 Chunk files are content-addressed and write-once, so two peers pushing
@@ -47,6 +57,21 @@ from the parsed markdown). Nothing breaks for collaborators on older app
 versions — their plain-markdown pushes keep working and are absorbed as
 drift. If two peers import the same feature concurrently, the merge picks
 one document identity deterministically and folds both sides' content in.
+
+## Documents from before the mirrored layout @v1 [proposed]
+
+Earlier app versions filed documents under a directory per kind —
+`features/`, `docs/`, `models/`, `testing/` — with the source file's whole
+path beneath it, so every folder name appeared twice
+(`features/specs/...`, `models/models/...`). On the first sync tick after
+the upgrade, every document found under those roots is moved to its place
+in the mirrored layout, identity file included, and the moves land in one
+commit of renames, so nothing about a document changes but where it sits.
+A document that already has a directory at the new place — a teammate
+migrated first, or pushed from an older version since — is merged into it
+chunk by chunk: chunk names are content hashes, so a name already there is
+the same bytes, and loading still merges every chunk into one document. The
+old roots disappear once nothing is left in them.
 
 ## Documents from before the status field @v1 [published]
 
