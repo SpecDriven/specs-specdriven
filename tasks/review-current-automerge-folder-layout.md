@@ -76,3 +76,9 @@ automerge % tree -L 3
         └── snapshot-9a3327977d9f7b04.bin
 
 68 directories, 3 files
+
+== proposed layout ==
+specs
+notebook
+roadmap
+tasks
