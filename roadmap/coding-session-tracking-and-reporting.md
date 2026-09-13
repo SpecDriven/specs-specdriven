@@ -1,5 +1,5 @@
-<img src="/api/images/session-process-excalidraw-98f9634b.svg" alt="session-process.excalidraw" width="447">
-![initial-architechture.excalidraw](/api/images/initial-architechture-excalidraw-c90c2c04.svg)
+<img src="/api/images/session-process-excalidraw-98f9634b.svg" alt="session-process.excalidraw" width="436">
+<img src="/api/images/initial-architechture-excalidraw-c90c2c04.svg" alt="initial-architechture.excalidraw" width="921">
 
 # Goal-oriented Session Tracking and Reporting
 
