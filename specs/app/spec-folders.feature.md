@@ -9,3 +9,8 @@ Support opening and switching between multiple specifications folders. (Currentl
 Open new folders from the local file system. "Change data directory"
 
 Ability to delete specification folders.
+
+## Switch spec folder @v1 [proposed]
+
+When switching spec folders, the app will bring up a modal dialog indicating the progress of loading the new dataset.
+All other operations are blocked.
