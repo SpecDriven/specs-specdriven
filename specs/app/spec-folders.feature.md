@@ -10,7 +10,18 @@ Open new folders from the local file system. "Change data directory"
 
 Ability to delete specification folders.
 
+[test: lists every folder by name with its path, the open one badged : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specFolders.test.tsx#L72 ]
+[test: every folder but the open one can be opened or removed from the list : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specFolders.test.tsx#L83 ]
+[test: offers to open another folder from the file system, and to close : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specFolders.test.tsx#L95 ]
+[test: PUT /api/state forgetDataRepo removes a folder from the list and persists it, the folder itself untouched : https://github.com/SpecDriven/specdriven_app/blob/main/tests/recentFolders.test.ts#L187 ]
+[test: the open folder cannot be removed from the list — switch away first : https://github.com/SpecDriven/specdriven_app/blob/main/tests/recentFolders.test.ts#L220 ]
+
 ## Switch spec folder @v1 [proposed]
 
 When switching spec folders, the app will bring up a modal dialog indicating the progress of loading the new dataset.
 All other operations are blocked.
+
+[test: nothing on it can be pressed: no buttons, and it says the rest waits : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specFolders.test.tsx#L48 ]
+
+[test: a modal dialog names the folder being opened and the step it is on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specFolders.test.tsx#L14 ]
+[test: the steps read done → current → pending as the switch advances : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specFolders.test.tsx#L26 ]
