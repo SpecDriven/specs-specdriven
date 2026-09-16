@@ -4,4 +4,4 @@ If target code repo contains definitions of data entities, we can incorporate fi
 
 Ex: @FirstName, @EmployeeNumber
 
-Support SAP
+Support SAP CDS data layout.
