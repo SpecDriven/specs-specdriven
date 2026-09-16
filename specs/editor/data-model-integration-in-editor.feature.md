@@ -4,7 +4,7 @@ If target code repo contains definitions of data entities, we can incorporate fi
 
 Ex: @FirstName, @EmployeeNumber
 
-Support 'standrd' JaSAP CDS data layout.
+Support 'standard' Java POJOs and SAP CDS data layout.
 
 ## Choose entity field @v1 [proposed]
 
