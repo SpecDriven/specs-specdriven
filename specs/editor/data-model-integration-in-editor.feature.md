@@ -5,3 +5,9 @@ If target code repo contains definitions of data entities, we can incorporate fi
 Ex: @FirstName, @EmployeeNumber
 
 Support SAP CDS data layout.
+
+## Choose entity field @v1 [proposed]
+
+When we enter '@' and press tab, the app presents a searchable list of entity fields.
+
+If two entities share the same field name, it will be prefixed by entity name. Ex: '@User.FirstName'
