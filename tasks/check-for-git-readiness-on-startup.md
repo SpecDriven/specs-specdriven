@@ -2,6 +2,8 @@
 
 **Assigned:** David
 
+**Estimate:** 1h
+
 If git is not configured, we get
 
 ```[reload] git commit failed: Author identity unknown
