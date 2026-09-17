@@ -210,6 +210,30 @@ in its own pane on the feature page:
   never squeezes the description pane, and the "add a scenario" button stays
   reachable.
 
+## Hide the editor pane @v1 [proposed]
+
+While the coding agent pane is open beside it, the editor column can be hidden
+so the pane has the window — the same kind of control the agent pane itself
+has, one column to its left.
+
+- The icon sits just left of the coding agent's, in the sidebar header and in
+  the collapsed rail, so the two toggles read in the order their panes do —
+  editor, then agent pane. It toggles on `\` — the key between `[` and `]`,
+  which hide the sidebar and the agent pane. It is in the command palette too,
+  listed ahead of the coding agent's commands.
+- It is offered only while the coding agent pane is showing as a column. With
+  that pane closed there is nothing to give the room to, and on a one-pane
+  screen the pane already covers the page — so the icon is absent in both
+  cases and the editor always shows.
+- Hiding the editor drops its column entirely: the sidebar keeps its width and
+  the agent pane takes the rest of the window, past the width limit that
+  normally keeps it clear of the editor. The divider between them goes with
+  the editor, since there is no longer anything to size against it.
+- The choice is remembered on the device (browser/app storage), like the
+  sidebar width and the theme — a per-device preference, not shared team
+  state. Closing the agent pane brings the editor back without forgetting the
+  choice: reopening the pane hides it again.
+
 ## Recent folder list @v1 [published]
 
 There is a small down arrow icon next to folder name that brings up a list of previous folders. Support up to 10 folders.
