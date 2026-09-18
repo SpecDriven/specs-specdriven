@@ -6,6 +6,19 @@ Support deep link just like Features.
 
 Integrate with Google Calendar
 
+## A bare folder url opens that tab @v1 [proposed]
+
+- Given: the Tasks setting is on and the folder holds at least one task
+- When: the user opens `/tasks` — no task after the folder — from the address
+  bar, a shared link or a reload
+- Then: the Tasks tab opens on the first task it lists, the same one `g t` and
+  the collapsed rail's Tasks icon go to, and the address bar canonicalises to
+  that task's own url, so a reload reopens it
+- and `/roadmap`, `/notebook` and `/models` behave the same way for their own
+  tabs, the notebook opening on its newest entry
+- and a folder that holds nothing, or whose tab is switched off, goes home
+  rather than opening an empty pane
+
 ## Add task to Google Calendar @v1 [proposed]
 
 - Given: a task is open, and "Google Calendar" is switched on in Settings —
