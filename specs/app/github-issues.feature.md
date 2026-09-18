@@ -86,7 +86,10 @@ Allow to access GitHub issues from the app.
   anonymous rate limit, while a write, a private repository or a used-up
   limit shows GitHub's reason in the pane with a button to Settings, where
   the sign-in lives
-- and in demo mode nothing ever talks to GitHub
+- and in demo mode the tab reads one fixed public repository —
+  SpecDriven/specdriven-app-release — anonymously, so the demo has real
+  issues to show, and every write is refused: no New issue, Edit, Close,
+  Reopen or Comment is offered, and the routes behind them answer 403
 
 ## The Issues tab shows the code repo's GitHub issues @v1 [proposed]
 
