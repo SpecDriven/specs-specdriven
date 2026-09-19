@@ -37,9 +37,11 @@ On Sync, commit all files in this folder.
   New feature buttons, Start session, the Features head with its filter, and
   the tree
 - and the Roadmap tab holds a "+ New page" button and the page list grouped by
-  subfolder, each page with its Rename / Copy link / Delete menu; the
-  collapsible Roadmap section above the tree, its twist and its small + button
-  are gone
+  subfolder, each page with its Rename / Copy link / Delete menu — Rename
+  changes the page's heading and its file name together, a `git mv` committed
+  and pushed with the page's document alongside, so the url follows the title
+  and the retired name is free again; the collapsible Roadmap section above
+  the tree, its twist and its small + button are gone
 - and the chosen tab is remembered across reloads, the way the sidebar width
   is
 - and opening a roadmap page — from its row, the command palette or a deep

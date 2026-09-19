@@ -86,6 +86,40 @@ it does.
 [test: a merged entry holds each side's edit exactly once : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L353 ]
 [test: an entry edited outside the app is absorbed on the next tick : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L298 ]
 
+## Renaming an entry keeps its date and its links @v1 [proposed]
+
+- Given: an entry exists, another entry supersedes it, and a third links to
+  it in its body
+- When: the user renames it from the ⋯ menu
+- Then: the `# <title>` heading and the file both change — the file keeps the
+  `<yyyy-mm-dd>-` it begins with and takes the new title's slug after it, so
+  the folder still reads in order — committed and pushed as a `git mv`, with
+  the entry's Automerge document moved alongside so its history survives
+- and the entry's author, date and kind are untouched
+- and the url follows the file name: an entry that is open stays open at its
+  new url, rewritten in place so Back does not land on the retired one
+- and every `**Supersedes:**` line and every body link that named the entry
+  is pointed at its new url, each saved through its own entry's document so a
+  teammate's concurrent edit merges rather than being overwritten; the link
+  text is left as written, so the sentence still reads
+- and unlike a feature file rename (ui/ui.feature.md), where links to the old
+  name go stale, an entry's links are rewritten — an entry is cited by other
+  entries, and a dead link there would quietly drop a badge
+- and the slug the entry gave up is free again: a new entry with the old
+  title, on the same day, is created rather than refused
+- and a title whose slug another entry already holds is refused with
+  "Notebook entry already exists", the way creating one over it is
+- and a new title that slugifies to the name the file already has changes
+  only the heading — the way an entry whose heading has drifted from its file
+  name is repaired
+
+[test: renaming an entry keeps its date and takes the new title's slug : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L398 ]
+[test: renaming an entry carries its document along : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L425 ]
+[test: renaming an entry validates, and an unchanged slug only repairs the heading : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L446 ]
+[test: the slug a renamed entry gave up is free for a new entry : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L479 ]
+[test: supersedes links and body links follow a renamed entry : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L496 ]
+[test: renaming an entry is a git mv, committed and pushed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/notebook.test.ts#L558 ]
+
 ## Search and the command palette @v1 [proposed]
 
 - Given: the setting is on
@@ -114,7 +148,8 @@ it does.
   grouped by month ("September 2026"); each row shows the title, a small
   kind chip (Observation or Decision), the author and the day
 - and each row's ⋯ menu offers Rename, Copy link and Delete, the way a
-  roadmap page's does; Delete confirms, since the push cannot be undone
+  roadmap page's does; Rename moves the file too, so the url follows the
+  title; Delete confirms, since the push cannot be undone
 - and the chosen tab is remembered across reloads like the other tabs, and
   on a small screen the tabs sit in the drawer and switching keeps it open
 - and with no entries yet the tab says the notebook is empty and what it is
