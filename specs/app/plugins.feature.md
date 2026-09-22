@@ -35,6 +35,8 @@ module switches it replaces.
   where they were loaded from
 - and a built-in plugin can be switched off but never uninstalled
 
+[test: the browser loader registers the tab while the server says it is on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L76 ]
+
 ## A plugin from the marketplace is installed with consent @v1 [proposed]
 
 - Given: a marketplace is configured in Settings → Plugins
@@ -83,6 +85,8 @@ module switches it replaces.
 - and with the plugin off the url goes home, and a url no plugin claims
   shows the not-found page
 
+[test: the plugin's urls serve the app shell whether it is on or off : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L56 ]
+
 ## The marketplace is a git repository with an index @v1 [proposed]
 
 - Given: Settings → Plugins names one or more marketplaces, each a git url
@@ -116,6 +120,8 @@ module switches it replaces.
 - and the list is device-local, like the switches it replaces: it does not
   follow the user to another machine
 
+[test: a switch that is absent means the manifest's default : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L49 ]
+
 ## Turning a plugin off unwinds everything it registered @v1 [proposed]
 
 - Given: a plugin is on and one of its views has the pane
@@ -128,3 +134,7 @@ module switches it replaces.
 - and the plugin's data in the data repo is left alone
 - and switching it on again mounts it afresh, with its tab, shortcuts and
   routes back, without a restart
+
+[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L18 ]
+[test: effects unwind last-in-first-out, and only once : https://github.com/SpecDriven/specdriven_app/blob/main/tests/kernel.test.ts#L21 ]
+[test: a plugin waits for its injects and unmounts when one goes away : https://github.com/SpecDriven/specdriven_app/blob/main/tests/kernel.test.ts#L43 ]
