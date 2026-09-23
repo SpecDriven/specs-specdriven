@@ -3,11 +3,18 @@
 Deck of cards (command and event)
 
 Each player plays 3 cards
-3-5 pl
+3-5 players; at least 3
 
 Each card has a command and if successful , on the iother side it has an event
 
-Card: Update the read model
+Card: 
+Schedule a command; 
+
+Update the read model
+
+Ticket purchase
+
+
 
 ## Situations Deck
 
