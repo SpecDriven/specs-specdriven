@@ -3,6 +3,7 @@
 Deck of cards (command and event)
 
 Each player plays 3 cards
+3-5 pl
 
 Each card has a command and if successful , on the iother side it has an event
 
@@ -16,3 +17,9 @@ Helpers and Problems. This round has a situation.
 - Crash
 - Mistakes
 - Read model
+- Read model
+
+## Decisions
+
+What do I play from my hand
+How do we execute as a team; execution order
