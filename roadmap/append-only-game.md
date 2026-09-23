@@ -15,16 +15,15 @@ Update the read model
 Ticket purchase
 
 
-
 ## Situations Deck
 
 Helpers and Problems. This round has a situation.
 
-- LAG
+- Lag
 - Crash
 - Mistakes
-- Read model
-- Read model
+- Read model fully updated
+- Read model advance by 2
 
 ## Decisions
 
