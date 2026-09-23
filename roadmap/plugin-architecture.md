@@ -422,6 +422,36 @@ sample built to `dist/`. Tests: tests/pluginMarketplace.test.ts, the
 install and update once through system git and once through the bundled
 engine.
 
+**Models out of the tree (2026-09-23).** The Event Models left the app for
+the marketplace: `plugins/models` in SpecDriven/plugins (package
+`@specdriven/plugin-models`, needs SpecDriven 0.1.87), and the core no
+longer knows the model format. What that took, beyond the text above: a
+host SDK, `@specdriven/host` (`src/plugins/sdk/host.ts` — Automerge, the
+document store's generic per-file documents `load/create/save/remove/
+list/hasFileDoc` and `newFileDoc`, `createFeature`, the fs, git, parser and
+telemetry helpers), shimmed in a host half's build exactly as React is in a
+browser half's and published by the host loader, so a plugin shares the
+server's Automerge and store instead of bundling copies; a browser SDK,
+`@specdriven/client` (`src/plugins/sdk/client.ts` — Breadcrumbs, Menu,
+Tooltip, toast and SaveIndicator, the promise queue, the skeleton,
+`markText`, `featurePath`, `slugify`, and the tab contract's types),
+published with React; and four host services — `search.add(scope,
+{ kind, files, document })` (`GET /api/search?scope=<name>`), `sessions.add
+(id, contributor)` (a session request carries `attachments: { <plugin id>:
+[names] }`, which `TabPlugin.session` now returns as `refs`, and every
+contributor answers with prompt sections and specs to take on),
+`sync.reserve(folder)` and `sync.moved(fn)` (the specs-folder migration
+skips a plugin's folder and tells it which features moved). A plugin with
+a folder of its own makes it as it mounts, so `PUT /api/state` no longer
+knows the models folder. The store keeps mapping `models/` to
+`event-models/` and the layout migration still lifts the old `models/`
+root, since those are the store's history. A settings file with the old
+`models` switch still lists the id (the retired manifests in
+`src/plugins/builtin/manifests.ts`), and Settings → Plugins names it with
+"Find in marketplace", which opens Browse on its row. A marketplace
+install loads the `dist/` it ships, even on Bun, since it comes without
+its dependencies. The demo has no Models tab until a plugin is installed.
+
 ## Testing
 
 With `bun test`: the kernel (effects unwind last-in-first-out and children
