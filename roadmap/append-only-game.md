@@ -14,6 +14,8 @@ Update the read model
 
 Ticket purchase
 
+Step: a new read model gets introduced
+
 
 ## Situations Deck
 
