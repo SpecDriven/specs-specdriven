@@ -386,6 +386,42 @@ browse dialog (category, version, api check, consent step),
 index. Risk: supply chain — pinned refs, explicit consent, a visible
 "third-party, runs with the app's rights" note, and no automatic updates.
 
+**Phase 3 status (2026-09-23).** Done. `src/plugins/marketplace.ts` reads
+`marketplace.json` and the `plugins.marketplaces` rows (absent, the
+`SpecDriven/plugins` index; an empty list is the choice of none);
+`src/plugins/host/marketplace.ts` caches each marketplace under
+`~/.specdriven/marketplaces/<name>` through the git engine (clone when
+missing, pull on Refresh) and serves `GET /api/plugins/marketplaces`,
+`POST /api/plugins/install`, `POST /api/plugins/:id/update` and
+`DELETE /api/plugins/:id`, all 403 in the demo. Two departures from the
+text above: enable and disable have no routes of their own, since
+`PUT /api/state { plugins: { enabled } }` already is that; and the install
+is two steps — `step: "stage"` clones (pinned with a new
+`checkoutRef` on the git engine, `fetch --tags` then a detached checkout
+of `origin/<ref>` or `<ref>`) or copies the subdirectory into
+`~/.specdriven/plugins/.staging/<name>`, reads the manifest, checks `api`
+and `minAppVersion`, refuses a built-in's id, an id already installed and
+a symlink leaving the folder, writes `.specdriven-install.json`
+(marketplace, name, source, ref, version, commit, date) and answers the
+consent preview; `step: "confirm"` renames the staging folder into place
+and the loader's rescan adopts it (into `enabled`, mounted, its tab up
+without a reload); `step: "cancel"` deletes it. Update re-reads the index
+with a pull, fetches the ref it names now in place (a git source is put
+back at its old commit when the new manifest is refused; a subdirectory
+is swapped through staging) and the rescan remounts the new revision.
+Remove drops the id from `enabled`, syncs, deletes the folder, then drops
+it from `seen` — in that order, or the loader adopts the folder afresh in
+between. One install, update or removal runs at a time per id. The
+Settings → Plugins block (`src/frontend/PluginMarketplace.tsx`) lists the
+marketplaces with Remove and Add, and Browse clones and lists each index
+with Install, or Installed with Update and Remove; the consent dialog
+shows the name, version, description, permissions and the "third-party,
+runs with the app's rights, pinned, not updated on its own" note. The
+`SpecDriven/plugins` repository carries the index and a `hello-tab`
+sample built to `dist/`. Tests: tests/pluginMarketplace.test.ts, the
+install and update once through system git and once through the bundled
+engine.
+
 ## Testing
 
 With `bun test`: the kernel (effects unwind last-in-first-out and children
