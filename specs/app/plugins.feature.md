@@ -56,6 +56,26 @@ module switches it replaces.
   Remove switches it off, unwinds it and deletes its folder
 - and none of this is offered in the hosted demo
 
+## A plugin is scaffolded, built and linked from the command line @v1 [proposed]
+
+- Given: the `specdriven` command (the binary, or `bun src/index.ts` in the
+  checkout)
+- When: the developer runs `specdriven plugin new <id> [dir]`
+- Then: a folder with a package.json whose `specdriven` section names the
+  id, the `api` version, both halves' sources and the url prefix, a host
+  half that registers a route and a browser half that registers a tab, is
+  written — and nothing needs installing to build it
+- and `specdriven plugin build [dir]` bundles `src/` into `dist/host.js` and
+  `dist/client.js`, the browser half over the app's own React, so the
+  desktop app can load it
+- and `specdriven plugin link <dir>` adds the folder to this machine's
+  profile sources, from where the app finds it like any other folder
+- and a bad id, a folder already in use or an unknown command are refused
+  with the reason
+
+[test: plugin new, build and link take a plugin from nothing to a mounted tab : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginCli.test.ts#L50 ]
+[test: plugin new refuses a bad id or a folder in use, and an unknown command shows the usage : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginCli.test.ts#L92 ]
+
 ## A plugin loads from a local folder @v1 [proposed]
 
 - Given: a plugin folder exists — under `~/.specdriven/plugins/<id>`, under
@@ -74,6 +94,15 @@ module switches it replaces.
   that one plugin, and the browser picks up the new build without a reload
 - and a plugin that fails to load fails alone: the others keep running and
   Settings → Plugins shows the error beside its name
+
+[test: a plugin folder under ~/.specdriven/plugins is found, built, mounted and served : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L114 ]
+[test: an edit rebuilds the plugin under a new revision and remounts it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L176 ]
+[test: a plugin whose folder goes away is unwound and reported : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L231 ]
+[test: a manifest the app cannot accept is refused with the reason, and loads nothing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L246 ]
+[test: a plugin under the data repo asks for trust before its first load : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L289 ]
+[test: a plugin that fails to load fails alone : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L306 ]
+[test: a runtime that cannot build loads dist/ only, and refuses a bundle with its own React : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L319 ]
+[test: the browser loader imports a served bundle and remounts it at a new revision : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L357 ]
 
 ## Plugin urls serve the app shell @v1 [proposed]
 
@@ -140,5 +169,6 @@ module switches it replaces.
   routes back, without a restart
 
 [test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L21 ]
+[test: switching a folder plugin off unwinds its routes, and on mounts it again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L214 ]
 [test: effects unwind last-in-first-out, and only once : https://github.com/SpecDriven/specdriven_app/blob/main/tests/kernel.test.ts#L21 ]
 [test: a plugin waits for its injects and unmounts when one goes away : https://github.com/SpecDriven/specdriven_app/blob/main/tests/kernel.test.ts#L43 ]

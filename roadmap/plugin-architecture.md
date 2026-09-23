@@ -364,6 +364,21 @@ with enable, disable and errors. The desktop build is unchanged; plugins
 live outside the app bundle. Risk: a plugin bundling its own React, caught
 by the shims and the load-time check.
 
+**Status (2026-09-23).** Phase 1 shipped in five pull requests (the last,
+the profile and Settings → Plugins, merged as #139). Phase 2 is
+implemented on the `claude/plugin-phase2-filesystem` branch. Where it
+departs from the text above: `lucide-react` is not shimmed — each plugin
+bundles the few icons it uses over the shared React, which spares the app
+carrying every icon's name; a rebuilt host half is imported from a
+revision-named folder under `~/.specdriven/plugin-builds/<id>/<rev>/`
+rather than with `?rev=`, since Bun's import cache ignores the query on a
+file url; a plugin found for the first time is appended to `enabled` and
+remembered in `plugins.seen`, so switching it off later sticks; the
+browser hears of a rebuild over `GET /api/plugins/events` (server-sent
+events) and re-imports the new `rev`; and a data-repo plugin is trusted by
+folder path through `PUT /api/state { plugins: { trust } }` from its
+Settings row.
+
 **Phase 3 — marketplace.** The marketplace cache through the git engine,
 `marketplace.json` parsing, the install, update and remove routes, a
 browse dialog (category, version, api check, consent step),
