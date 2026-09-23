@@ -25,7 +25,7 @@ module switches it replaces.
 ## A built-in module is a plugin like any other @v1 [proposed]
 
 - Given: the app starts
-- When: the user opens Settings → Plugins
+- When: the user opens the Plugins page
 - Then: Roadmap, Tasks, Notebook, Models, Tests and Issues are listed as
   built-in plugins, each with its switch, its version and a line saying
   what it adds
@@ -40,7 +40,7 @@ module switches it replaces.
 
 ## A plugin from the marketplace is installed with consent @v1 [proposed]
 
-- Given: a marketplace is configured in Settings → Plugins
+- Given: a marketplace is configured on the Plugins page
 - When: the user picks a plugin from the marketplace list and presses
   Install
 - Then: the app shows the plugin's name, version, description, the
@@ -98,7 +98,7 @@ module switches it replaces.
 - and while a path source is being edited the app rebuilds and remounts
   that one plugin, and the browser picks up the new build without a reload
 - and a plugin that fails to load fails alone: the others keep running and
-  Settings → Plugins shows the error beside its name
+  the Plugins page shows the error beside its name
 
 [test: a plugin folder under ~/.specdriven/plugins is found, built, mounted and served : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L114 ]
 [test: an edit rebuilds the plugin under a new revision and remounts it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L176 ]
@@ -124,7 +124,7 @@ module switches it replaces.
 
 ## The marketplace is a git repository with an index @v1 [proposed]
 
-- Given: Settings → Plugins names one or more marketplaces, each a git url
+- Given: the Plugins page names one or more marketplaces, each a git url
 - When: the user opens the marketplace list, or presses Refresh
 - Then: each marketplace is cloned or pulled through the app's own git
   engine into `~/.specdriven/marketplaces/<name>`, so it works with `gh`,
@@ -152,8 +152,8 @@ module switches it replaces.
 - and a settings file from before plugins, with the `roadmap`, `tasks`,
   `notebook`, `models`, `testing` and `issues` switches, is read as the
   matching list once and works as it did
-- and an id in the list that no source provides is reported in Settings →
-  Plugins and otherwise ignored
+- and an id in the list that no source provides is reported on the
+  Plugins page and otherwise ignored
 - and the hosted demo enables every built-in plugin, so a visitor sees the
   whole app
 - and the list is device-local, like the switches it replaces: it does not
@@ -167,7 +167,7 @@ module switches it replaces.
 ## Turning a plugin off unwinds everything it registered @v1 [proposed]
 
 - Given: a plugin is on and one of its views has the pane
-- When: the user switches it off in Settings → Plugins
+- When: the user switches it off on the Plugins page
 - Then: its tab, its shortcuts, its palette commands and its settings
   section disappear, its routes answer 404 — the server refuses the
   module's requests, not just the UI (tests.feature.md) — and its sync hook

@@ -71,7 +71,7 @@ the app read; when neither exists, the project one is created.
   no settings file
 - When: the app starts
 - Then: the user is not asked for a data repo
-- and settings saved from the Settings dialog go back to the home settings file
+- and settings saved from the Settings page go back to the home settings file
 
 ## picking the data directory with the native folder chooser @v1 [proposed]
 

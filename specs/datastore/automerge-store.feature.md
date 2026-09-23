@@ -120,7 +120,7 @@ in near-real time, and arriving operations merge into the chunk store and
 rewrite the markdown projection — the next sync tick commits them, so git
 remains the source of record. Double delivery over both transports is
 harmless: merging the same operations twice is a no-op. The setting is off
-by default and the Settings dialog warns that on a public server anyone
+by default and the Settings page warns that on a public server anyone
 holding a document's id can read that document; peers with private data
 point it at a self-hosted sync server instead.
 
