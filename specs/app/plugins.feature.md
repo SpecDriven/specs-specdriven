@@ -56,10 +56,10 @@ module switches it replaces.
   Remove switches it off, unwinds it and deletes its folder
 - and none of this is offered in the hosted demo
 
-[test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L256 ]
-[test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L342 ]
-[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L301 ]
-[test: none of it is offered in the hosted demo : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L424 ]
+[test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L269 ]
+[test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L355 ]
+[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L314 ]
+[test: none of it is offered in the hosted demo : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L437 ]
 
 ## A plugin is scaffolded, built and linked from the command line @v1 [proposed]
 
@@ -140,7 +140,7 @@ module switches it replaces.
 
 [test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L217 ]
 [test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L167 ]
-[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L409 ]
+[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L422 ]
 
 ## The profile lists enabled plugins in tab order @v1 [proposed]
 
