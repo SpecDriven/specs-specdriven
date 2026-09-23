@@ -54,12 +54,16 @@ module switches it replaces.
   newer app, is refused with the reason and nothing is left behind
 - and Update fetches the ref the index now names and remounts the plugin;
   Remove switches it off, unwinds it and deletes its folder
-- and none of this is offered in the hosted demo
+- and in the hosted demo none of this is offered: it installs the Event
+  Models from the SpecDriven marketplace itself when it starts, and a
+  visitor browses the marketplace, the Event Models marked installed, with
+  no Install, Update, Remove or Refresh
 
-[test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L269 ]
-[test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L355 ]
-[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L314 ]
-[test: none of it is offered in the hosted demo : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L437 ]
+[test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L270 ]
+[test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L356 ]
+[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L315 ]
+[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L438 ]
+[test: the hosted demo installs the Event Models from the marketplace at start and lists them on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L465 ]
 
 ## A plugin is scaffolded, built and linked from the command line @v1 [proposed]
 
@@ -138,9 +142,9 @@ module switches it replaces.
 - and an index that does not parse is reported beside the marketplace's
   name and does not hide the other marketplaces
 
-[test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L217 ]
-[test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L167 ]
-[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L422 ]
+[test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L218 ]
+[test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L168 ]
+[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L423 ]
 
 ## The profile lists enabled plugins in tab order @v1 [proposed]
 
@@ -154,8 +158,8 @@ module switches it replaces.
   matching list once and works as it did
 - and an id in the list that no source provides is reported on the
   Plugins page and otherwise ignored
-- and the hosted demo enables every built-in plugin, so a visitor sees the
-  whole app
+- and the hosted demo enables every built-in plugin, then the Event Models
+  it installs from the marketplace, so a visitor sees the whole app
 - and the list is device-local, like the switches it replaces: it does not
   follow the user to another machine
 
