@@ -45,7 +45,7 @@ plain markdown that renders naturally on GitHub:
   with a message under the field; on the way out of the pane there is nowhere
   left to show that message, so such a url is left behind rather than holding
   the pane open.
-- The Settings dialog has a "Show links to automated tests" checkbox; the
+- The Settings page has a "Show links to automated tests" checkbox; the
   choice is saved to the settings file (`showTestLinks`), and only hides the
   tables on the cards and the Automated tests field in the editor pane —
   the stored links are untouched.

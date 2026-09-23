@@ -166,7 +166,7 @@ it does.
   notebook
 - When: the user looks at the sidebar
 - Then: the Notebook tab is there — the switch is on by default, and the
-  Settings dialog shows "Engineering notebook" switched on with the hint
+  Plugins page shows "Engineering notebook" switched on with the hint
   "A shared, dated log of observations and decisions about your process,
   kept in the data repo's notebook folder"
 - and no `notebook/` folder is created and nothing is committed until the

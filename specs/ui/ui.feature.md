@@ -30,7 +30,7 @@ the page.
 ## Scenario List
 
 - render scenario body as Markdown preview; up to n lines
-- make the number of Markdown lines to render for each scenario in list configurable in Settings dialog
+- make the number of Markdown lines to render for each scenario in list configurable in Settings
 
 ## Feature entry menu
 
@@ -157,8 +157,13 @@ feature page, where a long feature pushes the resolutions out of sight.
 
 ## Settings
 
-A settings dialog. Settings are saved to the settings file
-(`.specdriven/settings.json`, app-start.feature.md)
+A settings page in the editor pane, at `/settings` — not a dialog, which was
+too small (user-info-settings.feature.md "open Settings"). Its sections are
+listed on the left: General, Sync, Specs, Project management, Workflow and
+Git & GitHub. Settings are saved to the settings file
+(`.specdriven/settings.json`, app-start.feature.md) the moment a control
+changes; there is no Save button. The plugins have their own page
+(app/plugins.feature.md).
 
 - Autosync: a sliding switch, on by default, with the autosync frequency in
   seconds below it while it is on. Off stores a frequency of 0, which stops
@@ -166,7 +171,7 @@ A settings dialog. Settings are saved to the settings file
 - Appearance: System, Light or Dark. Applied immediately and remembered on
   the device (browser/app storage), not in the settings file — theme is a
   per-device preference, not shared team state. "System" follows the OS.
-- ESC closes the dialog without saving, same as Cancel.
+- ESC or the ✕ in the page header goes back to what was open before.
 
 ## Design system
 
