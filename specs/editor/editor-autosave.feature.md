@@ -110,6 +110,23 @@ Then: This draft scenario is deleted
 
 Note: if this scenario was saved by the user, next Cancel jsut exits the editor dialog.
 
+## Configure Autosave in Settings @v1 [proposed]
+
+Given: the Settings page (user-info-settings.feature.md "open Settings")
+When: the user changes "Autosave interval (seconds)" in its Specs section
+Then: the new interval is saved to .specdriven/settings.json as soon as the
+field is left, with no Save button, and the open editor autosaves at it
+- the interval is at least 3 seconds and 6 seconds by default; a smaller
+  one typed in the field turns back into the 6 second default, and the
+  server refuses one below 3 and changes nothing
+
+This replaces "Configure Autosave in Settings Dialog": Settings is a page in
+the editor pane, not a dialog.
+
+[test: the autosave interval defaults to 6 seconds and never goes below 3 : https://github.com/SpecDriven/specdriven_app/blob/main/tests/editorAutosave.test.ts#L56 ]
+[test: Settings saves the autosave interval to the settings file : https://github.com/SpecDriven/specdriven_app/blob/main/tests/editorAutosave.test.ts#L80 ]
+[test: an interval below the 3 second minimum is refused, and changes nothing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/editorAutosave.test.ts#L89 ]
+
 ## Configure Autosave in Settings Dialog @v1 [published]
 
 The SpecDriven App Settings contain a setting for Autosave Interval in Seconds.

@@ -47,3 +47,17 @@ reach the Claude CLI even outside the UI.
 
 The switch is ON by default, and the setting is saved to
 .specdriven/settings.json.
+
+## Switch code generation on or off @v2 [proposed]
+
+Given: the Settings page (user-info-settings.feature.md "open Settings")
+When: the 'Code generation' switch in its Workflow section is turned off —
+it saves itself the moment it changes
+Then: no selection checkboxes are offered on sidebar entries or scenario
+cards, 'Start session' is gone, and any selection is cleared
+
+The server refuses a code gen session while the switch is off, so nothing can
+reach the Claude CLI even outside the UI.
+
+The switch is ON by default, and the setting is saved to
+.specdriven/settings.json.
