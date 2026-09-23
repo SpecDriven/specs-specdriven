@@ -24,6 +24,10 @@ One command takes a machine from nothing to a built app:
 - Install the dependencies and build the desktop app. On Linux the
   `.AppImage` is started; on macOS nothing is started, and the `.dmg` is opened
   last so the app can be dragged into Applications.
+- Build with `bun run build:desktop --local`: only this machine's architecture
+  and only the installer it runs (the `.AppImage` or the `.dmg`). The release's
+  `.deb` is left out because its packager needs `libcrypt.so.1`, which Arch and
+  other non-Debian distros lack.
 
 It is POSIX sh, because it runs on whatever `/bin/sh` the machine has before
 anything is known about it, and it works with curl or wget, with unzip or
