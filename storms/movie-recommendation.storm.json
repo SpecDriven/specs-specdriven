@@ -1,7 +1,15 @@
 {
   "format": "specdriven-event-storm/1",
   "name": "Movie Recommendation",
-  "stickies": [],
+  "stickies": [
+    {
+      "id": "s-4428e9fc",
+      "kind": "actor",
+      "text": "",
+      "x": 368,
+      "y": 368
+    }
+  ],
   "areas": [],
   "arrows": []
 }
