@@ -58,3 +58,18 @@ Integrate with Google Calendar
 [test: a page parses its Estimate line in any order, and writes it before the status : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L139 ]
 [test: a page with an estimate it cannot read keeps the line as body : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L150 ]
 [test: a task's estimate is saved and cleared through its document : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L204 ]
+
+## Transform non-complient title to allow save of file @v1 [proposed]
+
+While adding task for 'Explore https://storytime.team/',
+encountered system inability to save it.
+
+remove non-complient chars so the task can be named.
+
+Examples
+
+| input                           | acceptable name        |
+| ------------------------------- | ---------------------- |
+| Explore https://storytime.team/ | Explore storytime.team |
+| @@ do this  &&                  | do this                |
+| _____do this____                | do this                |
