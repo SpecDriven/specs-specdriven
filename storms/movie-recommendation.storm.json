@@ -1,7 +1,15 @@
 {
   "format": "specdriven-event-storm/1",
   "name": "Movie Recommendation",
-  "stickies": [],
+  "stickies": [
+    {
+      "id": "s-5aa9a025",
+      "kind": "command",
+      "text": "C1",
+      "x": 160,
+      "y": 288
+    }
+  ],
   "areas": [],
   "arrows": []
 }
