@@ -24,7 +24,12 @@ module switches it replaces.
 
 ## Marketpalce
 
-Plugin marketplace will be hosted in 
+Plugin marketplace will be hosted in 'marketplace' folder on https://github.com/SpecDriven/specdriven-app-release.
+Pligins will be store as zip files.
+
+## Plgin deployment
+
+
 
 ## References
 
