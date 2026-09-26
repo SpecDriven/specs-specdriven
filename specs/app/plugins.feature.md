@@ -29,7 +29,7 @@ Pligins will be store as zip files.
 
 ## Plgin deployment
 
-
+Plugins can be developed in any repository and then deployed to https://github.com/SpecDriven/specdriven-app-release/marketplace
 
 ## References
 
