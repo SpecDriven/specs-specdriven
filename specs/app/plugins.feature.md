@@ -22,6 +22,10 @@ repository holding an index. Which plugins are on, and in what order, is
 the profile, kept in `.specdriven/settings.json` on this machine like the
 module switches it replaces.
 
+## Marketpalce
+
+Plugin marketplace will be hosted in 
+
 ## References
 
 - DeepSeek Harness: <https://github.com/deepseek-ai/deepseek-harness> —
