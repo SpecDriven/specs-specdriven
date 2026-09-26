@@ -1,4 +1,4 @@
-# Plugins
+# Plugins and Marketplace
 
 **Assigned:** David
 
