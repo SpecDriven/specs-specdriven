@@ -22,6 +22,17 @@ repository holding an index. Which plugins are on, and in what order, is
 the profile, kept in `.specdriven/settings.json` on this machine like the
 module switches it replaces.
 
+## References
+
+- DeepSeek Harness: <https://github.com/deepseek-ai/deepseek-harness> —
+  `docs/architecture.md`, `docs/cordis-primer.md`,
+  `docs/subsystems/client-modules.md` (the `dsh.client` declaration, boot
+  graph and bundle route) and `docs/user/develop/basic/publish.md`
+  (`dsh plugin --profile <p> add <path | git | npm>`)
+- Cordis: <https://github.com/cordiverse/cordis>
+- Overviews: <https://www.datacamp.com/blog/what-is-deepseek-harness>,
+  <https://thenewstack.io/deepseek-harness-open-source-plugins/>
+
 ## A built-in module is a plugin like any other @v1 [proposed]
 
 - Given: the app starts
