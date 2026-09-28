@@ -9,3 +9,5 @@ C-level why?
 How does it benefits me?
 
 Comercials ?
+
+FLoating license, up to 250+. 200 eng == $20
