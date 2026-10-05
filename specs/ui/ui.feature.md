@@ -246,3 +246,41 @@ There is a small down arrow icon next to folder name that brings up a list of pr
 ## Spec will be added under the folder that is highlighted @v1 [published]
 
 When adding a spec (scenario), it must be added under the highlighted (focused) folder.
+
+## User-entered text is cleaned up @v1 [proposed]
+
+Whatever the user types is saved without the whitespace they did not mean —
+a pasted title's trailing blank, a double space, the empty lines around a
+message — in every field, dialog and prompt, and by the server too, so an
+agent or plugin calling the API gets the same.
+
+- When: the user saves a one-line value — a feature, folder, scenario, page,
+  issue, test plan, case or run name, a title, a session name, a tool name,
+  a test-run note
+- Then: it is saved trimmed, with every inner run of spaces, tabs or line
+  breaks collapsed to one space: `"  Quote   Policy "` is saved as
+  `Quote Policy`
+- When: the user saves multi-line text — an issue body or comment, a test
+  case body, a plan description, a message to the coding agent
+- Then: the blank lines before and after it and the trailing spaces are
+  dropped, but its indentation and everything inside it stay as typed; text
+  that turns out to be one line is trimmed whole
+- Paths and urls — a data directory, a plugin folder, a marketplace or ticket
+  url — are only trimmed: a folder name may hold a double space.
+- Whitespace alone counts as empty: a required field refuses it, an optional
+  one is left blank.
+- A published scenario keeps its heading exactly as published, since it is
+  immutable; names are still compared cleaned, so it is found under either
+  spelling.
+- Whole documents — the README, a page, a scenario's body — are saved as
+  written (a scenario body's surrounding blank lines already go when the
+  feature file is parsed), and a Markdown field being autosaved never loses
+  the newline just typed under the caret.
+
+[test: loses the whitespace around it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/text.test.ts#L7 ]
+[test: keeps one space for every inner run : https://github.com/SpecDriven/specdriven_app/blob/main/tests/text.test.ts#L12 ]
+[test: keeps the first line's indentation and everything inside : https://github.com/SpecDriven/specdriven_app/blob/main/tests/text.test.ts#L31 ]
+[test: that is one line after all is trimmed whole : https://github.com/SpecDriven/specdriven_app/blob/main/tests/text.test.ts#L40 ]
+[test: a feature's typed name is saved cleaned : https://github.com/SpecDriven/specdriven_app/blob/main/tests/features.test.ts#L131 ]
+[test: a published scenario keeps its heading verbatim : https://github.com/SpecDriven/specdriven_app/blob/main/tests/scenarioRenameLoop.test.ts#L130 ]
+[test: a plugin folder and a trusted folder are saved trimmed, inner spaces kept : https://github.com/SpecDriven/specdriven_app/blob/main/tests/settingsWhitespace.test.ts#L53 ]
