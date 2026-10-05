@@ -126,11 +126,17 @@ point it at a self-hosted sync server instead.
 
 ## published scenarios stay immutable @v1 [proposed]
 
-Drift that changes the body of a published scenario is refused: the file is
+Publishing records the scenario's body in the document, set whole. While the
+scenario stays published that recorded text is what every peer renders and
+what every file is held to. Drift that changes it is refused: the file is
 repaired from the document and the repair is committed, so tampering with
 published history — accidental or otherwise — does not stick. In-app writes
-are refused at save time, as before. An explicit human conflict resolution
-is the one door that may override the document's published state.
+are refused at save time, as before. A merge artifact in the collaborative
+text — two peers absorbing the same markdown edit, which the merge keeps
+twice — is never mistaken for tampering: the sync tick heals the text back
+to the recorded body rather than writing the artifact into the file. An
+explicit human conflict resolution is the one door that may override the
+document's published state; it re-records the body it chooses.
 
 ## two peers edit the same scenario concurrently @v1 [proposed]
 
