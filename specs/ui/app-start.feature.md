@@ -86,6 +86,12 @@ the app read; when neither exists, the project one is created.
 - and canceling the chooser leaves the field unchanged
 - and on runtimes with no native chooser the "Browse…" button is not shown
 
+[test: macOS and Windows get a chooser out of the box, unknown platforms none : https://github.com/SpecDriven/specdriven_app/blob/main/tests/folderChooser.test.ts#L46 ]
+[test: canChooseFolder reflects whether a chooser is installed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/folderChooser.test.ts#L100 ]
+[test: chooseFolder resolves the picked path, null when canceled : https://github.com/SpecDriven/specdriven_app/blob/main/tests/folderChooser.test.ts#L106 ]
+[test: POST /api/choose-folder returns the picked path : https://github.com/SpecDriven/specdriven_app/blob/main/tests/folderChooser.test.ts#L135 ]
+[test: POST /api/choose-folder is 501 with no native chooser : https://github.com/SpecDriven/specdriven_app/blob/main/tests/folderChooser.test.ts#L144 ]
+
 ## the data repo is pulled on start @v1 [proposed]
 
 - Given: a data repo is configured, and its remote has commits this machine
