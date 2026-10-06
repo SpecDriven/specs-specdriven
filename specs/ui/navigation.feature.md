@@ -122,7 +122,7 @@ link — clicked in chat, email, a browser or a terminal — to the app.
 
 - Given: a scenario's ⋯ menu in the sidebar tree, which offers Move to… next
   to Delete and on the same terms — a published scenario only while Settings
-  allows deleting published specs
+  allows deleting or moving published specs
 - When: the user picks Move to… and chooses another feature from the list,
   filtered by name or path as they type
 - Then: the scenario leaves its feature and joins the chosen one with its
