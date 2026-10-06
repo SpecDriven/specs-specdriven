@@ -144,6 +144,7 @@ to the user-only token file next to the home settings file.
 [test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/buildDesktop.test.ts#L6 ]
 [test: a Mac cross-builds the Linux app : https://github.com/SpecDriven/specdriven_app/blob/main/tests/buildDesktop.test.ts#L11 ]
 [test: a release build packages every target and architecture in package.json : https://github.com/SpecDriven/specdriven_app/blob/main/tests/buildDesktop.test.ts#L26 ]
+[test: packaging never rebuilds native modules for the build machine : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linuxPackage.test.ts#L47 ]
 
 ## a maximized session comes back maximized @v1 [published]
 
@@ -205,6 +206,11 @@ AND  open links in IntelliJ is Off
 - Then: the link opens in the default browser and the app window stays where
   it was
 
+[test: a test link on GitHub opens in the browser, not in a new window : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linkRouting.test.ts#L23 ]
+[test: a click that would navigate the window away goes to the browser instead : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linkRouting.test.ts#L28 ]
+[test: the app's own pages stay in the window : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linkRouting.test.ts#L36 ]
+[test: schemes that are not web pages go nowhere : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linkRouting.test.ts#L53 ]
+
 ## the GitHub sign-in survives a restart without an OS key store @v1 [proposed]
 
 - Given: a machine whose OS offers no key store, and a user signed in to
@@ -242,6 +248,11 @@ AND  open links in IntelliJ is Off
 - When: the user installs the deb, or marks the AppImage executable and runs it
 - Then: the app window opens on the internal `app://` origin, the same as on
   macOS
+
+[test: the deb names the shared libraries Electron loads : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linuxPackage.test.ts#L19 ]
+[test: ALSA is required by its t64 name first, then the old one : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linuxPackage.test.ts#L26 ]
+[test: the AppImage carries the static runtime, needing neither FUSE nor a host zlib : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linuxPackage.test.ts#L33 ]
+[test: both Linux artifacts are built for x64 and arm64 : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linuxPackage.test.ts#L41 ]
 
 ## the remembered position was on a monitor that is gone @v1 [proposed]
 
