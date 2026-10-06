@@ -9,6 +9,8 @@ Check for:
   "claude-cli": "--settings .claude/hai-claude-config.json --dangerously-skip-permissions"
 }
 
+https://www.testmuai.com/support/docs/agent-assurance-overview/
+
 ## Create a prompt from selected specs @v1 [published]
 
 Given: a code session has been created with at least one spec in it
