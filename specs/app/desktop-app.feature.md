@@ -124,12 +124,6 @@ to the user-only token file next to the home settings file.
 [test: maximized survives fitting : https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L111 ]
 [test: save then load round-trips : https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L120 ]
 
-## building the Linux app from a Mac @v1 [proposed]
-
-- Given: a developer on macOS
-- When: they run `bun run build:desktop --linux`
-- Then: an AppImage and a deb for each architecture appear in `release/`
-
 ## desktop and web share settings @v1 [proposed]
 
 - Given: the web version has recorded a data repo in `~/.specdriven/settings.json`
