@@ -114,7 +114,7 @@ The GitHub sign-in token is stored OS-encrypted (Electron safeStorage,
 keychain-backed on macOS); when the OS offers no key store it falls back
 to the user-only token file next to the home settings file.
 
-## a maximized session comes back maximized @v1 [proposed]
+## a maximized session comes back maximized @v1 [published]
 
 - Given: the user quit the app with the window maximized
 - When: they launch the app again
