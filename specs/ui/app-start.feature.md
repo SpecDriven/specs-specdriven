@@ -110,3 +110,20 @@ the app read; when neither exists, the project one is created.
 - When: the app starts
 - Then: the project settings file is used
 - and saving settings leaves the home settings file untouched
+
+## the server cannot be reached at start @v1 [proposed]
+
+- Given: the web app's server is not running, or takes the page's first
+  request and never answers (the desktop app serves itself and cannot hit
+  this)
+- When: the page loads
+- Then: it says the SpecDriven server at that address cannot be reached, with
+  how to start it (`bun run dev`) and a Retry button
+- and it keeps retrying on its own, opening normally once the server answers
+- and it never sits on the loading skeleton indefinitely
+- and a server that answers with an error shows that error instead
+
+[test: retries a refused fetch and returns the state once the server answers : https://github.com/SpecDriven/specdriven_app/blob/main/tests/bootStateRetry.test.ts#L46 ]
+[test: reports the server unreachable after every try is refused, without throwing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/bootStateRetry.test.ts#L53 ]
+[test: an error answer is reported with the server's message and not retried : https://github.com/SpecDriven/specdriven_app/blob/main/tests/bootStateRetry.test.ts#L60 ]
+[test: a server that never answers is reported as stuck after the timeout, not retried : https://github.com/SpecDriven/specdriven_app/blob/main/tests/bootStateRetry.test.ts#L69 ]
