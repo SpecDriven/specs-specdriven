@@ -133,9 +133,11 @@ to the user-only token file next to the home settings file.
 [test: the home settings file is used when the project has none : https://github.com/SpecDriven/specdriven_app/blob/main/tests/state.test.ts#L57 ]
 [test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven_app/blob/main/tests/state.test.ts#L72 ]
 
-## test link opens in the browser @v1 [proposed]
+## test link opens in the browser @v1 [published]
 
-- Given: a scenario with a link to an automated test on GitHub
+- Given: a scenario with a link to an automated test on GitHub 
+AND  open links in IntelliJ is Off
+<img src="/api/images/image-1486276d.png" alt="image" width="643">
 - When: the user clicks the test link in the desktop app
 - Then: the link opens in the default browser and the app window stays where
   it was
