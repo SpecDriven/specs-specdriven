@@ -130,6 +130,9 @@ to the user-only token file next to the home settings file.
 - When: the desktop app starts
 - Then: it opens that data repo without asking
 
+[test: the home settings file is used when the project has none : https://github.com/SpecDriven/specdriven_app/blob/main/tests/state.test.ts#L57 ]
+[test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven_app/blob/main/tests/state.test.ts#L72 ]
+
 ## test link opens in the browser @v1 [proposed]
 
 - Given: a scenario with a link to an automated test on GitHub
