@@ -114,7 +114,7 @@ The GitHub sign-in token is stored OS-encrypted (Electron safeStorage,
 keychain-backed on macOS); when the OS offers no key store it falls back
 to the user-only token file next to the home settings file.
 
-## a build that crashes at launch fails the crash test @v1 [proposed]
+## a build that crashes at launch fails the crash test @v1 [published]
 
 - Given: a fresh desktop build
 - When: `bun run test:desktop` launches it three times, holding each window
