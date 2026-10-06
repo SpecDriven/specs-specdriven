@@ -118,6 +118,31 @@ link — clicked in chat, email, a browser or a terminal — to the app.
 - Then: the feature opens with no selection and a note that the scenario was
   not found — it may have been renamed or deleted
 
+## move a scenario to another feature @v1 [proposed]
+
+- Given: a scenario's ⋯ menu in the sidebar tree, which offers Move to… next
+  to Delete and on the same terms — a published scenario only while Settings
+  allows deleting published specs
+- When: the user picks Move to… and chooses another feature from the list,
+  filtered by name or path as they type
+- Then: the scenario leaves its feature and joins the chosen one with its
+  name, version, status, body, tests, ticket and pull request links
+- And: a draft stays a draft and a proposed scenario stays proposed, saved
+  locally like any edit; a published one stays published, and both features
+  are committed and pushed right away
+- And: a move that would give the chosen feature a second scenario with the
+  same name and version is refused, and nothing changes
+- And: an editor pane open on the moved scenario follows it to its new
+  feature, keeping what was typed
+
+[test: a proposed scenario moves with its body and tests, and leaves the source : https://github.com/SpecDriven/specdriven_app/blob/main/tests/moveScenario.test.ts#L77 ]
+[test: a draft moves as a draft — into the target's document, never its file : https://github.com/SpecDriven/specdriven_app/blob/main/tests/moveScenario.test.ts#L92 ]
+[test: pull request links, which only the document holds, move with the scenario : https://github.com/SpecDriven/specdriven_app/blob/main/tests/moveScenario.test.ts#L102 ]
+[test: a move that would collide with a scenario already in the target is refused, and nothing changes : https://github.com/SpecDriven/specdriven_app/blob/main/tests/moveScenario.test.ts#L110 ]
+[test: with deleting published specs off, a published scenario does not move : https://github.com/SpecDriven/specdriven_app/blob/main/tests/moveScenario.test.ts#L136 ]
+[test: with deleting published specs on, a published scenario moves and stays published : https://github.com/SpecDriven/specdriven_app/blob/main/tests/moveScenario.test.ts#L145 ]
+[test: the feature picker filters by label or by path : https://github.com/SpecDriven/specdriven_app/blob/main/tests/moveScenario.test.ts#L167 ]
+
 ## open a feature link @v1 [proposed]
 
 - Given: the data repo contains `navigation.feature.md`
