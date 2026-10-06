@@ -1,6 +1,6 @@
 # Common Editor
 
-We have many editors, but most of them need a common set of features.
+Common set of features for all editors: feature, scenari
 
 ## web links are cickable @v1 [published]
 
