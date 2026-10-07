@@ -6,6 +6,27 @@ Only a save that lands counts as saved: a failed autosave leaves the editor's
 contents unsaved and reports on the status banner, and the next tick tries
 again.
 
+## A README Autosave Keeps a Disk Edit @v1 [proposed]
+
+- Given: the README is open in the editor and the file changes on disk (a git
+  pull, another editor) before the next autosave
+- When: the autosave tick sends the buffer, with the last saved text as its
+  base
+- Then: the server merges the disk edit and the buffer three ways instead of
+  overwriting the disk, and the editor takes the merged text
+- and a buffer that already holds the disk edit saves it once, not twice
+- and if the buffer moved on while the save was in flight, the base stays at
+  what was sent, so the next tick merges the disk edit in again
+- and a README deleted on disk is recreated as typed
+- and a save with no base replaces the file outright
+
+[test: keeps the disk edit alongside the save : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartup.test.ts#L122 ]
+[test: an editor that already holds the disk edit saves it once : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartup.test.ts#L132 ]
+[test: a save with no disk edit writes the buffer : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartup.test.ts#L140 ]
+[test: a buffer that moved on during the fold keeps the disk edit : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartup.test.ts#L149 ]
+[test: a README gone from disk is recreated as the editor holds it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartup.test.ts#L161 ]
+[test: a save without from replaces the file outright : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartup.test.ts#L169 ]
+
 ## A Scenario With No Name Is Not Autosaved @v1 [proposed]
 
 A scenario with no name has nothing to be saved under, so no tick saves it.
@@ -132,3 +153,26 @@ the editor pane, not a dialog.
 The SpecDriven App Settings contain a setting for Autosave Interval in Seconds.
 
 The user can edit the Autosave Interval with a minimum of 3 seconds and a default of 6 seconds.
+
+## Publish Waits for an In-flight Autosave @v1 [proposed]
+
+- Given: the scenario editor is open and an autosave is in flight or queued
+- When: the user presses Publish
+- Then: the publish goes through the same save queue, waits for that
+  autosave, and places the scenario where the save left it, so a new scenario
+  is not published twice and a rename does not overwrite the scenario beside it
+- and the button shows "Publishing…" from the click
+- and when the publish lands the user is still on that feature, it reopens it
+  (or shows its conflict dialog); if they moved to another feature it only
+  refreshes the listing and does not pull them back
+- and a feature whose path was sealed meanwhile by a move, rename or delete
+  is refused: nothing goes out
+
+[test: placed from the render, Publish sends a second Beta and publishes that — the bug : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L51 ]
+[test: queued after the tick, it publishes the one scenario the tick placed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L58 ]
+[test: placed at the render's stale index, Publish writes over its neighbour — the bug : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L93 ]
+[test: queued after the tick, it publishes its own entry and keeps every neighbour : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L98 ]
+[test: still on its feature, it reopens that feature : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L162 ]
+[test: another feature opened meanwhile: it publishes, but refreshes the listing instead of pulling the user back : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L179 ]
+[test: a conflict for a feature no longer on screen is reported, not opened over the new page : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L203 ]
+[test: the path sealed while it waited (move, rename-file, delete): nothing goes out : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L222 ]
