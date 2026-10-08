@@ -11,17 +11,6 @@
 
 [test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentPane.test.tsx#L347 ]
 
-## The mode menu describes each mode @v1 [proposed]
-
-- Given: the pane's permission mode control
-- When: the user opens it
-- Then: a "Mode" heading sits over one numbered item per mode, each with a
-  description under it, and a "Default" badge on the mode a new session
-  starts in
-- and pressing a number key (1–5) chooses that mode directly
-
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentPane.test.tsx#L347 ]
-
 ## The folder chip switches the folder the agent works in @v1 [proposed]
 
 - Given: the pane's folder chip, marked with a ▾
@@ -36,6 +25,17 @@
   before starting
 
 [test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentPane.test.tsx#L326 ]
+
+## The mode menu describes each mode @v1 [proposed]
+
+- Given: the pane's permission mode control
+- When: the user opens it
+- Then: a "Mode" heading sits over one numbered item per mode, each with a
+  description under it, and a "Default" badge on the mode a new session
+  starts in
+- and pressing a number key (1–5) chooses that mode directly
+
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentPane.test.tsx#L347 ]
 
 ## The server runs a chat in the folder the pane picked @v1 [proposed]
 
