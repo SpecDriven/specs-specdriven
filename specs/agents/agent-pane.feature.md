@@ -1,5 +1,26 @@
 # Coding agent pane
 
+## A Claude turn fails fast when the API proxy does not answer @v1 [proposed]
+
+- Given: a Claude session whose API goes through a proxy (ANTHROPIC_BASE_URL,
+  from the environment or Claude Code's settings files) that is not running
+- When: the user sends a message and nothing comes back from the API within
+  the wait — 15 seconds unless Settings → Workflow says otherwise
+- Then: the pane stops the turn and shows an error naming the proxy's address
+  and how many times Claude Code retried, instead of a spinner for the
+  minutes Claude Code would keep retrying
+- and any streamed event counts as an answer, the API's keepalive pings
+  included; Claude Code's own retries do not
+- and the session stays up, so the message can be sent again once the proxy
+  is back
+- and a wait of 0 turns the limit off; a session that talks to the API
+  directly is never held to it
+
+[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentChat.test.ts#L878 ]
+[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentChat.test.ts#L901 ]
+[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentChat.test.ts#L914 ]
+[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentChat.test.ts#L925 ]
+
 ## The agent pane starts Claude in Auto mode @v1 [proposed]
 
 - Given: the coding agent pane, with the Claude agent chosen

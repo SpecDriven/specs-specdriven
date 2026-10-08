@@ -116,6 +116,7 @@ draft → proposed → published wins.
   nothing is written into the data folder after the bridge has stopped
 
 [test: a remote absorb keeps a local disk edit the sync tick has not absorbed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/automerge/automergeNetsync.test.ts#L157 ]
+[test: stopping waits for an absorb in flight, and absorbs nothing after : https://github.com/SpecDriven/specdriven_app/blob/main/tests/automerge/automergeNetsync.test.ts#L203 ]
 
 ## markdown edited outside the app @v1 [proposed]
 
