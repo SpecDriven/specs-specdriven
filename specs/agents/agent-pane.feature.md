@@ -9,7 +9,7 @@
 - and Codex starts in Manual (its "auto" is the same policy), and pi has no
   permission gate
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentPane.test.tsx#L347 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentPane.test.tsx#L360 ]
 
 ## The folder chip switches the folder the agent works in @v1 [proposed]
 
@@ -35,7 +35,7 @@
   starts in
 - and pressing a number key (1–5) chooses that mode directly
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentPane.test.tsx#L347 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentPane.test.tsx#L360 ]
 
 ## The server runs a chat in the folder the pane picked @v1 [proposed]
 
@@ -46,4 +46,4 @@
 - and a `cwd` that is not absolute, or names a folder that does not exist, is
   refused with an error
 
-[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentChat.test.ts#L580 ]
+[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentChat.test.ts#L598 ]

@@ -29,6 +29,9 @@ the app read; when neither exists, the project one is created.
   list is the latest data
 - and a folder that is not a git repo, or whose pull fails, is still selected
 
+[test: picking a data folder pulls it before the client reads it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartSync.test.ts#L91 ]
+[test: a data folder that is not a git repo is still selectable : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartSync.test.ts#L110 ]
+
 ## changing the data repo @v1 [proposed]
 
 - Given: a data repo is configured, and the sidebar header shows its folder
@@ -103,6 +106,8 @@ the app read; when neither exists, the project one is created.
   blocking reads after a short wait, leaving stale data on screen until the
   next reload tick rather than an app that never opens
 - and a pull that fails is logged; the app still opens on the data on disk
+
+[test: the data repo is pulled on app start, before the first read : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartSync.test.ts#L81 ]
 
 ## the project settings file wins @v1 [proposed]
 

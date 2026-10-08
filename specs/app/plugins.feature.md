@@ -56,7 +56,7 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and a built-in plugin can be switched off but never uninstalled
 
 [test: the browser loader registers the tab while the server says it is on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L178 ]
-[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L21 ]
+[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L23 ]
 
 ## A plugin from the marketplace is installed with consent @v1 [proposed]
 
@@ -126,12 +126,12 @@ Plugins can be developed in any repository and then deployed to https://github.c
 
 [test: a plugin folder under ~/.specdriven/plugins is found, built, mounted and served : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L114 ]
 [test: an edit rebuilds the plugin under a new revision and remounts it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L176 ]
-[test: a plugin whose folder goes away is unwound and reported : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L231 ]
-[test: a manifest the app cannot accept is refused with the reason, and loads nothing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L246 ]
-[test: a plugin under the data repo asks for trust before its first load : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L289 ]
-[test: a plugin that fails to load fails alone : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L306 ]
-[test: a runtime that cannot build loads dist/ only, and refuses a bundle with its own React : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L319 ]
-[test: the browser loader imports a served bundle and remounts it at a new revision : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L357 ]
+[test: a plugin whose folder goes away is unwound and reported : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L234 ]
+[test: a manifest the app cannot accept is refused with the reason, and loads nothing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L249 ]
+[test: a plugin under the data repo asks for trust before its first load : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L292 ]
+[test: a plugin that fails to load fails alone : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L322 ]
+[test: a runtime that cannot build loads dist/ only, and refuses a bundle with its own React : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L335 ]
+[test: the browser loader imports a served bundle and remounts it at a new revision : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L373 ]
 
 ## Plugin urls serve the app shell @v1 [proposed]
 
@@ -201,7 +201,7 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and switching it on again mounts it afresh, with its tab, shortcuts and
   routes back, without a restart
 
-[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L21 ]
-[test: switching a folder plugin off unwinds its routes, and on mounts it again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L214 ]
+[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L23 ]
+[test: switching a folder plugin off unwinds its routes, and on mounts it again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L217 ]
 [test: effects unwind last-in-first-out, and only once : https://github.com/SpecDriven/specdriven_app/blob/main/tests/kernel.test.ts#L21 ]
 [test: a plugin waits for its injects and unmounts when one goes away : https://github.com/SpecDriven/specdriven_app/blob/main/tests/kernel.test.ts#L43 ]

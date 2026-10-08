@@ -9,6 +9,11 @@
 If user setting for Roadmap is On and the 'roadmap' folder does not exist -- create it.
 On Sync, commit all files in this folder.
 
+[test: the Roadmap setting is off unless explicitly turned on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/roadmap.test.ts#L61 ]
+[test: ensurePageFolder creates the roadmap folder once : https://github.com/SpecDriven/specdriven_app/blob/main/tests/roadmap.test.ts#L69 ]
+[test: a sync tick creates the folder only when the setting is on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/roadmap.test.ts#L79 ]
+[test: a sync tick commits and pushes every file in the roadmap folder : https://github.com/SpecDriven/specdriven_app/blob/main/tests/roadmap.test.ts#L95 ]
+
 ## The roadmap follows the data folder @v1 [proposed]
 
 - Given: the Roadmap setting is on, and one of the current data folder's
