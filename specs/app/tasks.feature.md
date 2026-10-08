@@ -41,11 +41,11 @@ Integrate with Google Calendar
   proposes that one instead of asking again
 
 [test: the Google Calendar setting is off unless explicitly turned on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/state.test.ts#L189 ]
-[test: the estimate route is 404 while Google Calendar is switched off : https://github.com/SpecDriven/specdriven_app/blob/main/tests/estimate.test.ts#L146 ]
-[test: the estimate route asks Claude once, with no tools, and answers in minutes : https://github.com/SpecDriven/specdriven_app/blob/main/tests/estimate.test.ts#L120 ]
-[test: the estimate route is 503 without a Claude CLI, 404 for a task that is not there, and 502 when Claude fails : https://github.com/SpecDriven/specdriven_app/blob/main/tests/estimate.test.ts#L154 ]
-[test: a turn the API refused carries its own words : https://github.com/SpecDriven/specdriven_app/blob/main/tests/estimate.test.ts#L181 ]
-[test: a proposal that is not a number is refused : https://github.com/SpecDriven/specdriven_app/blob/main/tests/estimate.test.ts#L191 ]
+[test: the estimate route is 404 while Google Calendar is switched off : https://github.com/SpecDriven/specdriven_app/blob/main/tests/estimate.test.ts#L151 ]
+[test: the estimate route asks Claude once, with no tools, and answers in minutes : https://github.com/SpecDriven/specdriven_app/blob/main/tests/estimate.test.ts#L125 ]
+[test: the estimate route is 503 without a Claude CLI, 404 for a task that is not there, and 502 when Claude fails : https://github.com/SpecDriven/specdriven_app/blob/main/tests/estimate.test.ts#L159 ]
+[test: a turn the API refused carries its own words : https://github.com/SpecDriven/specdriven_app/blob/main/tests/estimate.test.ts#L186 ]
+[test: a proposal that is not a number is refused : https://github.com/SpecDriven/specdriven_app/blob/main/tests/estimate.test.ts#L196 ]
 [test: falls back to the presets when no proposal comes : https://github.com/SpecDriven/specdriven_app/blob/main/tests/addToCalendarForm.test.tsx#L47 ]
 [test: says when Claude proposed the estimate, and asks while it thinks : https://github.com/SpecDriven/specdriven_app/blob/main/tests/addToCalendarForm.test.tsx#L39 ]
 [test: offers the stored estimate, a start time, and the Google Calendar link : https://github.com/SpecDriven/specdriven_app/blob/main/tests/addToCalendarForm.test.tsx#L27 ]
@@ -55,9 +55,26 @@ Integrate with Google Calendar
 [test: an estimate parses minutes, hours and both, and formats back canonically : https://github.com/SpecDriven/specdriven_app/blob/main/tests/calendar.test.ts#L20 ]
 [test: an estimate outside one minute to a week, or in words, is not one : https://github.com/SpecDriven/specdriven_app/blob/main/tests/calendar.test.ts#L38 ]
 [test: the Estimate line is read and written like the assignment's : https://github.com/SpecDriven/specdriven_app/blob/main/tests/calendar.test.ts#L49 ]
-[test: a page parses its Estimate line in any order, and writes it before the status : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L139 ]
-[test: a page with an estimate it cannot read keeps the line as body : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L150 ]
-[test: a task's estimate is saved and cleared through its document : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L204 ]
+[test: a page parses its Estimate line in any order, and writes it before the status : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L162 ]
+[test: a page with an estimate it cannot read keeps the line as body : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L173 ]
+[test: a task's estimate is saved and cleared through its document : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L227 ]
+
+## The tasks folder is created and synced @v1 [proposed]
+
+- Given: the Tasks setting is on — it is off unless explicitly turned on
+- When: a sync tick runs and the data folder has no 'tasks' folder
+- Then: the 'tasks' folder is created, once; a folder that already exists is
+  left as it is, its pages untouched
+- and while the setting is off, a sync tick never creates it
+- and every sync tick commits and pushes every file in the folder, each
+  task's document with it, so a peer merges later edits to the task
+- and only 'tasks' and the paths under it count as task paths
+
+[test: the Tasks setting is off unless explicitly turned on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L63 ]
+[test: ensurePageFolder creates the tasks folder once : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L71 ]
+[test: a sync tick creates the tasks folder only when the setting is on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L80 ]
+[test: a sync tick commits and pushes every file in the tasks folder : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L95 ]
+[test: tasks paths are the folder and what is under it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/tasks.test.ts#L114 ]
 
 ## Transform non-complient title to allow save of file @v1 [proposed]
 

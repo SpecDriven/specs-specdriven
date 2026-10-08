@@ -102,6 +102,21 @@ without it. Concurrent status
 changes merge as a one-way latch: the side further along
 draft → proposed → published wins.
 
+## live sync keeps a disk edit the sync tick has not absorbed @v1 [proposed]
+
+- Given: live sync is on, and a feature file on peer B was edited on disk —
+  by hand or by an agent — after the last sync tick, so the edit is not in
+  B's document yet
+- When: an edit to the same feature arrives from peer A over the sync server
+- Then: B's file holds both A's edit and the disk edit, and B's document
+  holds the disk edit too, so the next sync tick finds no drift left
+- and B hands the absorbed disk edit to the sync server, so it reaches A
+  over the network, not only through git
+- and stopping live sync waits for an absorb already running to finish, so
+  nothing is written into the data folder after the bridge has stopped
+
+[test: a remote absorb keeps a local disk edit the sync tick has not absorbed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/automerge/automergeNetsync.test.ts#L157 ]
+
 ## markdown edited outside the app @v1 [proposed]
 
 A feature file edited where no document ops exist — an older app version, a
@@ -123,6 +138,11 @@ harmless: merging the same operations twice is a no-op. The setting is off
 by default and the Settings page warns that on a public server anyone
 holding a document's id can read that document; peers with private data
 point it at a self-hosted sync server instead.
+
+[test: document ids derive deterministically from the docid uuid : https://github.com/SpecDriven/specdriven_app/blob/main/tests/automerge/automergeNetsync.test.ts#L91 ]
+[test: a local save reaches the other peer over websocket alone : https://github.com/SpecDriven/specdriven_app/blob/main/tests/automerge/automergeNetsync.test.ts#L100 ]
+[test: concurrent edits on both peers merge through the sync server : https://github.com/SpecDriven/specdriven_app/blob/main/tests/automerge/automergeNetsync.test.ts#L136 ]
+[test: a peer that starts after the edit still catches up : https://github.com/SpecDriven/specdriven_app/blob/main/tests/automerge/automergeNetsync.test.ts#L188 ]
 
 ## published scenarios stay immutable @v1 [proposed]
 

@@ -62,7 +62,7 @@ reports both via `/api/state`.
 - and the ✕ or ESC goes back to the page that was open before
 
 [test: Settings and Plugins have urls that resolve back to them : https://github.com/SpecDriven/specdriven_app/blob/main/tests/route.test.ts#L328 ]
-[test: anything else is not an app page : https://github.com/SpecDriven/specdriven_app/blob/main/tests/route.test.ts#L335 ]
+[test: anything else is not an app page : https://github.com/SpecDriven/specdriven_app/blob/main/tests/route.test.ts#L340 ]
 
 ## open the user menu @v1 [proposed]
 
