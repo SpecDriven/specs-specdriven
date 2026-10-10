@@ -25,7 +25,6 @@ A path that names no folder is not opened silently: the app says there is no fol
 whether to create it as a new, empty spec folder. Declining keeps the current folder open.
 
 [test: nothing on it can be pressed — no buttons, and it says the rest waits : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L48 ]
-
 [test: a missing folder is refused with a 404, nothing made, the open folder kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L293 ]
 [test: createDataRepo makes the missing folder and opens it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L308 ]
 [test: a path to a file is not a folder to open, even with createDataRepo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L318 ]

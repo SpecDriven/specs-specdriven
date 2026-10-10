@@ -11,6 +11,15 @@ We do not accept pull requests: merging outside code is a security
 liability, and reviewing it is a cost we can't carry. Users propose specs
 instead (CONTRIBUTING.md in the code repo says how).
 
+## Pull requests are not accepted @v1 [proposed]
+
+- Given: someone without write access opens a pull request from a fork
+- Then: it is closed automatically with a comment that points to
+  CONTRIBUTING.md and to proposing specs instead
+- and pull requests from the team's own branches are left open
+- and the workflow that closes them never checks out or runs the pull
+  request's code
+
 ## The app is AGPL-3.0-only @v1 [proposed]
 
 - Given: the code repo
@@ -38,12 +47,3 @@ instead (CONTRIBUTING.md in the code repo says how).
 [test: a deployment running modified code names its own source : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L40 ]
 [test: the user menu offers Source code, which opens the source url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L47 ]
 [test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L363 ]
-
-## Pull requests are not accepted @v1 [proposed]
-
-- Given: someone without write access opens a pull request from a fork
-- Then: it is closed automatically with a comment that points to
-  CONTRIBUTING.md and to proposing specs instead
-- and pull requests from the team's own branches are left open
-- and the workflow that closes them never checks out or runs the pull
-  request's code

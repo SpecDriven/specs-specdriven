@@ -13,51 +13,42 @@ Nothing else can change anything there: no editing, publishing, deleting,
 settings, plugins or agents. The site reads the repository's feature files to
 anyone who opens it, so it is pointed only at a repository that is public.
 
-## Sign in with GitHub to propose @v1 [proposed]
+## A daily allowance per GitHub account @v1 [proposed]
 
-- Given: I open the proposals site signed out
-- Then: I can read every feature and its scenarios
-- and proposing asks me to sign in with GitHub
-- When: I sign in
-- Then: GitHub's browser flow runs with PKCE and a state nonce bound to my
-  browser, and I come back signed in
-- and my GitHub token is used once, to read who I am, and never stored
-- and a callback that is not my browser's sign-in signs nobody in
+- Given: the service allows 5 proposals a day per account (the default)
+- When: I have made 5 today
+- Then: my next proposal is refused until 00:00 UTC, and the page shows how
+  many I have left
+- and a refused proposal does not use my allowance
+- and an account with write access to the spec repository has no allowance
+- and the service as a whole takes at most 100 a day (the default), whoever
+  proposes
 
-[test: signed out, the session says so and proposing asks for a sign-in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L333 ]
-[test: sign-in goes to GitHub with PKCE and back with a session; no token is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L368 ]
-[test: a callback that is not this browser's sign-in is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L355 ]
-[test: signing out ends the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L494 ]
-[test: signed out, it offers Sign in with GitHub : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L32 ]
+[test: an account has a daily allowance, and a refused proposal does not use it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L466 ]
+[test: contributors have no per-account limit, but the service's daily cap holds for everyone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L480 ]
+[test: the day a quota counts is the UTC day : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L142 ]
+[test: a spent allowance is shown as such and stops proposing; a contributor has none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L47 ]
 
-## Propose a scenario on an existing feature @v1 [proposed]
+## Everything else is refused @v1 [proposed]
 
-- Given: I am signed in and reading a feature
-- When: I give a scenario name and its Given / When / Then steps and propose
-- Then: the scenario is on the repository's default branch as
-  `## <name> @v1 [proposed]`, after the feature's other scenarios
-- and the commit is authored by my GitHub account, as its noreply address,
-  with a `Proposed-by: @<login>` trailer
-- and the feature's Automerge document travels with the file and records me
-  as the scenario's creator
+- Given: the proposals service
+- When: anything calls the app's own API — saving, publishing, deleting,
+  settings, sign-in, agents, plugins, logs
+- Then: it answers 403
+- and reading a feature serves the file alone, never the drafts its document
+  keeps
 
-[test: a proposed scenario lands on main as proposed, authored by the visitor and signed in its document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L382 ]
-[test: a proposed scenario is always @v1 and proposed, with its body tidied : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L60 ]
+[test: everything else is refused, %s %s → 403 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L312 ]
+[test: anyone can read the spec tree and a feature file — without the documents' drafts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L342 ]
 
-## Propose a new feature @v1 [proposed]
+## Proposals at the same time all land @v1 [proposed]
 
-- Given: I am signed in
-- When: I choose an existing folder, give a feature name, an optional
-  description and a first scenario, and propose
-- Then: a new feature file holding them is on the default branch, its
-  scenario `@v1 [proposed]`
-- and a folder that does not exist, a feature name that does, or a name with
-  a slash is refused
+- Given: someone pushed to the spec repository after the service last synced
+- When: two visitors propose at the same moment
+- Then: both proposals and the other push are all on the default branch
+- and a push the remote rejects is retried from the remote's latest commit
 
-[test: a new feature lands in an existing folder with its first scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L437 ]
-[test: a new feature in a folder that does not exist, or with a name that does, is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L459 ]
-[test: a new feature holds its name, description and one proposed scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L129 ]
-[test: a new feature name with a slash, or no letters, is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L135 ]
+[test: a push someone made directly, then two proposals at once, and all three land : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L521 ]
 
 ## Proposals only add @v1 [proposed]
 
@@ -77,42 +68,51 @@ anyone who opens it, so it is pointed only at a repository that is public.
 [test: a name the feature already has is refused, whatever its case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L95 ]
 [test: a scenario for a feature that is not there is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L431 ]
 
-## A daily allowance per GitHub account @v1 [proposed]
+## Propose a new feature @v1 [proposed]
 
-- Given: the service allows 5 proposals a day per account (the default)
-- When: I have made 5 today
-- Then: my next proposal is refused until 00:00 UTC, and the page shows how
-  many I have left
-- and a refused proposal does not use my allowance
-- and an account with write access to the spec repository has no allowance
-- and the service as a whole takes at most 100 a day (the default), whoever
-  proposes
+- Given: I am signed in
+- When: I choose an existing folder, give a feature name, an optional
+  description and a first scenario, and propose
+- Then: a new feature file holding them is on the default branch, its
+  scenario `@v1 [proposed]`
+- and a folder that does not exist, a feature name that does, or a name with
+  a slash is refused
 
-[test: an account has a daily allowance, and a refused proposal does not use it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L466 ]
-[test: contributors have no per-account limit, but the service's daily cap holds for everyone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L480 ]
-[test: the day a quota counts is the UTC day : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L142 ]
-[test: a spent allowance is shown as such and stops proposing; a contributor has none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L47 ]
+[test: a new feature lands in an existing folder with its first scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L437 ]
+[test: a new feature in a folder that does not exist, or with a name that does, is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L459 ]
+[test: a new feature holds its name, description and one proposed scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L129 ]
+[test: a new feature name with a slash, or no letters, is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L135 ]
 
-## Proposals at the same time all land @v1 [proposed]
+## Propose a scenario on an existing feature @v1 [proposed]
 
-- Given: someone pushed to the spec repository after the service last synced
-- When: two visitors propose at the same moment
-- Then: both proposals and the other push are all on the default branch
-- and a push the remote rejects is retried from the remote's latest commit
+- Given: I am signed in and reading a feature
+- When: I give a scenario name and its Given / When / Then steps and propose
+- Then: the scenario is on the repository's default branch as
+  `## <name> @v1 [proposed]`, after the feature's other scenarios
+- and the commit is authored by my GitHub account, as its noreply address,
+  with a `Proposed-by: @<login>` trailer
+- and the feature's Automerge document travels with the file and records me
+  as the scenario's creator
 
-[test: a push someone made directly, then two proposals at once, and all three land : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L521 ]
+[test: a proposed scenario lands on main as proposed, authored by the visitor and signed in its document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L382 ]
+[test: a proposed scenario is always @v1 and proposed, with its body tidied : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L60 ]
 
-## Everything else is refused @v1 [proposed]
+## Sign in with GitHub to propose @v1 [proposed]
 
-- Given: the proposals service
-- When: anything calls the app's own API — saving, publishing, deleting,
-  settings, sign-in, agents, plugins, logs
-- Then: it answers 403
-- and reading a feature serves the file alone, never the drafts its document
-  keeps
+- Given: I open the proposals site signed out
+- Then: I can read every feature and its scenarios
+- and proposing asks me to sign in with GitHub
+- When: I sign in
+- Then: GitHub's browser flow runs with PKCE and a state nonce bound to my
+  browser, and I come back signed in
+- and my GitHub token is used once, to read who I am, and never stored
+- and a callback that is not my browser's sign-in signs nobody in
 
-[test: everything else is refused, %s %s → 403 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L312 ]
-[test: anyone can read the spec tree and a feature file — without the documents' drafts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L342 ]
+[test: signed out, the session says so and proposing asks for a sign-in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L333 ]
+[test: sign-in goes to GitHub with PKCE and back with a session; no token is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L368 ]
+[test: a callback that is not this browser's sign-in is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L355 ]
+[test: signing out ends the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L494 ]
+[test: signed out, it offers Sign in with GitHub : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L32 ]
 
 ## The service is configured on Railway @v1 [proposed]
 

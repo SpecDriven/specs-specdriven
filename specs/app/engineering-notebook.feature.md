@@ -212,7 +212,6 @@ it does.
   shown, not edited
 
 [test: the notebook is flat — a slash in the title makes no subfolder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L206 ]
-
 [test: an entry is created dated, signed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L160 ]
 [test: a duplicate slug for the same day is refused, and so is a blank title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L187 ]
 [test: an entry's kind is changed through its document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L220 ]
