@@ -32,4 +32,6 @@ see docs/deployment-railway.md for related feature implementation
 
 - Phase 1, licensing and contribution policy: specs/app/open-source-license.feature.md
 - Phase 2, the spec-proposals service (GitHub sign-in, add-only proposals
-  committed to main as `[proposed]`, daily quota, bot token): not started
+  committed to main as `[proposed]`, daily quota, bot token):
+  specs/app/spec-proposals.feature.md — deployed as its own Railway service
+  (docs/deployment-railway.md "Spec proposals service" in the code repo)
