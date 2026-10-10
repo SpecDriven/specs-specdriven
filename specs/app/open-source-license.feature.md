@@ -19,9 +19,9 @@ instead (CONTRIBUTING.md in the code repo says how).
 - and package.json names the license by its SPDX id, `AGPL-3.0-only`
 - and the desktop app ships LICENSE.md and NOTICE.md
 
-[test: package.json names the license by its SPDX id : https://github.com/SpecDriven/specdriven_app/blob/main/tests/license.test.ts#L15 ]
-[test: LICENSE.md is the GNU AGPL version 3 and NOTICE.md says version 3 only : https://github.com/SpecDriven/specdriven_app/blob/main/tests/license.test.ts#L19 ]
-[test: the desktop app ships the license and the notice : https://github.com/SpecDriven/specdriven_app/blob/main/tests/license.test.ts#L29 ]
+[test: package.json names the license by its SPDX id : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L15 ]
+[test: LICENSE.md is the GNU AGPL version 3 and NOTICE.md says version 3 only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L19 ]
+[test: the desktop app ships the license and the notice : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L29 ]
 
 ## The app links to the source of the running version @v1 [proposed]
 
@@ -34,10 +34,10 @@ instead (CONTRIBUTING.md in the code repo says how).
 - and a deployment running modified code sets `SPECDRIVEN_SOURCE_URL`, and
   the link opens that instead
 
-[test: the source link names the release of the running version : https://github.com/SpecDriven/specdriven_app/blob/main/tests/license.test.ts#L34 ]
-[test: a deployment running modified code names its own source : https://github.com/SpecDriven/specdriven_app/blob/main/tests/license.test.ts#L40 ]
-[test: the user menu offers Source code, which opens the source url : https://github.com/SpecDriven/specdriven_app/blob/main/tests/license.test.ts#L47 ]
-[test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven_app/blob/main/tests/demo.test.ts#L363 ]
+[test: the source link names the release of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L34 ]
+[test: a deployment running modified code names its own source : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L40 ]
+[test: the user menu offers Source code, which opens the source url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L47 ]
+[test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L363 ]
 
 ## Pull requests are not accepted @v1 [proposed]
 

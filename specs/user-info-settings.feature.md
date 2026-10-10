@@ -49,7 +49,7 @@ reports both via `/api/state`.
   plugin folders and the marketplaces (app/plugins.feature.md)
 - and Settings is no longer where the plugins are managed
 
-[test: Settings and Plugins have urls that resolve back to them : https://github.com/SpecDriven/specdriven_app/blob/main/tests/route.test.ts#L328 ]
+[test: Settings and Plugins have urls that resolve back to them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/route.test.ts#L328 ]
 
 ## open Settings @v1 [proposed]
 
@@ -61,8 +61,8 @@ reports both via `/api/state`.
   dialog
 - and the ✕ or ESC goes back to the page that was open before
 
-[test: Settings and Plugins have urls that resolve back to them : https://github.com/SpecDriven/specdriven_app/blob/main/tests/route.test.ts#L328 ]
-[test: anything else is not an app page : https://github.com/SpecDriven/specdriven_app/blob/main/tests/route.test.ts#L340 ]
+[test: Settings and Plugins have urls that resolve back to them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/route.test.ts#L328 ]
+[test: anything else is not an app page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/route.test.ts#L340 ]
 
 ## open the user menu @v1 [proposed]
 

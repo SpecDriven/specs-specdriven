@@ -29,8 +29,8 @@ the app read; when neither exists, the project one is created.
   list is the latest data
 - and a folder that is not a git repo, or whose pull fails, is still selected
 
-[test: picking a data folder pulls it before the client reads it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartSync.test.ts#L91 ]
-[test: a data folder that is not a git repo is still selectable : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartSync.test.ts#L110 ]
+[test: picking a data folder pulls it before the client reads it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartSync.test.ts#L91 ]
+[test: a data folder that is not a git repo is still selectable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartSync.test.ts#L110 ]
 
 ## changing the data repo @v1 [proposed]
 
@@ -89,11 +89,11 @@ the app read; when neither exists, the project one is created.
 - and canceling the chooser leaves the field unchanged
 - and on runtimes with no native chooser the "Browse…" button is not shown
 
-[test: macOS and Windows get a chooser out of the box, unknown platforms none : https://github.com/SpecDriven/specdriven_app/blob/main/tests/folderChooser.test.ts#L46 ]
-[test: canChooseFolder reflects whether a chooser is installed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/folderChooser.test.ts#L100 ]
-[test: chooseFolder resolves the picked path, null when canceled : https://github.com/SpecDriven/specdriven_app/blob/main/tests/folderChooser.test.ts#L106 ]
-[test: POST /api/choose-folder returns the picked path : https://github.com/SpecDriven/specdriven_app/blob/main/tests/folderChooser.test.ts#L135 ]
-[test: POST /api/choose-folder is 501 with no native chooser : https://github.com/SpecDriven/specdriven_app/blob/main/tests/folderChooser.test.ts#L144 ]
+[test: macOS and Windows get a chooser out of the box, unknown platforms none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderChooser.test.ts#L46 ]
+[test: canChooseFolder reflects whether a chooser is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderChooser.test.ts#L100 ]
+[test: chooseFolder resolves the picked path, null when canceled : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderChooser.test.ts#L106 ]
+[test: POST /api/choose-folder returns the picked path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderChooser.test.ts#L135 ]
+[test: POST /api/choose-folder is 501 with no native chooser : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderChooser.test.ts#L144 ]
 
 ## the data repo is pulled on start @v1 [proposed]
 
@@ -107,7 +107,7 @@ the app read; when neither exists, the project one is created.
   next reload tick rather than an app that never opens
 - and a pull that fails is logged; the app still opens on the data on disk
 
-[test: the data repo is pulled on app start, before the first read : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartSync.test.ts#L81 ]
+[test: the data repo is pulled on app start, before the first read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartSync.test.ts#L81 ]
 
 ## the project settings file wins @v1 [proposed]
 
@@ -128,7 +128,7 @@ the app read; when neither exists, the project one is created.
 - and it never sits on the loading skeleton indefinitely
 - and a server that answers with an error shows that error instead
 
-[test: retries a refused fetch and returns the state once the server answers : https://github.com/SpecDriven/specdriven_app/blob/main/tests/bootStateRetry.test.ts#L46 ]
-[test: reports the server unreachable after every try is refused, without throwing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/bootStateRetry.test.ts#L53 ]
-[test: an error answer is reported with the server's message and not retried : https://github.com/SpecDriven/specdriven_app/blob/main/tests/bootStateRetry.test.ts#L60 ]
-[test: a server that never answers is reported as stuck after the timeout, not retried : https://github.com/SpecDriven/specdriven_app/blob/main/tests/bootStateRetry.test.ts#L69 ]
+[test: retries a refused fetch and returns the state once the server answers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootStateRetry.test.ts#L46 ]
+[test: reports the server unreachable after every try is refused, without throwing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootStateRetry.test.ts#L53 ]
+[test: an error answer is reported with the server's message and not retried : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootStateRetry.test.ts#L60 ]
+[test: a server that never answers is reported as stuck after the timeout, not retried : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootStateRetry.test.ts#L69 ]
