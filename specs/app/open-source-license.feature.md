@@ -42,8 +42,10 @@ instead (CONTRIBUTING.md in the code repo says how).
   source
 - and a deployment running modified code sets `SPECDRIVEN_SOURCE_URL`, and
   the link opens that instead
+- and until the app knows that url, the menu has no Source code item
 
 [test: the source link names the release of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L34 ]
 [test: a deployment running modified code names its own source : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L40 ]
 [test: the user menu offers Source code, which opens the source url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L47 ]
 [test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L363 ]
+[test: no Source code item before the state names the url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L57 ]
