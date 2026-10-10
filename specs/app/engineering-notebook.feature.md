@@ -169,9 +169,10 @@ it does.
   plugins") — and the Plugins page shows "Engineering notebook" switched
   off with the hint "A shared, dated log of observations and decisions
   about your process, kept in the data repo's notebook folder"
-- and a settings file from before plugins that has the old module switches
-  but never mentions the notebook still shows it, since that switch was on
-  by default
+- and an older settings file that names a folder but never mentions the
+  notebook — it has the old module switches, or no plugin settings at all —
+  still shows it in the folders it knows, since that switch was on by
+  default
 - When: the user turns it on
 - Then: the Notebook tab appears
 - and no `notebook/` folder is created and nothing is committed until the
@@ -186,6 +187,7 @@ it does.
 [test: the notebook setting is on unless explicitly turned off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L74 ]
 [test: a sync tick never creates the notebook folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L84 ]
 [test: a fresh install shows Specs alone without a settings write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L87 ]
+[test: an older file with a folder but no plugin list keeps the Notebook on in that folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L151 ]
 
 ## Write an entry @v1 [proposed]
 

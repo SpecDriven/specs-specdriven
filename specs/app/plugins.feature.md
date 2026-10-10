@@ -151,6 +151,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
   every folder the file already knows, the open one and the recent ones,
   which keep showing what they showed; a folder picked later starts with
   Specs alone
+- and an older file that names a folder but holds no list and none of the
+  old switches — someone who never changed a plugin — gives the folders it
+  knows the default plugins, the Notebook, as that user saw before; a file
+  this app has recorded a folder in is never taken for such an older one
 - and a plugin found for the first time goes on in the open folder only;
   the other folders list it, switched off
 - and uninstalling a plugin takes it off every folder's list
@@ -159,7 +163,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: a fresh install shows Specs alone without a settings write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L87 ]
 [test: an older device-wide list carries over to the folder that is open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L137 ]
 [test: each data folder keeps its own profile; a new one shows Specs alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L249 ]
-[test: an older device-wide list is copied to the folders the file knows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L273 ]
+[test: an older device-wide list is copied to the folders the file knows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L274 ]
+[test: an older file with a folder but no plugin list keeps the Notebook on in that folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L151 ]
+[test: a folder picked in this app still shows Specs alone after a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L164 ]
+[test: an older file with folders but no list gives them the defaults; one with repos does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L305 ]
 
 ## Plugin urls serve the app shell @v1 [proposed]
 
@@ -216,7 +223,7 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: a settings file from before plugins is read as the matching profile : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L87 ]
 [test: the profile's order is the tab order, and an id nothing provides is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L134 ]
 [test: a settings file with the old switches is rewritten as the profile on start, and works as it did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L62 ]
-[test: PUT /api/state takes the profile whole, or a legacy switch as an alias : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L148 ]
+[test: PUT /api/state takes the profile whole, or a legacy switch as an alias : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L176 ]
 [test: Specs alone, and every other optional setting on except IntelliJ IDEA : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L149 ]
 [test: a visitor turns the roadmap on and it lists the dataset's pages : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L134 ]
 
