@@ -1,8 +1,18 @@
 {
   "members": [
-    { "name": "Jeff", "email": "jeff@specdriven.app" },
-    { "name": "David", "email": "david@specdriven.app" },
-    { "name": "Roman", "email": "roman@specdriven.app" }
+    {
+      "name": "Jeff",
+      "email": "jeff@specdriven.app"
+    },
+    {
+      "name": "David",
+      "email": "david@specdriven.app"
+    },
+    {
+      "name": "Roman",
+      "email": "roman@specdriven.app"
+    }
   ],
-  "code-repo": "../specdriven-app"
+  "code-repo": "../specdriven-app",
+  "authors-in-markdown": true
 }
