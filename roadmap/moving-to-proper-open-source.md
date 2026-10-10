@@ -14,6 +14,7 @@ We enourage our users to propose specs into the specs-specdriven repo.
 
 User must log in with a valid GitHub account.
 We will restric number of proposed specs per user per day to address DDOS risks.
+Proposals by users who are not contributors will be written to GitHub via a separate GH 
 
 ## Dependencies
 
