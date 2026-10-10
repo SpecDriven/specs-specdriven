@@ -6,4 +6,10 @@ License: AGPL 3.0 see https://choosealicense.com/licenses/agpl-3.0/
 
 We are unable to accept PR requests due to both security liability and resource constraints.
 
-## Spec
+## Specs contributions
+
+We enourage our users to propose specs into the specs-specdriven repo.
+
+### Proposal process
+
+User must
