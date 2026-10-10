@@ -12,6 +12,35 @@ Display test as QuoteHomeownersPolicyTest.
 
 [test: <test name> : link in GitHub]
 
+## a coding agent's edit to a test re-anchors the links to it @v1 [proposed]
+
+- When: Claude Code edits or writes a test file under `tests/` in the app repo
+- Then: the project hook (`scripts/test-links.ts`, registered in `.claude/settings.json`) checks every `[test: <name> : <url>#L<n> ]` link in the spec repo that points at that file
+- And: a link is right only when its anchor is the line declaring the named test — a multi-line `test.each([…])("title")` and a template title count, and links inside code do not
+- And: a test that moved in its file is re-anchored, one that moved to another file is re-pointed, and a bare url is given the name at its anchor
+- And: a link whose test is gone is reported back to the agent; an edit outside `tests/` is let through without a word
+
+[test: only links into this repo's tests count, and none inside code : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testLinks.test.ts#L35 ]
+[test: a multi-line test.each is named by its closing title, template titles by their pattern or head : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testLinks.test.ts#L51 ]
+[test: a link whose anchor names its test is right, a test.each head included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testLinks.test.ts#L66 ]
+[test: a test that moved in its file is re-anchored, one that moved file is re-pointed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testLinks.test.ts#L72 ]
+[test: a bare url is given the name at its anchor : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testLinks.test.ts#L80 ]
+[test: a name no test carries any more is broken : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testLinks.test.ts#L84 ]
+[test: a rewrite touches the token it names and leaves code alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testLinks.test.ts#L89 ]
+[test: after an edit to a test file the links into it are re-anchored, and Claude is told : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testLinks.test.ts#L143 ]
+[test: an edit outside tests/ is let through without a word : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testLinks.test.ts#L150 ]
+
+## a coding agent's turn ends with its tests linked @v1 [proposed]
+
+- When: a Claude Code turn ends with test files changed on the branch
+- Then: the links into those files are checked and re-anchored as after an edit
+- And: a link that no longer names a test, or a test added on the branch that no scenario links to, keeps the agent working once with the list of them
+- And: if the agent stops again with them still open, they are shown as a warning and the turn ends; a turn that leaves every link right ends quietly
+- And: `bun scripts/test-links.ts` runs the same check by hand — `--fix` re-anchors, `--changed` limits it to the branch
+
+[test: at the end of a turn a broken link or an unlinked new test blocks once, then only warns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testLinks.test.ts#L155 ]
+[test: a turn that leaves every link right ends quietly : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testLinks.test.ts#L166 ]
+
 ## a reference inside code is code @v1 [proposed]
 
 - When: `[test:<url>]` sits inside backticks or a fenced code block
