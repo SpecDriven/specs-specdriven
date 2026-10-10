@@ -40,7 +40,7 @@ Integrate with Google Calendar
   text rather than being lost, and a task that already carries an estimate
   proposes that one instead of asking again
 
-[test: the Google Calendar setting is off unless explicitly turned on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L189 ]
+[test: the Google Calendar setting is off unless explicitly turned on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L192 ]
 [test: the estimate route is 404 while Google Calendar is switched off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L151 ]
 [test: the estimate route asks Claude once, with no tools, and answers in minutes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L125 ]
 [test: the estimate route is 503 without a Claude CLI, 404 for a task that is not there, and 502 when Claude fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L159 ]
