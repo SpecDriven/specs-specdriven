@@ -55,7 +55,7 @@ version (app/open-source-license.feature.md).
 
 [test: a link works once, and a weak password does not use it up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L94 ]
 [test: only the newest link works, and links are stored hashed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L102 ]
-[test: https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L160 ]
+[test: password rules — length, common passwords, the email's name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L160 ]
 [test: passwords are stored as argon2id hashes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L87 ]
 [test: tokens are stored as SHA-256 hex : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L107 ]
 
