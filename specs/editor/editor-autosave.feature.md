@@ -168,8 +168,8 @@ The user can edit the Autosave Interval with a minimum of 3 seconds and a defaul
 - and a feature whose path was sealed meanwhile by a move, rename or delete
   is refused: nothing goes out
 
-[test: another feature opened meanwhile: it publishes, but refreshes the listing instead of pulling the user back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L179 ]
-[test: the path sealed while it waited (move, rename-file, delete): nothing goes out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L222 ]
+[test: another feature opened meanwhile — it publishes, but refreshes the listing instead of pulling the user back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L179 ]
+[test: the path sealed while it waited (move, rename-file, delete) — nothing goes out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L222 ]
 
 [test: placed from the render, Publish sends a second Beta and publishes that — the bug : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L51 ]
 [test: queued after the tick, it publishes the one scenario the tick placed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L58 ]
