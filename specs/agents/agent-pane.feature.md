@@ -21,7 +21,7 @@
 [test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentChat.test.ts#L914 ]
 [test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/agentChat.test.ts#L925 ]
 
-## The agent pane starts Claude in Auto mode @v1 [proposed]
+## The agent pane starts Claude in Auto mode @v1 [published]
 
 - Given: the coding agent pane, with the Claude agent chosen
 - When: a new session starts without the user picking a mode
