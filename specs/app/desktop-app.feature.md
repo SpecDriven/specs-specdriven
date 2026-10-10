@@ -175,7 +175,7 @@ to the user-only token file next to the home settings file.
 - Then: it opens that data repo without asking
 
 [test: the home settings file is used when the project has none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L58 ]
-[test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L72 ]
+[test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L73 ]
 
 ## GitHub data repos are cloned under the app-data directory @v1 [proposed]
 

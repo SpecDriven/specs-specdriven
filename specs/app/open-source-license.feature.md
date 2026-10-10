@@ -20,6 +20,10 @@ instead (CONTRIBUTING.md in the code repo says how).
 - and the workflow that closes them never checks out or runs the pull
   request's code
 
+[test: a pull request from a fork by someone without write access is closed, pointing to CONTRIBUTING.md and to proposing specs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L93 ]
+[test: pull requests from the team's own branches, or by people with write access, are left open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L106 ]
+[test: the close workflow never checks out or runs the pull request's code : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L118 ]
+
 ## The app is AGPL-3.0-only @v1 [proposed]
 
 - Given: the code repo
@@ -28,9 +32,9 @@ instead (CONTRIBUTING.md in the code repo says how).
 - and package.json names the license by its SPDX id, `AGPL-3.0-only`
 - and the desktop app ships LICENSE.md and NOTICE.md
 
-[test: package.json names the license by its SPDX id : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L15 ]
-[test: LICENSE.md is the GNU AGPL version 3 and NOTICE.md says version 3 only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L19 ]
-[test: the desktop app ships the license and the notice : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L29 ]
+[test: package.json names the license by its SPDX id : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L17 ]
+[test: LICENSE.md is the GNU AGPL version 3 and NOTICE.md says version 3 only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L21 ]
+[test: the desktop app ships the license and the notice : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L31 ]
 
 ## The app links to the source of the running version @v1 [proposed]
 
@@ -44,8 +48,8 @@ instead (CONTRIBUTING.md in the code repo says how).
   the link opens that instead
 - and until the app knows that url, the menu has no Source code item
 
-[test: the source link names the release of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L34 ]
-[test: a deployment running modified code names its own source : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L40 ]
-[test: the user menu offers Source code, which opens the source url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L47 ]
+[test: the source link names the release of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L36 ]
+[test: a deployment running modified code names its own source : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L42 ]
+[test: the user menu offers Source code, which opens the source url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L49 ]
 [test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L363 ]
-[test: no Source code item before the state names the url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L57 ]
+[test: no Source code item before the state names the url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L59 ]
