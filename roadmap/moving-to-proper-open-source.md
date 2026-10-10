@@ -27,3 +27,9 @@ Implement capturing spec creator and last updator.
 ## Implementation
 
 see docs/deployment-railway.md for related feature implementation
+
+## Status
+
+- Phase 1, licensing and contribution policy: specs/app/open-source-license.feature.md
+- Phase 2, the spec-proposals service (GitHub sign-in, add-only proposals
+  committed to main as `[proposed]`, daily quota, bot token): not started
