@@ -145,3 +145,15 @@ New spec has an author
 [test: a settings file that is not JSON is refused, not overwritten : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L240 ]
 [test: with authors-in-markdown on, the files carry the lines, and switching reprojects them : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L265 ]
 [test: the projection writes authors only when asked, and either form is a projection : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L192 ]
+
+## A proposal is signed by the visitor, not the bot @v1 [proposed]
+
+- Given: the spec proposals service (app/spec-proposals.feature.md), which
+  pushes every proposal with one bot token
+- When: ada proposes a scenario there
+- Then: ada is its creator and the feature's last updater, and ada authors
+  the commit
+- and the bot's account signs nothing it did not write itself
+
+[test: inside actAs getAuth answers the visitor; outside it, the stored sign-in : https://github.com/SpecDriven/specdriven_app/blob/main/tests/auth.test.ts#L265 ]
+[test: a proposed scenario lands on main as [proposed], authored by the visitor and signed in its document : https://github.com/SpecDriven/specdriven_app/blob/main/tests/proposals.test.ts#L381 ]
