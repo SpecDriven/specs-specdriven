@@ -13,7 +13,7 @@ signed in with (an agent given its own token signs as that account), else the
 git user name, else the OS user — the same identity that authors the app's
 commits and signs notebook entries (app/engineering-notebook.feature.md).
 
-## A rename keeps the creator @v1 [proposed]
+## A rename keeps the creator @v1 [published]
 
 - Given: a scenario created by ada
 - When: grace renames it in the app
@@ -23,7 +23,7 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 
 [test: a rename keeps the scenario's creator : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L156 ]
 
-## A save that changes nothing signs nothing @v1 [proposed]
+## A save that changes nothing signs nothing @v1 [published]
 
 - Given: a feature last updated by ada
 - When: grace saves it without changing anything
@@ -31,7 +31,7 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 
 [test: a save that changes nothing signs nothing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L149 ]
 
-## An agent signs as its own account @v1 [proposed]
+## An agent signs as its own account @v1 [published]
 
 - Given: an agent works in the app with a GitHub token of its own
 - When: it creates or edits a feature or a scenario
@@ -41,7 +41,7 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 
 [test: a feature created in the app is signed by the app's user, in the document only by default : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L249 ]
 
-## Authorship lines in the markdown @v1 [proposed]
+## Authorship lines in the markdown @v1 [published]
 
 - Given: a `.feature.md` with `**Created by:** <name>` and
   `**Updated by:** <name>` lines directly under the feature's `#` heading or
@@ -54,7 +54,7 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 [test: authorship lines under a heading are lifted out of the description and the body : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L64 ]
 [test: a line further down the body is ordinary content : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L99 ]
 
-## Edits found on disk sign nobody @v1 [proposed]
+## Edits found on disk sign nobody @v1 [published]
 
 - Given: a `.feature.md` changed outside the app — on GitHub, in an editor,
   by an older app version
@@ -69,7 +69,7 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 [test: drift absorbed without an author stamps nobody, and stale lines never rewrite the record : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L166 ]
 [test: a file found on disk that names its authors gives the document them : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L181 ]
 
-## Merging keeps the side that changed the authorship @v1 [proposed]
+## Merging keeps the side that changed the authorship @v1 [published]
 
 - Given: ada and grace both have the feature, and grace edits a scenario
 - When: the three-way merge of a pull folds grace's edit into ada's copy
@@ -77,7 +77,7 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 
 [test: the three-way merge keeps the side that changed the authorship : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L203 ]
 
-## New feature has author @v1 [proposed]
+## New feature has author @v1 [published]
 
 save author at the feature level
 
@@ -91,7 +91,7 @@ save author at the feature level
 [test: New feature has an author — an import signed by its writer records it at the feature level : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L115 ]
 [test: a feature created in the app is signed by the app's user, in the document only by default : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L249 ]
 
-## new spec has an author @v1 [proposed]
+## new spec has an author @v1 [published]
 
 New spec has an author
 
@@ -103,7 +103,7 @@ New spec has an author
 
 [test: new spec has an author — a scenario added by a save is created by whoever saved : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L122 ]
 
-## The feature page shows who wrote what @v1 [proposed]
+## The feature page shows who wrote what @v1 [published]
 
 - Given: a feature with recorded authorship
 - When: the user opens it
@@ -115,7 +115,7 @@ New spec has an author
 
 [test: the page reads authorship as one short line : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L290 ]
 
-## The last updater is whoever changed it @v1 [proposed]
+## The last updater is whoever changed it @v1 [published]
 
 - Given: a scenario created by ada
 - When: grace edits its body, name, version, status, tests or link
@@ -123,7 +123,7 @@ New spec has an author
 
 [test: an edit records its author as the last updater and keeps the creator : https://github.com/SpecDriven/specdriven_app/blob/main/tests/specsAuthorship.test.ts#L140 ]
 
-## Write authors into feature files @v1 [proposed]
+## Write authors into feature files @v1 [published]
 
 - Given: the data repo's `project-settings.json`
 - When: it has `"authors-in-markdown": true` — the "Write authors into
