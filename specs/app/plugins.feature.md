@@ -19,8 +19,9 @@ Roadmap, Tasks, Notebook, Models, Tests and Issues — built in and loaded
 through the same contract a third party's plugin would use. Further
 plugins load from folders on this machine or from a marketplace, a git
 repository holding an index. Which plugins are on, and in what order, is
-the profile, kept in `.specdriven/settings.json` on this machine like the
-module switches it replaces.
+the profile. Each data folder has its own, kept in
+`.specdriven/settings.json` on this machine like the module switches it
+replaces.
 
 ## Marketpalce
 
@@ -133,6 +134,40 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: a runtime that cannot build loads dist/ only, and refuses a bundle with its own React : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L335 ]
 [test: the browser loader imports a served bundle and remounts it at a new revision : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L373 ]
 
+## Each data folder keeps its own plugins @v1 [proposed]
+
+- Given: two data folders on this machine, one showing Roadmap and Tests
+  and the other Specs alone
+- When: the user switches from one to the other
+- Then: the plugins, their tabs and their routes switch with the folder,
+  and Settings → Plugins shows the open folder's switches
+- and each folder's list is kept under `plugins.repos[<folder>].enabled` in
+  `.specdriven/settings.json` on this machine, so it stays device-local: it
+  does not follow the data repo to another machine or another clone
+- and a folder opened for the first time shows Specs alone, and nothing is
+  written for it until its plugins change
+- and a settings file from before per-folder lists — one device-wide
+  `plugins.enabled`, or the old module switches — has that list copied to
+  every folder the file already knows, the open one and the recent ones,
+  which keep showing what they showed; a folder picked later starts with
+  Specs alone
+- and an older file that names a folder but holds no list and none of the
+  old switches — someone who never changed a plugin — gives the folders it
+  knows the default plugins, the Notebook, as that user saw before; a file
+  this app has recorded a folder in is never taken for such an older one
+- and a plugin found for the first time goes on in the open folder only;
+  the other folders list it, switched off
+- and uninstalling a plugin takes it off every folder's list
+
+[test: each data folder keeps its own plugins, and a new one shows Specs alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L102 ]
+[test: a fresh install shows Specs alone without a settings write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L87 ]
+[test: an older device-wide list carries over to the folder that is open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L137 ]
+[test: each data folder keeps its own profile; a new one shows Specs alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L249 ]
+[test: an older device-wide list is copied to the folders the file knows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L274 ]
+[test: an older file with a folder but no plugin list keeps the Notebook on in that folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L151 ]
+[test: a folder picked in this app still shows Specs alone after a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L164 ]
+[test: an older file with folders but no list gives them the defaults; one with repos does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L305 ]
+
 ## Plugin urls serve the app shell @v1 [proposed]
 
 - Given: a plugin is on and has registered a url prefix, `/tests` say
@@ -168,8 +203,9 @@ Plugins can be developed in any repository and then deployed to https://github.c
 
 ## The profile lists enabled plugins in tab order @v1 [proposed]
 
-- Given: `.specdriven/settings.json` on this machine holds a `plugins`
-  section with an ordered `enabled` list
+- Given: `.specdriven/settings.json` on this machine holds an ordered
+  `enabled` list for the open data folder, under `plugins.repos[<folder>]`
+  ("Each data folder keeps its own plugins")
 - When: the app starts
 - Then: exactly the listed plugins are mounted, in that order, and the
   sidebar shows their tabs in that order after Specs
@@ -178,15 +214,18 @@ Plugins can be developed in any repository and then deployed to https://github.c
   matching list once and works as it did
 - and an id in the list that no source provides is reported on the
   Plugins page and otherwise ignored
-- and the hosted demo enables every built-in plugin, then the Event Models
-  it installs from the marketplace, so a visitor sees the whole app
+- and the hosted demo starts with Specs alone: the built-in plugins, and
+  the Event Models it installs from the marketplace, are listed on the
+  Plugins page switched off, for a visitor to turn on
 - and the list is device-local, like the switches it replaces: it does not
   follow the user to another machine
 
 [test: a settings file from before plugins is read as the matching profile : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L87 ]
 [test: the profile's order is the tab order, and an id nothing provides is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L134 ]
 [test: a settings file with the old switches is rewritten as the profile on start, and works as it did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L62 ]
-[test: PUT /api/state takes the profile whole, or a legacy switch as an alias : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L148 ]
+[test: PUT /api/state takes the profile whole, or a legacy switch as an alias : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L176 ]
+[test: Specs alone, and every other optional setting on except IntelliJ IDEA : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L149 ]
+[test: a visitor turns the roadmap on and it lists the dataset's pages : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L134 ]
 
 ## Turning a plugin off unwinds everything it registered @v1 [proposed]
 
