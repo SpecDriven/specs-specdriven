@@ -46,9 +46,9 @@ however many AI sessions are running in parallel.
   pomodoro again
 - Otherwise: there is no pause control — a pomodoro is indivisible
 
-[test: abandon voids a pomodoro, skip cuts a break, and each refuses the other : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L231 ]
-[test: work to begin with, and again after a voided pomodoro : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroRules.test.ts#L47 ]
-[test: splits work from breaks, counts abandoned time, and only completed pomodoros : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroRules.test.ts#L87 ]
+[test: abandon voids a pomodoro, skip cuts a break, and each refuses the other : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L231 ]
+[test: work to begin with, and again after a voided pomodoro : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L47 ]
+[test: splits work from breaks, counts abandoned time, and only completed pomodoros : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L87 ]
 
 ## a pomodoro runs out and a break is offered @v1 [proposed]
 
@@ -57,9 +57,9 @@ however many AI sessions are running in parallel.
   moment the app noticed, the chosen sound plays, the bar flashes, and a
   notice offers "Start break" — the button that begins the next interval
 
-[test: a tick before the end only moves the clock; at the end the pomodoro completes at its planned end : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L178 ]
-[test: closeInterval ends the open one at now or at the planned end : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroRules.test.ts#L120 ]
-[test: flashes when told to, and the menu offers the settings and to stop : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L58 ]
+[test: a tick before the end only moves the clock; at the end the pomodoro completes at its planned end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L178 ]
+[test: closeInterval ends the open one at now or at the planned end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L120 ]
+[test: flashes when told to, and the menu offers the settings and to stop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L58 ]
 
 ## interval lengths are remembered on this machine @v1 [proposed]
 
@@ -70,10 +70,10 @@ however many AI sessions are running in parallel.
 - Otherwise: a value is out of range or not a number, and it is clamped to
   1–180 minutes (1–12 for "Long break every") rather than lost
 
-[test: defaults when nothing or junk is stored; each field clamps on its own : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L99 ]
-[test: load takes the stored preferences, and savePrefs keeps them for the next timer : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L110 ]
-[test: the form's text becomes clamped preferences : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroSettings.test.tsx#L55 ]
-[test: shows the stored preferences, and no preview for silence : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroSettings.test.tsx#L39 ]
+[test: defaults when nothing or junk is stored; each field clamps on its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L99 ]
+[test: load takes the stored preferences, and savePrefs keeps them for the next timer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L110 ]
+[test: the form's text becomes clamped preferences : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroSettings.test.tsx#L55 ]
+[test: shows the stored preferences, and no preview for silence : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroSettings.test.tsx#L39 ]
 
 ## one timer, however many sessions @v1 [proposed]
 
@@ -85,9 +85,9 @@ however many AI sessions are running in parallel.
 - Otherwise: the running interval is what the person is doing; the AI sessions
   going in parallel have no timer of their own
 
-[test: starting while one runs changes nothing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L170 ]
-[test: appendInterval opens one, and refuses a second while it runs : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroRules.test.ts#L114 ]
-[test: only the last interval can be open : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroRules.test.ts#L104 ]
+[test: starting while one runs changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L170 ]
+[test: appendInterval opens one, and refuses a second while it runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L114 ]
+[test: only the last interval can be open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L104 ]
 
 ## preview the sound that announces a break @v1 [proposed]
 
@@ -95,8 +95,8 @@ however many AI sessions are running in parallel.
 - Then: that sound plays at once
 - Otherwise: the sound is "None", and the ▶ button is disabled
 
-[test: offers the four lengths, the sounds with a preview, the tick, and Save : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroSettings.test.tsx#L20 ]
-[test: shows the stored preferences, and no preview for silence : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroSettings.test.tsx#L39 ]
+[test: offers the four lengths, the sounds with a preview, the tick, and Save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroSettings.test.tsx#L20 ]
+[test: shows the stored preferences, and no preview for silence : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroSettings.test.tsx#L39 ]
 
 ## settings saved mid-pomodoro land on the next interval @v1 [proposed]
 
@@ -108,9 +108,9 @@ however many AI sessions are running in parallel.
 - Otherwise: no timer is running, and the next pomodoro simply starts on the
   new lengths
 
-[test: while a pomodoro runs, says the change lands on the next one : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroSettings.test.tsx#L47 ]
-[test: load takes the stored preferences, and savePrefs keeps them for the next timer : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L110 ]
-[test: come from the timer's settings : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroRules.test.ts#L38 ]
+[test: while a pomodoro runs, says the change lands on the next one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroSettings.test.tsx#L47 ]
+[test: load takes the stored preferences, and savePrefs keeps them for the next timer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L110 ]
+[test: come from the timer's settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L38 ]
 
 ## skip a break @v1 [proposed]
 
@@ -119,9 +119,9 @@ however many AI sessions are running in parallel.
 - Otherwise: the interval is a pomodoro, and "Skip" is not offered — as
   "Abandon" is not offered during a break
 
-[test: abandon voids a pomodoro, skip cuts a break, and each refuses the other : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L231 ]
-[test: during a break — Skip, the break class, and a coffee : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L39 ]
-[test: work after any break, and the cycle restarts after a long break of any outcome : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroRules.test.ts#L60 ]
+[test: abandon voids a pomodoro, skip cuts a break, and each refuses the other : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L231 ]
+[test: during a break — Skip, the break class, and a coffee : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L39 ]
+[test: work after any break, and the cycle restarts after a long break of any outcome : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L60 ]
 
 ## start a pomodoro @v1 [proposed]
 
@@ -134,9 +134,9 @@ however many AI sessions are running in parallel.
 - Otherwise: there is nothing to fill in — no name and no dialog; a pomodoro
   is something started in the second the person decides to focus
 
-[test: start unlocks audio, keeps the prefs, and opens the first pomodoro at once : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L155 ]
-[test: with no timer running, one button starts a pomodoro — no name, no dialog : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L86 ]
-[test: the rail's idle chip is a timer icon that starts one : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L104 ]
+[test: start unlocks audio, keeps the prefs, and opens the first pomodoro at once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L155 ]
+[test: with no timer running, one button starts a pomodoro — no name, no dialog : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L86 ]
+[test: the rail's idle chip is a timer icon that starts one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L104 ]
 
 ## stop the timer @v1 [proposed]
 
@@ -146,9 +146,9 @@ however many AI sessions are running in parallel.
   title's prefix goes, and the bar becomes the invitation to start one again
 - Otherwise: no timer is running, and stopping changes nothing
 
-[test: stop switches the timer off, and the title prefix goes with it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L250 ]
-[test: nothing happens without a timer : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L261 ]
-[test: flashes when told to, and the menu offers the settings and to stop : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L58 ]
+[test: stop switches the timer off, and the title prefix goes with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L250 ]
+[test: nothing happens without a timer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L261 ]
+[test: flashes when told to, and the menu offers the settings and to stop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L58 ]
 
 ## the bar shows where the timer stands @v1 [proposed]
 
@@ -158,10 +158,10 @@ however many AI sessions are running in parallel.
 - Otherwise: the sidebar is collapsed, and the rail shows the clock alone as a
   chip that brings the sidebar back when clicked
 
-[test: during focus — the phase, the clock, progress, dots, total, and Abandon : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L25 ]
-[test: the rail chip is the clock alone, and a timer icon between intervals : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L74 ]
-[test: fills one dot per completed pomodoro, capped at the cycle length : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroRules.test.ts#L78 ]
-[test: between intervals — no clock, and the button that starts what comes next : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L48 ]
+[test: during focus — the phase, the clock, progress, dots, total, and Abandon : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L25 ]
+[test: the rail chip is the clock alone, and a timer icon between intervals : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L74 ]
+[test: fills one dot per completed pomodoro, capped at the cycle length : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L78 ]
+[test: between intervals — no clock, and the button that starts what comes next : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L48 ]
 
 ## the header's icon opens and closes the bar @v1 [proposed]
 
@@ -178,13 +178,13 @@ however many AI sessions are running in parallel.
 - Otherwise: the sidebar is collapsed to the rail, which shows its chip
   either way
 
-[test: closed and idle — a bare timer icon that opens the bar : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L122 ]
-[test: open, the same icon closes the bar again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L135 ]
-[test: while a pomodoro runs, the icon carries its clock : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L142 ]
-[test: a break reads as one, and the flash carries over : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L148 ]
-[test: the bar can be closed without stopping the timer : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroBar.test.tsx#L66 ]
-[test: closes and stays closed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroPref.test.tsx#L74 ]
-[test: is its own question — closing the bar leaves the feature on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroPref.test.tsx#L87 ]
+[test: closed and idle — a bare timer icon that opens the bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L122 ]
+[test: open, the same icon closes the bar again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L135 ]
+[test: while a pomodoro runs, the icon carries its clock : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L142 ]
+[test: a break reads as one, and the flash carries over : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L148 ]
+[test: the bar can be closed without stopping the timer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L66 ]
+[test: closes and stays closed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroPref.test.tsx#L74 ]
+[test: is its own question — closing the bar leaves the feature on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroPref.test.tsx#L87 ]
 
 ## the long break comes when the cycle is full @v1 [proposed]
 
@@ -194,10 +194,10 @@ however many AI sessions are running in parallel.
 - Then: the break offered is the long one, and the cycle's dots start again
   after it, whether it ran out or was skipped
 
-[test: a short break after a pomodoro, the long one when the cycle is full : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroRules.test.ts#L52 ]
-[test: work after any break, and the cycle restarts after a long break of any outcome : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroRules.test.ts#L60 ]
-[test: honours the timer's own cycle length : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroRules.test.ts#L69 ]
-[test: the next interval follows the rules, and the tick sounds only during focus when asked : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L204 ]
+[test: a short break after a pomodoro, the long one when the cycle is full : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L52 ]
+[test: work after any break, and the cycle restarts after a long break of any outcome : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L60 ]
+[test: honours the timer's own cycle length : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L69 ]
+[test: the next interval follows the rules, and the tick sounds only during focus when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L204 ]
 
 ## the Pomodoro is controlled by a switch in user settings @v1 [proposed]
 
@@ -213,9 +213,9 @@ however many AI sessions are running in parallel.
   rather than in the settings file — it is a habit of the person at this
   keyboard, not a property of the project
 
-[test: is off until switched on — a timer nobody asked for costs sidebar : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroPref.test.tsx#L50 ]
-[test: is remembered on the device, and off is stored as a decision : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroPref.test.tsx#L54 ]
-[test: reads off when storage is unavailable : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoroPref.test.tsx#L63 ]
+[test: is off until switched on — a timer nobody asked for costs sidebar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroPref.test.tsx#L50 ]
+[test: is remembered on the device, and off is stored as a decision : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroPref.test.tsx#L54 ]
+[test: reads off when storage is unavailable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroPref.test.tsx#L63 ]
 
 ## the window title carries the clock @v1 [proposed]
 
@@ -224,6 +224,6 @@ however many AI sessions are running in parallel.
   "24:59 · Focus"
 - Otherwise: no interval is running, and the prefix goes
 
-[test: the clock rounds up, the title carries the phase, durations read as minutes : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L123 ]
-[test: stop switches the timer off, and the title prefix goes with it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L250 ]
-[test: derive from the open interval's planned end : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pomodoro.test.ts#L136 ]
+[test: the clock rounds up, the title carries the phase, durations read as minutes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L123 ]
+[test: stop switches the timer off, and the title prefix goes with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L250 ]
+[test: derive from the open interval's planned end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L136 ]

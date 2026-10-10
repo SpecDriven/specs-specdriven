@@ -88,9 +88,9 @@ In user settings, turn 'Open test links in IntelliJ IDEA' to On
 
 call shell command like 'idea --line 42 /abs/path/to/Foo.java'
 
-[test: a click runs idea --line on the file in the code repo : https://github.com/SpecDriven/specdriven_app/blob/main/tests/openTestInIdea.test.ts#L137 ]
-[test: the setting round-trips through the settings file, OFF stored as an absent key : https://github.com/SpecDriven/specdriven_app/blob/main/tests/openTestInIdea.test.ts#L90 ]
-[test: without idea on PATH the click is refused with the symlink to make : https://github.com/SpecDriven/specdriven_app/blob/main/tests/openTestInIdea.test.ts#L160 ]
+[test: a click runs idea --line on the file in the code repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/openTestInIdea.test.ts#L137 ]
+[test: the setting round-trips through the settings file, OFF stored as an absent key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/openTestInIdea.test.ts#L90 ]
+[test: without idea on PATH the click is refused with the symlink to make : https://github.com/SpecDriven/specdriven-app/blob/main/tests/openTestInIdea.test.ts#L160 ]
 
 ## see the tests of a scenario @v1 [proposed]
 

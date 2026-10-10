@@ -277,10 +277,10 @@ agent or plugin calling the API gets the same.
   feature file is parsed), and a Markdown field being autosaved never loses
   the newline just typed under the caret.
 
-[test: loses the whitespace around it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/text.test.ts#L7 ]
-[test: keeps one space for every inner run : https://github.com/SpecDriven/specdriven_app/blob/main/tests/text.test.ts#L12 ]
-[test: keeps the first line's indentation and everything inside : https://github.com/SpecDriven/specdriven_app/blob/main/tests/text.test.ts#L31 ]
-[test: that is one line after all is trimmed whole : https://github.com/SpecDriven/specdriven_app/blob/main/tests/text.test.ts#L40 ]
-[test: a feature's typed name is saved cleaned : https://github.com/SpecDriven/specdriven_app/blob/main/tests/features.test.ts#L131 ]
-[test: a published scenario keeps its heading verbatim : https://github.com/SpecDriven/specdriven_app/blob/main/tests/scenarioRenameLoop.test.ts#L130 ]
-[test: a plugin folder and a trusted folder are saved trimmed, inner spaces kept : https://github.com/SpecDriven/specdriven_app/blob/main/tests/settingsWhitespace.test.ts#L53 ]
+[test: loses the whitespace around it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/text.test.ts#L7 ]
+[test: keeps one space for every inner run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/text.test.ts#L12 ]
+[test: keeps the first line's indentation and everything inside : https://github.com/SpecDriven/specdriven-app/blob/main/tests/text.test.ts#L31 ]
+[test: that is one line after all is trimmed whole : https://github.com/SpecDriven/specdriven-app/blob/main/tests/text.test.ts#L40 ]
+[test: a feature's typed name is saved cleaned : https://github.com/SpecDriven/specdriven-app/blob/main/tests/features.test.ts#L131 ]
+[test: a published scenario keeps its heading verbatim : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioRenameLoop.test.ts#L130 ]
+[test: a plugin folder and a trusted folder are saved trimmed, inner spaces kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsWhitespace.test.ts#L53 ]

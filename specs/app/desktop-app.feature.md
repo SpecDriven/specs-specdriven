@@ -125,13 +125,13 @@ to the user-only token file next to the home settings file.
   uncaught main-process exception or prints a crash signature fails the run,
   naming what went wrong
 
-[test: a launch that rendered, held and quit with 0 passes : https://github.com/SpecDriven/specdriven_app/blob/main/tests/crashTestDesktop.test.ts#L38 ]
-[test: dying before being asked to quit fails, naming how it died : https://github.com/SpecDriven/specdriven_app/blob/main/tests/crashTestDesktop.test.ts#L42 ]
-[test: a window that never renders fails even when the quit is clean : https://github.com/SpecDriven/specdriven_app/blob/main/tests/crashTestDesktop.test.ts#L52 ]
-[test: a quit that hangs, exits non-zero, or leaves a dead window fails : https://github.com/SpecDriven/specdriven_app/blob/main/tests/crashTestDesktop.test.ts#L57 ]
-[test: an exception the main process's listener recorded fails the run : https://github.com/SpecDriven/specdriven_app/blob/main/tests/crashTestDesktop.test.ts#L66 ]
-[test: fatal signatures fail the run grouped by kind; notes do not : https://github.com/SpecDriven/specdriven_app/blob/main/tests/crashTestDesktop.test.ts#L85 ]
-[test: the output scan finds crashes and ignores a headless box's usual noise : https://github.com/SpecDriven/specdriven_app/blob/main/tests/crashTestDesktop.test.ts#L97 ]
+[test: a launch that rendered, held and quit with 0 passes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L38 ]
+[test: dying before being asked to quit fails, naming how it died : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L42 ]
+[test: a window that never renders fails even when the quit is clean : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L52 ]
+[test: a quit that hangs, exits non-zero, or leaves a dead window fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L57 ]
+[test: an exception the main process's listener recorded fails the run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L66 ]
+[test: fatal signatures fail the run grouped by kind; notes do not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L85 ]
+[test: the output scan finds crashes and ignores a headless box's usual noise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L97 ]
 
 ## a Mac builds the Linux app too @v1 [proposed]
 
@@ -141,10 +141,10 @@ to the user-only token file next to the home settings file.
   `--all`, alongside the macOS dmg and zip
 - and with no flag the build packages only for the machine it runs on
 
-[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/buildDesktop.test.ts#L6 ]
-[test: a Mac cross-builds the Linux app : https://github.com/SpecDriven/specdriven_app/blob/main/tests/buildDesktop.test.ts#L11 ]
-[test: a release build packages every target and architecture in package.json : https://github.com/SpecDriven/specdriven_app/blob/main/tests/buildDesktop.test.ts#L26 ]
-[test: packaging never rebuilds native modules for the build machine : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linuxPackage.test.ts#L47 ]
+[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L6 ]
+[test: a Mac cross-builds the Linux app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L11 ]
+[test: a release build packages every target and architecture in package.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L26 ]
+[test: packaging never rebuilds native modules for the build machine : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L47 ]
 
 ## a maximized session comes back maximized @v1 [published]
 
@@ -153,8 +153,8 @@ to the user-only token file next to the home settings file.
 - Then: the window opens maximized, and un-maximizing returns it to its
   previous size
 
-[test: maximized survives fitting : https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L111 ]
-[test: save then load round-trips : https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L120 ]
+[test: maximized survives fitting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L111 ]
+[test: save then load round-trips : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L120 ]
 
 ## building the macOS app off a Mac stops with the reason @v1 [proposed]
 
@@ -165,8 +165,8 @@ to the user-only token file next to the home settings file.
 - and a mistyped flag or an unsupported host stops the same way, naming the
   problem
 
-[test: the macOS app is only built on macOS : https://github.com/SpecDriven/specdriven_app/blob/main/tests/buildDesktop.test.ts#L16 ]
-[test: an unsupported host or a mistyped flag stops before packaging : https://github.com/SpecDriven/specdriven_app/blob/main/tests/buildDesktop.test.ts#L21 ]
+[test: the macOS app is only built on macOS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L16 ]
+[test: an unsupported host or a mistyped flag stops before packaging : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L21 ]
 
 ## desktop and web share settings @v1 [proposed]
 
@@ -174,8 +174,8 @@ to the user-only token file next to the home settings file.
 - When: the desktop app starts
 - Then: it opens that data repo without asking
 
-[test: the home settings file is used when the project has none : https://github.com/SpecDriven/specdriven_app/blob/main/tests/state.test.ts#L58 ]
-[test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven_app/blob/main/tests/state.test.ts#L72 ]
+[test: the home settings file is used when the project has none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L58 ]
+[test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L72 ]
 
 ## GitHub data repos are cloned under the app-data directory @v1 [proposed]
 
@@ -184,8 +184,8 @@ to the user-only token file next to the home settings file.
 - Then: it is cloned to `.../SpecDriven/repos/<name>` in the app-data
   directory, not next to the app
 
-[test: SPECDRIVEN_ROOT re-bases the app root : https://github.com/SpecDriven/specdriven_app/blob/main/tests/paths.test.ts#L26 ]
-[test: SPECDRIVEN_REPOS_DIR gathers clones under the app-data directory : https://github.com/SpecDriven/specdriven_app/blob/main/tests/paths.test.ts#L41 ]
+[test: SPECDRIVEN_ROOT re-bases the app root : https://github.com/SpecDriven/specdriven-app/blob/main/tests/paths.test.ts#L26 ]
+[test: SPECDRIVEN_REPOS_DIR gathers clones under the app-data directory : https://github.com/SpecDriven/specdriven-app/blob/main/tests/paths.test.ts#L41 ]
 
 ## reloading inside the app keeps the spec on screen @v1 [proposed]
 
@@ -194,8 +194,8 @@ to the user-only token file next to the home settings file.
 - Then: the internal protocol serves the app shell for that url, and the
   same feature is back on screen
 
-[test: the root path is the shell : https://github.com/SpecDriven/specdriven_app/blob/main/tests/static.test.ts#L27 ]
-[test: deep links resolve to paths that won't exist, so the caller serves the shell : https://github.com/SpecDriven/specdriven_app/blob/main/tests/static.test.ts#L36 ]
+[test: the root path is the shell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L27 ]
+[test: deep links resolve to paths that won't exist, so the caller serves the shell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L36 ]
 
 ## test link opens in the browser @v1 [published]
 
@@ -206,10 +206,10 @@ AND  open links in IntelliJ is Off
 - Then: the link opens in the default browser and the app window stays where
   it was
 
-[test: a test link on GitHub opens in the browser, not in a new window : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linkRouting.test.ts#L23 ]
-[test: a click that would navigate the window away goes to the browser instead : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linkRouting.test.ts#L28 ]
-[test: the app's own pages stay in the window : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linkRouting.test.ts#L36 ]
-[test: schemes that are not web pages go nowhere : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linkRouting.test.ts#L53 ]
+[test: a test link on GitHub opens in the browser, not in a new window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L23 ]
+[test: a click that would navigate the window away goes to the browser instead : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L28 ]
+[test: the app's own pages stay in the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L36 ]
+[test: schemes that are not web pages go nowhere : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L53 ]
 
 ## the GitHub sign-in survives a restart without an OS key store @v1 [proposed]
 
@@ -219,7 +219,7 @@ AND  open links in IntelliJ is Off
 - Then: they are still signed in — the token was kept in the user-only token
   file next to the home settings file
 
-[test: token round-trips through the file backend across backend resets : https://github.com/SpecDriven/specdriven_app/blob/main/tests/auth.test.ts#L249 ]
+[test: token round-trips through the file backend across backend resets : https://github.com/SpecDriven/specdriven-app/blob/main/tests/auth.test.ts#L251 ]
 
 ## the header's icons work inside the drag region @v1 [proposed]
 
@@ -229,8 +229,8 @@ AND  open links in IntelliJ is Off
 - Then: each opens what it names — the Pomodoro bar, the coding agent pane,
   the collapsed sidebar — instead of starting to drag the window
 
-[test: every control in the header stays clickable : https://github.com/SpecDriven/specdriven_app/blob/main/tests/dragRegion.test.ts#L121 ]
-[test: the header's icon buttons stay clickable : https://github.com/SpecDriven/specdriven_app/blob/main/tests/dragRegion.test.ts#L134 ]
+[test: every control in the header stays clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L121 ]
+[test: the header's icon buttons stay clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L134 ]
 
 ## the internal protocol serves only the app's bundled files @v1 [proposed]
 
@@ -239,8 +239,8 @@ AND  open links in IntelliJ is Off
   encoded `..`, a smuggled separator
 - Then: no file outside the bundle is read; the app shell is served instead
 
-[test: bundle files resolve inside the renderer directory : https://github.com/SpecDriven/specdriven_app/blob/main/tests/static.test.ts#L31 ]
-[test: escapes and smuggled separators are rejected : https://github.com/SpecDriven/specdriven_app/blob/main/tests/static.test.ts#L42 ]
+[test: bundle files resolve inside the renderer directory : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L31 ]
+[test: escapes and smuggled separators are rejected : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L42 ]
 
 ## the packaged Linux app opens on a clean machine @v1 [proposed]
 
@@ -249,10 +249,10 @@ AND  open links in IntelliJ is Off
 - Then: the app window opens on the internal `app://` origin, the same as on
   macOS
 
-[test: the deb names the shared libraries Electron loads : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linuxPackage.test.ts#L19 ]
-[test: ALSA is required by its t64 name first, then the old one : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linuxPackage.test.ts#L26 ]
-[test: the AppImage carries the static runtime, needing neither FUSE nor a host zlib : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linuxPackage.test.ts#L33 ]
-[test: both Linux artifacts are built for x64 and arm64 : https://github.com/SpecDriven/specdriven_app/blob/main/tests/linuxPackage.test.ts#L41 ]
+[test: the deb names the shared libraries Electron loads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L19 ]
+[test: ALSA is required by its t64 name first, then the old one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L26 ]
+[test: the AppImage carries the static runtime, needing neither FUSE nor a host zlib : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L33 ]
+[test: both Linux artifacts are built for x64 and arm64 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L41 ]
 
 ## the remembered position was on a monitor that is gone @v1 [proposed]
 
@@ -261,7 +261,7 @@ AND  open links in IntelliJ is Off
 - Then: the window opens centered at the default 1280×860 on a connected
   display
 
-[test: a window on a disconnected monitor falls back to null : https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L87 ]
+[test: a window on a disconnected monitor falls back to null : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L87 ]
 
 ## the window cannot shrink below a usable size @v1 [proposed]
 
@@ -270,7 +270,7 @@ AND  open links in IntelliJ is Off
 - Then: the window stops at 1280×700, with every button and scrollbar still
   visible
 
-[test: a too-small saved size is raised to the minimums : https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L76 ]
+[test: a too-small saved size is raised to the minimums : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L76 ]
 
 ## the window reopens where it was left @v1 [proposed]
 
@@ -278,5 +278,5 @@ AND  open links in IntelliJ is Off
 - When: they launch the app again
 - Then: the window opens at the same size and position
 
-[test: save then load round-trips : https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L120 ]
-[test: bounds fully on-screen and large enough pass through unchanged : https://github.com/SpecDriven/specdriven_app/blob/main/tests/windowState.test.ts#L72 ]
+[test: save then load round-trips : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L120 ]
+[test: bounds fully on-screen and large enough pass through unchanged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L72 ]

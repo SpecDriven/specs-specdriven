@@ -55,8 +55,8 @@ Plugins can be developed in any repository and then deployed to https://github.c
   where they were loaded from
 - and a built-in plugin can be switched off but never uninstalled
 
-[test: the browser loader registers the tab while the server says it is on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L178 ]
-[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L23 ]
+[test: the browser loader registers the tab while the server says it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L186 ]
+[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L31 ]
 
 ## A plugin from the marketplace is installed with consent @v1 [proposed]
 
@@ -79,11 +79,11 @@ Plugins can be developed in any repository and then deployed to https://github.c
   visitor browses the marketplace, the Event Models marked installed, with
   no Install, Update, Remove or Refresh
 
-[test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L270 ]
-[test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L356 ]
-[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L315 ]
-[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L438 ]
-[test: the hosted demo installs the Event Models from the marketplace at start and lists them on : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L465 ]
+[test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L270 ]
+[test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L356 ]
+[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L315 ]
+[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L438 ]
+[test: the hosted demo installs the Event Models from the marketplace at start and lists them on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L465 ]
 
 ## A plugin is scaffolded, built and linked from the command line @v1 [proposed]
 
@@ -102,8 +102,8 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and a bad id, a folder already in use or an unknown command are refused
   with the reason
 
-[test: plugin new, build and link take a plugin from nothing to a mounted tab : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginCli.test.ts#L50 ]
-[test: plugin new refuses a bad id or a folder in use, and an unknown command shows the usage : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginCli.test.ts#L92 ]
+[test: plugin new, build and link take a plugin from nothing to a mounted tab : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginCli.test.ts#L50 ]
+[test: plugin new refuses a bad id or a folder in use, and an unknown command shows the usage : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginCli.test.ts#L92 ]
 
 ## A plugin loads from a local folder @v1 [proposed]
 
@@ -124,14 +124,14 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and a plugin that fails to load fails alone: the others keep running and
   the Plugins page shows the error beside its name
 
-[test: a plugin folder under ~/.specdriven/plugins is found, built, mounted and served : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L114 ]
-[test: an edit rebuilds the plugin under a new revision and remounts it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L176 ]
-[test: a plugin whose folder goes away is unwound and reported : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L234 ]
-[test: a manifest the app cannot accept is refused with the reason, and loads nothing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L249 ]
-[test: a plugin under the data repo asks for trust before its first load : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L292 ]
-[test: a plugin that fails to load fails alone : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L322 ]
-[test: a runtime that cannot build loads dist/ only, and refuses a bundle with its own React : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L335 ]
-[test: the browser loader imports a served bundle and remounts it at a new revision : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L373 ]
+[test: a plugin folder under ~/.specdriven/plugins is found, built, mounted and served : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L114 ]
+[test: an edit rebuilds the plugin under a new revision and remounts it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L176 ]
+[test: a plugin whose folder goes away is unwound and reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L234 ]
+[test: a manifest the app cannot accept is refused with the reason, and loads nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L249 ]
+[test: a plugin under the data repo asks for trust before its first load : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L292 ]
+[test: a plugin that fails to load fails alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L322 ]
+[test: a runtime that cannot build loads dist/ only, and refuses a bundle with its own React : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L335 ]
+[test: the browser loader imports a served bundle and remounts it at a new revision : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L373 ]
 
 ## Plugin urls serve the app shell @v1 [proposed]
 
@@ -144,7 +144,7 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and with the plugin off the url goes home, and a url no plugin claims
   shows the not-found page
 
-[test: the plugin's urls serve the app shell whether it is on or off : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L158 ]
+[test: the plugin's urls serve the app shell whether it is on or off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L166 ]
 
 ## The marketplace is a git repository with an index @v1 [proposed]
 
@@ -162,9 +162,9 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and an index that does not parse is reported beside the marketplace's
   name and does not hide the other marketplaces
 
-[test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L218 ]
-[test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L168 ]
-[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginMarketplace.test.ts#L423 ]
+[test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L218 ]
+[test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L168 ]
+[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L423 ]
 
 ## The profile lists enabled plugins in tab order @v1 [proposed]
 
@@ -183,10 +183,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and the list is device-local, like the switches it replaces: it does not
   follow the user to another machine
 
-[test: a settings file from before plugins is read as the matching profile : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L77 ]
-[test: the profile's order is the tab order, and an id nothing provides is reported : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L125 ]
-[test: a settings file with the old switches is rewritten as the profile on start, and works as it did : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginProfile.test.ts#L62 ]
-[test: PUT /api/state takes the profile whole, or a legacy switch as an alias : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginProfile.test.ts#L101 ]
+[test: a settings file from before plugins is read as the matching profile : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L87 ]
+[test: the profile's order is the tab order, and an id nothing provides is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L134 ]
+[test: a settings file with the old switches is rewritten as the profile on start, and works as it did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L62 ]
+[test: PUT /api/state takes the profile whole, or a legacy switch as an alias : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L148 ]
 
 ## Turning a plugin off unwinds everything it registered @v1 [proposed]
 
@@ -201,7 +201,7 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and switching it on again mounts it afresh, with its tab, shortcuts and
   routes back, without a restart
 
-[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/plugins.test.ts#L23 ]
-[test: switching a folder plugin off unwinds its routes, and on mounts it again : https://github.com/SpecDriven/specdriven_app/blob/main/tests/pluginSources.test.ts#L217 ]
-[test: effects unwind last-in-first-out, and only once : https://github.com/SpecDriven/specdriven_app/blob/main/tests/kernel.test.ts#L21 ]
-[test: a plugin waits for its injects and unmounts when one goes away : https://github.com/SpecDriven/specdriven_app/blob/main/tests/kernel.test.ts#L43 ]
+[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L31 ]
+[test: switching a folder plugin off unwinds its routes, and on mounts it again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L217 ]
+[test: effects unwind last-in-first-out, and only once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/kernel.test.ts#L21 ]
+[test: a plugin waits for its injects and unmounts when one goes away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/kernel.test.ts#L43 ]
