@@ -18,7 +18,7 @@ Proposals by users who are not contributors will be written to GitHub via a sepa
 
 ## Deployment architecture
 
-Create a separate mode in our app and a separate service in 
+Create a separate mode in our app and a separate service in Railway
 
 ## Dependencies
 
