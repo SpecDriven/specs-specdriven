@@ -12,4 +12,5 @@ We enourage our users to propose specs into the specs-specdriven repo.
 
 ### Proposal process
 
-User must
+User must log in with a valid GitHub account.
+We will restric number of proposed specs per user per day to address DDOS risks and ass
