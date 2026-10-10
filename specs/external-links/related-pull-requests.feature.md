@@ -48,7 +48,7 @@ GitLab merge request; any other https url is accepted as it stands.
 - and the field is there for a published scenario too — its name, version
   and body stay read-only, its pull requests do not
 
-[test: the document holds the links, the file does not, the editor sees them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L201 ]
+[test: the document holds the links, the file does not, the editor sees them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L204 ]
 [test: links a scenario by name and version, and by its document id : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L151 ]
 [test: a draft scenario can carry links, and the editor's view shows them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L239 ]
 [test: a feature from before documents gets one minted first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L231 ]

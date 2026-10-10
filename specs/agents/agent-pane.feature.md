@@ -45,7 +45,7 @@
 - and the new-session form offers "Change folder…" for the same choice
   before starting
 
-[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L326 ]
+[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L327 ]
 
 ## The mode menu describes each mode @v1 [proposed]
 
@@ -67,4 +67,4 @@
 - and a `cwd` that is not absolute, or names a folder that does not exist, is
   refused with an error
 
-[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L598 ]
+[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L602 ]

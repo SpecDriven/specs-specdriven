@@ -156,4 +156,4 @@ New spec has an author
 - and the bot's account signs nothing it did not write itself
 
 [test: inside actAs getAuth answers the visitor; outside it, the stored sign-in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/auth.test.ts#L265 ]
-[test: a proposed scenario lands on main as [proposed], authored by the visitor and signed in its document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L381 ]
+[test: a proposed scenario lands on main as proposed, authored by the visitor and signed in its document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L382 ]

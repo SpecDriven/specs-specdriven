@@ -50,7 +50,7 @@ it does.
 - and removing the line from the newer entry, in the app or on GitHub,
   removes the badge on the next sync
 
-[test: a decision supersedes an earlier one without touching it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L235 ]
+[test: a decision supersedes an earlier one without touching it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L238 ]
 
 ## Deep links @v1 [proposed]
 
@@ -64,8 +64,8 @@ it does.
 - and an entry that does not exist shows the not-found page, and with the
   setting off the url goes home
 
-[test: an entry url round-trips to its file, and a foreign url does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L266 ]
-[test: notebook routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L68 ]
+[test: an entry url round-trips to its file, and a foreign url does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L269 ]
+[test: notebook routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L75 ]
 
 ## Entries are shared through git @v1 [proposed]
 
@@ -80,11 +80,11 @@ it does.
   hides the tab, it does not stop the sync — so nothing is lost by turning
   it off and on again
 
-[test: entries reach the other clone on a sync tick : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L280 ]
-[test: the sync tick absorbs notebook drift whatever the other switches say : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L300 ]
-[test: two clones editing one entry merge instead of conflicting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L338 ]
-[test: a merged entry holds each side's edit exactly once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L371 ]
-[test: an entry edited outside the app is absorbed on the next tick : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L316 ]
+[test: entries reach the other clone on a sync tick : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L283 ]
+[test: the sync tick absorbs notebook drift whatever the other switches say : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L303 ]
+[test: two clones editing one entry merge instead of conflicting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L341 ]
+[test: a merged entry holds each side's edit exactly once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L374 ]
+[test: an entry edited outside the app is absorbed on the next tick : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L319 ]
 
 ## Renaming an entry keeps its date and its links @v1 [proposed]
 
@@ -113,12 +113,12 @@ it does.
   only the heading — the way an entry whose heading has drifted from its file
   name is repaired
 
-[test: renaming an entry keeps its date and takes the new title's slug : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L449 ]
-[test: renaming an entry carries its document along : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L476 ]
-[test: renaming an entry validates, and an unchanged slug only repairs the heading : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L497 ]
-[test: the slug a renamed entry gave up is free for a new entry : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L530 ]
-[test: supersedes links and body links follow a renamed entry : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L547 ]
-[test: renaming an entry is a git mv, committed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L609 ]
+[test: renaming an entry keeps its date and takes the new title's slug : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L452 ]
+[test: renaming an entry carries its document along : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L479 ]
+[test: renaming an entry validates, and an unchanged slug only repairs the heading : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L500 ]
+[test: the slug a renamed entry gave up is free for a new entry : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L533 ]
+[test: supersedes links and body links follow a renamed entry : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L550 ]
+[test: renaming an entry is a git mv, committed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L612 ]
 
 ## Search and the command palette @v1 [proposed]
 
@@ -178,8 +178,8 @@ it does.
 - and the switch is stored in `.specdriven/settings.json` on this machine
   like the roadmap's, so it does not follow the user to another device
 
-[test: the notebook setting is on unless explicitly turned off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L71 ]
-[test: a sync tick never creates the notebook folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L81 ]
+[test: the notebook setting is on unless explicitly turned off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L74 ]
+[test: a sync tick never creates the notebook folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L84 ]
 
 ## Write an entry @v1 [proposed]
 
@@ -203,10 +203,10 @@ it does.
   editing the metadata line; the author and date are set by the app and
   shown, not edited
 
-[test: the notebook is flat: a slash in the title makes no subfolder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L203 ]
+[test: the notebook is flat — a slash in the title makes no subfolder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L206 ]
 
-[test: an entry is created dated, signed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L157 ]
-[test: a duplicate slug for the same day is refused, and so is a blank title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L184 ]
-[test: an entry's kind is changed through its document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L217 ]
-[test: an entry parses into its metadata and body, and serializes back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L103 ]
-[test: a hand-written file is still an entry, dated by its file name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L131 ]
+[test: an entry is created dated, signed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L160 ]
+[test: a duplicate slug for the same day is refused, and so is a blank title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L187 ]
+[test: an entry's kind is changed through its document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L220 ]
+[test: an entry parses into its metadata and body, and serializes back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L106 ]
+[test: a hand-written file is still an entry, dated by its file name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L134 ]

@@ -70,7 +70,7 @@ Integrate with Google Calendar
   task's document with it, so a peer merges later edits to the task
 - and only 'tasks' and the paths under it count as task paths
 
-[test: the Tasks setting is off unless explicitly turned on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tasks.test.ts#L63 ]
+[test: the Tasks setting is off unless explicitly turned on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tasks.test.ts#L64 ]
 [test: ensurePageFolder creates the tasks folder once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tasks.test.ts#L71 ]
 [test: a sync tick creates the tasks folder only when the setting is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tasks.test.ts#L80 ]
 [test: a sync tick commits and pushes every file in the tasks folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tasks.test.ts#L95 ]
