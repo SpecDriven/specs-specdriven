@@ -74,17 +74,17 @@ the desktop build, since electron-builder stats every path in the project.
 - Then: the run stops with the failure and the path to the checkout, which is
   still there to build by hand
 
-[test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L826 ]
-[test: a failed `bun install` is reported the same way : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L839 ]
+[test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L826 ]
+[test: a failed `bun install` is reported the same way : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L839 ]
 
 ## bun is not installed @v1 [published]
 
 If `bun` is not installed, offer to install it and if user accepts install bun 
 under the current users authority.
 
-[test: a yes at the terminal installs Bun, as the user and in their home : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L589 ]
-[test: a no at the terminal leaves Bun alone : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L608 ]
-[test: with no terminal to ask at, Bun is left to the reader : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L621 ]
+[test: a yes at the terminal installs Bun, as the user and in their home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L589 ]
+[test: a no at the terminal leaves Bun alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L608 ]
+[test: with no terminal to ask at, Bun is left to the reader : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L621 ]
 
 ## install via curl @v1 [proposed]
 
@@ -96,7 +96,7 @@ By default, the script will attempt to execute the entire install.
 
 If the user want to scan the code before installing, they will download the zip file manually.
 
-[test: the latest release is downloaded, verified and unpacked under ~/.specdriven/app : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L226 ]
+[test: the latest release is downloaded, verified and unpacked under ~/.specdriven/app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L226 ]
 
 ## the checksum has to match before anything is unpacked @v1 [proposed]
 
@@ -104,9 +104,9 @@ If the user want to scan the code before installing, they will download the zip 
 - When: the user runs the installer
 - Then: it stops saying so, and `~/.specdriven` holds nothing from that run
 
-[test: a checksum mismatch aborts without unpacking anything : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L328 ]
-[test: a release without SHASUMS256.txt is refused rather than installed unverified : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L351 ]
-[test: a SHASUMS256.txt that does not list the zip is as good as none : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L366 ]
+[test: a checksum mismatch aborts without unpacking anything : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L328 ]
+[test: a release without SHASUMS256.txt is refused rather than installed unverified : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L351 ]
+[test: a SHASUMS256.txt that does not list the zip is as good as none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L366 ]
 
 ## the install ends with the app built and handed over @v1 [proposed]
 
@@ -120,10 +120,10 @@ If the user want to scan the code before installing, they will download the zip 
   The messages come through whatever locale the shell runs in, single-byte
   ones included.
 
-[test: the run ends with the .dmg opened, and nothing started : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L715 ]
-[test: the messages survive a single-byte locale : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L750 ]
-[test: the run ends with the AppImage made runnable and started : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L778 ]
-[test: with no display the app is built but left unstarted : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L807 ]
+[test: the run ends with the .dmg opened, and nothing started : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L715 ]
+[test: the messages survive a single-byte locale : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L750 ]
+[test: the run ends with the AppImage made runnable and started : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L778 ]
+[test: with no display the app is built but left unstarted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L807 ]
 
 ## the source zip is self-contained @v1 [proposed]
 
@@ -132,7 +132,7 @@ If the user want to scan the code before installing, they will download the zip 
 - Then: nothing in it points outside itself, so the build has no dangling path
   to trip over
 
-[test: symlinks pointing out of the repo are kept out of the release source zip : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L866 ]
+[test: symlinks pointing out of the repo are kept out of the release source zip : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L866 ]
 
 ## without Bun the install stops at the source @v1 [proposed]
 
@@ -141,4 +141,4 @@ If the user want to scan the code before installing, they will download the zip 
 - Then: it stops there and prints the commands to install the dependencies,
   run the web app and build the desktop app
 
-[test: the next steps say whether Bun is there to run them : https://github.com/SpecDriven/specdriven_app/blob/main/tests/install.test.ts#L513 ]
+[test: the next steps say whether Bun is there to run them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L513 ]

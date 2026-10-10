@@ -20,12 +20,12 @@ again.
 - and a README deleted on disk is recreated as typed
 - and a save with no base replaces the file outright
 
-[test: keeps the disk edit alongside the save : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartup.test.ts#L122 ]
-[test: an editor that already holds the disk edit saves it once : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartup.test.ts#L132 ]
-[test: a save with no disk edit writes the buffer : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartup.test.ts#L140 ]
-[test: a buffer that moved on during the fold keeps the disk edit : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartup.test.ts#L149 ]
-[test: a README gone from disk is recreated as the editor holds it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartup.test.ts#L161 ]
-[test: a save without from replaces the file outright : https://github.com/SpecDriven/specdriven_app/blob/main/tests/appStartup.test.ts#L169 ]
+[test: keeps the disk edit alongside the save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartup.test.ts#L122 ]
+[test: an editor that already holds the disk edit saves it once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartup.test.ts#L132 ]
+[test: a save with no disk edit writes the buffer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartup.test.ts#L140 ]
+[test: a buffer that moved on during the fold keeps the disk edit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartup.test.ts#L149 ]
+[test: a README gone from disk is recreated as the editor holds it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartup.test.ts#L161 ]
+[test: a save without from replaces the file outright : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartup.test.ts#L169 ]
 
 ## A Scenario With No Name Is Not Autosaved @v1 [proposed]
 
@@ -144,9 +144,9 @@ field is left, with no Save button, and the open editor autosaves at it
 This replaces "Configure Autosave in Settings Dialog": Settings is a page in
 the editor pane, not a dialog.
 
-[test: the autosave interval defaults to 6 seconds and never goes below 3 : https://github.com/SpecDriven/specdriven_app/blob/main/tests/editorAutosave.test.ts#L56 ]
-[test: Settings saves the autosave interval to the settings file : https://github.com/SpecDriven/specdriven_app/blob/main/tests/editorAutosave.test.ts#L80 ]
-[test: an interval below the 3 second minimum is refused, and changes nothing : https://github.com/SpecDriven/specdriven_app/blob/main/tests/editorAutosave.test.ts#L89 ]
+[test: the autosave interval defaults to 6 seconds and never goes below 3 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/editorAutosave.test.ts#L56 ]
+[test: Settings saves the autosave interval to the settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/editorAutosave.test.ts#L80 ]
+[test: an interval below the 3 second minimum is refused, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/editorAutosave.test.ts#L89 ]
 
 ## Configure Autosave in Settings Dialog @v1 [published]
 
@@ -168,12 +168,12 @@ The user can edit the Autosave Interval with a minimum of 3 seconds and a defaul
 - and a feature whose path was sealed meanwhile by a move, rename or delete
   is refused: nothing goes out
 
-[test: another feature opened meanwhile: it publishes, but refreshes the listing instead of pulling the user back : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L179 ]
-[test: the path sealed while it waited (move, rename-file, delete): nothing goes out : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L222 ]
+[test: another feature opened meanwhile — it publishes, but refreshes the listing instead of pulling the user back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L179 ]
+[test: the path sealed while it waited (move, rename-file, delete) — nothing goes out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L222 ]
 
-[test: placed from the render, Publish sends a second Beta and publishes that — the bug : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L51 ]
-[test: queued after the tick, it publishes the one scenario the tick placed : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L58 ]
-[test: placed at the render's stale index, Publish writes over its neighbour — the bug : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L93 ]
-[test: queued after the tick, it publishes its own entry and keeps every neighbour : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L98 ]
-[test: still on its feature, it reopens that feature : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L162 ]
-[test: a conflict for a feature no longer on screen is reported, not opened over the new page : https://github.com/SpecDriven/specdriven_app/blob/main/tests/publishBehindTick.test.ts#L203 ]
+[test: placed from the render, Publish sends a second Beta and publishes that — the bug : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L51 ]
+[test: queued after the tick, it publishes the one scenario the tick placed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L58 ]
+[test: placed at the render's stale index, Publish writes over its neighbour — the bug : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L93 ]
+[test: queued after the tick, it publishes its own entry and keeps every neighbour : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L98 ]
+[test: still on its feature, it reopens that feature : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L162 ]
+[test: a conflict for a feature no longer on screen is reported, not opened over the new page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/publishBehindTick.test.ts#L203 ]
