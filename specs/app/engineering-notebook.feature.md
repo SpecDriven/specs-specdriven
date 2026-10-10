@@ -162,13 +162,18 @@ it does.
 
 ## The notebook is controlled by a switch in user settings @v1 [proposed]
 
-- Given: a fresh install, or a settings file that never mentions the
-  notebook
+- Given: a fresh install, or a data folder opened for the first time
 - When: the user looks at the sidebar
-- Then: the Notebook tab is there — the switch is on by default, and the
-  Plugins page shows "Engineering notebook" switched on with the hint
-  "A shared, dated log of observations and decisions about your process,
-  kept in the data repo's notebook folder"
+- Then: there is no Notebook tab — like every plugin, it is off until the
+  user turns it on (plugins.feature.md "Each data folder keeps its own
+  plugins") — and the Plugins page shows "Engineering notebook" switched
+  off with the hint "A shared, dated log of observations and decisions
+  about your process, kept in the data repo's notebook folder"
+- and a settings file from before plugins that has the old module switches
+  but never mentions the notebook still shows it, since that switch was on
+  by default
+- When: the user turns it on
+- Then: the Notebook tab appears
 - and no `notebook/` folder is created and nothing is committed until the
   first entry is written
 - When: the user turns the switch off
@@ -180,6 +185,7 @@ it does.
 
 [test: the notebook setting is on unless explicitly turned off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L74 ]
 [test: a sync tick never creates the notebook folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L84 ]
+[test: a fresh install shows Specs alone without a settings write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L87 ]
 
 ## Write an entry @v1 [proposed]
 
