@@ -57,8 +57,11 @@ too little room.
   per-device preference, not shared team state — and every scenario opens at
   it.
 
-[test: dragging up past the minimum stops at it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/bodyResize.test.ts#L16 ]
-[test: dragging down stops while the strip is still on the window : https://github.com/SpecDriven/specdriven_app/blob/main/tests/bodyResize.test.ts#L21 ]
+[test: a height between the bounds is taken as dragged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bodyResize.test.ts#L12 ]
+[test: dragging up past the minimum stops at it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bodyResize.test.ts#L16 ]
+[test: dragging down stops while the strip is still on the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bodyResize.test.ts#L21 ]
+[test: fractional pixels from the pointer land on whole ones : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bodyResize.test.ts#L25 ]
+[test: on a window too short for both bounds the minimum wins, so the body stays usable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bodyResize.test.ts#L30 ]
 
 ## Spec editor pane @v1 [proposed]
 
