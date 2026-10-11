@@ -188,8 +188,8 @@ Allow to collapse and expand the outline.
   Copy Link and cmd-click → new tab work natively
 - Every scenario card has a "Copy link" action that puts the absolute
   versioned url on the clipboard; its label flips to "Copied" for 2 sec
-- The feature name in the editor bar has the same "Copy link" action for
-  the feature url
+- The feature page's ⋯ menu has the same "Copy link" action for the
+  feature url, just like the scenario card's ⋯ menu
 - In the desktop app those actions copy the `specdriven://` form, so what
   lands on the clipboard is a link that works anywhere else on the machine
 
