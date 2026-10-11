@@ -39,6 +39,27 @@ Then: a confirmation dialog pops up with: "Danger Zone! Confirm that you want to
 The user can click "Confirm" button or the "Cancel" button.
 If confirmed, the spec is deleted.
 
+## Spec body resize @v1 [proposed]
+
+A scenario with a table, a ticket and many test links leaves the body editor
+too little room.
+
+- The body editor never shrinks to make room for what is below it: it stays
+  at least 40% of the window tall, and the pane's column scrolls instead, so
+  the whole pane has a scrollbar once its contents outgrow it.
+- The body editor's lower boundary is a grab strip, like the feature
+  description editor's (feature-editor.feature.md): dragging it makes the
+  body taller or shorter. The height is clamped — never so short that the
+  editor is unusable, never so tall that the strip leaves the window.
+- Double-clicking the strip restores the default height. The strip is
+  focusable, and the up and down arrow keys nudge the height.
+- The chosen height is remembered on the device, like the sidebar width — a
+  per-device preference, not shared team state — and every scenario opens at
+  it.
+
+[test: dragging up past the minimum stops at it : https://github.com/SpecDriven/specdriven_app/blob/main/tests/bodyResize.test.ts#L16 ]
+[test: dragging down stops while the strip is still on the window : https://github.com/SpecDriven/specdriven_app/blob/main/tests/bodyResize.test.ts#L21 ]
+
 ## Spec editor pane @v1 [proposed]
 
 The scenario editor is a pane, not a dialog. Opening a scenario — Edit on its
