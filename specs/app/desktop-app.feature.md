@@ -1,7 +1,8 @@
 # Desktop app
 
 SpecDriven also runs as a native desktop app (Electron), installed from a
-macOS dmg or a Linux AppImage or deb. It is the same application as the web
+macOS dmg or a Linux AppImage or deb, or on Windows built and started in place
+by `install.ps1` (installation.feature.md). It is the same application as the web
 version: one React frontend, one API, one git-backed data store. The desktop
 shell serves the frontend and the API over an internal `app://` protocol — no
 localhost port is opened, so nothing else on the machine can reach the API.
@@ -13,14 +14,20 @@ Bun on the web and under Electron's runtime on the desktop.
 ## Packaging
 
 One command builds the installable artifacts, for the platform the build runs
-on unless told otherwise (`bun run build:desktop [--mac | --linux | --all]`):
+on unless told otherwise (`bun run build:desktop [--mac | --linux | --win | --all]`):
 
 - macOS: a dmg and a zip.
 - Linux: an AppImage and a deb, for x64 and arm64. Both cross-build from
   macOS, so a release can be cut from one machine.
+- Windows: an NSIS installer, for x64 and arm64. `--local` packages no
+  installer, only the app unpacked in `release\win-unpacked`, which is what
+  `install.ps1` starts.
 
 The macOS artifacts need macOS tooling, so `--mac` off a Linux machine stops
-with that as the reason rather than producing a broken build.
+with that as the reason rather than producing a broken build. The Windows ones
+are built on Windows — off it, electron-builder needs Wine to stamp the
+executable — so `--win` elsewhere stops the same way, and `--all` means the
+release one Mac can cut: macOS and Linux.
 
 The main process is bundled before packaging and no native addon is loaded at
 runtime, so packaging never rebuilds node_modules (`npmRebuild: false`).
@@ -42,7 +49,8 @@ A Linux artifact has to start on a machine that has never seen Electron:
 
 The desktop app has no meaningful working directory, so it anchors itself in
 the OS application-data directory (`~/Library/Application Support/SpecDriven`
-on macOS, `~/.config/SpecDriven` on Linux) via `SPECDRIVEN_ROOT`:
+on macOS, `~/.config/SpecDriven` on Linux, `%APPDATA%\SpecDriven` on Windows)
+via `SPECDRIVEN_ROOT`:
 
 - Settings follow the usual lookup (app-start.feature.md) with the
   app-data directory as the "project root": an existing
@@ -142,8 +150,8 @@ to the user-only token file next to the home settings file.
 - and with no flag the build packages only for the machine it runs on
 
 [test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L6 ]
-[test: a Mac cross-builds the Linux app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L11 ]
-[test: a release build packages every target and architecture in package.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L26 ]
+[test: a Mac cross-builds the Linux app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L12 ]
+[test: a release build packages every target and architecture in package.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L35 ]
 [test: packaging never rebuilds native modules for the build machine : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L47 ]
 
 ## a maximized session comes back maximized @v1 [published]
@@ -165,8 +173,8 @@ to the user-only token file next to the home settings file.
 - and a mistyped flag or an unsupported host stops the same way, naming the
   problem
 
-[test: the macOS app is only built on macOS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L16 ]
-[test: an unsupported host or a mistyped flag stops before packaging : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L21 ]
+[test: the macOS app is only built on macOS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L17 ]
+[test: an unsupported host or a mistyped flag stops before packaging : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L30 ]
 
 ## desktop and web share settings @v1 [proposed]
 
@@ -280,3 +288,16 @@ AND  open links in IntelliJ is Off
 
 [test: save then load round-trips : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L120 ]
 [test: bounds fully on-screen and large enough pass through unchanged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L72 ]
+
+## the Windows app is built on Windows @v1 [proposed]
+
+- Given: a Windows machine
+- When: the user runs `bun run build:desktop`, or `--win`
+- Then: the NSIS installer is built; with `--local`, only the app unpacked for
+  this machine's architecture
+- and `--win` on macOS or Linux stops before packaging, saying the Windows app
+  can only be built on Windows, while `--all` there still means macOS and Linux
+
+[test: the Windows app is only built on Windows, and --all leaves it out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L22 ]
+[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L6 ]
+[test: --local packages only the installer this machine starts, for its own architecture : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L39 ]
