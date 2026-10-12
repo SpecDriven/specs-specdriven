@@ -183,7 +183,7 @@ If the user want to scan the code before installing, they will download the zip 
 - Then: nothing in it points outside itself, so the build has no dangling path
   to trip over
 
-[test: symlinks pointing out of the repo are kept out of the release source zip : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L800 ]
+[test: symlinks that dangle in the release source zip are kept out of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L802 ]
 
 ## without Bun the install stops at the source @v1 [proposed]
 
