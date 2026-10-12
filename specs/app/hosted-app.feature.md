@@ -72,9 +72,39 @@ version (app/open-source-license.feature.md).
 - and outside the hosted image, where the gateway cannot change user ids,
   the workers share its user and the gateway logs a warning
 
-[test: each worker runs as its own uid, owning its folder alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L121 ]
-[test: the worker command drops to the user's uid with no way back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L162 ]
+[test: each worker runs as its own uid, owning its folder alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L128 ]
+[test: the worker command drops to the user's uid with no way back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L169 ]
 [test: a data repo's code-repo path is ignored, so it cannot point into another user's folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L146 ]
+
+## Accounts survive a redeploy @v1 [proposed]
+
+- Given: the gateway has a GitHub token, SPECDRIVEN_DATASTORE_TOKEN, that
+  can read and write the datastore repo (SpecDriven/hosted-app unless
+  SPECDRIVEN_DATASTORE_REPO names another)
+- When: people sign up, sign in, change a password or save a token, and the
+  service is then redeployed without its volume
+- Then: they sign in again with the same password, still signed in where
+  their session had not expired, and their sealed tokens still open
+- and the repo holds one JSON file per table: accounts with password
+  hashes, invites, secrets still sealed under the master key, and session
+  hashes without IP address, user agent or last-seen time
+- and a change worth keeping is pushed within 30 seconds, a session's
+  sliding expiry only on shutdown, and everything once more before the
+  gateway exits
+- and a database that already has accounts keeps them and pushes them over
+  the repo's copy
+- and a repo the gateway cannot read stops it from starting, so an empty
+  account list is never pushed over the real one
+- and the token never reaches a worker or a command line
+
+[test: a snapshot read into a fresh database gives back accounts, invites, secrets that still open, and live sessions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L84 ]
+[test: an empty database is filled from what another gateway pushed; one with accounts keeps its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L115 ]
+[test: a sliding session expiry alone is not pushed until a forced save; a new session is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L138 ]
+[test: a repo that cannot be read stops the restore, and nothing is ever pushed over it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L163 ]
+[test: a push that loses a race to another writer is redone on top of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L172 ]
+[test: the token and repo come from the environment; no token means no datastore : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L65 ]
+[test: the token reaches git through the credential helper's environment, not argv : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L76 ]
+[test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L53 ]
 
 ## Change the password on the account page @v1 [proposed]
 
@@ -105,10 +135,10 @@ version (app/open-source-license.feature.md).
 [test: signed in, the app's pages come from the gateway and its API from the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L183 ]
 [test: two users reach two different workers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L192 ]
 [test: request bodies pass through and streamed answers stream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L202 ]
-[test: two users get two workers with separate settings, folders and environments : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L77 ]
-[test: restart stops the worker; the next request starts a fresh one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L102 ]
-[test: idle workers are stopped by the sweep : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L111 ]
-[test: user ids that are not UUIDs never become paths : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L73 ]
+[test: two users get two workers with separate settings, folders and environments : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L84 ]
+[test: restart stops the worker; the next request starts a fresh one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L109 ]
+[test: idle workers are stopped by the sweep : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L118 ]
+[test: user ids that are not UUIDs never become paths : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L80 ]
 [test: page paths get the shell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L26 ]
 [test: bundled assets are served immutable, and nothing outside the build is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L34 ]
 [test: the API, plugin bundles and writes are the worker's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L42 ]
