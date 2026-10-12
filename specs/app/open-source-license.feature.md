@@ -51,5 +51,5 @@ instead (CONTRIBUTING.md in the code repo says how).
 [test: the source link names the release of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L36 ]
 [test: a deployment running modified code names its own source : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L42 ]
 [test: the user menu offers Source code, which opens the source url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L49 ]
-[test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L363 ]
+[test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L365 ]
 [test: no Source code item before the state names the url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L59 ]
