@@ -10,7 +10,9 @@ dialog picks which (stored in the settings file as `gitEngine`):
 - `gh` — the GitHub CLI, on top of the system git binary. Credentials come
   from gh's own credential helper, scoped to github.com so helpers
   configured for other hosts are left alone, and a GitHub repo is cloned
-  with `gh repo clone`. It cannot be chosen when no gh is installed.
+  with `gh repo clone` — unless the app has a GitHub sign-in of its own
+  (below), which is the person's explicit choice and wins over gh's
+  account. It cannot be chosen when no gh is installed.
 - `cli` — plain system git, authenticating with the app's own GitHub
   sign-in below, or with whatever credentials the machine already has. It
   cannot be chosen when no git is installed.
@@ -80,6 +82,29 @@ the repository's git config, then the user's global one. The built-in
 engine may be running where there is no git config at all, so below both
 it falls back to the OS user rather than failing for want of an author.
 
+## Personal access token
+
+The third way to sign in needs no GitHub App at all, and is the only one
+for GitHub Enterprise: paste a personal access token — on the first-run
+screen's "Clone from GitHub" form (app-start.feature.md), or in Settings →
+Git & GitHub next to the other two. A fine-grained token with access to the
+specs repository and **Contents: Read and write** is enough.
+
+- The token is checked against its host's `/user` before it is kept: on
+  github.com, `api.github.com`; on a GitHub Enterprise Server,
+  `https://<host>/api/v3`; on GHE.com, `https://api.<name>.ghe.com`. A
+  token the host does not accept is refused and the previous sign-in
+  stays.
+- The sign-in records its host (absent means github.com). Git offers the
+  token to that host only — the built-in engine checks each request's url,
+  system git scopes its credential helper to the host — so a GitHub
+  Enterprise token never reaches github.com, or the other way round.
+- Commits are authored by the token's account; a private email falls back
+  to the host's noreply address.
+- One sign-in at a time: pasting a token replaces whatever sign-in the app
+  had. The Issues pane, proposals and the hosted app still talk to
+  github.com only.
+
 With no credentials at all, public repos still work and a private one
 fails fast with `authentication required — sign in with GitHub in
 Settings` instead of hanging on a credential prompt.
@@ -94,6 +119,18 @@ was committed and pushed when it was not.
 - Then: the publish reports that failure as an error
 - and no merge-conflict dialog opens claiming the file is missing on the
   remote
+
+## a pasted token is used on every engine @v1 [proposed]
+
+- Given: the user pasted a personal access token for a host
+- When: a data repo on that host is cloned, pulled or pushed
+- Then: the built-in engine and system git authenticate with that token
+- and the GitHub CLI engine uses it too instead of gh's own account
+- and no request to any other host carries it
+
+[test: the built-in engine clones and pushes to GitHub Enterprise with the token, with no git installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L166 ]
+[test: system git hands the token to the sign-in's host through the scoped helper : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L201 ]
+[test: the token is never offered to another host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L186 ]
 
 ## choose the engine in settings @v1 [proposed]
 
@@ -121,6 +158,17 @@ was committed and pushed when it was not.
 - Then: git runs with the machine's own credentials and git identity, as
   it would on the system-git engine
 - and the Settings dialog says gh is signed out and how to fix it
+
+## paste a personal access token in settings @v1 [proposed]
+
+- When: the user enters a host (github.com by default) and a token under
+  Settings → Git & GitHub and saves it
+- Then: the token is checked against that host and the dialog shows the
+  signed-in account, with the host when it is not github.com
+- and a token the host refuses leaves the previous sign-in in place
+
+[test: POST /api/auth/github/token signs in, and refuses a bad token or host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L139 ]
+[test: a pasted token signs in to a GitHub Enterprise host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L123 ]
 
 ## sign in with GitHub (device code) @v1 [proposed]
 
