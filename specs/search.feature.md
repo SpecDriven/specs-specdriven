@@ -23,6 +23,10 @@ name, or scenario body finds its spec in a couple of keystrokes.
   scenario names, and scenario bodies (the `### Tests` table is not
   indexed). Prefix matches and small typos still hit; matches in names
   rank above matches in bodies. Each scenario version is its own result.
+- A feature's and a scenario's custom attributes are indexed too
+  (app/custom-attributes.feature.md "Search finds attributes"), ranked
+  between names and bodies; a hit that only its attributes matched shows
+  their line as its snippet.
 - A result row shows the feature name — plus `› <scenario name> v<N>` for
   scenario hits — and a short snippet around the first match, with the
   matched words highlighted.
