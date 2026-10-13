@@ -80,7 +80,7 @@ plugins in tab order"). What a demo could show next is on the roadmap
 [test: GitHub sign-in routes refuse in demo mode : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L313 ]
 [test: the data directory, git engine and sync server are pinned (403) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L256 ]
 [test: plugin folders, trust and marketplaces are pinned (403); switching plugins still saves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L278 ]
-[test: no native folder chooser — /api/choose-folder is 501 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L354 ]
+[test: no native folder chooser — /api/choose-folder is 501 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L355 ]
 [test: the demo tracks the release repo's issues and refuses every write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L331 ]
 
 ## The demo opens on its own dataset @v1 [proposed]
@@ -99,9 +99,9 @@ plugins in tab order"). What a demo could show next is on the roadmap
   on
 
 [test: boot state names the demo — ephemeral folder, no chooser, js git, no cron : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L109 ]
-[test: the demo user is Test User, not the OS account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L371 ]
-[test: state carries the app version — the demo shows it beside the user : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L359 ]
-[test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L366 ]
+[test: the demo user is Test User, not the OS account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L372 ]
+[test: state carries the app version — the demo shows it beside the user : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L360 ]
+[test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L367 ]
 [test: Specs alone, and every other optional setting on except IntelliJ IDEA : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L149 ]
 [test: a visitor turns the roadmap on and it lists the dataset's pages : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L134 ]
 

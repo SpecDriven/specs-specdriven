@@ -3,7 +3,15 @@
 When the application starts, if the settings file does not
 contain the name of the last data repo, the user is asked the name of the data repo.
 
-Data repo format: https://github.com/SpecDriven/data-insurance (regular gitHub url)
+The first-run screen offers two ways in: open a folder on this computer,
+or clone a GitHub repository with a personal access token — so someone with
+neither git nor the GitHub CLI installed, and without the GitHub App
+sign-in, can still get a repository they can push to. The built-in git
+engine (git-operations.md) does the cloning and pushing.
+
+Data repo format: https://github.com/SpecDriven/data-insurance (regular gitHub url),
+or the same url on a GitHub Enterprise host, e.g. https://github.acme.com/team/specs
+or https://acme.ghe.com/team/specs
 
 The data repo is pulled — one Sync, the same tick the Sync button and the
 reload cron run — when the app starts and whenever a new data folder is
@@ -20,6 +28,37 @@ Local state lives in `.specdriven/settings.json`, looked up in this order:
 uses for the install prefix. Settings are saved back to whichever of the two
 the app read; when neither exists, the project one is created.
 
+## a clone without a token is refused when signed out @v1 [proposed]
+
+- Given: the app is not signed in to the repository's GitHub host
+- When: the user chooses "Clone from GitHub" and leaves the token empty
+- Then: the form says a token is needed, since a clone without one could
+  never push the edits back
+- and nothing is cloned
+
+## a GitHub Enterprise repository is cloned with a token @v1 [proposed]
+
+- Given: a repository url on a GitHub Enterprise host, like
+  https://github.acme.com/team/specs or https://acme.ghe.com/team/specs
+- When: the user clones it from the first-run form with a token made on
+  that host
+- Then: the token is checked against that host's API — `/api/v3` on a
+  GitHub Enterprise Server, `api.<name>.ghe.com` on GHE.com
+- and the repository is cloned, pulled and pushed with it, also on the
+  built-in engine with no git installed
+- and the token is never offered to any other host, on the built-in engine
+  or on system git
+- and a GitHub sign-in saved before GitHub Enterprise support keeps working
+  as a github.com one
+
+[test: GitHub hosts map to their web, API and new-token urls : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L90 ]
+[test: GitHub Enterprise repository urls parse with their host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L100 ]
+[test: a pasted token signs in to a GitHub Enterprise host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L123 ]
+[test: the built-in engine clones and pushes to GitHub Enterprise with the token, with no git installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L166 ]
+[test: the token is never offered to another host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L186 ]
+[test: system git hands the token to the sign-in's host through the scoped helper : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L201 ]
+[test: a record saved before GitHub Enterprise reads as github.com : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L116 ]
+
 ## a newly picked data folder is pulled @v1 [proposed]
 
 - Given: the user confirms a data folder — in the first-run form or in the
@@ -32,6 +71,34 @@ the app read; when neither exists, the project one is created.
 [test: picking a data folder pulls it before the client reads it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartSync.test.ts#L91 ]
 [test: a data folder that is not a git repo is still selectable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartSync.test.ts#L110 ]
 
+## a profile folder keeps a dev run's settings apart @v1 [proposed]
+
+- Given: a developer starts the app with `--profile <dir>` (e.g.
+  `bun run dev --profile /tmp/try`)
+- When: the app starts
+- Then: settings live in `<dir>/.specdriven/`, the home folder — GitHub
+  token, logs — in `<dir>/home`, and GitHub clones in `<dir>/repos`, all
+  created if missing
+- and the first-run screen appears for a new folder, without reading or
+  changing the real settings, token or clones
+- and `SPECDRIVEN_ROOT`, `SPECDRIVEN_HOME` or `SPECDRIVEN_REPOS_DIR` set
+  explicitly still win
+
+[test: profileArg reads --profile <dir> and --profile=<dir> : https://github.com/SpecDriven/specdriven-app/blob/main/tests/profile.test.ts#L18 ]
+[test: --profile points settings, home and clones into the folder and makes them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/profile.test.ts#L25 ]
+[test: a variable set explicitly wins over --profile; no flag changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/profile.test.ts#L38 ]
+
+## a rejected token is not kept @v1 [proposed]
+
+- When: the user pastes a token GitHub does not accept — mistyped, expired
+  or revoked — in the first-run form or in Settings
+- Then: the form says "GitHub did not accept this token — check it and its
+  expiry"
+- and the sign-in the app had before, if any, stays
+- and nothing is cloned
+
+[test: POST /api/auth/github/token signs in, and refuses a bad token or host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L139 ]
+
 ## changing the data repo @v1 [proposed]
 
 - Given: a data repo is configured, and the sidebar header shows its folder
@@ -43,6 +110,33 @@ the app read; when neither exists, the project one is created.
   view to home (the old selection belonged to the old repo)
 - and a value the server rejects leaves the current repo in place, with the
   error shown as a status note
+
+## clone from GitHub with a personal access token @v1 [proposed]
+
+- Given: the first-run form, on a machine that may have neither git nor the
+  GitHub CLI
+- When: the user chooses "Clone from GitHub", enters the repository url
+  and pastes a personal access token
+- Then: the token is checked against GitHub and kept as the app's GitHub
+  sign-in (git-operations.md "Personal access token")
+- and the repository is cloned into the app's repos folder and opens on
+  its README, like a picked folder
+- and edits are pushed back with that token, authored by its account
+- and the form links to the page where the host makes fine-grained
+  tokens, naming the access it needs: the repository, Contents read and
+  write
+
+[test: a pasted token for github.com is stored without a host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L132 ]
+
+## first run offers a folder or a clone @v1 [proposed]
+
+- Given: no data repo is configured, in the local web app or the desktop
+  app
+- When: the app starts
+- Then: the user picks between "Open a folder on this computer" — a path,
+  with Browse… where there is a native chooser — and "Clone from GitHub"
+- and the hosted app keeps its single GitHub url field, its token living
+  on the account page
 
 ## forgetting a data repo @v1 [proposed]
 
