@@ -39,6 +39,37 @@ Then: a confirmation dialog pops up with: "Danger Zone! Confirm that you want to
 The user can click "Confirm" button or the "Cancel" button.
 If confirmed, the spec is deleted.
 
+## Previous and next scenario @v1 [proposed]
+
+From one scenario's editor, step to the scenario before or after it without
+going back to the feature.
+
+- The bar's actions start with two icon buttons, `‹` (previous scenario) and
+  `›` (next scenario), ahead of the save indicator and Delete.
+- They walk every scenario in the order the sidebar tree lists them —
+  folders before features, features by name, each feature's scenarios in
+  file order — crossing from the last scenario of one feature into the first
+  of the next. The open feature's scenarios come from what it holds now, so
+  a draft is part of the walk (navigation.feature.md "Scenario navigation").
+- The keys are `<` and `>`, and `k` and `j` as on the feature page, while the
+  caret is not in a text field. The keyboard cheat sheet and the command
+  palette list them.
+- Each button's tooltip names the scenario it opens, with its version.
+- Stepping leaves the open scenario the way every navigation out of the pane
+  does: it saves what the pane holds first, then opens the other scenario's
+  page, whose url and window title follow.
+- At the first scenario `‹` is disabled, at the last `›` is. A scenario
+  is found by its name and version as last saved, so a different version of
+  the same name is a different stop. A new scenario that has not been saved
+  yet is not in the walk, and both buttons are disabled until it is.
+
+[test: the walk follows the tree — folders first, then features by name, each in file order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L160 ]
+[test: the open feature contributes its live scenarios, drafts included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L172 ]
+[test: the neighbours cross from one feature into the next : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L177 ]
+[test: the first scenario has no previous, the last no next : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L183 ]
+[test: a scenario that isn't in the tree yet — new, never saved — has neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L188 ]
+[test: a scenario is told apart from its other versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L195 ]
+
 ## Spec body resize @v1 [proposed]
 
 A scenario with a table, a ticket and many test links leaves the body editor
@@ -99,34 +130,3 @@ where it is and keeps working.
   result, the data folder name, browser Back — first saves what the pane
   holds, exactly like `<`, then navigates.
 - The reload cron and Sync leave an open pane alone, as they did the dialog.
-
-## Previous and next scenario @v1 [proposed]
-
-From one scenario's editor, step to the scenario before or after it without
-going back to the feature.
-
-- The bar's actions start with two icon buttons, `‹` (previous scenario) and
-  `›` (next scenario), ahead of the save indicator and Delete.
-- They walk every scenario in the order the sidebar tree lists them —
-  folders before features, features by name, each feature's scenarios in
-  file order — crossing from the last scenario of one feature into the first
-  of the next. The open feature's scenarios come from what it holds now, so
-  a draft is part of the walk (navigation.feature.md "Scenario navigation").
-- The keys are `<` and `>`, and `k` and `j` as on the feature page, while the
-  caret is not in a text field. The keyboard cheat sheet and the command
-  palette list them.
-- Each button's tooltip names the scenario it opens, with its version.
-- Stepping leaves the open scenario the way every navigation out of the pane
-  does: it saves what the pane holds first, then opens the other scenario's
-  page, whose url and window title follow.
-- At the first scenario `‹` is disabled, at the last `›` is. A scenario
-  is found by its name and version as last saved, so a different version of
-  the same name is a different stop. A new scenario that has not been saved
-  yet is not in the walk, and both buttons are disabled until it is.
-
-[test: the walk follows the tree — folders first, then features by name, each in file order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L160 ]
-[test: the open feature contributes its live scenarios, drafts included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L172 ]
-[test: the neighbours cross from one feature into the next : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L177 ]
-[test: the first scenario has no previous, the last no next : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L183 ]
-[test: a scenario that isn't in the tree yet — new, never saved — has neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L188 ]
-[test: a scenario is told apart from its other versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L195 ]

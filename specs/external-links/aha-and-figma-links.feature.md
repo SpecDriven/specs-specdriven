@@ -11,21 +11,6 @@ the `.feature.md`.
 Each tool is a setting of its own, off by default, so a team that doesn't use
 Aha! or Figma never sees either. Each link is a url and an optional title.
 
-## Settings switch each tool on @v1 [proposed]
-
-- Given: Settings → Aha! & Figma
-- When: the user turns **Aha! links** or **Figma links** on
-- Then: features and scenarios offer that tool's links: a chip in the
-  feature header, a field in the scenario editor, a list on the scenario card
-- and both are off unless turned on; off is stored as an absent key
-- and turning a tool off hides its chip, field and lists; links already
-  recorded stay in the documents and come back when it is turned on again
-
-[test: are off unless explicitly turned on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L310 ]
-[test: each switch round-trips through the settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L317 ]
-[test: turning a tool off keeps the links already recorded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L342 ]
-[test: each tool is on only when /api/state says true : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinkField.test.tsx#L69 ]
-
 ## Link Aha! and Figma to a feature @v1 [proposed]
 
 - Given: a feature is open and the tool is switched on
@@ -67,21 +52,20 @@ Aha! or Figma never sees either. Each link is a url and an optional title.
 [test: only aha and figma are kinds : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L140 ]
 [test: linking Aha! or Figma is not an edit autosave has to write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinkField.test.tsx#L76 ]
 
-## The scenario card lists its Aha! and Figma links @v1 [proposed]
+## Settings switch each tool on @v1 [proposed]
 
-- Given: a scenario carries Aha! or Figma links and the tool is switched on
-- When: the user looks at its card
-- Then: an "Aha!" and a "Figma" list after the pull requests show each link,
-  opening it in a new tab
-- and a link reads as its title; without one, as the Aha! reference number
-  (APP-123, APP-E-12, APP-I-7) or the Figma file name taken from the url
-- and a scenario with none shows no list
+- Given: Settings → Aha! & Figma
+- When: the user turns **Aha! links** or **Figma links** on
+- Then: features and scenarios offer that tool's links: a chip in the
+  feature header, a field in the scenario editor, a list on the scenario card
+- and both are off unless turned on; off is stored as an absent key
+- and turning a tool off hides its chip, field and lists; links already
+  recorded stay in the documents and come back when it is turned on again
 
-[test: each by its title or the name in its url, linking to it in a new tab : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinkField.test.tsx#L15 ]
-[test: a scenario with none shows no list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinkField.test.tsx#L25 ]
-[test: the label is the title, else the name from the url, and never empty : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L107 ]
-[test: the name an Aha! url gives away is its reference number : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L92 ]
-[test: the name a Figma url gives away is the file's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L100 ]
+[test: are off unless explicitly turned on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L310 ]
+[test: each switch round-trips through the settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L317 ]
+[test: turning a tool off keeps the links already recorded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L342 ]
+[test: each tool is on only when /api/state says true : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinkField.test.tsx#L69 ]
 
 ## The links survive everything the markdown does @v1 [proposed]
 
@@ -98,3 +82,19 @@ Aha! or Figma never sees either. Each link is a url and an optional title.
 [test: a scenario moved to another feature takes them along : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L258 ]
 [test: two peers linking different records concurrently end with both : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L178 ]
 [test: the projection never carries them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L186 ]
+
+## The scenario card lists its Aha! and Figma links @v1 [proposed]
+
+- Given: a scenario carries Aha! or Figma links and the tool is switched on
+- When: the user looks at its card
+- Then: an "Aha!" and a "Figma" list after the pull requests show each link,
+  opening it in a new tab
+- and a link reads as its title; without one, as the Aha! reference number
+  (APP-123, APP-E-12, APP-I-7) or the Figma file name taken from the url
+- and a scenario with none shows no list
+
+[test: each by its title or the name in its url, linking to it in a new tab : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinkField.test.tsx#L15 ]
+[test: a scenario with none shows no list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinkField.test.tsx#L25 ]
+[test: the label is the title, else the name from the url, and never empty : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L107 ]
+[test: the name an Aha! url gives away is its reference number : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L92 ]
+[test: the name a Figma url gives away is the file's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L100 ]
