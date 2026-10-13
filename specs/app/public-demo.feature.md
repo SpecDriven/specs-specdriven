@@ -55,11 +55,11 @@ plugins in tab order"). What a demo could show next is on the roadmap
   shows it as it was
 - and page loads at the same moment each end up on a complete copy
 
-[test: a page load reseeds — the edit is gone, the folder is a new generation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L217 ]
-[test: edits land in the working copy; the pristine snapshot is untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L200 ]
-[test: publishing a feature succeeds locally and stays inside the working copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L239 ]
-[test: a roadmap edit lands in the working copy; the snapshot is untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L183 ]
-[test: concurrent page loads serialize into consistent generations : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L231 ]
+[test: a page load reseeds — the edit is gone, the folder is a new generation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L218 ]
+[test: edits land in the working copy; the pristine snapshot is untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L201 ]
+[test: publishing a feature succeeds locally and stays inside the working copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L240 ]
+[test: a roadmap edit lands in the working copy; the snapshot is untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L184 ]
+[test: concurrent page loads serialize into consistent generations : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L232 ]
 
 ## Nothing in the demo reaches GitHub or the visitor's machine @v1 [proposed]
 
@@ -77,11 +77,11 @@ plugins in tab order"). What a demo could show next is on the roadmap
 - and switching plugins on and off, and every cosmetic setting, still saves
   as on the desktop
 
-[test: GitHub sign-in routes refuse in demo mode : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L312 ]
-[test: the data directory, git engine and sync server are pinned (403) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L255 ]
-[test: plugin folders, trust and marketplaces are pinned (403); switching plugins still saves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L277 ]
-[test: no native folder chooser — /api/choose-folder is 501 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L353 ]
-[test: the demo tracks the release repo's issues and refuses every write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L330 ]
+[test: GitHub sign-in routes refuse in demo mode : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L313 ]
+[test: the data directory, git engine and sync server are pinned (403) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L256 ]
+[test: plugin folders, trust and marketplaces are pinned (403); switching plugins still saves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L278 ]
+[test: no native folder chooser — /api/choose-folder is 501 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L354 ]
+[test: the demo tracks the release repo's issues and refuses every write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L331 ]
 
 ## The demo opens on its own dataset @v1 [proposed]
 
@@ -99,9 +99,9 @@ plugins in tab order"). What a demo could show next is on the roadmap
   on
 
 [test: boot state names the demo — ephemeral folder, no chooser, js git, no cron : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L109 ]
-[test: the demo user is Test User, not the OS account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L370 ]
-[test: state carries the app version — the demo shows it beside the user : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L358 ]
-[test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L365 ]
+[test: the demo user is Test User, not the OS account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L371 ]
+[test: state carries the app version — the demo shows it beside the user : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L359 ]
+[test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L366 ]
 [test: Specs alone, and every other optional setting on except IntelliJ IDEA : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L149 ]
 [test: a visitor turns the roadmap on and it lists the dataset's pages : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L134 ]
 
