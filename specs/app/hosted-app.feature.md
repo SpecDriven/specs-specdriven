@@ -222,6 +222,7 @@ version (app/open-source-license.feature.md).
 
 [test: an admin gives and takes the admin role, which applies at once, but never from the last admin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L427 ]
 [test: signed out, the admin page leads to sign-in and its API refuses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L366 ]
+[test: a new account is a user, with no admin API, no admin page and no invites to send : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L355 ]
 
 ## Requests from anywhere else are refused @v1 [proposed]
 
@@ -317,6 +318,7 @@ version (app/open-source-license.feature.md).
 - and the role comes from the gateway's `/auth/me`, not from the worker
 
 [test: an admin opens the admin page and sees the allowed emails and the users : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L373 ]
+[test: a new account is a user, with no admin API, no admin page and no invites to send : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L355 ]
 
 ## The master key is rotated without losing secrets @v1 [proposed]
 
