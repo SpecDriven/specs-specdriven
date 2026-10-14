@@ -3,6 +3,7 @@
 - lower left corner of the screen should show the current user
 - by default this is the user on the OS
 - User Menu will have user info, settings and plugins options
+- in the desktop app, the User Menu also signs in with a GitHub token and signs out
 
 The lower left corner of the sidebar shows a user chip: an avatar circle with
 the user's initials and the user name. The name is the GitHub account when
@@ -10,8 +11,13 @@ one is known — the signed-in login, or the GitHub CLI's account when that
 engine is in effect — and falls back to the OS user otherwise; the server
 reports both via `/api/state`.
 
-- Clicking the chip opens the User Menu just above it, with three options:
-  "User info", "Settings" and "Plugins".
+- Clicking the chip opens the User Menu just above it, with "User info",
+  "Settings" and "Plugins". In the desktop and local app it also offers the
+  GitHub sign-in: "Sign in with token…" while signed out; "Switch account…"
+  and "Sign out" while signed in. "Sign out" is also offered while the
+  GitHub CLI's account stands in for a missing sign-in, and stops the app
+  using it. The hosted app keeps its own "Account &
+  tokens" and "Sign out" (app/hosted-app.feature.md); the demo has neither.
 - Settings and Plugins are pages, not dialogs: each takes the whole editor
   pane, the sidebar stays beside it, and each has its own url (`/settings`,
   `/plugins`), so Back leaves it and a reload or a shared link reopens it.
@@ -39,6 +45,15 @@ reports both via `/api/state`.
 - The Settings page holds the GitHub account section: it reports what
   the GitHub CLI is signed in as, and "Sign in with GitHub" starts the
   device flow; signed in, it shows the account and a "Sign out" button
+- Signing out also stops the app using the GitHub CLI's account: while the
+  app has no sign-in of its own it would otherwise fall back to gh's, and
+  "signed out" would still push and author commits as gh's user. The
+  section then says gh is "not used since you signed out" and offers "Use
+  GitHub CLI account" to turn the fallback back on (the `useGhAccount`
+  setting, absent meaning on)
+- Known limit: the app never edits the machine's git config, so a
+  credential helper `gh auth setup-git` wrote there still answers for
+  system git after signing out
 
 ## open Plugins @v1 [proposed]
 
@@ -67,7 +82,8 @@ reports both via `/api/state`.
 ## open the user menu @v1 [proposed]
 
 - When: the user clicks the chip
-- Then: a menu appears with "User info", "Settings" and "Plugins"
+- Then: a menu appears with "User info", "Settings" and "Plugins", and in
+  the desktop app the GitHub sign-in entries
 - and ESC or clicking anywhere else closes it
 
 ## see the current user @v1 [proposed]
@@ -87,6 +103,44 @@ reports both via `/api/state`.
   github.com/login/device
 - and once the user authorizes there, the page shows
   "Signed in as <login>"
+
+## sign in with a token from the user menu @v1 [proposed]
+
+- When: the user picks "Sign in with token…" from the user menu (or
+  "Switch account…" while signed in)
+- Then: a dialog asks for the GitHub host — github.com unless changed, a
+  GitHub Enterprise host otherwise — and a personal access token
+- and signed in already, it names the account the token would replace
+- and once the host's /user accepts the token, the dialog closes and the
+  chip shows the new login
+- and a token the host rejects shows "GitHub did not accept this token —
+  check it and its expiry" and keeps the previous sign-in
+  (ui/app-start.feature.md "a rejected token is not kept")
+
+[test: signed out, a modal dialog with the host and token fields : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tokenSignInDialog.test.tsx#L14 ]
+[test: signed in, it names the account the token would replace : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tokenSignInDialog.test.tsx#L25 ]
+
+## sign out from the user menu @v1 [proposed]
+
+- When: the user picks "Sign out" from the user menu — offered while the
+  app is signed in, or while the GitHub CLI's account stands in for it
+- Then: the app forgets its GitHub token and stops using gh's account
+- and the chip shows the OS user again
+
+[test: sign out clears the token and stops using the GitHub CLI account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signOut.test.ts#L68 ]
+
+## signing out stops using the GitHub CLI account @v1 [proposed]
+
+- Given: the GitHub CLI is signed in on this computer
+- When: the user signs out of the app
+- Then: the app no longer falls back to gh's account — the chip, commit
+  authorship and Issues tab requests stay signed out
+- and Settings says gh is "not used since you signed out", with a "Use
+  GitHub CLI account" button that turns the fallback back on
+
+[test: signed out with gh signed in, the gh account stands in until sign out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signOut.test.ts#L62 ]
+[test: sign out clears the token and stops using the GitHub CLI account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signOut.test.ts#L68 ]
+[test: Use GitHub CLI account turns the fallback back on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signOut.test.ts#L85 ]
 
 ## view user info @v1 [proposed]
 
