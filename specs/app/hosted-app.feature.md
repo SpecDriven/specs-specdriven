@@ -53,11 +53,36 @@ version (app/open-source-license.feature.md).
   a server log, and is stored only as a hash; passwords are stored as
   argon2id hashes
 
-[test: a link works once, and a weak password does not use it up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L94 ]
-[test: only the newest link works, and links are stored hashed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L102 ]
-[test: password rules — length, common passwords, the email's name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L160 ]
-[test: passwords are stored as argon2id hashes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L87 ]
+[test: a link works once, and a weak password does not use it up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L95 ]
+[test: only the newest link works, and links are stored hashed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L103 ]
+[test: password rules — length, common passwords, the email's name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L161 ]
+[test: passwords are stored as argon2id hashes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L88 ]
 [test: tokens are stored as SHA-256 hex : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L107 ]
+
+## A person's recent data repos survive a redeploy @v1 [proposed]
+
+- Given: a signed-in person whose worker has a data repo open, and a
+  gateway with a datastore (Accounts survive a redeploy)
+- When: the service is redeployed without its volume, so their folder and
+  settings file are gone, and they use the app again
+- Then: their new worker opens the repo they had open, with their other
+  recent repos listed after it, instead of asking for a repo url
+- and the gateway notes a worker's repos every minute while it runs, when
+  it stops and after a crash, keeps them per account, and pushes them
+  with the datastore; deleting the account deletes them
+- and only GitHub repos are kept, in canonical form, once each, at most
+  ten
+- and a worker that already has a settings file keeps its own: the gateway
+  never overwrites it, never follows one that is a symlink, and does not
+  read one over 1 MB
+
+[test: only GitHub repos are kept, in canonical form, once each, at most ten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L45 ]
+[test: the list is stored per user, reports a change, and goes with the account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L53 ]
+[test: a worker's settings give the open repo first, then its recent ones; no file says nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L69 ]
+[test: a settings file that is a symlink is not followed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L78 ]
+[test: a worker with no settings gets the remembered repos; one with settings keeps its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L89 ]
+[test: after the volume is lost, the user's next worker opens the repo they had open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L100 ]
+[test: a snapshot read into a fresh database gives back accounts, roles, allowed emails, secrets that still open, recent repos and live sessions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L86 ]
 
 ## A worker cannot reach another person's folder @v1 [proposed]
 
@@ -86,8 +111,9 @@ version (app/open-source-license.feature.md).
 - Then: they sign in again with the same password, still signed in where
   their session had not expired, and their sealed tokens still open
 - and the repo holds one JSON file per table: accounts with password
-  hashes, invites, secrets still sealed under the master key, and session
-  hashes without IP address, user agent or last-seen time
+  hashes and roles, allowed emails, secrets still sealed under the master
+  key, recent data repos, and session hashes without IP address, user
+  agent or last-seen time
 - and a change worth keeping is pushed within 30 seconds, a session's
   sliding expiry only on shutdown, and everything once more before the
   gateway exits
@@ -97,13 +123,13 @@ version (app/open-source-license.feature.md).
   account list is never pushed over the real one
 - and the token never reaches a worker or a command line
 
-[test: a snapshot read into a fresh database gives back accounts, invites, secrets that still open, and live sessions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L84 ]
-[test: an empty database is filled from what another gateway pushed; one with accounts keeps its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L115 ]
-[test: a sliding session expiry alone is not pushed until a forced save; a new session is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L138 ]
-[test: a repo that cannot be read stops the restore, and nothing is ever pushed over it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L163 ]
-[test: a push that loses a race to another writer is redone on top of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L172 ]
-[test: the token and repo come from the environment; no token means no datastore : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L65 ]
-[test: the token reaches git through the credential helper's environment, not argv : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L76 ]
+[test: a snapshot read into a fresh database gives back accounts, roles, allowed emails, secrets that still open, recent repos and live sessions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L86 ]
+[test: an empty database is filled from what another gateway pushed; one with accounts keeps its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L120 ]
+[test: a sliding session expiry alone is not pushed until a forced save; a new session is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L175 ]
+[test: a repo that cannot be read stops the restore, and nothing is ever pushed over it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L200 ]
+[test: a push that loses a race to another writer is redone on top of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L209 ]
+[test: the token and repo come from the environment; no token means no datastore : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L67 ]
+[test: the token reaches git through the credential helper's environment, not argv : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L78 ]
 [test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L53 ]
 
 ## Change the password on the account page @v1 [proposed]
@@ -114,8 +140,8 @@ version (app/open-source-license.feature.md).
   ends, and this browser stays signed in
 - and without the right current password nothing changes
 
-[test: changing the password needs the current one and ends every session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L149 ]
-[test: changing the password signs this browser in again and ends the others : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L307 ]
+[test: changing the password needs the current one and ends every session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L150 ]
+[test: changing the password signs this browser in again and ends the others : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L337 ]
 
 ## Each person gets a worker of their own @v1 [proposed]
 
@@ -132,9 +158,9 @@ version (app/open-source-license.feature.md).
   the password
 - and an account id that is not a UUID never becomes a folder path
 
-[test: signed in, the app's pages come from the gateway and its API from the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L183 ]
-[test: two users reach two different workers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L192 ]
-[test: request bodies pass through and streamed answers stream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L202 ]
+[test: signed in, the app's pages come from the gateway and its API from the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L213 ]
+[test: two users reach two different workers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L222 ]
+[test: request bodies pass through and streamed answers stream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L232 ]
 [test: two users get two workers with separate settings, folders and environments : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L84 ]
 [test: restart stops the worker; the next request starts a fresh one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L109 ]
 [test: idle workers are stopped by the sweep : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L118 ]
@@ -155,10 +181,10 @@ version (app/open-source-license.feature.md).
 - and the health check answers without a Host check or a session, for the
   hosting platform
 
-[test: a request for another host name is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L145 ]
-[test: a cross-site write is refused before it reaches the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L211 ]
-[test: the sign-in pages carry a strict CSP and are never framed or cached : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L159 ]
-[test: the health check answers without a Host check or a session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L140 ]
+[test: a request for another host name is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L147 ]
+[test: a cross-site write is refused before it reaches the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L241 ]
+[test: the sign-in pages carry a strict CSP and are never framed or cached : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L189 ]
+[test: the health check answers without a Host check or a session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L142 ]
 
 ## Reset a forgotten password @v1 [proposed]
 
@@ -172,11 +198,11 @@ version (app/open-source-license.feature.md).
   its worker, emails a "your password was changed" notice and signs this
   browser in
 
-[test: a forgotten password gets a reset link that expires in 30 minutes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L114 ]
-[test: forgot sends nothing for an unknown address, and sign-up of a taken one sends a reset : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L125 ]
-[test: a reset ends every session and sends a change notice : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L134 ]
-[test: forgot answers the same for known and unknown addresses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L246 ]
-[test: a reset through the API ends the old session and restarts the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L254 ]
+[test: a forgotten password gets a reset link that expires in 30 minutes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L115 ]
+[test: forgot sends nothing for an unknown address, and sign-up of a taken one sends a reset : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L126 ]
+[test: a reset ends every session and sends a change notice : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L135 ]
+[test: forgot answers the same for known and unknown addresses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L276 ]
+[test: a reset through the API ends the old session and restarts the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L284 ]
 
 ## Sign in and out @v1 [proposed]
 
@@ -194,21 +220,21 @@ version (app/open-source-license.feature.md).
 - and signed out, the app's pages send the browser to sign-in and its API
   answers 401
 
-[test: login, logout and a wrong password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L224 ]
-[test: repeated wrong passwords are rate limited : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L236 ]
-[test: the rate limiter allows max attempts per window, then refuses until it passes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L210 ]
-[test: the session cookie is HttpOnly, SameSite=Lax, and __Host- Secure over https : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L199 ]
-[test: a session is stored as a hash, slides with use and ends at 30 days : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L175 ]
-[test: an unused session expires after 14 days : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L191 ]
+[test: login, logout and a wrong password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L254 ]
+[test: repeated wrong passwords are rate limited : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L266 ]
+[test: the rate limiter allows max attempts per window, then refuses until it passes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L211 ]
+[test: the session cookie is HttpOnly, SameSite=Lax, and __Host- Secure over https : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L200 ]
+[test: a session is stored as a hash, slides with use and ends at 30 days : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L176 ]
+[test: an unused session expires after 14 days : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L192 ]
 [test: tokens are stored as SHA-256 hex : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L107 ]
-[test: signed out, the app redirects pages to sign-in and refuses the API : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L150 ]
+[test: signed out, the app redirects pages to sign-in and refuses the API : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L180 ]
 
 ## Sign up with an email address @v1 [proposed]
 
 - Given: the gateway's sign-up page
 - When: someone enters an email address
-- Then: if the address, or its domain, is on the sign-up allowlist, or
-  someone invited it from their account page, the gateway emails a link
+- Then: if the address, or its domain, is on the allowed emails an admin
+  keeps on the admin page, whatever its case, the gateway emails a link
   that chooses the account's first password; any other address gets
   nothing
 - and the account has no password until that link is used, so nobody can
@@ -220,12 +246,12 @@ version (app/open-source-license.feature.md).
 - and addresses are trimmed and lowercased, and anything that is not an
   email address is refused
 
-[test: sign-up emails a link to an allowlisted address or domain, and nothing to others : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L56 ]
-[test: an invite lets an address sign up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L66 ]
-[test: an address cannot sign in until its link sets a password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L77 ]
-[test: forgot sends nothing for an unknown address, and sign-up of a taken one sends a reset : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L125 ]
-[test: emails are trimmed and lowercased; non-emails are refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L169 ]
-[test: sign-up, set password, and the session reaches the user's worker without the gateway cookie : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L171 ]
+[test: sign-up emails a link to an allowed address or domain, and nothing to others : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L60 ]
+[test: an address put on the list later can sign up, and is matched whatever its case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L70 ]
+[test: an address cannot sign in until its link sets a password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L78 ]
+[test: forgot sends nothing for an unknown address, and sign-up of a taken one sends a reset : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L126 ]
+[test: emails are trimmed and lowercased; non-emails are refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L170 ]
+[test: sign-up, set password, and the session reaches the user's worker without the gateway cookie : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L201 ]
 
 ## The master key is rotated without losing secrets @v1 [proposed]
 
@@ -261,9 +287,9 @@ version (app/open-source-license.feature.md).
   out or to another account there is refused, and the app points to the
   account page instead
 
-[test: the GitHub token is checked with GitHub, stored sealed, shown by hint, and restarts the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L267 ]
-[test: agent keys are saved, listed by hint and removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L283 ]
-[test: one user's secrets are not another's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L299 ]
+[test: the GitHub token is checked with GitHub, stored sealed, shown by hint, and restarts the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L297 ]
+[test: agent keys are saved, listed by hint and removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L313 ]
+[test: one user's secrets are not another's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L329 ]
 [test: a sealed secret opens with the same key and associated data : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L23 ]
 [test: a ciphertext moved to another user or name, or altered, does not open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L30 ]
 [test: a different master key cannot open the secret : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L40 ]
