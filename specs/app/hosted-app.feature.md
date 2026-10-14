@@ -125,12 +125,52 @@ version (app/open-source-license.feature.md).
 
 [test: a snapshot read into a fresh database gives back accounts, roles, allowed emails, secrets that still open, recent repos and live sessions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L86 ]
 [test: an empty database is filled from what another gateway pushed; one with accounts keeps its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L120 ]
+[test: a repo pushed before the roles is read as plain users and allowed emails, and saved in today's form : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L143 ]
 [test: a sliding session expiry alone is not pushed until a forced save; a new session is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L175 ]
 [test: a repo that cannot be read stops the restore, and nothing is ever pushed over it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L200 ]
 [test: a push that loses a race to another writer is redone on top of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L209 ]
 [test: the token and repo come from the environment; no token means no datastore : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L67 ]
 [test: the token reaches git through the credential helper's environment, not argv : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L78 ]
 [test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L53 ]
+
+## Admins give and take the admin role @v1 [proposed]
+
+- Given: a signed-in admin on the admin page, which lists every account
+  with its role
+- When: they make another account an admin, or an admin a user
+- Then: the change applies on that person's next request, with no new
+  sign-in
+- and the last admin cannot stop being one, so there is always an admin:
+  the page says to make someone else an admin first
+- and a role is admin or user, nothing else, and an account that does not
+  exist is refused
+- and a new account is a user, and a database from before the roles keeps
+  its accounts as users and its invites as allowed emails
+
+[test: an admin gives and takes the admin role, which applies at once, but never from the last admin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L427 ]
+[test: accounts start as users : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L57 ]
+[test: a database from before the roles keeps its accounts as users and its invites as allowed emails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L62 ]
+
+## Admins keep the allowed emails on the admin page @v1 [proposed]
+
+- Given: a signed-in admin on the admin page
+- When: they add an address (`name@example.com`) or a whole domain
+  (`@example.com`) to the allowed emails
+- Then: that address, or any address in that domain, can sign up (Sign up
+  with an email address)
+- and the page lists each entry with the admin who added it
+- and an entry is trimmed and lowercased, and anything that is neither an
+  address nor @ and a domain is refused
+- and adding an address can email it an invitation to the sign-up page,
+  unless it already has an account; a domain is never emailed
+- and taking an entry off the list stops new sign-ups only: an account
+  already made keeps working
+
+[test: an admin opens the admin page and sees the allowed emails and the users : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L373 ]
+[test: an admin allows an address, which is invited and can sign up, and takes it off again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L390 ]
+[test: a domain on the list lets every address in it sign up, and is never emailed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L418 ]
+[test: an allowed entry is an address or @ and a domain, trimmed and lowercased : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L48 ]
+[test: an invite goes only to an address without an account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L114 ]
 
 ## Change the password on the account page @v1 [proposed]
 
@@ -168,6 +208,20 @@ version (app/open-source-license.feature.md).
 [test: page paths get the shell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L26 ]
 [test: bundled assets are served immutable, and nothing outside the build is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L34 ]
 [test: the API, plugin bundles and writes are the worker's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L42 ]
+
+## Only admins open the admin page @v1 [proposed]
+
+- Given: a signed-in person who is not an admin
+- When: they open `/admin` or call the `/auth/admin/*` API
+- Then: both answer 403, the page with the gateway pages' strict content
+  security policy
+- and nobody else can add to the allowed emails: the old invite API is
+  gone
+- and signed out, `/admin` sends the browser to sign-in and comes back
+  after, and the API answers 401
+
+[test: an admin gives and takes the admin role, which applies at once, but never from the last admin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L427 ]
+[test: signed out, the admin page leads to sign-in and its API refuses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L366 ]
 
 ## Requests from anywhere else are refused @v1 [proposed]
 
@@ -253,6 +307,17 @@ version (app/open-source-license.feature.md).
 [test: emails are trimmed and lowercased; non-emails are refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L170 ]
 [test: sign-up, set password, and the session reaches the user's worker without the gateway cookie : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L201 ]
 
+## The Admin item under Settings shows for admins only @v1 [proposed]
+
+- Given: a signed-in person using the hosted app
+- When: they open the user menu
+- Then: an admin sees Admin under Settings, which opens the admin page;
+  anyone else does not
+- and the account page links to the admin page for admins only
+- and the role comes from the gateway's `/auth/me`, not from the worker
+
+[test: an admin opens the admin page and sees the allowed emails and the users : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L373 ]
+
 ## The master key is rotated without losing secrets @v1 [proposed]
 
 - Given: a deployment with stored secrets
@@ -265,6 +330,24 @@ version (app/open-source-license.feature.md).
 
 [test: rotating the master key re-seals old rows, which then need only the new key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L80 ]
 [test: a master key must be 32 bytes, and production requires one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L47 ]
+
+## The original admin is set up on a database with no admin @v1 [proposed]
+
+- Given: a gateway starting on a database with no admin, after the
+  datastore restore (Accounts survive a redeploy), so a fresh volume takes
+  the repo's accounts and admins first
+- When: it starts
+- Then: the original admin written into the code (`david@vydra.net`)
+  becomes the admin, with the password chosen for it, which the code keeps
+  only as an argon2id hash
+- and the account is created if needed; if it exists, its password is
+  replaced and its sessions and emailed links end
+- and a database that has an admin, whoever it is, keeps it, and nothing
+  changes; since the last admin cannot lose the role, this happens once
+
+[test: a database without an admin makes the original admin one, with the chosen password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L80 ]
+[test: an existing original account becomes the admin with the chosen password, its old sign-ins ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L93 ]
+[test: a database that has an admin, whoever it is, keeps it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L105 ]
 
 ## Tokens and keys are kept sealed @v1 [proposed]
 
