@@ -91,6 +91,29 @@ Allow to access GitHub issues from the app.
   issues to show, and every write is refused: no New issue, Edit, Close,
   Reopen or Comment is offered, and the routes behind them answer 403
 
+## Requests to GitHub go to the code repo's host @v1 [proposed]
+
+- Given: the code repo lives on github.com or on a GitHub Enterprise host,
+  and the user is signed in in Settings, through the GitHub CLI, or both
+- When: the app reads or writes the code repo's issues, or looks up a pull
+  request's title or a test's name
+- Then: the request goes to that host's API — api.github.com, `/api/v3` on a
+  GitHub Enterprise Server, `api.<name>.ghe.com` on GHE.com
+- and it carries the app's sign-in only when that sign-in was made on the
+  same host; a GitHub Enterprise token is never offered to github.com or any
+  other host, the rule git follows too
+- and the GitHub CLI's token goes to github.com only, and only while its
+  account is in use — signing out of the app turns it off
+- and a GitHub Enterprise code repo gets an Issues tab when the app is signed
+  in on its host, with its origin in any spelling git writes
+
+[test: issues of a GitHub Enterprise repository are read from its host's API with its token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L105 ]
+[test: a GitHub Enterprise token never reaches another host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L113 ]
+[test: a github.com sign-in goes to github.com only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L128 ]
+[test: the GitHub CLI token is used for github.com only, while its account is in use : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L137 ]
+[test: an Enterprise code repo has issues when the app is signed in on its host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L158 ]
+[test: Enterprise remotes in every spelling name the repo on the sign-in's host only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L172 ]
+
 ## The Issues tab shows the code repo's GitHub issues @v1 [proposed]
 
 - Given: the GitHub issues setting is on, and the data folder's
