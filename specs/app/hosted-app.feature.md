@@ -369,6 +369,7 @@ version (app/open-source-license.feature.md).
 [test: an admin with no specs repo gets the account page, the admin page and Sign out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L9 ]
 [test: a user who is not an admin gets no admin link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L19 ]
 [test: a token GitHub refuses points at the account page's token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L30 ]
+[test: other errors and no error get no hint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L40 ]
 [test: a refused clone points at the account page's token, not Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L154 ]
 
 ## Tokens and keys are kept sealed @v1 [proposed]
