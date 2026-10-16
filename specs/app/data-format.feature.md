@@ -69,6 +69,11 @@ Releases up to 0.1.150 predate the marker and cannot be stopped this way.
 [test: data saved by a newer app blocks this one at start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L127 ]
 [test: a marker git left conflict markers in reads as its highest format : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L113 ]
 [test: an answer carrying the header reports the version it asks for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L76 ]
+[test: an empty header still reports, with no version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L85 ]
+[test: ordinary answers pass through, and stopping restores fetch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L94 ]
+[test: server and client agree on the blocked-folder header : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L63 ]
+[test: an unreadable marker is ignored : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L130 ]
+[test: a folder in this format opens as usual : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L139 ]
 
 ## The format marker is written on first sync @v1 [proposed]
 
@@ -85,6 +90,7 @@ Releases up to 0.1.150 predate the marker and cannot be stopped this way.
 [test: a folder in the first format gets no marker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L73 ]
 [test: a compatible tick leaves a first-format folder as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L86 ]
 [test: an older marker is raised; a newer one is never lowered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L87 ]
+[test: a folder with no marker is in the first format : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L67 ]
 
 ## The update screen says what to install @v1 [proposed]
 
@@ -101,3 +107,4 @@ Releases up to 0.1.150 predate the marker and cannot be stopped this way.
 [test: macOS and Linux get the curl installer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L43 ]
 [test: Windows gets the PowerShell installer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L49 ]
 [test: the desktop app points at the latest release : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L57 ]
+[test: a folder that names no version still says to update : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L37 ]
