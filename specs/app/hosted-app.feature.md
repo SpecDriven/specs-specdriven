@@ -32,13 +32,13 @@ version (app/open-source-license.feature.md).
 - and the user the app shows is the person's account email, not the
   container's operating-system user
 
-[test: %s %s is refused in a hosted worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L54 ]
-[test: Settings refuse %j in a hosted worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L89 ]
-[test: the state says hosted and offers no local agents, folder chooser or IntelliJ : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L81 ]
-[test: the agent pane lists no sessions rather than refusing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L75 ]
-[test: other settings still change in a hosted worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L102 ]
-[test: the git engine is never gh in a hosted worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L107 ]
-[test: the user shown is the gateway's account, not the container's OS user : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L136 ]
+[test: %s %s is refused in a hosted worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L55 ]
+[test: Settings refuse %j in a hosted worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L90 ]
+[test: the state says hosted and offers no local agents, folder chooser or IntelliJ : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L82 ]
+[test: the agent pane lists no sessions rather than refusing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L76 ]
+[test: other settings still change in a hosted worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L103 ]
+[test: the git engine is never gh in a hosted worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L108 ]
+[test: the user shown is the gateway's account, not the container's OS user : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L137 ]
 
 ## A password link works once @v1 [proposed]
 
@@ -99,7 +99,7 @@ version (app/open-source-license.feature.md).
 
 [test: each worker runs as its own uid, owning its folder alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L128 ]
 [test: the worker command drops to the user's uid with no way back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L169 ]
-[test: a data repo's code-repo path is ignored, so it cannot point into another user's folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L146 ]
+[test: a data repo's code-repo path is ignored, so it cannot point into another user's folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L147 ]
 
 ## Accounts survive a redeploy @v1 [proposed]
 
@@ -351,6 +351,26 @@ version (app/open-source-license.feature.md).
 [test: an existing original account becomes the admin with the chosen password, its old sign-ins ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L93 ]
 [test: a database that has an admin, whoever it is, keeps it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L105 ]
 
+## The start screen leads to the account and admin pages @v1 [proposed]
+
+- Given: a signed-in person in the hosted app with no specs repo open yet,
+  or whose worker does not answer, so there is no user menu
+- When: the app shows its start screen, asking for a specs repository url,
+  or says the server cannot be reached
+- Then: the screen shows the account's email and links to the account
+  page, to the admin page for an admin, and to Sign out, so an admin can
+  administer the app without any specs repo
+- and a clone GitHub refuses, such as with "Write access to repository not
+  granted", says the token on the account page cannot read and write the
+  repository, and links to that page
+- and a clone, pull or push with no usable token says to add one on the
+  account page, never to sign in with GitHub in Settings
+
+[test: an admin with no specs repo gets the account page, the admin page and Sign out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L9 ]
+[test: a user who is not an admin gets no admin link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L19 ]
+[test: a token GitHub refuses points at the account page's token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L30 ]
+[test: a refused clone points at the account page's token, not Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L154 ]
+
 ## Tokens and keys are kept sealed @v1 [proposed]
 
 - Given: a signed-in person on the account page
@@ -381,5 +401,5 @@ version (app/open-source-license.feature.md).
 [test: the store keeps ciphertext only and lists hints, never values : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L52 ]
 [test: agent key names are short lowercase slugs, and github is reserved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L98 ]
 [test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L53 ]
-[test: the env token backend reads the gateway's record and refuses to change it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L114 ]
-[test: agent keys arrive as SPECDRIVEN_AGENT_KEY_<NAME> variables : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L124 ]
+[test: the env token backend reads the gateway's record and refuses to change it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L115 ]
+[test: agent keys arrive as SPECDRIVEN_AGENT_KEY_<NAME> variables : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L125 ]
