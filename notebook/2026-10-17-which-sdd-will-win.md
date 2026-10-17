@@ -16,4 +16,4 @@ At the same time, we are seeing general decrease in quality -- lots of articles 
 
 I think that asking folks to write specs before code will end in the same result as test-driven -- only a fraction will ever do it consistently. However, asking developers to include specs with tests that are traceable to tests is something that may become a standard practice. Specs can be reviewd for accuracy by PMs and Testers and AI agents can keep specs and tests traceable and prevent the drift that killed most similar efforts in the past. I've been building a tool at https://specdriven.app to make this approach as enjoyable as possible. The fine folks at https://codespeak.dev/ seem to agree.
 
-Would love to hear yoru though
+Would love to hear your thought on this topic.
