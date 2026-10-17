@@ -15,7 +15,7 @@ I see the same dynamics playing out in spec-driven development (SDD) as we colle
 
 Given the right architectural guidance, frontier models and agents can do a solid job with this approach, and employers are expecting significant gains in developer productivity from their investment in AI.
 
-However as the system grows in size and complexity, both huma
+However as the system grows in size and complexity, both human and AI find it difficult to make forward progress. For developers, the idea of Cognitive Debt is graining popularity
 
 I think asking folks to write specs before code will end up with the same result as test-driven development: only a fraction will ever do it consistently. However, asking developers to include specs that are traceable to tests is something that should be a standard practice. Agents will generate the first draft of the specs, and developers will vet them along with the automated tests. Additionally, specs should be reviewed for accuracy by PMs and testers. AI agents can keep specs and tests in sync, preventing the drift that killed most similar efforts in the past. I’ve been building a tool at https://specdriven.app to make this approach as enjoyable as possible. The fine folks at https://codespeak.dev/ seem to agree.
 
