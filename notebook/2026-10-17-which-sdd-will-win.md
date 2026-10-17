@@ -14,4 +14,4 @@ I see the same dynamics play out in spec-driven development as we collectively t
 
 At the same time, we are seeing general decrease in quality -- lots of articles have covered this trend. So how can SDD help?
 
-I think that asking folks to write specs before code will end in the same result as test-driven -- only a fraction will ever do it consistently.
+I think that asking folks to write specs before code will end in the same result as test-driven -- only a fraction will ever do it consistently. However, asking developers to include specs and tests that are traceable to tests is something that may become a standard practice. The fine folks at
