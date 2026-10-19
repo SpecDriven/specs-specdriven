@@ -35,7 +35,7 @@ the page.
 ## Feature entry menu
 
 Each feature entry in the left pane has a drop down menu (a `⋯` button,
-visible on hover) with two items: `File` and `Delete`.
+visible on hover) with three items: `File`, `Move to folder…` and `Delete`.
 
 - `File` opens a submenu with `Rename`, which renames the underlying file.
   - Only the file name to the left of the dot is shown and edited; the
@@ -44,9 +44,12 @@ visible on hover) with two items: `File` and `Delete`.
   - The feature's url follows the file name, so links to the old name go stale.
   - The feature name (the `# <name>` heading) is untouched — renaming that is
     the Edit link on the main page.
+- `Move to folder…` offers the list of folders and moves the file into the
+  chosen one — the same `git mv` as dragging it there (folders.feature.md).
 - `Delete` deletes the feature file after a confirmation — a `git rm`,
   committed and pushed.
 - ESC or a click anywhere else closes the menu.
+- Folder rows carry a `⋯` menu of their own — folders.feature.md.
 
 ## Folders
 
