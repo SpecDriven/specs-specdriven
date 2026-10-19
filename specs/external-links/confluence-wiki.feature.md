@@ -131,8 +131,8 @@ in the feature's Automerge document and written into the `.feature.md` while
 - Given: a feature being published
 - When: the page is written
 - Then: it holds the feature's description, then each scenario in scope under
-  its name, with a status lozenge (green published, yellow proposed, grey
-  draft), its version, its steps and links to its tests, named after the test
+  its name, with its steps and links to its tests, named after the test
+- and a scenario's status and version are not shown on the page
 - and "Published scenarios only" leaves the proposed and draft ones out
 - and markdown reads as it does in the app: emphasis, lists and task items,
   quotes, tables, links, and code blocks as Confluence code blocks
@@ -141,10 +141,10 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and everything taken from the feature is escaped, and a link to anything
   but a web, mail or relative address stays text
 
-[test: description, then each scenario with its status, version, steps and tests : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L110 ]
-[test: published only leaves the rest out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L124 ]
-[test: a draft is grey, and a scenario name is escaped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L133 ]
-[test: says so when no scenario is in scope : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L141 ]
+[test: description, then each scenario with its steps and tests, no status or version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L110 ]
+[test: published only leaves the rest out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L122 ]
+[test: a draft shows no status or version, and a scenario name is escaped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L131 ]
+[test: says so when no scenario is in scope : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L139 ]
 [test: escapes text, attributes included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L36 ]
 [test: bold, italic, strike and code : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L41 ]
 [test: links only to safe destinations; a javascript url stays text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L47 ]
