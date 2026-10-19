@@ -73,15 +73,19 @@ via `SPECDRIVEN_ROOT`:
   geometry is clamped to the minimums and to the displays actually
   present; a missing or unreadable file simply means the centered default.
 - On macOS the window uses the hidden-inset title bar: the traffic lights sit
-  inside the sidebar header, and the header doubles as the drag region.
-  Elsewhere the window wears the system title bar and the sidebar header is
-  an ordinary header.
+  inside the sidebar header, and the drag regions are the sidebar header, the
+  editor pane's header row — the trail, the page's title and its actions —
+  and thin strips along the window's edges, so the window moves from the top
+  of either pane alike. Elsewhere the window wears the system title bar and
+  both headers are ordinary headers.
 - A drag region swallows the clicks of everything inside it, so every control
-  the header holds — the folder name and its recent-folders menu, ✎, Sync,
-  and the icons at the right that open the Pomodoro bar, the coding agent
-  pane and the collapsed sidebar — stays clickable rather than dragging the
-  window. The rule covers the header's controls as a class, so an icon added
-  later is clickable without anyone remembering this.
+  the headers hold — in the sidebar the folder name and its recent-folders
+  menu, ✎, Sync, and the icons at the right that open the Pomodoro bar, the
+  coding agent pane and the collapsed sidebar; in the editor pane the crumbs,
+  the feature's name that renames on click and its input, the icon buttons
+  and the More menu — stays clickable rather than dragging the window. The
+  rule covers each header's controls as a class, so an icon added later is
+  clickable without anyone remembering this.
 - Deep links (navigation.feature.md) keep working inside the app: the
   internal protocol serves the app shell for every `/features/...` url.
 - The app registers the `specdriven://` scheme with the OS, so a link shared
@@ -237,8 +241,8 @@ AND  open links in IntelliJ is Off
 - Then: each opens what it names — the Pomodoro bar, the coding agent pane,
   the collapsed sidebar — instead of starting to drag the window
 
-[test: every control in the header stays clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L121 ]
-[test: the header's icon buttons stay clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L134 ]
+[test: every control in the header stays clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L156 ]
+[test: the header's icon buttons stay clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L169 ]
 
 ## the internal protocol serves only the app's bundled files @v1 [proposed]
 
@@ -279,6 +283,20 @@ AND  open links in IntelliJ is Off
   visible
 
 [test: a too-small saved size is raised to the minimums : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L76 ]
+
+## the window moves from the top of either pane @v1 [proposed]
+
+- Given: the macOS desktop app, with the editor pane open on a spec or the
+  README
+- When: the user presses on the editor pane's header row — the trail, the
+  empty space beside it, or the band above it — and drags
+- Then: the window moves, as it does from the sidebar header; a click on a
+  crumb, the feature's name or an icon in that row still does what it names
+
+[test: the editor pane's header is a drag region too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L194 ]
+[test: every control in the editor header stays clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L199 ]
+[test: off macOS the editor header is not a drag region : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L211 ]
+[test: the opt-out is scoped to the two headers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L225 ]
 
 ## the window reopens where it was left @v1 [proposed]
 
