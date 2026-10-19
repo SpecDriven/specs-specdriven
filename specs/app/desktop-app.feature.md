@@ -153,9 +153,9 @@ to the user-only token file next to the home settings file.
   `--all`, alongside the macOS dmg and zip
 - and with no flag the build packages only for the machine it runs on
 
-[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L6 ]
-[test: a Mac cross-builds the Linux app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L12 ]
-[test: a release build packages every target and architecture in package.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L35 ]
+[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L17 ]
+[test: a Mac cross-builds the Linux app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L23 ]
+[test: a release build packages every target and architecture in package.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L46 ]
 [test: packaging never rebuilds native modules for the build machine : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L47 ]
 
 ## a maximized session comes back maximized @v1 [published]
@@ -177,8 +177,8 @@ to the user-only token file next to the home settings file.
 - and a mistyped flag or an unsupported host stops the same way, naming the
   problem
 
-[test: the macOS app is only built on macOS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L17 ]
-[test: an unsupported host or a mistyped flag stops before packaging : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L30 ]
+[test: the macOS app is only built on macOS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L28 ]
+[test: an unsupported host or a mistyped flag stops before packaging : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L41 ]
 
 ## desktop and web share settings @v1 [proposed]
 
@@ -316,6 +316,6 @@ AND  open links in IntelliJ is Off
 - and `--win` on macOS or Linux stops before packaging, saying the Windows app
   can only be built on Windows, while `--all` there still means macOS and Linux
 
-[test: the Windows app is only built on Windows, and --all leaves it out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L22 ]
-[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L6 ]
-[test: --local packages only the installer this machine starts, for its own architecture : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L39 ]
+[test: the Windows app is only built on Windows, and --all leaves it out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L33 ]
+[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L17 ]
+[test: --local packages only the installer this machine starts, for its own architecture : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L50 ]
