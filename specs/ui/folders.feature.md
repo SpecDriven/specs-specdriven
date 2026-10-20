@@ -47,6 +47,12 @@ data repo, so the structure renders naturally on GitHub too.
 - The Edit link edits the feature name only (ui.feature.md), never the
   file name or its folder; moving a feature between folders is done by
   dragging, or by `Move to folder…` in the feature's `⋯` menu.
+- A folder can carry a description: a `description.txt` file inside it,
+  whose first non-blank line the sidebar shows in place of the folder name.
+  The folder's name is still what sorts it, names its url and shows on
+  hover. A folder with a description but no feature is one git tracks, so
+  renaming or deleting it is committed and pushed like a folder with
+  features; deleting it asks once, like an empty folder.
 
 ## delete a folder @v1 [proposed]
 
@@ -57,7 +63,7 @@ data repo, so the structure renders naturally on GitHub too.
 - Otherwise: the deletion is refused unless the user confirms deleting the
   features with it ("delete a folder with features in it")
 
-[test: deleteFolder deletes empty folders only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L120 ]
+[test: deleteFolder deletes empty folders only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L129 ]
 
 ## delete a folder with features in it @v1 [proposed]
 
@@ -71,9 +77,25 @@ data repo, so the structure renders naturally on GitHub too.
   back
 - Otherwise: without the confirmation nothing changes
 
-[test: deleteFolder with force removes a folder with features in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L150 ]
-[test: deleteFolder with force git-rms the directory, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L340 ]
+[test: deleteFolder with force removes a folder with features in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L159 ]
+[test: deleteFolder with force git-rms the directory, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L395 ]
 [test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L183 ]
+
+## describe a folder @v1 [proposed]
+
+- Given: a folder with a `description.txt` file in it
+- When: the sidebar tree is shown
+- Then: the folder's row shows the file's first non-blank line, trimmed, in
+  place of the folder name, and the folder name on hover
+- And: a folder without the file, or with a blank one, shows its name
+- And: renaming a folder holding only a description is a `git mv`,
+  committed and pushed, and deleting it a `git rm`, committed and pushed,
+  with no second confirmation since no feature goes with it
+
+[test: readFolderDescription and listFolderDescriptions read description.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L293 ]
+[test: buildTree carries folder descriptions; folderLabel falls back to the name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L318 ]
+[test: renameFolder git-mvs a folder holding only a description.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L416 ]
+[test: deleteFolder removes a folder holding only a description.txt, committed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L431 ]
 
 ## deselect a folder with ESC @v1 [proposed]
 
@@ -90,7 +112,7 @@ data repo, so the structure renders naturally on GitHub too.
 - And: choosing one moves the feature the way a drag does — a `git mv` into
   that folder, committed and pushed, keeping its file name
 
-[test: featuresBeneath, folderRenamed and folderOptions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L201 ]
+[test: featuresBeneath, folderRenamed and folderOptions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L210 ]
 
 ## move feature to another folder @v1 [proposed]
 
@@ -107,6 +129,6 @@ data repo, so the structure renders naturally on GitHub too.
   its new url, and a name already taken by a sibling folder is refused
 - And: an empty folder is renamed on disk alone, git never having tracked it
 
-[test: renameFolder renames in place, slugified, refusing collisions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L169 ]
-[test: renameFolder works in a plain directory with features (no git repo) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L190 ]
-[test: renameFolder git-mvs the directory and its documents, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L317 ]
+[test: renameFolder renames in place, slugified, refusing collisions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L178 ]
+[test: renameFolder works in a plain directory with features (no git repo) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L199 ]
+[test: renameFolder git-mvs the directory and its documents, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L372 ]

@@ -16,10 +16,10 @@
 - and a wait of 0 turns the limit off; a session that talks to the API
   directly is never held to it
 
-[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L878 ]
-[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L901 ]
-[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L914 ]
-[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L925 ]
+[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L880 ]
+[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L903 ]
+[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L916 ]
+[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L927 ]
 
 ## The agent pane starts Claude in Auto mode @v1 [published]
 
@@ -67,4 +67,4 @@
 - and a `cwd` that is not absolute, or names a folder that does not exist, is
   refused with an error
 
-[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L602 ]
+[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L604 ]

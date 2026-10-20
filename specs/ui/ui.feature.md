@@ -242,6 +242,20 @@ has, one column to its left.
   state. Closing the agent pane brings the editor back without forgetting the
   choice: reopening the pane hides it again.
 
+## Keyboard shortcuts come from one registry @v1 [proposed]
+
+- Every shortcut is declared once (src/frontend/shortcuts.tsx) and a single
+  window listener dispatches from that registry; the cheat sheet (`?`)
+  renders the same list
+- While typing in a field, single-letter shortcuts never fire; only
+  shortcuts marked for fields (such as the search key) do
+- A keydown that carries no key at all — what a browser's autofill sends
+  into an email or password field — matches no shortcut and is left to the
+  field, never an error on the page
+
+[test: a keydown with no key — a browser's autofill — matches no shortcut and throws nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shortcuts.test.tsx#L97 ]
+[test: real keys still dispatch — a field keeps single letters, takes shortcuts marked for fields : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shortcuts.test.tsx#L109 ]
+
 ## Recent folder list @v1 [published]
 
 There is a small down arrow icon next to folder name that brings up a list of previous folders. Support up to 10 folders.
