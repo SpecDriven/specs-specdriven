@@ -76,8 +76,8 @@ in the feature's Automerge document and written into the `.feature.md` while
 
 [test: creates the page under the parent, links it from the feature and remembers the parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L230 ]
 [test: a /display/ parent url is found by its title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L310 ]
-[test: what cannot be published says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L350 ]
-[test: a token Confluence no longer accepts is reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L365 ]
+[test: what cannot be published says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L351 ]
+[test: a token Confluence no longer accepts is reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L366 ]
 [test: a modal dialog with the parent url, the two scopes and Publish : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L16 ]
 [test: Publish waits for a page url on a wiki with a token, and says what is missing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L54 ]
 [test: reads the /spaces/KEY/pages/ID form, title or not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L10 ]
@@ -113,7 +113,7 @@ in the feature's Automerge document and written into the `.feature.md` while
   the server refuses the Confluence routes — the hosted app keeps no device
   secrets
 
-[test: the hosted app refuses Confluence altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L375 ]
+[test: the hosted app refuses Confluence altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L376 ]
 
 ## S7: The Confluence line in the feature file @v1 [proposed]
 
@@ -138,7 +138,7 @@ in the feature's Automerge document and written into the `.feature.md` while
 [test: a three-way merge keeps the side that changed it, ours when both did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L143 ]
 [test: writes the line while links are published; with links off the editor still sees it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L156 ]
 [test: a file in the other form is not drift; an edited page link is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L168 ]
-[test: with Publish external links off the file has no line, but the feature keeps the link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L342 ]
+[test: with Publish external links off the file has no line, but the feature keeps the link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L343 ]
 
 ## S8: What the page contains @v1 [proposed]
 
@@ -151,8 +151,11 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and "Published scenarios only" leaves the proposed and draft ones out
 - and markdown reads as it does in the app: emphasis, lists and task items,
   quotes, tables, links, and code blocks as Confluence code blocks
-- and an image on the web is shown; one stored in the app, which Confluence
-  cannot reach, is replaced by its alt text
+- and an image on the web is shown by its url; one stored in the app, which
+  Confluence cannot reach by url, is uploaded as the page's attachment and
+  shown from there — an attachment already there under the name is left
+  alone, since the name carries a hash of the file. A failed upload leaves
+  the page published, with a warning
 - and everything taken from the feature is escaped, and a link to anything
   but a web, mail or relative address stays text
 
@@ -165,7 +168,10 @@ in the feature's Automerge document and written into the `.feature.md` while
 [test: links only to safe destinations; a javascript url stays text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L52 ]
 [test: a bare url is a link, its trailing punctuation left outside : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L59 ]
 [test: a test reference is a link named after the test : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L64 ]
-[test: an image on the web is embedded; one the app stores is its alt text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L70 ]
+[test: an image on the web is embedded by url; one the app stores as the page's attachment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L70 ]
+[test: names each stored image a page shows once, in order; escaped text is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L207 ]
+[test: the images a page shows are uploaded as its attachments, once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L409 ]
+[test: a page whose images cannot be attached is still published, with a warning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L433 ]
 [test: paragraphs keep their soft breaks : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L82 ]
 [test: headings are shifted under the heading they sit in, at most h6 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L86 ]
 [test: lists, task items, quotes and rules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L90 ]
