@@ -61,7 +61,7 @@ Formats so far:
 [test: a document in this app's schema loads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L158 ]
 [test: the data format is pinned to the schema versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L49 ]
 
-## S3: Data saved by a newer app blocks this one @v1 [proposed]
+## S3: Data saved by a newer app blocks App from opening @v1 [proposed]
 
 - Given: a data folder whose marker names a format newer than this app's
 - When: the app starts on it, the user opens it, or a teammate's push raises
@@ -71,6 +71,8 @@ Formats so far:
   every other API answer carries the `X-SpecDriven-Data-Too-New` header, so
   the next request the page makes puts the screen up
 - and a marker git left conflict markers in reads as its highest format
+
+![image](/api/images/image-3898c71c.png)
 
 [test: data saved by a newer app blocks this one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L101 ]
 [test: data saved by a newer app blocks this one at start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L131 ]
