@@ -13,7 +13,7 @@ its qTest test case (external-links/qtest-test-cases.feature.md): one
 in the feature's Automerge document and written into the `.feature.md` while
 "Publish external links" is on. Publishing again updates that page.
 
-## A Confluence token is kept per wiki on this device @v1 [proposed]
+## S1: A Confluence token is kept per wiki on this device @v1 [proposed]
 
 - Given: Settings → Confluence
 - When: the user enters the wiki's url (or any page url of it) and a personal
@@ -36,16 +36,30 @@ in the feature's Automerge document and written into the `.feature.md` while
 [test: a bare wiki url, or any page of it, normalized : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L66 ]
 [test: two urls are the same wiki by origin and context path, whatever the case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L73 ]
 
-## Confluence is reserved for the page link @v1 [proposed]
+## S2: Confluence is reserved for the page link @v1 [proposed]
 
 - Given: the ticket fields, or Settings → Project management
 - When: the user names "Confluence" as the ticket's tool
 - Then: it is refused — a ticket written under Confluence would read back as
   the published page
 
-[test: Confluence can't be a ticket tool, where it would read back as the page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L102 ]
+[test: Confluence can't be a ticket tool, where it would read back as the page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L106 ]
 
-## Publish a feature to Confluence @v1 [proposed]
+## S3: Each scenario is numbered and can be linked to @v1 [proposed]
+
+- Given: a feature being published
+- When: the page is written
+- Then: each scenario's heading leads with its number, S1, S2, …, as on its
+  card in the app
+- and the number is an anchor on the page and a link to itself, so a reader
+  clicks it to get a deep link to that scenario to share
+- and a page of the published scenarios only keeps the numbers the app
+  shows, so S3 is the same scenario in the app and in the wiki
+- and a draft, which has no number in the app, has none on the page
+
+[test: each scenario leads with its number, an anchor linking to itself, as in the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L136 ]
+
+## S4: Publish a feature to Confluence @v1 [proposed]
 
 - Given: a feature is open and this device holds a token for the wiki
 - When: the user picks "Publish to Confluence…" in the feature's ⋯ menu,
@@ -62,8 +76,8 @@ in the feature's Automerge document and written into the `.feature.md` while
 
 [test: creates the page under the parent, links it from the feature and remembers the parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L230 ]
 [test: a /display/ parent url is found by its title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L310 ]
-[test: what cannot be published says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L334 ]
-[test: a token Confluence no longer accepts is reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L349 ]
+[test: what cannot be published says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L350 ]
+[test: a token Confluence no longer accepts is reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L365 ]
 [test: a modal dialog with the parent url, the two scopes and Publish : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L16 ]
 [test: Publish waits for a page url on a wiki with a token, and says what is missing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L54 ]
 [test: reads the /spaces/KEY/pages/ID form, title or not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L10 ]
@@ -72,7 +86,7 @@ in the feature's Automerge document and written into the `.feature.md` while
 [test: reads /display/KEY/Title as a title to look up, + and %20 as spaces : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L38 ]
 [test: is null for what names no page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L49 ]
 
-## Publishing again updates the page @v1 [proposed]
+## S5: Publishing again updates the page @v1 [proposed]
 
 - Given: a feature that was published before
 - When: the user publishes it again
@@ -91,7 +105,7 @@ in the feature's Automerge document and written into the `.feature.md` while
 [test: a feature published before says publishing again updates its page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L38 ]
 [test: a page url lies on its wiki, and not on another : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L79 ]
 
-## Publishing is off in the hosted app @v1 [proposed]
+## S6: Publishing is off in the hosted app @v1 [proposed]
 
 - Given: the hosted app
 - When: the user opens a feature's ⋯ menu or Settings
@@ -99,9 +113,9 @@ in the feature's Automerge document and written into the `.feature.md` while
   the server refuses the Confluence routes — the hosted app keeps no device
   secrets
 
-[test: the hosted app refuses Confluence altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L359 ]
+[test: the hosted app refuses Confluence altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L375 ]
 
-## The Confluence line in the feature file @v1 [proposed]
+## S7: The Confluence line in the feature file @v1 [proposed]
 
 - Given: a feature published to Confluence
 - When: the user looks at its `.feature.md`
@@ -114,24 +128,25 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and teammates' edits to the line merge like the ticket link's: replaced
   whole, the side that changed it wins
 
-[test: is lifted into confluence, beside the ticket and the test case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L66 ]
-[test: survives a round trip, written after the ticket and test case whatever the order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L74 ]
-[test: is the page and never the ticket, whatever its case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L80 ]
-[test: under a scenario heading it is content, not the scenario's ticket : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L89 ]
-[test: is left out with the other links when links are not written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L97 ]
-[test: holds the page link and projects it back, or leaves it out with links off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L109 ]
-[test: reconcile sets, replaces and clears it — and a no-op stays one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L119 ]
-[test: a three-way merge keeps the side that changed it, ours when both did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L139 ]
-[test: writes the line while links are published; with links off the editor still sees it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L152 ]
-[test: a file in the other form is not drift; an edited page link is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L164 ]
-[test: with Publish external links off the file has no line, but the feature keeps the link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L326 ]
+[test: is lifted into confluence, beside the ticket and the test case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L70 ]
+[test: survives a round trip, written after the ticket and test case whatever the order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L78 ]
+[test: is the page and never the ticket, whatever its case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L84 ]
+[test: under a scenario heading it is content, not the scenario's ticket : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L93 ]
+[test: is left out with the other links when links are not written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L101 ]
+[test: holds the page link and projects it back, or leaves it out with links off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L113 ]
+[test: reconcile sets, replaces and clears it — and a no-op stays one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L123 ]
+[test: a three-way merge keeps the side that changed it, ours when both did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L143 ]
+[test: writes the line while links are published; with links off the editor still sees it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L156 ]
+[test: a file in the other form is not drift; an edited page link is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L168 ]
+[test: with Publish external links off the file has no line, but the feature keeps the link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L342 ]
 
-## What the page contains @v1 [proposed]
+## S8: What the page contains @v1 [proposed]
 
 - Given: a feature being published
 - When: the page is written
 - Then: it holds the feature's description, then each scenario in scope under
-  its name, with its steps and links to its tests, named after the test
+  its number and name, with its steps and links to its tests, named after
+  the test
 - and a scenario's status and version are not shown on the page
 - and "Published scenarios only" leaves the proposed and draft ones out
 - and markdown reads as it does in the app: emphasis, lists and task items,
@@ -141,19 +156,19 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and everything taken from the feature is escaped, and a link to anything
   but a web, mail or relative address stays text
 
-[test: description, then each scenario with its steps and tests, no status or version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L110 ]
-[test: published only leaves the rest out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L122 ]
-[test: a draft shows no status or version, and a scenario name is escaped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L131 ]
-[test: says so when no scenario is in scope : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L139 ]
-[test: escapes text, attributes included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L36 ]
-[test: bold, italic, strike and code : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L41 ]
-[test: links only to safe destinations; a javascript url stays text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L47 ]
-[test: a bare url is a link, its trailing punctuation left outside : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L54 ]
-[test: a test reference is a link named after the test : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L59 ]
-[test: an image on the web is embedded; one the app stores is its alt text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L65 ]
-[test: paragraphs keep their soft breaks : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L77 ]
-[test: headings are shifted under the heading they sit in, at most h6 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L81 ]
-[test: lists, task items, quotes and rules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L85 ]
-[test: tables, with a header row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L92 ]
-[test: fenced code is a code macro, CDATA kept whole : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L98 ]
+[test: description, then each scenario with its steps and tests, no status or version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L115 ]
+[test: published only leaves the rest out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L127 ]
+[test: a draft shows no status or version, and a scenario name is escaped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L149 ]
+[test: says so when no scenario is in scope : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L157 ]
+[test: escapes text, attributes included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L41 ]
+[test: bold, italic, strike and code : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L46 ]
+[test: links only to safe destinations; a javascript url stays text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L52 ]
+[test: a bare url is a link, its trailing punctuation left outside : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L59 ]
+[test: a test reference is a link named after the test : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L64 ]
+[test: an image on the web is embedded; one the app stores is its alt text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L70 ]
+[test: paragraphs keep their soft breaks : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L82 ]
+[test: headings are shifted under the heading they sit in, at most h6 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L86 ]
+[test: lists, task items, quotes and rules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L90 ]
+[test: tables, with a header row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L97 ]
+[test: fenced code is a code macro, CDATA kept whole : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L103 ]
 [test: published only leaves the proposed scenarios out of the page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L318 ]

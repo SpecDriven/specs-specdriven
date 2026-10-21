@@ -22,7 +22,14 @@ appears with the first release that raises the format past 1.
 
 Releases up to 0.1.150 predate the marker and cannot be stopped this way.
 
-## A blocked app does not push @v1 [proposed]
+Formats so far:
+
+- 1: everything up to the scenario numbers.
+- 2: scenario headings carry their position, `## S1: <name> @v1 [published]`
+  (crud-feature.md "Feature file format"). An earlier release reads the
+  number as part of the name and would rewrite the file without it.
+
+## S1: A blocked app does not push @v1 [proposed]
 
 - Given: a teammate on a newer app has raised the folder's format and pushed
 - When: this app's sync tick pulls it
@@ -37,11 +44,11 @@ Releases up to 0.1.150 predate the marker and cannot be stopped this way.
 - and a live-sync peer's operations are not absorbed while the folder is
   blocked
 
-[test: a blocked app does not push : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L70 ]
-[test: the API refuses writes to a blocked folder and marks its reads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L95 ]
-[test: a folder rolled back to this format is unblocked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L105 ]
+[test: a blocked app does not push : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L71 ]
+[test: the API refuses writes to a blocked folder and marks its reads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L99 ]
+[test: a folder rolled back to this format is unblocked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L109 ]
 
-## A newer Automerge document is refused @v1 [proposed]
+## S2: A newer Automerge document is refused @v1 [proposed]
 
 - Given: a feature, page or test-management document whose `schemaVersion`
   is newer than this app reads — from git, or from a live-sync peer
@@ -50,11 +57,11 @@ Releases up to 0.1.150 predate the marker and cannot be stopped this way.
 - and the folder is blocked as if its marker were newer, even when the
   marker says nothing
 
-[test: a newer Automerge document is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L136 ]
-[test: a document in this app's schema loads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L154 ]
+[test: a newer Automerge document is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L140 ]
+[test: a document in this app's schema loads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L158 ]
 [test: the data format is pinned to the schema versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L49 ]
 
-## Data saved by a newer app blocks this one @v1 [proposed]
+## S3: Data saved by a newer app blocks this one @v1 [proposed]
 
 - Given: a data folder whose marker names a format newer than this app's
 - When: the app starts on it, the user opens it, or a teammate's push raises
@@ -65,34 +72,36 @@ Releases up to 0.1.150 predate the marker and cannot be stopped this way.
   the next request the page makes puts the screen up
 - and a marker git left conflict markers in reads as its highest format
 
-[test: data saved by a newer app blocks this one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L97 ]
-[test: data saved by a newer app blocks this one at start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L127 ]
-[test: a marker git left conflict markers in reads as its highest format : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L113 ]
+[test: data saved by a newer app blocks this one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L101 ]
+[test: data saved by a newer app blocks this one at start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L131 ]
+[test: a marker git left conflict markers in reads as its highest format : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L117 ]
 [test: an answer carrying the header reports the version it asks for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L76 ]
 [test: an empty header still reports, with no version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L85 ]
 [test: ordinary answers pass through, and stopping restores fetch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L94 ]
 [test: server and client agree on the blocked-folder header : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L63 ]
-[test: an unreadable marker is ignored : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L130 ]
-[test: a folder in this format opens as usual : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L139 ]
+[test: an unreadable marker is ignored : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L134 ]
+[test: a folder in this format opens as usual : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L143 ]
 
-## The format marker is written on first sync @v1 [proposed]
+## S4: The format marker is written on first sync @v1 [proposed]
 
 - Given: a data folder whose marker is older than this app's format, or that
   has none while this app's format is past 1
 - When: the app's sync tick has brought it up to this format
 - Then: the marker is written with this app's format and version, and rides
   the tick's commit
-- and a folder in format 1 gets no marker, so no repo gets a commit that says
-  what a missing file already says
+- and a folder with no marker — the first format — is raised to this app's
+  format on its first tick, now that the format is past 1 (the scenario
+  numbers); while the format was 1, no marker was written, so no repo got a
+  commit that said what a missing file already said
 - and a marker newer than this app's is never lowered
 
-[test: the format marker is written on first sync : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L79 ]
-[test: a folder in the first format gets no marker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L73 ]
-[test: a compatible tick leaves a first-format folder as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L86 ]
-[test: an older marker is raised; a newer one is never lowered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L87 ]
+[test: the format marker is written on first sync : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L83 ]
+[test: a folder in the first format is raised to this app's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L73 ]
+[test: a compatible tick raises a first-format folder to this app's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L87 ]
+[test: an older marker is raised; a newer one is never lowered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L91 ]
 [test: a folder with no marker is in the first format : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L67 ]
 
-## The update screen says what to install @v1 [proposed]
+## S5: The update screen says what to install @v1 [proposed]
 
 - Given: the update screen
 - Then: it names the version the folder needs and the one running

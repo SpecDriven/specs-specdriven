@@ -17,7 +17,7 @@ Each link is a url and an optional title. A GitHub pull request url is
 recognised (`https://github.com/<owner>/<repo>/pull/<n>`), and so is a
 GitLab merge request; any other https url is accepted as it stands.
 
-## Link a pull request to a feature @v1 [proposed]
+## S1: Link a pull request to a feature @v1 [proposed]
 
 - Given: a feature is open
 - When: the user presses the "Pull requests" chip in the feature header
@@ -27,11 +27,11 @@ GitLab merge request; any other https url is accepted as it stands.
 - and adds and removes are stored on the feature's document the way a
   scenario's are, and the markdown is left alone
 
-[test: the feature's own links, the same way : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L217 ]
-[test: a scenario not in the document is null; the feature itself is target null : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L161 ]
-[test: links a scenario, then the feature, answering with the editor's view : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L333 ]
+[test: the feature's own links, the same way : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L224 ]
+[test: a scenario not in the document is null; the feature itself is target null : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L168 ]
+[test: links a scenario, then the feature, answering with the editor's view : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L340 ]
 
-## Link a pull request to a scenario @v1 [proposed]
+## S2: Link a pull request to a scenario @v1 [proposed]
 
 - Given: a scenario is open in the editor pane and has been saved at least
   once, so the document holds an entry for it
@@ -48,15 +48,15 @@ GitLab merge request; any other https url is accepted as it stands.
 - and the field is there for a published scenario too — its name, version
   and body stay read-only, its pull requests do not
 
-[test: the document holds the links, the file does not, the editor sees them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L204 ]
-[test: links a scenario by name and version, and by its document id : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L151 ]
-[test: a draft scenario can carry links, and the editor's view shows them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L239 ]
-[test: a feature from before documents gets one minted first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L231 ]
+[test: the document holds the links, the file does not, the editor sees them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L211 ]
+[test: links a scenario by name and version, and by its document id : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L158 ]
+[test: a draft scenario can carry links, and the editor's view shows them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L246 ]
+[test: a feature from before documents gets one minted first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L238 ]
 [test: lists the links with a remove button each, and an add row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequestField.test.tsx#L34 ]
 [test: before the scenario is in the document the field waits, and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequestField.test.tsx#L44 ]
 [test: linking a pull request is not an edit autosave has to write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequestField.test.tsx#L78 ]
 
-## The links survive everything the markdown does @v1 [proposed]
+## S3: The links survive everything the markdown does @v1 [proposed]
 
 - Given: a scenario or feature carries pull request links
 - When: the scenario is saved, proposed or published; the feature is
@@ -68,16 +68,16 @@ GitLab merge request; any other https url is accepted as it stands.
   same time end with both, on both peers
 - and a scenario deleted from the feature takes its links with it
 
-[test: a save that edits the body, and one that renames the scenario by id : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L256 ]
-[test: publishing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L269 ]
-[test: renaming the feature : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L277 ]
-[test: an outside edit absorbed as drift : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L285 ]
-[test: a three-way merge reconciled into the document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L295 ]
-[test: a scenario deleted from the feature takes its links with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L307 ]
-[test: two peers linking different pull requests concurrently end with both : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L181 ]
-[test: the projection never carries them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L193 ]
+[test: a save that edits the body, and one that renames the scenario by id : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L263 ]
+[test: publishing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L276 ]
+[test: renaming the feature : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L284 ]
+[test: an outside edit absorbed as drift : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L292 ]
+[test: a three-way merge reconciled into the document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L302 ]
+[test: a scenario deleted from the feature takes its links with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L314 ]
+[test: two peers linking different pull requests concurrently end with both : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L188 ]
+[test: the projection never carries them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L200 ]
 
-## The scenario card lists its pull requests @v1 [proposed]
+## S4: The scenario card lists its pull requests @v1 [proposed]
 
 - Given: a scenario carries pull request links
 - When: the user looks at its card
@@ -88,10 +88,10 @@ GitLab merge request; any other https url is accepted as it stands.
 
 [test: each as #n title, linking to it in a new tab : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequestField.test.tsx#L19 ]
 [test: a scenario with none shows no list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequestField.test.tsx#L28 ]
-[test: the label is #n and the title, and never empty : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L119 ]
-[test: the number is read from GitHub and GitLab urls alike : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L112 ]
+[test: the label is #n and the title, and never empty : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L126 ]
+[test: the number is read from GitHub and GitLab urls alike : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L119 ]
 
-## The title is read from GitHub @v1 [proposed]
+## S5: The title is read from GitHub @v1 [proposed]
 
 - When: a GitHub pull request url is typed into the add field
 - Then: the app asks GitHub for the pull request, with the app's sign-in
@@ -106,12 +106,12 @@ GitLab merge request; any other https url is accepted as it stands.
 - and a url that is not an http or https url cannot be added, nor one the
   list already holds
 
-[test: the pull request endpoint is asked, with the sign-in token, and the state is read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L397 ]
-[test: merged, closed and draft are told apart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L408 ]
-[test: no such pull request is a 200 with a reason, so the link can still be added : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L417 ]
-[test: a url that is not a GitHub pull request is a 400 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L425 ]
-[test: demo mode never asks GitHub : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L431 ]
+[test: the pull request endpoint is asked, with the sign-in token, and the state is read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L404 ]
+[test: merged, closed and draft are told apart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L415 ]
+[test: no such pull request is a 200 with a reason, so the link can still be added : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L424 ]
+[test: a url that is not a GitHub pull request is a 400 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L432 ]
+[test: demo mode never asks GitHub : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L438 ]
 [test: the hint words the state read from GitHub, or why nothing was read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequestField.test.tsx#L65 ]
 [test: only an http(s) url the list does not already hold can be added : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequestField.test.tsx#L57 ]
-[test: the route accepts only rows with an http(s) url and a string title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L131 ]
-[test: a GitHub pull request url is taken apart; anything else is not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L93 ]
+[test: the route accepts only rows with an http(s) url and a string title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L138 ]
+[test: a GitHub pull request url is taken apart; anything else is not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L100 ]

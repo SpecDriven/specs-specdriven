@@ -8,7 +8,7 @@ shared through git like the specs. Attributes are bookkeeping around a spec,
 like feature flags (app/feature-flags.feature.md): a published scenario's
 attributes may change without a new version.
 
-## A proposal cannot add an attribute @v1 [proposed]
+## S1: A proposal cannot add an attribute @v1 [proposed]
 
 - Given: the spec proposals service (app/spec-proposals.feature.md)
 - When: a visitor proposes a scenario, or a new feature, whose text would
@@ -16,9 +16,9 @@ attributes may change without a new version.
 - Then: the proposal is refused, like one that would add a flag or a
   ticket link
 
-[test: a body that would add a custom attribute line is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L109 ]
+[test: a body that would add a custom attribute line is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L113 ]
 
-## Attribute lines sit under the heading @v1 [proposed]
+## S2: Attribute lines sit under the heading @v1 [proposed]
 
 - Given: a feature or a scenario in a `.feature.md`
 - When: a line right under its `#` or `##` heading holds nothing but
@@ -39,13 +39,13 @@ attributes may change without a new version.
   new line wherever the key changes
 - and what the definitions say never changes how a file is read
 
-[test: attribute lines under the headings are lifted into attributes and written back as they were : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L63 ]
-[test: a line may mix flag and attribute tokens, among the link and authorship lines in any order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L81 ]
-[test: text that only looks like a token stays text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L101 ]
-[test: an exact duplicate is dropped, the same attribute with another value is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L131 ]
-[test: only attributes the token can carry are written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L139 ]
+[test: attribute lines under the headings are lifted into attributes and written back as they were : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L67 ]
+[test: a line may mix flag and attribute tokens, among the link and authorship lines in any order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L85 ]
+[test: text that only looks like a token stays text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L105 ]
+[test: an exact duplicate is dropped, the same attribute with another value is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L135 ]
+[test: only attributes the token can carry are written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L143 ]
 
-## Attributes are checked against their definitions @v1 [proposed]
+## S3: Attributes are checked against their definitions @v1 [proposed]
 
 - Given: the data repo defines custom attributes
 - When: I open a feature
@@ -66,7 +66,7 @@ attributes may change without a new version.
 [test: one that does not fit is amber and says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/attributesField.test.tsx#L45 ]
 [test: labelled by key and warning about nothing when the repo defines none, and nothing when there are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/attributesField.test.tsx#L64 ]
 
-## Attributes are edited on the feature and in the scenario editor @v1 [proposed]
+## S4: Attributes are edited on the feature and in the scenario editor @v1 [proposed]
 
 - Given: the data repo defines attributes for features or for scenarios
 - When: I open the feature header's attributes chip
@@ -94,7 +94,7 @@ attributes may change without a new version.
 [test: an attribute change is something for the editor's autosave to save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/attributesField.test.tsx#L148 ]
 [test: each part gets the control that fits it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributesDsl.test.ts#L124 ]
 
-## Attributes change on a published scenario without a new version @v1 [proposed]
+## S5: Attributes change on a published scenario without a new version @v1 [proposed]
 
 - Given: a published scenario
 - When: I add, change or remove one of its attributes
@@ -104,10 +104,10 @@ attributes may change without a new version.
 - and a published body an older app recorded with an attribute or flag
   line still in its text does not refuse later saves of the feature
 
-[test: an attribute on a published scenario changes without a new version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L251 ]
-[test: a published body recorded with its attribute line still in it does not block a save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L204 ]
+[test: an attribute on a published scenario changes without a new version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L255 ]
+[test: a published body recorded with its attribute line still in it does not block a save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L208 ]
 
-## Attributes travel with the document and merge as one value @v1 [proposed]
+## S6: Attributes travel with the document and merge as one value @v1 [proposed]
 
 - Given: the Automerge document behind a feature
   (datastore/automerge-store.feature.md)
@@ -118,12 +118,12 @@ attributes may change without a new version.
   wins, ours when both did, as with the flags
 - and the feature listing carries each feature's and scenario's attributes
 
-[test: the document carries the attributes and projects them back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L163 ]
-[test: a three-way merge keeps the side that changed the attributes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L178 ]
-[test: a draft's attributes reach the editor from the document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L277 ]
-[test: the listing carries the feature's and the scenarios' attributes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L323 ]
+[test: the document carries the attributes and projects them back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L167 ]
+[test: a three-way merge keeps the side that changed the attributes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L182 ]
+[test: a draft's attributes reach the editor from the document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L281 ]
+[test: the listing carries the feature's and the scenarios' attributes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L327 ]
 
-## Custom attributes are defined in Settings @v1 [proposed]
+## S7: Custom attributes are defined in Settings @v1 [proposed]
 
 - Given: Settings → Custom attributes, for the open data folder
 - When: I write a definition, a pattern starting in the first column
@@ -162,9 +162,9 @@ attributes may change without a new version.
 [test: the example has no problems and its definitions are summed up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributesEditor.test.tsx#L19 ]
 [test: each problem is listed by line and described by the text box : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributesEditor.test.tsx#L29 ]
 [test: an empty file offers the example : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributesEditor.test.tsx#L40 ]
-[test: the definitions are read with the listing and written by Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L294 ]
+[test: the definitions are read with the listing and written by Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L298 ]
 
-## Filter features and scenarios by attribute @v1 [proposed]
+## S8: Filter features and scenarios by attribute @v1 [proposed]
 
 - Given: features and scenarios that carry attributes
 - When: I open the sidebar's Filter menu
@@ -184,7 +184,7 @@ attributes may change without a new version.
 [test: the active filter reads by its label : https://github.com/SpecDriven/specdriven-app/blob/main/tests/treeFilter.test.ts#L80 ]
 [test: custom attributes changed in the open feature carry over too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L142 ]
 
-## Search finds attributes @v1 [proposed]
+## S9: Search finds attributes @v1 [proposed]
 
 - Given: a feature or a scenario carrying `[br:good-driver-discount:on]`
 - When: I search for "good driver" (search.feature.md)
@@ -193,7 +193,7 @@ attributes may change without a new version.
 
 [test: a custom attribute finds the feature or scenario carrying it, with its line as the snippet : https://github.com/SpecDriven/specdriven-app/blob/main/tests/search.test.ts#L74 ]
 
-## The definitions file is shared with the team @v1 [proposed]
+## S10: The definitions file is shared with the team @v1 [proposed]
 
 - Given: `custom-attributes.txt` at the root of the data repo
 - When: the app syncs (datastore/automerge-store.feature.md)
@@ -204,5 +204,5 @@ attributes may change without a new version.
 - and when two teammates change the file at once, the pull merges both
   changes instead of stopping the sync on a conflict
 
-[test: a save folds in a disk edit Settings has not shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L312 ]
-[test: two teammates adding definitions at once merge on the next sync : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L338 ]
+[test: a save folds in a disk edit Settings has not shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L316 ]
+[test: two teammates adding definitions at once merge on the next sync : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L342 ]

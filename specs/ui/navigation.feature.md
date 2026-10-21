@@ -35,8 +35,9 @@ Identity comes from the data repo, never from session state:
   any stale link.
 - `<scenario>` is `slugify(scenario name)` — the same slugify used for file
   stems. Scenario identity is (name, version), the same identity publish
-  immutability keys on; list position is unstable across syncs and must never
-  appear in a url.
+  immutability keys on; list position — the `S<n>` a scenario shows
+  (ui.feature.md "Number scenarios and move them up or down") — is not
+  identity: a move changes it, so it must never appear in a url.
 - Because published scenarios are immutable, a versioned scenario url is a
   permalink that cannot rot. A url resolves to the same content on any
   instance pointed at the same data repo, so links can be shared via chat and
@@ -77,7 +78,7 @@ what `/features/accidents/record-car-accident` does, versioned scenario
 permalinks included. Registering the scheme is what lets the OS route such a
 link — clicked in chat, email, a browser or a terminal — to the app.
 
-## a second link reuses the running app @v1 [proposed]
+## S1: a second link reuses the running app @v1 [proposed]
 
 - Given: the desktop app is already open on some other feature
 - When: another `specdriven://` link is opened
@@ -91,7 +92,7 @@ link — clicked in chat, email, a browser or a terminal — to the app.
 [test: a second launch carrying a link shows it in the running window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L154 ]
 [test: a second launch without a link only brings the window to the front : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L162 ]
 
-## browser history and reload @v1 [proposed]
+## S2: browser history and reload @v1 [proposed]
 
 - Selecting a feature (sidebar click, create) pushes a history entry —
   back/forward walk through previously viewed features
@@ -99,26 +100,26 @@ link — clicked in chat, email, a browser or a terminal — to the app.
   place (no history entry per keystroke)
 - Reloading the page restores the same feature and scenario selection
 
-## deep link before a data repo is configured @v1 [proposed]
+## S3: deep link before a data repo is configured @v1 [proposed]
 
 - Given: the settings file has no data repo recorded
 - When: the user opens a deep link
 - Then: the repo prompt shows first (app-start.feature.md); once a repo is
   accepted, the deep link is honored
 
-## link to a missing feature @v1 [proposed]
+## S4: link to a missing feature @v1 [proposed]
 
 - When: the user opens `/features/<something>` that doesn't resolve to a file
 - Then: the app shows home with a note that the feature was not found and the
   link may be stale
 
-## link to a missing scenario @v1 [proposed]
+## S5: link to a missing scenario @v1 [proposed]
 
 - When: the feature resolves but the scenario slug (or version) doesn't
 - Then: the feature opens with no selection and a note that the scenario was
   not found — it may have been renamed or deleted
 
-## move a scenario to another feature @v1 [proposed]
+## S6: move a scenario to another feature @v1 [proposed]
 
 - Given: a scenario's ⋯ menu in the sidebar tree, which offers Move to… next
   to Delete and on the same terms — a published scenario only while Settings
@@ -136,20 +137,20 @@ link — clicked in chat, email, a browser or a terminal — to the app.
   feature, keeping what was typed
 
 [test: a proposed scenario moves with its body and tests, and leaves the source : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L77 ]
-[test: a draft moves as a draft — into the target's document, never its file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L92 ]
-[test: pull request links, which only the document holds, move with the scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L102 ]
-[test: a move that would collide with a scenario already in the target is refused, and nothing changes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L110 ]
-[test: with deleting published specs off, a published scenario does not move : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L136 ]
-[test: with deleting published specs on, a published scenario moves and stays published : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L145 ]
-[test: the feature picker filters by label or by path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L167 ]
+[test: a draft moves as a draft — into the target's document, never its file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L93 ]
+[test: pull request links, which only the document holds, move with the scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L103 ]
+[test: a move that would collide with a scenario already in the target is refused, and nothing changes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L111 ]
+[test: with deleting published specs off, a published scenario does not move : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L137 ]
+[test: with deleting published specs on, a published scenario moves and stays published : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L146 ]
+[test: the feature picker filters by label or by path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/moveScenario.test.ts#L168 ]
 
-## open a feature link @v1 [proposed]
+## S7: open a feature link @v1 [proposed]
 
 - Given: the data repo contains `navigation.feature.md`
 - When: the user opens `/features/navigation`
 - Then: the app shows that feature — same view as clicking it in the sidebar
 
-## open a link from outside the app @v1 [proposed]
+## S8: open a link from outside the app @v1 [proposed]
 
 - Given: the desktop app is installed and a data repo is configured
 - When: the user clicks a `specdriven://features/<feature>` link in another
@@ -168,7 +169,7 @@ link — clicked in chat, email, a browser or a terminal — to the app.
 [test: a specdriven link in a spec body is followed in place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L60 ]
 [test: the installed app declares the specdriven scheme to the OS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L51 ]
 
-## open a scenario link @v1 [proposed]
+## S9: open a scenario link @v1 [proposed]
 
 - Given: `navigation.feature.md` contains scenario "ESC key closes the dialog" v2
 - When: the user opens `/features/navigation/scenarios/esc-key-closes-the-dialog/v2`
@@ -176,13 +177,13 @@ link — clicked in chat, email, a browser or a terminal — to the app.
   scrolled into view — the same highlight the up/down keys move, so Enter
   opens the full body
 
-## Scenario navigation @v1 [proposed]
+## S10: Scenario navigation @v1 [proposed]
 
 When we are in a scenario editor pane, we want to easily switch to another scenario wihout going back to the feature view.
 In the tree on the left show scenarios under the feature.
 Allow to collapse and expand the outline.
 
-## share a link @v1 [proposed]
+## S11: share a link @v1 [proposed]
 
 - Sidebar entries and scenario card titles are real links: right-click →
   Copy Link and cmd-click → new tab work natively
@@ -197,13 +198,13 @@ Allow to collapse and expand the outline.
 [test: desktopLink puts the folder's display name first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L74 ]
 [test: a link round-trips to its folder and its route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L97 ]
 
-## versionless scenario link opens the latest version @v1 [proposed]
+## S12: versionless scenario link opens the latest version @v1 [proposed]
 
 - Given: the scenario name exists as v1 and v2
 - When: the user opens the scenario url without the `/v<N>` segment
 - Then: v2 is selected, and the address bar shows the canonical `/v2` url
 
-## window title follows the selection @v1 [proposed]
+## S13: window title follows the selection @v1 [proposed]
 
 - `SpecDriven` on home, `SpecDriven — <feature name>` on a feature,
   `SpecDriven — <feature name> · <scenario name> v<N>` with a selection —

@@ -13,7 +13,7 @@ Nothing else can change anything there: no editing, publishing, deleting,
 settings, plugins or agents. The site reads the repository's feature files to
 anyone who opens it, so it is pointed only at a repository that is public.
 
-## A daily allowance per GitHub account @v1 [proposed]
+## S1: A daily allowance per GitHub account @v1 [proposed]
 
 - Given: the service allows 5 proposals a day per account (the default)
 - When: I have made 5 today
@@ -24,14 +24,14 @@ anyone who opens it, so it is pointed only at a repository that is public.
 - and the service as a whole takes at most 100 a day (the default), whoever
   proposes
 
-[test: an account has a daily allowance, and a refused proposal does not use it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L476 ]
-[test: contributors have no per-account limit, but the service's daily cap holds for everyone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L490 ]
-[test: the day a quota counts is the UTC day : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L152 ]
+[test: an account has a daily allowance, and a refused proposal does not use it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L480 ]
+[test: contributors have no per-account limit, but the service's daily cap holds for everyone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L494 ]
+[test: the day a quota counts is the UTC day : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L156 ]
 [test: a spent allowance is shown as such and stops proposing; a contributor has none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L47 ]
 [test: signed in, it shows the login, what is left of today's allowance, and Sign out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L39 ]
 [test: the scenario form disables itself when proposing is not allowed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L58 ]
 
-## Everything else is refused @v1 [proposed]
+## S2: Everything else is refused @v1 [proposed]
 
 - Given: the proposals service
 - When: anything calls the app's own API — saving, publishing, deleting,
@@ -40,19 +40,19 @@ anyone who opens it, so it is pointed only at a repository that is public.
 - and reading a feature serves the file alone, never the drafts its document
   keeps
 
-[test: everything else is refused, %s %s → 403 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L322 ]
-[test: anyone can read the spec tree and a feature file — without the documents' drafts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L352 ]
+[test: everything else is refused, %s %s → 403 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L326 ]
+[test: anyone can read the spec tree and a feature file — without the documents' drafts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L356 ]
 
-## Proposals at the same time all land @v1 [proposed]
+## S3: Proposals at the same time all land @v1 [proposed]
 
 - Given: someone pushed to the spec repository after the service last synced
 - When: two visitors propose at the same moment
 - Then: both proposals and the other push are all on the default branch
 - and a push the remote rejects is retried from the remote's latest commit
 
-[test: a push someone made directly, then two proposals at once, and all three land : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L531 ]
+[test: a push someone made directly, then two proposals at once, and all three land : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L535 ]
 
-## Proposals only add @v1 [proposed]
+## S4: Proposals only add @v1 [proposed]
 
 - Given: a feature with published and proposed scenarios
 - When: anyone proposes
@@ -66,15 +66,15 @@ anyone who opens it, so it is pointed only at a repository that is public.
 - and a proposal is never published
 
 [test: appending keeps every existing scenario and adds the new one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L82 ]
-[test: the append-only check catches a changed, removed or published scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L123 ]
+[test: the append-only check catches a changed, removed or published scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L127 ]
 [test: a body that would sign the scenario as someone else is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L99 ]
-[test: a body that would add a ticket or a test link is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L114 ]
+[test: a body that would add a ticket or a test link is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L118 ]
 [test: a name the feature already has is refused, whatever its case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L95 ]
-[test: a scenario for a feature that is not there is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L441 ]
+[test: a scenario for a feature that is not there is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L445 ]
 [test: refuses %s : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L65 ]
-[test: refused, and nothing reaches the remote — %s : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L429 ]
+[test: refused, and nothing reaches the remote — %s : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L433 ]
 
-## Propose a new feature @v1 [proposed]
+## S5: Propose a new feature @v1 [proposed]
 
 - Given: I am signed in
 - When: I choose an existing folder, give a feature name, an optional
@@ -84,12 +84,12 @@ anyone who opens it, so it is pointed only at a repository that is public.
 - and a folder that does not exist, a feature name that does, or a name with
   a slash is refused
 
-[test: a new feature lands in an existing folder with its first scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L447 ]
-[test: a new feature in a folder that does not exist, or with a name that does, is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L469 ]
-[test: a new feature holds its name, description and one proposed scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L139 ]
-[test: a new feature name with a slash, or no letters, is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L145 ]
+[test: a new feature lands in an existing folder with its first scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L451 ]
+[test: a new feature in a folder that does not exist, or with a name that does, is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L473 ]
+[test: a new feature holds its name, description and one proposed scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L143 ]
+[test: a new feature name with a slash, or no letters, is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L149 ]
 
-## Propose a scenario on an existing feature @v1 [proposed]
+## S6: Propose a scenario on an existing feature @v1 [proposed]
 
 - Given: I am signed in and reading a feature
 - When: I give a scenario name and its Given / When / Then steps and propose
@@ -100,10 +100,10 @@ anyone who opens it, so it is pointed only at a repository that is public.
 - and the feature's Automerge document travels with the file and records me
   as the scenario's creator
 
-[test: a proposed scenario lands on main as proposed, authored by the visitor and signed in its document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L392 ]
+[test: a proposed scenario lands on main as proposed, authored by the visitor and signed in its document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L396 ]
 [test: a proposed scenario is always @v1 and proposed, with its body tidied : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L60 ]
 
-## Sign in with GitHub to propose @v1 [proposed]
+## S7: Sign in with GitHub to propose @v1 [proposed]
 
 - Given: I open the proposals site signed out
 - Then: I can read every feature and its scenarios, grouped by folder,
@@ -118,16 +118,16 @@ anyone who opens it, so it is pointed only at a repository that is public.
 - and a sign-in that comes back without a session — cancelled, expired or
   failed — says why
 
-[test: signed out, the session says so and proposing asks for a sign-in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L343 ]
-[test: sign-in goes to GitHub with PKCE and back with a session; no token is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L378 ]
-[test: a callback that is not this browser's sign-in is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L365 ]
-[test: signing out ends the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L504 ]
+[test: signed out, the session says so and proposing asks for a sign-in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L347 ]
+[test: sign-in goes to GitHub with PKCE and back with a session; no token is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L382 ]
+[test: a callback that is not this browser's sign-in is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L369 ]
+[test: signing out ends the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L508 ]
 [test: signed out, it offers Sign in with GitHub : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L32 ]
 [test: signed in, it shows the login, what is left of today's allowance, and Sign out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L39 ]
 [test: a sign-in that came back without a session says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L85 ]
 [test: features group by folder, in order, and the filter narrows them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L72 ]
 
-## The service is configured on Railway @v1 [proposed]
+## S8: The service is configured on Railway @v1 [proposed]
 
 - Given: a Railway service built from the app's repository
 - When: it sets `SPECDRIVEN_PROPOSALS=1`, the bot token, the sign-in GitHub
@@ -137,12 +137,12 @@ anyone who opens it, so it is pointed only at a repository that is public.
 - and without the bot token, a working one, or `PUBLIC_URL` it refuses to
   start
 
-[test: the bot token and the public url are required; quotas must be whole numbers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L179 ]
-[test: the defaults are SpecDriven/specs-specdriven, 5 a day per account, 100 a day in all : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L167 ]
-[test: on the hosted image the service answers to its public domain only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L186 ]
-[test: proposals mode is SPECDRIVEN_PROPOSALS=1 or true : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L161 ]
+[test: the bot token and the public url are required; quotas must be whole numbers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L183 ]
+[test: the defaults are SpecDriven/specs-specdriven, 5 a day per account, 100 a day in all : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L171 ]
+[test: on the hosted image the service answers to its public domain only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L190 ]
+[test: proposals mode is SPECDRIVEN_PROPOSALS=1 or true : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L165 ]
 
-## The site links to its source @v1 [proposed]
+## S9: The site links to its source @v1 [proposed]
 
 - Given: the proposals site
 - Then: its footer says the app is AGPL-3.0 and links to the source of the

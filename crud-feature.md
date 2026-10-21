@@ -14,9 +14,11 @@ nicely on GitHub and in any markdown viewer:
 
 <optional feature description — any markdown>
 
-## <name of scenario> @vNNN [proposed | published]
+## S1: <name of scenario> @vNNN [proposed | published]
 
 <scenario body — any markdown up to the next scenario heading>
+
+## S2: <name of the next scenario> @vNNN [proposed | published]
 ```
 
 The `@` prefixes the version so the scenario name and its version are easy to
@@ -24,6 +26,24 @@ tell apart, by eye and by parser — a name that itself ends in a version
 (`## Migrate to v2 API @v1`) stays unambiguous. Headings written before the
 prefix (`## Basic Quote v1 [published]`) are still read, and are rewritten with
 the `@` the next time the feature is saved.
+
+`S<n>:` numbers the scenario by its position in the file, `S1` for the first
+heading, `S2` for the next, and so on (specs/ui/ui.feature.md "Number
+scenarios and move them up or down"). The order of the headings is the order
+of the scenarios; the numbers are a label for it, regenerated every time the
+file is written, so a number edited by hand changes nothing and a heading
+moved by hand is read in its new place and renumbered. The number is not
+part of the scenario's name: links, search and publish immutability go by
+the name and version alone. A file written before the numbers — no heading
+carries one — is read in the old order, by name then version, and gains its
+numbers the next time anything in it is saved; the sync tick leaves such a
+file as it is. In such a file a heading whose name itself begins `S<n>: `
+reads as a numbered heading.
+
+The numbers are a data format change (specs/app/data-format.feature.md,
+format 2): a release before them reads `## S1: Basic Quote @v1` as a
+scenario named `S1: Basic Quote`, so it stops at a folder the new release
+has written to.
 
 ## Scenario status
 

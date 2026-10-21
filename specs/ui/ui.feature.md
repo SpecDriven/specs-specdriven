@@ -1,7 +1,11 @@
 # UI
 
 - Feature page lists scenarios, up to 8 lines per scenario.
-- Scenarios are ordered by name, then by version.
+- Scenarios keep the order of the feature file and are numbered by position,
+  `S1`, `S2`, … — the number is written into the heading (crud-feature.md
+  "Feature file format") and shown ahead of the name ("Number scenarios and
+  move them up or down" below). A file written before the numbers is read
+  by name, then by version, until it is next saved.
 - Published scenarios are shaded differently from un-published, editable scenarios.
 
 Edit scenarios in the editor pane (editor/spec-editor.feature.md "Spec editor
@@ -194,15 +198,51 @@ come from one token block.
 - Focus is always visible: accent rings on fields, focus outlines on
   controls.
 
-## Add A Scenario Button @v1 [published]
+## S1: Add A Scenario Button @v1 [published]
 
 * With a feature file editor open, the button to add a scenario should always be visible. The button should be located with respect to the editor window viewport.
 
-## Feature Text Scroll Pane @v1 [published]
+## S2: Auto-save commits say what changed @v1 [proposed]
+
+- Given: the reload tick finds edits the app saved locally — a scenario edited in Folders, say, or a new notebook entry
+- When: it commits and pushes them
+- Then: the commit's title names the feature or page and the scenarios behind the change — `Edit Folders: Move a feature`, `Add scenario to Folders: Delete a folder`, `Edit notebook entry: Which SDD will win ?`
+- and a save that touched several files counts them in the title — `Edit 3 features: Folders, UI, Plugins`, `Edit 2 features, 1 notebook entry` — with one body line per file saying what happened to it
+- and the body ends with `Auto-saved by SpecDriven`, so auto-save commits stay easy to find in the log
+
+The title is worked out from the files themselves, by reading each changed spec as HEAD has it and as the disk has it now: no model is asked, so it costs nothing, works offline and reads the same on every git engine. A title never runs past 72 characters; names that do not fit are counted instead. The app's own `.specdriven/` documents ride along in the commit but are never what the title talks about. Should the summary fail for any reason the save still goes through, under the old `Auto-save scenarios`.
+
+[test: an edited scenario names the feature and the scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L30 ]
+[test: scenarios only added say so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L38 ]
+[test: scenarios only removed say so, plural when several : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L47 ]
+[test: a scenario that went from proposed to published is a publish : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L55 ]
+[test: mixed changes are an edit listing every scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L63 ]
+[test: a change above the first scenario is a description edit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L72 ]
+[test: a renamed feature with nothing else changed is a rename : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L81 ]
+[test: a new feature file is an add, a gone one a delete : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L89 ]
+[test: a feature without a heading is named after its file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L98 ]
+[test: a feature gone from one path and new at another is a move : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L105 ]
+[test: a page is called what its folder calls it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L116 ]
+[test: a page without a heading is named after its file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L129 ]
+[test: a folder description names the folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L135 ]
+[test: a markdown file outside the special folders is saved by path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L143 ]
+[test: several features list their names : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L149 ]
+[test: several kinds are counted, with the names in the body : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L165 ]
+[test: the same verb everywhere keeps it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L177 ]
+[test: names stop at the title limit with a count of the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L185 ]
+[test: a single name too long for the title is cut : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L196 ]
+[test: the app's own folder is not what changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L206 ]
+[test: files not read are saved by path; only such files make a plain save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L215 ]
+[test: nothing but the app's own documents is said so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L221 ]
+[test: no files at all keeps the old title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L226 ]
+[test: reads modified, untracked, renamed and quoted entries : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L232 ]
+[test: the auto-save commit names the feature and the scenarios that changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/reload.test.ts#L126 ]
+
+## S3: Feature Text Scroll Pane @v1 [published]
 
 The detail view for a feature file should provide a scroll pane for the feature text, rendering Markdown to HTML, and providing specd for the scenario cards and the "add a scenario" button.
 
-## Feature Text Scroll Pane @v2 [published]
+## S4: Feature Text Scroll Pane @v2 [published]
 
 The free markdown between the feature heading and the first scenario (the
 feature description) renders as Markdown — same pipeline as scenario bodies —
@@ -218,7 +258,7 @@ in its own pane on the feature page:
   never squeezes the description pane, and the "add a scenario" button stays
   reachable.
 
-## Hide the editor pane @v1 [proposed]
+## S5: Hide the editor pane @v1 [proposed]
 
 While the coding agent pane is open beside it, the editor column can be hidden
 so the pane has the window — the same kind of control the agent pane itself
@@ -242,7 +282,7 @@ has, one column to its left.
   state. Closing the agent pane brings the editor back without forgetting the
   choice: reopening the pane hides it again.
 
-## Keyboard shortcuts come from one registry @v1 [proposed]
+## S6: Keyboard shortcuts come from one registry @v1 [proposed]
 
 - Every shortcut is declared once (src/frontend/shortcuts.tsx) and a single
   window listener dispatches from that registry; the cheat sheet (`?`)
@@ -256,15 +296,74 @@ has, one column to its left.
 [test: a keydown with no key — a browser's autofill — matches no shortcut and throws nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shortcuts.test.tsx#L97 ]
 [test: real keys still dispatch — a field keeps single letters, takes shortcuts marked for fields : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shortcuts.test.tsx#L109 ]
 
-## Recent folder list @v1 [published]
+## S7: Number scenarios and move them up or down @v1 [proposed]
+
+Scenarios are numbered by their place in the feature file, and the reader
+can put them in the order the feature reads best in.
+
+- Given: a feature with proposed and published scenarios
+- Then: each card, each row of the sidebar outline and the editor pane's
+  head show the scenario's number ahead of its status — `S1` for the first
+  scenario in the file, `S2` for the next, and so on — and the file's
+  headings carry the same numbers: `## S1: Basic Quote @v1 [published]`
+- A draft lives in the document only and has no place in the file, so it
+  shows no number; the scenarios around it keep theirs.
+- When: the user picks `Move up` or `Move down` from a card's `⋯` menu, or
+  presses `⌥↑` / `⌥↓` with a card highlighted
+- Then: the scenario swaps places with its neighbour, every number follows
+  its new position, the highlight follows the scenario, and the feature is
+  saved in its new order like any other edit — the file's headings are
+  renumbered, and the next sync tick commits and pushes it
+- `Move up` is unavailable on the first scenario and `Move down` on the
+  last, and neither while the editor pane is open.
+- A published scenario can be moved: its name, version and body are
+  untouched, so it stays immutable.
+- `New version` on a published scenario opens its next version right after
+  it, where the reader looks for it; `Add scenario` still adds at the end.
+- A scenario moved in the file by hand — a heading cut and pasted on GitHub,
+  say — is read in its new place on the next sync tick, and renumbered; the
+  numbers themselves are a label for the order, not the order, so a heading
+  whose number was edited by hand stays where it is.
+- Two teammates moving scenarios at the same time end with one order on
+  every peer: the last move wins, and the merge of a pull never undoes a
+  move (the side that moved a scenario keeps its order, ours when both did).
+- Moving changes no scenario's identity: links to a scenario, by name and
+  version, keep resolving.
+
+[test: a numbered file keeps the order of its headings, and the number is not part of the name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L78 ]
+[test: the numbers are a label for the order, so position wins over a hand-edited number : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L84 ]
+[test: a file written before the numbers reads by name, then version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L94 ]
+[test: serialize renumbers by position and is a fixed point on numbered text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L105 ]
+[test: the numbers option off writes the legacy form in the legacy order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L121 ]
+[test: a text of drafts alone — the editor's wire form — keeps its order too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L125 ]
+[test: a status rewrite keeps the position prefix : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L131 ]
+[test: a name that itself begins with a number prefix round-trips through a numbered heading : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L139 ]
+[test: orderSpecs sorts by rank, unranked last, then name and version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L152 ]
+[test: an imported document ranks its specs in file order and projects them numbered the same way : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L163 ]
+[test: a document from before the ranks orders by name until a reconcile stamps it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L170 ]
+[test: reconcile stamps the target's order as ranks, and a move stamps the feature, not its scenarios : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L179 ]
+[test: a draft keeps its place among the scenarios across a markdown-derived reorder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L200 ]
+[test: interleaveDrafts places each draft after the nearest held entry before it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L215 ]
+[test: two peers moving scenarios concurrently converge on one order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L224 ]
+[test: the legacy numberless file is a projection of a rank-less document, so it is not drift : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L240 ]
+[test: mergeOrder lets the side that moved win, ours when both did, and keeps the other side's additions next to where it put them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L251 ]
+[test: threeWayFeature keeps a reorder made on one side : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L260 ]
+[test: a save in a new order writes the file renumbered, and the editor reads it back in that order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L282 ]
+[test: the sync tick leaves a file from before the numbers alone until it is saved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L313 ]
+[test: withScenario keeps the order, replacing in place, inserting at insertAt, else appending : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L18 ]
+[test: withScenarioMoved moves one scenario and leaves the rest in order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L26 ]
+[test: scenarioNumbers counts the scenarios the file holds and skips drafts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L35 ]
+[test: a new scenario is appended (or placed at insertAt) and its card is found there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditorPane.test.tsx#L34 ]
+
+## S8: Recent folder list @v1 [published]
 
 There is a small down arrow icon next to folder name that brings up a list of previous folders. Support up to 10 folders.
 
-## Spec will be added under the folder that is highlighted @v1 [published]
+## S9: Spec will be added under the folder that is highlighted @v1 [published]
 
 When adding a spec (scenario), it must be added under the highlighted (focused) folder.
 
-## User-entered text is cleaned up @v1 [proposed]
+## S10: User-entered text is cleaned up @v1 [proposed]
 
 Whatever the user types is saved without the whitespace they did not mean —
 a pasted title's trailing blank, a double space, the empty lines around a
@@ -298,6 +397,6 @@ agent or plugin calling the API gets the same.
 [test: keeps one space for every inner run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/text.test.ts#L12 ]
 [test: keeps the first line's indentation and everything inside : https://github.com/SpecDriven/specdriven-app/blob/main/tests/text.test.ts#L31 ]
 [test: that is one line after all is trimmed whole : https://github.com/SpecDriven/specdriven-app/blob/main/tests/text.test.ts#L40 ]
-[test: a feature's typed name is saved cleaned : https://github.com/SpecDriven/specdriven-app/blob/main/tests/features.test.ts#L131 ]
+[test: a feature's typed name is saved cleaned : https://github.com/SpecDriven/specdriven-app/blob/main/tests/features.test.ts#L132 ]
 [test: a published scenario keeps its heading verbatim : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioRenameLoop.test.ts#L130 ]
 [test: a plugin folder and a trusted folder are saved trimmed, inner spaces kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsWhitespace.test.ts#L53 ]

@@ -7,7 +7,7 @@ published scenario's flags may change without a new version. The app shows
 and edits them only while the "Feature flags" setting is on; the markdown
 keeps them either way.
 
-## A flag line sits under the heading @v1 [proposed]
+## S1: A flag line sits under the heading @v1 [proposed]
 
 - Given: a feature or a scenario in a `.feature.md`
 - When: a line right under its `#` or `##` heading holds nothing but
@@ -23,12 +23,12 @@ keeps them either way.
   down stays ordinary text
 - and a save writes the flags back as one line, right under the heading
 
-[test: flag lines under the headings are lifted into flags and written back as they were : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L49 ]
-[test: flag lines mix with the link and authorship lines in any order, and several lines add up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L62 ]
-[test: a token inside text, a malformed token or a flag line further down stays text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L81 ]
-[test: flag names the token syntax can carry : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L93 ]
+[test: flag lines under the headings are lifted into flags and written back as they were : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L53 ]
+[test: flag lines mix with the link and authorship lines in any order, and several lines add up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L66 ]
+[test: a token inside text, a malformed token or a flag line further down stays text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L85 ]
+[test: flag names the token syntax can carry : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L97 ]
 
-## A proposal cannot add a flag @v1 [proposed]
+## S2: A proposal cannot add a flag @v1 [proposed]
 
 - Given: the spec proposals service (app/spec-proposals.feature.md)
 - When: a visitor proposes a scenario, or a new feature, whose text would
@@ -38,7 +38,7 @@ keeps them either way.
 
 [test: a body that would add a feature flag line is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L104 ]
 
-## Flags are edited on the feature and in the scenario editor @v1 [proposed]
+## S3: Flags are edited on the feature and in the scenario editor @v1 [proposed]
 
 - Given: the "Feature flags" setting is on
 - When: I open a feature
@@ -62,7 +62,7 @@ keeps them either way.
 [test: a name the token cannot carry, or one already there, is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlagsField.test.tsx#L62 ]
 [test: a flag change is something for the editor's autosave to save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlagsField.test.tsx#L71 ]
 
-## Flags change on a published scenario without a new version @v1 [proposed]
+## S4: Flags change on a published scenario without a new version @v1 [proposed]
 
 - Given: a published scenario
 - When: I add, toggle or remove one of its flags
@@ -70,9 +70,9 @@ keeps them either way.
   published
 - and its text still may not change
 
-[test: a flag on a published scenario changes without a new version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L152 ]
+[test: a flag on a published scenario changes without a new version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L156 ]
 
-## Flags travel with the document and merge as one value @v1 [proposed]
+## S5: Flags travel with the document and merge as one value @v1 [proposed]
 
 - Given: the Automerge document behind a feature
   (datastore/automerge-store.feature.md)
@@ -82,11 +82,11 @@ keeps them either way.
 - and when two sides change a list of flags, the side that changed it wins,
   ours when both did, as with a ticket link
 
-[test: the document carries the flags and projects them back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L99 ]
-[test: a three-way merge keeps the side that changed the flags : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L106 ]
-[test: a draft's flags reach the editor from the document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L179 ]
+[test: the document carries the flags and projects them back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L103 ]
+[test: a three-way merge keeps the side that changed the flags : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L110 ]
+[test: a draft's flags reach the editor from the document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L183 ]
 
-## The Feature flags setting shows or hides them @v1 [proposed]
+## S6: The Feature flags setting shows or hides them @v1 [proposed]
 
 - Given: the "Feature flags" setting in Settings → Specs is off, as it is
   by default
@@ -98,4 +98,4 @@ keeps them either way.
 - and the setting is saved in the settings file like the others, off
   stored as an absent key
 
-[test: the Feature flags setting is off by default and round-trips through the settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L187 ]
+[test: the Feature flags setting is off by default and round-trips through the settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L191 ]

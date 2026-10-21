@@ -9,6 +9,15 @@ Each scenario in a document carries a `status` field: `draft`, `proposed`, or
 published scenarios are projected into the `.feature.md`; a draft lives in
 the document alone.
 
+Each scenario also carries a `rank`: its position among the feature's
+scenarios (ui.feature.md "Number scenarios and move them up or down"). The
+projection orders by it — then by name and version, which is the whole order
+for a document from before the ranks and the tie-break when two peers moved
+scenarios at once — and writes the `S<n>:` numbers in that order. A rank is
+a scalar set whole, so the last move wins on every peer, and the document's
+list of scenarios is never spliced to reorder: each entry keeps its object
+and every concurrent edit to it.
+
 ## Storage layout
 
 Each document lives inside the data repo under `.specdriven/automerge/`, in
@@ -45,11 +54,11 @@ pull and push as the markdown. No sync server is required; the optional
 websocket sync below accelerates delivery without changing the source of
 record.
 
-## A feature file deleted outside the app @v1 [published]
+## S1: A feature file deleted outside the app @v1 [published]
 
 When a git pull removes a feature file, the next sync tick removes its document directory too — the markdown is the interchange format, and its deletion carries the intent.
 
-## a repo that predates documents @v1 [proposed]
+## S2: a repo that predates documents @v1 [proposed]
 
 Feature files with no document behind them behave as before until touched:
 the first save, publish, or sync tick imports them (the document is minted
@@ -58,7 +67,7 @@ versions — their plain-markdown pushes keep working and are absorbed as
 drift. If two peers import the same feature concurrently, the merge picks
 one document identity deterministically and folds both sides' content in.
 
-## Documents from before the mirrored layout @v1 [proposed]
+## S3: Documents from before the mirrored layout @v1 [proposed]
 
 Earlier app versions filed documents under a directory per kind —
 `features/`, `docs/`, `models/`, `testing/` — with the source file's whole
@@ -73,14 +82,14 @@ chunk by chunk: chunk names are content hashes, so a name already there is
 the same bytes, and loading still merges every chunk into one document. The
 old roots disappear once nothing is left in them.
 
-## Documents from before the status field @v1 [published]
+## S4: Documents from before the status field @v1 [published]
 
 Documents written by earlier app versions carried `published`/`proposed`
 booleans per scenario instead of `status`. Loading such a document migrates
 it in place — booleans fold into the status field, unmarked scenarios become
 drafts — and the migration persists with the document's next save.
 
-## draft scenarios live in the document only @v1 [proposed]
+## S5: draft scenarios live in the document only @v1 [proposed]
 
 A draft scenario is internal: it is stored in the feature's document but
 never written to the `.feature.md`, so the published spec on GitHub shows
@@ -102,7 +111,7 @@ without it. Concurrent status
 changes merge as a one-way latch: the side further along
 draft → proposed → published wins.
 
-## live sync keeps a disk edit the sync tick has not absorbed @v1 [proposed]
+## S6: live sync keeps a disk edit the sync tick has not absorbed @v1 [proposed]
 
 - Given: live sync is on, and a feature file on peer B was edited on disk —
   by hand or by an agent — after the last sync tick, so the edit is not in
@@ -118,7 +127,7 @@ draft → proposed → published wins.
 [test: a remote absorb keeps a local disk edit the sync tick has not absorbed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L157 ]
 [test: stopping waits for an absorb in flight, and absorbs nothing after : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L203 ]
 
-## markdown edited outside the app @v1 [proposed]
+## S7: markdown edited outside the app @v1 [proposed]
 
 A feature file edited where no document ops exist — an older app version, a
 hand edit merged through a GitHub PR — drifts from its document's
@@ -127,7 +136,7 @@ scenario-level three-way merge against the git merge base when the pull
 conflicted) and rewrites the file to the canonical projection. The GitHub
 PR workflow stays a first-class way to edit specs.
 
-## optional live sync over websocket @v1 [proposed]
+## S8: optional live sync over websocket @v1 [proposed]
 
 Settings can name a sync server (e.g. wss://sync.automerge.org). While one
 is named, every feature document is announced to it under an identity all
@@ -145,7 +154,7 @@ point it at a self-hosted sync server instead.
 [test: concurrent edits on both peers merge through the sync server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L136 ]
 [test: a peer that starts after the edit still catches up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L188 ]
 
-## published scenarios stay immutable @v1 [proposed]
+## S9: published scenarios stay immutable @v1 [proposed]
 
 Publishing records the scenario's body in the document, set whole. While the
 scenario stays published that recorded text is what every peer renders and
@@ -159,7 +168,7 @@ to the recorded body rather than writing the artifact into the file. An
 explicit human conflict resolution is the one door that may override the
 document's published state; it re-records the body it chooses.
 
-## two peers edit the same scenario concurrently @v1 [proposed]
+## S10: two peers edit the same scenario concurrently @v1 [proposed]
 
 Peer A and peer B both edit the body of the same scenario, even the same
 line. Each save becomes CRDT operations in the feature's document. When
