@@ -58,7 +58,8 @@ again into the feature it made.
 - and Import waits for a feature url on a site with a key, and says what is
   missing
 
-[test: names the site and the record: a feature, an epic, a requirement, an idea : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaUrl.test.ts#L16 ]
+[test: names the site and the record, be it a feature, an epic, a requirement or an idea : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaUrl.test.ts#L16 ]
+[test: is built the way Aha! shows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaUrl.test.ts#L54 ]
 
 [test: creates the feature in the chosen folder from the Aha! record, its requirements as scenarios : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L201 ]
 [test: a bare reference number is read against the site named with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L258 ]
@@ -136,6 +137,20 @@ again into the feature it made.
 [test: a line that would read as a heading, quote, item or rule is escaped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L174 ]
 [test: a line starting with a test link is escaped, text in code is not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L180 ]
 [test: converts to the markdown the editor reads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L187 ]
+[test: whitespace collapses as in HTML, and an empty paragraph leaves no trace : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L16 ]
+[test: a rule is three dashes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L20 ]
+[test: plain text with no tags comes back as the same text, whitespace collapsed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L24 ]
+[test: empty input is empty : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L28 ]
+[test: a checkbox becomes a task item : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L59 ]
+[test: a paragraph inside an item stays inside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L65 ]
+[test: a list closes the paragraph before it, as a browser would : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L71 ]
+[test: whitespace inside a mark moves outside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L83 ]
+[test: code is backticked, with a longer run when it holds backticks : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L87 ]
+[test: an image inside a link names the link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L106 ]
+[test: a pre block holding a fence gets a longer one, and a language from its class : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L119 ]
+[test: a blockquote prefixes each line, nested quotes too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L123 ]
+[test: an unknown tag keeps its text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L162 ]
+[test: tag names and attribute quotes come in any form : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L166 ]
 
 ## S6: What cannot be imported says why @v1 [proposed]
 
