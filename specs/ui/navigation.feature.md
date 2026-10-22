@@ -212,3 +212,25 @@ Allow to collapse and expand the outline.
 - `SpecDriven` on home, `SpecDriven — <feature name>` on a feature,
   `SpecDriven — <feature name> · <scenario name> v<N>` with a selection —
   chat and email link previews show the title
+
+## S14: reorder scenarios by dragging them in the tree @v1 [proposed]
+
+- Given: a feature's scenario outline expanded in the sidebar tree
+- When: the user drags one of its scenarios onto another row of the same
+  outline
+- Then: a line shows where it will land — just above the row while the
+  pointer is on its upper half, just below on its lower half — and dropping
+  puts the scenario there; every number follows its new position and the
+  feature is saved in its new order, as `Move up` / `Move down` save it
+  ("Number scenarios and move them up or down" in ui.feature.md)
+- And: this works for any feature in the tree, not only the open one, and
+  while an editor pane is open — the pane saves what it holds and stays on
+  the scenario it showed
+- A scenario dragged onto another feature's outline, or onto a folder, does
+  nothing: moving it to another feature is `Move to…`.
+
+[test: a scenario dropped on the upper half of a row lands just before it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioDragReorder.test.ts#L24 ]
+[test: a scenario dropped on the lower half of a row lands just after it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioDragReorder.test.ts#L31 ]
+[test: a drop that leaves the scenario where it was is no move : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioDragReorder.test.ts#L38 ]
+[test: scenarios are found by name and version, so a draft between them keeps its place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioDragReorder.test.ts#L47 ]
+[test: a scenario no longer in the feature moves nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioDragReorder.test.ts#L61 ]
