@@ -121,3 +121,70 @@ qTest never sees it.
 
 [test: the id comes off the url only when the url spells it out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestLinks.test.ts#L270 ]
 [test: a url fills the id while it is empty or derived; a typed one stays : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestLinks.test.ts#L279 ]
+
+## S8: A qTest token is kept per site on this device @v1 [proposed]
+
+- Given: Settings → qTest, with qTest test cases switched on
+- When: the user enters the qTest site's url (or any module url of it) and
+  an API token — the bearer token qTest shows under the user's name → API &
+  SDK — and presses "Save token"
+- Then: the token is checked against the site before it is kept: the
+  projects it can see are listed, and a token qTest refuses, or that sees no
+  project at all, is not kept and the form says why
+- and the site is listed with how many projects the token reaches, never the
+  token itself, with a Remove button
+- and saving a token for a site that already has one replaces it
+- and the token is kept on this device only: an owner-only file, or the OS
+  key store in the desktop app — never settings.json or the data repo
+- and the hosted app, which keeps no device secrets, offers none of this
+
+## S9: Create qTest test cases from a feature @v1 [proposed]
+
+- Given: a feature is open, qTest test cases are switched on, and this
+  device holds a token for the site
+- When: the user picks "Create qTest test cases…" in the feature's ⋯ menu,
+  pastes the url of the parent module from qTest's Test Design tree
+  (`…/p/12/portal/project#tab=testdesign&object=2&id=901`), chooses "All
+  scenarios" or "Published scenarios only", and presses "Create test cases"
+- Then: a module named after the feature is created under the parent module,
+  and each scenario in scope becomes one test case in it
+- and the feature links the module and each scenario its test case, as
+  `[qTest:MD-66](url)` and `[qTest:TC-51](url)` lines, the way the links are
+  entered by hand; the toast says how many were created and offers "Open
+  module"
+- and the dialog offers the last parent module used on this device next time
+- and Create waits for a module url on a site with a token, and says what is
+  missing; what qTest refuses (no such module, a token it no longer accepts,
+  a project the token cannot write to) is shown as one sentence
+- and a test case qTest refuses stops the run there: the ones written before
+  it are linked back and the warning names the scenario, so creating them
+  again carries on from it
+
+## S10: Each scenario becomes one test case @v1 [proposed]
+
+- Given: a scenario is being created as a test case
+- Then: its name is the scenario's number and name, "S3: Declined Quote", so
+  qTest's listing keeps the feature's order; a draft, which has no number, is
+  named as is
+- and its description names the feature and its file in SpecDriven
+- and its Given lines are the test case's precondition
+- and each When line starts a test step, with the "and" lines that follow it;
+  the Then lines after it are that step's expected result
+- and a Then with no When before it is a step that checks the outcome; a
+  scenario with no steps at all gets one step, since qTest wants one
+- and the test case carries every required field of the project's test cases
+  at its default value, read from qTest rather than assumed, so a project
+  with its own required fields accepts it
+
+## S11: Creating the test cases again updates them @v1 [proposed]
+
+- Given: a feature whose scenarios were created as test cases before
+- When: the user creates them again
+- Then: a scenario that links a test case still in qTest is updated there —
+  a new version with the scenario's current steps — and moved into the
+  feature's module when it sat elsewhere; a scenario whose test case was
+  deleted in qTest, or that links none, gets a new one
+- and the module the feature links is reused, and moved under the new parent
+  when another is named; with that module gone, a child of the parent with
+  the feature's name is reused, else one is made anew
+- and nothing is written to the feature when every link already stands
