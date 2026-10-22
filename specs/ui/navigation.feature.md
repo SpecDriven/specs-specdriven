@@ -191,6 +191,9 @@ Allow to collapse and expand the outline.
   versioned url on the clipboard; its label flips to "Copied" for 2 sec
 - The feature page's ⋯ menu has the same "Copy link" action for the
   feature url, just like the scenario card's ⋯ menu
+- The scenario editor's top bar has a "Copy link" icon button beside its
+  previous / next arrows for the open scenario's url; its icon flips to a
+  check mark for 2 sec
 - In the desktop app those actions copy the `specdriven://` form, so what
   lands on the clipboard is a link that works anywhere else on the machine
 
