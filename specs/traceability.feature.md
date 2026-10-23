@@ -50,19 +50,19 @@ plain markdown that renders naturally on GitHub:
   tables on the cards and the Automated tests field in the editor pane —
   the stored links are untouched.
 
-## add a test link @v1 [proposed]
+## S1: add a test link @v1 [proposed]
 
 - When: the user pastes a GitHub url into the edit dialog's Automated tests
   field and presses Add
 - Then: the link joins the scenario's list, and after Save the feature file
   holds it in the scenario's `### Tests` table
 
-## correct a test link @v1 [proposed]
+## S2: correct a test link @v1 [proposed]
 
 - When: the user presses ✎ on a link, edits the url and presses Save
 - Then: that row holds the new url, and the others are untouched
 
-## edit the tests of a published scenario @v1 [proposed]
+## S3: edit the tests of a published scenario @v1 [proposed]
 
 - Given: "Show links to automated tests" is ON (the default)
 - When: the user opens a `[published]` scenario through its card's `Edit` link
@@ -70,7 +70,7 @@ plain markdown that renders naturally on GitHub:
   and Save test links writes them to the feature file — while the name,
   version and body stay read-only
 
-## hide the test links @v1 [proposed]
+## S4: hide the test links @v1 [proposed]
 
 - When: the user turns "Show links to automated tests" off in Settings
 - Then: the tables disappear from the scenario cards and the Automated tests
@@ -79,7 +79,7 @@ plain markdown that renders naturally on GitHub:
 - And: a `[published]` scenario now has nothing editable, so its card link
   reads `View` and the dialog offers only Close
 
-## Open test in idea @v1 [proposed]
+## S5: Open test in idea @v1 [proposed]
 
 'idea' must be in the PATH
 use ```ln -s "/Applications/IntelliJ IDEA.app/Contents/MacOS/idea" /usr/local/bin/idea``` on Mac to create a symlink
@@ -92,12 +92,12 @@ call shell command like 'idea --line 42 /abs/path/to/Foo.java'
 [test: the setting round-trips through the settings file, OFF stored as an absent key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/openTestInIdea.test.ts#L90 ]
 [test: without idea on PATH the click is refused with the symlink to make : https://github.com/SpecDriven/specdriven-app/blob/main/tests/openTestInIdea.test.ts#L160 ]
 
-## see the tests of a scenario @v1 [proposed]
+## S6: see the tests of a scenario @v1 [proposed]
 
 - When: a scenario has test links and the setting is ON (the default)
 - Then: the end of the scenario card shows a table of clickable links
 
-## the add field still holds a url when Save is pressed @v1 [proposed]
+## S7: the add field still holds a url when Save is pressed @v1 [proposed]
 
 - When: the user pastes a GitHub url into the Automated tests add field and
   presses the dialog's Save without pressing Add

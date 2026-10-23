@@ -29,7 +29,7 @@ markdown editor — scenario body, feature description, pages, issues, tests.
 - Published scenarios are immutable: the button is not offered, and the
   preview shows no edit control (the table itself still renders).
 
-## edit the table as a grid @v1 [proposed]
+## S1: edit the table as a grid @v1 [proposed]
 
 - Given: the caret is in a markdown table in the body, or the user hovers
   a table in the preview
@@ -69,7 +69,7 @@ markdown editor — scenario body, feature description, pages, issues, tests.
 [test: Enter in the last row adds one below : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L292 ]
 [test: fills the grid from a pasted block : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L300 ]
 
-## insert a table at the caret @v1 [proposed]
+## S2: insert a table at the caret @v1 [proposed]
 
 - Given: the caret is in ordinary text
 - When: the user opens the table dialog, fills in the grid, and inserts
@@ -82,7 +82,7 @@ markdown editor — scenario body, feature description, pages, issues, tests.
 [test: inserts a table with the caret in ordinary text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L22 ]
 [test: inserts a new table at the caret : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L277 ]
 
-## variable creates a column @v1 [proposed]
+## S3: variable creates a column @v1 [proposed]
 
 Scenario bodies only: a `{var}` in the body names an example column.
 Variable names use letters, digits, `_` and `-`. Variables inside tables
