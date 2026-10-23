@@ -96,6 +96,15 @@ confirmations, and any future dialog).
 - Dialogs can stack — a delete confirmation above the scenario editor
   pane, or above another dialog.
   Tab cycles only the top dialog, and ESC closes only the top dialog.
+- A click outside a dialog closes it, but only when both the press and the
+  release land outside. Selecting a field's text by dragging past the
+  dialog's edge (the Confluence parent page url, say) leaves the dialog
+  open; it closes only on Cancel, ESC or a real click outside.
+
+[test: a click outside the dialog closes it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/backdropDismiss.test.ts#L21 ]
+[test: selecting a field's text by dragging out of the dialog keeps it open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/backdropDismiss.test.ts#L25 ]
+[test: a drag from outside that ends inside the dialog keeps it open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/backdropDismiss.test.ts#L31 ]
+[test: a stray click with no press before it keeps the dialog open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/backdropDismiss.test.ts#L35 ]
 
 ## Scenario editor
 
