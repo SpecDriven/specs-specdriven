@@ -3,3 +3,5 @@
 https://github.com/Trevoke/the-recs-files
 
 https://www.oreilly.com/library/view/regenerative-software/0642572383954/
+
+https://google.github.io/oss-fuzz/getting-started/new-project-guide/javascript-lang/
