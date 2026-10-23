@@ -38,11 +38,49 @@ markdown editor — scenario body, feature description, pages, issues, tests.
 - Then: the markdown table in the body is rewritten to match
 - Otherwise: the user cancels, and the body is unchanged
 
+[test: finds nothing when the body has no table : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L20 ]
+[test: reads the divider's alignment marks : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L35 ]
+[test: finds every table, in order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L46 ]
+[test: is the table on any of its lines, from its first character to its last : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L80 ]
+[test: is null in ordinary text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L86 ]
+[test: picks the right one of several : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L91 ]
+[test: writes alignment into the divider : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L105 ]
+[test: rewrites the block in place, with the caret at its start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L124 ]
+[test: rewrites only the block it was given : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L132 ]
+[test: null removes the table block, closing the gap : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L139 ]
+[test: a single value is not a block : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L225 ]
+[test: tabs and newlines make cells and rows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L230 ]
+[test: fills the grid from the cell on, growing it as needed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L237 ]
+[test: pasted into the header, the first row names the columns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L249 ]
+[test: edits the table the caret is in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L28 ]
+[test: is not offered on a read-only body : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L35 ]
+[test: carries an edit button in the editable preview : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L46 ]
+[test: carries none on a published (read-only) body, and renders as before : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L52 ]
+[test: is numbered in text order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L59 ]
+[test: is aligned as the divider says : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L63 ]
+[test: opens on the table at the caret and saves the edited grid into it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L186 ]
+[test: cancels without touching the text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L205 ]
+[test: Escape with nothing changed closes it outright : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L218 ]
+[test: an Escape with focus outside the dialog is still the dialog's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L227 ]
+[test: removing a column moves focus to the one before it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L238 ]
+[test: Save is disabled until something changes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L245 ]
+[test: removes and reorders columns, and aligns them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L254 ]
+[test: the last column cannot be removed; Delete table takes the table out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L264 ]
+[test: Enter in the last row adds one below : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L292 ]
+[test: fills the grid from a pasted block : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L300 ]
+
 ## insert a table at the caret @v1 [proposed]
 
 - Given: the caret is in ordinary text
 - When: the user opens the table dialog, fills in the grid, and inserts
 - Then: a markdown table lands at the caret on a paragraph of its own
+
+[test: lands at the caret on a paragraph of its own, caret on the blank line after it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L156 ]
+[test: uses the blank lines already around the caret : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L162 ]
+[test: becomes the whole text when it is empty, ending in a newline : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L166 ]
+[test: replaces the selection : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L170 ]
+[test: inserts a table with the caret in ordinary text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L22 ]
+[test: inserts a new table at the caret : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L277 ]
 
 ## variable creates a column @v1 [proposed]
 
@@ -57,3 +95,12 @@ or code fences don't count.
 - And: that column can be neither renamed nor removed in the dialog — edit
   or remove the `{var}` in the body instead
 - Otherwise: a column of that name already exists, and nothing changes
+
+[test: ignores variables inside any table : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L188 ]
+[test: a new table has a column per variable and one empty row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L200 ]
+[test: a new table with no variables has one blank column : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L208 ]
+[test: adds the missing variable columns to an existing table : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L212 ]
+[test: leaves a table that already has them alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mdtable.test.ts#L218 ]
+[test: a new table opens with a column per {var}, locked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L317 ]
+[test: an existing table gains the missing column : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L327 ]
+[test: outside the scenario body, variables mean nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L340 ]
