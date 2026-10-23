@@ -116,8 +116,8 @@ confirmations, and any future dialog).
 - Name must be the title of the pane
 - Must be resizable
 - Scenario body must contain an embedded Markdown Editor
-- Below the body, a table widget edits the scenario's markdown table
-  (scenario-table.feature.md)
+- The editor's table button opens a dialog over the scenario's markdown
+  tables (editor/table-editor.feature.md)
 - ESC key to get back to Scenario screen.
 - The version is never user editable; it is shown read-only and assigned by
   the app.

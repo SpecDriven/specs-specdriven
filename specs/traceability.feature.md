@@ -7,7 +7,7 @@
 - These links are optional and will be controlled by user setting; default is ON
 
 The links live inside the feature file, as a trailing `### Tests` markdown
-table in the scenario — like the scenario table (scenario-table.feature.md),
+table in the scenario — like an examples table (editor/table-editor.feature.md),
 plain markdown that renders naturally on GitHub:
 
 ```
