@@ -8,6 +8,9 @@ and each scenario to its Aha! record the way the links are added by hand
 (external-links/aha-and-figma-links.feature.md). Aha! holds descriptions as
 HTML, never Markdown, so they are converted on the way in.
 
+Importing is opt-in, like the Aha! links: a team that doesn't use Aha! never
+sees it until Settings → Aha! switches it on.
+
 The key is kept per site on this device, like a Confluence or qTest token
 (external-links/confluence-wiki.feature.md), and never in the data repo.
 Nothing is written to Aha!.
@@ -20,7 +23,7 @@ again into the feature it made.
 
 ## S1: An Aha! API key is kept per site on this device @v1 [proposed]
 
-- Given: Settings → Aha!
+- Given: Settings → Aha!, with "Import features from Aha!" switched on
 - When: the user enters the Aha! site's url (or any record url of it) and an
   API key — made in Aha! under the avatar → Settings → Personal → Developer
   → API keys — and presses "Save key"
@@ -44,7 +47,8 @@ again into the feature it made.
 
 ## S2: Import a feature by its url @v1 [proposed]
 
-- Given: this device holds a key for the Aha! site
+- Given: "Import features from Aha!" is switched on, and this device holds a
+  key for the Aha! site
 - When: the user picks "Import from Aha!…" — the folder's ⋯ menu, the button
   beside "New feature", or the palette — pastes the feature's url, or types
   its reference number (APP-123) against a site with a key, and presses
@@ -60,10 +64,10 @@ again into the feature it made.
 
 [test: names the site and the record, be it a feature, an epic, a requirement or an idea : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaUrl.test.ts#L16 ]
 [test: is built the way Aha! shows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaUrl.test.ts#L54 ]
-[test: creates the feature in the chosen folder from the Aha! record, its requirements as scenarios : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L201 ]
-[test: a bare reference number is read against the site named with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L258 ]
-[test: a name is one line with no folder separator; an empty one is the reference number : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L329 ]
-[test: the status and release ride on the import line when Aha! gives them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L364 ]
+[test: creates the feature in the chosen folder from the Aha! record, its requirements as scenarios : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L231 ]
+[test: a bare reference number is read against the site named with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L288 ]
+[test: a name is one line with no folder separator; an empty one is the reference number : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L359 ]
+[test: the status and release ride on the import line when Aha! gives them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L394 ]
 [test: a modal dialog with the feature url, the two scopes and Import : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaDialogs.test.tsx#L18 ]
 [test: Import waits for a feature url on a site with a key, and says what is missing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaDialogs.test.tsx#L34 ]
 [test: a site to read a bare reference number against is offered only with several keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaDialogs.test.tsx#L48 ]
@@ -86,10 +90,10 @@ again into the feature it made.
   their own endpoint
 - and "Description only" leaves the requirements out
 
-[test: the feature links its Aha! record and each scenario its requirement, on the document only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L231 ]
-[test: description only leaves the requirements out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L247 ]
-[test: requirements the feature answer lists without descriptions are read from their own endpoint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L266 ]
-[test: a requirement's name loses what the heading syntax would misread, and repeats are told apart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L337 ]
+[test: the feature links its Aha! record and each scenario its requirement, on the document only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L261 ]
+[test: description only leaves the requirements out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L277 ]
+[test: requirements the feature answer lists without descriptions are read from their own endpoint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L296 ]
+[test: a requirement's name loses what the heading syntax would misread, and repeats are told apart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L367 ]
 
 ## S4: The feature links its Aha! record @v1 [proposed]
 
@@ -103,7 +107,7 @@ again into the feature it made.
 - and when the links cannot be written the feature is still there, and the
   answer says so
 
-[test: the feature links its Aha! record and each scenario its requirement, on the document only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L231 ]
+[test: the feature links its Aha! record and each scenario its requirement, on the document only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L261 ]
 
 ## S5: Descriptions come in as markdown @v1 [proposed]
 
@@ -119,7 +123,7 @@ again into the feature it made.
   would start a scenario, a test link or a ticket link is escaped, and a
   "Tests" heading is demoted
 
-[test: a description keeps nothing the feature parser would lift out of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L353 ]
+[test: a description keeps nothing the feature parser would lift out of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L383 ]
 [test: paragraphs are separated by a blank line, a br breaks the line inside one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L11 ]
 [test: every level is demoted to at least three hashes, deeper ones kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L35 ]
 [test: an h2 named like a scenario never becomes a scenario heading : https://github.com/SpecDriven/specdriven-app/blob/main/tests/html.test.ts#L41 ]
@@ -162,6 +166,22 @@ again into the feature it made.
 - and the hosted app, which keeps no device secrets, offers none of this:
   no Aha! section in Settings, and the routes refuse
 
-[test: what cannot be imported says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L276 ]
-[test: a key Aha! no longer accepts is reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L300 ]
-[test: the hosted app refuses Aha! altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L308 ]
+[test: what cannot be imported says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L306 ]
+[test: a key Aha! no longer accepts is reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L330 ]
+[test: the hosted app refuses Aha! altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L338 ]
+
+## S7: Import from Aha! is switched on in Settings @v1 [proposed]
+
+- Given: Settings → Aha!
+- When: the user switches "Import features from Aha!" on or off
+- Then: it starts off, and off nothing in the app offers an import: no
+  "Import from Aha!…" in the folder's ⋯ menu, beside "New feature" or in
+  the palette, and no API key form in Settings
+- and on, all of those are there, the key form under the switch
+- and while it is off the import route refuses before Aha! is asked, and the
+  keys already saved are kept for when it is on again
+- and the switch is kept in the app's settings, off as no entry at all, and
+  is independent of the Aha! links switch
+
+[test: is off until switched on, and off is an absent key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L203 ]
+[test: while off the import is refused before Aha! is asked, and the keys stay : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L216 ]
