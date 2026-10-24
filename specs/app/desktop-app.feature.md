@@ -23,6 +23,16 @@ on unless told otherwise (`bun run build:desktop [--mac | --linux | --win | --al
   installer, only the app unpacked in `release\win-unpacked`, which is what
   `install.ps1` starts.
 
+Every artifact carries the application icon: the sidebar's SD mark on its
+accent tile, drawn once as `build/icon.svg`. `bun run build:icons` rasterizes
+it with Electron's own Chromium into the `.icns`, `.ico` and Linux PNGs under
+`build/` that electron-builder stamps, so no build machine renders it and no
+image library joins the dependencies; the renderings are committed and
+refreshed when the artwork changes. macOS and Linux get the tile on the
+transparent margin their desktops expect, Windows the full-bleed one. A copy
+ships beside the bundles for the Linux window's icon and for the dock of a
+development run on macOS, and the web app's favicon is the same artwork.
+
 The macOS artifacts need macOS tooling, so `--mac` off a Linux machine stops
 with that as the reason rather than producing a broken build. The Windows ones
 are built on Windows — off it, electron-builder needs Wine to stamp the
@@ -126,7 +136,7 @@ The GitHub sign-in token is stored OS-encrypted (Electron safeStorage,
 keychain-backed on macOS); when the OS offers no key store it falls back
 to the user-only token file next to the home settings file.
 
-## a build that crashes at launch fails the crash test @v1 [published]
+## S1: a build that crashes at launch fails the crash test @v1 [published]
 
 - Given: a fresh desktop build
 - When: `bun run test:desktop` launches it three times, holding each window
@@ -145,7 +155,7 @@ to the user-only token file next to the home settings file.
 [test: fatal signatures fail the run grouped by kind; notes do not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L85 ]
 [test: the output scan finds crashes and ignores a headless box's usual noise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L97 ]
 
-## a Mac builds the Linux app too @v1 [proposed]
+## S2: a Mac builds the Linux app too @v1 [proposed]
 
 - Given: a Mac
 - When: the user runs `bun run build:desktop --linux`, or `--all`
@@ -158,7 +168,7 @@ to the user-only token file next to the home settings file.
 [test: a release build packages every target and architecture in package.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L46 ]
 [test: packaging never rebuilds native modules for the build machine : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L47 ]
 
-## a maximized session comes back maximized @v1 [published]
+## S3: a maximized session comes back maximized @v1 [published]
 
 - Given: the user quit the app with the window maximized
 - When: they launch the app again
@@ -168,7 +178,7 @@ to the user-only token file next to the home settings file.
 [test: maximized survives fitting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L111 ]
 [test: save then load round-trips : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L120 ]
 
-## building the macOS app off a Mac stops with the reason @v1 [proposed]
+## S4: building the macOS app off a Mac stops with the reason @v1 [proposed]
 
 - Given: a Linux machine
 - When: the user runs `bun run build:desktop --mac` or `--all`
@@ -180,7 +190,7 @@ to the user-only token file next to the home settings file.
 [test: the macOS app is only built on macOS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L28 ]
 [test: an unsupported host or a mistyped flag stops before packaging : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L41 ]
 
-## desktop and web share settings @v1 [proposed]
+## S5: desktop and web share settings @v1 [proposed]
 
 - Given: the web version has recorded a data repo in `~/.specdriven/settings.json`
 - When: the desktop app starts
@@ -189,7 +199,7 @@ to the user-only token file next to the home settings file.
 [test: the home settings file is used when the project has none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L58 ]
 [test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L73 ]
 
-## GitHub data repos are cloned under the app-data directory @v1 [proposed]
+## S6: GitHub data repos are cloned under the app-data directory @v1 [proposed]
 
 - Given: the desktop app
 - When: the user opens a GitHub data repo that is not on the machine yet
@@ -199,7 +209,7 @@ to the user-only token file next to the home settings file.
 [test: SPECDRIVEN_ROOT re-bases the app root : https://github.com/SpecDriven/specdriven-app/blob/main/tests/paths.test.ts#L26 ]
 [test: SPECDRIVEN_REPOS_DIR gathers clones under the app-data directory : https://github.com/SpecDriven/specdriven-app/blob/main/tests/paths.test.ts#L41 ]
 
-## reloading inside the app keeps the spec on screen @v1 [proposed]
+## S7: reloading inside the app keeps the spec on screen @v1 [proposed]
 
 - Given: the desktop app is showing a feature at `/features/<path>`
 - When: the window reloads
@@ -209,7 +219,7 @@ to the user-only token file next to the home settings file.
 [test: the root path is the shell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L27 ]
 [test: deep links resolve to paths that won't exist, so the caller serves the shell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L36 ]
 
-## test link opens in the browser @v1 [published]
+## S8: test link opens in the browser @v1 [published]
 
 - Given: a scenario with a link to an automated test on GitHub 
 AND  open links in IntelliJ is Off
@@ -223,7 +233,7 @@ AND  open links in IntelliJ is Off
 [test: the app's own pages stay in the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L36 ]
 [test: schemes that are not web pages go nowhere : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L53 ]
 
-## the GitHub sign-in survives a restart without an OS key store @v1 [proposed]
+## S9: the GitHub sign-in survives a restart without an OS key store @v1 [proposed]
 
 - Given: a machine whose OS offers no key store, and a user signed in to
   GitHub
@@ -233,7 +243,7 @@ AND  open links in IntelliJ is Off
 
 [test: token round-trips through the file backend across backend resets : https://github.com/SpecDriven/specdriven-app/blob/main/tests/auth.test.ts#L251 ]
 
-## the header's icons work inside the drag region @v1 [proposed]
+## S10: the header's icons work inside the drag region @v1 [proposed]
 
 - Given: the macOS desktop app, whose sidebar header is the window drag region
 - When: the user clicks the timer, the Bot, or the sidebar collapse icon at
@@ -244,7 +254,7 @@ AND  open links in IntelliJ is Off
 [test: every control in the header stays clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L156 ]
 [test: the header's icon buttons stay clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L169 ]
 
-## the internal protocol serves only the app's bundled files @v1 [proposed]
+## S11: the internal protocol serves only the app's bundled files @v1 [proposed]
 
 - Given: the desktop app's internal `app://` origin
 - When: a url asks for a path outside the bundled frontend — `..`, an
@@ -254,7 +264,7 @@ AND  open links in IntelliJ is Off
 [test: bundle files resolve inside the renderer directory : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L31 ]
 [test: escapes and smuggled separators are rejected : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L42 ]
 
-## the packaged Linux app opens on a clean machine @v1 [proposed]
+## S12: the packaged Linux app opens on a clean machine @v1 [proposed]
 
 - Given: a Linux system with no Electron and no developer tooling installed
 - When: the user installs the deb, or marks the AppImage executable and runs it
@@ -266,7 +276,7 @@ AND  open links in IntelliJ is Off
 [test: the AppImage carries the static runtime, needing neither FUSE nor a host zlib : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L33 ]
 [test: both Linux artifacts are built for x64 and arm64 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L41 ]
 
-## the remembered position was on a monitor that is gone @v1 [proposed]
+## S13: the remembered position was on a monitor that is gone @v1 [proposed]
 
 - Given: the app was last used on an external monitor that is now unplugged
 - When: the app launches
@@ -275,7 +285,7 @@ AND  open links in IntelliJ is Off
 
 [test: a window on a disconnected monitor falls back to null : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L87 ]
 
-## the window cannot shrink below a usable size @v1 [proposed]
+## S14: the window cannot shrink below a usable size @v1 [proposed]
 
 - Given: the desktop app is open
 - When: the user drags a window edge as far as it will go
@@ -284,7 +294,7 @@ AND  open links in IntelliJ is Off
 
 [test: a too-small saved size is raised to the minimums : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L76 ]
 
-## the window moves from the top of either pane @v1 [proposed]
+## S15: the window moves from the top of either pane @v1 [proposed]
 
 - Given: the macOS desktop app, with the editor pane open on a spec or the
   README
@@ -298,7 +308,7 @@ AND  open links in IntelliJ is Off
 [test: off macOS the editor header is not a drag region : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L211 ]
 [test: the opt-out is scoped to the two headers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L225 ]
 
-## the window reopens where it was left @v1 [proposed]
+## S16: the window reopens where it was left @v1 [proposed]
 
 - Given: the user resized and moved the window, then quit the app
 - When: they launch the app again
@@ -307,7 +317,7 @@ AND  open links in IntelliJ is Off
 [test: save then load round-trips : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L120 ]
 [test: bounds fully on-screen and large enough pass through unchanged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L72 ]
 
-## the Windows app is built on Windows @v1 [proposed]
+## S17: the Windows app is built on Windows @v1 [proposed]
 
 - Given: a Windows machine
 - When: the user runs `bun run build:desktop`, or `--win`
