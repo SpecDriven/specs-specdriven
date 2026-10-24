@@ -54,7 +54,7 @@ data repo, so the structure renders naturally on GitHub too.
   renaming or deleting it is committed and pushed like a folder with
   features; deleting it asks once, like an empty folder.
 
-## delete a folder @v1 [proposed]
+## S1: delete a folder @v1 [proposed]
 
 - When: user asks to delete a folder with no files anywhere beneath it
 - Then: the folder is removed (a local filesystem operation — git does not
@@ -65,7 +65,7 @@ data repo, so the structure renders naturally on GitHub too.
 
 [test: deleteFolder deletes empty folders only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L129 ]
 
-## delete a folder with features in it @v1 [proposed]
+## S2: delete a folder with features in it @v1 [proposed]
 
 - Given: a folder with features anywhere beneath it
 - When: the user picks Delete from the folder's `⋯` menu and confirms the
@@ -81,29 +81,51 @@ data repo, so the structure renders naturally on GitHub too.
 [test: deleteFolder with force git-rms the directory, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L395 ]
 [test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L183 ]
 
-## describe a folder @v1 [proposed]
+## S3: describe a folder @v1 [proposed]
 
-- Given: a folder with a `description.txt` file in it
+- Given: a folder with a `display-name.txt` file in it
 - When: the sidebar tree is shown
 - Then: the folder's row shows the file's first non-blank line, trimmed, in
   place of the folder name, and the folder name on hover
 - And: a folder without the file, or with a blank one, shows its name
-- And: renaming a folder holding only a description is a `git mv`,
+- And: a folder with no `display-name.txt` but a `description.txt` — the
+  file's name before — shows that file's line the same way
+- And: renaming a folder holding only a display name is a `git mv`,
   committed and pushed, and deleting it a `git rm`, committed and pushed,
   with no second confirmation since no feature goes with it
 
-[test: readFolderDescription and listFolderDescriptions read description.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L293 ]
-[test: buildTree carries folder descriptions; folderLabel falls back to the name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L318 ]
-[test: renameFolder git-mvs a folder holding only a description.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L416 ]
-[test: deleteFolder removes a folder holding only a description.txt, committed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L431 ]
+[test: readFolderDescription and listFolderDescriptions read display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L296 ]
+[test: buildTree carries folder descriptions; folderLabel falls back to the name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L372 ]
+[test: renameFolder git-mvs a folder holding only a display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L470 ]
+[test: deleteFolder removes a folder holding only a display-name.txt, committed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L485 ]
 
-## deselect a folder with ESC @v1 [proposed]
+## S4: deselect a folder with ESC @v1 [proposed]
 
 - When: a folder is selected and the user presses ESC outside a dialog or text field
 - Then: the folder is deselected and "+ New folder" creates at the tree root
 - Otherwise: with a dialog open or a field focused, ESC closes/cancels that instead
 
-## move a feature from its menu @v1 [proposed]
+## S5: edit a folder's display name @v1 [proposed]
+
+- When: the user picks `Edit display name` — beside `Rename` in the folder's
+  `⋯` menu, or from the command palette with the folder selected — and
+  saves a name
+- Then: the name becomes the first non-blank line of the folder's
+  `display-name.txt`, any lines past it kept, committed and pushed, and the
+  sidebar shows it in place of the folder name ("describe a folder")
+- And: the folder itself keeps its name and path, so no link to a feature
+  in it changes
+- And: a legacy `description.txt` in the folder moves over to
+  `display-name.txt` in the same commit
+- And: saving a blank name clears the display name — the file goes, a
+  `git rm`, committed and pushed — and the folder shows its name again
+
+[test: setFolderDescription writes, keeps extra lines, and clears display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L338 ]
+[test: setFolderDescription commits and pushes display-name.txt, and git-rms it when cleared : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L503 ]
+[test: setFolderDescription moves a legacy description.txt to display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L525 ]
+[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L183 ]
+
+## S6: move a feature from its menu @v1 [proposed]
 
 - When: the user picks `Move to folder…` from a feature's `⋯` menu, or the
   command palette's Move feature to folder…
@@ -114,13 +136,13 @@ data repo, so the structure renders naturally on GitHub too.
 
 [test: featuresBeneath, folderRenamed and folderOptions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L210 ]
 
-## move feature to another folder @v1 [proposed]
+## S7: move feature to another folder @v1 [proposed]
 
 - When: user drags a feature onto another folder (or the tree root)
 - Then: the file is moved with `git mv`, keeping its file name
 - and the move is committed and pushed
 
-## rename a folder @v1 [proposed]
+## S8: rename a folder @v1 [proposed]
 
 - When: the user picks Rename from a folder's `⋯` menu and types a new name
 - Then: the folder takes that name, slugified, and keeps its place in the tree
