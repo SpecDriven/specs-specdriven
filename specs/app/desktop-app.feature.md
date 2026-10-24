@@ -138,6 +138,8 @@ to the user-only token file next to the home settings file.
 
 ## S1: a build that crashes at launch fails the crash test @v1 [published]
 
+[negative]
+
 - Given: a fresh desktop build
 - When: `bun run test:desktop` launches it three times, holding each window
   open before asking it to quit
