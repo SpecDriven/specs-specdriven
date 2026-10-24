@@ -39,9 +39,10 @@ the page.
 ## Feature entry menu
 
 Each feature entry in the left pane has a drop down menu (a `⋯` button,
-visible on hover) with three items: `File`, `Move to folder…` and `Delete`.
+visible on hover) with three items: `Rename`, `Move to folder…` and `Delete`
+— all on the menu itself, with no submenu.
 
-- `File` opens a submenu with `Rename`, which renames the underlying file.
+- `Rename` renames the underlying file.
   - Only the file name to the left of the dot is shown and edited; the
     `.feature.md` extension is hidden and always kept. The folder is kept too.
   - The rename is a `git mv`, committed and pushed.
