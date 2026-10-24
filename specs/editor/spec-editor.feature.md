@@ -2,13 +2,13 @@
 
 Spec editor will be separate pane that will replace the feature pane with '<' icon to go back to the feature.
 
-## Adding Scanarios @v1 [proposed]
+## S1: Adding Scanarios @v1 [proposed]
 
 A small dialog should pop up to enter scenario name.
 
 Scenario name should appear above top left corner of the editor.
 
-## Create New Spec @v1 [published]
+## S2: Create New Spec @v1 [published]
 
 Add scenario.
 This opens the editor dialog for the new spec.
@@ -19,7 +19,7 @@ The user can use Delete which removes the draft spec.
 The escape key or the close-editor widget will leave the scenario in its autosaved state. Like the Settings dialog, the bottom of the spec dialog will have a note to use Esc to exit.
 Two buttons available: "Propose" and "Publish".
 
-## Create New Spec @v2 [proposed]
+## S3: Create New Spec @v2 [proposed]
 
 Add scenario.
 This opens the editor dialog for the new spec.
@@ -31,7 +31,7 @@ The escape key or the close-editor widget will leave the scenario in its autosav
 Two buttons available: "Propose" and "Publish".
 When the spec is proposed or published, the application stores the author who created the spec.
 
-## Delete Published Spec @v1 [published]
+## S4: Delete Published Spec @v1 [published]
 
 Given: deletion of published specs is turned on in user settings
 When: click on Delete button
@@ -39,7 +39,7 @@ Then: a confirmation dialog pops up with: "Danger Zone! Confirm that you want to
 The user can click "Confirm" button or the "Cancel" button.
 If confirmed, the spec is deleted.
 
-## Previous and next scenario @v1 [proposed]
+## S5: Previous and next scenario @v1 [proposed]
 
 From one scenario's editor, step to the scenario before or after it without
 going back to the feature.
@@ -70,7 +70,7 @@ going back to the feature.
 [test: a scenario that isn't in the tree yet — new, never saved — has neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L201 ]
 [test: a scenario is told apart from its other versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L208 ]
 
-## Spec body resize @v1 [proposed]
+## S6: Spec body resize @v1 [proposed]
 
 A scenario with a table, a ticket and many test links leaves the body editor
 too little room.
@@ -94,7 +94,7 @@ too little room.
 [test: fractional pixels from the pointer land on whole ones : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bodyResize.test.ts#L25 ]
 [test: on a window too short for both bounds the minimum wins, so the body stays usable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bodyResize.test.ts#L30 ]
 
-## Spec editor pane @v1 [proposed]
+## S7: Spec editor pane @v1 [proposed]
 
 The scenario editor is a pane, not a dialog. Opening a scenario — Edit on its
 card, Enter on the highlighted card, New version, or "+ Add Scenario" —
@@ -110,8 +110,8 @@ where it is and keeps working.
   at all: the only things it can still change are its links, and those save
   themselves (traceability.feature.md).
 - Below the bar one column scrolls: the body's Markdown editor, at least 40%
-  of the window tall and growing to fill the pane, then the scenario table,
-  the ticket link and the automated tests.
+  of the window tall and growing to fill the pane, then the ticket link and
+  the automated tests.
 - `<` and ESC go back to the feature, leaving the scenario in its autosaved
   state — one last save catches what was typed since the previous tick, a url
   still sitting in the test-link fields included (traceability.feature.md).
@@ -130,3 +130,5 @@ where it is and keeps working.
   result, the data folder name, browser Back — first saves what the pane
   holds, exactly like `<`, then navigates.
 - The reload cron and Sync leave an open pane alone, as they did the dialog.
+
+[test: shows its editor, not the error note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioEditorDraft.test.tsx#L140 ]
