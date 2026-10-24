@@ -63,7 +63,7 @@ data repo, so the structure renders naturally on GitHub too.
 - Otherwise: the deletion is refused unless the user confirms deleting the
   features with it ("delete a folder with features in it")
 
-[test: deleteFolder deletes empty folders only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L129 ]
+[test: deleteFolder deletes empty folders only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L130 ]
 
 ## S2: delete a folder with features in it @v1 [proposed]
 
@@ -77,9 +77,9 @@ data repo, so the structure renders naturally on GitHub too.
   back
 - Otherwise: without the confirmation nothing changes
 
-[test: deleteFolder with force removes a folder with features in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L159 ]
-[test: deleteFolder with force git-rms the directory, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L395 ]
-[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L183 ]
+[test: deleteFolder with force removes a folder with features in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L160 ]
+[test: deleteFolder with force git-rms the directory, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L449 ]
+[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L184 ]
 
 ## S3: describe a folder @v1 [proposed]
 
@@ -123,7 +123,7 @@ data repo, so the structure renders naturally on GitHub too.
 [test: setFolderDescription writes, keeps extra lines, and clears display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L338 ]
 [test: setFolderDescription commits and pushes display-name.txt, and git-rms it when cleared : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L503 ]
 [test: setFolderDescription moves a legacy description.txt to display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L525 ]
-[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L183 ]
+[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L184 ]
 
 ## S6: move a feature from its menu @v1 [proposed]
 
@@ -134,7 +134,7 @@ data repo, so the structure renders naturally on GitHub too.
 - And: choosing one moves the feature the way a drag does — a `git mv` into
   that folder, committed and pushed, keeping its file name
 
-[test: featuresBeneath, folderRenamed and folderOptions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L210 ]
+[test: featuresBeneath, folderRenamed and folderOptions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L211 ]
 
 ## S7: move feature to another folder @v1 [proposed]
 
@@ -151,6 +151,6 @@ data repo, so the structure renders naturally on GitHub too.
   its new url, and a name already taken by a sibling folder is refused
 - And: an empty folder is renamed on disk alone, git never having tracked it
 
-[test: renameFolder renames in place, slugified, refusing collisions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L178 ]
-[test: renameFolder works in a plain directory with features (no git repo) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L199 ]
-[test: renameFolder git-mvs the directory and its documents, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L372 ]
+[test: renameFolder renames in place, slugified, refusing collisions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L179 ]
+[test: renameFolder works in a plain directory with features (no git repo) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L200 ]
+[test: renameFolder git-mvs the directory and its documents, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L426 ]
