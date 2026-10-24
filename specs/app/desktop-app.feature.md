@@ -329,3 +329,22 @@ AND  open links in IntelliJ is Off
 [test: the Windows app is only built on Windows, and --all leaves it out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L33 ]
 [test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L17 ]
 [test: --local packages only the installer this machine starts, for its own architecture : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L50 ]
+
+## S18: every artifact carries the application icon @v1 [proposed]
+
+- Given: the artwork in `build/icon.svg` and the renderings `bun run build:icons`
+  committed beside it
+- When: the desktop app is packaged, or the web app is built
+- Then: electron-builder stamps the `.icns`, `.ico` and Linux PNGs from
+  `build/`, each the size its name says and laid out the way its platform reads it
+- and macOS and Linux get the tile on Apple's transparent margin, Windows the
+  full-bleed one
+- and the web app's favicon is the same artwork
+
+[test: electron-builder is pointed at committed icons for every platform : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appIcon.test.ts#L22 ]
+[test: build/icons carries every Linux size, each file the size it names : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appIcon.test.ts#L31 ]
+[test: the .icns and .ico are what their formats expect : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appIcon.test.ts#L39 ]
+[test: encodeIco lays out PNG entries the way Windows reads them back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appIcon.test.ts#L61 ]
+[test: macOS and Linux renderings sit on Apple's margin; the Windows one is full-bleed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appIcon.test.ts#L83 ]
+[test: the iconset names each file by its point size, with the @2x double beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appIcon.test.ts#L99 ]
+[test: the web app's favicon is the same artwork : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appIcon.test.ts#L107 ]
