@@ -17,7 +17,7 @@ We enourage our users to propose specs into the specs-specdriven repo.
 - User must log in with a valid GitHub account.
 - We will restrict number of proposed specs per user per day to address DDOS risks.
 - Proposals by users who are not contributors will be written to GitHub via a separate GH developer token we can set via an env var
-- 
+- Proposals as a GitHub issue type? Maybe?
 
 ## Deployment architecture
 
