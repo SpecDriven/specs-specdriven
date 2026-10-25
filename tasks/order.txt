@@ -1,4 +1,3 @@
-experiment-with-lean-lang-for-formal-verification.md
 add-editor-for-project-settings.md
 check-for-git-readiness-on-startup.md
 check-if-2-scenarios-1-test-will-work.md
@@ -11,4 +10,5 @@ research-this-failure-mode.md
 review-testmu.md
 test-zip-file-on-mac.md
 test-zip-file-on-windows.md
+experiment-with-lean-lang-for-formal-verification.md
 user-deployment-with-docker.md
