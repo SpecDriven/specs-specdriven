@@ -1,8 +1,8 @@
 app
 agents
 datastore
-editor
 external-links
+editor
 local-information-store
 models
 ui
