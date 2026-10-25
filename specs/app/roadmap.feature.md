@@ -14,6 +14,29 @@ On Sync, commit all files in this folder.
 [test: a sync tick creates the folder only when the setting is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/roadmap.test.ts#L79 ]
 [test: a sync tick commits and pushes every file in the roadmap folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/roadmap.test.ts#L95 ]
 
+## Reorder roadmap pages @v1 [proposed]
+
+- Given: the Roadmap tab lists its pages, top level first, then each subfolder
+- When: the user picks Move up or Move down from a page's ⋯ menu, or drags
+  the page onto another page's row
+- Then: the page moves one place up or down within its folder — or lands
+  before or after the row it was dropped on — just as tasks do
+  (tasks.feature.md "Reorder tasks by dragging")
+- and Move down on the next-to-last page puts it at the bottom; Move up is
+  greyed out on the first page and Move down on the last
+- and Move to folder… and a drop on a subfolder's header move the page into
+  that folder, a `git mv` committed and pushed with its document
+- and the order is kept in an `order.txt` beside the pages, one file name per
+  line, which the sync tick commits; a page the order does not name is listed
+  after the named ones, in name order
+- and each subfolder gets the task folders' ⋯ menu — New page here, New
+  folder here, Rename, Delete — with a "+ New folder" button beside
+  "+ New page"
+
+[test: the roadmap tab and folder keep an order of their own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/roadmapOrder.test.ts#L48 ]
+[test: roadmap pages move up and down one place, the next-to-last to the bottom : https://github.com/SpecDriven/specdriven-app/blob/main/tests/roadmapOrder.test.ts#L53 ]
+[test: the roadmap routes list folders and move a page to the bottom : https://github.com/SpecDriven/specdriven-app/blob/main/tests/roadmapOrder.test.ts#L98 ]
+
 ## The roadmap follows the data folder @v1 [proposed]
 
 - Given: the Roadmap setting is on, and one of the current data folder's
