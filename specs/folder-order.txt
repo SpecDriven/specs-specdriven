@@ -1,6 +1,6 @@
 app
-agents
 datastore
+agents
 editor
 external-links
 local-information-store
