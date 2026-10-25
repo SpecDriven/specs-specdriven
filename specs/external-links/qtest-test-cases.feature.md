@@ -236,6 +236,8 @@ qTest never sees it.
 - Then: each call is recorded in the app's log under the "qtest" component,
   for the Observability page: the method and url, what the app sent, qTest's
   status and answer, and how long it took — never the token
+- and on the Observability page an entry's one-line view leaves the bodies
+  out, so the list stays readable; opening the entry shows them
 - and an answered call is logged as info, a refusal qTest explains (400, 401,
   403, 404) as a warning, and a server error or a site that could not be
   reached as an error
@@ -256,3 +258,4 @@ qTest never sees it.
 [test: shows the error as a line that opens the request, what was sent and qTest's answer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestFailureDetails.test.tsx#L104 ]
 [test: an error without details stays plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestFailureDetails.test.tsx#L160 ]
 [test: shows qTest's answer on click : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestFailureDetails.test.tsx#L169 ]
+[test: a closed row leaves out HTTP bodies and stacks; the open row shows them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/observabilityPage.test.tsx#L129 ]
