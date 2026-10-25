@@ -1,0 +1,14 @@
+experiment-with-lean-lang-for-formal-verification.md
+add-editor-for-project-settings.md
+check-for-git-readiness-on-startup.md
+check-if-2-scenarios-1-test-will-work.md
+convert-pomodoro-feature-into-a-plugin.md
+explore-storytime-team.md
+evaluate-codescene.md
+investigate-greptile-and-coderabbit.md
+read-the-book-of-why.md
+research-this-failure-mode.md
+review-testmu.md
+test-zip-file-on-mac.md
+test-zip-file-on-windows.md
+user-deployment-with-docker.md
