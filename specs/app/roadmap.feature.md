@@ -4,7 +4,7 @@
 
 'roadmap' is a special folder which contains regular markdown files. It shows in the sidebar as a Roadmap tab beside the Specs tab. User settings will control the visibility of this folder
 
-## Create roadmap folder if necessary @v1 [published]
+## S1: Create roadmap folder if necessary @v1 [published]
 
 If user setting for Roadmap is On and the 'roadmap' folder does not exist -- create it.
 On Sync, commit all files in this folder.
@@ -14,7 +14,7 @@ On Sync, commit all files in this folder.
 [test: a sync tick creates the folder only when the setting is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/roadmap.test.ts#L79 ]
 [test: a sync tick commits and pushes every file in the roadmap folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/roadmap.test.ts#L95 ]
 
-## Reorder roadmap pages @v1 [proposed]
+## S2: Reorder roadmap pages @v1 [proposed]
 
 - Given: the Roadmap tab lists its pages, top level first, then each subfolder
 - When: the user picks Move up or Move down from a page's ⋯ menu, or drags
@@ -37,7 +37,7 @@ On Sync, commit all files in this folder.
 [test: roadmap pages move up and down one place, the next-to-last to the bottom : https://github.com/SpecDriven/specdriven-app/blob/main/tests/roadmapOrder.test.ts#L53 ]
 [test: the roadmap routes list folders and move a page to the bottom : https://github.com/SpecDriven/specdriven-app/blob/main/tests/roadmapOrder.test.ts#L98 ]
 
-## The roadmap follows the data folder @v1 [proposed]
+## S3: The roadmap follows the data folder @v1 [proposed]
 
 - Given: the Roadmap setting is on, and one of the current data folder's
   roadmap pages is open in the editor
@@ -53,7 +53,7 @@ On Sync, commit all files in this folder.
   for a page that belonged to the old one
 - and a folder picked in the first-run form lists its pages the same way
 
-## The roadmap is a sidebar tab @v1 [proposed]
+## S4: The roadmap is a sidebar tab @v1 [proposed]
 
 - Given: the Roadmap setting is on
 - When: the user looks at the sidebar
