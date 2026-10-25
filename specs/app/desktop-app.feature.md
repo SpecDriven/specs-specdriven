@@ -45,6 +45,15 @@ Without that, a build machine is asked to compile optional native accelerators
 pulled in transitively — `cbor-extract`, say — against Electron's C++20
 headers, and a host with an older toolchain fails a build it did not need.
 
+What the package carries is those bundles — `dist/electron`, `dist/renderer`,
+the icon and a self-fix's `dist/patch.json`, named one by one so neither the
+web build nor a crash test's output beside them rides along — and nothing of
+the dependency tree they were built from: no `node_modules` (once 300 MB of
+never-loaded code inside `app.asar`), no source maps, and only Electron's
+English locale pack, since the app's own UI is English and the others merely
+translate Chromium's context menus. The macOS dmg is LZFSE-compressed, which
+downloads smaller than the zlib default and unpacks faster on a modern macOS.
+
 A Linux artifact has to start on a machine that has never seen Electron:
 
 - The deb names every shared library Electron loads. ALSA is the one the
@@ -149,13 +158,13 @@ to the user-only token file next to the home settings file.
   uncaught main-process exception or prints a crash signature fails the run,
   naming what went wrong
 
-[test: a launch that rendered, held and quit with 0 passes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L38 ]
-[test: dying before being asked to quit fails, naming how it died : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L42 ]
-[test: a window that never renders fails even when the quit is clean : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L52 ]
-[test: a quit that hangs, exits non-zero, or leaves a dead window fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L57 ]
-[test: an exception the main process's listener recorded fails the run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L66 ]
-[test: fatal signatures fail the run grouped by kind; notes do not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L85 ]
-[test: the output scan finds crashes and ignores a headless box's usual noise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L97 ]
+[test: a launch that rendered, held and quit with 0 passes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L43 ]
+[test: dying before being asked to quit fails, naming how it died : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L47 ]
+[test: a window that never renders fails even when the quit is clean : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L84 ]
+[test: a quit that hangs, exits non-zero, or leaves a dead window fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L89 ]
+[test: an exception the main process's listener recorded fails the run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L98 ]
+[test: fatal signatures fail the run grouped by kind; notes do not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L117 ]
+[test: the output scan finds crashes and ignores a headless box's usual noise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L129 ]
 
 ## S2: a Mac builds the Linux app too @v1 [proposed]
 
@@ -350,3 +359,19 @@ AND  open links in IntelliJ is Off
 [test: macOS and Linux renderings sit on Apple's margin; the Windows one is full-bleed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appIcon.test.ts#L83 ]
 [test: the iconset names each file by its point size, with the @2x double beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appIcon.test.ts#L99 ]
 [test: the web app's favicon is the same artwork : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appIcon.test.ts#L107 ]
+
+## S19: the package carries the bundles and nothing else @v1 [proposed]
+
+- Given: a desktop build on a machine whose `dist/` also holds the web
+  binary and a crash test's output, and whose `node_modules` holds every
+  development dependency
+- When: electron-builder packages the app
+- Then: `app.asar` holds the main-process and renderer bundles, the icon and
+  a self-fix's patch manifest — no `node_modules`, no source maps, nothing
+  else from `dist/`
+- and the Electron framework ships only its English locale pack, so the
+  macOS app is a fraction of the size the dependency tree would give it
+
+[test: the package ships the bundles, not node_modules or the rest of dist/ : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L64 ]
+[test: source maps stay out of the package : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L74 ]
+[test: only the English Chromium locale ships : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L78 ]

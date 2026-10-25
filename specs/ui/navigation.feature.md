@@ -78,6 +78,13 @@ what `/features/accidents/record-car-accident` does, versioned scenario
 permalinks included. Registering the scheme is what lets the OS route such a
 link — clicked in chat, email, a browser or a terminal — to the app.
 
+A link opened while the app is closed loads its first window straight at
+the linked path, so the app shell has to work from a nested url as well as
+from `/`: its asset urls are root-relative however deep the path, never
+relative to the page (a `./index.js` under `/features/app/desktop-app` would
+ask for `/features/app/index.js`, get the shell back as the script, and
+leave the window blank).
+
 ## S1: a second link reuses the running app @v1 [proposed]
 
 - Given: the desktop app is already open on some other feature
@@ -234,3 +241,18 @@ Allow to collapse and expand the outline.
 [test: a drop that leaves the scenario where it was is no move : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioDragReorder.test.ts#L38 ]
 [test: scenarios are found by name and version, so a draft between them keeps its place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioDragReorder.test.ts#L47 ]
 [test: a scenario no longer in the feature moves nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioDragReorder.test.ts#L61 ]
+
+## S15: a link launches the app straight onto its page @v1 [proposed]
+
+- Given: the desktop app is not running
+- When: the OS starts it for a `specdriven://features/<feature>` link
+- Then: the first window loads at that nested path and renders — the app
+  mounts, with the feature, or the repo prompt when no data repo is
+  configured yet — rather than staying blank because the shell's scripts
+  were looked for under the link's path
+
+[test: the built shell's ./ asset urls become root-relative, so they load at any path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L60 ]
+[test: absolute, remote and parent-relative urls pass through untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L72 ]
+[test: single-quoted attributes are rewritten too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L79 ]
+[test: the last of two or more launches is by link to a nested page; a lone launch is plain : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L59 ]
+[test: a launch by link must have loaded the window at the linked path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L68 ]
