@@ -35,3 +35,7 @@ see docs/deployment-railway.md for related feature implementation
   committed to main as `[proposed]`, daily quota, bot token):
   specs/app/spec-proposals.feature.md — deployed as its own Railway service
   (docs/deployment-railway.md "Spec proposals service" in the code repo)
+
+Reference companies:
+
+https://github.com/mastra-ai/mastra
