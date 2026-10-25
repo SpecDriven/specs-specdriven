@@ -1,10 +1,10 @@
 moving-to-proper-open-source.md
+docs-as-code.md
 auth.md
 coding-agent-ui.md
 coding-session-tracking-and-reporting.md
 dashboards.md
 demo.md
-docs-as-code.md
 freemium.md
 image-support.md
 integration-priorities.md
