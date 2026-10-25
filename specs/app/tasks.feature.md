@@ -6,7 +6,7 @@ Support deep link just like Features.
 
 Integrate with Google Calendar
 
-## A bare folder url opens that tab @v1 [proposed]
+## S1: A bare folder url opens that tab @v1 [proposed]
 
 - Given: the Tasks setting is on and the folder holds at least one task
 - When: the user opens `/tasks` — no task after the folder — from the address
@@ -19,7 +19,7 @@ Integrate with Google Calendar
 - and a folder that holds nothing, or whose tab is switched off, goes home
   rather than opening an empty pane
 
-## Add task to Google Calendar @v1 [proposed]
+## S2: Add task to Google Calendar @v1 [proposed]
 
 - Given: a task is open, and "Google Calendar" is switched on in Settings —
   off by default, stored like the Tasks switch, and off there is no calendar
@@ -59,7 +59,54 @@ Integrate with Google Calendar
 [test: a page with an estimate it cannot read keeps the line as body : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tasks.test.ts#L173 ]
 [test: a task's estimate is saved and cleared through its document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tasks.test.ts#L227 ]
 
-## The tasks folder is created and synced @v1 [proposed]
+## S3: Reorder tasks by dragging @v1 [proposed]
+
+- Given: the Tasks tab lists its tasks, top level first, then each subfolder
+- When: the user drags a task and drops it on another task's row
+- Then: a line on the row's upper or lower edge shows where it will land, and
+  the task goes there — before or after that task, in its folder
+- and dropping it on a subfolder's header puts it at the top of that folder,
+  a `git mv` of the task and its document, committed and pushed like a rename
+- and each task's ⋯ menu offers Move up, Move down and Move to folder… —
+  Move up greyed out on the first task, Move down on the last
+- and the order is kept in an `order.txt` beside the tasks, one file name per
+  line, top to bottom, which the sync tick commits; the task files are left
+  as they are
+- Otherwise: a task the order does not name — a teammate's new task, a file
+  dropped in by hand — is listed after the named ones, in name order; a
+  renamed task keeps its place and a deleted one leaves the order
+- and when two teammates reorder at once git merges the two orders where it
+  can; where it cannot, ours stands with every task only theirs names added
+  at the end, so the sync never stalls on it
+
+[test: an order file lists names once, in order, and merges without losing a task : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskOrder.test.ts#L65 ]
+[test: tasks list in name order until moved, and a move keeps its place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskOrder.test.ts#L86 ]
+[test: a renamed task keeps its place, and a deleted one leaves the order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskOrder.test.ts#L122 ]
+[test: a task moved to another folder takes its document, and both orders follow : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskOrder.test.ts#L135 ]
+[test: two teammates reordering apart are both kept by git's own merge : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskOrder.test.ts#L204 ]
+[test: two teammates reordering the same spot merge on the next sync : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskOrder.test.ts#L217 ]
+[test: a drop lands before the row's page or after it, and a drop in place moves nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskOrder.test.ts#L237 ]
+[test: Move up and Move down step one place, and stop at either end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskOrder.test.ts#L251 ]
+[test: the sidebar groups keep the listing's order and show empty folders : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskOrder.test.ts#L260 ]
+[test: the tasks routes list folders, move a task and manage a folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskOrder.test.ts#L272 ]
+
+## S4: Task folder menu @v1 [proposed]
+
+- Given: the Tasks tab, with a "+ New folder" button beside "+ New task"
+- When: the user opens a subfolder's ⋯ menu, as on a folder in the Specs tree
+- Then: it offers New task here, New folder here, Rename and Delete
+- and a new folder shows at once, empty, and starts with an empty
+  `order.txt` so git keeps it
+- and Rename keeps the folder's place and slugifies the name; with tasks in
+  it, a `git mv` of the folder and of their documents, committed and pushed,
+  and a task open in the pane follows to its new url
+- and Delete names how many tasks go with the folder before it removes them,
+  committed and pushed
+
+[test: a task folder is created empty, renamed with its tasks, and deleted with them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskOrder.test.ts#L161 ]
+[test: the tasks routes list folders, move a task and manage a folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskOrder.test.ts#L272 ]
+
+## S5: The tasks folder is created and synced @v1 [proposed]
 
 - Given: the Tasks setting is on — it is off unless explicitly turned on
 - When: a sync tick runs and the data folder has no 'tasks' folder
@@ -76,7 +123,7 @@ Integrate with Google Calendar
 [test: a sync tick commits and pushes every file in the tasks folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tasks.test.ts#L95 ]
 [test: tasks paths are the folder and what is under it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tasks.test.ts#L114 ]
 
-## Transform non-complient title to allow save of file @v1 [proposed]
+## S6: Transform non-complient title to allow save of file @v1 [proposed]
 
 While adding task for 'Explore https://storytime.team/',
 encountered system inability to save it.
