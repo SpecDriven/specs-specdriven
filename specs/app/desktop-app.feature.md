@@ -39,11 +39,22 @@ are built on Windows — off it, electron-builder needs Wine to stamp the
 executable — so `--win` elsewhere stops the same way, and `--all` means the
 release one Mac can cut: macOS and Linux.
 
-The main process is bundled before packaging and no native addon is loaded at
-runtime, so packaging never rebuilds node_modules (`npmRebuild: false`).
+The main process is bundled before packaging and no native addon is compiled
+for it, so packaging never rebuilds node_modules (`npmRebuild: false`).
 Without that, a build machine is asked to compile optional native accelerators
 pulled in transitively — `cbor-extract`, say — against Electron's C++20
 headers, and a host with an older toolchain fails a build it did not need.
+
+The bundle is self-contained. Bun's bundler bakes a dependency's build-time
+`__dirname` in as an absolute path, so the two dependencies that read files by
+it — Automerge, whose engine is a wasm file, and cbor-extract, whose optional
+native string extractor is a prebuilt addon — are bundled to look beside the
+bundle instead, and the build copies those files there: `automerge_wasm_bg.wasm`
+and `cbor-extract/prebuilds/<platform>-<arch>/` for every platform package
+installed on the build machine (its own, normally; elsewhere cbor-x takes its
+JavaScript path). A bundle that still carries a baked path fails the build.
+Without this, a cross-built Linux artifact or a copied macOS app died at launch
+looking for the wasm in the build machine's `node_modules`.
 
 What the package carries is those bundles — `dist/electron`, `dist/renderer`,
 the icon and a self-fix's `dist/patch.json`, named one by one so neither the
@@ -174,9 +185,9 @@ to the user-only token file next to the home settings file.
   `--all`, alongside the macOS dmg and zip
 - and with no flag the build packages only for the machine it runs on
 
-[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L17 ]
-[test: a Mac cross-builds the Linux app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L23 ]
-[test: a release build packages every target and architecture in package.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L46 ]
+[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L21 ]
+[test: a Mac cross-builds the Linux app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L27 ]
+[test: a release build packages every target and architecture in package.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L50 ]
 [test: packaging never rebuilds native modules for the build machine : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L47 ]
 
 ## S3: a maximized session comes back maximized @v1 [published]
@@ -198,8 +209,8 @@ to the user-only token file next to the home settings file.
 - and a mistyped flag or an unsupported host stops the same way, naming the
   problem
 
-[test: the macOS app is only built on macOS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L28 ]
-[test: an unsupported host or a mistyped flag stops before packaging : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L41 ]
+[test: the macOS app is only built on macOS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L32 ]
+[test: an unsupported host or a mistyped flag stops before packaging : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L45 ]
 
 ## S5: desktop and web share settings @v1 [proposed]
 
@@ -337,9 +348,9 @@ AND  open links in IntelliJ is Off
 - and `--win` on macOS or Linux stops before packaging, saying the Windows app
   can only be built on Windows, while `--all` there still means macOS and Linux
 
-[test: the Windows app is only built on Windows, and --all leaves it out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L33 ]
-[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L17 ]
-[test: --local packages only the installer this machine starts, for its own architecture : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L50 ]
+[test: the Windows app is only built on Windows, and --all leaves it out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L37 ]
+[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L21 ]
+[test: --local packages only the installer this machine starts, for its own architecture : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L54 ]
 
 ## S18: every artifact carries the application icon @v1 [proposed]
 
@@ -375,3 +386,21 @@ AND  open links in IntelliJ is Off
 [test: the package ships the bundles, not node_modules or the rest of dist/ : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L64 ]
 [test: source maps stay out of the package : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L74 ]
 [test: only the English Chromium locale ships : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L78 ]
+
+## S20: the bundle runs on a machine without the build machine's node_modules @v1 [proposed]
+
+- Given: a desktop build cut on one machine — a Linux deb or AppImage
+  cross-built on a Mac, or a macOS app copied from the Mac that built it
+- When: the app starts on a machine that has no `node_modules` at the build
+  machine's path
+- Then: the main process reads Automerge's wasm from beside its own bundle
+  and the window opens on `app://`
+- and cbor-extract's native extractor loads from beside the bundle where a
+  prebuild for that platform shipped, and cbor-x falls back to JavaScript
+  where none did
+- and a build whose bundle still names a path on the build machine fails
+  instead of shipping
+
+[test: Automerge's nodejs entry reads its wasm from beside the bundle, not the builder's node_modules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L97 ]
+[test: cbor-extract hands its loader the cbor-extract/ directory beside the bundle : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L110 ]
+[test: a bundle that still bakes a build-machine path in is caught : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L120 ]

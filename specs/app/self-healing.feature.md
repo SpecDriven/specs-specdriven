@@ -94,7 +94,7 @@ folder has no tab yet: a fresh install shows Specs alone.
 [test: the rebuild runs the bundle-only desktop build in the source, commits the change and keeps the patch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L368 ]
 [test: a failed build is recorded and changes nothing that runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L387 ]
 [test: the desktop relaunches itself once the answer is out; the web server says what to run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L399 ]
-[test: --bundle-only skips the installers, and --fix names the fix the bundle is for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L66 ]
+[test: --bundle-only skips the installers, and --fix names the fix the bundle is for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L68 ]
 [test: the shim tells the server which bundle runs, and the server reads it back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootPolicy.test.ts#L94 ]
 [test: rebuild needs a change, restart a build, revert a start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFixPane.test.tsx#L114 ]
 [test: the status line says where the fix stands, with the agent's state and the last error : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFixPane.test.tsx#L123 ]
@@ -170,5 +170,5 @@ folder has no tab yet: a fresh install shows Specs alone.
 
 [test: the patched bundle is ignored after an upgrade, since its version is not the one running : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootPolicy.test.ts#L40 ]
 [test: without a manifest the shipped bundle boots and nothing is remembered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootPolicy.test.ts#L20 ]
-[test: the manifest names the app version and the fix; a build without a fix removes a stale one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L76 ]
+[test: the manifest names the app version and the fix; a build without a fix removes a stale one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L78 ]
 [test: a manifest needs all three fields; anything else is no manifest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootPolicy.test.ts#L72 ]
