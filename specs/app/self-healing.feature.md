@@ -17,7 +17,7 @@ worker. Like every plugin it is listed in a data folder's profile
 (specs/app/plugins.feature.md), so an install that has never opened a
 folder has no tab yet: a fresh install shows Specs alone.
 
-## A crash after a rebuild falls back to the shipped build @v1 [proposed]
+## S1: A crash after a rebuild falls back to the shipped build @v1 [proposed]
 
 - Given: the desktop app booted a rebuilt fix
 - When: that bundle fails to show a window on two launches in a row
@@ -34,7 +34,7 @@ folder has no tab yet: a fresh install shows Specs alone.
 [test: the banner names the fix running, or why the shipped build runs instead : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFixPane.test.tsx#L93 ]
 [test: a fall-back banner is marked as a warning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFixPane.test.tsx#L104 ]
 
-## A fix is reverted to the installed source @v1 [proposed]
+## S2: A fix is reverted to the installed source @v1 [proposed]
 
 - Given: a fix that was started, whether or not it was rebuilt
 - When: the user presses Revert and confirms
@@ -49,7 +49,7 @@ folder has no tab yet: a fresh install shows Specs alone.
 [test: the tree goes back to the baseline, the agent's session ends, and the patched bundle is forgotten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L425 ]
 [test: a developer's checkout with uncommitted work is not reset behind their back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L455 ]
 
-## A fix is started from a bug description and screenshots @v1 [proposed]
+## S3: A fix is started from a bug description and screenshots @v1 [proposed]
 
 - Given: the Fix this app tab, or "Fix this app…" in the command palette
 - When: the user describes the bug, pastes or drops screenshots, and presses
@@ -72,7 +72,7 @@ folder has no tab yet: a fresh install shows Specs alone.
 [test: an empty description, a wrong mode, or an unknown fix are refused in words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L281 ]
 [test: titles and labels come from the first line of the user's words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFixPane.test.tsx#L139 ]
 
-## A rebuilt fix restarts the desktop app with the fix enabled @v1 [proposed]
+## S4: A rebuilt fix restarts the desktop app with the fix enabled @v1 [proposed]
 
 - Given: a fix whose agent has changed something
 - When: the user presses Rebuild, then Restart, confirming each
@@ -94,12 +94,12 @@ folder has no tab yet: a fresh install shows Specs alone.
 [test: the rebuild runs the bundle-only desktop build in the source, commits the change and keeps the patch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L368 ]
 [test: a failed build is recorded and changes nothing that runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L387 ]
 [test: the desktop relaunches itself once the answer is out; the web server says what to run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L399 ]
-[test: --bundle-only skips the installers, and --fix names the fix the bundle is for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L64 ]
+[test: --bundle-only skips the installers, and --fix names the fix the bundle is for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L66 ]
 [test: the shim tells the server which bundle runs, and the server reads it back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootPolicy.test.ts#L94 ]
 [test: rebuild needs a change, restart a build, revert a start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFixPane.test.tsx#L114 ]
 [test: the status line says where the fix stands, with the agent's state and the last error : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFixPane.test.tsx#L123 ]
 
-## Fix this app is refused where it cannot work @v1 [proposed]
+## S5: Fix this app is refused where it cannot work @v1 [proposed]
 
 - Given: the Fix this app tab
 - When: code generation is off in Settings, the `claude` command is not on
@@ -117,7 +117,7 @@ folder has no tab yet: a fresh install shows Specs alone.
 [test: every missing precondition is a hint; the ones that block come with the remedy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFixPane.test.tsx#L57 ]
 [test: the hints render as a list, with a Settings button where Settings holds the remedy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFixPane.test.tsx#L83 ]
 
-## The agent works in the installed source behind a baseline commit @v1 [proposed]
+## S6: The agent works in the installed source behind a baseline commit @v1 [proposed]
 
 - Given: the installed source, unpacked by install.sh with no history
 - When: the first fix starts
@@ -131,7 +131,7 @@ folder has no tab yet: a fresh install shows Specs alone.
 [test: an installed tree gets a repository of its own, tagged, with the build's output kept out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L188 ]
 [test: a developer's checkout keeps its history, the baseline is HEAD, and only a clean tree may be reverted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L199 ]
 
-## The fix is reviewable as a diff before it is applied @v1 [proposed]
+## S7: The fix is reviewable as a diff before it is applied @v1 [proposed]
 
 - Given: a fix whose agent is working, or done
 - When: the user opens the fix's page
@@ -143,7 +143,7 @@ folder has no tab yet: a fresh install shows Specs alone.
 [test: what the agent changed shows as files, a summary and a unified diff : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L331 ]
 [test: the change list names the files, or says nothing changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFixPane.test.tsx#L133 ]
 
-## The installed source must match the running app @v1 [proposed]
+## S8: The installed source must match the running app @v1 [proposed]
 
 - Given: the app looking for its own source
 - When: it starts a fix
@@ -157,7 +157,7 @@ folder has no tab yet: a fresh install shows Specs alone.
 [test: SPECDRIVEN_APP_SOURCE names it, else app/current under the SpecDriven home, else a developer's checkout : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L160 ]
 [test: a source of another version is found but not matched, and a fix refuses to start on it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/selfFix.test.ts#L177 ]
 
-## The patched bundle is ignored after an upgrade @v1 [proposed]
+## S9: The patched bundle is ignored after an upgrade @v1 [proposed]
 
 - Given: a rebuilt fix under one install, then the installer run again for
   a newer version
@@ -170,5 +170,5 @@ folder has no tab yet: a fresh install shows Specs alone.
 
 [test: the patched bundle is ignored after an upgrade, since its version is not the one running : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootPolicy.test.ts#L40 ]
 [test: without a manifest the shipped bundle boots and nothing is remembered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootPolicy.test.ts#L20 ]
-[test: the manifest names the app version and the fix; a build without a fix removes a stale one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L74 ]
+[test: the manifest names the app version and the fix; a build without a fix removes a stale one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L76 ]
 [test: a manifest needs all three fields; anything else is no manifest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootPolicy.test.ts#L72 ]

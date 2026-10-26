@@ -21,7 +21,9 @@ One command takes a machine from nothing to a built app:
 - Unpack to `~/.specdriven/app/specdriven-<version>`, with
   `~/.specdriven/app/current` pointing at it and the verified zip kept
   alongside for anyone who wants to check it themselves.
-- Install the dependencies and build the desktop app. On Linux the
+- Install the dependencies and build the desktop app. A Mac needs macOS 13
+  or later: Electron 44 dropped macOS 12, so an older one fails inside the
+  build rather than at install. On Linux the
   `.AppImage` is started; on macOS nothing is started, and the `.dmg` is opened
   last so the app can be dragged into Applications.
 - Build with `bun run build:desktop --local`: only this machine's architecture
@@ -89,7 +91,7 @@ resolves inside it. The checkout's `specs/` is a symlink to the sibling spec
 repository, which no release ships — left in, it unpacks dangling and fails
 the desktop build, since electron-builder stats every path in the project.
 
-## a build that fails leaves the source in place @v1 [proposed]
+## S1: a build that fails leaves the source in place @v1 [proposed]
 
 - Given: a verified release unpacked under `~/.specdriven/app`
 - When: `bun install` or the desktop build fails
@@ -99,7 +101,7 @@ the desktop build, since electron-builder stats every path in the project.
 [test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L760 ]
 [test: a failed `bun install` is reported the same way : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L773 ]
 
-## bun is not installed @v1 [published]
+## S2: bun is not installed @v1 [published]
 
 If `bun` is not installed, offer to install it and if user accepts install bun 
 under the current users authority.
@@ -108,7 +110,7 @@ under the current users authority.
 [test: a no at the terminal leaves Bun alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L542 ]
 [test: with no terminal to ask at, Bun is left to the reader : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L555 ]
 
-## install on Windows from PowerShell @v1 [proposed]
+## S3: install on Windows from PowerShell @v1 [proposed]
 
 - Given: a Windows machine
 - When: the user runs `irm https://raw.githubusercontent.com/SpecDriven/specdriven-app-release/main/install.ps1 | iex`
@@ -137,7 +139,7 @@ under the current users authority.
 [test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L427 ]
 [test: Windows shells are sent to install.ps1, or the releases page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L397 ]
 
-## install via curl @v1 [proposed]
+## S4: install via curl @v1 [proposed]
 
 A user can install specdriven app via curl.
 
@@ -149,7 +151,7 @@ If the user want to scan the code before installing, they will download the zip 
 
 [test: the latest release is downloaded, verified and unpacked under ~/.specdriven/app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L157 ]
 
-## the checksum has to match before anything is unpacked @v1 [proposed]
+## S5: the checksum has to match before anything is unpacked @v1 [proposed]
 
 - Given: a release whose zip does not match its `SHASUMS256.txt`, or has none
 - When: the user runs the installer
@@ -159,7 +161,7 @@ If the user want to scan the code before installing, they will download the zip 
 [test: a release without SHASUMS256.txt is refused rather than installed unverified : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L282 ]
 [test: a SHASUMS256.txt that does not list the zip is as good as none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L297 ]
 
-## the install ends with the app built and handed over @v1 [proposed]
+## S6: the install ends with the app built and handed over @v1 [proposed]
 
 - Given: a machine with Bun, and a release to install
 - When: the user runs the installer
@@ -176,7 +178,7 @@ If the user want to scan the code before installing, they will download the zip 
 [test: the run ends with the AppImage made runnable and started : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L712 ]
 [test: with no display the app is built but left unstarted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L741 ]
 
-## the source zip is self-contained @v1 [proposed]
+## S7: the source zip is self-contained @v1 [proposed]
 
 - Given: the release source zip
 - When: it is unpacked on a machine that has never seen this project
@@ -185,7 +187,7 @@ If the user want to scan the code before installing, they will download the zip 
 
 [test: symlinks that dangle in the release source zip are kept out of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L802 ]
 
-## without Bun the install stops at the source @v1 [proposed]
+## S8: without Bun the install stops at the source @v1 [proposed]
 
 - Given: a machine with no Bun, whose user declines to install it
 - When: the installer has unpacked the release
