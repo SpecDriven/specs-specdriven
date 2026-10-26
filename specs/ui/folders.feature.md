@@ -4,8 +4,8 @@ Features can be organized into folders. A folder is a plain directory in the
 data repo, so the structure renders naturally on GitHub too.
 
 - The left sidebar displays the folder tree: folders first (collapsible, with
-  a disclosure triangle), then features. Features sort alphabetically;
-  folders too, unless their parent keeps an order ("order folders" below).
+  a disclosure triangle), then features. Both sort alphabetically unless
+  their folder keeps an order ("order folders" and "order features" below).
   Features at the repo top level appear at the root of the tree.
 - Folders can nest arbitrarily.
 - Clicking a folder selects it (shown with an outline) and toggles its
@@ -186,4 +186,36 @@ scenarios and move them up or down" in ui.feature.md).
 [test: buildTree orders subfolders by folder order, the rest by name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L454 ]
 [test: folderNamesMoved and folderDrop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L469 ]
 [test: setFolderOrder commits and pushes folder-order.txt; renameFolder keeps the place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L621 ]
+[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L184 ]
+
+## S10: order features @v1 [proposed]
+
+Features sit where the reader puts them within their folder, the way
+folders do ("order folders").
+
+- When: the user picks `Move up` or `Move down` from a feature's `⋯` menu —
+  or `Move feature up` / `Move feature down` from the command palette with
+  the feature open — or drags a feature onto another feature's row in the
+  same folder
+- Then: the feature swaps places with its neighbour, or lands where the drop
+  line showed it would — just above the row while the pointer is on its
+  upper half, just below on its lower half — and the folder's
+  `feature-order.txt` (`specs/feature-order.txt` for the top level) is
+  written with every feature's file name in that folder, one per line, in
+  the new order, committed and pushed
+- And: the sidebar sorts a folder's features by that file, the ones it does
+  not name after them alphabetically by feature name, so a repo without the
+  file reads as before; a name with no feature file behind it orders nothing
+- And: a feature whose file is renamed keeps its place — the folder's order
+  names the new file in a commit of its own — and a folder with only order
+  files in it is deleted like a folder holding only a display name
+- `Move up` is unavailable on the first feature and `Move down` on the last.
+  A feature dragged onto a row in another folder, or onto a folder row,
+  still moves into that folder ("move feature to another folder").
+
+[test: setFeatureOrder writes feature-order.txt, refusing names that are not features there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L495 ]
+[test: buildTree orders features by feature order, the rest by name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L545 ]
+[test: featureNamesMoved and featureDrop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L568 ]
+[test: setFeatureOrder commits and pushes feature-order.txt; renameFeatureFile keeps the place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L748 ]
+[test: a feature order reads as a reorder of the folder's features : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L185 ]
 [test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L184 ]
