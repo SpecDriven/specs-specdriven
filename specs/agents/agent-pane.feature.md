@@ -1,6 +1,6 @@
 # Coding agent pane
 
-## A Claude turn fails fast when the API proxy does not answer @v1 [proposed]
+## S1: A Claude turn fails fast when the API proxy does not answer @v1 [proposed]
 
 - Given: a Claude session whose API goes through a proxy (ANTHROPIC_BASE_URL,
   from the environment or Claude Code's settings files) that is not running
@@ -16,12 +16,12 @@
 - and a wait of 0 turns the limit off; a session that talks to the API
   directly is never held to it
 
-[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L880 ]
-[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L903 ]
-[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L916 ]
-[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L927 ]
+[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L888 ]
+[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L911 ]
+[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L924 ]
+[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L935 ]
 
-## The agent pane starts Claude in Auto mode @v1 [published]
+## S2: The agent pane starts Claude in Auto mode @v1 [published]
 
 - Given: the coding agent pane, with the Claude agent chosen
 - When: a new session starts without the user picking a mode
@@ -30,9 +30,9 @@
 - and Codex starts in Manual (its "auto" is the same policy), and pi has no
   permission gate
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L360 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L368 ]
 
-## The folder chip switches the folder the agent works in @v1 [proposed]
+## S3: The folder chip switches the folder the agent works in @v1 [proposed]
 
 - Given: the pane's folder chip, marked with a ▾
 - When: the user opens it
@@ -45,9 +45,9 @@
 - and the new-session form offers "Change folder…" for the same choice
   before starting
 
-[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L327 ]
+[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L335 ]
 
-## The mode menu describes each mode @v1 [proposed]
+## S4: The mode menu describes each mode @v1 [proposed]
 
 - Given: the pane's permission mode control
 - When: the user opens it
@@ -56,9 +56,9 @@
   starts in
 - and pressing a number key (1–5) chooses that mode directly
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L360 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L368 ]
 
-## The server runs a chat in the folder the pane picked @v1 [proposed]
+## S5: The server runs a chat in the folder the pane picked @v1 [proposed]
 
 - Given: POST /api/agent/chat with an absolute `cwd`
 - When: the session starts
@@ -67,4 +67,4 @@
 - and a `cwd` that is not absolute, or names a folder that does not exist, is
   refused with an error
 
-[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L604 ]
+[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L606 ]

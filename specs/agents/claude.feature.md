@@ -1,6 +1,6 @@
 # Integration with Claude agent
 
-## API proxy settings are filled in from Claude Code's settings @v1 [proposed]
+## S1: API proxy settings are filled in from Claude Code's settings @v1 [proposed]
 
 - Given: Claude Code's own settings (`~/.claude/settings.json`, the data
   folder's `.claude/settings.json` or `.claude/settings.local.json`) or the
@@ -27,7 +27,7 @@ proxy for the account sign-in.
 [test: the token round-trips through an owner-only file under the app's home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeToken.test.ts#L35 ]
 [test: a corrupt or empty token file reads as no token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeToken.test.ts#L50 ]
 
-## Choose how Claude signs in @v1 [proposed]
+## S2: Choose how Claude signs in @v1 [proposed]
 
 - Given: the Settings page (user-info-settings.feature.md "open Settings")
 - Then: its Claude section offers "Sign in with": "Claude account (email
@@ -46,10 +46,10 @@ proxy for the account sign-in.
 [test: the launch steers Claude Code through --settings, which beats its own files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L176 ]
 [test: PUT /api/state stores the choice and the url, and null forgets them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L419 ]
 [test: the demo and the hosted app have no Claude sign-in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L483 ]
-[test: the sign-in Settings chose reaches Claude as a --settings override (src/server/claudeAuth.ts) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L943 ]
-[test: the estimate's Claude gets the sign-in Settings chose, like the pane (src/server/claudeAuth.ts) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L218 ]
+[test: the sign-in Settings chose reaches Claude as a --settings override (src/server/claudeAuth.ts) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L951 ]
+[test: the estimate's Claude gets the sign-in Settings chose, like the pane (src/server/claudeAuth.ts) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L220 ]
 
-## Claude cli options @v1 [proposed]
+## S3: Claude cli options @v1 [proposed]
 
 In the target repo, locate folder '.specdriven'
 If it contains a file called specdriven-config.json
@@ -60,7 +60,7 @@ Check for:
 
 https://www.testmuai.com/support/docs/agent-assurance-overview/
 
-## Create a prompt from selected specs @v1 [published]
+## S4: Create a prompt from selected specs @v1 [published]
 
 Given: a code session has been created with at least one spec in it
 When: we start a code gen session with Agent (Claude)
@@ -68,13 +68,13 @@ Then: we generate a prompt and pass it to the Claude Cli to execute and exit
 
 If error code, display the error to the user in an error box.
 
-## Create and name a code gen session @v1 [published]
+## S5: Create and name a code gen session @v1 [published]
 
 - Select one or more specs
 - 'Start session' (click button)
 - Name the session
 
-## Create and name a code gen session @v2 [published]
+## S6: Create and name a code gen session @v2 [published]
 
 - Select a whole spec with the checkbox on its sidebar entry
 - Select single scenarios with the checkbox on their scenario cards
@@ -86,7 +86,7 @@ If error code, display the error to the user in an error box.
 - Name the session
 - A spec cut down to selected scenarios is marked as such in the prompt
 
-## Sign in to Claude with an email @v1 [proposed]
+## S7: Sign in to Claude with an email @v1 [proposed]
 
 - Given: the Claude section on "Claude account"
 - Then: it says who the Claude CLI is signed in as, or that nobody is
@@ -104,7 +104,7 @@ If error code, display the error to the user in an error box.
 [test: a sign-in can be cancelled, and a bad email or a missing CLI is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L345 ]
 [test: the sign-in routes drive the CLI and poll it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L465 ]
 
-## Switch code generation on or off @v1 [published]
+## S8: Switch code generation on or off @v1 [published]
 
 Given: the Settings dialog
 When: the 'Code generation' switch is turned off and the settings are saved
@@ -117,7 +117,7 @@ reach the Claude CLI even outside the UI.
 The switch is ON by default, and the setting is saved to
 .specdriven/settings.json.
 
-## Switch code generation on or off @v2 [proposed]
+## S9: Switch code generation on or off @v2 [proposed]
 
 Given: the Settings page (user-info-settings.feature.md "open Settings")
 When: the 'Code generation' switch in its Workflow section is turned off —

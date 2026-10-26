@@ -11,7 +11,7 @@ We do not accept pull requests: merging outside code is a security
 liability, and reviewing it is a cost we can't carry. Users propose specs
 instead (CONTRIBUTING.md in the code repo says how).
 
-## Pull requests are not accepted @v1 [proposed]
+## S1: Pull requests are not accepted @v1 [proposed]
 
 - Given: someone without write access opens a pull request from a fork
 - Then: it is closed automatically with a comment that points to
@@ -24,7 +24,7 @@ instead (CONTRIBUTING.md in the code repo says how).
 [test: pull requests from the team's own branches, or by people with write access, are left open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L106 ]
 [test: the close workflow never checks out or runs the pull request's code : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L118 ]
 
-## The app is AGPL-3.0-only @v1 [proposed]
+## S2: The app is AGPL-3.0-only @v1 [proposed]
 
 - Given: the code repo
 - Then: LICENSE.md holds the GNU AGPL version 3 text
@@ -36,7 +36,7 @@ instead (CONTRIBUTING.md in the code repo says how).
 [test: LICENSE.md is the GNU AGPL version 3 and NOTICE.md says version 3 only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L21 ]
 [test: the desktop app ships the license and the notice : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L31 ]
 
-## The app links to the source of the running version @v1 [proposed]
+## S3: The app links to the source of the running version @v1 [proposed]
 
 - Given: the app is running, on the desktop, in the public demo or hosted
 - When: I open the user menu
@@ -51,5 +51,5 @@ instead (CONTRIBUTING.md in the code repo says how).
 [test: the source link names the release of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L36 ]
 [test: a deployment running modified code names its own source : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L42 ]
 [test: the user menu offers Source code, which opens the source url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L49 ]
-[test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L368 ]
+[test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L369 ]
 [test: no Source code item before the state names the url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L59 ]
