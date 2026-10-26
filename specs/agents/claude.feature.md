@@ -20,10 +20,10 @@ environment it is started with, so the app passes its choice as the
 `--settings` flag, which wins over every file; empty values there clear a
 proxy for the account sign-in.
 
-[test: detectClaudeProxy reads the environment, then each settings file, the later winning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L105 ]
-[test: checkProxy asks for the model list and reads the answer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L227 ]
-[test: GET /api/claude/auth reports the mode, the login and the proxy — never a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L376 ]
-[test: POST /api/claude/proxy/check reports on the proxy with the token in use : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L440 ]
+[test: detectClaudeProxy reads the environment, then each settings file, the later winning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L109 ]
+[test: checkProxy asks for the model list and reads the answer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L231 ]
+[test: GET /api/claude/auth reports the mode, the login and the proxy — never a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L380 ]
+[test: POST /api/claude/proxy/check reports on the proxy with the token in use : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L447 ]
 [test: the token round-trips through an owner-only file under the app's home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeToken.test.ts#L35 ]
 [test: a corrupt or empty token file reads as no token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeToken.test.ts#L50 ]
 
@@ -41,12 +41,12 @@ proxy for the account sign-in.
 - and the section is not offered in the demo or the hosted app, which run
   no Claude of their own
 
-[test: the stored choice is normalized; a url must be http(s) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L134 ]
-[test: with nothing stored the mode is inferred — a proxy when Claude Code names one, else the account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L149 ]
-[test: the launch steers Claude Code through --settings, which beats its own files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L176 ]
-[test: PUT /api/state stores the choice and the url, and null forgets them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L419 ]
-[test: the demo and the hosted app have no Claude sign-in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L483 ]
-[test: the sign-in Settings chose reaches Claude as a --settings override (src/server/claudeAuth.ts) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L951 ]
+[test: the stored choice is normalized; a url must be http(s) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L138 ]
+[test: with nothing stored the mode is inferred — a proxy when Claude Code names one, else the account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L153 ]
+[test: the launch steers Claude Code through --settings, which beats its own files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L180 ]
+[test: PUT /api/state stores the choice and the url, and null forgets them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L426 ]
+[test: the demo and the hosted app have no Claude sign-in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L490 ]
+[test: the sign-in Settings chose reaches Claude as a --settings override (src/server/claudeAuth.ts) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L954 ]
 [test: the estimate's Claude gets the sign-in Settings chose, like the pane (src/server/claudeAuth.ts) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L220 ]
 
 ## S3: Claude cli options @v1 [proposed]
@@ -98,11 +98,11 @@ If error code, display the error to the user in an error box.
 - and "Sign out" signs the CLI out; "Switch account…" starts another sign-in
 - and with no Claude CLI on PATH the section says so instead
 
-[test: parseLoginStatus reads what claude auth status --json says : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L260 ]
-[test: loginStatus asks the CLI without any key in its environment, and says missing without one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L270 ]
-[test: startLogin drives claude auth login, hands the page the url, and is done once the CLI says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L325 ]
-[test: a sign-in can be cancelled, and a bad email or a missing CLI is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L345 ]
-[test: the sign-in routes drive the CLI and poll it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L465 ]
+[test: parseLoginStatus reads what claude auth status --json says : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L264 ]
+[test: loginStatus asks the CLI without any key in its environment, and says missing without one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L274 ]
+[test: startLogin drives claude auth login, hands the page the url, and is done once the CLI says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L329 ]
+[test: a sign-in can be cancelled, and a bad email or a missing CLI is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L349 ]
+[test: the sign-in routes drive the CLI and poll it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeAuth.test.ts#L472 ]
 
 ## S8: Switch code generation on or off @v1 [published]
 

@@ -37,7 +37,7 @@ it does.
   folder is not created on sync but with the first entry, so a default-on
   module never touches a data repo by itself
 
-## A decision can supersede an earlier one @v1 [proposed]
+## S1: A decision can supersede an earlier one @v1 [proposed]
 
 - Given: a decision entry is open
 - When: the user picks "Supersedes…" in the entry's header and chooses an
@@ -52,7 +52,7 @@ it does.
 
 [test: a decision supersedes an earlier one without touching it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L238 ]
 
-## Deep links @v1 [proposed]
+## S2: Deep links @v1 [proposed]
 
 - Given: the setting is on
 - When: the user opens `/notebook/<entry>` — `<entry>` being the file name
@@ -67,7 +67,7 @@ it does.
 [test: an entry url round-trips to its file, and a foreign url does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L269 ]
 [test: notebook routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L75 ]
 
-## Entries are shared through git @v1 [proposed]
+## S3: Entries are shared through git @v1 [proposed]
 
 - Given: two people work from clones of the same data repo, both with the
   setting on
@@ -86,7 +86,7 @@ it does.
 [test: a merged entry holds each side's edit exactly once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L374 ]
 [test: an entry edited outside the app is absorbed on the next tick : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L319 ]
 
-## Renaming an entry keeps its date and its links @v1 [proposed]
+## S4: Renaming an entry keeps its date and its links @v1 [proposed]
 
 - Given: an entry exists, another entry supersedes it, and a third links to
   it in its body
@@ -120,7 +120,7 @@ it does.
 [test: supersedes links and body links follow a renamed entry : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L550 ]
 [test: renaming an entry is a git mv, committed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L612 ]
 
-## Search and the command palette @v1 [proposed]
+## S5: Search and the command palette @v1 [proposed]
 
 - Given: the setting is on
 - When: the user types in the search field or the command palette
@@ -129,7 +129,7 @@ it does.
   under Roadmap (search.feature.md)
 - and "New notebook entry" is a palette command
 
-## The notebook follows the data folder @v1 [proposed]
+## S6: The notebook follows the data folder @v1 [proposed]
 
 - Given: the setting is on and an entry from the current data folder is open
 - When: the user switches to another data folder
@@ -138,7 +138,7 @@ it does.
   folder it was typed in — never the new one — exactly as the roadmap
   behaves (roadmap.feature.md)
 
-## The notebook is a sidebar tab @v1 [proposed]
+## S7: The notebook is a sidebar tab @v1 [proposed]
 
 - Given: the Engineering notebook setting is on, as it is by default
 - When: the user looks at the sidebar
@@ -160,7 +160,7 @@ it does.
 [test: a decision is a decision; anything else reads as an observation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.tsx#L18 ]
 [test: names the kind and carries its own class : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.tsx#L29 ]
 
-## The notebook is controlled by a switch in user settings @v1 [proposed]
+## S8: The notebook is controlled by a switch in user settings @v1 [proposed]
 
 - Given: a fresh install, or a data folder opened for the first time
 - When: the user looks at the sidebar
@@ -186,10 +186,10 @@ it does.
 
 [test: the notebook setting is on unless explicitly turned off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L74 ]
 [test: a sync tick never creates the notebook folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L84 ]
-[test: a fresh install shows Specs alone without a settings write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L88 ]
-[test: an older file with a folder but no plugin list keeps the Notebook on in that folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L153 ]
+[test: a fresh install shows Specs alone without a settings write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L92 ]
+[test: an older file with a folder but no plugin list keeps the Notebook on in that folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L170 ]
 
-## Write an entry @v1 [proposed]
+## S9: Write an entry @v1 [proposed]
 
 - Given: the Notebook tab is open
 - When: the user presses "+ New entry" (or "New notebook entry" in the
