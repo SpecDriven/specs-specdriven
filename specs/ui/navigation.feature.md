@@ -256,3 +256,23 @@ Allow to collapse and expand the outline.
 [test: single-quoted attributes are rewritten too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L79 ]
 [test: the last of two or more launches is by link to a nested page; a lone launch is plain : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L59 ]
 [test: a launch by link must have loaded the window at the linked path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L68 ]
+
+## S16: duplicate a scenario @v1 [proposed]
+
+- Given: a scenario's ⋯ menu — on its card in the feature view, or on its row
+  in the sidebar tree — which offers Duplicate for every scenario, published
+  ones included
+- When: the user picks Duplicate
+- Then: a copy lands right after it as a draft at v1 named "<name> (copy)",
+  or "(copy 2)", "(copy 3)"… when that name is taken, and opens in the editor
+  pane, ready to be renamed and changed
+- And: the copy carries the scenario's body, feature flags, custom attributes
+  and polarity, but not its tests, ticket, qTest case, pull request, Aha! or
+  Figma links or stored files — those belong to the original
+- And: the original is left exactly as it was
+
+[test: the copy is a draft named '<name> (copy)' at v1, right after the original : https://github.com/SpecDriven/specdriven-app/blob/main/tests/duplicateScenario.test.ts#L67 ]
+[test: the copy carries the spec text, flags and polarity, not the tests, ticket or pull requests : https://github.com/SpecDriven/specdriven-app/blob/main/tests/duplicateScenario.test.ts#L83 ]
+[test: a second copy takes the next free name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/duplicateScenario.test.ts#L103 ]
+[test: a published scenario can be duplicated, and stays as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/duplicateScenario.test.ts#L111 ]
+[test: the route duplicates by name and version, and refuses what is not there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/duplicateScenario.test.ts#L122 ]

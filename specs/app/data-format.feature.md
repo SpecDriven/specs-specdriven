@@ -87,7 +87,24 @@ on backend:
 [test: an unreadable marker is ignored : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L134 ]
 [test: a folder in this format opens as usual : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L143 ]
 
-## S4: The format marker is written on first sync @v1 [proposed]
+## S4: The update screen says what to install @v1 [proposed]
+
+- Given: the update screen
+- Then: it names the version the folder needs and the one running
+- and on macOS and Linux it shows the `curl … install.sh | sh` line, on
+  Windows the `irm … install.ps1 | iex` line, each with a Copy button, and in
+  the desktop app a link to the latest release
+- and "Check again" runs a sync and reopens the folder if it is no longer
+  blocked
+- and "Open another folder" goes to the folder chooser
+
+[test: it names the version the folder needs and the one running : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L28 ]
+[test: macOS and Linux get the curl installer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L43 ]
+[test: Windows gets the PowerShell installer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L49 ]
+[test: the desktop app points at the latest release : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L57 ]
+[test: a folder that names no version still says to update : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L37 ]
+
+## S5: The format marker is written on first sync @v1 [proposed]
 
 - Given: a data folder whose marker is older than this app's format, or that
   has none while this app's format is past 1
@@ -105,20 +122,3 @@ on backend:
 [test: a compatible tick raises a first-format folder to this app's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L87 ]
 [test: an older marker is raised; a newer one is never lowered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L91 ]
 [test: a folder with no marker is in the first format : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L67 ]
-
-## S5: The update screen says what to install @v1 [proposed]
-
-- Given: the update screen
-- Then: it names the version the folder needs and the one running
-- and on macOS and Linux it shows the `curl … install.sh | sh` line, on
-  Windows the `irm … install.ps1 | iex` line, each with a Copy button, and in
-  the desktop app a link to the latest release
-- and "Check again" runs a sync and reopens the folder if it is no longer
-  blocked
-- and "Open another folder" goes to the folder chooser
-
-[test: it names the version the folder needs and the one running : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L28 ]
-[test: macOS and Linux get the curl installer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L43 ]
-[test: Windows gets the PowerShell installer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L49 ]
-[test: the desktop app points at the latest release : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L57 ]
-[test: a folder that names no version still says to update : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L37 ]
