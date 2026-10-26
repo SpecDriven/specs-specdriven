@@ -64,7 +64,7 @@ data repo, so the structure renders naturally on GitHub too.
 - Otherwise: the deletion is refused unless the user confirms deleting the
   features with it ("delete a folder with features in it")
 
-[test: deleteFolder deletes empty folders only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L135 ]
+[test: deleteFolder deletes empty folders only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L141 ]
 
 ## S2: delete a folder with features in it @v1 [proposed]
 
@@ -78,8 +78,8 @@ data repo, so the structure renders naturally on GitHub too.
   back
 - Otherwise: without the confirmation nothing changes
 
-[test: deleteFolder with force removes a folder with features in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L165 ]
-[test: deleteFolder with force git-rms the directory, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L544 ]
+[test: deleteFolder with force removes a folder with features in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L171 ]
+[test: deleteFolder with force git-rms the directory, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L645 ]
 [test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L184 ]
 
 ## S3: describe a folder @v1 [proposed]
@@ -95,10 +95,10 @@ data repo, so the structure renders naturally on GitHub too.
   committed and pushed, and deleting it a `git rm`, committed and pushed,
   with no second confirmation since no feature goes with it
 
-[test: readFolderDescription and listFolderDescriptions read display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L301 ]
-[test: buildTree carries folder descriptions; folderLabel falls back to the name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L377 ]
-[test: renameFolder git-mvs a folder holding only a display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L565 ]
-[test: deleteFolder removes a folder holding only a display-name.txt, committed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L580 ]
+[test: readFolderDescription and listFolderDescriptions read display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L307 ]
+[test: buildTree carries folder descriptions; folderLabel falls back to the name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L383 ]
+[test: renameFolder git-mvs a folder holding only a display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L666 ]
+[test: deleteFolder removes a folder holding only a display-name.txt, committed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L681 ]
 
 ## S4: deselect a folder with ESC @v1 [proposed]
 
@@ -121,9 +121,9 @@ data repo, so the structure renders naturally on GitHub too.
 - And: saving a blank name clears the display name — the file goes, a
   `git rm`, committed and pushed — and the folder shows its name again
 
-[test: setFolderDescription writes, keeps extra lines, and clears display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L343 ]
-[test: setFolderDescription commits and pushes display-name.txt, and git-rms it when cleared : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L598 ]
-[test: setFolderDescription moves a legacy description.txt to display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L646 ]
+[test: setFolderDescription writes, keeps extra lines, and clears display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L349 ]
+[test: setFolderDescription commits and pushes display-name.txt, and git-rms it when cleared : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L699 ]
+[test: setFolderDescription moves a legacy description.txt to display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L772 ]
 [test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L184 ]
 
 ## S6: move a feature from its menu @v1 [proposed]
@@ -135,7 +135,7 @@ data repo, so the structure renders naturally on GitHub too.
 - And: choosing one moves the feature the way a drag does — a `git mv` into
   that folder, committed and pushed, keeping its file name
 
-[test: featuresBeneath, folderRenamed and folderOptions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L216 ]
+[test: featuresBeneath, folderRenamed and folderOptions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L222 ]
 
 ## S7: move feature to another folder @v1 [proposed]
 
@@ -152,9 +152,9 @@ data repo, so the structure renders naturally on GitHub too.
   its new url, and a name already taken by a sibling folder is refused
 - And: an empty folder is renamed on disk alone, git never having tracked it
 
-[test: renameFolder renames in place, slugified, refusing collisions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L184 ]
-[test: renameFolder works in a plain directory with features (no git repo) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L205 ]
-[test: renameFolder git-mvs the directory and its documents, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L521 ]
+[test: renameFolder renames in place, slugified, refusing collisions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L190 ]
+[test: renameFolder works in a plain directory with features (no git repo) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L211 ]
+[test: renameFolder git-mvs the directory and its documents, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L622 ]
 
 ## S9: order folders @v1 [proposed]
 
@@ -181,11 +181,11 @@ scenarios and move them up or down" in ui.feature.md).
   a scenario drops nowhere: moving a feature between folders is still the
   feature's own drag, and a folder never moves into another folder this way.
 
-[test: readFolderOrder and listFolderOrders read folder-order.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L398 ]
-[test: setFolderOrder writes folder-order.txt, refusing names that are not subfolders : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L425 ]
-[test: buildTree orders subfolders by folder order, the rest by name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L454 ]
-[test: folderNamesMoved and folderDrop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L469 ]
-[test: setFolderOrder commits and pushes folder-order.txt; renameFolder keeps the place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L621 ]
+[test: readFolderOrder and listFolderOrders read folder-order.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L404 ]
+[test: setFolderOrder writes folder-order.txt, refusing names that are not subfolders : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L431 ]
+[test: buildTree orders subfolders by folder order, the rest by name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L460 ]
+[test: folderNamesMoved and folderDrop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L475 ]
+[test: setFolderOrder commits and pushes folder-order.txt; renameFolder keeps the place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L722 ]
 [test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L184 ]
 
 ## S10: order features @v1 [proposed]
