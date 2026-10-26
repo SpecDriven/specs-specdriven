@@ -40,12 +40,13 @@ Integrate with Google Calendar
   text rather than being lost, and a task that already carries an estimate
   proposes that one instead of asking again
 
-[test: the Google Calendar setting is off unless explicitly turned on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L198 ]
-[test: the estimate route is 404 while Google Calendar is switched off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L151 ]
-[test: the estimate route asks Claude once, with no tools, and answers in minutes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L125 ]
-[test: the estimate route is 503 without a Claude CLI, 404 for a task that is not there, and 502 when Claude fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L159 ]
-[test: a turn the API refused carries its own words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L186 ]
-[test: a proposal that is not a number is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L196 ]
+[test: the Google Calendar setting is off unless explicitly turned on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L197 ]
+[test: the estimate route is 404 while Google Calendar is switched off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L115 ]
+[test: the estimate route asks the agent once, with no tools, and answers in minutes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L96 ]
+[test: the estimate route is 503 without an agent's CLI, 404 for a task that is not there, and 502 when the agent fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L123 ]
+[test: a turn the API refused carries its own words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L143 ]
+[test: a proposal that is not a number is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L150 ]
+[test: an agent exiting without an answer is 502, and the prompt asks for minutes only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/estimate.test.ts#L165 ]
 [test: falls back to the presets when no proposal comes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/addToCalendarForm.test.tsx#L47 ]
 [test: says when Claude proposed the estimate, and asks while it thinks : https://github.com/SpecDriven/specdriven-app/blob/main/tests/addToCalendarForm.test.tsx#L39 ]
 [test: offers the stored estimate, a start time, and the Google Calendar link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/addToCalendarForm.test.tsx#L27 ]

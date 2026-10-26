@@ -32,16 +32,16 @@ plugins in tab order"). What a demo could show next is on the roadmap
 - and the pane marks the session as a simulation, and the whole session
   writes nothing into the demo's files
 
-[test: the coding agent pane is on and is the only target on offer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L123 ]
-[test: a demo session starts and plays a scripted Claude Code turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L191 ]
-[test: readBrief pulls the name and the specs out of the generated prompt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L140 ]
-[test: the script streams its text before settling it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L163 ]
-[test: allowing the write finishes the turn and returns the session to idle : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L223 ]
-[test: denying the write still closes the turn, and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L240 ]
-[test: a follow-up message gets a scripted reply, and the session stays up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L257 ]
-[test: a chat started with no specs gets the short reply, not the spec script : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L273 ]
-[test: Stop mid-turn returns the session to idle without ending it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L289 ]
-[test: the whole session writes no file into the demo dataset : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L297 ]
+[test: the coding agent pane is on and is the only target on offer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L117 ]
+[test: a demo session starts and plays a scripted Claude Code turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L199 ]
+[test: readBrief pulls the name and the specs out of the generated prompt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L133 ]
+[test: the script streams its text before settling it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L157 ]
+[test: allowing the write finishes the turn and returns the session to idle : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L231 ]
+[test: denying the write still closes the turn, and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L248 ]
+[test: a follow-up message gets a scripted reply, and the session stays up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L265 ]
+[test: a chat started with no specs gets the short reply, not the spec script : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L281 ]
+[test: Stop mid-turn returns the session to idle without ending it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L297 ]
+[test: the whole session writes no file into the demo dataset : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L305 ]
 
 ## S2: A page load starts the demo afresh @v1 [proposed]
 
@@ -55,11 +55,11 @@ plugins in tab order"). What a demo could show next is on the roadmap
   shows it as it was
 - and page loads at the same moment each end up on a complete copy
 
-[test: a page load reseeds — the edit is gone, the folder is a new generation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L225 ]
-[test: edits land in the working copy; the pristine snapshot is untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L208 ]
-[test: publishing a feature succeeds locally and stays inside the working copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L247 ]
-[test: a roadmap edit lands in the working copy; the snapshot is untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L191 ]
-[test: concurrent page loads serialize into consistent generations : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L239 ]
+[test: a page load reseeds — the edit is gone, the folder is a new generation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L214 ]
+[test: edits land in the working copy; the pristine snapshot is untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L197 ]
+[test: publishing a feature succeeds locally and stays inside the working copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L236 ]
+[test: a roadmap edit lands in the working copy; the snapshot is untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L180 ]
+[test: concurrent page loads serialize into consistent generations : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L228 ]
 
 ## S3: Nothing in the demo reaches GitHub or the visitor's machine @v1 [proposed]
 
@@ -77,11 +77,11 @@ plugins in tab order"). What a demo could show next is on the roadmap
 - and switching plugins on and off, and every cosmetic setting, still saves
   as on the desktop
 
-[test: GitHub sign-in routes refuse in demo mode : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L320 ]
-[test: the data directory, git engine and sync server are pinned (403) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L263 ]
-[test: plugin folders, trust and marketplaces are pinned (403); switching plugins still saves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L285 ]
-[test: no native folder chooser — /api/choose-folder is 501 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L362 ]
-[test: the demo tracks the release repo's issues and refuses every write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L338 ]
+[test: GitHub sign-in routes refuse in demo mode : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L309 ]
+[test: the data directory, git engine and sync server are pinned (403) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L252 ]
+[test: plugin folders, trust and marketplaces are pinned (403); switching plugins still saves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L274 ]
+[test: no native folder chooser — /api/choose-folder is 501 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L351 ]
+[test: the demo tracks the release repo's issues and refuses every write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L327 ]
 
 ## S4: The demo opens on its own dataset @v1 [proposed]
 
@@ -98,12 +98,12 @@ plugins in tab order"). What a demo could show next is on the roadmap
   switched off, and the dataset has content for each one a visitor turns
   on
 
-[test: boot state names the demo — ephemeral folder, no chooser, js git, no cron : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L110 ]
-[test: the demo user is Test User, not the OS account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L379 ]
-[test: state carries the app version — the demo shows it beside the user : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L367 ]
-[test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L374 ]
-[test: Specs alone, and every other optional setting on except IntelliJ IDEA : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L150 ]
-[test: a visitor turns the roadmap on and it lists the dataset's pages : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L135 ]
+[test: boot state names the demo — ephemeral folder, no chooser, js git, no cron : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L103 ]
+[test: the demo user is Test User, not the OS account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L368 ]
+[test: state carries the app version — the demo shows it beside the user : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L356 ]
+[test: state carries the source url of the running version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L363 ]
+[test: Specs alone, and every other optional setting on except IntelliJ IDEA : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L143 ]
+[test: a visitor turns the roadmap on and it lists the dataset's pages : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L128 ]
 
 ## S5: The hosted image runs the demo when DEMO_MODE is set @v1 [proposed]
 

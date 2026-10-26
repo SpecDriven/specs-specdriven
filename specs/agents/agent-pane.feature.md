@@ -16,10 +16,10 @@
 - and a wait of 0 turns the limit off; a session that talks to the API
   directly is never held to it
 
-[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L891 ]
-[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L914 ]
-[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L927 ]
-[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L938 ]
+[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L899 ]
+[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L922 ]
+[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L935 ]
+[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L946 ]
 
 ## S2: The agent pane starts Claude in Auto mode @v1 [published]
 
@@ -30,7 +30,7 @@
 - and Codex starts in Manual (its "auto" is the same policy), and pi has no
   permission gate
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L368 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L365 ]
 
 ## S3: The folder chip switches the folder the agent works in @v1 [proposed]
 
@@ -45,7 +45,7 @@
 - and the new-session form offers "Change folder…" for the same choice
   before starting
 
-[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L335 ]
+[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L332 ]
 
 ## S4: The mode menu describes each mode @v1 [proposed]
 
@@ -56,7 +56,7 @@
   starts in
 - and pressing a number key (1–5) chooses that mode directly
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L368 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L365 ]
 
 ## S5: The server runs a chat in the folder the pane picked @v1 [proposed]
 
@@ -67,4 +67,4 @@
 - and a `cwd` that is not absolute, or names a folder that does not exist, is
   refused with an error
 
-[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentChat.test.ts#L609 ]
+[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L616 ]

@@ -401,6 +401,6 @@ AND  open links in IntelliJ is Off
 - and a build whose bundle still names a path on the build machine fails
   instead of shipping
 
-[test: Automerge's nodejs entry reads its wasm from beside the bundle, not the builder's node_modules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L97 ]
-[test: cbor-extract hands its loader the cbor-extract/ directory beside the bundle : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L110 ]
-[test: a bundle that still bakes a build-machine path in is caught : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L120 ]
+[test: Automerge's nodejs entry reads its wasm from beside the bundle, not the builder's node_modules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L99 ]
+[test: cbor-extract hands its loader the cbor-extract/ directory beside the bundle : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L112 ]
+[test: a bundle that still bakes a build-machine path in is caught : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L122 ]
