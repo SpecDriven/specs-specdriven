@@ -1,7 +1,7 @@
+data-format.feature.md
 code-repo-submodule.feature.md
 desktop-app.feature.md
 custom-attributes.feature.md
-data-format.feature.md
 engineering-notebook.feature.md
 feature-flags.feature.md
 github-issues.feature.md
