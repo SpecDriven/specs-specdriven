@@ -219,3 +219,15 @@ folders do ("order folders").
 [test: setFeatureOrder commits and pushes feature-order.txt; renameFeatureFile keeps the place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L748 ]
 [test: a feature order reads as a reorder of the folder's features : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L185 ]
 [test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L184 ]
+
+## S11: new folder gets a display name @v1 [proposed]
+
+- When: the user creates a folder with `+ New folder`
+- Then: the folder's `display-name.txt` is written with its name in initial
+  case — `-` and `_` read as spaces and the first letter is capitalised, so
+  `billing-rules` shows as `Billing rules` — committed and pushed
+- And: a name already in that case (`Docs`) gets no display name, and a
+  nested `a/b` names only the new last folder
+- And: a failed save leaves the folder showing its plain name
+
+[test: initialCaseDisplayName capitalises a folder name and skips one already in that case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/treeFilter.test.ts#L90 ]
