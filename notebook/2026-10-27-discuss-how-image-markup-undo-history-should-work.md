@@ -12,4 +12,6 @@ We should consider how to persist spec markup history, or whether it is sufficie
 
 We can keep the current implementation and limit the undo history for an image based on the old versions of marked-up images and choose how many old versions keep when many edits are done.
 
-W
+We can consider a separate markup history as just SVG text and save and version that separately from the image. 
+
+We can even use Excalidraw to d
