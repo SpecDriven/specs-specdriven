@@ -64,10 +64,20 @@ twice as big as it looked on screen — so an image can be sized in place.
   pushed
 - and `![alt](/api/images/<name>)` is inserted at the caret
 
+[test: stores under .images/ with slug + content hash name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L24 ]
+[test: a name with no usable stem falls back to 'image' : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L46 ]
+[test: inserts at the caret and leaves the caret after it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L324 ]
+[test: a selection becomes the alt text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L331 ]
+[test: image routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L45 ]
+
 ## S3: repeated upload of the same image @v1 [proposed]
 
 - When: an image with bytes already stored under `.images/` is uploaded again
 - Then: the existing file is reused — same name, no new commit
+
+[test: same bytes upload to the same name, once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L32 ]
+[test: different bytes under the same original name coexist : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L39 ]
+[test: a stored name while the bytes are the ones it was given for; its stem with their hash once they differ : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L63 ]
 
 ## S4: restore an image's natural size @v1 [proposed]
 
@@ -105,6 +115,10 @@ twice as big as it looked on screen — so an image can be sized in place.
 [test: quotes in the alt survive the round trip : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L217 ]
 [test: a width is whole pixels, at least one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L224 ]
 [test: reads CRLF as the preview does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L236 ]
+[test: places each image in the source : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L145 ]
+[test: follows the preview's order and skips code : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L154 ]
+[test: reads the tag's attributes back, entities decoded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L178 ]
+[test: an image whose url is refused is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L183 ]
 
 ## S6: size an image from the keyboard @v1 [proposed]
 
@@ -129,7 +143,35 @@ twice as big as it looked on screen — so an image can be sized in place.
   10 MB
 - Then: nothing is stored and the toolbar shows the reason
 
+[test: rejects unsupported types, empty and oversized files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L52 ]
+
 ## S8: upload an image file @v1 [proposed]
 
 - When: the user clicks 🖼 and picks one or more image files
 - Then: each file is uploaded and inserted like a pasted image
+
+[test: stores under .images/ with slug + content hash name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L24 ]
+[test: inserts at the caret and leaves the caret after it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L324 ]
+[test: a selection becomes the alt text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L331 ]
+
+## S9: show an image in a rendered body @v1 [proposed]
+
+- Given: a body that references an image as `![alt](/api/images/<name>)` or
+  as `<img src="…" alt="…" width="…" height="…">`
+- When: the body is rendered — in the Preview tab or anywhere else a
+  scenario body is shown
+- Then: the image is served from `.images/` with its image type and shows
+  scaled down to fit the pane, at any width or height the tag gives it
+- Otherwise: an `<img>` tag with an unsafe or missing src stays as text;
+  other attributes on the tag and any other html are not rendered; a name
+  the app would never generate, or one with no file, is not served
+
+[test: markdown image : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L98 ]
+[test: an <img> tag renders with its src, alt, width and height : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L104 ]
+[test: anything else on the tag is dropped; a bad size is no size : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L114 ]
+[test: an unsafe or missing src leaves the tag as text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L122 ]
+[test: other html stays escaped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L132 ]
+[test: null for missing images : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L77 ]
+[test: refuses names storeImage would never generate : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L83 ]
+[test: maps stored extensions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L100 ]
+[test: image routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L45 ]
