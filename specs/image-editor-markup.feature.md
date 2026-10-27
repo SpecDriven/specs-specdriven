@@ -10,6 +10,8 @@ Add box markup around a section of an image in the spec.
 
 Add an arrow as markup on top of a spec image. What is the UI affordance to create the arrow on the image, with start and end and direction.
 
+![image](/api/images/image-d61bf2de.png)
+
 ## S3: Allow undo of markup commands @v1 [proposed]
 
 After a markup command is done, allow undo of commands to restore the state before that command.
