@@ -14,4 +14,4 @@ We can keep the current implementation and limit the undo history for an image b
 
 We can consider a separate markup history as just SVG text and save and version that separately from the image. 
 
-We can even use Excalidraw to d
+We can even use Excalidraw to demonstrate the different options for history of markup.
