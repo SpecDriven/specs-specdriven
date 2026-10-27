@@ -22,7 +22,7 @@ Save burns the markup into a PNG of the original's own pixel size — a shape ru
 
 ## S2: Add an arrow as markup on top of a spec image. @v1 [proposed]
 
-![image](/api/images/image-d61bf2de.png)
+<img src="/api/images/image-d61bf2de.png" alt="image" width="833">
 
 - **Given** an image open in the markup pane
 - **When** the user picks the Arrow tool (or presses `A`), presses where the arrow starts, drags, and releases where it should point
