@@ -233,8 +233,8 @@ Allow to collapse and expand the outline.
 - And: this works for any feature in the tree, not only the open one, and
   while an editor pane is open — the pane saves what it holds and stays on
   the scenario it showed
-- A scenario dragged onto another feature's outline, or onto a folder, does
-  nothing: moving it to another feature is `Move to…`.
+- A scenario dragged onto another feature moves there instead ("drag a
+  scenario to another feature"); dragged onto a folder it does nothing.
 
 [test: a scenario dropped on the upper half of a row lands just before it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioDragReorder.test.ts#L24 ]
 [test: a scenario dropped on the lower half of a row lands just after it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioDragReorder.test.ts#L31 ]
@@ -276,3 +276,32 @@ Allow to collapse and expand the outline.
 [test: a second copy takes the next free name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/duplicateScenario.test.ts#L103 ]
 [test: a published scenario can be duplicated, and stays as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/duplicateScenario.test.ts#L111 ]
 [test: the route duplicates by name and version, and refuses what is not there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/duplicateScenario.test.ts#L122 ]
+
+## S17: drag a scenario to another feature @v1 [proposed]
+
+- Given: a scenario card on a feature page, or a scenario row in the sidebar
+  tree's outline
+- When: the user drags it onto another feature's row in the sidebar
+- Then: that row is outlined while the pointer is over it, and dropping moves
+  the scenario there, last in its order — the same move as `Move to…`, with
+  everything it carries and on the same terms: a published scenario only
+  while Settings allows deleting or moving published specs, otherwise it
+  drops nowhere
+- And: dragged onto a row of another feature's expanded outline, or out of
+  another feature's outline onto a card of the open feature, a line shows
+  where it will land — above the row or card on its upper half, below on its
+  lower half — and dropping moves it in at that spot
+- And: dragged onto another card of its own feature page, it lands before or
+  after that card, as dragging it in the outline reorders it ("reorder
+  scenarios by dragging them in the tree")
+- And: the toast that confirms the move offers Undo, which moves it back to
+  the place it left
+
+[test: a scenario dropped on the upper half of another feature's row lands just before it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L53 ]
+[test: a scenario dropped on the lower half of another feature's row lands just after it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L61 ]
+[test: a drop next to a scenario the feature no longer has lands last : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L66 ]
+[test: a draft dropped between two scenarios keeps that place, in the document only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L71 ]
+[test: the move route takes the drop's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L77 ]
+[test: undo puts a moved scenario back in its old place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L94 ]
+[test: a scenario's place is before the one after it, or after the one before it when last : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L104 ]
+[test: a dragged scenario drops into any other feature, a published one only while Settings allows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L115 ]
