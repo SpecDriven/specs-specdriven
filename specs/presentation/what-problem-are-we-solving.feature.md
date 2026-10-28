@@ -11,7 +11,7 @@ Test: qTest
 
 ![tower-of-babel.excalidraw](/api/images/tower-of-babel-excalidraw-25316346.svg)
 
-## S2: Context @v1 [proposed]
+## S2: Where they should be @v1 [proposed]
 
 ![diagram.excalidraw](/api/images/diagram-excalidraw-c9438aea.svg)
 
