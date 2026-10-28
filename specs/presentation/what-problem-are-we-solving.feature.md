@@ -26,4 +26,4 @@ Unfortunately, PMs never used it!
 
 ## S4: Executable Specs via Test Traceability @v1 [proposed]
 
-Executable Specifications via 
+Executable Specifications via Test Traceability
