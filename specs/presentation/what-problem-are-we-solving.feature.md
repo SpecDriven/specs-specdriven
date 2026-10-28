@@ -4,12 +4,10 @@ What problem are we trying to solve ?
 
 ## S1: Where are specs now? @v1 [proposed]
 
-Aha!
-Jira
-Wiki
-Teams chats
-Meeting notes
-qTest
+PM: Aha!, Figma
+UX: Figma
+PM, Eng, Test: Jira, Wiki, Teams chats, Meeting notes
+Test: qTest
 
 ## S2: Context @v1 [proposed]
 
