@@ -13,7 +13,7 @@ Test: qTest
 
 ## S2: Where they should be @v1 [proposed]
 
-![diagram.excalidraw](/api/images/diagram-excalidraw-c9438aea.svg)
+![tower-finished.excalidraw](/api/images/tower-finished-excalidraw-57b6c34e.svg)
 
 ## S3: Behavior Driven Development @v1 [proposed]
 
