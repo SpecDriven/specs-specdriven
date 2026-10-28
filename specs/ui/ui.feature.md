@@ -373,9 +373,9 @@ can put them in the order the feature reads best in.
 [test: threeWayFeature keeps a reorder made on one side : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L260 ]
 [test: a save in a new order writes the file renumbered, and the editor reads it back in that order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L282 ]
 [test: the sync tick leaves a file from before the numbers alone until it is saved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrder.test.ts#L313 ]
-[test: withScenario keeps the order, replacing in place, inserting at insertAt, else appending : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L18 ]
-[test: withScenarioMoved moves one scenario and leaves the rest in order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L26 ]
-[test: scenarioNumbers counts the scenarios the file holds and skips drafts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L35 ]
+[test: withScenario keeps the order, replacing in place, inserting at insertAt, else appending : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L24 ]
+[test: withScenarioMoved moves one scenario and leaves the rest in order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L32 ]
+[test: scenarioNumbers counts the scenarios the file holds and skips drafts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L41 ]
 [test: a new scenario is appended (or placed at insertAt) and its card is found there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditorPane.test.tsx#L34 ]
 
 ## S9: Recent folder list @v1 [published]
