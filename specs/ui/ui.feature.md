@@ -223,6 +223,8 @@ scenario right after that card. There is no button at the end of the list.
 Either way a small dialog asks for the name, and the new scenario opens in
 the editor pane as a draft.
 
+[test: newScenarioDraft is a new draft under the cleaned name, at insertAt when given : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L53 ]
+
 ## S3: Auto-save commits say what changed @v1 [proposed]
 
 - Given: the reload tick finds edits the app saved locally — a scenario edited in Folders, say, or a new notebook entry

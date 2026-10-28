@@ -152,3 +152,5 @@ where it is and keeps working.
 - The reload cron and Sync leave an open pane alone, as they did the dialog.
 
 [test: shows its editor, not the error note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioEditorDraft.test.tsx#L140 ]
+[test: insertAfterScenario lands right after the pane's scenario, wherever its save left it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L62 ]
+[test: single letters stand down in a contenteditable body and behind a false `when` : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shortcuts.test.tsx#L125 ]
