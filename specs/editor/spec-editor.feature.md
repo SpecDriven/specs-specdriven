@@ -126,7 +126,8 @@ where it is and keeps working.
   scenario, a read-only heading for a published one — and the version, the
   status is a chip: a draft's opens a menu with Propose and Publish, a
   proposed scenario's with Publish only, and a published scenario's is a
-  plain badge. `⌘⏎` picks the first of them. A published scenario carries no
+  plain badge — or, while Settings allows deleting published specs, a menu
+  with Back to proposed ("Unpublish a Spec"). `⌘⏎` picks the first of them. A published scenario carries no
   save action at all: the only things it can still change are its links, and
   those save themselves (traceability.feature.md).
 - Below the bar one column scrolls: the body's Markdown editor, at least 40%
@@ -154,3 +155,23 @@ where it is and keeps working.
 [test: shows its editor, not the error note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioEditorDraft.test.tsx#L140 ]
 [test: insertAfterScenario lands right after the pane's scenario, wherever its save left it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L62 ]
 [test: single letters stand down in a contenteditable body and behind a false `when` : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shortcuts.test.tsx#L125 ]
+
+## S9: Unpublish a Spec @v1 [proposed]
+
+Given: deletion of published specs is turned on in user settings
+When: in a published scenario's editor pane, open the status chip and pick
+Back to proposed
+Then: the scenario is [proposed] again — same name, version, place, body,
+tests and links — and its body and title are editable in the pane. The change
+is committed and pushed right away, as a Delete Published Spec is. Publish
+takes it back to [published].
+
+With the setting off, the published status chip is a plain badge, and the
+server refuses the change too.
+
+[test: with the setting off, the unpublish route refuses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L70 ]
+[test: with the setting on, a published spec moves back to proposed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L79 ]
+[test: an unpublished spec is editable again, and Publish takes it back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L95 ]
+[test: only a published scenario can be unpublished : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L105 ]
+[test: with the setting on, Back to proposed moves the scenario back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublishChip.test.tsx#L149 ]
+[test: with the setting off, it is a plain badge : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublishChip.test.tsx#L167 ]
