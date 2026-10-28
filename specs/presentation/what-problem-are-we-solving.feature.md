@@ -26,8 +26,4 @@ Unfortunately, PMs never used it!
 
 ## S4: Executable Specs via Test Traceability @v1 [proposed]
 
-Specs and tests can use the best tools for each, but they have bi-directional traceability.
-
-This approach was not feasible before AI Agents, but now is within our reach!
-
-Spec <==> Automated Test
+Executable Specifications via 
