@@ -9,7 +9,7 @@ UX: Figma
 PM, Eng, Test: Jira, Wiki, Teams chats, Meeting notes
 Test: qTest
 
-![tower-of-babel.excalidraw](/api/images/tower-of-babel-excalidraw-a529e7e4.svg)
+![tower-of-babel.excalidraw](/api/images/tower-of-babel-excalidraw-25316346.svg)
 
 ## S2: Context @v1 [proposed]
 
