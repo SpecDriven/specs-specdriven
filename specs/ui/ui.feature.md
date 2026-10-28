@@ -112,7 +112,8 @@ confirmations, and any future dialog).
 > Superseded for the editor's chrome by editor/spec-editor.feature.md "Spec
 > editor pane": the editor is a pane in the feature's slot, not a dialog — not
 > resizable, no "esc to exit" note. The field rules below (title, version,
-> Draft, Delete, published read-only, ESC in a ✎ row) still apply.
+> Draft, Delete, published read-only, ESC in a ✎ row) still apply; Delete
+> lives in the pane's `⋯` menu, and Propose and Publish in its status chip.
 
 - Name must be the title of the pane
 - Must be resizable
@@ -212,7 +213,17 @@ come from one token block.
 
 * With a feature file editor open, the button to add a scenario should always be visible. The button should be located with respect to the editor window viewport.
 
-## S2: Auto-save commits say what changed @v1 [proposed]
+## S2: Add A Scenario Button @v2 [proposed]
+
+With a feature open, a scenario is added from the page header, which is
+pinned above the list so the action is always in view: a `+` icon button
+beside the description and `⋯` actions (tooltip "New scenario", key `c`),
+or `New scenario below` in a card's `⋯` menu, which inserts the new
+scenario right after that card. There is no button at the end of the list.
+Either way a small dialog asks for the name, and the new scenario opens in
+the editor pane as a draft.
+
+## S3: Auto-save commits say what changed @v1 [proposed]
 
 - Given: the reload tick finds edits the app saved locally — a scenario edited in Folders, say, or a new notebook entry
 - When: it commits and pushes them
@@ -248,11 +259,11 @@ The title is worked out from the files themselves, by reading each changed spec 
 [test: reads modified, untracked, renamed and quoted entries : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L253 ]
 [test: the auto-save commit names the feature and the scenarios that changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/reload.test.ts#L126 ]
 
-## S3: Feature Text Scroll Pane @v1 [published]
+## S4: Feature Text Scroll Pane @v1 [published]
 
 The detail view for a feature file should provide a scroll pane for the feature text, rendering Markdown to HTML, and providing specd for the scenario cards and the "add a scenario" button.
 
-## S4: Feature Text Scroll Pane @v2 [published]
+## S5: Feature Text Scroll Pane @v2 [published]
 
 The free markdown between the feature heading and the first scenario (the
 feature description) renders as Markdown — same pipeline as scenario bodies —
@@ -268,7 +279,7 @@ in its own pane on the feature page:
   never squeezes the description pane, and the "add a scenario" button stays
   reachable.
 
-## S5: Hide the editor pane @v1 [proposed]
+## S6: Hide the editor pane @v1 [proposed]
 
 While the coding agent pane is open beside it, the editor column can be hidden
 so the pane has the window — the same kind of control the agent pane itself
@@ -292,7 +303,7 @@ has, one column to its left.
   state. Closing the agent pane brings the editor back without forgetting the
   choice: reopening the pane hides it again.
 
-## S6: Keyboard shortcuts come from one registry @v1 [proposed]
+## S7: Keyboard shortcuts come from one registry @v1 [proposed]
 
 - Every shortcut is declared once (src/frontend/shortcuts.tsx) and a single
   window listener dispatches from that registry; the cheat sheet (`?`)
@@ -306,7 +317,7 @@ has, one column to its left.
 [test: a keydown with no key — a browser's autofill — matches no shortcut and throws nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shortcuts.test.tsx#L97 ]
 [test: real keys still dispatch — a field keeps single letters, takes shortcuts marked for fields : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shortcuts.test.tsx#L109 ]
 
-## S7: Number scenarios and move them up or down @v1 [proposed]
+## S8: Number scenarios and move them up or down @v1 [proposed]
 
 Scenarios are numbered by their place in the feature file, and the reader
 can put them in the order the feature reads best in.
@@ -329,7 +340,9 @@ can put them in the order the feature reads best in.
 - A published scenario can be moved: its name, version and body are
   untouched, so it stays immutable.
 - `New version` on a published scenario opens its next version right after
-  it, where the reader looks for it; `Add scenario` still adds at the end.
+  it, where the reader looks for it; `New scenario below` on a card, and the
+  editor pane's `+` (or `c`), insert after that scenario; the header's `+`
+  adds at the end.
 - A scenario moved in the file by hand — a heading cut and pasted on GitHub,
   say — is read in its new place on the next sync tick, and renumbered; the
   numbers themselves are a label for the order, not the order, so a heading
@@ -365,15 +378,15 @@ can put them in the order the feature reads best in.
 [test: scenarioNumbers counts the scenarios the file holds and skips drafts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L35 ]
 [test: a new scenario is appended (or placed at insertAt) and its card is found there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditorPane.test.tsx#L34 ]
 
-## S8: Recent folder list @v1 [published]
+## S9: Recent folder list @v1 [published]
 
 There is a small down arrow icon next to folder name that brings up a list of previous folders. Support up to 10 folders.
 
-## S9: Spec will be added under the folder that is highlighted @v1 [published]
+## S10: Spec will be added under the folder that is highlighted @v1 [published]
 
 When adding a spec (scenario), it must be added under the highlighted (focused) folder.
 
-## S10: User-entered text is cleaned up @v1 [proposed]
+## S11: User-entered text is cleaned up @v1 [proposed]
 
 Whatever the user types is saved without the whitespace they did not mean —
 a pasted title's trailing blank, a double space, the empty lines around a

@@ -31,7 +31,19 @@ The escape key or the close-editor widget will leave the scenario in its autosav
 Two buttons available: "Propose" and "Publish".
 When the spec is proposed or published, the application stores the author who created the spec.
 
-## S4: Delete Published Spec @v1 [published]
+## S4: Create New Spec @v3 [proposed]
+
+Add scenario.
+This opens the editor pane for the new spec.
+The new spec editor pane has a title for the user to fill in.
+The new spec starts in draft mode.
+The draft spec is persisted in Automerge.
+The user can use Delete, in the pane's `⋯` menu, which removes the draft spec.
+The escape key or the feature crumb will leave the scenario in its autosaved state.
+Propose and Publish are picked from the status chip beside the title; the status moves one way.
+When the spec is proposed or published, the application stores the author who created the spec.
+
+## S5: Delete Published Spec @v1 [published]
 
 Given: deletion of published specs is turned on in user settings
 When: click on Delete button
@@ -39,7 +51,7 @@ Then: a confirmation dialog pops up with: "Danger Zone! Confirm that you want to
 The user can click "Confirm" button or the "Cancel" button.
 If confirmed, the spec is deleted.
 
-## S5: Previous and next scenario @v1 [proposed]
+## S6: Previous and next scenario @v1 [proposed]
 
 From one scenario's editor, step to the scenario before or after it without
 going back to the feature.
@@ -70,7 +82,7 @@ going back to the feature.
 [test: a scenario that isn't in the tree yet — new, never saved — has neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L201 ]
 [test: a scenario is told apart from its other versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L208 ]
 
-## S6: Spec body resize @v1 [proposed]
+## S7: Spec body resize @v1 [proposed]
 
 A scenario with a table, a ticket and many test links leaves the body editor
 too little room.
@@ -94,21 +106,29 @@ too little room.
 [test: fractional pixels from the pointer land on whole ones : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bodyResize.test.ts#L25 ]
 [test: on a window too short for both bounds the minimum wins, so the body stays usable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bodyResize.test.ts#L30 ]
 
-## S7: Spec editor pane @v1 [proposed]
+## S8: Spec editor pane @v1 [proposed]
 
 The scenario editor is a pane, not a dialog. Opening a scenario — Edit on its
-card, Enter on the highlighted card, New version, or "+ Add Scenario" —
+card, Enter on the highlighted card, New version, or the header's `+` —
 replaces the feature pane with the editor in the same slot. The sidebar stays
 where it is and keeps working.
 
-- The bar at the top holds, left to right: a `<` back button whose tooltip
-  names the feature ("Back to <feature name>"); the scenario title — an
-  editable title for a draft or proposed scenario, a read-only heading for a
-  published one — with the version and the status badge beside it; and on the
-  right, where the feature page keeps Publish All, the actions: Delete, set
-  apart from Propose and Publish. A published scenario carries no save action
-  at all: the only things it can still change are its links, and those save
-  themselves (traceability.feature.md).
+- The bar at the top holds, left to right: the breadcrumb trail, whose last
+  crumb is the feature and the way back ("Back to <feature name>"); and on
+  the right the actions as icon buttons, all one size — previous / next
+  scenario, copy link, `+` for a new scenario after this one (key `c`: the
+  pane saves first, then the new draft opens right after where that save
+  landed the scenario), the save indicator, and a `⋯` menu with New scenario
+  below, Duplicate, New version (published only), Copy link and, last and
+  red, Delete (where the scenario can be deleted). No filled button sits in
+  the bar.
+- Under the bar, beside the title — editable for a draft or proposed
+  scenario, a read-only heading for a published one — and the version, the
+  status is a chip: a draft's opens a menu with Propose and Publish, a
+  proposed scenario's with Publish only, and a published scenario's is a
+  plain badge. `⌘⏎` picks the first of them. A published scenario carries no
+  save action at all: the only things it can still change are its links, and
+  those save themselves (traceability.feature.md).
 - Below the bar one column scrolls: the body's Markdown editor, at least 40%
   of the window tall and growing to fill the pane, then the ticket link and
   the automated tests.
