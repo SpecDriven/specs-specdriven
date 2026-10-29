@@ -272,10 +272,10 @@ Allow to collapse and expand the outline.
 - And: the original is left exactly as it was
 
 [test: the copy is a draft named '<name> (clone)' at v1, right after the original : https://github.com/SpecDriven/specdriven-app/blob/main/tests/cloneScenario.test.ts#L67 ]
-[test: the copy carries the spec text, flags and polarity, not the tests, ticket or pull requests : https://github.com/SpecDriven/specdriven-app/blob/main/tests/duplicateScenario.test.ts#L83 ]
-[test: a second copy takes the next free name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/duplicateScenario.test.ts#L103 ]
-[test: a published scenario can be cloned, and stays as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/cloneScenario.test.ts#L111 ]
-[test: the route clones by name and version, and refuses what is not there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/cloneScenario.test.ts#L122 ]
+[test: the copy carries the spec text, flags, attributes and polarity, not the tests, ticket or pull requests : https://github.com/SpecDriven/specdriven-app/blob/main/tests/cloneScenario.test.ts#L83 ]
+[test: a second copy takes the next free name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/cloneScenario.test.ts#L105 ]
+[test: a published scenario can be cloned, and stays as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/cloneScenario.test.ts#L113 ]
+[test: the route clones by name and version, and refuses what is not there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/cloneScenario.test.ts#L124 ]
 
 ## S17: drag a scenario to another feature @v1 [proposed]
 
@@ -297,8 +297,8 @@ Allow to collapse and expand the outline.
 - And: the toast that confirms the move offers Undo, which moves it back to
   the place it left
 
-[test: a scenario dropped on the upper half of another feature's row lands just before it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L53 ]
-[test: a scenario dropped on the lower half of another feature's row lands just after it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L61 ]
+[test: a scenario dropped on the upper half of a row in another feature's outline lands just before it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L53 ]
+[test: a scenario dropped on the lower half of a row in another feature's outline lands just after it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L61 ]
 [test: a drop next to a scenario the feature no longer has lands last : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L66 ]
 [test: a draft dropped between two scenarios keeps that place, in the document only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L71 ]
 [test: the move route takes the drop's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L77 ]

@@ -26,9 +26,9 @@ repo.
 - and a chunk that could not be applied is named, never fatal
 
 [test: loadRawDoc reads a pre-v3 document as written, lists its chunks and skips a corrupt one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeStore.test.ts#L305 ]
-[test: readDoc returns what is on disk with its chunk files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L213 ]
+[test: readDoc returns what is on disk with its chunk files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L222 ]
 [test: sourceFileOf maps a store directory back to its data repo file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeStore.test.ts#L344 ]
-[test: keep answering while the data is newer than the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L313 ]
+[test: keep answering while the data is newer than the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L322 ]
 
 ## A document's history lists its changes newest first @v1 [proposed]
 
@@ -38,8 +38,8 @@ repo.
   each with its hash, time, actor, sequence number, message and op count,
   fifty at a time with "Load older"
 
-[test: history lists the changes newest first, and a change shows the document then and its patches : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L228 ]
-[test: lists the tables, sorts and filters through the server, opens a row, its document and its history : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L219 ]
+[test: history lists the changes newest first, and a change shows the document then and its patches : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L237 ]
+[test: lists the tables, sorts and filters through the server, opens a row, its document and its history : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L220 ]
 
 ## A row opens as a tree and leads to its document @v1 [proposed]
 
@@ -50,9 +50,9 @@ repo.
 - and "Open document" switches to the Document view of the document the row
   came from, and the Document and History views stay reachable for it
 
-[test: lists the tables, sorts and filters through the server, opens a row, its document and its history : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L219 ]
-[test: opens branches to the given depth and colours scalars : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L185 ]
-[test: cells read as text, nested values as a summary : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L163 ]
+[test: lists the tables, sorts and filters through the server, opens a row, its document and its history : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L220 ]
+[test: opens branches to the given depth and colours scalars : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L186 ]
+[test: cells read as text, nested values as a summary : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L164 ]
 
 ## Picking a change shows the document then and what it touched @v1 [proposed]
 
@@ -64,8 +64,8 @@ repo.
 - and the first change, having no parents, says so instead of listing every
   value as a patch
 
-[test: history lists the changes newest first, and a change shows the document then and its patches : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L228 ]
-[test: changes and patches read as lines : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L174 ]
+[test: history lists the changes newest first, and a change shows the document then and its patches : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L237 ]
+[test: changes and patches read as lines : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L175 ]
 
 ## Rows are filtered, sorted and paged on the server @v1 [proposed]
 
@@ -77,10 +77,11 @@ repo.
   a hundred at a time, and the toolbar says "1–100 of 1,431"
 - and a column the table does not have is refused
 
-[test: queryRows filters over scalar and nested cells, sorts, and pages : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L184 ]
-[test: readTable serves a page and refuses a column it does not have : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L202 ]
-[test: serve tables, rows, a document, its history and a change : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L267 ]
-[test: urls leave defaults out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L152 ]
+[test: queryRows filters over scalar and nested cells, sorts, and pages : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L193 ]
+[test: readTable serves a page and refuses a column it does not have : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L211 ]
+[test: serve tables, rows, a document, its history and a change : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L276 ]
+[test: urls leave defaults out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L153 ]
+[test: counts carry thousands separators in the table list, the store and the toolbar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L328 ]
 
 ## The store's documents are listed as tables @v1 [proposed]
 
@@ -104,7 +105,8 @@ repo.
 [test: the testing document's maps and a plugin's document become rows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L170 ]
 [test: Data has its own url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/route.test.ts#L340 ]
 [test: listDocDirs finds every document directory and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeStore.test.ts#L296 ]
-[test: a local save is seen by the next request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L253 ]
+[test: a local save is seen by the next request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L262 ]
+[test: a plugin's own folder is a document, not an event model : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L184 ]
 
 ## The viewer never writes and never leaves the store @v1 [proposed]
 
@@ -115,4 +117,4 @@ repo.
   compacts a document
 
 [test: loadRawDoc stays inside the store : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeStore.test.ts#L335 ]
-[test: refuse what is not a table, a column, a store path or a change hash : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L296 ]
+[test: refuse what is not a table, a column, a store path or a change hash : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L305 ]

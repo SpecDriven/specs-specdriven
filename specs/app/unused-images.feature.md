@@ -40,10 +40,10 @@ delete the ones they do not want.
 - and the All tab shows every stored image with the number of files that use
   it, or "unreferenced"
 
-[test: maps each image to the files that reference it, draft scenarios included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L133 ]
-[test: finds stored names in markdown images, <img> tags, encoded urls and prose : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L109 ]
-[test: only names storeImage generates are stored names : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L124 ]
-[test: a repo with no images lists none; stray files in .images/ are not images : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L149 ]
+[test: maps each image to the files that reference it, draft scenarios included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L134 ]
+[test: finds stored names in markdown images, <img> tags, encoded urls and prose : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L110 ]
+[test: only names storeImage generates are stored names : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L125 ]
+[test: a repo with no images lists none; stray files in .images/ are not images : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L150 ]
 [test: lists the unreferenced images first, selects them all and deletes them after asking : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imagesPage.test.tsx#L116 ]
 [test: a thumbnail opens the image with where it is used; the All tab shows every image : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imagesPage.test.tsx#L189 ]
 [test: nothing stored, and a server error, each say so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imagesPage.test.tsx#L232 ]
@@ -59,10 +59,11 @@ delete the ones they do not want.
   commit, and the grid and the tab counts drop them
 - Otherwise: the user declines the confirmation, and nothing is sent
 
-[test: removes unreferenced images from .images/ : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L159 ]
-[test: refuses names that are not stored images, or have no file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L176 ]
-[test: list the images with their references; delete the unreferenced; 409 for a referenced one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L189 ]
-[test: a delete needs a non-empty list of names : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L212 ]
+[test: removes unreferenced images from .images/ : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L160 ]
+[test: removes the images in one commit, pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L167 ]
+[test: refuses names that are not stored images, or have no file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L199 ]
+[test: list the images with their references; delete the unreferenced; 409 for a referenced one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L212 ]
+[test: a delete needs a non-empty list of names : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L235 ]
 [test: lists the unreferenced images first, selects them all and deletes them after asking : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imagesPage.test.tsx#L116 ]
 [test: a declined confirmation sends nothing; a refusal reloads and keeps the image : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imagesPage.test.tsx#L165 ]
 
@@ -75,8 +76,8 @@ delete the ones they do not want.
   and its files, deletes nothing, and the page reloads so the image leaves
   the Unreferenced tab
 
-[test: refuses an image a file still references, and deletes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L166 ]
-[test: list the images with their references; delete the unreferenced; 409 for a referenced one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L189 ]
+[test: refuses an image a file still references, and deletes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L189 ]
+[test: list the images with their references; delete the unreferenced; 409 for a referenced one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageCleanup.test.ts#L212 ]
 [test: a declined confirmation sends nothing; a refusal reloads and keeps the image : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imagesPage.test.tsx#L165 ]
 
 ## S4: The demo browses but cannot delete @v1 [proposed]

@@ -43,6 +43,12 @@ The escape key or the feature crumb will leave the scenario in its autosaved sta
 Propose and Publish are picked from the status chip beside the title; the status moves one way.
 When the spec is proposed or published, the application stores the author who created the spec.
 
+[test: a new draft is persisted in the Automerge document, out of the file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditor.test.ts#L35 ]
+[test: Delete removes the draft spec : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditor.test.ts#L47 ]
+[test: Propose lands the draft in the feature file as proposed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditor.test.ts#L63 ]
+[test: Publish promotes a draft scenario straight to published : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditor.test.ts#L77 ]
+[test: new spec has an author — a scenario added by a save is created by whoever saved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L123 ]
+
 ## S5: Delete Published Spec @v1 [published]
 
 Given: deletion of published specs is turned on in user settings
@@ -57,7 +63,7 @@ From one scenario's editor, step to the scenario before or after it without
 going back to the feature.
 
 - The bar's actions start with two icon buttons, `‹` (previous scenario) and
-  `›` (next scenario), ahead of the save indicator and Delete.
+  `›` (next scenario), ahead of the bar's other actions.
 - They walk every scenario in the order the sidebar tree lists them —
   folders before features, features by name, each feature's scenarios in
   file order — crossing from the last scenario of one feature into the first
@@ -119,7 +125,7 @@ where it is and keeps working.
   scenario, copy link, `+` for a new scenario after this one (key `c`: the
   pane saves first, then the new draft opens right after where that save
   landed the scenario), the save indicator, and a `⋯` menu with New scenario
-  below, Duplicate, New version (published only), Copy link and, last and
+  below, Clone, New version (published only), Copy link and, last and
   red, Delete (where the scenario can be deleted). No filled button sits in
   the bar.
 - Under the bar, beside the title — editable for a draft or proposed
@@ -155,6 +161,10 @@ where it is and keeps working.
 [test: shows its editor, not the error note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioEditorDraft.test.tsx#L140 ]
 [test: insertAfterScenario lands right after the pane's scenario, wherever its save left it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L62 ]
 [test: single letters stand down in a contenteditable body and behind a false `when` : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shortcuts.test.tsx#L125 ]
+[test: an opened, unedited scenario's card is where it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditorPane.test.tsx#L26 ]
+[test: a new scenario is appended (or placed at insertAt) and its card is found there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditorPane.test.tsx#L34 ]
+[test: a scenario the feature never received highlights nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditorPane.test.tsx#L62 ]
+[test: with the setting off, it is a plain badge : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublishChip.test.tsx#L167 ]
 
 ## S9: Unpublish a Spec @v1 [proposed]
 
@@ -169,9 +179,10 @@ takes it back to [published].
 With the setting off, the published status chip is a plain badge, and the
 server refuses the change too.
 
-[test: with the setting off, the unpublish route refuses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L70 ]
-[test: with the setting on, a published spec moves back to proposed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L79 ]
-[test: an unpublished spec is editable again, and Publish takes it back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L95 ]
-[test: only a published scenario can be unpublished : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L105 ]
+[test: with the setting off, the unpublish route refuses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L71 ]
+[test: with the setting on, a published spec moves back to proposed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L80 ]
+[test: an unpublished spec is editable again, and Publish takes it back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L96 ]
+[test: only a published scenario can be unpublished : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L106 ]
+[test: an unpublished spec keeps its tests and links, and the change is committed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L114 ]
 [test: with the setting on, Back to proposed moves the scenario back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublishChip.test.tsx#L149 ]
 [test: with the setting off, it is a plain badge : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublishChip.test.tsx#L167 ]

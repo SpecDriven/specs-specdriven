@@ -318,6 +318,7 @@ has, one column to its left.
 
 [test: a keydown with no key — a browser's autofill — matches no shortcut and throws nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shortcuts.test.tsx#L97 ]
 [test: real keys still dispatch — a field keeps single letters, takes shortcuts marked for fields : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shortcuts.test.tsx#L109 ]
+[test: single letters stand down in a contenteditable body and behind a false `when` : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shortcuts.test.tsx#L125 ]
 
 ## S8: Number scenarios and move them up or down @v1 [proposed]
 
@@ -379,6 +380,8 @@ can put them in the order the feature reads best in.
 [test: withScenarioMoved moves one scenario and leaves the rest in order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L32 ]
 [test: scenarioNumbers counts the scenarios the file holds and skips drafts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L41 ]
 [test: a new scenario is appended (or placed at insertAt) and its card is found there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditorPane.test.tsx#L34 ]
+[test: newScenarioDraft is a new draft under the cleaned name, at insertAt when given : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L53 ]
+[test: insertAfterScenario lands right after the pane's scenario, wherever its save left it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L62 ]
 
 ## S9: Recent folder list @v1 [published]
 
