@@ -55,7 +55,7 @@ reports both via `/api/state`.
   credential helper `gh auth setup-git` wrote there still answers for
   system git after signing out
 
-## open Plugins @v1 [proposed]
+## S1: open Plugins @v1 [proposed]
 
 - When: the user picks "Plugins" from the user menu, presses `g p` or
   picks Plugins in the command palette
@@ -66,7 +66,7 @@ reports both via `/api/state`.
 
 [test: Settings and Plugins have urls that resolve back to them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/route.test.ts#L328 ]
 
-## open Settings @v1 [proposed]
+## S2: open Settings @v1 [proposed]
 
 - When: the user picks "Settings" from the user menu or presses `⌘,`
 - Then: the Settings page takes the editor pane at `/settings`, its
@@ -77,26 +77,26 @@ reports both via `/api/state`.
 - and the ✕ or ESC goes back to the page that was open before
 
 [test: Settings and Plugins have urls that resolve back to them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/route.test.ts#L328 ]
-[test: anything else is not an app page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/route.test.ts#L340 ]
+[test: anything else is not an app page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/route.test.ts#L345 ]
 
-## open the user menu @v1 [proposed]
+## S3: open the user menu @v1 [proposed]
 
 - When: the user clicks the chip
 - Then: a menu appears with "User info", "Settings" and "Plugins", and in
   the desktop app the GitHub sign-in entries
 - and ESC or clicking anywhere else closes it
 
-## see the current user @v1 [proposed]
+## S4: see the current user @v1 [proposed]
 
 - When: the app is open and no GitHub account is known
 - Then: the lower left corner shows the OS user behind a small avatar chip
 
-## see the GitHub account @v1 [proposed]
+## S5: see the GitHub account @v1 [proposed]
 
 - When: a GitHub account is known
 - Then: the chip shows that login instead of the OS user
 
-## sign in from settings @v1 [proposed]
+## S6: sign in from settings @v1 [proposed]
 
 - When: the user clicks "Sign in with GitHub" in Settings
 - Then: the page shows the one-time code and a link to
@@ -104,7 +104,7 @@ reports both via `/api/state`.
 - and once the user authorizes there, the page shows
   "Signed in as <login>"
 
-## sign in with a token from the user menu @v1 [proposed]
+## S7: sign in with a token from the user menu @v1 [proposed]
 
 - When: the user picks "Sign in with token…" from the user menu (or
   "Switch account…" while signed in)
@@ -120,7 +120,7 @@ reports both via `/api/state`.
 [test: signed out, a modal dialog with the host and token fields : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tokenSignInDialog.test.tsx#L14 ]
 [test: signed in, it names the account the token would replace : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tokenSignInDialog.test.tsx#L25 ]
 
-## sign out from the user menu @v1 [proposed]
+## S8: sign out from the user menu @v1 [proposed]
 
 - When: the user picks "Sign out" from the user menu — offered while the
   app is signed in, or while the GitHub CLI's account stands in for it
@@ -129,7 +129,7 @@ reports both via `/api/state`.
 
 [test: sign out clears the token and stops using the GitHub CLI account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signOut.test.ts#L68 ]
 
-## signing out stops using the GitHub CLI account @v1 [proposed]
+## S9: signing out stops using the GitHub CLI account @v1 [proposed]
 
 - Given: the GitHub CLI is signed in on this computer
 - When: the user signs out of the app
@@ -142,7 +142,7 @@ reports both via `/api/state`.
 [test: sign out clears the token and stops using the GitHub CLI account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signOut.test.ts#L68 ]
 [test: Use GitHub CLI account turns the fallback back on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signOut.test.ts#L85 ]
 
-## view user info @v1 [proposed]
+## S10: view user info @v1 [proposed]
 
 - When: the user picks "User info" from the menu
 - Then: a dialog shows the OS user, the GitHub account, and the name and
