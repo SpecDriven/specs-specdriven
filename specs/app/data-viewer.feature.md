@@ -12,7 +12,7 @@ like Observability (`g d`), for developers and admins: raw field names, docids,
 heads, actors and chunk files stay visible. Nothing here writes to the data
 repo.
 
-## A document reads as its chunks hold it @v1 [proposed]
+## S1: A document reads as its chunks hold it @v1 [proposed]
 
 - Given: a document whose directory holds a snapshot and change files
 - When: the user opens a row's document
@@ -30,7 +30,7 @@ repo.
 [test: sourceFileOf maps a store directory back to its data repo file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeStore.test.ts#L344 ]
 [test: keep answering while the data is newer than the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L322 ]
 
-## A document's history lists its changes newest first @v1 [proposed]
+## S2: A document's history lists its changes newest first @v1 [proposed]
 
 - Given: a document with more than one change
 - When: the user opens its History view
@@ -41,7 +41,7 @@ repo.
 [test: history lists the changes newest first, and a change shows the document then and its patches : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L237 ]
 [test: lists the tables, sorts and filters through the server, opens a row, its document and its history : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L220 ]
 
-## A row opens as a tree and leads to its document @v1 [proposed]
+## S3: A row opens as a tree and leads to its document @v1 [proposed]
 
 - Given: a table's rows
 - When: the user clicks a row
@@ -54,7 +54,7 @@ repo.
 [test: opens branches to the given depth and colours scalars : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L186 ]
 [test: cells read as text, nested values as a summary : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L164 ]
 
-## Picking a change shows the document then and what it touched @v1 [proposed]
+## S4: Picking a change shows the document then and what it touched @v1 [proposed]
 
 - Given: the History view of a document
 - When: the user picks a change
@@ -67,7 +67,7 @@ repo.
 [test: history lists the changes newest first, and a change shows the document then and its patches : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L237 ]
 [test: changes and patches read as lines : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L175 ]
 
-## Rows are filtered, sorted and paged on the server @v1 [proposed]
+## S5: Rows are filtered, sorted and paged on the server @v1 [proposed]
 
 - Given: a table with rows
 - When: the user types in the filter, clicks a column header, or pages
@@ -83,7 +83,7 @@ repo.
 [test: urls leave defaults out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L153 ]
 [test: counts carry thousands separators in the table list, the store and the toolbar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataPage.test.tsx#L328 ]
 
-## The store's documents are listed as tables @v1 [proposed]
+## S6: The store's documents are listed as tables @v1 [proposed]
 
 - Given: a data folder with features, pages, event models and the test
   management document
@@ -108,7 +108,7 @@ repo.
 [test: a local save is seen by the next request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L262 ]
 [test: a plugin's own folder is a document, not an event model : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L184 ]
 
-## The viewer never writes and never leaves the store @v1 [proposed]
+## S7: The viewer never writes and never leaves the store @v1 [proposed]
 
 - Given: the viewer's routes
 - When: a request names a document path outside the store — `../..`, an
