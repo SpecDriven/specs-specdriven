@@ -141,12 +141,12 @@ qTest never sees it.
   key store in the desktop app — never settings.json or the data repo
 - and the hosted app, which keeps no device secrets, offers none of this
 
-[test: a token qTest accepts is kept, owner-only, and listed without the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L265 ]
-[test: a token qTest refuses, or that sees no project, is not kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L275 ]
-[test: a blank token or a url that is no site is refused before qTest is asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L285 ]
-[test: a token pasted with a leading Bearer is kept as the token alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L291 ]
-[test: a saved token replaces the site's last one, and can be removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L299 ]
-[test: the hosted app refuses qTest altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L536 ]
+[test: a token qTest accepts is kept, owner-only, and listed without the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L327 ]
+[test: a token qTest refuses, or that sees no project, is not kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L337 ]
+[test: a blank token or a url that is no site is refused before qTest is asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L347 ]
+[test: a token pasted with a leading Bearer is kept as the token alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L353 ]
+[test: a saved token replaces the site's last one, and can be removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L361 ]
+[test: the hosted app refuses qTest altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L625 ]
 [test: lists each site with what its token reaches, never the token, each with Remove : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestDialogs.test.tsx#L74 ]
 [test: offers the url and token fields, the token as a password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestDialogs.test.tsx#L82 ]
 [test: is the site itself, or any portal url of it, normalized : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestUrl.test.ts#L63 ]
@@ -156,18 +156,21 @@ qTest never sees it.
 
 - Given: a feature is open, qTest test cases are switched on, and this
   device holds a token for the site
-- When: the user picks "Create qTest test cases…" in the feature's ⋯ menu,
+- When: the user picks "Publish qTest Test Cases…" in the feature's ⋯ menu,
   pastes the url of the parent module from qTest's Test Design tree
   (`…/p/12/portal/project#tab=testdesign&object=0&id=901`), chooses "All
-  scenarios" or "Published scenarios only", and presses "Create test cases"
+  scenarios" or "Published scenarios only", and presses "Publish test cases"
 - Then: a module named after the feature is created under the parent module,
   and each scenario in scope becomes one test case in it
 - and the feature links the module and each scenario its test case, as
   `[qTest:MD-66](url)` and `[qTest:TC-51](url)` lines, the way the links are
   entered by hand; the toast says how many were created and offers "Open
   module"
-- and the dialog offers the last parent module used on this device next time
-- and Create waits for a module url on a site with a token, and says what is
+- and the dialog offers a feature published before the parent module it was
+  last published under, kept with the feature like its Confluence parent,
+  so features under different parents each get their own; a feature not
+  yet published is offered the last parent module used on this device
+- and Publish waits for a module url on a site with a token, and says what is
   missing; what qTest refuses (no such module, a token it no longer accepts,
   a project the token cannot write to) is shown as one sentence
 - and a test case qTest refuses stops the run there: the ones written before
@@ -180,14 +183,15 @@ qTest never sees it.
   its scenarios there; "Create anyway" opens the dialog, Cancel leaves it
   closed
 
-[test: makes a module named after the feature under the parent, a test case per scenario, and links them back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L310 ]
-[test: published only leaves the proposed scenarios out, keeping the numbers the app shows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L425 ]
-[test: a test case qTest refuses stops the run, and what was written is still linked back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L451 ]
+[test: makes a module named after the feature under the parent, a test case per scenario, and links them back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L372 ]
+[test: a feature published before offers the parent module it was published under, kept with the feature : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L424 ]
+[test: published only leaves the proposed scenarios out, keeping the numbers the app shows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L504 ]
+[test: a test case qTest refuses stops the run, and what was written is still linked back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L530 ]
 [test: a test case refused mid-run keeps the dialog open on it, with its details : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestFailureDetails.test.tsx#L135 ]
-[test: the fields are read before the module is made, so a failure there leaves none behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L526 ]
-[test: what cannot be published says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L492 ]
-[test: a token qTest no longer accepts is reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L508 ]
-[test: a modal dialog with the parent module url, the two scopes and Create test cases : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestDialogs.test.tsx#L18 ]
+[test: the fields are read before the module is made, so a failure there leaves none behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L606 ]
+[test: what cannot be published says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L572 ]
+[test: a token qTest no longer accepts is reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L588 ]
+[test: a modal dialog with the parent module url, the two scopes and Publish test cases : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestDialogs.test.tsx#L18 ]
 [test: Create waits for a module url on a site with a token, and says what is missing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestDialogs.test.tsx#L56 ]
 [test: names the site, the project and the module : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestUrl.test.ts#L21 ]
 [test: reads the fragment in qTest's own order, id first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestUrl.test.ts#L26 ]
@@ -219,12 +223,12 @@ qTest never sees it.
 - and a token that may not read the project's field settings still creates
   them: they go without those fields, and qTest names any it requires
 
-[test: a feature on a Confluence page links each test case to its scenario there, not to the file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L437 ]
+[test: a feature on a Confluence page links each test case to its scenario there, not to the file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L516 ]
 [test: with a Confluence page, the description links the scenario's anchor there; a draft links the page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestSteps.test.ts#L92 ]
 [test: the description is HTML, so the feature's name and the link are escaped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestSteps.test.ts#L104 ]
 [test: names the anchor after the page title, spaces and hyphens dropped, other punctuation kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L89 ]
 [test: replaces a fragment the page url had; a draft, with no number, links the page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L95 ]
-[test: a token that cannot read the project's fields still makes the module and the test cases : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L516 ]
+[test: a token that cannot read the project's fields still makes the module and the test cases : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L596 ]
 [test: read bold keywords, colon keywords, and And lines alike : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestSteps.test.ts#L19 ]
 [test: a wrapped line continues the line before; a plain list item joins the block : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestSteps.test.ts#L33 ]
 [test: text before any keyword counts as Given : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestSteps.test.ts#L45 ]
@@ -237,7 +241,7 @@ qTest never sees it.
 ## S11: Creating the test cases again updates them @v1 [proposed]
 
 - Given: a feature whose scenarios were created as test cases before
-- When: the user creates them again
+- When: the user publishes them again
 - Then: a scenario that links a test case still in qTest is updated there —
   a new version with the scenario's current steps — and moved into the
   feature's module when it sat elsewhere; a scenario whose test case was
@@ -251,11 +255,11 @@ qTest never sees it.
   the feature's name is reused, else one is made anew
 - and nothing is written to the feature when every link already stands
 
-[test: creating them again leaves the test cases' properties alone, so a Status set in qTest stays : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L381 ]
-[test: creating them again updates the test cases the scenarios link, in the module the feature links : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L360 ]
-[test: the linked module moves under a new parent; a deleted one is found by name, or made anew : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L396 ]
-[test: a scenario whose test case was deleted in qTest gets a new one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L414 ]
-[test: with Publish external links off the file has no line, but the feature keeps the links : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L482 ]
+[test: creating them again leaves the test cases' properties alone, so a Status set in qTest stays : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L460 ]
+[test: creating them again updates the test cases the scenarios link, in the module the feature links : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L439 ]
+[test: the linked module moves under a new parent; a deleted one is found by name, or made anew : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L475 ]
+[test: a scenario whose test case was deleted in qTest gets a new one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L493 ]
+[test: with Publish external links off the file has no line, but the feature keeps the links : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L562 ]
 [test: a feature whose test cases were created before says creating them again updates its module : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestDialogs.test.tsx#L40 ]
 [test: gives its numeric id, and a module url none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestUrl.test.ts#L49 ]
 
@@ -273,7 +277,7 @@ qTest never sees it.
 - and an answered call is logged as info, a refusal qTest explains (400, 401,
   403, 404) as a warning, and a server error or a site that could not be
   reached as an error
-- and when Create test cases or Save token fails because of what qTest
+- and when Publish test cases or Save token fails because of what qTest
   answered, the dialog shows the failure as one line, and clicking it opens
   a detail box: the request (method and url), what the app sent, qTest's
   status, its content type, when it failed, and what qTest answered; a site
@@ -283,11 +287,48 @@ qTest never sees it.
 - and a failure the app finds before asking qTest (no token, a url that names
   no module) stays a plain sentence with no detail box
 
-[test: every call to qTest is logged under qtest, with both bodies and never the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L548 ]
-[test: a failure answers the request and qTest's answer as details, and is logged as a warning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L569 ]
-[test: a token qTest refuses comes back with what qTest answered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L585 ]
-[test: an unreachable site is logged as an error with the network error, and no status : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L592 ]
+[test: every call to qTest is logged under qtest, with both bodies and never the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L770 ]
+[test: a failure answers the request and qTest's answer as details, and is logged as a warning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L791 ]
+[test: a token qTest refuses comes back with what qTest answered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L807 ]
+[test: an unreachable site is logged as an error with the network error, and no status : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L814 ]
 [test: shows the error as a line that opens the request, what was sent and qTest's answer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestFailureDetails.test.tsx#L104 ]
 [test: an error without details stays plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestFailureDetails.test.tsx#L160 ]
 [test: shows qTest's answer on click : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestFailureDetails.test.tsx#L169 ]
 [test: a closed row leaves out HTTP bodies and stacks; the open row shows them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/observabilityPage.test.tsx#L129 ]
+
+## S13: Each test case is linked to the requirement of the feature's Jira issue @v1 [proposed]
+
+- Given: a feature that links its Jira issue, as `[Jira:ACME-571](url)`, is
+  being published to qTest, and the project keeps a requirement per Jira
+  issue whose name starts with the issue key — "ACME-571 Create new UI"
+- When: the test cases are published, the first time or again
+- Then: the requirement whose name starts with the feature's issue key is
+  found in the project, the way qTest's Data Query finds it (a name that
+  merely contains the key, "ACME-5710 …", is not it), before anything is
+  written
+- and every test case written is linked to it, so the requirement's test
+  cases in qTest are the feature's scenarios; publishing again links only
+  the test cases not linked yet, leaving those a first run linked alone,
+  and a test case qTest refused mid-run does not keep the ones written from
+  being linked
+- and the toast says which requirement they were linked to, "linked to
+  RQ-12"; the requirement is not written into the feature, since qTest
+  keeps that link
+- and the key is the feature's, never a scenario's; a link filed under
+  another tool whose url names a Jira issue counts as well
+- and a feature with no Jira link, no requirement starting with the key, a
+  search qTest refuses (a token that may not read requirements) or a link it
+  refuses never stops the publish: the test cases are written and linked
+  back from the feature as ever, the warning toast says what was left
+  undone, and the qtest log records it as a warning
+- and several requirements starting with the key link the one with the
+  lowest id, and the warning names it
+
+[test: publishing links every test case to the requirement whose name starts with the feature's Jira key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L643 ]
+[test: publishing again links only the test cases not yet linked, and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L667 ]
+[test: a key the link's url names serves as well, whatever the tool it was filed under : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L685 ]
+[test: no requirement starting with the key is a warning, and the test cases are written without one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L693 ]
+[test: several requirements starting with the key link the first by id, and say so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L709 ]
+[test: a search qTest refuses is a warning, not a failure; a refused test case mid-run still links the ones written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L720 ]
+[test: a link qTest refuses is a warning, and the test cases stay linked back from the feature : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L747 ]
+[test: a feature with no Jira link gets its test cases, with a warning that no requirement covers them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L616 ]

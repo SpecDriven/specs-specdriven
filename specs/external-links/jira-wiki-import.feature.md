@@ -115,12 +115,18 @@ again into the feature they made.
   committed and opened, and the toast says what was imported
 - and a name loses what the heading syntax would misread, repeats are told
   apart, and no body line reads as a heading, a test link or a ticket link
+- and the Jira issues it was read from are the feature's tickets, one
+  `[Jira:ABC-123](url)` line each above the sources line, at most five
+  (external-links/project-management-jira-linear-etc.feature.md "Several
+  tickets on a feature"); a Confluence-only import links none
 
 [test: shows each source with its url and text, and what has been proposed already : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L64 ]
 [test: a structured answer, or JSON in the words, is a proposal; anything else is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L81 ]
 [test: loses what the heading syntax would misread, and is one line : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L116 ]
-[test: names the sources under the title, each scenario proposed and numbered in the agent's order, with its body and where it came from : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L131 ]
-[test: names are cleaned and repeats told apart; a body keeps nothing the parser would lift out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L170 ]
+[test: the Jira issues as tickets, the sources under the title, each scenario proposed and numbered in the agent's order, with its body and where it came from : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L131 ]
+[test: a key read from the url when the title is not one; repeats dropped; no more than five : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L202 ]
+[test: a wiki-only import links no ticket : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L219 ]
+[test: names are cleaned and repeats told apart; a body keeps nothing the parser would lift out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L180 ]
 [test: the title, each scenario kept or dropped with its body on show, and Create with the count : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L178 ]
 [test: Create waits for a title and a kept scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L200 ]
 [test: writes the kept scenarios as proposed into the folder, naming the sources : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L357 ]
