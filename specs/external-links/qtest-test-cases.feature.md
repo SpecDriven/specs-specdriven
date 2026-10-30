@@ -126,8 +126,9 @@ qTest never sees it.
 
 - Given: Settings → qTest, with qTest test cases switched on
 - When: the user enters the qTest site's url (or any module url of it) and
-  an API token — the bearer token qTest shows under the user's name → API &
-  SDK — and presses "Save token"
+  a Bearer token — the API token qTest shows under the user's name → API &
+  SDK, which every call sends as its bearer authorization — and presses
+  "Save token"
 - Then: the token is checked against the site before it is kept: the
   projects it can see are listed, and a token qTest refuses, or that sees no
   project at all, is not kept and the form says why
