@@ -145,8 +145,8 @@ anyone who opens it, so it is pointed only at a repository that is public.
 ## S9: The site links to its source @v1 [proposed]
 
 - Given: the proposals site
-- Then: its footer says the app is AGPL-3.0 and links to the source of the
+- Then: its footer says the app is Apache-2.0 and links to the source of the
   running version (app/open-source-license.feature.md)
 - and says where proposals go and that we don't accept pull requests
 
-[test: the footer links the spec repo and the source code under the AGPL : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L64 ]
+[test: the footer links the spec repo and the source code under the Apache-2.0 license : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposalsApp.test.tsx#L64 ]

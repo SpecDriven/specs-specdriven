@@ -2,7 +2,7 @@
 
 Consider similar to https://github.com/mastra-ai/mastra
 
-License: AGPL 3.0 see https://choosealicense.com/licenses/agpl-3.0/
+License: Apache 2.0 see https://choosealicense.com/licenses/apache-2.0/
 
 ## How we accept contributions
 

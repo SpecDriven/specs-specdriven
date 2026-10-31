@@ -1,10 +1,8 @@
 # open-source-license
 
-The app is free software under the GNU Affero General Public License,
-version 3 only (`AGPL-3.0-only`), see
-roadmap/moving-to-proper-open-source.md. The AGPL's §13 asks a copy that
-users reach over a network — the public demo, the hosted service — to offer
-those users its source, so every copy links to the source of the version it
+The app is open source under the Apache License 2.0 (`Apache-2.0`), see
+roadmap/moving-to-proper-open-source.md. Every copy — the desktop app, the
+public demo, the hosted service — links to the source of the version it
 runs.
 
 We do not accept pull requests: merging outside code is a security
@@ -24,23 +22,23 @@ instead (CONTRIBUTING.md in the code repo says how).
 [test: pull requests from the team's own branches, or by people with write access, are left open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L106 ]
 [test: the close workflow never checks out or runs the pull request's code : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L118 ]
 
-## S2: The app is AGPL-3.0-only @v1 [proposed]
+## S2: The app is Apache-2.0 @v1 [proposed]
 
 - Given: the code repo
-- Then: LICENSE.md holds the GNU AGPL version 3 text
-- and NOTICE.md names the copyright holder and says "version 3 only"
-- and package.json names the license by its SPDX id, `AGPL-3.0-only`
+- Then: LICENSE.md holds the Apache License 2.0 text
+- and NOTICE.md names the copyright holder and the license
+- and package.json names the license by its SPDX id, `Apache-2.0`
 - and the desktop app ships LICENSE.md and NOTICE.md
 
 [test: package.json names the license by its SPDX id : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L17 ]
-[test: LICENSE.md is the GNU AGPL version 3 and NOTICE.md says version 3 only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L21 ]
+[test: LICENSE.md is the Apache License 2.0 and NOTICE.md names the copyright holder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L21 ]
 [test: the desktop app ships the license and the notice : https://github.com/SpecDriven/specdriven-app/blob/main/tests/license.test.ts#L31 ]
 
 ## S3: The app links to the source of the running version @v1 [proposed]
 
 - Given: the app is running, on the desktop, in the public demo or hosted
 - When: I open the user menu
-- Then: it offers "Source code (AGPL-3.0)"
+- Then: it offers "Source code (Apache-2.0)"
 - and that opens the release of the running version on
   SpecDriven/specdriven-app-release, whose source zip is that version's
   source
