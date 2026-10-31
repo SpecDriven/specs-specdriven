@@ -2,6 +2,6 @@
 
 **Assigned:** David
 
-How is evryone feeling?
+How is everyone feeling?
 
 How would you rate yoru congnitive debt on this project form 0-4; where 4 means 'completely lost'?
