@@ -12,4 +12,4 @@ How can we use Claude to hep us reduce congnitive debt?
 - More diagrams?
 - Arch review?
 
-Review new featured of Claude Code
+Review new featured of Claude Code.
