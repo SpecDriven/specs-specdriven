@@ -16,4 +16,4 @@ How can we use Claude to hep us reduce congnitive debt?
 -- Sequence diagram
 -- State diagram
 
-Review new featured of Claude Code.
+Review new features of Claude Code.
