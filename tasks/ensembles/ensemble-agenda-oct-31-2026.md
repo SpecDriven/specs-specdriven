@@ -12,5 +12,8 @@ How can we use Claude to hep us reduce congnitive debt?
 - More diagrams ?
 - Arch review ?
 - Implicit state machines ?
+-- Arch components
+-- Sequence diagram
+-- State diagram
 
 Review new featured of Claude Code.
