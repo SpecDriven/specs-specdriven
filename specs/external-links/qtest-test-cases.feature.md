@@ -287,10 +287,10 @@ qTest never sees it.
 - and a failure the app finds before asking qTest (no token, a url that names
   no module) stays a plain sentence with no detail box
 
-[test: every call to qTest is logged under qtest, with both bodies and never the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L770 ]
-[test: a failure answers the request and qTest's answer as details, and is logged as a warning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L791 ]
-[test: a token qTest refuses comes back with what qTest answered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L807 ]
-[test: an unreachable site is logged as an error with the network error, and no status : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L814 ]
+[test: every call to qTest is logged under qtest, with both bodies and never the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L833 ]
+[test: a failure answers the request and qTest's answer as details, and is logged as a warning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L854 ]
+[test: a token qTest refuses comes back with what qTest answered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L870 ]
+[test: an unreachable site is logged as an error with the network error, and no status : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L877 ]
 [test: shows the error as a line that opens the request, what was sent and qTest's answer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestFailureDetails.test.tsx#L104 ]
 [test: an error without details stays plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestFailureDetails.test.tsx#L160 ]
 [test: shows qTest's answer on click : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestFailureDetails.test.tsx#L169 ]
@@ -323,6 +323,15 @@ qTest never sees it.
   undone, and the qtest log records it as a warning
 - and several requirements starting with the key link the one with the
   lowest id, and the warning names it
+- and with several tickets on the feature (external-links/project-
+  management-jira-linear-etc.feature.md "Several tickets on a feature"),
+  each key's requirement is looked up in the tickets' order and every test
+  case is linked to each one found, so an epic's and its stories'
+  requirements all show the scenarios; the toast names them all, "linked to
+  RQ-12, RQ-13"
+- and a key with no requirement is a warning while the other keys'
+  requirements still link; a search qTest refuses ends the looking, and the
+  warning names the keys left
 
 [test: publishing links every test case to the requirement whose name starts with the feature's Jira key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L643 ]
 [test: publishing again links only the test cases not yet linked, and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L667 ]
@@ -332,3 +341,5 @@ qTest never sees it.
 [test: a search qTest refuses is a warning, not a failure; a refused test case mid-run still links the ones written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L720 ]
 [test: a link qTest refuses is a warning, and the test cases stay linked back from the feature : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L747 ]
 [test: a feature with no Jira link gets its test cases, with a warning that no requirement covers them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L616 ]
+[test: with several tickets, each key's requirement is found and every test case is linked to each of them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L770 ]
+[test: a key with no requirement is a warning while the other ticket's requirement still links; a refused search names the keys left : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L807 ]
