@@ -138,3 +138,35 @@ Examples
 | Explore https://storytime.team/ | Explore storytime.team |
 | @@ do this  &&                  | do this                |
 | _____do this____                | do this                |
+
+## S7: Projects group tasks @v1 [proposed]
+
+- Given: the Tasks tab, where each subfolder of 'tasks' is a project — a
+  group of tasks — and "+ New project" sits beside "+ New task"
+- When: the user creates a project
+- Then: its folder is made with a page of its own, `project.md` beside its
+  tasks, headed with the name as typed; the page is never listed, ordered
+  or counted as a task, and no task can take its file name
+- and the project's header in the sidebar shows its name and, once it is
+  assigned, its owner's initials; clicking it opens the project's page
+- When: the user assigns the project from its page's "Assigned" chip
+- Then: the member's name is written on the page as its `**Assigned:**`
+  line, as a task's is; the tasks in it keep their own assignees, someone
+  else or nobody
+- and the page has no Done button and no calendar chip, but says how many of
+  its tasks are done, and its body describes the project
+- and the project's ⋯ menu offers New task here, New project here, Rename
+  and Delete: Rename renames the folder and the page's heading both, and a
+  task's Move to project… lists the projects by name
+- Otherwise: a folder made before projects had pages, or by hand, shows
+  under its folder name as a title and gets its page the first time it is
+  opened
+
+[test: only a subfolder's project.md is a project's page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskProjects.test.ts#L57 ]
+[test: a new project starts with its page, which is not listed as a task : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskProjects.test.ts#L68 ]
+[test: a project is assigned on its page, and the listing names its owner : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskProjects.test.ts#L98 ]
+[test: a project's page is not renamed, moved or deleted as a task, and no task takes its name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskProjects.test.ts#L119 ]
+[test: renaming a project renames its folder and its heading, and deleting it counts only tasks : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskProjects.test.ts#L140 ]
+[test: a folder made before projects gets its page the first time it is opened : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskProjects.test.ts#L176 ]
+[test: the sidebar's project header follows its page's heading and owner : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskProjects.test.ts#L195 ]
+[test: the tasks routes list projects and open a project's page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/taskProjects.test.ts#L216 ]
