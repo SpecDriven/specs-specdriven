@@ -6,7 +6,7 @@ How is everyone feeling?
 
 David to show-and-tell about last week's urgent features.
 
-How would you rate your congnitive debt on this project form 0-4; where 4 means 'completely lost'?
+How would you rate your congnitive debt on this project from 0-4; where 4 means 'completely lost'?
 
 How can we use Claude to hep us reduce congnitive debt?
 - More diagrams?
