@@ -188,10 +188,6 @@ was committed and pushed when it was not.
 - and what it writes is an ordinary git repository, which the git binary
   reads normally once there is one
 
-[test: the bundled engine clones, commits and pushes with no git on PATH : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L194 ]
-[test: the bundled engine never hands just-git the absolute clone target : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L310 ]
-[test: the bundled engine clones into an absolute target whose parent does not exist : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L338 ]
-
 ## the GitHub CLI is the default when installed @v1 [proposed]
 
 - When: no Git engine is chosen and gh is installed

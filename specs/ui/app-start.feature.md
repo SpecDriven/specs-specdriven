@@ -28,7 +28,7 @@ Local state lives in `.specdriven/settings.json`, looked up in this order:
 uses for the install prefix. Settings are saved back to whichever of the two
 the app read; when neither exists, the project one is created.
 
-## a clone without a token is refused when signed out @v1 [proposed]
+## S1: a clone without a token is refused when signed out @v1 [proposed]
 
 - Given: the app is not signed in to the repository's GitHub host
 - When: the user chooses "Clone from GitHub" and leaves the token empty
@@ -36,7 +36,7 @@ the app read; when neither exists, the project one is created.
   never push the edits back
 - and nothing is cloned
 
-## a GitHub Enterprise repository is cloned with a token @v1 [proposed]
+## S2: a GitHub Enterprise repository is cloned with a token @v1 [proposed]
 
 - Given: a repository url on a GitHub Enterprise host, like
   https://github.acme.com/team/specs or https://acme.ghe.com/team/specs
@@ -59,7 +59,7 @@ the app read; when neither exists, the project one is created.
 [test: system git hands the token to the sign-in's host through the scoped helper : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L201 ]
 [test: a record saved before GitHub Enterprise reads as github.com : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L116 ]
 
-## a newly picked data folder is pulled @v1 [proposed]
+## S3: a newly picked data folder is pulled @v1 [proposed]
 
 - Given: the user confirms a data folder — in the first-run form or in the
   Data directory dialog
@@ -71,7 +71,7 @@ the app read; when neither exists, the project one is created.
 [test: picking a data folder pulls it before the client reads it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartSync.test.ts#L91 ]
 [test: a data folder that is not a git repo is still selectable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartSync.test.ts#L110 ]
 
-## a profile folder keeps a dev run's settings apart @v1 [proposed]
+## S4: a profile folder keeps a dev run's settings apart @v1 [proposed]
 
 - Given: a developer starts the app with `--profile <dir>` (e.g.
   `bun run dev --profile /tmp/try`)
@@ -88,7 +88,7 @@ the app read; when neither exists, the project one is created.
 [test: --profile points settings, home and clones into the folder and makes them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/profile.test.ts#L25 ]
 [test: a variable set explicitly wins over --profile; no flag changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/profile.test.ts#L38 ]
 
-## a rejected token is not kept @v1 [proposed]
+## S5: a rejected token is not kept @v1 [proposed]
 
 - When: the user pastes a token GitHub does not accept — mistyped, expired
   or revoked — in the first-run form or in Settings
@@ -99,7 +99,7 @@ the app read; when neither exists, the project one is created.
 
 [test: POST /api/auth/github/token signs in, and refuses a bad token or host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L139 ]
 
-## changing the data repo @v1 [proposed]
+## S6: changing the data repo @v1 [proposed]
 
 - Given: a data repo is configured, and the sidebar header shows its folder
   name only — parent folders appear in a tooltip, and the full path in the
@@ -111,7 +111,7 @@ the app read; when neither exists, the project one is created.
 - and a value the server rejects leaves the current repo in place, with the
   error shown as a status note
 
-## clone from GitHub with a personal access token @v1 [proposed]
+## S7: clone from GitHub with a personal access token @v1 [proposed]
 
 - Given: the first-run form, on a machine that may have neither git nor the
   GitHub CLI
@@ -128,7 +128,7 @@ the app read; when neither exists, the project one is created.
 
 [test: a pasted token for github.com is stored without a host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L132 ]
 
-## first run offers a folder or a clone @v1 [proposed]
+## S8: first run offers a folder or a clone @v1 [proposed]
 
 - Given: no data repo is configured, in the local web app or the desktop
   app
@@ -138,7 +138,7 @@ the app read; when neither exists, the project one is created.
 - and the hosted app keeps its single GitHub url field, its token living
   on the account page
 
-## forgetting a data repo @v1 [proposed]
+## S9: forgetting a data repo @v1 [proposed]
 
 - Given: a data repo is configured, and the sidebar header shows its folder
   name only — parent folders appear in a tooltip, and the full path in the
@@ -148,7 +148,7 @@ the app read; when neither exists, the project one is created.
 - Then: a dialog opens pre-filled with the current data repo
 - A button in this dialog causes the app to stop showing this existing data repo in the dropdown
 
-## migrating the pre-settings.json layout @v1 [proposed]
+## S10: migrating the pre-settings.json layout @v1 [proposed]
 
 - Given: a plain `.specdriven` file (the old layout) is in the project root
 - When: the app starts
@@ -156,13 +156,13 @@ the app read; when neither exists, the project one is created.
 - and the next save moves it to `./.specdriven/settings.json`, preserving
   every setting
 
-## no settings file anywhere @v1 [proposed]
+## S11: no settings file anywhere @v1 [proposed]
 
 - Given: neither settings file exists
 - When: the app starts
 - Then: the user is asked for the data repo
 
-## only the home settings file exists @v1 [proposed]
+## S12: only the home settings file exists @v1 [proposed]
 
 - Given: `~/.specdriven/settings.json` names a data repo, and the project has
   no settings file
@@ -170,7 +170,7 @@ the app read; when neither exists, the project one is created.
 - Then: the user is not asked for a data repo
 - and settings saved from the Settings page go back to the home settings file
 
-## picking the data directory with the native folder chooser @v1 [proposed]
+## S13: picking the data directory with the native folder chooser @v1 [proposed]
 
 - Given: the runtime has a native folder chooser (the desktop app, or the
   local web server on macOS)
@@ -189,7 +189,7 @@ the app read; when neither exists, the project one is created.
 [test: POST /api/choose-folder returns the picked path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderChooser.test.ts#L136 ]
 [test: POST /api/choose-folder is 501 with no native chooser : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderChooser.test.ts#L145 ]
 
-## the data repo is pulled on start @v1 [proposed]
+## S14: the data repo is pulled on start @v1 [proposed]
 
 - Given: a data repo is configured, and its remote has commits this machine
   does not have yet
@@ -203,14 +203,28 @@ the app read; when neither exists, the project one is created.
 
 [test: the data repo is pulled on app start, before the first read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appStartSync.test.ts#L81 ]
 
-## the project settings file wins @v1 [proposed]
+## S15: the first-run clone lands in the repos folder on Windows too @v1 [proposed]
+
+- Given: a Windows machine with neither git nor the GitHub CLI, so the
+  built-in engine clones
+- When: the user clones from the first-run form
+- Then: the repository lands in the app's repos folder, a drive-letter
+  path, and not under the app's own install folder
+- and a clone that fails still names the url and the reason, with the
+  sign-in hint when credentials are the problem
+
+[test: the bundled engine never hands just-git the absolute clone target : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L310 ]
+[test: a failed clone on the bundled engine reports the url and git's output : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L324 ]
+[test: the bundled engine clones into an absolute target whose parent does not exist : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L338 ]
+
+## S16: the project settings file wins @v1 [proposed]
 
 - Given: both settings files exist
 - When: the app starts
 - Then: the project settings file is used
 - and saving settings leaves the home settings file untouched
 
-## the server cannot be reached at start @v1 [proposed]
+## S17: the server cannot be reached at start @v1 [proposed]
 
 - Given: the web app's server is not running, or takes the page's first
   request and never answers (the desktop app serves itself and cannot hit
