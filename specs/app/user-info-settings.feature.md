@@ -30,8 +30,10 @@ reports both via `/api/state`.
   account, and the name/email that author the app's commits to the data
   repo — the GitHub identity when signed in
   (git-operations.feature.md), else the system git identity
-  (user.name / user.email from git config). Missing values show "not
-  set"; no GitHub account shows "not signed in".
+  (user.name / user.email from git config, read in the data repo's
+  folder — where the commits are made — so the repo's own config and an
+  `includeIf "gitdir:…"` rule apply, not just the global one). Missing
+  values show "not set"; no GitHub account shows "not signed in".
 - Initials come from the identity name when set, otherwise from the OS
   user name.
 
@@ -147,3 +149,5 @@ reports both via `/api/state`.
 - When: the user picks "User info" from the menu
 - Then: a dialog shows the OS user, the GitHub account, and the name and
   email used for commits to the data repo
+
+[test: signed out, the identity is git's as resolved in the data repo, not the app's folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/user.test.ts#L60 ]
