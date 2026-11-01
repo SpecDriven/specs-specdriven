@@ -40,7 +40,7 @@ instead (CONTRIBUTING.md in the code repo says how).
 - When: I open the user menu
 - Then: it offers "Source code (Apache-2.0)"
 - and that opens the release of the running version on
-  SpecDriven/specdriven-app-release, whose source zip is that version's
+  SpecDriven/specdriven-app, whose source zip is that version's
   source
 - and a deployment running modified code sets `SPECDRIVEN_SOURCE_URL`, and
   the link opens that instead

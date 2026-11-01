@@ -1,2 +1,11 @@
 review-readme.md
 decide-on-license.md
+add-acknowledgment-of-anthropic-for-startups-support.md
+change-install-scripts-to-use-specdriven-app-for-releases.md
+delete-specdriven-app-release-repo.md
+enable-sponsorships-in-github.md
+make-repo-public.md
+move-releases-to-specdriven-app-repo.md
+research-what-badges-are-appropriate-for-our-project.md
+update-home-page-with-new-install-scripts.md
+update-release-notes-on-every-release.md

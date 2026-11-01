@@ -71,7 +71,7 @@ plugins in tab order"). What a demo could show next is on the roadmap
 - and there is no native folder chooser: asking for one answers 501
 - and the working copy has no git history, so saves stay local and pull and
   push are skipped
-- and the Issues tab reads the public SpecDriven/specdriven-app-release
+- and the Issues tab reads the public SpecDriven/specdriven-app
   repository anonymously (app/github-issues.feature.md), and every write to
   it is refused
 - and switching plugins on and off, and every cosmetic setting, still saves
@@ -81,7 +81,7 @@ plugins in tab order"). What a demo could show next is on the roadmap
 [test: the data directory, git engine and sync server are pinned (403) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L252 ]
 [test: plugin folders, trust and marketplaces are pinned (403); switching plugins still saves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L274 ]
 [test: no native folder chooser — /api/choose-folder is 501 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L351 ]
-[test: the demo tracks the release repo's issues and refuses every write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L327 ]
+[test: the demo tracks the app repo's issues and refuses every write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L327 ]
 
 ## S4: The demo opens on its own dataset @v1 [proposed]
 

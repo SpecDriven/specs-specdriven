@@ -11,7 +11,7 @@ Use 'code-repo' in project-settings.json to find repo that holds the GH Issues.
 
 Allow to access GitHub issues from the app.
 
-## Close an issue @v1 [proposed]
+## S1: Close an issue @v1 [proposed]
 
 - Given: an open issue is open in the pane
 - When: the user presses "Close issue" and confirms
@@ -23,7 +23,7 @@ Allow to access GitHub issues from the app.
 - and "Reopen" — on a closed issue's pane, or in its ⋯ menu — reopens it on
   GitHub and it returns to the open list
 
-## Comment on an issue @v1 [proposed]
+## S2: Comment on an issue @v1 [proposed]
 
 - Given: an issue is open in the pane
 - When: the user looks below the description
@@ -33,7 +33,7 @@ Allow to access GitHub issues from the app.
 - and a Markdown field at the end with a "Comment" button posts a new comment
   to GitHub and appends it; a blank comment cannot be posted
 
-## Create a new issue @v1 [proposed]
+## S3: Create a new issue @v1 [proposed]
 
 - Given: the Issues tab is open
 - When: the user presses "+ New issue" (or "New issue" in the command
@@ -46,7 +46,7 @@ Allow to access GitHub issues from the app.
 - and Enter in the title field creates the issue; a blank title cannot be
   submitted
 
-## GitHub issues are controlled by a switch in user settings @v1 [proposed]
+## S4: GitHub issues are controlled by a switch in user settings @v1 [proposed]
 
 - Given: the "GitHub issues" setting is off, as it is by default
 - When: the user looks at the sidebar
@@ -60,7 +60,7 @@ Allow to access GitHub issues from the app.
 - and the server refuses the module's requests while the switch is off, not
   just the UI
 
-## Issue views have urls and find their way into search @v1 [proposed]
+## S5: Issue views have urls and find their way into search @v1 [proposed]
 
 - Given: the setting is on
 - When: the user opens `/issues`, `/issues/new` or `/issues/<number>`
@@ -75,7 +75,7 @@ Allow to access GitHub issues from the app.
   while an issues view is on screen — an idle app spends none of GitHub's
   rate limit
 
-## Requests to GitHub carry the user's sign-in @v1 [proposed]
+## S6: Requests to GitHub carry the user's sign-in @v1 [proposed]
 
 - Given: the user is signed in to GitHub in Settings, or through the GitHub
   CLI
@@ -87,11 +87,11 @@ Allow to access GitHub issues from the app.
   limit shows GitHub's reason in the pane with a button to Settings, where
   the sign-in lives
 - and in demo mode the tab reads one fixed public repository —
-  SpecDriven/specdriven-app-release — anonymously, so the demo has real
+  SpecDriven/specdriven-app — anonymously, so the demo has real
   issues to show, and every write is refused: no New issue, Edit, Close,
   Reopen or Comment is offered, and the routes behind them answer 403
 
-## Requests to GitHub go to the code repo's host @v1 [proposed]
+## S7: Requests to GitHub go to the code repo's host @v1 [proposed]
 
 - Given: the code repo lives on github.com or on a GitHub Enterprise host,
   and the user is signed in in Settings, through the GitHub CLI, or both
@@ -114,7 +114,7 @@ Allow to access GitHub issues from the app.
 [test: an Enterprise code repo has issues when the app is signed in on its host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L158 ]
 [test: Enterprise remotes in every spelling name the repo on the sign-in's host only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L172 ]
 
-## The Issues tab shows the code repo's GitHub issues @v1 [proposed]
+## S8: The Issues tab shows the code repo's GitHub issues @v1 [proposed]
 
 - Given: the GitHub issues setting is on, and the data folder's
   project-settings.json names a `code-repo` whose git `origin` is a GitHub
@@ -136,7 +136,7 @@ Allow to access GitHub issues from the app.
   worktree's too — so it works on every git engine, including the built-in
   one on a machine with no git
 
-## Update an issue @v1 [proposed]
+## S9: Update an issue @v1 [proposed]
 
 - Given: an issue is open in the pane
 - When: the user presses "Edit" beside the description, changes the Markdown
