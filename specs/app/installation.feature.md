@@ -5,10 +5,11 @@
 Specdriven App is distributed via a zip archive in order to allow users
 to run their security checks on the code before building the app.
 
-Releases will be in this repo: https://github.com/SpecDriven/specdriven-app-release
+Releases are published on the app's own repository:
+https://github.com/SpecDriven/specdriven-app/releases
 
-install.sh script will be available in https://github.com/SpecDriven/specdriven-app-release in
-order to install via curl -- as is popuilar these days.
+install.sh and install.ps1 are served straight from that repository's `main`
+branch, in order to install via curl (or PowerShell) -- as is popular these days.
 
 ## What the script does
 
@@ -41,7 +42,7 @@ the way to do it by hand.
 
 `install.ps1` is the same installer for PowerShell:
 
-    irm https://raw.githubusercontent.com/SpecDriven/specdriven-app-release/main/install.ps1 | iex
+    irm https://raw.githubusercontent.com/SpecDriven/specdriven-app/main/install.ps1 | iex
 
 It takes the same steps, overrides and checksum rules, under
 `%USERPROFILE%\.specdriven\app`. `current` is a junction, which needs neither
@@ -124,7 +125,7 @@ under the current users authority.
 ## S3: install on Windows from PowerShell @v1 [proposed]
 
 - Given: a Windows machine
-- When: the user runs `irm https://raw.githubusercontent.com/SpecDriven/specdriven-app-release/main/install.ps1 | iex`
+- When: the user runs `irm https://raw.githubusercontent.com/SpecDriven/specdriven-app/main/install.ps1 | iex`
 - Then: the latest release is downloaded, verified against `SHASUMS256.txt`
   and unpacked under `%USERPROFILE%\.specdriven\app`, with `current` pointing
   at it, exactly as `install.sh` does it
@@ -149,18 +150,20 @@ under the current users authority.
 [test: the run ends with the app built and started from release/win-unpacked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L435 ]
 [test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L456 ]
 [test: Windows shells are sent to install.ps1, or the releases page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L467 ]
+[test: with no override, the releases come from SpecDriven/specdriven-app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L471 ]
 
 ## S4: install via curl @v1 [proposed]
 
 A user can install specdriven app via curl.
 
-Example: curl -fsSL https://github.com/SpecDriven/specdriven-app-release/install.sh | sh
+Example: curl -fsSL https://raw.githubusercontent.com/SpecDriven/specdriven-app/main/install.sh | sh
 
 By default, the script will attempt to execute the entire install.
 
 If the user want to scan the code before installing, they will download the zip file manually.
 
 [test: the latest release is downloaded, verified and unpacked under ~/.specdriven/app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L157 ]
+[test: with no override, the releases come from SpecDriven/specdriven-app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L942 ]
 
 ## S5: the checksum has to match before anything is unpacked @v1 [proposed]
 
