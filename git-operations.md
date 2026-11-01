@@ -183,8 +183,14 @@ was committed and pushed when it was not.
 - When: no Git engine is chosen and the machine has neither gh nor git
 - Then: the built-in engine is in effect
 - and clone, pull, push, commit, move and delete all still work
+- and a clone lands in exactly the directory the app asked for, on Windows
+  too, where that directory is a drive-letter path
 - and what it writes is an ordinary git repository, which the git binary
   reads normally once there is one
+
+[test: the bundled engine clones, commits and pushes with no git on PATH : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L194 ]
+[test: the bundled engine never hands just-git the absolute clone target : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L310 ]
+[test: the bundled engine clones into an absolute target whose parent does not exist : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L338 ]
 
 ## the GitHub CLI is the default when installed @v1 [proposed]
 
