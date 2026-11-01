@@ -75,16 +75,22 @@ Plugins can be developed in any repository and then deployed to https://github.c
   newer app, is refused with the reason and nothing is left behind
 - and Update fetches the ref the index now names and remounts the plugin;
   Remove switches it off, unwinds it and deletes its folder
+- and Reinstall — or Install of a plugin whose id is installed already,
+  from this marketplace or from one that was removed and added back under
+  another name — shows the same consent, naming what it replaces, and on
+  confirmation swaps a fresh copy at the ref the index names in for the
+  installed folder, the plugin on as before
 - and in the hosted demo none of this is offered: it installs the Event
   Models from the SpecDriven marketplace itself when it starts, and a
   visitor browses the marketplace, the Event Models marked installed, with
   no Install, Update, Remove or Refresh
 
 [test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L270 ]
-[test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L356 ]
-[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L315 ]
-[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L438 ]
-[test: the hosted demo installs the Event Models from the marketplace at start and lists them on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L465 ]
+[test: a plugin is reinstalled from a marketplace that was removed and added back under another name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L321 ]
+[test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L396 ]
+[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L355 ]
+[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L478 ]
+[test: the hosted demo installs the Event Models from the marketplace at start and lists them on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L505 ]
 
 ## S3: A plugin is scaffolded, built and linked from the command line @v1 [proposed]
 
@@ -199,7 +205,7 @@ Plugins can be developed in any repository and then deployed to https://github.c
 
 [test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L218 ]
 [test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L168 ]
-[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L423 ]
+[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L463 ]
 
 ## S8: The profile lists enabled plugins in tab order @v1 [proposed]
 
