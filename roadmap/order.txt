@@ -1,4 +1,3 @@
-moving-to-proper-open-source.md
 auth.md
 coding-agent-ui.md
 coding-session-tracking-and-reporting.md
