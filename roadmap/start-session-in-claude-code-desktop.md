@@ -15,7 +15,7 @@ The desktop app registers the `claude://` URL scheme (`/Applications/Claude.app`
 `CFBundleURLTypes`), and its URL router has a `code` host with a `/new` route:
 
 ```bash
-open "claude://code/new?q=Review%20the%20auth%20spec&folder=/Users/me/dev/personal/SpecDriven/specdriven-app"
+open "claude://code/new?q=Review%20the%20auth%20spec&folder=/Users/me/dev/specdriven-app"
 ```
 
 From the router source in `app.asar`: host `code`, path `/new`, params `q`
