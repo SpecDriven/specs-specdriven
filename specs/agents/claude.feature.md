@@ -94,15 +94,43 @@ If error code, display the error to the user in an error box.
   browser did not open by itself; "Cancel" stops it
 - and once the browser comes back the page shows the account signed in
 - and "Sign out" signs the CLI out; "Switch account…" starts another sign-in
-- and with no Claude CLI on PATH the section says so instead
+- and with no Claude Code on this machine and none published for its
+  platform, the section says to install the claude command instead
 
-[test: parseLoginStatus reads what claude auth status --json says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L265 ]
-[test: loginStatus asks the CLI without any key in its environment, and says missing without one : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L275 ]
-[test: startLogin drives claude auth login, hands the page the url, and is done once the CLI says so : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L330 ]
-[test: a sign-in can be cancelled, and a bad email or a missing CLI is refused : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L350 ]
-[test: the sign-in routes drive the CLI and poll it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L475 ]
+[test: parseLoginStatus reads what claude auth status --json says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L267 ]
+[test: loginStatus asks the CLI without any key in its environment, and says missing without one : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L277 ]
+[test: startLogin drives claude auth login, hands the page the url, and is done once the CLI says so : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L332 ]
+[test: a sign-in can be cancelled, and a bad email or a platform with no Claude Code is refused : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L352 ]
+[test: the sign-in routes drive the CLI and poll it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L523 ]
 
-## S8: Switch code generation on or off @v1 [published]
+## S8: Sign in to Claude without Claude Code installed @v1 [proposed]
+
+- Given: no `claude` command on PATH
+- Then: the agent pane says Claude Code is not set up, with "Set up Claude",
+  which opens Settings at the Claude section
+- and the Claude section asks for the email of the Claude account, saying
+  the app downloads Claude Code first
+- When: an email is entered and "Sign in…" pressed
+- Then: the app downloads this platform's Claude Code from the npm
+  registry — the binary the Claude Agent SDK publishes — and the page shows
+  how far it has got; "Cancel" stops the sign-in
+- and the download is kept only when it matches the checksum pinned in the
+  plugin for that SDK version, under ~/.specdriven/claude-code
+- and then the browser sign-in opens as when the CLI is installed
+- and every Claude the app starts runs that Claude Code from then on, while a
+  `claude` on PATH, when there is one, still comes first
+- and a turn that fails because Claude is not signed in offers "Open
+  Settings" beside its hint
+
+[test: the pins are for the SDK version package.json depends on, one per platform : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/binary.test.ts#L46 ]
+[test: a download that matches its pin is kept as the Claude Code to run, executable : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/binary.test.ts#L72 ]
+[test: a download that does not match its pin is refused and leaves nothing behind : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/binary.test.ts#L100 ]
+[test: with no Claude Code anywhere, the email sign-in fetches this platform's first, then signs in with it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L370 ]
+[test: a sign-in whose download fails ends with why : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L409 ]
+[test: an agent with its own Settings section offers the way there, and only that agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L108 ]
+[test: a turn that failed to sign in offers the agent's Settings section beside its hint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L120 ]
+
+## S9: Switch code generation on or off @v1 [published]
 
 Given: the Settings dialog
 When: the 'Code generation' switch is turned off and the settings are saved
@@ -115,7 +143,7 @@ reach the Claude CLI even outside the UI.
 The switch is ON by default, and the setting is saved to
 .specdriven/settings.json.
 
-## S9: Switch code generation on or off @v2 [proposed]
+## S10: Switch code generation on or off @v2 [proposed]
 
 Given: the Settings page (user-info-settings.feature.md "open Settings")
 When: the 'Code generation' switch in its Workflow section is turned off —
