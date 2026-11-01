@@ -15,8 +15,12 @@ Every field that holds prose has the browser's spell checker on: the Markdown ed
 - **Then** no editor underlines a misspelt word, editors already open included
 - **And** the choice is remembered on this device, like Vim mode; on is the default
 
-[test: keep the checker off whatever the switch says: a url is never misspelt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/spellCheck.test.tsx#L113 ]
-
+[test: keep the checker off whatever the switch says, since a url is never misspelt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/spellCheck.test.tsx#L113 ]
+[test: is on when storage is unavailable, and a flip does not throw : https://github.com/SpecDriven/specdriven-app/blob/main/tests/spellCheck.test.tsx#L64 ]
+[test: shows the checker's first few guesses only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/contextMenu.test.ts#L68 ]
+[test: has the edit verbs in any editable field : https://github.com/SpecDriven/specdriven-app/blob/main/tests/contextMenu.test.ts#L77 ]
+[test: offers Copy over a selection in the text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/contextMenu.test.ts#L82 ]
+[test: is nothing over plain text, or a selection of only whitespace : https://github.com/SpecDriven/specdriven-app/blob/main/tests/contextMenu.test.ts#L86 ]
 [test: is on until switched off, and the choice is remembered on the device : https://github.com/SpecDriven/specdriven-app/blob/main/tests/spellCheck.test.tsx#L52 ]
 [test: tells the browser to check prose in the Vim tab, which CodeMirror turns off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/spellCheck.test.tsx#L78 ]
 [test: has the checker on by default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/spellCheck.test.tsx#L89 ]
