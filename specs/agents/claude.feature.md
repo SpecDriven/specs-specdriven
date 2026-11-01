@@ -161,3 +161,26 @@ reach the Claude CLI even outside the UI.
 
 The switch is ON by default, and the setting is saved to
 .specdriven/settings.json.
+
+## S11: The agent pane follows a new Claude sign-in without a restart @v1 [proposed]
+
+- Given: the agent pane open while Claude is not set up or not signed in, or
+  a Claude session in it running under one account
+- When: Claude signs in with an email in Settings → Claude, signs out, or
+  switches between the Claude account and an API proxy
+- Then: the pane drops what it showed of the old sign-in at once — "Claude
+  Code is not set up" gives way to a new session once the sign-in fetched it
+- and every live Claude session restarts Claude Code under the new sign-in,
+  carrying its conversation on, with a note saying so and the account chip
+  showing the new account
+- and a turn under way, or a Claude still starting, finishes first
+- and a session whose Claude cannot start under the new sign-in keeps
+  running as it was, with a note saying to start a new session
+
+[test: a sign-in, a sign-out and another mode, proxy or token each tell the app Claude's sign-in changed : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L600 ]
+[test: a sign-in change restarts an idle Claude session under it, carrying the conversation on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L828 ]
+[test: a turn under way finishes before the session picks up a new sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L866 ]
+[test: a new sign-in that cannot start Claude leaves the session as it was, saying so : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L882 ]
+[test: a provider's sign-in change is a change for its id alone; an unknown id is nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L89 ]
+[test: an agent's sign-in change has every open page re-read the agents : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L100 ]
+[test: a provider's sign-in change refreshes its live sessions, and a failed refresh is a note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L278 ]

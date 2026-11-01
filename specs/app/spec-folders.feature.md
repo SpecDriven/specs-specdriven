@@ -4,7 +4,7 @@ Support opening and switching between multiple specifications folders. (Currentl
 
 <img src="/api/images/image-c9aa1fcb.png" alt="image" width="516">
 
-## Manage specification folders @v1 [proposed]
+## S1: Manage specification folders @v1 [proposed]
 
 Open new folders from the local file system. "Change data directory"
 
@@ -21,7 +21,23 @@ with the directory it is cloned to on this computer shown beneath it.
 [test: PUT /api/state forgetDataRepo removes a folder from the list and persists it, the folder itself untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L244 ]
 [test: the open folder cannot be removed from the list — switch away first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L277 ]
 
-## Switch spec folder @v1 [proposed]
+## S2: One entry per repository @v1 [proposed]
+
+A spec data repo is on the folder list once. Its GitHub url and a folder on this computer for the
+same repository — the url's own clone opened by its path, or another checkout whose origin is that
+url — are one entry: the one opened last stays, the other leaves the list. Removing the entry takes
+every name of that repository off the list.
+
+The coding agent pane offers the data repo's folder once too: for a GitHub url, the folder it is
+cloned to.
+
+[test: a url and its own clone opened by path are one entry, the open one kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L379 ]
+[test: a checkout whose origin is the url is the same repository, in any remote form : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L393 ]
+[test: other repositories stay apart, even urls that share a clone folder name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L407 ]
+[test: picking the clone folder by path replaces the url on the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L415 ]
+[test: removing a repository from the list takes its other names with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L428 ]
+
+## S3: Switch spec folder @v1 [proposed]
 
 When switching spec folders, the app will bring up a modal dialog indicating the progress of loading the new dataset.
 All other operations are blocked.

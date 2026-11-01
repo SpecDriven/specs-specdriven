@@ -25,7 +25,7 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: Stop and the mode go to the provider, and are refused where it declares neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L164 ]
 [test: a turn the provider refuses is noted and the composer freed; a provider that dies ends the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L203 ]
 [test: the provider's facts reach the pane through ready and update, and quiet keeps them off the log : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L220 ]
-[test: switching a plugin off ends the sessions its provider was driving : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L278 ]
+[test: switching a plugin off ends the sessions its provider was driving : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L314 ]
 [test: a Claude plugin switched off takes its routes and its provider away : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L548 ]
 [test: an installed plugin whose manifest says autoEnable switches itself on in the open folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L238 ]
 [test: an agent plugin that arrives while the window is open offers the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L60 ]
@@ -53,11 +53,11 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
   the user removed is not installed again, and a start that cannot reach
   the marketplace installs nothing and says so in the log
 
-[test: the index's agent field is read when it names an id and a command : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L44 ]
-[test: installs the agent plugins whose commands are on PATH, once, and remembers them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L56 ]
-[test: a marketplace that cannot be reached, or an install that fails, installs nothing and is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L90 ]
-[test: the offers come from the cached indexes on disk, for agents no plugin registers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L112 ]
-[test: a start installs the agent plugin for a command it finds, mounts it, and records it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L130 ]
+[test: the index's agent field is read when it names an id and a command : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L51 ]
+[test: installs the agent plugins whose commands are on PATH, once, and remembers them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L63 ]
+[test: a marketplace that cannot be reached, or an install that fails, installs nothing and is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L97 ]
+[test: the offers come from the cached indexes on disk, for agents no plugin registers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L119 ]
+[test: a start installs the agent plugin for a command it finds, mounts it, and records it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L137 ]
 
 ## S4: The core names no agent @v1 [proposed]
 

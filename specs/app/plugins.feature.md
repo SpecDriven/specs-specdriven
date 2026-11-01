@@ -250,3 +250,23 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: switching a folder plugin off unwinds its routes, and on mounts it again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L217 ]
 [test: effects unwind last-in-first-out, and only once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/kernel.test.ts#L21 ]
 [test: a plugin waits for its injects and unmounts when one goes away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/kernel.test.ts#L43 ]
+
+## S10: The marketplaces are refreshed on start when external plugins are installed @v1 [proposed]
+
+- Given: a plugin from outside the app is installed — from a marketplace,
+  linked from a folder, or in the data folder's own plugins folder
+- When: the app starts
+- Then: every marketplace the Plugins page names is pulled once in the
+  background, so the marketplace list offers Update for a plugin whose
+  index row moved on since the last start, without pressing Refresh
+- and the start does not wait for it: the app opens at once, and the agent
+  plugins installed for the commands found on this machine
+  (agents/agent-plugins.feature.md) read the index once the pull is over
+- and a marketplace that cannot be reached keeps the copy it had, is
+  logged, and does not hold up the others
+- and with only the built-in plugins nothing is pulled; neither the hosted
+  app, the hosted demo nor the read-only site pulls at all
+
+[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L570 ]
+[test: a start leaves the marketplaces alone with the built-ins only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L572 ]
+[test: the start's refresh pulls every marketplace only when an external plugin is installed, and logs one it cannot reach : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L205 ]
