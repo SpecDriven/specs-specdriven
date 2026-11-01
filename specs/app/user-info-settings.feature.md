@@ -6,7 +6,8 @@
 - in the desktop app, the User Menu also signs in with a GitHub token and signs out
 
 The lower left corner of the sidebar shows a user chip: an avatar circle with
-the user's initials and the user name. The name is the GitHub account when
+the user's initials and the user name, with the running app's version (e.g.
+"v0.1.209") muted at the right of the name. The name is the GitHub account when
 one is known — the signed-in login, or the GitHub CLI's account when that
 engine is in effect — and falls back to the OS user otherwise; the server
 reports both via `/api/state`.
