@@ -28,7 +28,7 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: switching a plugin off ends the sessions its provider was driving : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L278 ]
 [test: a Claude plugin switched off takes its routes and its provider away : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L548 ]
 [test: an installed plugin whose manifest says autoEnable switches itself on in the open folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L238 ]
-[test: an agent plugin that arrives while the window is open offers the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L59 ]
+[test: an agent plugin that arrives while the window is open offers the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L60 ]
 
 ## S2: A session record from before agent plugins still opens @v1 [proposed]
 
@@ -71,9 +71,9 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
   session dialog lists the agents the plugins supply, by rank
 
 [test: no plugin, the wrong plugin, or a missing CLI is a clear refusal, and the default is the first by rank : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L249 ]
-[test: a session's agent is read off the descriptors, or a fallback when its plugin is gone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L25 ]
-[test: only agents whose CLI is there are usable, in rank order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L41 ]
-[test: the state's agents list is what the pane reads, and nothing stands in for it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L48 ]
+[test: a session's agent is read off the descriptors, or a fallback when its plugin is gone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L26 ]
+[test: only agents whose CLI is there are usable, in rank order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L42 ]
+[test: the state's agents list is what the pane reads, and nothing stands in for it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L49 ]
 [test: an unchosen dialog opens on the first usable agent by rank : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionDialog.test.tsx#L77 ]
 [test: the session target is only ever desktop or a registered agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L162 ]
 
@@ -88,9 +88,9 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
   one whose command is not, it names the command to install first
 - and nothing installs from the pane: the Plugins page has the consent step
 
-[test: with no agent plugin and nothing to install, it says agents come as plugins : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L90 ]
-[test: an installed plugin whose CLI is missing says so in the provider's words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L99 ]
-[test: a marketplace offer is installable when its CLI is there, and names the CLI first when not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L107 ]
+[test: with no agent plugin and nothing to install, it says agents come as plugins : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L91 ]
+[test: an installed plugin whose CLI is missing says so in the provider's words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L100 ]
+[test: a marketplace offer is installable when its CLI is there, and names the CLI first when not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L142 ]
 
 ## S6: The Settings page shows a plugin's section @v1 [proposed]
 
