@@ -17,8 +17,10 @@ One command takes a machine from nothing to a built app:
 
 - Follow `releases/latest` to the newest `v<version>`, or take
   `SPECDRIVEN_VERSION`.
-- Download `specdriven-<version>-src.zip` and `SHASUMS256.txt`, and verify one
-  against the other.
+- Download `specdriven-<version>-src.zip`, `SHASUMS256.txt` and
+  `SHASUMS256.txt.sig`; check that the signature was made by the SpecDriven
+  release key (an SSH signature, `ssh-keygen -Y verify`, against the public
+  key the script embeds), then that the zip matches `SHASUMS256.txt`.
 - Unpack to `~/.specdriven/app/specdriven-<version>`, with
   `~/.specdriven/app/current` pointing at it and the verified zip kept
   alongside for anyone who wants to check it themselves.
@@ -34,7 +36,8 @@ One command takes a machine from nothing to a built app:
 
 It is POSIX sh, because it runs on whatever `/bin/sh` the machine has before
 anything is known about it, and it works with curl or wget, with unzip or
-bsdtar or python3, and with sha256sum or shasum. A Windows shell (Git Bash,
+bsdtar or python3, with sha256sum or shasum, and with ssh-keygen (OpenSSH
+8.1 or later, which macOS, Linux and Windows 10 and 11 ship). A Windows shell (Git Bash,
 MSYS, Cygwin) is pointed at `install.ps1` instead, with the releases page as
 the way to do it by hand.
 
@@ -75,9 +78,10 @@ an unattended run.
 
 ## Failing closed
 
-Nothing unverified is ever written: a checksum mismatch, a missing or
-incomplete `SHASUMS256.txt`, a 404, or a machine with no sha256 tool at all
-stops the install with nothing left behind, scratch directories included. A
+Nothing unverified is ever written: a signature that is missing or does not
+verify, a checksum mismatch, a missing or incomplete `SHASUMS256.txt`, a 404,
+or a machine with no sha256 tool or no ssh-keygen at all stops the install
+with nothing left behind, scratch directories included. A
 version already unpacked is not unpacked over — someone may have edited or
 built in it — though the build still runs on it as it stands.
 
@@ -110,17 +114,17 @@ the desktop build, since electron-builder stats every path in the project.
 - Then: the run stops with the failure and the path to the checkout, which is
   still there to build by hand
 
-[test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L830 ]
-[test: a failed `bun install` is reported the same way : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L843 ]
+[test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L943 ]
+[test: a failed `bun install` is reported the same way : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L956 ]
 
 ## S2: bun is not installed @v1 [published]
 
 If `bun` is not installed, offer to install it and if user accepts install bun 
 under the current users authority.
 
-[test: a yes at the terminal installs Bun, as the user and in their home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L593 ]
-[test: a no at the terminal leaves Bun alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L612 ]
-[test: with no terminal to ask at, Bun is left to the reader : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L625 ]
+[test: a yes at the terminal installs Bun, as the user and in their home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L706 ]
+[test: a no at the terminal leaves Bun alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L725 ]
+[test: with no terminal to ask at, Bun is left to the reader : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L738 ]
 
 ## S3: install on Windows from PowerShell @v1 [proposed]
 
@@ -134,23 +138,23 @@ under the current users authority.
   Start menu and started from `release\win-unpacked\SpecDriven.exe`
 - and a Windows shell running `install.sh` is pointed at this command
 
-[test: the latest release is downloaded, verified and unpacked under ~/.specdriven/app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L169 ]
-[test: install.ps1 is plain ASCII, which Windows PowerShell 5.1 reads as written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L159 ]
-[test: SPECDRIVEN_VERSION picks a release, with or without the v : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L195 ]
-[test: a version that is not version-shaped is refused before any download : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L204 ]
-[test: a checksum mismatch aborts without unpacking anything : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L214 ]
-[test: a release without SHASUMS256.txt, or one not listing the zip, is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L233 ]
-[test: no releases at all is reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L260 ]
-[test: a version already unpacked is left alone, and `current` moves between versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L269 ]
-[test: a `current` that is a real directory is never replaced : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L314 ]
-[test: SPECDRIVEN_INSTALL_BUN=1 installs Bun as the user, into their home, and builds with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L356 ]
-[test: a yes at the terminal installs Bun; a no leaves it alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L382 ]
-[test: with no one to ask, Bun is left alone and never downloaded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L406 ]
-[test: a Bun installer that fails is reported, and the checkout still stands : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L421 ]
-[test: the run ends with the app built and started from release/win-unpacked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L435 ]
-[test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L456 ]
-[test: Windows shells are sent to install.ps1, or the releases page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L467 ]
-[test: with no override, the releases come from SpecDriven/specdriven-app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L471 ]
+[test: the latest release is downloaded, verified and unpacked under ~/.specdriven/app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L162 ]
+[test: install.ps1 is plain ASCII, which Windows PowerShell 5.1 reads as written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L152 ]
+[test: SPECDRIVEN_VERSION picks a release, with or without the v : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L189 ]
+[test: a version that is not version-shaped is refused before any download : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L198 ]
+[test: a checksum mismatch aborts without unpacking anything : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L208 ]
+[test: a release without SHASUMS256.txt, or one not listing the zip, is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L225 ]
+[test: no releases at all is reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L317 ]
+[test: a version already unpacked is left alone, and `current` moves between versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L326 ]
+[test: a `current` that is a real directory is never replaced : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L371 ]
+[test: SPECDRIVEN_INSTALL_BUN=1 installs Bun as the user, into their home, and builds with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L413 ]
+[test: a yes at the terminal installs Bun; a no leaves it alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L439 ]
+[test: with no one to ask, Bun is left alone and never downloaded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L463 ]
+[test: a Bun installer that fails is reported, and the checkout still stands : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L478 ]
+[test: the run ends with the app built and started from release/win-unpacked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L492 ]
+[test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L513 ]
+[test: Windows shells are sent to install.ps1, or the releases page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L580 ]
+[test: with no override, the releases come from SpecDriven/specdriven-app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L528 ]
 
 ## S4: install via curl @v1 [proposed]
 
@@ -162,8 +166,8 @@ By default, the script will attempt to execute the entire install.
 
 If the user want to scan the code before installing, they will download the zip file manually.
 
-[test: the latest release is downloaded, verified and unpacked under ~/.specdriven/app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L157 ]
-[test: with no override, the releases come from SpecDriven/specdriven-app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L942 ]
+[test: the latest release is downloaded, verified and unpacked under ~/.specdriven/app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L152 ]
+[test: with no override, the releases come from SpecDriven/specdriven-app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L1053 ]
 
 ## S5: the checksum has to match before anything is unpacked @v1 [proposed]
 
@@ -171,9 +175,11 @@ If the user want to scan the code before installing, they will download the zip 
 - When: the user runs the installer
 - Then: it stops saying so, and `~/.specdriven` holds nothing from that run
 
-[test: a checksum mismatch aborts without unpacking anything : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L259 ]
-[test: a release without SHASUMS256.txt is refused rather than installed unverified : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L282 ]
-[test: a SHASUMS256.txt that does not list the zip is as good as none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L297 ]
+[test: a checksum mismatch aborts without unpacking anything : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L256 ]
+[test: a release without SHASUMS256.txt is refused rather than installed unverified : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L277 ]
+[test: a SHASUMS256.txt that does not list the zip is as good as none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L292 ]
+[test: without ssh-keygen the download is not installed, however good it may be : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L404 ]
+[test: an ssh-keygen that cannot verify stops the install, in its own words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L303 ]
 
 ## S6: the install ends with the app built and handed over @v1 [proposed]
 
@@ -187,10 +193,10 @@ If the user want to scan the code before installing, they will download the zip 
   The messages come through whatever locale the shell runs in, single-byte
   ones included.
 
-[test: the run ends with the .dmg opened, and nothing started : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L719 ]
-[test: the messages survive a single-byte locale : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L754 ]
-[test: the run ends with the AppImage made runnable and started : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L782 ]
-[test: with no display the app is built but left unstarted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L811 ]
+[test: the run ends with the .dmg opened, and nothing started : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L832 ]
+[test: the messages survive a single-byte locale : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L867 ]
+[test: the run ends with the AppImage made runnable and started : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L895 ]
+[test: with no display the app is built but left unstarted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L924 ]
 
 ## S7: the source zip is self-contained @v1 [proposed]
 
@@ -199,7 +205,7 @@ If the user want to scan the code before installing, they will download the zip 
 - Then: nothing in it points outside itself, so the build has no dangling path
   to trip over
 
-[test: symlinks that dangle in the release source zip are kept out of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L872 ]
+[test: symlinks that dangle in the release source zip are kept out of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L985 ]
 
 ## S8: without Bun the install stops at the source @v1 [proposed]
 
@@ -208,7 +214,7 @@ If the user want to scan the code before installing, they will download the zip 
 - Then: it stops there and prints the commands to install the dependencies,
   run the web app and build the desktop app
 
-[test: the next steps say whether Bun is there to run them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L517 ]
+[test: the next steps say whether Bun is there to run them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L630 ]
 
 ## S9: an update keeps one version to go back to @v1 [proposed]
 
@@ -220,8 +226,31 @@ If the user want to scan the code before installing, they will download the zip 
 - and a first install, a reinstall of the same version, or a `current` that is
   a real directory clears nothing out
 
-[test: an update keeps the version it replaces and clears out the older ones : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L409 ]
-[test: going back to an older version keeps the newer one it replaces : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L439 ]
-[test: a first install, or the same version again, clears nothing out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L451 ]
-[test: a `current` that is a real directory is never replaced : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L384 ]
-[test: an update keeps the version it replaces and clears out the older ones : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L286 ]
+[test: an update keeps the version it replaces and clears out the older ones : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L522 ]
+[test: going back to an older version keeps the newer one it replaces : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L552 ]
+[test: a first install, or the same version again, clears nothing out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L564 ]
+[test: a `current` that is a real directory is never replaced : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L497 ]
+[test: an update keeps the version it replaces and clears out the older ones : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L343 ]
+
+## S10: a release that is not signed by the release key is refused @v1 [proposed]
+
+- Given: a release whose `SHASUMS256.txt.sig` is missing, was made by some
+  other key, was made in some other namespace, or no longer matches
+  `SHASUMS256.txt` because the zip and the checksum file were swapped after
+  signing
+- When: the user runs the installer
+- Then: it stops before comparing any checksum, saying the file is not signed
+  by the SpecDriven release key and where the current installer is (the key
+  may have been rotated), and `~/.specdriven` holds nothing from that run
+- and the key the installers trust is the one line the release workflow
+  signs with and checks its own signature against, in `install.sh`,
+  `install.ps1` and the docs alike
+
+[test: a release without SHASUMS256.txt.sig is refused rather than installed unsigned : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L316 ]
+[test: a release swapped for another, checksum file and all, fails the signature and is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L333 ]
+[test: a release signed with some other key is refused, and says a newer install.sh may know it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L362 ]
+[test: a signature by the right key in some other namespace does not count : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L378 ]
+[test: SPECDRIVEN_RELEASE_PUBKEY aside, the installers trust the one key the release workflow checks against : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L413 ]
+[test: a release without SHASUMS256.txt.sig is refused rather than installed unsigned : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L251 ]
+[test: a release swapped for another, checksum file and all, fails the signature and is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L265 ]
+[test: a release signed with some other key is refused, and says a newer install.ps1 may know it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L290 ]
