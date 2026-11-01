@@ -1,0 +1,1 @@
+# Enable sponsorships in GitHub
