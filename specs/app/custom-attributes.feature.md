@@ -172,7 +172,7 @@ attributes may change without a new version.
 [test: a feature matches when it or a scenario of it carries the attribute, and by assignee : https://github.com/SpecDriven/specdriven-app/blob/main/tests/treeFilter.test.ts#L53 ]
 [test: the menu has an entry per key with any, each attribute, and each with its value : https://github.com/SpecDriven/specdriven-app/blob/main/tests/treeFilter.test.ts#L65 ]
 [test: the active filter reads by its label : https://github.com/SpecDriven/specdriven-app/blob/main/tests/treeFilter.test.ts#L80 ]
-[test: custom attributes changed in the open feature carry over too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L142 ]
+[test: custom attributes changed in the open feature carry over too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L144 ]
 
 ## S8: Search finds attributes @v1 [proposed]
 

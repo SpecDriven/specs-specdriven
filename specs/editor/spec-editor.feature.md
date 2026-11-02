@@ -81,12 +81,12 @@ going back to the feature.
   the same name is a different stop. A new scenario that has not been saved
   yet is not in the walk, and both buttons are disabled until it is.
 
-[test: the walk follows the tree — folders first, then features by name, each in file order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L173 ]
-[test: the open feature contributes its live scenarios, drafts included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L185 ]
-[test: the neighbours cross from one feature into the next : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L190 ]
-[test: the first scenario has no previous, the last no next : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L196 ]
-[test: a scenario that isn't in the tree yet — new, never saved — has neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L201 ]
-[test: a scenario is told apart from its other versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L208 ]
+[test: the walk follows the tree — folders first, then features by name, each in file order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L175 ]
+[test: the open feature contributes its live scenarios, drafts included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L187 ]
+[test: the neighbours cross from one feature into the next : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L192 ]
+[test: the first scenario has no previous, the last no next : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L198 ]
+[test: a scenario that isn't in the tree yet — new, never saved — has neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L203 ]
+[test: a scenario is told apart from its other versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L210 ]
 
 ## S7: Spec body resize @v1 [proposed]
 
