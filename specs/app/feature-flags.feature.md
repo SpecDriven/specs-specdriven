@@ -28,7 +28,7 @@ keeps them either way.
 [test: a token inside text, a malformed token or a flag line further down stays text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L85 ]
 [test: flag names the token syntax can carry : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L97 ]
 
-## S3: Flags are edited on the feature and in the scenario editor @v1 [proposed]
+## S2: Flags are edited on the feature and in the scenario editor @v1 [proposed]
 
 - Given: the "Feature flags" setting is on
 - When: I open a feature
@@ -52,7 +52,7 @@ keeps them either way.
 [test: a name the token cannot carry, or one already there, is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlagsField.test.tsx#L62 ]
 [test: a flag change is something for the editor's autosave to save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlagsField.test.tsx#L71 ]
 
-## S4: Flags change on a published scenario without a new version @v1 [proposed]
+## S3: Flags change on a published scenario without a new version @v1 [proposed]
 
 - Given: a published scenario
 - When: I add, toggle or remove one of its flags
@@ -62,7 +62,7 @@ keeps them either way.
 
 [test: a flag on a published scenario changes without a new version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L156 ]
 
-## S5: Flags travel with the document and merge as one value @v1 [proposed]
+## S4: Flags travel with the document and merge as one value @v1 [proposed]
 
 - Given: the Automerge document behind a feature
   (datastore/automerge-store.feature.md)
@@ -76,7 +76,7 @@ keeps them either way.
 [test: a three-way merge keeps the side that changed the flags : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L110 ]
 [test: a draft's flags reach the editor from the document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L183 ]
 
-## S6: The Feature flags setting shows or hides them @v1 [proposed]
+## S5: The Feature flags setting shows or hides them @v1 [proposed]
 
 - Given: the "Feature flags" setting in Settings → Specs is off, as it is
   by default

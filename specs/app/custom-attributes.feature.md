@@ -8,7 +8,7 @@ shared through git like the specs. Attributes are bookkeeping around a spec,
 like feature flags (app/feature-flags.feature.md): a published scenario's
 attributes may change without a new version.
 
-## S2: Attribute lines sit under the heading @v1 [proposed]
+## S1: Attribute lines sit under the heading @v1 [proposed]
 
 - Given: a feature or a scenario in a `.feature.md`
 - When: a line right under its `#` or `##` heading holds nothing but
@@ -35,7 +35,7 @@ attributes may change without a new version.
 [test: an exact duplicate is dropped, the same attribute with another value is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L135 ]
 [test: only attributes the token can carry are written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L143 ]
 
-## S3: Attributes are checked against their definitions @v1 [proposed]
+## S2: Attributes are checked against their definitions @v1 [proposed]
 
 - Given: the data repo defines custom attributes
 - When: I open a feature
@@ -56,7 +56,7 @@ attributes may change without a new version.
 [test: one that does not fit is amber and says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/attributesField.test.tsx#L45 ]
 [test: labelled by key and warning about nothing when the repo defines none, and nothing when there are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/attributesField.test.tsx#L64 ]
 
-## S4: Attributes are edited on the feature and in the scenario editor @v1 [proposed]
+## S3: Attributes are edited on the feature and in the scenario editor @v1 [proposed]
 
 - Given: the data repo defines attributes for features or for scenarios
 - When: I open the feature header's attributes chip
@@ -84,7 +84,7 @@ attributes may change without a new version.
 [test: an attribute change is something for the editor's autosave to save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/attributesField.test.tsx#L148 ]
 [test: each part gets the control that fits it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributesDsl.test.ts#L124 ]
 
-## S5: Attributes change on a published scenario without a new version @v1 [proposed]
+## S4: Attributes change on a published scenario without a new version @v1 [proposed]
 
 - Given: a published scenario
 - When: I add, change or remove one of its attributes
@@ -97,7 +97,7 @@ attributes may change without a new version.
 [test: an attribute on a published scenario changes without a new version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L255 ]
 [test: a published body recorded with its attribute line still in it does not block a save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L208 ]
 
-## S6: Attributes travel with the document and merge as one value @v1 [proposed]
+## S5: Attributes travel with the document and merge as one value @v1 [proposed]
 
 - Given: the Automerge document behind a feature
   (datastore/automerge-store.feature.md)
@@ -113,7 +113,7 @@ attributes may change without a new version.
 [test: a draft's attributes reach the editor from the document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L281 ]
 [test: the listing carries the feature's and the scenarios' attributes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L327 ]
 
-## S7: Custom attributes are defined in Settings @v1 [proposed]
+## S6: Custom attributes are defined in Settings @v1 [proposed]
 
 - Given: Settings → Custom attributes, for the open data folder
 - When: I write a definition, a pattern starting in the first column
@@ -154,7 +154,7 @@ attributes may change without a new version.
 [test: an empty file offers the example : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributesEditor.test.tsx#L40 ]
 [test: the definitions are read with the listing and written by Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/customAttributes.test.ts#L298 ]
 
-## S8: Filter features and scenarios by attribute @v1 [proposed]
+## S7: Filter features and scenarios by attribute @v1 [proposed]
 
 - Given: features and scenarios that carry attributes
 - When: I open the sidebar's Filter menu
@@ -174,7 +174,7 @@ attributes may change without a new version.
 [test: the active filter reads by its label : https://github.com/SpecDriven/specdriven-app/blob/main/tests/treeFilter.test.ts#L80 ]
 [test: custom attributes changed in the open feature carry over too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L142 ]
 
-## S9: Search finds attributes @v1 [proposed]
+## S8: Search finds attributes @v1 [proposed]
 
 - Given: a feature or a scenario carrying `[br:good-driver-discount:on]`
 - When: I search for "good driver" (search.feature.md)
@@ -183,7 +183,7 @@ attributes may change without a new version.
 
 [test: a custom attribute finds the feature or scenario carrying it, with its line as the snippet : https://github.com/SpecDriven/specdriven-app/blob/main/tests/search.test.ts#L74 ]
 
-## S10: The definitions file is shared with the team @v1 [proposed]
+## S9: The definitions file is shared with the team @v1 [proposed]
 
 - Given: `custom-attributes.txt` at the root of the data repo
 - When: the app syncs (datastore/automerge-store.feature.md)

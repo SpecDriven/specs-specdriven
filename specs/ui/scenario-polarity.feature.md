@@ -27,7 +27,7 @@ keeps it either way, and a Confluence page groups the scenarios by it.
 [test: reconcile sets and clears the marker, and a no-op stays one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioPolarity.test.ts#L105 ]
 [test: a draft's marker reaches the editor from the document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioPolarity.test.ts#L201 ]
 
-## S3: A published scenario's marker changes without a new version @v1 [proposed]
+## S2: A published scenario's marker changes without a new version @v1 [proposed]
 
 - Given: a published scenario
 - When: its marker is set or cleared
@@ -36,7 +36,7 @@ keeps it either way, and a Confluence page groups the scenarios by it.
 
 [test: flipping a published scenario's marker is bookkeeping, no new version, the body still immutable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioPolarity.test.ts#L172 ]
 
-## S4: A scenario without the marker is positive @v1 [proposed]
+## S3: A scenario without the marker is positive @v1 [proposed]
 
 - Given: a scenario with no `[negative]` line
 - Then: it is positive — the marker is binary, and only the negative side
@@ -45,7 +45,7 @@ keeps it either way, and a Confluence page groups the scenarios by it.
 
 [test: a scenario without the marker is positive, and today's files round-trip unchanged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioPolarity.test.ts#L91 ]
 
-## S5: The Confluence page groups scenarios by polarity @v1 [proposed]
+## S4: The Confluence page groups scenarios by polarity @v1 [proposed]
 
 - Given: the "Positive and negative scenarios" setting is on
 - When: I publish a feature to Confluence (external-links/confluence-wiki.feature.md)
@@ -65,7 +65,7 @@ keeps it either way, and a Confluence page groups the scenarios by it.
 [test: a section with no scenario in scope is left out, and the numbers stay the feature's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L191 ]
 [test: with the Positive and negative scenarios setting on the page is split by polarity : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L428 ]
 
-## S6: The pill shows and flips the marker @v1 [proposed]
+## S5: The pill shows and flips the marker @v1 [proposed]
 
 - Given: the "Positive and negative scenarios" setting is on
 - When: I open a feature
@@ -89,7 +89,7 @@ keeps it either way, and a Confluence page groups the scenarios by it.
 [test: on a card the polarity is only a dot, coloured the same and still saying what a click does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioPolarityClient.test.tsx#L45 ]
 [test: the autosave signature follows the marker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioPolarityClient.test.tsx#L56 ]
 
-## S7: The setting is off by default @v1 [proposed]
+## S6: The setting is off by default @v1 [proposed]
 
 - Given: Settings
 - Then: "Positive and negative scenarios" is a switch, off unless turned on
@@ -98,7 +98,7 @@ keeps it either way, and a Confluence page groups the scenarios by it.
 
 [test: the Positive and negative scenarios setting is off by default and round-trips through the settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioPolarity.test.ts#L210 ]
 
-## S8: Two teammates flipping the marker end with one value @v1 [proposed]
+## S7: Two teammates flipping the marker end with one value @v1 [proposed]
 
 - Given: two copies of a feature from the same base
 - When: one side flips a scenario's marker and the other leaves it
