@@ -13,18 +13,6 @@ signed in with (an agent given its own token signs as that account), else the
 git user name, else the OS user — the same identity that authors the app's
 commits and signs notebook entries (app/engineering-notebook.feature.md).
 
-## S1: A proposal is signed by the visitor, not the bot @v1 [proposed]
-
-- Given: the spec proposals service (app/spec-proposals.feature.md), which
-  pushes every proposal with one bot token
-- When: ada proposes a scenario there
-- Then: ada is its creator and the feature's last updater, and ada authors
-  the commit
-- and the bot's account signs nothing it did not write itself
-
-[test: inside actAs getAuth answers the visitor; outside it, the stored sign-in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/auth.test.ts#L265 ]
-[test: a proposed scenario lands on main as proposed, authored by the visitor and signed in its document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L396 ]
-
 ## S2: A rename keeps the creator @v1 [published]
 
 - Given: a scenario created by ada

@@ -7,9 +7,8 @@ gateway signs people in with an email address and a password, keeps each
 person's secrets encrypted, and runs one app server — a worker — per person,
 with its own folders and its own credentials. It is deployed as a Railway
 service from the app's repository (docs/deployment-railway.md in the code
-repo); the public demo (plugins.feature.md) and the spec proposals service
-(app/spec-proposals.feature.md) are other services built from the same
-image.
+repo); the public demo (plugins.feature.md) is another service built from
+the same image.
 
 Because several people's workers share one container, a hosted worker runs
 no code a person supplies and reaches nothing outside that person's folder.

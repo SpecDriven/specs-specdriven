@@ -8,16 +8,6 @@ shared through git like the specs. Attributes are bookkeeping around a spec,
 like feature flags (app/feature-flags.feature.md): a published scenario's
 attributes may change without a new version.
 
-## S1: A proposal cannot add an attribute @v1 [proposed]
-
-- Given: the spec proposals service (app/spec-proposals.feature.md)
-- When: a visitor proposes a scenario, or a new feature, whose text would
-  read back as an attribute line
-- Then: the proposal is refused, like one that would add a flag or a
-  ticket link
-
-[test: a body that would add a custom attribute line is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L113 ]
-
 ## S2: Attribute lines sit under the heading @v1 [proposed]
 
 - Given: a feature or a scenario in a `.feature.md`

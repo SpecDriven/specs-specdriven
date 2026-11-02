@@ -269,7 +269,7 @@ AND  open links in IntelliJ is Off
 - Then: they are still signed in — the token was kept in the user-only token
   file next to the home settings file
 
-[test: token round-trips through the file backend across backend resets : https://github.com/SpecDriven/specdriven-app/blob/main/tests/auth.test.ts#L251 ]
+[test: token round-trips through the file backend across backend resets : https://github.com/SpecDriven/specdriven-app/blob/main/tests/auth.test.ts#L249 ]
 
 ## S10: the header's icons work inside the drag region @v1 [proposed]
 

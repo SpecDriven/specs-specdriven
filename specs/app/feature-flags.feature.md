@@ -28,16 +28,6 @@ keeps them either way.
 [test: a token inside text, a malformed token or a flag line further down stays text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L85 ]
 [test: flag names the token syntax can carry : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureFlags.test.ts#L97 ]
 
-## S2: A proposal cannot add a flag @v1 [proposed]
-
-- Given: the spec proposals service (app/spec-proposals.feature.md)
-- When: a visitor proposes a scenario, or a new feature, whose text would
-  read back as a flag line
-- Then: the proposal is refused, like one that would add a ticket or a
-  test link
-
-[test: a body that would add a feature flag line is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L104 ]
-
 ## S3: Flags are edited on the feature and in the scenario editor @v1 [proposed]
 
 - Given: the "Feature flags" setting is on

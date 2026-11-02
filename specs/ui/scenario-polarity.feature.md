@@ -27,15 +27,6 @@ keeps it either way, and a Confluence page groups the scenarios by it.
 [test: reconcile sets and clears the marker, and a no-op stays one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioPolarity.test.ts#L105 ]
 [test: a draft's marker reaches the editor from the document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioPolarity.test.ts#L201 ]
 
-## S2: A proposal cannot mark a scenario negative @v1 [proposed]
-
-- Given: the spec proposals service (app/spec-proposals.feature.md)
-- When: a visitor proposes a scenario whose text would read back as the
-  negative marker
-- Then: the proposal is refused, like one that would add a flag line
-
-[test: a body that would mark the scenario negative is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/proposals.test.ts#L109 ]
-
 ## S3: A published scenario's marker changes without a new version @v1 [proposed]
 
 - Given: a published scenario

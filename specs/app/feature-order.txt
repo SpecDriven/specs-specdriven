@@ -15,7 +15,6 @@ public-demo.feature.md
 roadmap.feature.md
 self-healing.feature.md
 spec-folders.feature.md
-spec-proposals.feature.md
 specs-authorship.feature.md
 tasks.feature.md
 tests.feature.md
