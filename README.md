@@ -25,5 +25,3 @@ a short description, and `## scenario @v1 [proposed]` sections with
 Soon you will sign in with GitHub and propose straight into this repo (with
 a daily limit per account). Until then, open an issue on
 SpecDriven/specdriven-app with your proposal.
-
-@
