@@ -184,3 +184,28 @@ The switch is ON by default, and the setting is saved to
 [test: a provider's sign-in change is a change for its id alone; an unknown id is nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L89 ]
 [test: an agent's sign-in change has every open page re-read the agents : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L100 ]
 [test: a provider's sign-in change refreshes its live sessions, and a failed refresh is a note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L278 ]
+
+## S12: Choose the model Claude starts on @v1 [proposed]
+
+- Given: the Settings page's Claude section
+- Then: it offers "Default model", a field that takes an alias Claude Code
+  knows (`opus`, `sonnet`, `haiku`, `opusplan`, suggested as you type)
+  or a full model id, such as `claude-sonnet-4-5[1m]` or a Bedrock id
+- and an empty field leaves Claude Code's own default, whatever its settings
+  or account pick
+- and the value saves itself when the field loses focus or Enter is pressed,
+  to the plugin's section of .specdriven/settings.json, and a value with
+  spaces or that is no model id is refused with a message
+- and every Claude session the coding agent pane starts afterwards runs on
+  that model, as do the app's one-shot Claude calls that ask for no model of
+  their own
+- and a session carried on under a new sign-in keeps the model it ran on,
+  even when the default changed meanwhile
+
+[test: the default model is an alias or a model id, trimmed; anything else is Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L163 ]
+[test: the plugin adopts the old top-level keys once, and PUT /api/claude/settings changes its own section : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L685 ]
+[test: a new session starts on the default model Settings names, else Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1042 ]
+[test: a session carried on under a new sign-in keeps the model it ran on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1051 ]
+[test: a model asked for wins over the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L66 ]
+[test: no model asked for is the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L72 ]
+[test: no model asked for and none in Settings leaves Claude Code's own default : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L78 ]
