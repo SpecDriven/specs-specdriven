@@ -45,7 +45,7 @@ proxy for the account sign-in.
 [test: with nothing stored the mode is inferred — a proxy when Claude Code names one, else the account : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L158 ]
 [test: the launch steers Claude Code through --settings, which beats its own files : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L185 ]
 [test: the demo and the hosted app have no Claude sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L613 ]
-[test: the sign-in Settings chose reaches Claude as a --settings override (src/auth.ts) : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L963 ]
+[test: the sign-in Settings chose reaches Claude as a --settings override (src/auth.ts) : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1070 ]
 
 ## S3: Claude cli options @v1 [proposed]
 
@@ -178,9 +178,9 @@ The switch is ON by default, and the setting is saved to
   running as it was, with a note saying to start a new session
 
 [test: a sign-in, a sign-out and another mode, proxy or token each tell the app Claude's sign-in changed : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L600 ]
-[test: a sign-in change restarts an idle Claude session under it, carrying the conversation on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L828 ]
-[test: a turn under way finishes before the session picks up a new sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L866 ]
-[test: a new sign-in that cannot start Claude leaves the session as it was, saying so : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L882 ]
+[test: a sign-in change restarts an idle Claude session under it, carrying the conversation on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L829 ]
+[test: a turn under way finishes before the session picks up a new sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L867 ]
+[test: a new sign-in that cannot start Claude leaves the session as it was, saying so : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L883 ]
 [test: a provider's sign-in change is a change for its id alone; an unknown id is nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L89 ]
 [test: an agent's sign-in change has every open page re-read the agents : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L100 ]
 [test: a provider's sign-in change refreshes its live sessions, and a failed refresh is a note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L278 ]
@@ -191,8 +191,10 @@ The switch is ON by default, and the setting is saved to
 - Then: it offers "Default model", a field that takes an alias Claude Code
   knows (`opus`, `sonnet`, `haiku`, `opusplan`, suggested as you type)
   or a full model id, such as `claude-sonnet-4-5[1m]` or a Bedrock id
-- and an empty field leaves Claude Code's own default, whatever its settings
-  or account pick
+- and where Settings → AI agents lists Claude's models, the field is a
+  dropdown of them alone, the first chosen until another is, and a new Claude
+  starts on the one it shows; an empty field with no list leaves Claude
+  Code's own default, whatever its settings or account pick
 - and the value saves itself when the field loses focus or Enter is pressed,
   to the plugin's section of .specdriven/settings.json, and a value with
   spaces or that is no model id is refused with a message
@@ -204,8 +206,9 @@ The switch is ON by default, and the setting is saved to
 
 [test: the default model is an alias or a model id, trimmed; anything else is Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L163 ]
 [test: the plugin adopts the old top-level keys once, and PUT /api/claude/settings changes its own section : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L685 ]
-[test: a new session starts on the default model Settings names, else Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1042 ]
-[test: a session carried on under a new sign-in keeps the model it ran on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1051 ]
-[test: a model asked for wins over the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L66 ]
-[test: no model asked for is the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L72 ]
-[test: no model asked for and none in Settings leaves Claude Code's own default : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L78 ]
+[test: a new session starts on the default model Settings names, else the first listed, else Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1043 ]
+[test: a session carried on under a new sign-in keeps the model it ran on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1059 ]
+[test: a model asked for wins over the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L67 ]
+[test: no model asked for is the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L73 ]
+[test: no model asked for and none in Settings leaves Claude Code's own default : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L79 ]
+[test: no model asked for and none in Settings is the first the data repo lists for Claude : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L85 ]

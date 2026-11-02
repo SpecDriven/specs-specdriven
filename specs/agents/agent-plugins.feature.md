@@ -125,10 +125,12 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 - and the lists are kept in the data repo's `.specdriven/agent-models.json`,
   keyed by agent id, so the team shares them; a name with spaces is refused
   with a message, and a teammate's list for an agent this app lacks is kept
-- and every model field for an agent is a dropdown of that agent's list after
-  the agent's own default — the "Import from Jira/Wiki" dialog's Model,
-  Settings → Jira's import model, Settings → Claude's default model — and a
-  model chosen before the list lost it stays chosen
+- and every model field for an agent is a dropdown of that agent's list and
+  nothing else, its first model chosen until another is — the "Import from
+  Jira/Wiki" dialog's Model, Settings → Jira's import model, Settings →
+  Claude's default model — and a model chosen before the list lost it stays
+  chosen; with an empty list the field says "No models listed" and offers
+  nothing
 
 [test: each agent keeps its own list in the data repo's .specdriven/agent-models.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L51 ]
 [test: a name no agent would take, a bad agent id or too many names is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L67 ]
@@ -136,11 +138,12 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: a broken file reads as no lists and is not overwritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L87 ]
 [test: reading keeps names only, valid, once each : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L97 ]
 [test: the lists come with the state and Settings writes one agent's at a time : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L119 ]
-[test: a list per agent, a model per line, saved on blur to that agent's key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L104 ]
-[test: a refused list says why and is kept to fix : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L139 ]
-[test: the agent's own default first, then its list; a value the list lost stays on offer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L157 ]
-[test: the lists come from the state payload; anything else is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L169 ]
-[test: a Model field, blank for the agent's own default, filled with the default set in Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L104 ]
-[test: the default model is a dropdown of the models the app lists for Claude : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L17 ]
-[test: an app that keeps no model lists leaves the default model a free field : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L30 ]
-[test: Claude's list comes from the app's state payload, keyed by agent : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L36 ]
+[test: a list per agent, a model per line, saved on blur to that agent's key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L105 ]
+[test: a refused list says why and is kept to fix : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L140 ]
+[test: only the agent's list, its first chosen until another is; a value the list lost stays on offer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L158 ]
+[test: the lists come from the state payload; anything else is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L174 ]
+[test: a Model field of the agent's list, its first chosen unless Settings set the default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L104 ]
+[test: the default model is a dropdown of only the models the app lists for Claude, the first until another is chosen : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L21 ]
+[test: an app that keeps no model lists leaves the default model a free field : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L38 ]
+[test: Claude's list comes from the app's state payload, keyed by agent : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L44 ]
+[test: the host reads Claude's list from the data repo's agent-models.json, in order : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L51 ]
