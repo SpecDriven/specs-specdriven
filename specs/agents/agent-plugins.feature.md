@@ -104,7 +104,7 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
   file, in a store of the plugin's own on this device
 
 [test: sit between the core sections their order puts them between, in order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsRegistry.test.tsx#L27 ]
-[test: show only where their when allows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsRegistry.test.tsx#L45 ]
+[test: show only where their when allows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsRegistry.test.tsx#L48 ]
 [test: a patch merges into the plugin's section, null removes a key, and an emptied section goes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSettings.test.ts#L59 ]
 [test: the shape is checked, never the keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSettings.test.ts#L73 ]
 [test: the service a host half gets reads, writes and adopts its section of the settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSettings.test.ts#L84 ]
@@ -114,3 +114,33 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: a corrupt or empty file reads as no secret : https://github.com/SpecDriven/specdriven-app/blob/main/tests/secrets.test.ts#L58 ]
 [test: the Claude token keeps its old file, through the store the Claude plugin owns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/secrets.test.ts#L70 ]
 [test: the backend factory swaps every store, the ones handed out before included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/secrets.test.ts#L80 ]
+
+## S7: Each agent offers the models the data repo lists @v1 [proposed]
+
+- Given: the coding agent plugins installed — Claude, Codex, Pi
+- When: the user opens Settings → AI agents
+- Then: each agent has a list of its own, one model name per line, as that
+  agent's CLI names them — `opus` or `claude-sonnet-4-5[1m]` for Claude,
+  `gpt-5-codex` for Codex — saved when the field is left
+- and the lists are kept in the data repo's `.specdriven/agent-models.json`,
+  keyed by agent id, so the team shares them; a name with spaces is refused
+  with a message, and a teammate's list for an agent this app lacks is kept
+- and every model field for an agent is a dropdown of that agent's list after
+  the agent's own default — the "Import from Jira/Wiki" dialog's Model,
+  Settings → Jira's import model, Settings → Claude's default model — and a
+  model chosen before the list lost it stays chosen
+
+[test: each agent keeps its own list in the data repo's .specdriven/agent-models.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L51 ]
+[test: a name no agent would take, a bad agent id or too many names is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L67 ]
+[test: a teammate's list for an agent this app lacks survives a save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L80 ]
+[test: a broken file reads as no lists and is not overwritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L87 ]
+[test: reading keeps names only, valid, once each : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L97 ]
+[test: the lists come with the state and Settings writes one agent's at a time : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L119 ]
+[test: a list per agent, a model per line, saved on blur to that agent's key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L104 ]
+[test: a refused list says why and is kept to fix : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L139 ]
+[test: the agent's own default first, then its list; a value the list lost stays on offer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L157 ]
+[test: the lists come from the state payload; anything else is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L169 ]
+[test: a Model field, blank for the agent's own default, filled with the default set in Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L104 ]
+[test: the default model is a dropdown of the models the app lists for Claude : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L17 ]
+[test: an app that keeps no model lists leaves the default model a free field : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L30 ]
+[test: Claude's list comes from the app's state payload, keyed by agent : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L36 ]
