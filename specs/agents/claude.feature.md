@@ -31,10 +31,15 @@ proxy for the account sign-in.
 
 ## S2: Choose how Claude signs in @v1 [proposed]
 
-CHoose  "Sign in with": "Claude account (email
-  login)" or "API proxy"
+Choose  "Sign in with": "Claude account (email login)" 
 
 ![image](/api/images/image-f2cf34a8.png)
+
+or "API Proxy"
+
+![image](/api/images/image-d17863c2.png)
+
+Click 
 
 The choice saves itself the moment it changes, to
   .specdriven/settings.json, and applies to every Claude the app starts
