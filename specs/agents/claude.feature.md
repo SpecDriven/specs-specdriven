@@ -1,5 +1,7 @@
 # Integration with Claude agent
 
+Claude Agent can use either a Claude Account and an API Proxy.
+
 ## S1: API proxy settings are filled in from Claude Code's settings @v1 [proposed]
 
 - Given: Claude Code's own settings (`~/.claude/settings.json`, the data
