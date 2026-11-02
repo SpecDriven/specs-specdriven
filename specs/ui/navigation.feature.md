@@ -305,3 +305,19 @@ Allow to collapse and expand the outline.
 [test: undo puts a moved scenario back in its old place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L94 ]
 [test: a scenario's place is before the one after it, or after the one before it when last : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L104 ]
 [test: a dragged scenario drops into any other feature, a published one only while Settings allows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragScenarioToFeature.test.ts#L115 ]
+
+## S18: the tree follows the open feature @v1 [proposed]
+
+- Given: a feature inside a collapsed folder, or one far down a long tree
+- When: it is opened from anywhere other than its own sidebar row — a search
+  hit, the command palette, a deep link, a scenario card's link
+- Then: the folders above it open and the sidebar scrolls so its highlighted
+  row can be seen
+- And: when a scenario of it is opened, its outline expands and the scenario's
+  row is the one scrolled into view
+- And: nothing scrolls while the row is already in view, and the rest of the
+  tree keeps its collapsed and expanded state
+
+[test: foldersAbove lists the folders over a file, outermost first, without the root : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L223 ]
+[test: revealed opens every collapsed folder above the file and leaves the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L229 ]
+[test: revealed hands the same set back when nothing above the file is collapsed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L238 ]
