@@ -40,8 +40,11 @@ proxy for the account sign-in.
 - and the choice saves itself the moment it changes, to
   .specdriven/settings.json, and applies to every Claude the app starts
   afterwards — the coding agent pane, a task estimate, a self-fix
-- and the section is not offered in the demo or the hosted app, which run
-  no Claude of their own
+- and 
+
+![image](/api/images/image-f2cf34a8.png)
+
+Note: this section is not offered in the demo or the hosted app, which run no Claude of their own
 
 [test: the stored choice is normalized; a url must be http(s) : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L143 ]
 [test: with nothing stored the mode is inferred — a proxy when Claude Code names one, else the account : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L158 ]
