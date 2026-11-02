@@ -165,12 +165,12 @@ leave the window blank).
 - Then: SpecDriven comes to the front showing that feature, launching first if
   it wasn't running; the app the link was clicked in stays where it was
 
-[test: the url host is the first path segment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L16 ]
-[test: folder paths and scenario refs survive intact : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L22 ]
-[test: the three-slash form carries the whole path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L31 ]
-[test: surrounding whitespace from a copy-paste is tolerated : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L44 ]
-[test: other schemes and non-urls are not deep links : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L48 ]
-[test: finds the link among the launch arguments : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L206 ]
+[test: the url host is the first path segment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L17 ]
+[test: folder paths and scenario refs survive intact : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L23 ]
+[test: the three-slash form carries the whole path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L32 ]
+[test: surrounding whitespace from a copy-paste is tolerated : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L45 ]
+[test: other schemes and non-urls are not deep links : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L49 ]
+[test: finds the link among the launch arguments : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L217 ]
 [test: with no window open, a link opens one on the linked page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L170 ]
 [test: a launch by link opens the first window on that page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L179 ]
 [test: a specdriven link in a spec body is followed in place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L60 ]
@@ -204,9 +204,9 @@ Allow to collapse and expand the outline.
 - In the desktop app those actions copy the `specdriven://` form, so what
   lands on the clipboard is a link that works anywhere else on the machine
 
-[test: a link built by the app round-trips back to its route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L56 ]
-[test: desktopLink puts the folder's display name first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L74 ]
-[test: a link round-trips to its folder and its route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L97 ]
+[test: a link built by the app round-trips back to its route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L57 ]
+[test: desktopLink puts the folder's display name first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L85 ]
+[test: a link round-trips to its folder and its route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L108 ]
 
 ## S12: versionless scenario link opens the latest version @v1 [proposed]
 

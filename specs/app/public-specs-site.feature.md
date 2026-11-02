@@ -57,3 +57,16 @@ logs and the coding agents.
 
 [test: the site shows SpecDriven's spec repo unless told otherwise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L17 ]
 [test: a repo that is no GitHub url, a branch git reads as an option and a bad cadence stop the start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L28 ]
+
+## S5: A visitor copies a deep link to a feature or a scenario @v1 [proposed]
+
+- Given: the public specs site
+- When: a visitor presses "Copy link" on a feature's page, on a scenario's
+  card (shown on hover, focus or selection) or on a scenario's own page, or
+  presses mod+shift+c
+- Then: the absolute url of that feature or scenario is on the clipboard and
+  the control flips to "Copied" for 2 sec, so it can be handed to a customer
+- and a scenario's link names no version, so it keeps opening the latest
+  version after the scenario gets a new one
+
+[test: a versionless scenario link names no version and round-trips to its route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L72 ]
