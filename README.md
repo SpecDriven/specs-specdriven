@@ -9,7 +9,7 @@
 
 - Support for GitHub and GitLab
 
-## Working agreemnents
+## Working agreements
 
 - All features need specifications
 - The majority of scenarios need links to automated tests
