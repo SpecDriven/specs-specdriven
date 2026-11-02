@@ -29,7 +29,7 @@ proxy for the account sign-in.
 [test: a store round-trips through an owner-only file under the app's home, and is cached : https://github.com/SpecDriven/specdriven-app/blob/main/tests/secrets.test.ts#L39 ]
 [test: a corrupt or empty file reads as no secret : https://github.com/SpecDriven/specdriven-app/blob/main/tests/secrets.test.ts#L58 ]
 
-## S2: Choose how Claude signs in @v1 [proposed]
+## S2: Choose how Claude signs in @v1 [published]
 
 Choose  "Sign in with": "Claude account (email login)" 
 
@@ -39,7 +39,7 @@ or "API Proxy"
 
 ![image](/api/images/image-d17863c2.png)
 
-Click 
+Click 'Check Connection' to validate connectivity to the LLM API service.
 
 The choice saves itself the moment it changes, to
   .specdriven/settings.json, and applies to every Claude the app starts
