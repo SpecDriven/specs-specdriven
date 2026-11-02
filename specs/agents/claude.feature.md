@@ -31,18 +31,14 @@ proxy for the account sign-in.
 
 ## S2: Choose how Claude signs in @v1 [proposed]
 
-- Given: the Settings page (user-info-settings.feature.md "open Settings")
-- Then: its Claude section offers "Sign in with": "Claude account (email
+CHoose  "Sign in with": "Claude account (email
   login)" or "API proxy"
-- and with no choice stored the app picks "API proxy" when Claude Code's own
-  settings or the environment name a base url, else "Claude account", and
-  says the choice was made for it
-- and the choice saves itself the moment it changes, to
-  .specdriven/settings.json, and applies to every Claude the app starts
-  afterwards — the coding agent pane, a task estimate, a self-fix
-- and 
 
 ![image](/api/images/image-f2cf34a8.png)
+
+The choice saves itself the moment it changes, to
+  .specdriven/settings.json, and applies to every Claude the app starts
+  afterwards — the coding agent pane, a task estimate, a self-fix
 
 Note: this section is not offered in the demo or the hosted app, which run no Claude of their own
 
