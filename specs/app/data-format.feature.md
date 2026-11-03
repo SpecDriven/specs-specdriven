@@ -32,20 +32,26 @@ Formats so far:
 ## S1: A blocked app does not push @v1 [proposed]
 
 - Given: a teammate on a newer app has raised the folder's format and pushed
-- When: this app's sync tick pulls it
-- Then: the tick stops right after the pull — no migration, no drift import,
-  no plugin pass, no commit and no push
-- and edits already on disk are left as they are, uncommitted
-- and every request that would write to the folder is refused with
-  `409 app-outdated`; only switching folders, Sync, sign-in and the log still
-  work
-- and later ticks keep pulling, so a folder rolled back to a format this app
-  reads is unblocked again
+  the marker
+- When: this app's sync tick pulls that commit
+- Then: the tick stops right after the pull: no migration, no drift import
+  into the documents, no plugin pass, no commit and no push
+- and an edit already on disk is left as it is, uncommitted
+- and every API request that would write to the folder is refused with
+  `409 app-outdated`
+- and the requests that write nothing to the folder still work: switching
+  folders, Sync, sign-in, the log and the data viewer
 - and a live-sync peer's operations are not absorbed while the folder is
   blocked
+- and later ticks keep pulling, so once the folder is rolled back to a
+  format this app reads, the next tick is unblocked and syncs the edit it
+  had left
 
-[test: a blocked app does not push : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L71 ]
-[test: the API refuses writes to a blocked folder and marks its reads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L99 ]
+[test: a blocked app does not push : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L78 ]
+[test: the API refuses writes to a blocked folder and marks its reads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L136 ]
+[test: switching folders, Sync, sign-in, the log and the data viewer still work : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L168 ]
+[test: a live-sync peer's operations are not absorbed while the folder is blocked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L244 ]
+[test: later ticks keep pulling, so a rolled-back folder syncs again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L99 ]
 [test: a folder rolled back to this format is unblocked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L109 ]
 
 ## S2: A newer Automerge document is refused @v1 [proposed]
@@ -78,14 +84,14 @@ on backend:
 - and a marker git left conflict markers in reads as its highest format
 
 [test: data saved by a newer app blocks this one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L101 ]
-[test: data saved by a newer app blocks this one at start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L131 ]
+[test: data saved by a newer app blocks this one at start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L201 ]
 [test: a marker git left conflict markers in reads as its highest format : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L117 ]
 [test: an answer carrying the header reports the version it asks for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L76 ]
 [test: an empty header still reports, with no version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L85 ]
 [test: ordinary answers pass through, and stopping restores fetch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L94 ]
 [test: server and client agree on the blocked-folder header : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L63 ]
 [test: an unreadable marker is ignored : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L134 ]
-[test: a folder in this format opens as usual : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L143 ]
+[test: a folder in this format opens as usual : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L213 ]
 
 ## S4: The update screen says what to install @v1 [proposed]
 
@@ -119,6 +125,6 @@ on backend:
 
 [test: the format marker is written on first sync : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L83 ]
 [test: a folder in the first format is raised to this app's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L73 ]
-[test: a compatible tick raises a first-format folder to this app's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L87 ]
+[test: a compatible tick raises a first-format folder to this app's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L124 ]
 [test: an older marker is raised; a newer one is never lowered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L91 ]
 [test: a folder with no marker is in the first format : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L67 ]
