@@ -72,6 +72,9 @@ should, and the installer one-liner from `main` is the way forward once.
 [test: the releases page is SPECDRIVEN_RELEASES_URL, as install.sh reads it, else the app's own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L175 ]
 [test: a newer version comes after the running one; a malformed one never does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/version.test.ts#L24 ]
 [test: on macOS it sits in the app menu, under About; elsewhere under Help : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L12 ]
+[test: the Debug menu is there only when given — a development run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L28 ]
+[test: X.Y.Z parses to its three numbers; anything else is no version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/version.test.ts#L8 ]
+[test: versions compare numerically, not as text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/version.test.ts#L16 ]
 [test: each stage has its headline and its controls : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L31 ]
 [test: a newer release offers Install & restart and says what installing does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L80 ]
 
@@ -88,13 +91,14 @@ should, and the installer one-liner from `main` is the way forward once.
 - and a second install while one runs, a version that is not newer, or one
   that is not a release version is refused
 
-[test: the installer in the running app's source does it, told the version and not to start anything : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L222 ]
-[test: on Windows it is install.ps1, run as a file by PowerShell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L246 ]
-[test: a version that is not newer, not a version, or already installing is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L254 ]
-[test: the installer's output is kept, newest last, to the last thousand lines : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L288 ]
-[test: the real runner streams a command's output line by line and reports a command that is not there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L296 ]
-[test: GET says where things stand; check, install and restart drive them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L342 ]
+[test: the installer in the running app's source does it, told the version and not to start anything : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L218 ]
+[test: on Windows it is install.ps1, run as a file by PowerShell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L242 ]
+[test: a version that is not newer, not a version, or already installing is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L250 ]
+[test: the installer's output is kept, newest last, to the last thousand lines : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L284 ]
+[test: the real runner streams a command's output line by line and reports a command that is not there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L292 ]
+[test: GET says where things stand; check, install and restart drive them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L338 ]
 [test: while installing, the installer's output is on the page and nothing is offered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L90 ]
+[test: the installer's last lines are what the page shows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L69 ]
 [test: SPECDRIVEN_HANDOVER=0 builds the macOS app and opens nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L872 ]
 [test: SPECDRIVEN_HANDOVER=0 makes the AppImage runnable but does not start it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L898 ]
 [test: SPECDRIVEN_HANDOVER=0 builds the app and adds the shortcut, but does not start it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L513 ]
@@ -113,8 +117,7 @@ should, and the installer one-liner from `main` is the way forward once.
 - and a bundle running from the install's own `release/` directory is not
   copied anywhere: the new one is started from there
 
-[test: a Mac app run from the install's own release directory is not copied anywhere: the new one just starts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L77 ]
-
+[test: a Mac app run from the install's own release directory is not copied anywhere, the new one just starts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L77 ]
 [test: a Mac app in Applications is replaced where it is, and started from there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L57 ]
 [test: the running bundle steps aside as .previous, a stale .previous first going, and the new one is copied to its path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L147 ]
 [test: a copy that fails puts the running bundle back and reports the failure : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L161 ]
@@ -129,8 +132,8 @@ should, and the installer one-liner from `main` is the way forward once.
   back to
 
 [test: Windows and Linux start the new build where the installer left it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L110 ]
-[test: the built app is the .app, the AppImage or the unpacked exe the local build leaves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L306 ]
-[test: the runtime's activator gets the new source tree; without one the new app's path is handed back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L322 ]
+[test: the built app is the .app, the AppImage or the unpacked exe the local build leaves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L302 ]
+[test: the runtime's activator gets the new source tree; without one the new app's path is handed back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L318 ]
 
 ## S5: Updating is refused where it cannot work @v1 [proposed]
 
@@ -145,8 +148,8 @@ should, and the installer one-liner from `main` is the way forward once.
   the machine it serves from
 
 [test: the desktop app with Bun, its source and a shell can; each missing piece is a reason : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L182 ]
-[test: a check that finds nothing is a 502 with the reason; an install that cannot run is a 409 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L375 ]
-[test: the demo and a hosted copy refuse every route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L397 ]
+[test: a check that finds nothing is a 502 with the reason; an install that cannot run is a 409 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L371 ]
+[test: the demo and a hosted copy refuse every route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L393 ]
 [test: where the app cannot update itself, the reasons and the installer one-liner take Install's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L105 ]
 
 ## S6: A failed install changes nothing that runs @v1 [proposed]
@@ -160,7 +163,7 @@ should, and the installer one-liner from `main` is the way forward once.
   unbuilt tree, as the installer leaves it (specs/app/installation.feature.md
   "a build that fails leaves the source in place")
 
-[test: an installer that fails, or finishes without what it promised, leaves a failed install and changes nothing that runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L265 ]
+[test: an installer that fails, or finishes without what it promised, leaves a failed install and changes nothing that runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L261 ]
 [test: a failed install shows the reason, the output and the way to try again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L97 ]
 
 ## S7: Where the app cannot replace itself it says where the new one is @v1 [proposed]
@@ -174,4 +177,4 @@ should, and the installer one-liner from `main` is the way forward once.
 
 [test: an Applications folder that is not writable, or no bundle at all, leaves the swap to the user and says where the new app is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L90 ]
 [test: a new version with no built app cannot be started : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L125 ]
-[test: a restart the shell could not do says so, with the new app's path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L114 ]
+[test: a restart the shell could not do says so, with the new app's path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L118 ]
