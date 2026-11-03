@@ -42,6 +42,8 @@ merged since the release before it, each linked to its pull request.
 [test: the release workflow's section is the lines under the version's heading : https://github.com/SpecDriven/specdriven-app/blob/main/tests/releaseNotes.test.ts#L87 ]
 [test: bump commits the version and its notes together, and tags that commit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/releaseNotes.test.ts#L131 ]
 [test: a dry run shows the notes it would write and touches nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/releaseNotes.test.ts#L154 ]
+[test: git log records split into subject and body : https://github.com/SpecDriven/specdriven-app/blob/main/tests/releaseNotes.test.ts#L51 ]
+[test: the shipped CHANGELOG.md lists the version package.json names, newest first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/releaseNotes.test.ts#L99 ]
 
 ## S2: An update marks the version until its notes are opened @v1 [proposed]
 
