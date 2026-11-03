@@ -152,9 +152,9 @@ under the current users authority.
 [test: with no one to ask, Bun is left alone and never downloaded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L463 ]
 [test: a Bun installer that fails is reported, and the checkout still stands : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L478 ]
 [test: the run ends with the app built and started from release/win-unpacked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L492 ]
-[test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L513 ]
+[test: a build that fails stops the run and says where the checkout is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L532 ]
 [test: Windows shells are sent to install.ps1, or the releases page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L585 ]
-[test: with no override, the releases come from SpecDriven/specdriven-app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L528 ]
+[test: with no override, the releases come from SpecDriven/specdriven-app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L547 ]
 
 ## S4: install via curl @v1 [proposed]
 
