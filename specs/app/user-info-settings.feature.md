@@ -13,7 +13,8 @@ engine is in effect — and falls back to the OS user otherwise; the server
 reports both via `/api/state`.
 
 - Clicking the chip opens the User Menu just above it, with "User info",
-  "Settings" and "Plugins". In the desktop and local app it also offers the
+  "Settings" and "Plugins", and on every copy "What's new", the release
+  notes (app/release-notes.feature.md). In the desktop and local app it also offers the
   GitHub sign-in: "Sign in with token…" while signed out; "Switch account…"
   and "Sign out" while signed in. "Sign out" is also offered while the
   GitHub CLI's account stands in for a missing sign-in, and stops the app
