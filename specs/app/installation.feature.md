@@ -33,6 +33,9 @@ One command takes a machine from nothing to a built app:
   and only the installer it runs (the `.AppImage` or the `.dmg`). The release's
   `.deb` is left out because its packager needs `libcrypt.so.1`, which Arch and
   other non-Debian distros lack.
+- With `SPECDRIVEN_HANDOVER=0` neither start nor open anything once built:
+  the running app updating itself (specs/app/app-updates.feature.md) sets it,
+  and does its own restart.
 
 It is POSIX sh, because it runs on whatever `/bin/sh` the machine has before
 anything is known about it, and it works with curl or wget, with unzip or
@@ -254,3 +257,17 @@ If the user want to scan the code before installing, they will download the zip 
 [test: a release without SHASUMS256.txt.sig is refused rather than installed unsigned : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L251 ]
 [test: a release swapped for another, checksum file and all, fails the signature and is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L265 ]
 [test: a release signed with some other key is refused, and says a newer install.ps1 may know it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L290 ]
+
+## S11: SPECDRIVEN_HANDOVER=0 builds without starting or opening anything @v1 [proposed]
+
+- Given: a machine with Bun, and a release to install
+- When: the installer runs with `SPECDRIVEN_HANDOVER=0` — as the running app
+  does when it updates itself
+- Then: the dependencies are installed and the desktop app is built as
+  usual, the AppImage made executable and the Start menu shortcut added, but
+  nothing is started and the `.dmg` is not opened; the run says the app is
+  built, and that it was not started
+
+[test: SPECDRIVEN_HANDOVER=0 builds the macOS app and opens nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L872 ]
+[test: SPECDRIVEN_HANDOVER=0 makes the AppImage runnable but does not start it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L898 ]
+[test: SPECDRIVEN_HANDOVER=0 builds the app and adds the shortcut, but does not start it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L513 ]
