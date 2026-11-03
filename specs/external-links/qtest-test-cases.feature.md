@@ -343,3 +343,36 @@ qTest never sees it.
 [test: a feature with no Jira link gets its test cases, with a warning that no requirement covers them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L616 ]
 [test: with several tickets, each key's requirement is found and every test case is linked to each of them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L770 ]
 [test: a key with no requirement is a warning while the other ticket's requirement still links; a refused search names the keys left : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L807 ]
+
+## S14: Publish the page and the test cases from one dialog @v1 [proposed]
+
+- Given: a feature is open, qTest test cases are switched on, and this
+  device holds a token for the wiki and one for the qTest site
+- When: the user picks "Publish to Wiki & qTest…" in the feature's ⋯ menu,
+  pastes the parent page's url and the parent module's url, chooses "All
+  scenarios" or "Published scenarios only", and presses Publish
+- Then: the feature is published to Confluence first, exactly as "Publish to
+  Confluence…" does it, and then its scenarios are created as test cases,
+  exactly as "Publish qTest Test Cases…" does it, so each test case links
+  its scenario on the page just written rather than the spec file
+- and the dialog offers the same parents the two dialogs would: the parent
+  page the feature was last published under, and the parent module it was
+  last published under, or the last module used on this device
+- and the dialog says where each half stands — the page, then the test cases
+  — and Publish waits for both urls, each on a site with a token, saying
+  under its field what is missing
+- and a page changed in Confluence since the last publish stops the run
+  before any test case is written, with the same notice as the Confluence
+  dialog; Publish anyway goes on with both
+- and a test case qTest refuses keeps the dialog open on it, the page
+  standing: Publish test cases carries on from the test cases without
+  publishing the page again
+- and the toasts are the two dialogs' own — "Published … in Confluence" and
+  "qTest: created …" — each offering its page or module
+
+[test: a modal dialog with the parent page, the parent module, the two scopes and one Publish : https://github.com/SpecDriven/specdriven-app/blob/main/tests/wikiQtestPublishDialog.test.tsx#L35 ]
+[test: a feature published before says both its page and its module are updated : https://github.com/SpecDriven/specdriven-app/blob/main/tests/wikiQtestPublishDialog.test.tsx#L53 ]
+[test: Publish waits for both urls, each on a site with a token, and says what is missing under its field : https://github.com/SpecDriven/specdriven-app/blob/main/tests/wikiQtestPublishDialog.test.tsx#L66 ]
+[test: the page goes first, and the test cases follow it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/wikiQtestPublishDialog.test.tsx#L120 ]
+[test: a page that conflicts or fails stops the run before any test case is written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/wikiQtestPublishDialog.test.tsx#L127 ]
+[test: a page published in this run is not published again when the test cases are retried : https://github.com/SpecDriven/specdriven-app/blob/main/tests/wikiQtestPublishDialog.test.tsx#L140 ]
