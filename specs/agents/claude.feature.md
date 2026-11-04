@@ -51,7 +51,7 @@ Note: this section is not offered in the demo or the hosted app, which run no Cl
 [test: with nothing stored the mode is inferred — a proxy when Claude Code names one, else the account : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L180 ]
 [test: the launch steers Claude Code through --settings, which beats its own files : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L207 ]
 [test: the demo and the hosted app have no Claude sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L736 ]
-[test: the sign-in Settings chose reaches Claude as a --settings override (src/auth.ts) : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1070 ]
+[test: the sign-in Settings chose reaches Claude as a --settings override (src/auth.ts) : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1178 ]
 
 ## S3: Claude cli options @v1 [proposed]
 
@@ -183,13 +183,13 @@ The switch is ON by default, and the setting is saved to
 - and a session whose Claude cannot start under the new sign-in keeps
   running as it was, with a note saying to start a new session
 
-[test: a sign-in, a sign-out and another mode, proxy or token each tell the app Claude's sign-in changed : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L685 ]
-[test: a sign-in change restarts an idle Claude session under it, carrying the conversation on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L829 ]
-[test: a turn under way finishes before the session picks up a new sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L867 ]
-[test: a new sign-in that cannot start Claude leaves the session as it was, saying so : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L883 ]
+[test: a sign-in, a sign-out and another mode, proxy or token each tell the app Claude's sign-in changed : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L686 ]
+[test: a sign-in change restarts an idle Claude session under it, carrying the conversation on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L840 ]
+[test: a turn under way finishes before the session picks up a new sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L878 ]
+[test: a new sign-in that cannot start Claude leaves the session as it was, saying so : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L894 ]
 [test: a provider's sign-in change is a change for its id alone; an unknown id is nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L89 ]
 [test: an agent's sign-in change has every open page re-read the agents : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L100 ]
-[test: a provider's sign-in change refreshes its live sessions, and a failed refresh is a note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L278 ]
+[test: a provider's sign-in change refreshes its live sessions, and a failed refresh is a note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L377 ]
 
 ## S12: Choose the model Claude starts on @v1 [proposed]
 
@@ -215,6 +215,8 @@ The switch is ON by default, and the setting is saved to
   their own
 - and a session carried on under a new sign-in keeps the model it ran on,
   even when the default changed meanwhile
+- and a model picked in the coding agent pane's bar becomes this default, and
+  the field shows it
 
 [test: the default model is an alias or a model id, trimmed; anything else is Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L167 ]
 [test: the plugin adopts the old top-level keys once, and PUT /api/claude/settings changes its own section : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L755 ]
@@ -222,11 +224,34 @@ The switch is ON by default, and the setting is saved to
 [test: GET /api/claude/models lists the signed-in account's models, asked of Claude Code once per sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L619 ]
 [test: a Claude Code that does not list its models in time is an error, and the next ask tries again : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L672 ]
 [test: Claude Code's model rows become account models, dropping what is no model id and repeats : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L110 ]
-[test: asking for the account's models gives up when Claude Code does not answer in time : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L126 ]
-[test: the account's models are asked for once, shared, and again after the TTL or a sign-in change : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L138 ]
-[test: a new session starts on the default model Settings names, else the first listed, else Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1043 ]
-[test: a session carried on under a new sign-in keeps the model it ran on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1059 ]
+[test: asking for the account's models gives up when Claude Code does not answer in time : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L152 ]
+[test: the account's models are asked for once, shared, and again after the TTL or a sign-in change : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L164 ]
+[test: a new session starts on the default model Settings names, else the first listed, else Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1054 ]
+[test: a session carried on under a new sign-in keeps the model it ran on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1070 ]
 [test: a model asked for wins over the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L67 ]
 [test: no model asked for is the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L73 ]
 [test: no model asked for and none in Settings leaves Claude Code's own default : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L79 ]
 [test: no model asked for and none in Settings is the first the data repo lists for Claude : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L85 ]
+
+## S13: Pick Claude's model and effort in the pane @v1 [proposed]
+
+- Given: the coding agent pane's bar with Claude chosen
+- Then: the model menu offers what Settings → Claude's "Default model"
+  would: every model the signed-in Claude account offers, else the models
+  Settings → AI agents lists for Claude, else Opus, Sonnet and Haiku
+- and the effort menu offers the levels Claude Code says the model takes,
+  every level when it does not say, none for a model that takes none
+- and a new session starts on the model and effort the bar shows, else
+  Settings → Claude's defaults; a pick in the bar, before or during a
+  session, becomes those defaults
+- and a running session switches model and effort without restarting Claude
+  Code, and a session carried on under a new sign-in keeps both
+- and Settings → Claude has "Default effort" beside "Default model": Claude
+  Code's default, or a level
+
+[test: a session starts on the model and effort the pane picked, over the defaults Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1086 ]
+[test: the pane switches a running Claude's model and effort, and the pick becomes Settings → Claude's default : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1107 ]
+[test: the pane's choices are the account's models, else the data repo's, else Claude Code's aliases : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1124 ]
+[test: a session carried on under a new sign-in keeps the model and effort the pane switched to : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1169 ]
+[test: an account model keeps the effort levels Claude Code lists for it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L126 ]
+[test: Default effort is a select of Claude Code's levels, Claude Code's own default when none is set : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L140 ]

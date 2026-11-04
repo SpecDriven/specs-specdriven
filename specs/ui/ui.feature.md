@@ -221,9 +221,12 @@ beside the description and `⋯` actions (tooltip "New scenario", key `c`),
 or `New scenario below` in a card's `⋯` menu, which inserts the new
 scenario right after that card. There is no button at the end of the list.
 Either way a small dialog asks for the name, and the new scenario opens in
-the editor pane as a draft.
+the editor pane as a draft. It is saved the moment it opens — with an empty
+body if nothing has been typed yet — so naming a scenario is enough to add
+it.
 
 [test: newScenarioDraft is a new draft under the cleaned name, at insertAt when given : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioOrderClient.test.tsx#L53 ]
+[test: saves the named draft right away, with an empty body : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioEditorDraft.test.tsx#L158 ]
 
 ## S3: Auto-save commits say what changed @v1 [proposed]
 

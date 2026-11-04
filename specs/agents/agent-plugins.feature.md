@@ -23,10 +23,10 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: a plugin's provider drives a session from start to end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L87 ]
 [test: the pane's permission card answers the provider, and a withdrawn or ended question is denied : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L119 ]
 [test: Stop and the mode go to the provider, and are refused where it declares neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L164 ]
-[test: a turn the provider refuses is noted and the composer freed; a provider that dies ends the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L203 ]
-[test: the provider's facts reach the pane through ready and update, and quiet keeps them off the log : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L220 ]
-[test: switching a plugin off ends the sessions its provider was driving : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L314 ]
-[test: a Claude plugin switched off takes its routes and its provider away : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L809 ]
+[test: a turn the provider refuses is noted and the composer freed; a provider that dies ends the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L302 ]
+[test: the provider's facts reach the pane through ready and update, and quiet keeps them off the log : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L319 ]
+[test: switching a plugin off ends the sessions its provider was driving : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L413 ]
+[test: a Claude plugin switched off takes its routes and its provider away : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L812 ]
 [test: an installed plugin whose manifest says autoEnable switches itself on in the open folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L238 ]
 [test: an agent plugin that arrives while the window is open offers the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L60 ]
 
@@ -70,7 +70,7 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
   the first one whose command is on PATH, by rank; the "Run in" choice of the
   session dialog lists the agents the plugins supply, by rank
 
-[test: no plugin, the wrong plugin, or a missing CLI is a clear refusal, and the default is the first by rank : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L249 ]
+[test: no plugin, the wrong plugin, or a missing CLI is a clear refusal, and the default is the first by rank : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L348 ]
 [test: a session's agent is read off the descriptors, or a fallback when its plugin is gone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L26 ]
 [test: only agents whose CLI is there are usable, in rank order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L42 ]
 [test: the state's agents list is what the pane reads, and nothing stands in for it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L49 ]
