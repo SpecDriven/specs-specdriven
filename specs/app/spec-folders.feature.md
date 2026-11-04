@@ -1,10 +1,18 @@
 # Spec folders
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Support opening and switching between multiple specifications folders. (Currently called data directory)
 
 <img src="/api/images/image-c9aa1fcb.png" alt="image" width="516">
 
 ## S1: Manage specification folders @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Open new folders from the local file system. "Change data directory"
 
@@ -38,6 +46,10 @@ cloned to.
 [test: removing a repository from the list takes its other names with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L439 ]
 
 ## S3: Switch spec folder @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 When switching spec folders, the app will bring up a modal dialog indicating the progress of loading the new dataset.
 All other operations are blocked.

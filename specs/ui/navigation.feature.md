@@ -2,6 +2,10 @@
 
 **Assigned:** David
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 We want to have a unique url for each Feature and each scenario, to enable
 deep linking and navigation from outside the app as well as sharing the links
 via chat and email.
@@ -87,6 +91,10 @@ leave the window blank).
 
 ## S1: a second link reuses the running app @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the desktop app is already open on some other feature
 - When: another `specdriven://` link is opened
 - Then: the same window moves to the linked feature — no second window and no
@@ -101,6 +109,10 @@ leave the window blank).
 
 ## S2: browser history and reload @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** jmeowmeow
+
 - Selecting a feature (sidebar click, create) pushes a history entry —
   back/forward walk through previously viewed features
 - Moving the scenario selection with the up/down keys rewrites the url in
@@ -109,6 +121,10 @@ leave the window blank).
 
 ## S3: deep link before a data repo is configured @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the settings file has no data repo recorded
 - When: the user opens a deep link
 - Then: the repo prompt shows first (app-start.feature.md); once a repo is
@@ -116,17 +132,29 @@ leave the window blank).
 
 ## S4: link to a missing feature @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: the user opens `/features/<something>` that doesn't resolve to a file
 - Then: the app shows home with a note that the feature was not found and the
   link may be stale
 
 ## S5: link to a missing scenario @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: the feature resolves but the scenario slug (or version) doesn't
 - Then: the feature opens with no selection and a note that the scenario was
   not found — it may have been renamed or deleted
 
 ## S6: move a scenario to another feature @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a scenario's ⋯ menu in the sidebar tree, which offers Move to… next
   to Delete and on the same terms — a published scenario only while Settings
@@ -153,11 +181,19 @@ leave the window blank).
 
 ## S7: open a feature link @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the data repo contains `navigation.feature.md`
 - When: the user opens `/features/navigation`
 - Then: the app shows that feature — same view as clicking it in the sidebar
 
 ## S8: open a link from outside the app @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the desktop app is installed and a data repo is configured
 - When: the user clicks a `specdriven://features/<feature>` link in another
@@ -178,6 +214,10 @@ leave the window blank).
 
 ## S9: open a scenario link @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** jmeowmeow
+
 - Given: `navigation.feature.md` contains scenario "ESC key closes the dialog" v2
 - When: the user opens `/features/navigation/scenarios/esc-key-closes-the-dialog/v2`
 - Then: the feature opens with that scenario card selected, highlighted, and
@@ -186,11 +226,19 @@ leave the window blank).
 
 ## S10: Scenario navigation @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 When we are in a scenario editor pane, we want to easily switch to another scenario wihout going back to the feature view.
 In the tree on the left show scenarios under the feature.
 Allow to collapse and expand the outline.
 
 ## S11: share a link @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Sidebar entries and scenario card titles are real links: right-click →
   Copy Link and cmd-click → new tab work natively
@@ -210,11 +258,19 @@ Allow to collapse and expand the outline.
 
 ## S12: versionless scenario link opens the latest version @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the scenario name exists as v1 and v2
 - When: the user opens the scenario url without the `/v<N>` segment
 - Then: v2 is selected, and the address bar shows the canonical `/v2` url
 
 ## S13: window title follows the selection @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** jmeowmeow
 
 - `SpecDriven` on home, `SpecDriven — <feature name>` on a feature,
   `SpecDriven — <feature name> · <scenario name> v<N>` with a selection —

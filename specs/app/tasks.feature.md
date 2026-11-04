@@ -1,5 +1,9 @@
 # Tasks
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Simple task manager suitable for a small team.
 
 Support deep link just like Features.
@@ -7,6 +11,10 @@ Support deep link just like Features.
 Integrate with Google Calendar
 
 ## S1: A bare folder url opens that tab @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the Tasks setting is on and the folder holds at least one task
 - When: the user opens `/tasks` — no task after the folder — from the address
@@ -20,6 +28,10 @@ Integrate with Google Calendar
   rather than opening an empty pane
 
 ## S2: Add task to Google Calendar @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a task is open, and "Google Calendar" is switched on in Settings —
   off by default, stored like the Tasks switch, and off there is no calendar
@@ -109,6 +121,10 @@ Integrate with Google Calendar
 
 ## S5: The tasks folder is created and synced @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the Tasks setting is on — it is off unless explicitly turned on
 - When: a sync tick runs and the data folder has no 'tasks' folder
 - Then: the 'tasks' folder is created, once; a folder that already exists is
@@ -125,6 +141,10 @@ Integrate with Google Calendar
 [test: tasks paths are the folder and what is under it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tasks.test.ts#L114 ]
 
 ## S6: Transform non-complient title to allow save of file @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 While adding task for 'Explore https://storytime.team/',
 encountered system inability to save it.

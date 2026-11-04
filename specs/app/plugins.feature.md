@@ -2,6 +2,10 @@
 
 **Assigned:** David
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 SpecDriven is a small core plus plugins, in the style of DeepSeek Harness:
 everything a module adds — a sidebar tab, a pane, routes, shortcuts,
 palette commands, a settings section, a sync hook, a document type — is
@@ -45,6 +49,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 
 ## S1: A built-in module is a plugin like any other @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the app starts
 - When: the user opens the Plugins page
 - Then: Roadmap, Tasks, Notebook, Models, Tests and Issues are listed as
@@ -60,6 +68,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L31 ]
 
 ## S2: A plugin from the marketplace is installed with consent @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a marketplace is configured on the Plugins page
 - When: the user picks a plugin from the marketplace list and presses
@@ -94,6 +106,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 
 ## S3: A plugin is scaffolded, built and linked from the command line @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the `specdriven` command (the binary, or `bun src/index.ts` in the
   checkout)
 - When: the developer runs `specdriven plugin new <id> [dir]`
@@ -113,6 +129,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: plugin new refuses a bad id or a folder in use, and an unknown command shows the usage : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginCli.test.ts#L92 ]
 
 ## S4: A plugin loads from a local folder @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a plugin folder exists — under `~/.specdriven/plugins/<id>`, under
   the data repo's `.specdriven/plugins/<id>`, or at a path named in the
@@ -176,6 +196,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 
 ## S6: Plugin urls serve the app shell @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a plugin is on and has registered a url prefix, `/tests` say
 - When: the user opens `/tests/…` from the address bar, a link, or as
   `specdriven://tests/…` from another app
@@ -188,6 +212,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: the plugin's urls serve the app shell whether it is on or off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L169 ]
 
 ## S7: The marketplace is a git repository with an index @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the Plugins page names one or more marketplaces, each a git url
 - When: the user opens the marketplace list, or presses Refresh
@@ -208,6 +236,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L497 ]
 
 ## S8: The profile lists enabled plugins in tab order @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: `.specdriven/settings.json` on this machine holds an ordered
   `enabled` list for the open data folder, under `plugins.repos[<folder>]`
@@ -234,6 +266,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: a visitor turns the roadmap on and it lists the dataset's pages : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L128 ]
 
 ## S9: Turning a plugin off unwinds everything it registered @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a plugin is on and one of its views has the pane
 - When: the user switches it off on the Plugins page

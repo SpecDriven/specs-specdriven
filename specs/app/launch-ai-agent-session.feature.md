@@ -1,5 +1,9 @@
 # Start Coding Session
 
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
+
 SpecDriven Start Coding Session Feature
 
 Workflow: UI for starting the session.
@@ -26,7 +30,11 @@ Agent's Notion of a Coding Session vs. SpecDriven's Notion of a Coding Session
 
 ![specdriven-agent-dispatch-notes.excalidraw](/api/images/specdriven-agent-dispatch-notes-excalidraw-ffc27c60.svg)
 
-## Launch Session Scenario Outline @v1 [proposed]
+## S1: Launch Session Scenario Outline @v1 [proposed]
+
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
 
 1. User opens a feature file.
 2. User selects the whole feature, and all of its specs, or selects one or more specs from the feature.

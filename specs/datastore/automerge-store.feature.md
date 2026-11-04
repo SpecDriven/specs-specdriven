@@ -1,5 +1,9 @@
 # Automerge system of record
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 The data repo's system of record is a set of Automerge (CRDT) documents, one
 per feature. The `.feature.md` files that render on GitHub are deterministic
 projections of those documents — same doc, same bytes, on every peer.
@@ -56,9 +60,17 @@ record.
 
 ## S1: A feature file deleted outside the app @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 When a git pull removes a feature file, the next sync tick removes its document directory too — the markdown is the interchange format, and its deletion carries the intent.
 
 ## S2: a repo that predates documents @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Feature files with no document behind them behave as before until touched:
 the first save, publish, or sync tick imports them (the document is minted
@@ -68,6 +80,10 @@ drift. If two peers import the same feature concurrently, the merge picks
 one document identity deterministically and folds both sides' content in.
 
 ## S3: Documents from before the mirrored layout @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Earlier app versions filed documents under a directory per kind —
 `features/`, `docs/`, `models/`, `testing/` — with the source file's whole
@@ -84,12 +100,20 @@ old roots disappear once nothing is left in them.
 
 ## S4: Documents from before the status field @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Documents written by earlier app versions carried `published`/`proposed`
 booleans per scenario instead of `status`. Loading such a document migrates
 it in place — booleans fold into the status field, unmarked scenarios become
 drafts — and the migration persists with the document's next save.
 
 ## S5: draft scenarios live in the document only @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** jmeowmeow
 
 A draft scenario is internal: it is stored in the feature's document but
 never written to the `.feature.md`, so the published spec on GitHub shows
@@ -113,6 +137,10 @@ draft → proposed → published wins.
 
 ## S6: live sync keeps a disk edit the sync tick has not absorbed @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: live sync is on, and a feature file on peer B was edited on disk —
   by hand or by an agent — after the last sync tick, so the edit is not in
   B's document yet
@@ -129,6 +157,10 @@ draft → proposed → published wins.
 
 ## S7: markdown edited outside the app @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 A feature file edited where no document ops exist — an older app version, a
 hand edit merged through a GitHub PR — drifts from its document's
 projection. The next sync tick absorbs the drift into the document (a
@@ -137,6 +169,10 @@ conflicted) and rewrites the file to the canonical projection. The GitHub
 PR workflow stays a first-class way to edit specs.
 
 ## S8: optional live sync over websocket @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Settings can name a sync server (e.g. wss://sync.automerge.org). While one
 is named, every feature document is announced to it under an identity all
@@ -156,6 +192,10 @@ point it at a self-hosted sync server instead.
 
 ## S9: published scenarios stay immutable @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Publishing records the scenario's body in the document, set whole. While the
 scenario stays published that recorded text is what every peer renders and
 what every file is held to. Drift that changes it is refused: the file is
@@ -169,6 +209,10 @@ explicit human conflict resolution is the one door that may override the
 document's published state; it re-records the body it chooses.
 
 ## S10: two peers edit the same scenario concurrently @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Peer A and peer B both edit the body of the same scenario, even the same
 line. Each save becomes CRDT operations in the feature's document. When

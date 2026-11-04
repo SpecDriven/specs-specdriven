@@ -1,5 +1,7 @@
 # Data format
 
+**Updated by:** vydra
+
 - an older app stops at data a newer app wrote, and tells the user to update
 
 The app syncs the data folder every minute: it migrates, absorbs markdown
@@ -30,6 +32,8 @@ Formats so far:
   number as part of the name and would rewrite the file without it.
 
 ## S1: A blocked app does not push @v1 [proposed]
+
+**Updated by:** vydra
 
 - Given: a teammate on a newer app has raised the folder's format and pushed
   the marker
@@ -68,6 +72,8 @@ Formats so far:
 [test: the data format is pinned to the schema versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L49 ]
 
 ## S3: Data saved by a newer app blocks App from opening @v1 [published]
+
+**Updated by:** David Vydra
 
 - Given: a data folder whose marker names a format newer than this app's
 - When: the app starts on it, the user opens it, or a teammate's push raises

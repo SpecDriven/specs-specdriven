@@ -1,5 +1,9 @@
 # specs-authorship
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 We would like to store the user names of the creators of each atomic spec (scenario).
 Creator maybe an agent who was given permission via a GH token.
 We would also like to store the user name of the last person who updated the spec.
@@ -15,6 +19,10 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 
 ## S1: A rename keeps the creator @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a scenario created by ada
 - When: grace renames it in the app
 - Then: ada is still its creator and grace is its last updater
@@ -25,6 +33,10 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 
 ## S2: A save that changes nothing signs nothing @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a feature last updated by ada
 - When: grace saves it without changing anything
 - Then: ada is still the last updater of the feature and of every scenario
@@ -32,6 +44,10 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 [test: a save that changes nothing signs nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L150 ]
 
 ## S3: An agent signs as its own account @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: an agent works in the app with a GitHub token of its own
 - When: it creates or edits a feature or a scenario
@@ -42,6 +58,10 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 [test: a feature created in the app is signed by the app's user, in the document only by default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L250 ]
 
 ## S4: Authorship lines in the markdown @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a `.feature.md` with `**Created by:** <name>` and
   `**Updated by:** <name>` lines directly under the feature's `#` heading or
@@ -55,6 +75,10 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 [test: a line further down the body is ordinary content : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L100 ]
 
 ## S5: Edits found on disk sign nobody @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a `.feature.md` changed outside the app — on GitHub, in an editor,
   by an older app version
@@ -71,6 +95,10 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 
 ## S6: Merging keeps the side that changed the authorship @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: ada and grace both have the feature, and grace edits a scenario
 - When: the three-way merge of a pull folds grace's edit into ada's copy
 - Then: the scenario's and the feature's last updater are grace
@@ -78,6 +106,10 @@ commits and signs notebook entries (app/engineering-notebook.feature.md).
 [test: the three-way merge keeps the side that changed the authorship : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L204 ]
 
 ## S7: New feature has author @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 save author at the feature level
 
@@ -93,6 +125,10 @@ save author at the feature level
 
 ## S8: new spec has an author @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 New spec has an author
 
 - Given: a feature created by ada
@@ -104,6 +140,10 @@ New spec has an author
 [test: new spec has an author — a scenario added by a save is created by whoever saved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L123 ]
 
 ## S9: The feature page shows who wrote what @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a feature with recorded authorship
 - When: the user opens it
@@ -117,6 +157,10 @@ New spec has an author
 
 ## S10: The last updater is whoever changed it @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a scenario created by ada
 - When: grace edits its body, name, version, status, tests or link
 - Then: grace is its last updater and ada is still its creator
@@ -124,6 +168,10 @@ New spec has an author
 [test: an edit records its author as the last updater and keeps the creator : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L141 ]
 
 ## S11: Write authors into feature files @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the data repo's `project-settings.json`
 - When: it has `"authors-in-markdown": true` — the "Write authors into

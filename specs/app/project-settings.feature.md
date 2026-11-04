@@ -27,7 +27,7 @@ shows, and where test links resolve. The app assumes a code repo is checked
 out beside the data repo, so a repo is stored as a path relative to the data
 folder — `../acme-app` — which holds for every teammate with the same layout.
 
-## A code repo's specs symlink is created and removed from the editor @v1 [proposed]
+## S1: A code repo's specs symlink is created and removed from the editor @v1 [proposed]
 
 - Given: a code repository listed in Project settings whose folder exists
 - Then: its row says what sits at `<code repo>/specs`: no symlink, a symlink
@@ -50,7 +50,7 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 [test: shows each repo's specs link and saves every change the moment it is made : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L128 ]
 [test: a refusal shows as the error line and leaves the page as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L240 ]
 
-## Add and remove code repositories @v1 [proposed]
+## S2: Add and remove code repositories @v1 [proposed]
 
 - Given: the Project settings page
 - When: the user adds a repository — by typing a path, or browsing to its
@@ -71,7 +71,7 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 [test: a bare folder name is a sibling of the data folder; paths are kept as typed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L59 ]
 [test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L339 ]
 
-## Choose the default code repository @v1 [proposed]
+## S3: Choose the default code repository @v1 [proposed]
 
 - Given: two or more code repositories listed
 - When: the user picks **Default** on one of them
@@ -82,7 +82,7 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 
 [test: code-repos lists several, the first the default unless default-code-repo says otherwise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L42 ]
 
-## Edit the project members @v1 [proposed]
+## S4: Edit the project members @v1 [proposed]
 
 - Given: the Project settings page
 - When: the user adds a member as a name, with the email in angle brackets
@@ -94,7 +94,7 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 [test: members are written as objects, in order, without duplicates : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L140 ]
 [test: a member is a name, with the email in angle brackets : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L69 ]
 
-## Open Project settings from the user menu @v1 [proposed]
+## S5: Open Project settings from the user menu @v1 [proposed]
 
 - Given: the app with a data folder open
 - When: the user picks **Project settings** in the user menu
@@ -107,7 +107,7 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 [test: where the settings are read-only, the rows show and the controls do not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L261 ]
 [test: project settings routes match GET and PUT, and the specs link its POST : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L26 ]
 
-## The settings file is created for every data folder @v1 [proposed]
+## S6: The settings file is created for every data folder @v1 [proposed]
 
 - Given: a data folder with no `project-settings.json`
 - When: the app opens it — the sync at start, or the tick after switching
@@ -123,7 +123,7 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 [test: a file that does not parse is refused rather than overwritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L146 ]
 [test: project-settings.json is named alone and stays out of a shared title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L151 ]
 
-## The single code-repo key keeps working @v1 [proposed]
+## S7: The single code-repo key keeps working @v1 [proposed]
 
 - Given: a settings file from before, with `"code-repo": "../acme-app"`
 - Then: it reads as a list of that one repository, the default

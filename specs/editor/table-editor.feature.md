@@ -1,5 +1,9 @@
 # Table editor
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 A table button in the editor toolbar opens a modal dialog for editing markdown
 tables. It replaces the grid that used to sit under the scenario body.
 
@@ -30,6 +34,10 @@ markdown editor — scenario body, feature description, pages, issues, tests.
   preview shows no edit control (the table itself still renders).
 
 ## S1: edit the table as a grid @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the caret is in a markdown table in the body, or the user hovers
   a table in the preview
@@ -83,6 +91,10 @@ markdown editor — scenario body, feature description, pages, issues, tests.
 [test: inserts a new table at the caret : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tableEditor.test.tsx#L279 ]
 
 ## S3: variable creates a column @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Scenario bodies only: a `{var}` in the body names an example column.
 Variable names use letters, digits, `_` and `-`. Variables inside tables

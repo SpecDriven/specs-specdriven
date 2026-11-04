@@ -1,5 +1,9 @@
 # Images in scenarios
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 A scenario body can embed images — a screenshot pasted from the clipboard or
 an image file picked from disk. Images live in the data repo like everything
 else, so they sync through git with the features that reference them. The
@@ -59,6 +63,10 @@ twice as big as it looked on screen — so an image can be sized in place.
 
 ## S2: paste an image from the clipboard @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: the user pastes clipboard content containing an image into the body
 - Then: the image is uploaded to `.images/` in the data repo, committed and
   pushed
@@ -71,6 +79,10 @@ twice as big as it looked on screen — so an image can be sized in place.
 [test: image routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L50 ]
 
 ## S3: repeated upload of the same image @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: an image with bytes already stored under `.images/` is uploaded again
 - Then: the existing file is reused — same name, no new commit
@@ -139,6 +151,10 @@ twice as big as it looked on screen — so an image can be sized in place.
 
 ## S7: unsupported file is refused @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: the uploaded file is not a supported image type, is empty, or exceeds
   10 MB
 - Then: nothing is stored and the toolbar shows the reason
@@ -146,6 +162,10 @@ twice as big as it looked on screen — so an image can be sized in place.
 [test: rejects unsupported types, empty and oversized files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L52 ]
 
 ## S8: upload an image file @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: the user clicks 🖼 and picks one or more image files
 - Then: each file is uploaded and inserted like a pasted image

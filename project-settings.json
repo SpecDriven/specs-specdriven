@@ -13,5 +13,6 @@
       "email": "roman@specdriven.app"
     }
   ],
-  "code-repo": "../specdriven-app"
+  "code-repo": "../specdriven-app",
+  "authors-in-markdown": true
 }

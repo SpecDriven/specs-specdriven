@@ -2,13 +2,21 @@
 
 **Assigned:** David
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 A lightweight test management module for a small team, in the spirit of
 TestRail and Xray: a library of test cases, test plans that group them, and
 executions that record one result per case of a plan. Test cases may
 reference features or scenarios. The module takes an entire pane, and all of
 its data is stored in an Automerge document — no markdown files.
 
-## A run records one result per case @v1 [proposed]
+## S1: A run records one result per case @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a plan with at least one case
 - When: the user presses "Start run"
@@ -25,7 +33,11 @@ its data is stored in an Automerge document — no markdown files.
 - and a run outlives its plan: deleting the plan keeps its runs, listed
   under a deleted plan, while deleting a run takes its results with it
 
-## A test case may reference features or scenarios @v1 [proposed]
+## S2: A test case may reference features or scenarios @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the Tests tab is open
 - When: the user creates a test case with "+ New case" and gives it a title
@@ -42,7 +54,11 @@ its data is stored in an Automerge document — no markdown files.
 - and the case library at `/tests/cases` lists every case with its priority,
   what it covers, and its latest result
 
-## A test plan groups test cases @v1 [proposed]
+## S3: A test plan groups test cases @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: some test cases exist
 - When: the user creates a plan with "+ New plan" and names it
@@ -57,7 +73,11 @@ its data is stored in an Automerge document — no markdown files.
   latest run and that run's progress, and the ten most recent runs of all
   plans below
 
-## Test data lives in one Automerge document, not in markdown @v1 [proposed]
+## S4: Test data lives in one Automerge document, not in markdown @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the setting is on
 - When: the first test case or plan is created in a data folder
@@ -73,7 +93,11 @@ its data is stored in an Automerge document — no markdown files.
   on every machine, so their chunks merge on the next pull instead of
   forking into two lineages
 
-## Test management is controlled by a switch in user settings @v1 [proposed]
+## S5: Test management is controlled by a switch in user settings @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the "Test management" setting is off, as it is by default
 - When: the user looks at the sidebar
@@ -87,7 +111,11 @@ its data is stored in an Automerge document — no markdown files.
 - and the server refuses the module's requests while the switch is off, not
   just the UI
 
-## Tests views have urls and find their way into search @v1 [proposed]
+## S6: Tests views have urls and find their way into search @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the setting is on
 - When: the user opens `/tests`, `/tests/cases`, `/tests/cases/<id>`,
@@ -102,7 +130,11 @@ its data is stored in an Automerge document — no markdown files.
 - and the reload tick refreshes the module from the data folder, except
   while a case or plan editor holds an unsaved draft
 
-## The latest run speaks for a case @v1 [proposed]
+## S7: The latest run speaks for a case @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a plan run more than once
 - When: the user looks at the plan, the case library or a case

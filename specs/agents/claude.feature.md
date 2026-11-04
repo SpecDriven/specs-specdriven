@@ -1,5 +1,9 @@
 # Integration with Claude agent
 
+**Created by:** vydra
+
+**Updated by:** David Vydra
+
 Claude Agent can use either a Claude Account and an API Proxy.
 
 ## S1: API proxy settings are filled in from Claude Code's settings @v1 [proposed]
@@ -31,6 +35,8 @@ proxy for the account sign-in.
 
 ## S2: Choose how Claude signs in @v1 [published]
 
+**Updated by:** David Vydra
+
 Choose  "Sign in with": "Claude account (email login)" 
 
 ![image](/api/images/image-f2cf34a8.png)
@@ -55,6 +61,10 @@ Note: this section is not offered in the demo or the hosted app, which run no Cl
 
 ## S3: Claude cli options @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 In the target repo, locate folder '.specdriven'
 If it contains a file called specdriven-config.json
 Check for:
@@ -66,6 +76,10 @@ https://www.testmuai.com/support/docs/agent-assurance-overview/
 
 ## S4: Create a prompt from selected specs @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Given: a code session has been created with at least one spec in it
 When: we start a code gen session with Agent (Claude)
 Then: we generate a prompt and pass it to the Claude Cli to execute and exit
@@ -74,11 +88,19 @@ If error code, display the error to the user in an error box.
 
 ## S5: Create and name a code gen session @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Select one or more specs
 - 'Start session' (click button)
 - Name the session
 
 ## S6: Create and name a code gen session @v2 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Select a whole spec with the checkbox on its sidebar entry
 - Select single scenarios with the checkbox on their scenario cards
@@ -143,6 +165,10 @@ If error code, display the error to the user in an error box.
 
 ## S9: Switch code generation on or off @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Given: the Settings dialog
 When: the 'Code generation' switch is turned off and the settings are saved
 Then: no selection checkboxes are offered on sidebar entries or scenario
@@ -155,6 +181,10 @@ The switch is ON by default, and the setting is saved to
 .specdriven/settings.json.
 
 ## S10: Switch code generation on or off @v2 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Given: the Settings page (user-info-settings.feature.md "open Settings")
 When: the 'Code generation' switch in its Workflow section is turned off —

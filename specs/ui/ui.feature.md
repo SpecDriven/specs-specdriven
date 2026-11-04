@@ -1,5 +1,9 @@
 # UI
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Feature page lists scenarios, up to 8 lines per scenario.
 - Scenarios keep the order of the feature file and are numbered by position,
   `S1`, `S2`, … — the number is written into the heading (crud-feature.md
@@ -211,6 +215,10 @@ come from one token block.
 
 ## S1: Add A Scenario Button @v1 [published]
 
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
+
 * With a feature file editor open, the button to add a scenario should always be visible. The button should be located with respect to the editor window viewport.
 
 ## S2: Add A Scenario Button @v2 [proposed]
@@ -266,9 +274,17 @@ The title is worked out from the files themselves, by reading each changed spec 
 
 ## S4: Feature Text Scroll Pane @v1 [published]
 
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
+
 The detail view for a feature file should provide a scroll pane for the feature text, rendering Markdown to HTML, and providing specd for the scenario cards and the "add a scenario" button.
 
 ## S5: Feature Text Scroll Pane @v2 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 The free markdown between the feature heading and the first scenario (the
 feature description) renders as Markdown — same pipeline as scenario bodies —
@@ -285,6 +301,10 @@ in its own pane on the feature page:
   reachable.
 
 ## S6: Hide the editor pane @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 While the coding agent pane is open beside it, the editor column can be hidden
 so the pane has the window — the same kind of control the agent pane itself
@@ -388,13 +408,25 @@ can put them in the order the feature reads best in.
 
 ## S9: Recent folder list @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 There is a small down arrow icon next to folder name that brings up a list of previous folders. Support up to 10 folders.
 
 ## S10: Spec will be added under the folder that is highlighted @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 When adding a spec (scenario), it must be added under the highlighted (focused) folder.
 
 ## S11: User-entered text is cleaned up @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Whatever the user types is saved without the whitespace they did not mean —
 a pasted title's trailing blank, a double space, the empty lines around a

@@ -2,6 +2,10 @@
 
 **Assigned:** David
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Specdriven App is distributed via a zip archive in order to allow users
 to run their security checks on the code before building the app.
 
@@ -112,6 +116,10 @@ the desktop build, since electron-builder stats every path in the project.
 
 ## S1: a build that fails leaves the source in place @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a verified release unpacked under `~/.specdriven/app`
 - When: `bun install` or the desktop build fails
 - Then: the run stops with the failure and the path to the checkout, which is
@@ -121,6 +129,10 @@ the desktop build, since electron-builder stats every path in the project.
 [test: a failed `bun install` is reported the same way : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L1019 ]
 
 ## S2: bun is not installed @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 If `bun` is not installed, offer to install it and if user accepts install bun 
 under the current users authority.
@@ -161,6 +173,10 @@ under the current users authority.
 
 ## S4: install via curl @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 A user can install specdriven app via curl.
 
 Example: curl -fsSL https://raw.githubusercontent.com/SpecDriven/specdriven-app/main/install.sh | sh
@@ -174,6 +190,10 @@ If the user want to scan the code before installing, they will download the zip 
 
 ## S5: the checksum has to match before anything is unpacked @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a release whose zip does not match its `SHASUMS256.txt`, or has none
 - When: the user runs the installer
 - Then: it stops saying so, and `~/.specdriven` holds nothing from that run
@@ -185,6 +205,10 @@ If the user want to scan the code before installing, they will download the zip 
 [test: an ssh-keygen that cannot verify stops the install, in its own words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L303 ]
 
 ## S6: the install ends with the app built and handed over @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a machine with Bun, and a release to install
 - When: the user runs the installer
@@ -203,6 +227,10 @@ If the user want to scan the code before installing, they will download the zip 
 
 ## S7: the source zip is self-contained @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the release source zip
 - When: it is unpacked on a machine that has never seen this project
 - Then: nothing in it points outside itself, so the build has no dangling path
@@ -211,6 +239,10 @@ If the user want to scan the code before installing, they will download the zip 
 [test: symlinks that dangle in the release source zip are kept out of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L1048 ]
 
 ## S8: without Bun the install stops at the source @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a machine with no Bun, whose user declines to install it
 - When: the installer has unpacked the release

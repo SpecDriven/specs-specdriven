@@ -16,7 +16,7 @@ repository is the user's, and sharing it is their call.
 (git-operations.md) does not implement it, whatever engine Settings has
 chosen.
 
-## A submodule that cannot be added is refused, saying why @v1 [proposed]
+## S1: A submodule that cannot be added is refused, saying why @v1 [proposed]
 
 - Given: the "Add to a code repo" dialog
 - When: the user confirms a folder the specs cannot go into
@@ -41,7 +41,7 @@ chosen.
 [test: a spec repo with no origin has nothing to point the submodule at : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoSubmodule.test.ts#L182 ]
 [test: a failed git submodule add is reported, with nothing committed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoSubmodule.test.ts#L199 ]
 
-## Add the spec repo to a code repo as a submodule @v1 [proposed]
+## S2: Add the spec repo to a code repo as a submodule @v1 [proposed]
 
 - Given: the app has a spec repo open that has an `origin` remote, and the
   machine has git installed
@@ -63,7 +63,7 @@ chosen.
 [test: a clone of the code repo with --recurse-submodules brings the specs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoSubmodule.test.ts#L122 ]
 [test: only the submodule is committed, whatever else is staged in the code repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoSubmodule.test.ts#L129 ]
 
-## Choosing the code repo and the submodule's folder @v1 [proposed]
+## S3: Choosing the code repo and the submodule's folder @v1 [proposed]
 
 - Given: the "Add to a code repo" dialog
 - When: it opens
@@ -82,7 +82,7 @@ chosen.
 [test: the dialog title follows the purpose, never free text from the request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderChooser.test.ts#L160 ]
 [test: the Linux dialog shows the title it is given : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderChooser.test.ts#L184 ]
 
-## Not offered where it cannot run @v1 [proposed]
+## S4: Not offered where it cannot run @v1 [proposed]
 
 - Given: the app runs hosted (app/hosted-app.feature.md), as the public demo
   (app/public-demo.feature.md), or on a machine without git
@@ -94,7 +94,7 @@ chosen.
 
 [test: refused when hosted, in the demo, and without system git : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoSubmodule.test.ts#L208 ]
 
-## The submodule follows the branch the app works on @v1 [proposed]
+## S5: The submodule follows the branch the app works on @v1 [proposed]
 
 - Given: the app's clone of the spec repo is on a branch, e.g. `main`
 - When: the spec repo is added to a code repo as a submodule

@@ -1,5 +1,9 @@
 # Image Editor Markup
 
+**Created by:** Jeffrey Miller
+
+**Updated by:** Jeffrey Miller
+
 When writing and evaluating specs containing images, adding markup annotations to an image allows a user to stay in the spec editor context. SpecDriven supports adding markup to an image in a spec using an integrated editor.
 
 The integrated editor is Excalidraw (editor/excalidraw-support.feature.md) opened on the image. With the Excalidraw diagrams switch on in Settings, every image uploaded to the data repo offers **Mark up**: a button on the image on hover in an editable Preview, and a toolbar button while the caret is inside the image's link. The pane shows the image locked in place — it cannot be selected, moved or erased — with the Rectangle tool selected and every shape drawn red, bold, unfilled and sharp-cornered.
@@ -7,6 +11,10 @@ The integrated editor is Excalidraw (editor/excalidraw-support.feature.md) opene
 Save burns the markup into a PNG of the original's own pixel size — a shape running off the image is cut at its edge — uploads it, and points the image in the body at it, keeping its alt text and width. The PNG also carries the shapes and the original's url, so the markup stays editable. Cancel asks before discarding unsaved markup.
 
 ## S1: Add box markup around a section of an image in the spec. @v1 [proposed]
+
+**Created by:** Jeffrey Miller
+
+**Updated by:** Jeffrey Miller
 
 - **Given** an uploaded image in an editable body, open in the markup pane
 - **When** the user drags across part of the image with the Rectangle tool
@@ -22,6 +30,10 @@ Save burns the markup into a PNG of the original's own pixel size — a shape ru
 
 ## S2: Add an arrow as markup on top of a spec image. @v1 [proposed]
 
+**Created by:** Jeffrey Miller
+
+**Updated by:** Jeffrey Miller
+
 <img src="/api/images/image-markup-ec8a9012.png" alt="image" width="833">
 
 - **Given** an image open in the markup pane
@@ -31,6 +43,10 @@ Save burns the markup into a PNG of the original's own pixel size — a shape ru
 - **And** selecting the arrow shows a handle at each end, which moves that end
 
 ## S3: Allow undo of markup commands @v1 [proposed]
+
+**Created by:** Jeffrey Miller
+
+**Updated by:** Jeffrey Miller
 
 - **Given** markup drawn in the pane
 - **When** the user presses Undo, or `Ctrl/⌘+Z`

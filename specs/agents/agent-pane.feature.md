@@ -1,6 +1,14 @@
 # Coding agent pane
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 ## S1: A Claude turn fails fast when the API proxy does not answer @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a Claude session whose API goes through a proxy (ANTHROPIC_BASE_URL,
   from the environment or Claude Code's settings files) that is not running
@@ -23,6 +31,10 @@
 
 ## S2: The agent pane starts Claude in Auto mode @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the coding agent pane, with the Claude agent chosen
 - When: a new session starts without the user picking a mode
 - Then: it starts in Auto, where Claude handles permission decisions; the
@@ -33,6 +45,10 @@
 [test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L378 ]
 
 ## S3: The folder chip switches the folder the agent works in @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the folder chip in the bar under the pane's message box, marked
   with a ▾
@@ -53,6 +69,10 @@
 
 ## S4: The mode menu describes each mode @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the pane's permission mode control
 - When: the user opens it
 - Then: a "Mode" heading sits over one numbered item per mode, each with a
@@ -63,6 +83,10 @@
 [test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L378 ]
 
 ## S5: The server runs a chat in the folder the pane picked @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: POST /api/agent/chat with an absolute `cwd`
 - When: the session starts

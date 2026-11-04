@@ -1,14 +1,30 @@
 # Project Management (Jira, Linear, etc)
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 ## S1: Add link at spec level @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Each spec (scenario) can have its own link.
 
 ## S2: Add link to feature @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Add link at feature level
 
 ## S3: Publishing links into projected feature (.md) files - Jira @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Given: user settings 'Publish external links' is ON
 Write format: [<program short name>:<ticket id>](<web link)

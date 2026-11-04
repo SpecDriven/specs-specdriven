@@ -1,5 +1,9 @@
 # App start
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 When the application starts, if the settings file does not
 contain the name of the last data repo, the user is asked the name of the data repo.
 
@@ -61,6 +65,10 @@ the app read; when neither exists, the project one is created.
 
 ## S3: a newly picked data folder is pulled @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the user confirms a data folder — in the first-run form or in the
   Data directory dialog
 - When: the folder is accepted
@@ -101,6 +109,10 @@ the app read; when neither exists, the project one is created.
 
 ## S6: changing the data repo @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a data repo is configured, and the sidebar header shows its folder
   name only — parent folders appear in a tooltip, and the full path in the
   edit dialog
@@ -140,6 +152,10 @@ the app read; when neither exists, the project one is created.
 
 ## S9: forgetting a data repo @v1 [proposed]
 
+**Created by:** RomanWright
+
+**Updated by:** RomanWright
+
 - Given: a data repo is configured, and the sidebar header shows its folder
   name only — parent folders appear in a tooltip, and the full path in the
   edit dialog
@@ -150,6 +166,10 @@ the app read; when neither exists, the project one is created.
 
 ## S10: migrating the pre-settings.json layout @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a plain `.specdriven` file (the old layout) is in the project root
 - When: the app starts
 - Then: it is read as the settings file
@@ -158,11 +178,19 @@ the app read; when neither exists, the project one is created.
 
 ## S11: no settings file anywhere @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: neither settings file exists
 - When: the app starts
 - Then: the user is asked for the data repo
 
 ## S12: only the home settings file exists @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: `~/.specdriven/settings.json` names a data repo, and the project has
   no settings file
@@ -171,6 +199,10 @@ the app read; when neither exists, the project one is created.
 - and settings saved from the Settings page go back to the home settings file
 
 ## S13: picking the data directory with the native folder chooser @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the runtime has a native folder chooser (the desktop app, or the
   local web server on macOS)
@@ -190,6 +222,10 @@ the app read; when neither exists, the project one is created.
 [test: POST /api/choose-folder is 501 with no native chooser : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderChooser.test.ts#L145 ]
 
 ## S14: the data repo is pulled on start @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a data repo is configured, and its remote has commits this machine
   does not have yet
@@ -219,12 +255,20 @@ the app read; when neither exists, the project one is created.
 
 ## S16: the project settings file wins @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: both settings files exist
 - When: the app starts
 - Then: the project settings file is used
 - and saving settings leaves the home settings file untouched
 
 ## S17: the server cannot be reached at start @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the web app's server is not running, or takes the page's first
   request and never answers (the desktop app serves itself and cannot hit

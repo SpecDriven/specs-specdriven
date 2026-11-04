@@ -1,5 +1,9 @@
 # Data model integration in Editor
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 If target code repo contains definitions of data entities, we can incorporate field names into the feature file.
 
 Ex: @FirstName, @EmployeeNumber
@@ -7,6 +11,10 @@ Ex: @FirstName, @EmployeeNumber
 Support 'standard' Java POJOs and SAP CDS data layout.
 
 ## S1: Choose entity field @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 When we enter '@' and press tab, the app presents a searchable list of entity fields.
 

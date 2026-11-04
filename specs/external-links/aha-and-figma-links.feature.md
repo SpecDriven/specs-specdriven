@@ -11,7 +11,7 @@ the `.feature.md`.
 Each tool is a setting of its own, off by default, so a team that doesn't use
 Aha! or Figma never sees either. Each link is a url and an optional title.
 
-## Link Aha! and Figma to a feature @v1 [proposed]
+## S1: Link Aha! and Figma to a feature @v1 [proposed]
 
 - Given: a feature is open and the tool is switched on
 - When: the user presses the tool's chip in the feature header
@@ -26,7 +26,7 @@ Aha! or Figma never sees either. Each link is a url and an optional title.
 [test: the chip counts the links, or offers to link one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L134 ]
 [test: a scenario by its document id; the feature itself is target null; a missing one is null : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L167 ]
 
-## Link Aha! and Figma to a scenario @v1 [proposed]
+## S2: Link Aha! and Figma to a scenario @v1 [proposed]
 
 - Given: a scenario is open in the editor pane and has been saved at least
   once, so the document holds an entry for it
@@ -52,7 +52,7 @@ Aha! or Figma never sees either. Each link is a url and an optional title.
 [test: only aha and figma are kinds : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L140 ]
 [test: linking Aha! or Figma is not an edit autosave has to write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinkField.test.tsx#L76 ]
 
-## Settings switch each tool on @v1 [proposed]
+## S3: Settings switch each tool on @v1 [proposed]
 
 - Given: Settings → Aha! & Figma
 - When: the user turns **Aha! links** or **Figma links** on
@@ -67,7 +67,7 @@ Aha! or Figma never sees either. Each link is a url and an optional title.
 [test: turning a tool off keeps the links already recorded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L342 ]
 [test: each tool is on only when /api/state says true : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinkField.test.tsx#L69 ]
 
-## The links survive everything the markdown does @v1 [proposed]
+## S4: The links survive everything the markdown does @v1 [proposed]
 
 - Given: a scenario or feature carries Aha! or Figma links
 - When: the scenario is saved or published; a teammate's plain-markdown push
@@ -83,7 +83,7 @@ Aha! or Figma never sees either. Each link is a url and an optional title.
 [test: two peers linking different records concurrently end with both : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L178 ]
 [test: the projection never carries them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceLinks.test.ts#L186 ]
 
-## The scenario card lists its Aha! and Figma links @v1 [proposed]
+## S5: The scenario card lists its Aha! and Figma links @v1 [proposed]
 
 - Given: a scenario carries Aha! or Figma links and the tool is switched on
 - When: the user looks at its card

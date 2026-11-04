@@ -2,6 +2,10 @@
 
 **Assigned:** David
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 # GitHub Issue (bug) tracking
 
 **Assigned:** David
@@ -12,6 +16,10 @@ Use 'code-repo' in project-settings.json to find repo that holds the GH Issues.
 Allow to access GitHub issues from the app.
 
 ## S1: Close an issue @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: an open issue is open in the pane
 - When: the user presses "Close issue" and confirms
@@ -25,6 +33,10 @@ Allow to access GitHub issues from the app.
 
 ## S2: Comment on an issue @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: an issue is open in the pane
 - When: the user looks below the description
 - Then: the issue's comments are listed, each with its author, when it was
@@ -34,6 +46,10 @@ Allow to access GitHub issues from the app.
   to GitHub and appends it; a blank comment cannot be posted
 
 ## S3: Create a new issue @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the Issues tab is open
 - When: the user presses "+ New issue" (or "New issue" in the command
@@ -47,6 +63,10 @@ Allow to access GitHub issues from the app.
   submitted
 
 ## S4: GitHub issues are controlled by a switch in user settings @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the "GitHub issues" setting is off, as it is by default
 - When: the user looks at the sidebar
@@ -62,6 +82,10 @@ Allow to access GitHub issues from the app.
 
 ## S5: Issue views have urls and find their way into search @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the setting is on
 - When: the user opens `/issues`, `/issues/new` or `/issues/<number>`
 - Then: that view opens with the sidebar on the Issues tab, the window title
@@ -76,6 +100,10 @@ Allow to access GitHub issues from the app.
   rate limit
 
 ## S6: Requests to GitHub carry the user's sign-in @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the user is signed in to GitHub in Settings, or through the GitHub
   CLI
@@ -116,6 +144,10 @@ Allow to access GitHub issues from the app.
 
 ## S8: The Issues tab shows the code repo's GitHub issues @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the GitHub issues setting is on, and the data folder's
   project-settings.json names a `code-repo` whose git `origin` is a GitHub
   repository — in any spelling git writes: https, `git@github.com:`, or
@@ -137,6 +169,10 @@ Allow to access GitHub issues from the app.
   one on a machine with no git
 
 ## S9: Update an issue @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: an issue is open in the pane
 - When: the user presses "Edit" beside the description, changes the Markdown

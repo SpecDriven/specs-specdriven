@@ -1,5 +1,9 @@
 # User Info
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - lower left corner of the screen should show the current user
 - by default this is the user on the OS
 - User Menu will have user info, settings and plugins options
@@ -61,6 +65,10 @@ reports both via `/api/state`.
 
 ## S1: open Plugins @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: the user picks "Plugins" from the user menu, presses `g p` or
   picks Plugins in the command palette
 - Then: the Plugins page takes the editor pane at `/plugins`, with the
@@ -71,6 +79,10 @@ reports both via `/api/state`.
 [test: Settings and Plugins have urls that resolve back to them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/route.test.ts#L328 ]
 
 ## S2: open Settings @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: the user picks "Settings" from the user menu or presses `⌘,`
 - Then: the Settings page takes the editor pane at `/settings`, its
@@ -85,6 +97,10 @@ reports both via `/api/state`.
 
 ## S3: open the user menu @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: the user clicks the chip
 - Then: a menu appears with "User info", "Settings" and "Plugins", and in
   the desktop app the GitHub sign-in entries
@@ -92,15 +108,27 @@ reports both via `/api/state`.
 
 ## S4: see the current user @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: the app is open and no GitHub account is known
 - Then: the lower left corner shows the OS user behind a small avatar chip
 
 ## S5: see the GitHub account @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: a GitHub account is known
 - Then: the chip shows that login instead of the OS user
 
 ## S6: sign in from settings @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: the user clicks "Sign in with GitHub" in Settings
 - Then: the page shows the one-time code and a link to
@@ -147,6 +175,10 @@ reports both via `/api/state`.
 [test: Use GitHub CLI account turns the fallback back on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signOut.test.ts#L85 ]
 
 ## S10: view user info @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: the user picks "User info" from the menu
 - Then: a dialog shows the OS user, the GitHub account, and the name and

@@ -1,8 +1,16 @@
 # Common Editor
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Common set of features for all editors: feature, scenario, task, etc.
 
 ## S1: Increase and decrease font size @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Support Increase and decrease font size. Next to 'H'
 
@@ -29,6 +37,10 @@ Every field that holds prose has the browser's spell checker on: the Markdown ed
 [test: says so when the checker has no guess, and still offers to learn the word : https://github.com/SpecDriven/specdriven-app/blob/main/tests/contextMenu.test.ts#L57 ]
 
 ## S3: web links are cickable @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 a webink of the format 'https://abc.com' should be clickable from the editor.
 

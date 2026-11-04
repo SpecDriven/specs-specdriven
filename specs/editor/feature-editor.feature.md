@@ -1,16 +1,32 @@
 # Feature Editor
 
-## Edit Description button opens description editor @v1 [proposed]
+**Created by:** vydra
+
+**Updated by:** RomanWright
+
+## S1: Edit Description button opens description editor @v1 [proposed]
+
+**Created by:** RomanWright
+
+**Updated by:** RomanWright
 
 Given: A feature exists with a description available.
 When: The user hits the "Edit Description" button in the top right.
 Then: The description editting pane opens and defaults to "Write" mode.
 
-## Edit feature descrition @v1 [proposed]
+## S2: Edit feature descrition @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Editor for the feature description must be on after a new feature is created.
 
-## The description lands in the folder it was typed in @v1 [proposed]
+## S3: The description lands in the folder it was typed in @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a feature is open with its description editor on, and text typed
   since the last autosave tick

@@ -2,6 +2,10 @@
 
 **Assigned:** David
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 A feature, and each of its scenarios, can carry links to the pull requests
 that implement it. The links are bookkeeping around the spec, not the spec:
 they are stored in the feature's Automerge document only
@@ -19,6 +23,10 @@ GitLab merge request; any other https url is accepted as it stands.
 
 ## S1: Link a pull request to a feature @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a feature is open
 - When: the user presses the "Pull requests" chip in the feature header
 - Then: a popover lists the feature's pull requests with a ✕ each, and an
@@ -32,6 +40,10 @@ GitLab merge request; any other https url is accepted as it stands.
 [test: links a scenario, then the feature, answering with the editor's view : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L340 ]
 
 ## S2: Link a pull request to a scenario @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a scenario is open in the editor pane and has been saved at least
   once, so the document holds an entry for it
@@ -58,6 +70,10 @@ GitLab merge request; any other https url is accepted as it stands.
 
 ## S3: The links survive everything the markdown does @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a scenario or feature carries pull request links
 - When: the scenario is saved, proposed or published; the feature is
   renamed or moved; a teammate's plain-markdown push is absorbed as drift;
@@ -79,6 +95,10 @@ GitLab merge request; any other https url is accepted as it stands.
 
 ## S4: The scenario card lists its pull requests @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a scenario carries pull request links
 - When: the user looks at its card
 - Then: a "Pull requests" list at the end of the card, after the automated
@@ -92,6 +112,10 @@ GitLab merge request; any other https url is accepted as it stands.
 [test: the number is read from GitHub and GitLab urls alike : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pullRequests.test.ts#L119 ]
 
 ## S5: The title is read from GitHub @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: a GitHub pull request url is typed into the add field
 - Then: the app asks GitHub for the pull request, with the app's sign-in

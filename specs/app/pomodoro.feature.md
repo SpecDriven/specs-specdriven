@@ -1,5 +1,9 @@
 # Pomodoro
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Not all code should be written by AI agents.
 
 The Pomodoro technique times the work of the person at the keyboard. It is a
@@ -38,7 +42,11 @@ however many AI sessions are running in parallel.
   a **timer icon in the sidebar's header**, left of the coding agent's robot,
   opens and closes it, and closing it does not stop the timer.
 
-## a pomodoro cannot be paused, only abandoned @v1 [proposed]
+## S1: a pomodoro cannot be paused, only abandoned @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: the user presses "Abandon" during focus
 - Then: the interval is recorded as abandoned, it fills no dot, its time still
@@ -50,7 +58,11 @@ however many AI sessions are running in parallel.
 [test: work to begin with, and again after a voided pomodoro : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L47 ]
 [test: splits work from breaks, counts abandoned time, and only completed pomodoros : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L87 ]
 
-## a pomodoro runs out and a break is offered @v1 [proposed]
+## S2: a pomodoro runs out and a break is offered @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: the running Focus interval reaches its planned end
 - Then: it is recorded as completed *at its planned end* rather than at the
@@ -61,7 +73,11 @@ however many AI sessions are running in parallel.
 [test: closeInterval ends the open one at now or at the planned end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L120 ]
 [test: flashes when told to, and the menu offers the settings and to stop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L58 ]
 
-## interval lengths are remembered on this machine @v1 [proposed]
+## S3: interval lengths are remembered on this machine @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: the user changes Focus, Short break, Long break or "Long break every"
   in the settings dialog and saves
@@ -75,7 +91,11 @@ however many AI sessions are running in parallel.
 [test: the form's text becomes clamped preferences : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroSettings.test.tsx#L55 ]
 [test: shows the stored preferences, and no preview for silence : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroSettings.test.tsx#L39 ]
 
-## one timer, however many sessions @v1 [proposed]
+## S4: one timer, however many sessions @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a pomodoro is already running
 - When: the user starts a pomodoro again — the button, the `p` key or the
@@ -89,7 +109,11 @@ however many AI sessions are running in parallel.
 [test: appendInterval opens one, and refuses a second while it runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L114 ]
 [test: only the last interval can be open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L104 ]
 
-## preview the sound that announces a break @v1 [proposed]
+## S5: preview the sound that announces a break @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: the user picks a sound in the settings dialog and presses the ▶ button
 - Then: that sound plays at once
@@ -98,7 +122,11 @@ however many AI sessions are running in parallel.
 [test: offers the four lengths, the sounds with a preview, the tick, and Save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroSettings.test.tsx#L20 ]
 [test: shows the stored preferences, and no preview for silence : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroSettings.test.tsx#L39 ]
 
-## settings saved mid-pomodoro land on the next interval @v1 [proposed]
+## S6: settings saved mid-pomodoro land on the next interval @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a pomodoro is running
 - When: the user opens "Pomodoro settings…" from the bar's ⋯ menu and saves
@@ -112,7 +140,11 @@ however many AI sessions are running in parallel.
 [test: load takes the stored preferences, and savePrefs keeps them for the next timer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L110 ]
 [test: come from the timer's settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L38 ]
 
-## skip a break @v1 [proposed]
+## S7: skip a break @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: the user presses "Skip" during a short or long break
 - Then: the break ends as abandoned and the bar offers the next pomodoro
@@ -123,7 +155,11 @@ however many AI sessions are running in parallel.
 [test: during a break — Skip, the break class, and a coffee : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L39 ]
 [test: work after any break, and the cycle restarts after a long break of any outcome : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L60 ]
 
-## start a pomodoro @v1 [proposed]
+## S8: start a pomodoro @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the Pomodoro is switched on in Settings
 - When: the user presses "Start a pomodoro" in the bar under the sidebar's
@@ -138,7 +174,11 @@ however many AI sessions are running in parallel.
 [test: with no timer running, one button starts a pomodoro — no name, no dialog : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L86 ]
 [test: the rail's idle chip is a timer icon that starts one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L104 ]
 
-## stop the timer @v1 [proposed]
+## S9: stop the timer @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: the user chooses "Stop Pomodoro" from the bar's ⋯ menu, or from the
   command palette
@@ -150,7 +190,11 @@ however many AI sessions are running in parallel.
 [test: nothing happens without a timer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L261 ]
 [test: flashes when told to, and the menu offers the settings and to stop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L58 ]
 
-## the bar shows where the timer stands @v1 [proposed]
+## S10: the bar shows where the timer stands @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Then: the Pomodoro bar shows the phase, the clock counting down, a progress
   line, one dot per completed pomodoro in the current cycle, and the focus
@@ -163,7 +207,11 @@ however many AI sessions are running in parallel.
 [test: fills one dot per completed pomodoro, capped at the cycle length : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L78 ]
 [test: between intervals — no clock, and the button that starts what comes next : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroBar.test.tsx#L48 ]
 
-## the header's icon opens and closes the bar @v1 [proposed]
+## S11: the header's icon opens and closes the bar @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the Pomodoro is switched on
 - Then: a timer icon sits in the sidebar's header, left of the coding agent's
@@ -186,7 +234,11 @@ however many AI sessions are running in parallel.
 [test: closes and stays closed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroPref.test.tsx#L74 ]
 [test: is its own question — closing the bar leaves the feature on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroPref.test.tsx#L87 ]
 
-## the long break comes when the cycle is full @v1 [proposed]
+## S12: the long break comes when the cycle is full @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: as many pomodoros have been completed since the last long break as
   "Long break every" allows
@@ -199,7 +251,11 @@ however many AI sessions are running in parallel.
 [test: honours the timer's own cycle length : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroRules.test.ts#L69 ]
 [test: the next interval follows the rules, and the tick sounds only during focus when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoro.test.ts#L204 ]
 
-## the Pomodoro is controlled by a switch in user settings @v1 [proposed]
+## S13: the Pomodoro is controlled by a switch in user settings @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a device that has never chosen
 - Then: the Pomodoro is **off**: no timer icon in the sidebar's header, no
@@ -217,7 +273,11 @@ however many AI sessions are running in parallel.
 [test: is remembered on the device, and off is stored as a decision : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroPref.test.tsx#L54 ]
 [test: reads off when storage is unavailable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pomodoroPref.test.tsx#L63 ]
 
-## the window title carries the clock @v1 [proposed]
+## S14: the window title carries the clock @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: an interval is running
 - Then: the window title is prefixed with the time left and the phase, as in

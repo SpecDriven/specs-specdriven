@@ -1,5 +1,9 @@
 # Engineering notebook
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 A shared, dated log of what we notice about the way we work and what we
 decide to do about it. Observations ("the drift import bit us twice this
 week") and decisions ("from now on a spec change lands before the code")
@@ -39,6 +43,10 @@ it does.
 
 ## S1: A decision can supersede an earlier one @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a decision entry is open
 - When: the user picks "Supersedes…" in the entry's header and chooses an
   earlier decision from the list
@@ -54,6 +62,10 @@ it does.
 
 ## S2: Deep links @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the setting is on
 - When: the user opens `/notebook/<entry>` — `<entry>` being the file name
   without `.md`, `2026-09-12-spec-before-code` — from the address bar, the
@@ -68,6 +80,10 @@ it does.
 [test: notebook routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L82 ]
 
 ## S3: Entries are shared through git @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: two people work from clones of the same data repo, both with the
   setting on
@@ -87,6 +103,10 @@ it does.
 [test: an entry edited outside the app is absorbed on the next tick : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L319 ]
 
 ## S4: Renaming an entry keeps its date and its links @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: an entry exists, another entry supersedes it, and a third links to
   it in its body
@@ -122,6 +142,10 @@ it does.
 
 ## S5: Search and the command palette @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the setting is on
 - When: the user types in the search field or the command palette
 - Then: entries are found by title and body and listed under a Notebook
@@ -131,6 +155,10 @@ it does.
 
 ## S6: The notebook follows the data folder @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the setting is on and an entry from the current data folder is open
 - When: the user switches to another data folder
 - Then: the Notebook tab lists the new folder's entries, the open entry
@@ -139,6 +167,10 @@ it does.
   behaves (roadmap.feature.md)
 
 ## S7: The notebook is a sidebar tab @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the Engineering notebook setting is on, as it is by default
 - When: the user looks at the sidebar
@@ -161,6 +193,10 @@ it does.
 [test: names the kind and carries its own class : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.tsx#L29 ]
 
 ## S8: The notebook is controlled by a switch in user settings @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a fresh install, or a data folder opened for the first time
 - When: the user looks at the sidebar
@@ -190,6 +226,10 @@ it does.
 [test: an older file with a folder but no plugin list keeps the Notebook on in that folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L153 ]
 
 ## S9: Write an entry @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the Notebook tab is open
 - When: the user presses "+ New entry" (or "New notebook entry" in the

@@ -1,5 +1,9 @@
 # Folders
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Features can be organized into folders. A folder is a plain directory in the
 data repo, so the structure renders naturally on GitHub too.
 
@@ -58,6 +62,10 @@ data repo, so the structure renders naturally on GitHub too.
 
 ## S1: delete a folder @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: user asks to delete a folder with no files anywhere beneath it
 - Then: the folder is removed (a local filesystem operation — git does not
   track empty directories), and so is its empty Automerge mirror directory
@@ -103,6 +111,10 @@ data repo, so the structure renders naturally on GitHub too.
 
 ## S4: deselect a folder with ESC @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: a folder is selected and the user presses ESC outside a dialog or text field
 - Then: the folder is deselected and "+ New folder" creates at the tree root
 - Otherwise: with a dialog open or a field focused, ESC closes/cancels that instead
@@ -139,6 +151,10 @@ data repo, so the structure renders naturally on GitHub too.
 [test: featuresBeneath, folderRenamed and folderOptions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L284 ]
 
 ## S7: move feature to another folder @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - When: user drags a feature onto another folder (or the tree root)
 - Then: the file is moved with `git mv`, keeping its file name

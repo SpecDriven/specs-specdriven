@@ -2,9 +2,17 @@
 
 **Assigned:** David
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 'roadmap' is a special folder which contains regular markdown files. It shows in the sidebar as a Roadmap tab beside the Specs tab. User settings will control the visibility of this folder
 
 ## S1: Create roadmap folder if necessary @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 If user setting for Roadmap is On and the 'roadmap' folder does not exist -- create it.
 On Sync, commit all files in this folder.
@@ -39,6 +47,10 @@ On Sync, commit all files in this folder.
 
 ## S3: The roadmap follows the data folder @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the Roadmap setting is on, and one of the current data folder's
   roadmap pages is open in the editor
 - When: the user switches to another data folder — from the recent folder
@@ -54,6 +66,10 @@ On Sync, commit all files in this folder.
 - and a folder picked in the first-run form lists its pages the same way
 
 ## S4: The roadmap is a sidebar tab @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the Roadmap setting is on
 - When: the user looks at the sidebar

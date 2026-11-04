@@ -1,14 +1,26 @@
 # Spec Editor
 
+**Created by:** jmeowmeow
+
+**Updated by:** vydra
+
 Spec editor will be separate pane that will replace the feature pane with '<' icon to go back to the feature.
 
 ## S1: Adding Scanarios @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 A small dialog should pop up to enter scenario name.
 
 Scenario name should appear above top left corner of the editor.
 
 ## S2: Create New Spec @v1 [published]
+
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
 
 Add scenario.
 This opens the editor dialog for the new spec.
@@ -20,6 +32,10 @@ The escape key or the close-editor widget will leave the scenario in its autosav
 Two buttons available: "Propose" and "Publish".
 
 ## S3: Create New Spec @v2 [proposed]
+
+**Created by:** RomanWright
+
+**Updated by:** vydra
 
 Add scenario.
 This opens the editor dialog for the new spec.
@@ -50,6 +66,10 @@ When the spec is proposed or published, the application stores the author who cr
 [test: new spec has an author — a scenario added by a save is created by whoever saved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L123 ]
 
 ## S5: Delete Published Spec @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Given: deletion of published specs is turned on in user settings
 When: click on Delete button
@@ -113,6 +133,10 @@ too little room.
 [test: on a window too short for both bounds the minimum wins, so the body stays usable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bodyResize.test.ts#L30 ]
 
 ## S8: Spec editor pane @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 The scenario editor is a pane, not a dialog. Opening a scenario — Edit on its
 card, Enter on the highlighted card, New version, or the header's `+` —

@@ -1,5 +1,9 @@
 # Store links to automated tests
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - store links as github urls.
 - Ex: `https://github.com/vydra/GatlingGen/blob/main/app/src/test/java/ggen/GatlingCodeGeneratorTest.java`
 - Display in a table; links are clickable
@@ -52,6 +56,10 @@ plain markdown that renders naturally on GitHub:
 
 ## S1: add a test link @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** jmeowmeow
+
 - When: the user pastes a GitHub url into the edit dialog's Automated tests
   field and presses Add
 - Then: the link joins the scenario's list, and after Save the feature file
@@ -59,10 +67,18 @@ plain markdown that renders naturally on GitHub:
 
 ## S2: correct a test link @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: the user presses ✎ on a link, edits the url and presses Save
 - Then: that row holds the new url, and the others are untouched
 
 ## S3: edit the tests of a published scenario @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** jmeowmeow
 
 - Given: "Show links to automated tests" is ON (the default)
 - When: the user opens a `[published]` scenario through its card's `Edit` link
@@ -72,6 +88,10 @@ plain markdown that renders naturally on GitHub:
 
 ## S4: hide the test links @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** jmeowmeow
+
 - When: the user turns "Show links to automated tests" off in Settings
 - Then: the tables disappear from the scenario cards and the Automated tests
   field disappears from the scenario dialog, but the links stay in the
@@ -80,6 +100,10 @@ plain markdown that renders naturally on GitHub:
   reads `View` and the dialog offers only Close
 
 ## S5: Open test in idea @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 'idea' must be in the PATH
 use ```ln -s "/Applications/IntelliJ IDEA.app/Contents/MacOS/idea" /usr/local/bin/idea``` on Mac to create a symlink
@@ -94,10 +118,18 @@ call shell command like 'idea --line 42 /abs/path/to/Foo.java'
 
 ## S6: see the tests of a scenario @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: a scenario has test links and the setting is ON (the default)
 - Then: the end of the scenario card shows a table of clickable links
 
 ## S7: the add field still holds a url when Save is pressed @v1 [proposed]
+
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
 
 - When: the user pastes a GitHub url into the Automated tests add field and
   presses the dialog's Save without pressing Add

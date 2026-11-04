@@ -1,5 +1,9 @@
 # Desktop app
 
+**Created by:** vydra
+
+**Updated by:** David Vydra
+
 SpecDriven also runs as a native desktop app (Electron), installed from a
 macOS dmg or a Linux AppImage or deb, or on Windows built and started in place
 by `install.ps1` (installation.feature.md). It is the same application as the web
@@ -166,6 +170,10 @@ to the user-only token file next to the home settings file.
 
 [negative]
 
+**Created by:** vydra
+
+**Updated by:** David Vydra
+
 - Given: a fresh desktop build
 - When: `bun run test:desktop` launches it three times, holding each window
   open before asking it to quit
@@ -185,6 +193,10 @@ to the user-only token file next to the home settings file.
 
 ## S2: a Mac builds the Linux app too @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a Mac
 - When: the user runs `bun run build:desktop --linux`, or `--all`
 - Then: the Linux AppImage and deb are built for x64 and arm64 — with
@@ -198,6 +210,10 @@ to the user-only token file next to the home settings file.
 
 ## S3: a maximized session comes back maximized @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the user quit the app with the window maximized
 - When: they launch the app again
 - Then: the window opens maximized, and un-maximizing returns it to its
@@ -207,6 +223,10 @@ to the user-only token file next to the home settings file.
 [test: save then load round-trips : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L120 ]
 
 ## S4: building the macOS app off a Mac stops with the reason @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a Linux machine
 - When: the user runs `bun run build:desktop --mac` or `--all`
@@ -220,6 +240,10 @@ to the user-only token file next to the home settings file.
 
 ## S5: desktop and web share settings @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the web version has recorded a data repo in `~/.specdriven/settings.json`
 - When: the desktop app starts
 - Then: it opens that data repo without asking
@@ -228,6 +252,10 @@ to the user-only token file next to the home settings file.
 [test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L73 ]
 
 ## S6: GitHub data repos are cloned under the app-data directory @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the desktop app
 - When: the user opens a GitHub data repo that is not on the machine yet
@@ -239,6 +267,10 @@ to the user-only token file next to the home settings file.
 
 ## S7: reloading inside the app keeps the spec on screen @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the desktop app is showing a feature at `/features/<path>`
 - When: the window reloads
 - Then: the internal protocol serves the app shell for that url, and the
@@ -248,6 +280,10 @@ to the user-only token file next to the home settings file.
 [test: deep links resolve to paths that won't exist, so the caller serves the shell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L36 ]
 
 ## S8: test link opens in the browser @v1 [published]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a scenario with a link to an automated test on GitHub 
 AND  open links in IntelliJ is Off
@@ -263,6 +299,10 @@ AND  open links in IntelliJ is Off
 
 ## S9: the GitHub sign-in survives a restart without an OS key store @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: a machine whose OS offers no key store, and a user signed in to
   GitHub
 - When: they quit and relaunch the app
@@ -272,6 +312,10 @@ AND  open links in IntelliJ is Off
 [test: token round-trips through the file backend across backend resets : https://github.com/SpecDriven/specdriven-app/blob/main/tests/auth.test.ts#L249 ]
 
 ## S10: the header's icons work inside the drag region @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the macOS desktop app, whose sidebar header is the window drag region
 - When: the user clicks the timer, the Bot, or the sidebar collapse icon at
@@ -284,6 +328,10 @@ AND  open links in IntelliJ is Off
 
 ## S11: the internal protocol serves only the app's bundled files @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the desktop app's internal `app://` origin
 - When: a url asks for a path outside the bundled frontend — `..`, an
   encoded `..`, a smuggled separator
@@ -293,6 +341,10 @@ AND  open links in IntelliJ is Off
 [test: escapes and smuggled separators are rejected : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L42 ]
 
 ## S12: the packaged Linux app opens on a clean machine @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a Linux system with no Electron and no developer tooling installed
 - When: the user installs the deb, or marks the AppImage executable and runs it
@@ -306,6 +358,10 @@ AND  open links in IntelliJ is Off
 
 ## S13: the remembered position was on a monitor that is gone @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the app was last used on an external monitor that is now unplugged
 - When: the app launches
 - Then: the window opens centered at the default 1280×860 on a connected
@@ -314,6 +370,10 @@ AND  open links in IntelliJ is Off
 [test: a window on a disconnected monitor falls back to null : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowState.test.ts#L87 ]
 
 ## S14: the window cannot shrink below a usable size @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the desktop app is open
 - When: the user drags a window edge as far as it will go
@@ -337,6 +397,10 @@ AND  open links in IntelliJ is Off
 [test: the opt-out is scoped to the two headers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L225 ]
 
 ## S16: the window reopens where it was left @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the user resized and moved the window, then quit the app
 - When: they launch the app again

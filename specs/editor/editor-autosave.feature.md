@@ -1,5 +1,9 @@
 # Editor Autosave
 
+**Created by:** jmeowmeow
+
+**Updated by:** vydra
+
 ## S1: A Body's Indentation Survives the Save @v1 [proposed]
 
 - Given: a scenario body whose first line is indented — an indented code block, a nested list item, a tab
@@ -16,11 +20,19 @@ The parser used to trim the body, which took the indentation off its first line.
 
 ## S2: A Failed Autosave Is Retried @v1 [proposed]
 
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
+
 Only a save that lands counts as saved: a failed autosave leaves the editor's
 contents unsaved and reports on the status banner, and the next tick tries
 again.
 
 ## S3: A README Autosave Keeps a Disk Edit @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the README is open in the editor and the file changes on disk (a git
   pull, another editor) before the next autosave
@@ -43,10 +55,18 @@ again.
 
 ## S4: A Scenario With No Name Is Not Autosaved @v1 [proposed]
 
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
+
 A scenario with no name has nothing to be saved under, so no tick saves it.
 The dialog's Save button is disabled for the same reason.
 
 ## S5: An Invalid Autosave Interval Is Refused @v1 [proposed]
+
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
 
 Settings refuses an interval below the 3 second minimum with a message, and
 changes nothing — the interval already saved keeps running. The interval is
@@ -54,11 +74,19 @@ stored in whole seconds.
 
 ## S6: Autosave Cannot Be Switched Off @v1 [proposed]
 
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
+
 The setting is how often autosave runs, not whether it runs. Autosave is
 independent of autosync (ui.feature.md "Settings"): turning autosync off,
 which stores a frequency of 0, leaves autosave running at its own interval.
 
 ## S7: Autosave Never Adds the Same Scenario Twice @v1 [proposed]
+
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
 
 The first tick on a new scenario places it in the feature; every later tick
 rewrites that same entry.
@@ -74,6 +102,10 @@ work rather than overwriting a neighbour.
 
 ## S8: Autosave Only Saves What Changed @v1 [proposed]
 
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
+
 A tick compares what the dialog holds — the name, the version it will save
 under, the status, the body and the test links — against what it last had
 saved. Nothing new, no save.
@@ -82,6 +114,10 @@ A scenario that is opened and read but not edited is never re-saved, so
 reading a scenario costs no commit.
 
 ## S9: Autosave Runs Only While the Editor Is Open @v1 [proposed]
+
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
 
 Ticks start when the scenario edit dialog opens and stop when it closes.
 
@@ -93,12 +129,20 @@ open.
 
 ## S10: Autosave Saves Locally @v1 [proposed]
 
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
+
 An autosave writes the feature locally, exactly as the dialog's Save does; the
 reload cron commits and pushes it (git-operations.feature.md).
 
 Autosave is not a publish — a tick never advances a scenario's status.
 
 ## S11: Autosave Stands Down While a Delete Is Confirmed @v1 [proposed]
+
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
 
 From the moment Delete is pressed in the scenario edit dialog until the
 removal is away, no tick fires: a save landing while the confirmation is on
@@ -107,10 +151,18 @@ being deleted.
 
 ## S12: Autosave Ticks Never Overlap @v1 [proposed]
 
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
+
 A tick that comes round while the previous save is still in flight does
 nothing.
 
 ## S13: Autosave Triggered at Defined Interval @v1 [published]
+
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
 
 SpecDriven saves the contents of the editor at the defined interval.
 
@@ -133,6 +185,10 @@ Text ending inside a fence reads every later scenario heading as fenced content:
 
 ## S15: Autosave Waits While the Name Is Being Typed @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** jmeowmeow
+
 While the caret is in the dialog's title field the scenario's name is only
 half typed, so no tick saves it — a new scenario is not filed as a draft under
 the first few letters of its name, and a rename is not saved part-way through.
@@ -142,6 +198,10 @@ as typed. A published scenario has no editable title, so nothing holds its
 ticks back.
 
 ## S16: Canceling an Autosaved Edit Restores the Scenario @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Cancel undoes the dialog, ticks included. A scenario that was already saved —
 a draft the user saved, or a proposed one — goes back to what the dialog
@@ -156,6 +216,10 @@ A dialog no tick ever saved has nothing to restore — Cancel just closes it.
 
 ## S17: Canceling Autosaved Scenario Deletes it @v1 [published]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Given: a new scenario was autosaved and is in 'draft' status
 When: I Cancel from the scenario editor
 Then: This draft scenario is deleted
@@ -163,6 +227,10 @@ Then: This draft scenario is deleted
 Note: if this scenario was saved by the user, next Cancel jsut exits the editor dialog.
 
 ## S18: Configure Autosave in Settings @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 Given: the Settings page (user-info-settings.feature.md "open Settings")
 When: the user changes "Autosave interval (seconds)" in its Specs section
@@ -181,11 +249,19 @@ the editor pane, not a dialog.
 
 ## S19: Configure Autosave in Settings Dialog @v1 [published]
 
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
+
 The SpecDriven App Settings contain a setting for Autosave Interval in Seconds.
 
 The user can edit the Autosave Interval with a minimum of 3 seconds and a default of 6 seconds.
 
 ## S20: Publish Waits for an In-flight Autosave @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: the scenario editor is open and an autosave is in flight or queued
 - When: the user presses Publish

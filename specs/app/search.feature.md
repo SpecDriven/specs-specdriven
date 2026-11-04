@@ -1,5 +1,9 @@
 # Search
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 Full-text search over every spec in the data repo, so a growing tree of
 feature files stays navigable: any word in a feature description, scenario
 name, or scenario body finds its spec in a couple of keystrokes.
@@ -37,6 +41,10 @@ name, or scenario body finds its spec in a couple of keystrokes.
 
 ## S1: a body match is found with a snippet @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: some scenario body in the data repo contains the word "premium"
   and no scenario or feature name contains it
 - When: the user types `premium` into the search field
@@ -45,6 +53,10 @@ name, or scenario body finds its spec in a couple of keystrokes.
   highlighted
 
 ## S2: clicking a result opens it like its deep link @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a scenario hit for `quotes.feature.md` scenario "Basic quote" v2
 - When: the user clicks the result (or moves the highlight with ↑/↓ and
@@ -64,11 +76,19 @@ name, or scenario body finds its spec in a couple of keystrokes.
 
 ## S3: Escape or ✕ restores the tree @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: an active query with results showing
 - When: the user presses Escape in the field, or clicks the `✕` button
 - Then: the query clears and the sidebar shows the folder tree again
 
 ## S4: name matches rank above body matches @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a scenario named "Premium rules" and another scenario that only
   mentions "premium" in its body
@@ -77,10 +97,18 @@ name, or scenario body finds its spec in a couple of keystrokes.
 
 ## S5: no matches @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - When: the user searches a word that appears nowhere
 - Then: the sidebar shows `No matches for "<query>"` instead of results
 
 ## S6: prefix and fuzzy matches hit @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: specs containing the word "premium"
 - When: the user searches `prem`, or the typo `premum`
@@ -88,11 +116,19 @@ name, or scenario body finds its spec in a couple of keystrokes.
 
 ## S7: search before a data repo is configured @v1 [proposed]
 
+**Created by:** vydra
+
+**Updated by:** vydra
+
 - Given: the settings file has no data repo recorded
 - Then: the repo prompt shows first (app-start.feature.md); the search
   field only exists alongside the sidebar tree once a repo is accepted
 
 ## S8: the index follows external file changes @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
 
 - Given: a search for "premium" returns results
 - When: a spec file is changed, added, or deleted outside the app (editor,
