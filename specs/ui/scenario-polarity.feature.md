@@ -60,9 +60,9 @@ keeps it either way, and a Confluence page groups the scenarios by it.
 - Then: the page is one run of scenarios, as before, whether or not any
   carries the marker
 
-[test: with the setting off the page is unchanged, marker or not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L172 ]
-[test: with it on, a green Positive section then a red Negative one, and no marker on the scenarios : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L177 ]
-[test: a section with no scenario in scope is left out, and the numbers stay the feature's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L191 ]
+[test: with the setting off the page is unchanged, marker or not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L188 ]
+[test: with it on, a green Positive section then a red Negative one, and no marker on the scenarios : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L193 ]
+[test: a section with no scenario in scope is left out, and the numbers stay the feature's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L207 ]
 [test: with the Positive and negative scenarios setting on the page is split by polarity : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L428 ]
 
 ## S5: The pill shows and flips the marker @v1 [proposed]

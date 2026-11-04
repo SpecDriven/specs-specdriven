@@ -35,7 +35,7 @@ name, or scenario body finds its spec in a couple of keystrokes.
 - The list serves at most a handful of screens of results (default 20,
   capped at 50) — ranking, not scrolling, is the tool.
 
-## a body match is found with a snippet @v1 [proposed]
+## S1: a body match is found with a snippet @v1 [proposed]
 
 - Given: some scenario body in the data repo contains the word "premium"
   and no scenario or feature name contains it
@@ -44,7 +44,7 @@ name, or scenario body finds its spec in a couple of keystrokes.
   `› <scenario> v<N>` crumb, and a snippet containing "premium"
   highlighted
 
-## clicking a result opens it like its deep link @v1 [proposed]
+## S2: clicking a result opens it like its deep link @v1 [proposed]
 
 - Given: a scenario hit for `quotes.feature.md` scenario "Basic quote" v2
 - When: the user clicks the result (or moves the highlight with ↑/↓ and
@@ -54,38 +54,45 @@ name, or scenario body finds its spec in a couple of keystrokes.
   exactly as if the deep link had been opened (navigation.feature.md). A
   feature hit opens the feature page. The query is kept so other results
   can be visited.
+- And: the editor the hit opens marks the words the hit matched on, in its
+  source and in its preview alike, and scrolls the first mark into view;
+  opened without a search, it carries no marks
 
-## Escape or ✕ restores the tree @v1 [proposed]
+[test: the source paints the marks over its text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/searchHighlight.test.tsx#L132 ]
+[test: a published scenario's preview marks the rendered text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/searchHighlight.test.tsx#L142 ]
+[test: without terms the editor is as it was — no marks : https://github.com/SpecDriven/specdriven-app/blob/main/tests/searchHighlight.test.tsx#L149 ]
+
+## S3: Escape or ✕ restores the tree @v1 [proposed]
 
 - Given: an active query with results showing
 - When: the user presses Escape in the field, or clicks the `✕` button
 - Then: the query clears and the sidebar shows the folder tree again
 
-## name matches rank above body matches @v1 [proposed]
+## S4: name matches rank above body matches @v1 [proposed]
 
 - Given: a scenario named "Premium rules" and another scenario that only
   mentions "premium" in its body
 - When: the user searches `premium`
 - Then: both are listed and the scenario named "Premium rules" ranks first
 
-## no matches @v1 [proposed]
+## S5: no matches @v1 [proposed]
 
 - When: the user searches a word that appears nowhere
 - Then: the sidebar shows `No matches for "<query>"` instead of results
 
-## prefix and fuzzy matches hit @v1 [proposed]
+## S6: prefix and fuzzy matches hit @v1 [proposed]
 
 - Given: specs containing the word "premium"
 - When: the user searches `prem`, or the typo `premum`
 - Then: the "premium" specs are found either way
 
-## search before a data repo is configured @v1 [proposed]
+## S7: search before a data repo is configured @v1 [proposed]
 
 - Given: the settings file has no data repo recorded
 - Then: the repo prompt shows first (app-start.feature.md); the search
   field only exists alongside the sidebar tree once a repo is accepted
 
-## the index follows external file changes @v1 [proposed]
+## S8: the index follows external file changes @v1 [proposed]
 
 - Given: a search for "premium" returns results
 - When: a spec file is changed, added, or deleted outside the app (editor,

@@ -57,7 +57,7 @@ in the feature's Automerge document and written into the `.feature.md` while
   shows, so S3 is the same scenario in the app and in the wiki
 - and a draft, which has no number in the app, has none on the page
 
-[test: each scenario leads with its number, an anchor linking to itself, as in the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L136 ]
+[test: each scenario leads with its number, an anchor linking to itself, as in the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L152 ]
 
 ## S4: Publish a feature to Confluence @v1 [proposed]
 
@@ -166,28 +166,28 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and everything taken from the feature is escaped, and a link to anything
   but a web, mail or relative address stays text
 
-[test: description, then each scenario with its steps and tests, no status or version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L115 ]
-[test: published only leaves the rest out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L127 ]
-[test: a draft shows no status or version, and a scenario name is escaped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L149 ]
-[test: says so when no scenario is in scope : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L157 ]
+[test: description, then each scenario with its steps and tests, no status or version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L131 ]
+[test: published only leaves the rest out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L143 ]
+[test: a draft shows no status or version, and a scenario name is escaped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L165 ]
+[test: says so when no scenario is in scope : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L173 ]
 [test: escapes text, attributes included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L41 ]
 [test: bold, italic, strike and code : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L46 ]
-[test: links only to safe destinations; a javascript url stays text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L52 ]
-[test: a bare url is a link, its trailing punctuation left outside : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L59 ]
-[test: a test reference is a link named after the test : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L64 ]
-[test: an image on the web is embedded by url; one the app stores as the page's attachment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L70 ]
-[test: names each stored image a page shows once, in order; escaped text is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L207 ]
+[test: links only to safe destinations; a javascript url stays text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L68 ]
+[test: a bare url is a link, its trailing punctuation left outside : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L75 ]
+[test: a test reference is a link named after the test : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L80 ]
+[test: an image on the web is embedded by url; one the app stores as the page's attachment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L86 ]
+[test: names each stored image a page shows once, in order; escaped text is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L223 ]
 [test: the images a page shows are uploaded as its attachments, once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L516 ]
 [test: a page whose images cannot be attached is still published, with a warning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L584 ]
 [test: several images go up in one upload : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L539 ]
 [test: an image edited in place since it was stored is attached again under the name its bytes earn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L555 ]
-[test: renames the attachments it is told to, every use of each, and leaves the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L216 ]
+[test: renames the attachments it is told to, every use of each, and leaves the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L232 ]
 [test: a stored name while the bytes are the ones it was given for; its stem with their hash once they differ : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L63 ]
-[test: paragraphs keep their soft breaks : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L82 ]
-[test: headings are shifted under the heading they sit in, at most h6 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L86 ]
-[test: lists, task items, quotes and rules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L90 ]
-[test: tables, with a header row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L97 ]
-[test: fenced code is a code macro, CDATA kept whole : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L103 ]
+[test: paragraphs keep their soft breaks : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L98 ]
+[test: headings are shifted under the heading they sit in, at most h6 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L102 ]
+[test: lists, task items, quotes and rules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L106 ]
+[test: tables, with a header row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L113 ]
+[test: fenced code is a code macro, CDATA kept whole : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L119 ]
 [test: published only leaves the proposed scenarios out of the page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L420 ]
 
 ## S9: Changes made in Confluence are not overwritten unnoticed @v1 [proposed]

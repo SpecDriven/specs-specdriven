@@ -97,7 +97,7 @@ should, and the installer one-liner from `main` is the way forward once.
 [test: the installer's output is kept, newest last, to the last thousand lines : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L288 ]
 [test: the real runner streams a command's output line by line and reports a command that is not there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L296 ]
 [test: GET says where things stand; check, install and restart drive them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L342 ]
-[test: while installing, the installer's output is on the page and nothing is offered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L90 ]
+[test: while installing, the installer's output is on the page and nothing is offered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L101 ]
 [test: the installer's last lines are what the page shows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L69 ]
 [test: SPECDRIVEN_HANDOVER=0 builds the macOS app and opens nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L872 ]
 [test: SPECDRIVEN_HANDOVER=0 makes the AppImage runnable but does not start it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L898 ]
@@ -116,7 +116,11 @@ should, and the installer one-liner from `main` is the way forward once.
   window — not before, so a build that cannot start leaves it to go back to
 - and a bundle running from the install's own `release/` directory is not
   copied anywhere: the new one is started from there
+- and once a newer release is found, the Updates page on macOS says "You may
+  need to request Admin privileges on Mac/OSX", since replacing the app in
+  Applications can ask for an administrator
 
+[test: on macOS, a newer release warns that Admin privileges may be needed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L90 ]
 [test: a Mac app run from the install's own release directory is not copied anywhere, the new one just starts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L77 ]
 [test: a Mac app in Applications is replaced where it is, and started from there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L57 ]
 [test: the running bundle steps aside as .previous, a stale .previous first going, and the new one is copied to its path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L147 ]
@@ -150,7 +154,7 @@ should, and the installer one-liner from `main` is the way forward once.
 [test: the desktop app with Bun, its source and a shell can; each missing piece is a reason : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L186 ]
 [test: a check that finds nothing is a 502 with the reason; an install that cannot run is a 409 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L375 ]
 [test: the demo and a hosted copy refuse every route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L397 ]
-[test: where the app cannot update itself, the reasons and the installer one-liner take Install's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L105 ]
+[test: where the app cannot update itself, the reasons and the installer one-liner take Install's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L116 ]
 
 ## S6: A failed install changes nothing that runs @v1 [proposed]
 
@@ -164,7 +168,7 @@ should, and the installer one-liner from `main` is the way forward once.
   "a build that fails leaves the source in place")
 
 [test: an installer that fails, or finishes without what it promised, leaves a failed install and changes nothing that runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L265 ]
-[test: a failed install shows the reason, the output and the way to try again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L97 ]
+[test: a failed install shows the reason, the output and the way to try again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L108 ]
 
 ## S7: Where the app cannot replace itself it says where the new one is @v1 [proposed]
 
@@ -177,7 +181,7 @@ should, and the installer one-liner from `main` is the way forward once.
 
 [test: an Applications folder that is not writable, or no bundle at all, leaves the swap to the user and says where the new app is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L90 ]
 [test: a new version with no built app cannot be started : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L125 ]
-[test: a restart the shell could not do says so, with the new app's path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L118 ]
+[test: a restart the shell could not do says so, with the new app's path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L129 ]
 
 ## S8: The desktop app checks once a day and marks the version chip @v1 [proposed]
 
