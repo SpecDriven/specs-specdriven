@@ -1,6 +1,7 @@
 data-format.feature.md
 data-viewer.feature.md
 code-repo-submodule.feature.md
+project-settings.feature.md
 desktop-app.feature.md
 custom-attributes.feature.md
 engineering-notebook.feature.md

@@ -65,7 +65,7 @@ it does.
   setting off the url goes home
 
 [test: an entry url round-trips to its file, and a foreign url does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L269 ]
-[test: notebook routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L78 ]
+[test: notebook routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L82 ]
 
 ## S3: Entries are shared through git @v1 [proposed]
 

@@ -145,4 +145,4 @@ New spec has an author
 [test: a settings file that is not JSON is refused, not overwritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L241 ]
 [test: with authors-in-markdown on, the files carry the lines, and switching reprojects them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L266 ]
 [test: the projection writes authors only when asked, and either form is a projection : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L193 ]
-[test: project settings route matches PUT only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L25 ]
+[test: project settings routes match GET and PUT, and the specs link its POST : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L26 ]
