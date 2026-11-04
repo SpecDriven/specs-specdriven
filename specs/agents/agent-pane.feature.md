@@ -79,6 +79,10 @@
 - Then: the message box holds a bar under the text, as in Claude Desktop:
   the folder on the left; the model, the effort and the permission mode on
   the right; Send at the end
+- and the bar is always one row: a narrow pane shortens the folder's name
+  and drops the chips' chevrons rather than wrapping, the model, effort and
+  mode keep their names whole, and the pane is never narrower than 420px
+  (only a phone-wide screen shortens every name to keep Send in the box)
 - and the model menu lists the models the agent offers, by name with a line
   about each, the one the session runs on checked and the one new sessions
   start on badged "Default"; a session that reports the full id of an alias
@@ -95,6 +99,7 @@
 - and the header keeps the sessions menu, the status dot, the billing chip,
   Stop and close
 
+[test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L192 ]
 [test: the model menu lists the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L424 ]
 [test: a model off the list still shows, and with no default the agent's own leads the menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L440 ]
 [test: the effort menu offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L449 ]
