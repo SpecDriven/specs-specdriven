@@ -139,6 +139,9 @@ If error code, display the error to the user in an error box.
 - and with no Claude Code on this machine and none published for its
   platform, the section says to install the claude command instead
 
+[test: an API key is not an account: the section says so and asks for a sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L38 ]
+[test: the check's finding is one sentence: the account, and whether Claude Code lists its models : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L50 ]
+
 [test: parseLoginStatus reads what claude auth status --json says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L290 ]
 [test: loginStatus asks the CLI without any key in its environment, and says missing without one : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L300 ]
 [test: startLogin drives claude auth login, hands the page the url, and is done once the CLI says so : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L377 ]
@@ -146,6 +149,9 @@ If error code, display the error to the user in an error box.
 [test: the sign-in routes drive the CLI and poll it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L601 ]
 [test: a sign-in page opened from the printed link finishes with the code it shows, pasted in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L423 ]
 [test: POST /api/claude/login/code hands the CLI the code from the sign-in page : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L720 ]
+[test: signed out, the section says so plainly and offers Sign in with the email field, and a check : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L20 ]
+[test: signed in, the section names the account and offers Check sign-in and Sign out — no email field, no Switch account : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L28 ]
+[test: POST /api/claude/login/check asks the CLI afresh and, signed in, a Claude Code for the account's models : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L836 ]
 
 ## S8: Sign in to Claude without Claude Code installed @v1 [proposed]
 
