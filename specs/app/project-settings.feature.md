@@ -44,11 +44,11 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 - and a folder that is not there offers neither either
 
 [test: the four states are missing, linked here, linked elsewhere and a real folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsLink.test.ts#L27 ]
-[test: the specs link row says what is at <code repo>/specs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L76 ]
+[test: the specs link row says what is at <code repo>/specs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L77 ]
 [test: create makes a relative link to the data repo's spec tree, once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsLink.test.ts#L44 ]
 [test: remove unlinks a symlink, whatever it points at, and refuses a real folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsLink.test.ts#L59 ]
-[test: shows each repo's specs link and saves every change the moment it is made : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L128 ]
-[test: a refusal shows as the error line and leaves the page as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L240 ]
+[test: shows each repo's specs link and saves every change the moment it is made : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L129 ]
+[test: a refusal shows as the error line and leaves the page as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L241 ]
 
 ## S2: Add and remove code repositories @v1 [proposed]
 
@@ -68,7 +68,7 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 
 [test: code repos are stored relative when beside the data repo, the default only when not first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L112 ]
 [test: a sibling path, a nested one and a stranger's are stored as the file should hold them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L132 ]
-[test: a bare folder name is a sibling of the data folder; paths are kept as typed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L59 ]
+[test: a bare folder name is a sibling of the data folder; paths are kept as typed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L60 ]
 [test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L339 ]
 
 ## S3: Choose the default code repository @v1 [proposed]
@@ -92,7 +92,7 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 - and a feature's Assigned dropdown offers the new list
 
 [test: members are written as objects, in order, without duplicates : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L140 ]
-[test: a member is a name, with the email in angle brackets : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L69 ]
+[test: a member is a name, with the email in angle brackets : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L70 ]
 
 ## S5: Open Project settings from the user menu @v1 [proposed]
 
@@ -157,9 +157,10 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 - and a clone never lands on a folder that is there, and the demo, the
   read-only site and a hosted worker offer none
 
-[test: the suggested url is the data repo's GitHub owner with the code repo's folder name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L48 ]
-[test: a GitHub url is cloned by its canonical url, any other url as typed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L60 ]
-[test: the clone runs in the background and its job clears once the folder is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L69 ]
-[test: a failed clone keeps its error and leaves no half-made folder behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L97 ]
+[test: the suggested url is the data repo's GitHub owner with the code repo's folder name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L51 ]
+[test: a GitHub url is cloned by its canonical url, any other url as typed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L63 ]
+[test: the clone runs in the background and its job clears once the folder is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L72 ]
+[test: a failed clone keeps its error and leaves no half-made folder behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L100 ]
+[test: the route starts the clone, and the folder counts as missing until the clone is done : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L122 ]
 [test: a missing repo is cloned from the suggested url, shows the clone running, then is found : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L262 ]
 [test: a failed clone shows its error with a way to try again; nothing is offered where cloning is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L326 ]

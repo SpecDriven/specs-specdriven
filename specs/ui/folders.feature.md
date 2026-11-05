@@ -89,7 +89,7 @@ data repo, so the structure renders naturally on GitHub too.
 
 [test: deleteFolder with force removes a folder with features in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L174 ]
 [test: deleteFolder with force git-rms the directory, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L738 ]
-[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L191 ]
+[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L192 ]
 
 ## S3: describe a folder @v1 [proposed]
 
@@ -137,7 +137,7 @@ data repo, so the structure renders naturally on GitHub too.
 [test: setFolderDescription writes, keeps extra lines, and clears display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L414 ]
 [test: setFolderDescription commits and pushes display-name.txt, and git-rms it when cleared : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L792 ]
 [test: setFolderDescription moves a legacy description.txt to display-name.txt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L865 ]
-[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L191 ]
+[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L192 ]
 
 ## S6: move a feature from its menu @v1 [proposed]
 
@@ -204,7 +204,7 @@ scenarios and move them up or down" in ui.feature.md).
 [test: buildTree orders subfolders by folder order, the rest by name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L525 ]
 [test: folderNamesMoved and folderDrop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L540 ]
 [test: setFolderOrder commits and pushes folder-order.txt; renameFolder keeps the place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L815 ]
-[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L191 ]
+[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L192 ]
 
 ## S10: order features @v1 [proposed]
 
@@ -236,7 +236,7 @@ folders do ("order folders").
 [test: featureNamesMoved and featureDrop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L633 ]
 [test: setFeatureOrder commits and pushes feature-order.txt; renameFeatureFile keeps the place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L841 ]
 [test: a feature order reads as a reorder of the folder's features : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L202 ]
-[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L191 ]
+[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L192 ]
 
 ## S11: new folder gets a display name @v1 [proposed]
 
@@ -278,4 +278,4 @@ folders do ("order folders").
 [test: moveFolder git-mvs the directory and its documents to the top level, commits and pushes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L711 ]
 [test: folderDropsInto refuses its own parent, itself and its subfolders : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L268 ]
 [test: featuresBeneath, folderRenamed and folderOptions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L284 ]
-[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L191 ]
+[test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L192 ]
