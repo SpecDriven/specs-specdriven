@@ -9,5 +9,3 @@ https://google.github.io/oss-fuzz/getting-started/new-project-guide/javascript-l
 https://www.linkedin.com/pulse/ai-instinct-most-important-professional-muscle-build-decade-bayly-f5kke/
 
 https://taskfile.dev/
-
-https://dora.dev/capabilities/documentation-quality/

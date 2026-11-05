@@ -1,7 +1,7 @@
 # Documentation research
 
-**Author:** David Vydra
+https://dora.dev/research/2022/questions/#documentation
 
-**Date:** 2026-11-05
+https://dora.dev/research/2023/questions/#documentation
 
-**Kind:** Observation
+https://dora.dev/research/2024/questions/#documentation
