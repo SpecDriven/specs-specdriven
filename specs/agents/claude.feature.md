@@ -164,7 +164,6 @@ If error code, display the error to the user in an error box.
 [test: signed in, the section names the account and offers Check sign-in and Sign out — no email field, no Switch account : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L28 ]
 [test: POST /api/claude/login/check asks the CLI afresh and, signed in, a Claude Code for the account's models : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L854 ]
 [test: a token login names no account, even with a profile in Claude Code's config : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L843 ]
-[test: asking for the account's models gives up when Claude Code does not answer in time : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L152 ]
 
 ## S8: Sign in to Claude without Claude Code installed @v1 [proposed]
 
