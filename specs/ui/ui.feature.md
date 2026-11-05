@@ -43,8 +43,11 @@ the page.
 ## Feature entry menu
 
 Each feature entry in the left pane has a drop down menu (a `⋯` button,
-visible on hover) with three items: `Rename`, `Move to folder…` and `Delete`
-— all on the menu itself, with no submenu.
+visible on hover) with `Rename`, `Move up`, `Move down`, `Move to folder…`,
+`Copy link` and `Delete` — all on the menu itself, with no submenu, in that
+order. Every row's `⋯` in the sidebar — a folder's, a scenario's, a roadmap
+page's, a test plan's — keeps the same order: name, place, share, derive,
+delete.
 
 - `Rename` renames the underlying file.
   - Only the file name to the left of the dot is shown and edited; the
@@ -55,6 +58,8 @@ visible on hover) with three items: `Rename`, `Move to folder…` and `Delete`
     the Edit link on the main page.
 - `Move to folder…` offers the list of folders and moves the file into the
   chosen one — the same `git mv` as dragging it there (folders.feature.md).
+- `Copy link` puts the feature's url on the clipboard (navigation.feature.md
+  "share a link").
 - `Delete` deletes the feature file after a confirmation — a `git rm`,
   committed and pushed.
 - ESC or a click anywhere else closes the menu.

@@ -242,6 +242,8 @@ Allow to collapse and expand the outline.
 
 - Sidebar entries and scenario card titles are real links: right-click →
   Copy Link and cmd-click → new tab work natively
+- Every sidebar row's ⋯ menu — a feature's, a scenario's, a roadmap page's,
+  a test plan's — has the same "Copy link" action as the card
 - Every scenario card has a "Copy link" action that puts the absolute
   versioned url on the clipboard; its label flips to "Copied" for 2 sec
 - The feature page's ⋯ menu has the same "Copy link" action for the

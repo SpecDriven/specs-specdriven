@@ -15,8 +15,9 @@ name, or scenario body finds its spec in a couple of keystrokes.
   top-left of the UI, styled with the design-system tokens.
 - Placeholder: `Search specs`. While the field has text, a `✕` clear
   button shows inside the field on the right.
-- `/` and Cmd/Ctrl+F focus the field from anywhere in the app, except
-  while a dialog is open or the user is typing in another field.
+- `/` and Cmd/Ctrl+K focus the field from anywhere in the app, except
+  while a dialog is open or the user is typing in another field. Cmd/Ctrl+F
+  stays the browser's own Find.
 
 ## Results
 
