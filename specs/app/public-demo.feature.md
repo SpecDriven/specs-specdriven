@@ -40,8 +40,8 @@ plugins in tab order"). What a demo could show next is on the roadmap
 [test: denying the write still closes the turn, and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L248 ]
 [test: a follow-up message gets a scripted reply, and the session stays up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L265 ]
 [test: a chat started with no specs gets the short reply, not the spec script : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L281 ]
-[test: Stop mid-turn returns the session to idle without ending it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L297 ]
-[test: the whole session writes no file into the demo dataset : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L305 ]
+[test: Stop mid-turn returns the session to idle without ending it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L310 ]
+[test: the whole session writes no file into the demo dataset : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L318 ]
 
 ## S2: A page load starts the demo afresh @v1 [proposed]
 
