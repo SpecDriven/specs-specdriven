@@ -6,6 +6,8 @@ Look for a workflow which will allow going from a repository to extract intent f
 
 Prepare by using the reverse eng process on smaller code bases
 - maybe three small repos to reverse engineer specs and intent
+- compare Devin DeepWiki (I tried it out a couple of times); are there other comparisons
+- are there similar skills to be used like Devin DeepWiki?
 
 Aim for deliverable:
 - a blog-entry or short paper
@@ -15,4 +17,3 @@ Aim for deliverable:
 Extra bonus:
 - assets to extract for training
 - when you need Working Effectively With Legacy Code
-- compare Devin DeepWiki (I t
