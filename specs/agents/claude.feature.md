@@ -26,10 +26,7 @@ environment it is started with, so the app passes its choice as the
 `--settings` flag, which wins over every file; empty values there clear a
 proxy for the account sign-in.
 
-[test: detectClaudeProxy reads the environment, then each settings file, the later winning : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L126 ]
-[test: checkProxy asks for the model list and reads the answer : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L258 ]
-[test: GET /api/claude/auth reports the mode, the login and the proxy — never a token : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L527 ]
-[test: POST /api/claude/proxy/check reports on the proxy with the token in use : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L596 ]
+[test: detectClaudeProxy reads the environment, then each settings file, the later winning : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L1 ]
 [test: a store round-trips through an owner-only file under the app's home, and is cached : https://github.com/SpecDriven/specdriven-app/blob/main/tests/secrets.test.ts#L39 ]
 [test: a corrupt or empty file reads as no secret : https://github.com/SpecDriven/specdriven-app/blob/main/tests/secrets.test.ts#L58 ]
 
@@ -53,11 +50,8 @@ The choice saves itself the moment it changes, to
 
 Note: this section is not offered in the demo or the hosted app, which run no Claude of their own
 
-[test: the stored choice is normalized; a url must be http(s) : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L155 ]
-[test: with nothing stored the mode is inferred — a proxy when Claude Code names one, else the account : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L181 ]
-[test: the launch steers Claude Code through --settings, which beats its own files : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L208 ]
-[test: the demo and the hosted app have no Claude sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L756 ]
-[test: the sign-in Settings chose reaches Claude as a --settings override (src/auth.ts) : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1181 ]
+[test: the stored choice is normalized; a url must be http(s) : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L1 ]
+[test: the sign-in Settings chose reaches Claude as a --settings override (src/auth.ts) : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1 ]
 
 ## S3: Claude cli options @v1 [proposed]
 
@@ -123,7 +117,13 @@ If error code, display the error to the user in an error box.
 - and once the browser comes back the page shows the account signed in
 - and when the sign-in page was opened from that link rather than by the
   CLI, it shows a code instead; pasted into the page under "Finish sign-in",
-  it completes the sign-in, and a code the CLI refuses ends it with why
+  it completes the sign-in — while Claude Code checks the code the page says
+  so and takes no other; a code the CLI refuses but waits past, one pasted
+  incomplete, say, shows the CLI's words under the field and the page takes
+  another; and a code the CLI gives up on ends the sign-in with why
+- and every step of the sign-in — its start, the page the CLI printed, a
+  code handed to it or refused, the CLI's exit, the end — is in the app's
+  log under "agent-claude", the code itself never
 - and the section says plainly who is signed in — "Signed in as" the
   account's email — or "Not signed in", with the email field and "Sign in"
   only while nobody is
@@ -148,22 +148,13 @@ If error code, display the error to the user in an error box.
   no account, token or key it says "Not signed in", whatever `claude auth
   status` said, and lists no models
 
-[test: an API key is not an account: the section says so and asks for a sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L38 ]
-[test: the check's finding is one sentence: the account, and whether Claude Code lists its models : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L50 ]
+[test: an API key is not an account: the section says so and asks for a sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L1 ]
+[test: the check's finding is one sentence: the account, and whether Claude Code lists its models : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L1 ]
 
-[test: a bearer token in Claude Code's settings file is not a sign-in: the CLI is asked with the account's --settings : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L316 ]
+[test: a bearer token in Claude Code's settings file is not a sign-in: the CLI is asked with the account's --settings : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L1 ]
 
-[test: parseLoginStatus reads what claude auth status --json says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L291 ]
-[test: loginStatus asks the CLI without any key in its environment, and says missing without one : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L301 ]
-[test: startLogin drives claude auth login, hands the page the url, and is done once the CLI says so : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L397 ]
-[test: a sign-in can be cancelled, and a bad email or a platform with no Claude Code is refused : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L425 ]
-[test: the sign-in routes drive the CLI and poll it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L621 ]
-[test: a sign-in page opened from the printed link finishes with the code it shows, pasted in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L443 ]
-[test: POST /api/claude/login/code hands the CLI the code from the sign-in page : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L740 ]
-[test: signed out, the section says so plainly and offers Sign in with the email field, and a check : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L20 ]
-[test: signed in, the section names the account and offers Check sign-in and Sign out — no email field, no Switch account : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L28 ]
-[test: POST /api/claude/login/check asks the CLI afresh and, signed in, a Claude Code for the account's models : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L854 ]
-[test: a token login names no account, even with a profile in Claude Code's config : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L843 ]
+[test: parseLoginStatus reads what claude auth status --json says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L1 ]
+[test: a code handed to the CLI shows as being checked, and one it refused shows the CLI's words under the field : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L1 ]
 
 ## S8: Sign in to Claude without Claude Code installed @v1 [proposed]
 
@@ -184,12 +175,9 @@ If error code, display the error to the user in an error box.
 - and a turn that fails because Claude is not signed in offers "Open
   Settings" beside its hint
 
-[test: the pins are for the SDK version package.json depends on, one per platform : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/binary.test.ts#L46 ]
-[test: a download that matches its pin is kept as the Claude Code to run, executable : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/binary.test.ts#L72 ]
-[test: a download that does not match its pin is refused and leaves nothing behind : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/binary.test.ts#L100 ]
-[test: with no Claude Code anywhere, the email sign-in fetches this platform's first, then signs in with it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L468 ]
+[test: the pins are for the SDK version package.json depends on, one per platform : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/binary.test.ts#L1 ]
+[test: with no Claude Code anywhere, the email sign-in fetches this platform's first, then signs in with it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L1 ]
 [test: a failed turn keeps why it failed even when the reply already said it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L112 ]
-[test: a sign-in whose download fails ends with why : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L507 ]
 [test: an agent with its own Settings section offers the way there, and only that agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L108 ]
 [test: a turn that failed to sign in offers the agent's Settings section beside its hint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L120 ]
 
@@ -278,20 +266,11 @@ The switch is ON by default, and the setting is saved to
 - and a model picked in the coding agent pane's bar becomes this default, and
   the field shows it
 
-[test: the default model is an alias or a model id, trimmed; anything else is Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L168 ]
-[test: the plugin adopts the old top-level keys once, and PUT /api/claude/settings changes its own section : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L775 ]
-[test: signed in with a Claude account, the default model is a dropdown of every model the account offers : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L87 ]
-[test: GET /api/claude/models lists the signed-in account's models, asked of Claude Code once per sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L639 ]
-[test: a Claude Code that does not list its models in time is an error, and the next ask tries again : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L692 ]
-[test: Claude Code's model rows become account models, dropping what is no model id and repeats : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L110 ]
-[test: asking for the account's models gives up when Claude Code does not answer in time : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L152 ]
-[test: the account's models are asked for once, shared, and again after the TTL or a sign-in change : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L172 ]
-[test: a new session starts on the default model Settings names, else the first listed, else Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1054 ]
+[test: the default model is an alias or a model id, trimmed; anything else is Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L1 ]
+[test: signed in with a Claude account, the default model is a dropdown of every model the account offers : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L1 ]
+[test: a new session starts on the default model Settings names, else the first listed, else Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1 ]
 [test: a session carried on under a new sign-in keeps the model it ran on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1070 ]
-[test: a model asked for wins over the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L67 ]
-[test: no model asked for is the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L73 ]
-[test: no model asked for and none in Settings leaves Claude Code's own default : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L79 ]
-[test: no model asked for and none in Settings is the first the data repo lists for Claude : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L85 ]
+[test: a model asked for wins over the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L1 ]
 
 ## S13: Pick Claude's model and effort in the pane @v1 [proposed]
 
@@ -313,5 +292,4 @@ The switch is ON by default, and the setting is saved to
 [test: the pane switches a running Claude's model and effort, and the pick becomes Settings → Claude's default : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1107 ]
 [test: the pane's choices are the account's models, else the data repo's, else Claude Code's aliases : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1124 ]
 [test: a session carried on under a new sign-in keeps the model and effort the pane switched to : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1169 ]
-[test: an account model keeps the effort levels Claude Code lists for it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L126 ]
-[test: Default effort is a select of Claude Code's levels, Claude Code's own default when none is set : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L140 ]
+[test: an account model keeps the effort levels Claude Code lists for it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L1 ]
