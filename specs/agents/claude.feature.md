@@ -112,18 +112,17 @@ If error code, display the error to the user in an error box.
 - Then: it says who the Claude CLI is signed in as, or that nobody is
 - When: an email is entered and "Sign in…" pressed
 - Then: the CLI's browser sign-in opens, prefilled with that email; while it
-  is under way the page says so and links the sign-in page, in case the
-  browser did not open by itself; "Cancel" stops it
-- and once the browser comes back the page shows the account signed in
-- and when the sign-in page was opened from that link rather than by the
-  CLI, it shows a code instead; pasted into the page under "Finish sign-in",
-  it completes the sign-in — while Claude Code checks the code the page says
-  so and takes no other; a code the CLI refuses but waits past, one pasted
-  incomplete, say, shows the CLI's words under the field and the page takes
-  another; and a code the CLI gives up on ends the sign-in with why
-- and every step of the sign-in — its start, the page the CLI printed, a
-  code handed to it or refused, the CLI's exit, the end — is in the app's
-  log under "agent-claude", the code itself never
+  is under way the page says to finish signing in in the browser window
+  Claude Code opened and that nothing is pasted into the app; "Cancel"
+  stops it
+- and the sign-in finishes in the browser alone: once it is approved there
+  the page shows the account signed in — there is no code field, no link
+  to a sign-in page of the app's own (the page the CLI prints for a browser
+  that did not open shows a code meant for a terminal), and the app opens
+  no browser page beside the CLI's
+- and every step of the sign-in — its start, the page the CLI printed, the
+  CLI's exit, the end, and a sign-in ended without a login with the CLI's
+  last words — is in the app's log under "agent-claude"
 - and the section says plainly who is signed in — "Signed in as" the
   account's email — or "Not signed in", with the email field and "Sign in"
   only while nobody is
@@ -153,8 +152,11 @@ If error code, display the error to the user in an error box.
 
 [test: a bearer token in Claude Code's settings file is not a sign-in: the CLI is asked with the account's --settings : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L323 ]
 
+[test: a sign-in finishes in the browser alone: a CLI that also offers to take a code gets none, and the ended sign-in is logged : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L464 ]
+[test: there is no route for a sign-in code: the browser finishes the sign-in, the page only polls : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L752 ]
+
 [test: parseLoginStatus reads what claude auth status --json says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L298 ]
-[test: a code handed to the CLI shows as being checked, and one it refused shows the CLI's words under the field : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L75 ]
+[test: while the browser sign-in is under way, the section says to finish it there and offers only Cancel — no code field, no link : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L75 ]
 
 ## S8: Sign in to Claude without Claude Code installed @v1 [proposed]
 
@@ -249,12 +251,21 @@ The switch is ON by default, and the setting is saved to
   dropdown of them alone, the first chosen until another is, and a new Claude
   starts on the one it shows; an empty field with no list leaves Claude
   Code's own default, whatever its settings or account pick
-- and while Claude signs in with a Claude account, the dropdown offers every
-  model that account offers instead — what Claude Code's own model menu
+- and while Claude signs in with a Claude account, the dropdown offers the
+  models that account offers instead — what Claude Code's own model menu
   lists for it, such as "Opus 5.5 — opus" — asked of a Claude Code started
   for nothing else, which sends nothing to the API; it still shows the model
   a new Claude starts on, and the list is asked for again after a sign-in or
   a sign-out
+- and that list is one row per model: the row Claude Code names for it
+  (`default`, `opus`, `sonnet`, `haiku`, Fable), never the explicit ids of
+  the same models an organization is also offered (`claude-opus-4-8`,
+  `claude-opus-4-7`, …), which would only lengthen the menu
+- and the proxy's model names in Claude Code's own settings or the
+  environment (ANTHROPIC_MODEL, ANTHROPIC_DEFAULT_*_MODEL, the gateway's
+  model discovery) are set aside for the account like its proxy and keys,
+  so the list carries the account's models under their own names, not
+  "Set by ANTHROPIC_DEFAULT_MODEL"
 - and the value saves itself when the field loses focus or Enter is pressed,
   to the plugin's section of .specdriven/settings.json, and a value with
   spaces or that is no model id is refused with a message
@@ -268,6 +279,8 @@ The switch is ON by default, and the setting is saved to
 
 [test: the default model is an alias or a model id, trimmed; anything else is Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L169 ]
 [test: signed in with a Claude account, the default model is a dropdown of every model the account offers : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L88 ]
+[test: Claude Code's model rows become account models, dropping what is no model id and repeats : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L111 ]
+[test: the launch steers Claude Code through --settings, which beats its own files : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L209 ]
 [test: a new session starts on the default model Settings names, else the first listed, else Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1088 ]
 [test: a session carried on under a new sign-in keeps the model it ran on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1070 ]
 [test: a model asked for wins over the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L67 ]
