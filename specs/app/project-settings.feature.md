@@ -104,7 +104,7 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 - and in the demo and on the read-only site the page shows the settings
   without the controls
 
-[test: where the settings are read-only, the rows show and the controls do not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L261 ]
+[test: where the settings are read-only, the rows show and the controls do not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L365 ]
 [test: project settings routes match GET and PUT, and the specs link its POST : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L26 ]
 
 ## S6: The settings file is created for every data folder @v1 [proposed]
@@ -132,3 +132,34 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 
 [test: the older single code-repo key reads as a list of one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L67 ]
 [test: a bare member list becomes an object, and the authorship switch keeps the other keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L155 ]
+
+## S8: A code repo that is not on this computer is offered for cloning @v1 [proposed]
+
+- Given: a data folder whose project settings name a code repository whose
+  folder is not on this computer — `../acme-app` beside a data repo cloned
+  from GitHub, say
+- When: the app opens the data folder — at start, or on switching to it
+- Then: it asks once per missing repository, the default first, whether to
+  clone it, naming the folder it is cloned into
+- and the url is filled in from the data repo's own GitHub owner with the
+  repository's folder name — `https://github.com/acme/acme-app` beside
+  `github.com/acme/acme-specs` — and can be changed before cloning
+- When: the user confirms
+- Then: the clone runs in the background, through the app's GitHub sign-in
+  as the data repo's clone does, and Project settings opens with the row
+  saying it is cloning
+- and once the folder is there the row shows it found, with its specs
+  symlink state, and coding sessions and the Issues tab can use it
+- and a clone that fails says why on the row, leaves no half-made folder,
+  and offers **Try again…**
+- and a row whose folder is missing offers **Clone…** on the Project
+  settings page at any time
+- and a clone never lands on a folder that is there, and the demo, the
+  read-only site and a hosted worker offer none
+
+[test: the suggested url is the data repo's GitHub owner with the code repo's folder name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L48 ]
+[test: a GitHub url is cloned by its canonical url, any other url as typed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L60 ]
+[test: the clone runs in the background and its job clears once the folder is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L69 ]
+[test: a failed clone keeps its error and leaves no half-made folder behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L97 ]
+[test: a missing repo is cloned from the suggested url, shows the clone running, then is found : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L262 ]
+[test: a failed clone shows its error with a way to try again; nothing is offered where cloning is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L326 ]
