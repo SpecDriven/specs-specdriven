@@ -4,7 +4,7 @@
 
 **Created by:** vydra
 
-**Updated by:** vydra
+**Updated by:** Jeffrey Miller
 
 Excalidraw is an open-source proejct for creating diagrams.
 
@@ -14,9 +14,9 @@ We should be able to use it from inside of our editor.
 
 **Created by:** vydra
 
-**Updated by:** vydra
+**Updated by:** Jeffrey Miller
 
-If Excalidra support is enabled in user settings, show Excalidra icon.
+If Excalidraw support is enabled in user settings, show Excalidraw icon.
 
 Click on the icon to open Excalidaraw pane and use it to create the diagram.
 
