@@ -323,3 +323,41 @@ Plugins can be developed in any repository and then deployed to https://github.c
 
 [test: a marketplace whose history was rewritten upstream is re-cloned, and one that cannot be reached keeps its copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L268 ]
 [test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L512 ]
+
+## S12: A tab's sidebar uses the section head @v1 [proposed]
+
+- Given: a plugin's tab in the sidebar — Roadmap, Tasks, Notebook, Issues,
+  Tests, Fix this app
+- When: the user looks at its list
+- Then: it opens with the same section head the Specs tree has: the tab's
+  name in small capitals (a link to the tab's overview where it has one —
+  Tests, Issues), a Filter chip where the list has facets (issue state,
+  tasks open or done), and the tab's "new" actions as quiet icon buttons
+  with tooltips at the head's right edge — never a row of buttons of its
+  own
+- And: `c` on the tab creates the tab's own thing — a page, a task, an
+  entry, a case, an issue, a fix — and the tab's tooltip in the tab bar
+  carries its `g` chord
+- And: the list is a keyboard tree like the Specs tree: ↑ ↓ Home End walk
+  its rows, Shift+F10 opens the focused row's ⋯ menu, and a row opened from
+  elsewhere — a deep link, the command palette — is scrolled into view
+- And: clicking the tab only turns the sidebar to the list; the head's
+  link and the rows open the pane
+
+## S13: A tab's rows use the sidebar row @v1 [proposed]
+
+- Given: a plugin's tab in the sidebar
+- When: the user reads its list
+- Then: every row has the shape the Specs tree's rows have — a leading
+  glyph, the name, a trailing mark, the ⋯ menu — on the same padding, the
+  open row filled as the open feature's is, and what the row carries takes
+  a slot rather than a shape of its own: a roadmap page's assignee as an
+  avatar at the end, a task's done mark at the start with the name muted
+  rather than struck through, an entry's kind as a glyph over a line with
+  its author and day, an issue's number at the start, a fix's status as a
+  glyph
+- And: a plan's progress is the same ring a feature's publish rollup is,
+  never a count in text
+- And: the tab bar is one row however many tabs there are — the open tab
+  shows its name, the others their icon with a tooltip, except in the
+  drawer on a small screen, where every tab keeps its name
