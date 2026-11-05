@@ -188,6 +188,7 @@ If error code, display the error to the user in an error box.
 [test: a download that matches its pin is kept as the Claude Code to run, executable : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/binary.test.ts#L72 ]
 [test: a download that does not match its pin is refused and leaves nothing behind : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/binary.test.ts#L100 ]
 [test: with no Claude Code anywhere, the email sign-in fetches this platform's first, then signs in with it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L468 ]
+[test: a failed turn keeps why it failed even when the reply already said it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L112 ]
 [test: a sign-in whose download fails ends with why : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L507 ]
 [test: an agent with its own Settings section offers the way there, and only that agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L108 ]
 [test: a turn that failed to sign in offers the agent's Settings section beside its hint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L120 ]

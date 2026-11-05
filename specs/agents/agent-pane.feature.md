@@ -42,7 +42,7 @@
 - and Codex starts in Manual (its "auto" is the same policy), and pi has no
   permission gate
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L378 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L398 ]
 
 ## S3: The folder chip switches the folder the agent works in @v1 [proposed]
 
@@ -64,7 +64,7 @@
 - and the data repo is offered by its absolute path, though settings may
   name it relative to the app
 
-[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L339 ]
+[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L359 ]
 [test: GET /api/state names the open folder's absolute path, though settings name it relative to the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L157 ]
 
 ## S4: The mode menu describes each mode @v1 [proposed]
@@ -80,7 +80,7 @@
   starts in
 - and pressing a number key (1–5) chooses that mode directly
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L378 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L398 ]
 
 ## S5: The server runs a chat in the folder the pane picked @v1 [proposed]
 
@@ -123,10 +123,10 @@
 - and the header keeps the sessions menu, the status dot, the billing chip,
   Stop and close
 
-[test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L192 ]
-[test: the model menu lists the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L430 ]
-[test: a model off the list still shows, and with no default the agent's own leads the menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L446 ]
-[test: the effort menu offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L455 ]
+[test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L208 ]
+[test: the model menu lists the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L450 ]
+[test: a model off the list still shows, and with no default the agent's own leads the menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L466 ]
+[test: the effort menu offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L475 ]
 [test: the pane switches a running session's model and effort, and the pick becomes the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L226 ]
 [test: an agent's choices and defaults are listed for the pane and kept through the provider : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L267 ]
 
@@ -147,6 +147,6 @@
   spaces or an effort that is no level is refused, and an agent with no
   effort setting is never handed one
 
-[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L482 ]
-[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L476 ]
+[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L502 ]
+[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L496 ]
 [test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L203 ]
