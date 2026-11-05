@@ -124,7 +124,18 @@ If error code, display the error to the user in an error box.
 - and when the sign-in page was opened from that link rather than by the
   CLI, it shows a code instead; pasted into the page under "Finish sign-in",
   it completes the sign-in, and a code the CLI refuses ends it with why
-- and "Sign out" signs the CLI out; "Switch account…" starts another sign-in
+- and the section says plainly who is signed in — "Signed in as" the
+  account's email — or "Not signed in", with the email field and "Sign in"
+  only while nobody is
+- and "Sign out" signs the CLI out, after which the section says "Not
+  signed in" and offers "Sign in" again; another account takes a sign-out
+  first, there is no "Switch account"
+- and "Check sign-in" asks the CLI afresh who is signed in and, with an
+  account, starts a Claude Code under it for the models it offers — saying
+  what it found, who or nobody, and why Claude Code could not answer when it
+  could not — and "Default model" shows that fresh list from then on
+- and once a sign-in is done, "Default model" asks for the account's models
+  again, even for the account that was signed in before
 - and with no Claude Code on this machine and none published for its
   platform, the section says to install the claude command instead
 
