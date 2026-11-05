@@ -14,3 +14,5 @@ Aim for deliverable:
 
 Extra bonus:
 - assets to extract for training
+- when you need Working Effectively With Legacy Code
+- compare Devin DeepWiki (I t
