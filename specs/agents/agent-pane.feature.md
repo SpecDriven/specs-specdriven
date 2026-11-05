@@ -150,3 +150,42 @@
 [test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L502 ]
 [test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L496 ]
 [test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L203 ]
+
+## S8: Paste an image into the message @v1 [proposed]
+
+- Given: the coding agent pane, with a session or on the new-session screen,
+  and an agent that reads images (Claude, Codex and Pi do)
+- When: the user pastes an image into the message box — a screenshot, or an
+  image copied in a browser
+- Then: it shows as a thumbnail above the text, with a button to remove it;
+  up to 10 go with one message
+- and the message may be the images alone, with no text
+- and Send hands the agent the images with the text: Claude gets image
+  blocks before the text, Codex `localImage` items, Pi the images of its
+  `prompt` command
+- and the app keeps each image in the session's own folder beside its
+  record (never the data repo), and the message's bubble in the transcript
+  shows it; a click opens it full size over the pane, a click or Escape
+  closes it
+- and a paste that also carries plain text — a copy from a spreadsheet, a
+  word processor or Finder — pastes the text, not the picture beside it
+- and an image that is not a PNG, JPEG, GIF or WebP, or is over 3.75 MB, is
+  scaled down and re-encoded in the browser until it fits (the Claude API
+  refuses one whose base64 is over 5 MB)
+- and an agent that reads no images refuses the paste by name, and the
+  server refuses images for it with a 409; images that are not images, too
+  many or too big are a 400 (413 for the size)
+- and the demo's simulated Claude takes a pasted image and says it cannot
+  look at it
+
+[test: a paste's image files are taken, unless it also carries text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L87 ]
+[test: an image goes as it is when its type and size fit, else it is scaled to fit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L100 ]
+[test: a pasted image shows as a thumbnail, can be removed, and is sent with the first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L146 ]
+[test: an agent that reads no images refuses the paste by name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L221 ]
+[test: images pasted into a message reach the provider, are kept in the session's folder and served back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L431 ]
+[test: a session started with pasted images hands them to the provider with its first turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L471 ]
+[test: pasted images are refused for an agent that reads none, and when they are not images, too many or too big : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L487 ]
+[test: a pasted image gets a reply that says the simulation cannot look at it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L297 ]
+[test: pasted images go to Claude as image blocks before the text, and images alone carry no text block : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L431 ]
+[test: pasted images go to Codex as localImage items, read from the copies the app keeps : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L680 ]
+[test: pasted images go to pi with its prompt command, as its image items : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-pi/test/piChat.test.ts#L476 ]
