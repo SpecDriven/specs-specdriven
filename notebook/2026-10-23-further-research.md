@@ -11,3 +11,8 @@ https://www.linkedin.com/pulse/ai-instinct-most-important-professional-muscle-bu
 https://taskfile.dev/
 
 ![image](/api/images/image-a5720cc8.png)
+
+
+- https://leansoftware.ai/go/clinic-nov-5-LL-3-brains
+- https://leansoftware.ai/go/clinic-nov-5-coding-agent-workshop
+- https://leansoftware.ai/go/clinic-nov-5-software-factory-course
