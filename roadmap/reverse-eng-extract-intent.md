@@ -4,5 +4,12 @@ Re the research item for looking at the sample event sourcing app to extract int
 
 Look for a workflow which will allow going from a repository to extract intent from it.
 
+
+
 Aim for deliverable:
-- 
+- a blog-entry or short paper
+- describes with screenshots what process and tools were used
+- talks about why and how
+
+Extra bonus:
+- assets to extract for training
