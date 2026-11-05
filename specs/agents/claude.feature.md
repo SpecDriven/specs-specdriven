@@ -51,7 +51,7 @@ The choice saves itself the moment it changes, to
 Note: this section is not offered in the demo or the hosted app, which run no Claude of their own
 
 [test: the stored choice is normalized; a url must be http(s) : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L156 ]
-[test: the sign-in Settings chose reaches Claude as a --settings override (src/auth.ts) : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1214 ]
+[test: the sign-in Settings chose reaches Claude as a --settings override (src/auth.ts) : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1215 ]
 
 ## S3: Claude cli options @v1 [proposed]
 
@@ -151,9 +151,9 @@ If error code, display the error to the user in an error box.
 [test: an API key is not an account: the section says so and asks for a sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L38 ]
 [test: the check's finding is one sentence: the account, and whether Claude Code lists its models : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L50 ]
 
-[test: a bearer token in Claude Code's settings file is not a sign-in: the CLI is asked with the account's --settings : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L317 ]
+[test: a bearer token in Claude Code's settings file is not a sign-in: the CLI is asked with the account's --settings : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L323 ]
 
-[test: parseLoginStatus reads what claude auth status --json says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L292 ]
+[test: parseLoginStatus reads what claude auth status --json says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L298 ]
 [test: a code handed to the CLI shows as being checked, and one it refused shows the CLI's words under the field : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/accountSection.test.tsx#L75 ]
 
 ## S8: Sign in to Claude without Claude Code installed @v1 [proposed]
@@ -176,7 +176,7 @@ If error code, display the error to the user in an error box.
   Settings" beside its hint
 
 [test: the pins are for the SDK version package.json depends on, one per platform : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/binary.test.ts#L46 ]
-[test: with no Claude Code anywhere, the email sign-in fetches this platform's first, then signs in with it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L505 ]
+[test: with no Claude Code anywhere, the email sign-in fetches this platform's first, then signs in with it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L482 ]
 [test: a failed turn keeps why it failed even when the reply already said it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L112 ]
 [test: an agent with its own Settings section offers the way there, and only that agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L108 ]
 [test: a turn that failed to sign in offers the agent's Settings section beside its hint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L120 ]
@@ -267,8 +267,8 @@ The switch is ON by default, and the setting is saved to
   the field shows it
 
 [test: the default model is an alias or a model id, trimmed; anything else is Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L169 ]
-[test: signed in with a Claude account, the default model is a dropdown of every model the account offers : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L87 ]
-[test: a new session starts on the default model Settings names, else the first listed, else Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1087 ]
+[test: signed in with a Claude account, the default model is a dropdown of every model the account offers : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L88 ]
+[test: a new session starts on the default model Settings names, else the first listed, else Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1088 ]
 [test: a session carried on under a new sign-in keeps the model it ran on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1070 ]
 [test: a model asked for wins over the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L67 ]
 
@@ -292,4 +292,4 @@ The switch is ON by default, and the setting is saved to
 [test: the pane switches a running Claude's model and effort, and the pick becomes Settings → Claude's default : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1107 ]
 [test: the pane's choices are the account's models, else the data repo's, else Claude Code's aliases : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1124 ]
 [test: a session carried on under a new sign-in keeps the model and effort the pane switched to : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1169 ]
-[test: an account model keeps the effort levels Claude Code lists for it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L126 ]
+[test: an account model keeps the effort levels Claude Code lists for it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L143 ]
