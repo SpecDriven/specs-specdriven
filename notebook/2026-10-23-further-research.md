@@ -9,3 +9,5 @@ https://google.github.io/oss-fuzz/getting-started/new-project-guide/javascript-l
 https://www.linkedin.com/pulse/ai-instinct-most-important-professional-muscle-build-decade-bayly-f5kke/
 
 https://taskfile.dev/
+
+![image](/api/images/image-a5720cc8.png)
