@@ -4,7 +4,8 @@ Re the research item for looking at the sample event sourcing app to extract int
 
 Look for a workflow which will allow going from a repository to extract intent from it.
 
-
+Prepare by using the reverse eng process on smaller code bases
+- maybe three small repos to reverse engineer specs and intent
 
 Aim for deliverable:
 - a blog-entry or short paper
