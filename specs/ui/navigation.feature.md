@@ -241,7 +241,9 @@ Allow to collapse and expand the outline.
 **Updated by:** vydra
 
 - Sidebar entries and scenario card titles are real links: right-click →
-  Copy Link and cmd-click → new tab work natively
+  Copy Link and cmd-click → new tab work natively — except a scenario row
+  in the tree, where cmd-click and shift-click pick rows instead ("delete
+  several scenarios at once"); right-click → Open in new tab still works
 - Every sidebar row's ⋯ menu — a feature's, a scenario's, a roadmap page's,
   a test plan's — has the same "Copy link" action as the card
 - Every scenario card has a "Copy link" action that puts the absolute
@@ -379,3 +381,32 @@ Allow to collapse and expand the outline.
 [test: foldersAbove lists the folders over a file, outermost first, without the root : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L223 ]
 [test: revealed opens every collapsed folder above the file and leaves the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L229 ]
 [test: revealed hands the same set back when nothing above the file is collapsed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioNav.test.ts#L238 ]
+
+## S19: delete several scenarios at once @v1 [proposed]
+
+- Given: one or more features' scenario outlines expanded in the sidebar tree
+- When: the user ⌘-clicks (Ctrl-click off the Mac) scenario rows, or
+  shift-clicks one to pick every row from the last one picked — or from
+  the open scenario — down to it; Shift+↑/↓ grows the pick from the
+  keyboard
+- Then: the picked rows are highlighted, and a bar above the tree says how
+  many are selected, with Delete and a clear button; Esc clears the pick and
+  a plain click on a row clears it and opens that row as before
+- When: the user presses Delete on the bar, the picked rows' ⋯ menu
+  ("Delete N scenarios") or the Delete / Backspace key in the tree
+- Then: one confirmation names how many go, and from how many features;
+  confirmed, every picked scenario is deleted the way its own Delete would
+  delete it — a draft out of the document, a proposed or published one out
+  of the file
+- And: published scenarios go only while Settings allows deleting them: the
+  confirmation is then the Danger Zone one, and the published ones in a
+  feature go in one commit, pushed right away; with the switch off they
+  stay, and the confirmation says how many
+- And: a pick that is no longer there — deleted or renamed meanwhile — fails
+  its feature's delete before anything in it is deleted
+
+[test: a draft and a proposed scenario go in one request; the rest stay : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deleteScenarios.test.ts#L73 ]
+[test: with the setting off, a batch holding a published scenario is refused whole : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deleteScenarios.test.ts#L91 ]
+[test: with the setting on, published, proposed and draft scenarios go together : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deleteScenarios.test.ts#L104 ]
+[test: a pick that is no longer there fails the batch before anything is deleted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deleteScenarios.test.ts#L119 ]
+[test: a malformed or empty list is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deleteScenarios.test.ts#L131 ]
