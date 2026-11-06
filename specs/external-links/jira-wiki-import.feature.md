@@ -66,7 +66,7 @@ again into the feature they made.
 [test: is built the way Jira shows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraUrl.test.ts#L41 ]
 [test: is a Jira issue, a Confluence page, or nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L34 ]
 [test: at most five of each kind, and at least one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L49 ]
-[test: a modal dialog with the url field, Add and Analyze, naming the folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L77 ]
+[test: a modal dialog with the url field, Add and Analyze, naming the folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L79 ]
 [test: a url is a Jira issue or a Confluence page row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L147 ]
 [test: Add waits for an issue or page url on a site with a token, within the limits : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L162 ]
 [test: refuses more than five of a kind, an unknown url, and a site without a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L227 ]
@@ -87,7 +87,7 @@ again into the feature they made.
 - and the Codex plugin answers such turns through `codex exec`, read-only
   and ephemeral, the answer's shape given as a schema
 
-[test: the agent is named with one, chosen with two, missed with none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L90 ]
+[test: the agent is named with one, chosen with two, missed with none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L92 ]
 [test: the agents offered are the available ones that answer one-shot turns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L142 ]
 [test: needs an agent that answers one-shot turns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L243 ]
 [test: asks the chosen agent, and passes the names already shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L289 ]
