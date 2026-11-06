@@ -20,12 +20,12 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: the default is the lowest-ranked provider whose CLI is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L35 ]
 [test: oneShot picks the preferred provider when it answers, else the first by rank that does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L50 ]
 [test: registering an id again replaces the provider, and a disposer removes only its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L65 ]
-[test: a plugin's provider drives a session from start to end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L87 ]
-[test: the pane's permission card answers the provider, and a withdrawn or ended question is denied : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L119 ]
-[test: Stop and the mode go to the provider, and are refused where it declares neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L164 ]
-[test: a turn the provider refuses is noted and the composer freed; a provider that dies ends the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L302 ]
-[test: the provider's facts reach the pane through ready and update, and quiet keeps them off the log : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L319 ]
-[test: switching a plugin off ends the sessions its provider was driving : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L413 ]
+[test: a plugin's provider drives a session from start to end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L88 ]
+[test: the pane's permission card answers the provider, and a withdrawn or ended question is denied : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L120 ]
+[test: Stop and the mode go to the provider, and are refused where it declares neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L165 ]
+[test: a turn the provider refuses is noted and the composer freed; a provider that dies ends the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L303 ]
+[test: the provider's facts reach the pane through ready and update, and quiet keeps them off the log : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L320 ]
+[test: switching a plugin off ends the sessions its provider was driving : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L414 ]
 [test: a Claude plugin switched off takes its routes and its provider away : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L812 ]
 [test: an installed plugin whose manifest says autoEnable switches itself on in the open folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L238 ]
 [test: an agent plugin that arrives while the window is open offers the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L60 ]
@@ -70,7 +70,7 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
   the first one whose command is on PATH, by rank; the "Run in" choice of the
   session dialog lists the agents the plugins supply, by rank
 
-[test: no plugin, the wrong plugin, or a missing CLI is a clear refusal, and the default is the first by rank : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L348 ]
+[test: no plugin, the wrong plugin, or a missing CLI is a clear refusal, and the default is the first by rank : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L349 ]
 [test: a session's agent is read off the descriptors, or a fallback when its plugin is gone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L26 ]
 [test: only agents whose CLI is there are usable, in rank order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L42 ]
 [test: the state's agents list is what the pane reads, and nothing stands in for it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L49 ]
@@ -175,3 +175,27 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: an app that keeps no model lists leaves the default model a free field : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L56 ]
 [test: Claude's list comes from the app's state payload, keyed by agent : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L62 ]
 [test: the host reads Claude's list from the data repo's agent-models.json, in order : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L69 ]
+
+## S8: The core hands a provider the MCP servers a session should have @v1 [proposed]
+
+- Given: a plugin's coding agent (S1)
+- When: the core starts a session on it
+- Then: the start options carry `mcpServers` — each a name, a command, its
+  arguments and the environment it needs: a server over stdio — when the app
+  has any to offer: the Confluence server while a wiki token is saved
+  (external-links/confluence-wiki.feature.md); none, and the field absent,
+  otherwise
+- and the provider hands them to its agent the way that agent takes MCP
+  servers — Claude as the Agent SDK's stdio server configs under the
+  server's name, Codex as `-c mcp_servers.<name>=…` overrides on
+  `codex app-server`, the user's own config untouched — and a provider whose
+  agent takes none ignores the field
+- and no token travels in the options: the environment names the file the
+  server reads
+
+[test: a saved wiki token hands the provider the Confluence MCP server; none, nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L525 ]
+[test: the MCP servers the app asks for reach the SDK as stdio servers, by name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1278 ]
+[test: mcpServerConfigs keys the SDK's stdio configs by server name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1305 ]
+[test: the MCP servers the app asks for reach `codex app-server` as -c overrides, never the user's config : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L980 ]
+[test: strings are quoted with their quotes, backslashes and control characters escaped : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1002 ]
+[test: a server is one inline table under its name, and an odd name is made a bare key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1008 ]

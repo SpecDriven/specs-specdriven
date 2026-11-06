@@ -281,3 +281,103 @@ in the feature's Automerge document and written into the `.feature.md` while
 [test: publishes each feature in turn, forcing only the conflicts the user chose to replace : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L166 ]
 [test: stops at a failure every feature would meet, a refused token or a wiki with no answer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L190 ]
 [test: Publish sends the checked features not yet published in this run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L208 ]
+
+## S12: An agent session can read the wiki @v1 [proposed]
+
+- Given: this device holds a token for a wiki (S1)
+- When: a coding agent session starts — in the agent pane, on Claude or Codex
+- Then: the app hands the session an MCP server of its own,
+  `specdriven-confluence`, with three read-only tools: `get_page` (a
+  page's title and body as markdown, by its link or its id), `search_pages`
+  (the pages whose text matches words or a phrase, within one space when
+  asked) and `list_children` (the pages under a page)
+- and the server reads the tokens from the app's own token file on every
+  call — a token saved while the session runs counts at once — and no token
+  is handed to the agent itself: the agent learns the wikis' urls, never a
+  token
+- and without a token for any wiki the session gets no such server; the demo
+  and the hosted app hand out none
+- and the agent's own permission rules cover the tools as they cover any
+  other: in a mode that asks, the first call raises the pane's permission
+  card
+
+[test: no wiki token, no server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L47 ]
+[test: a saved token brings the Confluence server, run from the app's source with its token file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L51 ]
+[test: the demo and the hosted app hand out none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L65 ]
+[test: a saved wiki token hands the provider the Confluence MCP server; none, nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L525 ]
+[test: three read-only tools, under the server's name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L217 ]
+[test: the instructions name the saved wikis, never a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L208 ]
+[test: no token saved is said in so many words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L152 ]
+[test: one wiki needs no base; several do, and the message lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L156 ]
+[test: the MCP servers the app asks for reach the SDK as stdio servers, by name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1278 ]
+[test: the MCP servers the app asks for reach `codex app-server` as -c overrides, never the user's config : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L980 ]
+
+## S13: The agent reads a page by its link @v1 [proposed]
+
+- Given: an agent session with the wiki server
+- When: the agent calls `get_page` with a page's link —
+  `…/spaces/KEY/pages/ID/Title`, `…/pages/viewpage.action?pageId=ID` or
+  `…/display/KEY/Title` — or with a page id, and the wiki's url when several
+  wikis are saved
+- Then: it gets the page's title, url, id, space and version, then the body
+  as markdown — the export view, macros expanded, as "Import from
+  Jira/Wiki" reads it — cut at 60,000 characters with a line saying so
+- and a page the wiki has not, a link to a wiki without a token, a link that
+  names no page, or a token the wiki rejects comes back as the tool's
+  refusal in one sentence, never as a broken session
+
+[test: get_page reads a page by its link as markdown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L226 ]
+[test: get_page reads a page by id, and by its title url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L239 ]
+[test: a page Confluence has not is a refusal, not a crash : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L245 ]
+[test: a rejected token is said as Confluence's refusal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L255 ]
+[test: a page url picks its wiki and names the page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L163 ]
+[test: an id names a page on the one wiki, or on base : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L173 ]
+[test: a long page is cut and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L183 ]
+[test: a page says where it is before what it says : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L202 ]
+
+## S14: Searching the wiki, and walking it, from the agent @v1 [proposed]
+
+- Given: an agent session with the wiki server
+- When: the agent calls `search_pages` with words or a phrase, a space key
+  to narrow to and how many pages at most; or `list_children` with a page's
+  link or id
+- Then: it gets a list of pages — each a link with its title, id, space and
+  who last changed it when the wiki says — the pages whose text matches, in
+  the wiki's own ranking (CQL `text ~`), or the pages directly under the
+  page, in the wiki's order, following the wiki's pages of results up to the
+  limit
+- and an empty answer says so in one line
+
+[test: search_pages finds pages by text, within a space when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L262 ]
+[test: list_children lists the pages under a page, following Confluence's pages of results : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L274 ]
+[test: hits are a list of links, with who changed them when known : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L189 ]
+
+## S15: A terminal session uses the same server @v1 [proposed]
+
+- Given: the app runs from a checkout, with a wiki token saved
+- When: the user registers the server with their agent's command line —
+  `claude mcp add specdriven-confluence -- bun <checkout>/src/mcp/confluence.ts`
+- Then: that session has the same three tools, reading the same token file
+  (`~/.specdriven/confluence-tokens.json`);
+  `SPECDRIVEN_CONFLUENCE_TOKENS_FILE` in its environment names another file
+- and over stdio nothing the server or the app's modules print reaches the
+  agent as protocol: everything the console would say goes to stderr
+
+[test: over stdio, as an agent starts it, the tokens come from the file the environment names : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L313 ]
+[test: the environment names it, else the app's own file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L300 ]
+[test: a missing or corrupt file is no wikis; a good one its records : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L305 ]
+
+## S16: The desktop app lends its tokens only while it runs @v1 [proposed]
+
+- Given: the desktop app, which keeps the tokens OS-encrypted
+- When: an agent session starts
+- Then: the app writes the wikis and their tokens to an owner-only file in
+  its own data folder (`confluence-tokens.mcp.json`) and starts the server
+  from its own bundle, run as node, pointed at that file
+- and the file follows the tokens — one saved or removed rewrites it — and is
+  removed when the app quits
+- and a session of the web server points the server at the app's own token
+  file instead
+
+[test: the desktop app says how to run it and where the tokens are : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L74 ]
+[test: the desktop app's export is the records, tokens included, owner-only, and follows every change : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L88 ]

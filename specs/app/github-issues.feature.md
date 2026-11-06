@@ -62,7 +62,33 @@ Allow to access GitHub issues from the app.
 - and Enter in the title field creates the issue; a blank title cannot be
   submitted
 
-## S4: GitHub issues are controlled by a switch in user settings @v1 [proposed]
+## S4: Draft of a new issue is kept until it is created @v1 [proposed]
+
+- Given: the user is writing a new issue
+- When: they type a title or a description
+- Then: what they typed is saved as a draft on this device as they type, one
+  draft per code repository, and the form says "Draft saved"
+- When: GitHub refuses the create — a lapsed sign-in, no network, a rate
+  limit
+- Then: the form keeps the title and description, the draft stays, and the
+  error toast says the draft is saved, so the user can try again
+- and leaving the form (Cancel, another view, a reload, quitting the app)
+  keeps the draft; the issue list shows it at the top with Resume and
+  Discard, and "New issue" opens the form with the draft filled in
+- and only a successful create, or Discard after a confirm, deletes the
+  draft; a form emptied by hand leaves no draft behind
+- and the demo, which creates no issues, keeps no drafts
+
+[test: a draft is saved per repository, host included, and read back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issueDraft.test.tsx#L77 ]
+[test: a blank form is no draft, so saving it clears the saved one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issueDraft.test.tsx#L86 ]
+[test: clearing forgets it; a garbled entry or an unknown repo reads as none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issueDraft.test.tsx#L94 ]
+[test: names the draft and offers Resume and Discard : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issueDraft.test.tsx#L106 ]
+[test: an untitled draft says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issueDraft.test.tsx#L116 ]
+[test: a failed create keeps the draft; the form brings it back; a later create clears it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issueDraft.test.tsx#L208 ]
+[test: the list shows the draft; Discard deletes it after a confirm : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issueDraft.test.tsx#L242 ]
+[test: Discard draft on the form empties it, and only on a yes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issueDraft.test.tsx#L257 ]
+
+## S5: GitHub issues are controlled by a switch in user settings @v1 [proposed]
 
 **Created by:** vydra
 
@@ -80,7 +106,7 @@ Allow to access GitHub issues from the app.
 - and the server refuses the module's requests while the switch is off, not
   just the UI
 
-## S5: Issue views have urls and find their way into search @v1 [proposed]
+## S6: Issue views have urls and find their way into search @v1 [proposed]
 
 **Created by:** vydra
 
@@ -99,7 +125,7 @@ Allow to access GitHub issues from the app.
   while an issues view is on screen — an idle app spends none of GitHub's
   rate limit
 
-## S6: Requests to GitHub carry the user's sign-in @v1 [proposed]
+## S7: Requests to GitHub carry the user's sign-in @v1 [proposed]
 
 **Created by:** vydra
 
@@ -119,7 +145,7 @@ Allow to access GitHub issues from the app.
   issues to show, and every write is refused: no New issue, Edit, Close,
   Reopen or Comment is offered, and the routes behind them answer 403
 
-## S7: Requests to GitHub go to the code repo's host @v1 [proposed]
+## S8: Requests to GitHub go to the code repo's host @v1 [proposed]
 
 - Given: the code repo lives on github.com or on a GitHub Enterprise host,
   and the user is signed in in Settings, through the GitHub CLI, or both
@@ -142,7 +168,7 @@ Allow to access GitHub issues from the app.
 [test: an Enterprise code repo has issues when the app is signed in on its host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L158 ]
 [test: Enterprise remotes in every spelling name the repo on the sign-in's host only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L172 ]
 
-## S8: The Issues tab shows the code repo's GitHub issues @v1 [proposed]
+## S9: The Issues tab shows the code repo's GitHub issues @v1 [proposed]
 
 **Created by:** vydra
 
@@ -168,7 +194,7 @@ Allow to access GitHub issues from the app.
   worktree's too — so it works on every git engine, including the built-in
   one on a machine with no git
 
-## S9: Update an issue @v1 [proposed]
+## S10: Update an issue @v1 [proposed]
 
 **Created by:** vydra
 

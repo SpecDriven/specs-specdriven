@@ -129,8 +129,8 @@
 [test: a model off the list still shows, and with no default the agent's own leads the menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L466 ]
 [test: a model's description that only repeats its name is left off, as a proxy's rows carry it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L475 ]
 [test: the effort menu offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L486 ]
-[test: the pane switches a running session's model and effort, and the pick becomes the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L226 ]
-[test: an agent's choices and defaults are listed for the pane and kept through the provider : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L267 ]
+[test: the pane switches a running session's model and effort, and the pick becomes the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L227 ]
+[test: an agent's choices and defaults are listed for the pane and kept through the provider : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L268 ]
 
 ## S7: A new session starts from the message box @v1 [proposed]
 
@@ -151,7 +151,7 @@
 
 [test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L513 ]
 [test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L507 ]
-[test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L203 ]
+[test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L204 ]
 
 ## S8: Paste an image into the message @v1 [proposed]
 
@@ -184,9 +184,9 @@
 [test: an image goes as it is when its type and size fit, else it is scaled to fit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L100 ]
 [test: a pasted image shows as a thumbnail, can be removed, and is sent with the first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L146 ]
 [test: an agent that reads no images refuses the paste by name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L221 ]
-[test: images pasted into a message reach the provider, are kept in the session's folder and served back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L431 ]
-[test: a session started with pasted images hands them to the provider with its first turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L471 ]
-[test: pasted images are refused for an agent that reads none, and when they are not images, too many or too big : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L487 ]
+[test: images pasted into a message reach the provider, are kept in the session's folder and served back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L432 ]
+[test: a session started with pasted images hands them to the provider with its first turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L472 ]
+[test: pasted images are refused for an agent that reads none, and when they are not images, too many or too big : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L488 ]
 [test: a pasted image gets a reply that says the simulation cannot look at it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L297 ]
 [test: pasted images go to Claude as image blocks before the text, and images alone carry no text block : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L431 ]
 [test: pasted images go to Codex as localImage items, read from the copies the app keeps : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L680 ]
