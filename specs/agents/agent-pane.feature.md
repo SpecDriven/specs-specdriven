@@ -107,10 +107,11 @@
   and drops the chips' chevrons rather than wrapping, the model, effort and
   mode keep their names whole, and the pane is never narrower than 420px
   (only a phone-wide screen shortens every name to keep Send in the box)
-- and the model menu lists the models the agent offers, by name with a line
-  about each, the one the session runs on checked and the one new sessions
-  start on badged "Default"; a session that reports the full id of an alias
-  still finds its row
+- and the model menu lists the models the agent offers, by display name
+  with a line about each (left off when it only repeats the name), the one
+  the session runs on checked and the one new sessions start on badged
+  "Default"; a session that reports the full id of an alias still finds its
+  row
 - and the effort menu offers "Default" (the agent decides) and each level
   the chosen model takes — Low, Medium, High, Extra high, Max — and is
   hidden for a model that takes none
@@ -126,7 +127,8 @@
 [test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L208 ]
 [test: the model menu lists the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L450 ]
 [test: a model off the list still shows, and with no default the agent's own leads the menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L466 ]
-[test: the effort menu offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L475 ]
+[test: a model's description that only repeats its name is left off, as a proxy's rows carry it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L475 ]
+[test: the effort menu offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L486 ]
 [test: the pane switches a running session's model and effort, and the pick becomes the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L226 ]
 [test: an agent's choices and defaults are listed for the pane and kept through the provider : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L267 ]
 
@@ -147,8 +149,8 @@
   spaces or an effort that is no level is refused, and an agent with no
   effort setting is never handed one
 
-[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L502 ]
-[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L496 ]
+[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L513 ]
+[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L507 ]
 [test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L203 ]
 
 ## S8: Paste an image into the message @v1 [proposed]

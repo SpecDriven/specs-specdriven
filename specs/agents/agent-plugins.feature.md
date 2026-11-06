@@ -118,31 +118,59 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 ## S7: Each agent offers the models the data repo lists @v1 [proposed]
 
 - Given: the coding agent plugins installed — Claude, Codex, Pi
-- When: the user opens Settings → AI agents
-- Then: each agent has a list of its own, one model name per line, as that
-  agent's CLI names them — `opus` or `claude-sonnet-4-5[1m]` for Claude,
+- When: the user opens Settings
+- Then: each agent's own section — Settings → Claude — has a "<agent>
+  models" list, and an agent whose plugin adds no section (Codex) gets a
+  section the app titles after it holding its list; there is no separate
+  section for the lists; each is one model name per line, as that agent's
+  CLI names them — `opus` or `claude-sonnet-4-5[1m]` for Claude,
   `gpt-5-codex` for Codex — saved when the field is left
-- and the lists are kept in the data repo's `.specdriven/agent-models.json`,
-  keyed by agent id, so the team shares them; a name with spaces is refused
-  with a message, and a teammate's list for an agent this app lacks is kept
-- and every model field for an agent is a dropdown of that agent's list and
-  nothing else, its first model chosen until another is — the "Import from
-  Jira/Wiki" dialog's Model, Settings → Jira's import model, Settings →
-  Claude's default model — and a model chosen before the list lost it stays
-  chosen; with an empty list the field says "No models listed" and offers
+- and each agent's list is kept in a file of its own in the data repo's
+  `.specdriven/` — `claude-models.json`, `codex-models.json`, a JSON list of
+  names — so the team shares them; a name with spaces is refused with a
+  message, a teammate's list for an agent this app lacks is kept, and a data
+  repo that still has the old shared `agent-models.json` has it split into
+  those files
+- and a listed model should be one the agent's API reports: one it does not
+  report is still kept and offered, and the app's log gets a warning naming
+  the agent, the model and its file, once until the list or the report
+  changes; an agent whose API cannot say (signed out, an API key) is not
+  checked
+- and the list narrows what the agent offers: each agent plugin lists every
+  model its sign-in offers — the signed-in account's, a proxy's or the API's
+  `GET /v1/models`, else its CLI's aliases — and where the data repo lists
+  names for the agent, every model menu offers those alone, in the list's
+  order, each under the name the agent gives it; a listed name the agent
+  does not offer is kept as typed; an empty list narrows nothing
+- and every model field for an agent is a dropdown of what is left — the
+  coding agent pane's model, the "Import from Jira/Wiki" dialog's Model,
+  Settings → Claude's default model — the agent's own default chosen until
+  another is, else the first; a model a running session or the import
+  dialog chose before the menu lost it stays chosen, but a default model
+  the list does not hold is not used: the list's first is; with nothing
+  offered and nothing listed the field says "No models listed" and offers
   nothing
 
-[test: each agent keeps its own list in the data repo's .specdriven/agent-models.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L51 ]
-[test: a name no agent would take, a bad agent id or too many names is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L67 ]
-[test: a teammate's list for an agent this app lacks survives a save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L80 ]
-[test: a broken file reads as no lists and is not overwritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L87 ]
-[test: reading keeps names only, valid, once each : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L97 ]
-[test: the lists come with the state and Settings writes one agent's at a time : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L119 ]
-[test: a list per agent, a model per line, saved on blur to that agent's key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L105 ]
-[test: a refused list says why and is kept to fix : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L140 ]
-[test: only the agent's list, its first chosen until another is; a value the list lost stays on offer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L158 ]
-[test: the lists come from the state payload; anything else is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L174 ]
-[test: a Model field of the agent's list, its first chosen unless Settings set the default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L104 ]
+[test: each agent keeps its own list in the data repo's .specdriven/<agent>-models.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L58 ]
+[test: a name no agent would take, a bad agent id or too many names is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L77 ]
+[test: a teammate's list for an agent this app lacks survives a save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L92 ]
+[test: a broken file reads as no list and is not overwritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L100 ]
+[test: the old shared agent-models.json is split into a file per agent and removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L111 ]
+[test: an old shared file that is not a JSON object is left to fix by hand : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L125 ]
+[test: reading keeps names only, valid, once each : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L134 ]
+[test: a listed model the agent's API does not report is logged as a warning, once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L147 ]
+[test: the lists come with the state and Settings writes one agent's at a time : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L188 ]
+[test: saving a list checks it against the models the agent's API reports : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModels.test.ts#L204 ]
+[test: the host reads Claude's list from the data repo's claude-models.json, in order : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/models.test.ts#L12 ]
+[test: the models the API reports are every value and id the account offers, or none to check against : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/models.test.ts#L32 ]
+[test: a list per agent, a model per line, saved on blur to that agent's key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L106 ]
+[test: a refused list says why and is kept to fix : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L141 ]
+[test: an agent whose plugin adds no Settings section gets one of its own for its list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L158 ]
+[test: only the agent's list, its first chosen until another is; a value the list lost stays on offer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L167 ]
+[test: the lists come from the state payload; anything else is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L195 ]
+[test: a Model field of the models the agent offers, its default chosen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L102 ]
+[test: the names Settings → Claude lists narrow the offered models, in the list's order, the first chosen until another is : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L111 ]
+[test: the pane's choices are the models the sign-in offers, else Claude Code's aliases, narrowed to the data repo's list : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1160 ]
 [test: the default model is a dropdown of only the models the app lists for Claude, the first until another is chosen : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L39 ]
 [test: an app that keeps no model lists leaves the default model a free field : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L56 ]
 [test: Claude's list comes from the app's state payload, keyed by agent : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L62 ]

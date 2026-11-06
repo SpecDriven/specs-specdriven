@@ -247,16 +247,23 @@ The switch is ON by default, and the setting is saved to
 - Then: it offers "Default model", a field that takes an alias Claude Code
   knows (`opus`, `sonnet`, `haiku`, `opusplan`, suggested as you type)
   or a full model id, such as `claude-sonnet-4-5[1m]` or a Bedrock id
-- and where Settings → AI agents lists Claude's models, the field is a
-  dropdown of them alone, the first chosen until another is, and a new Claude
-  starts on the one it shows; an empty field with no list leaves Claude
-  Code's own default, whatever its settings or account pick
-- and while Claude signs in with a Claude account, the dropdown offers the
-  models that account offers instead — what Claude Code's own model menu
+- and while Claude signs in with a Claude account, the field is a dropdown
+  of the models that account offers — what Claude Code's own model menu
   lists for it, such as "Opus 5.5 — opus" — asked of a Claude Code started
   for nothing else, which sends nothing to the API; it still shows the model
   a new Claude starts on, and the list is asked for again after a sign-in or
   a sign-out
+- and while Claude goes through an API proxy, the dropdown offers the models
+  the proxy lists instead — its `GET /v1/models` answer, read with the token
+  the way Claude Code sends it, page by page, and asked for again after a
+  proxy check; a proxy that lists none leaves Claude Code's aliases
+- and where the "Claude models" list below it in Settings → Claude names
+  models, the dropdown is narrowed to those alone, in the list's order, each
+  under the name the sign-in gives it, the first chosen until another is,
+  and a new Claude starts on the one it shows; a default chosen before the
+  list left it out is not used — the dropdown shows the list's first, and
+  the pane, the import and the app's other Claude calls start on it; an empty field with no list leaves Claude
+  Code's own default, whatever its settings or account pick
 - and that list is one row per model: the row Claude Code names for it
   (`default`, `opus`, `sonnet`, `haiku`, Fable), never the explicit ids of
   the same models an organization is also offered (`claude-opus-4-8`,
@@ -279,9 +286,12 @@ The switch is ON by default, and the setting is saved to
 
 [test: the default model is an alias or a model id, trimmed; anything else is Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L169 ]
 [test: signed in with a Claude account, the default model is a dropdown of every model the account offers : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L88 ]
+[test: the proxy's GET /v1/models answer becomes the menu, page by page, with the token the way Claude Code sends it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L145 ]
+[test: GET /api/claude/models lists the signed-in account's models, asked of Claude Code once per sign-in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L676 ]
 [test: Claude Code's model rows become account models, dropping what is no model id and repeats : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L111 ]
 [test: the launch steers Claude Code through --settings, which beats its own files : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L209 ]
-[test: a new session starts on the default model Settings names, else the first listed, else Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1088 ]
+[test: a new session starts on the default model Settings names while the list holds it, else the first listed, else Claude Code's own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1088 ]
+[test: a default in Settings the data repo's list does not hold gives way to the list's first : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L94 ]
 [test: a session carried on under a new sign-in keeps the model it ran on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1070 ]
 [test: a model asked for wins over the default Settings names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L67 ]
 
@@ -290,7 +300,7 @@ The switch is ON by default, and the setting is saved to
 - Given: the coding agent pane's bar with Claude chosen
 - Then: the model menu offers what Settings → Claude's "Default model"
   would: every model the signed-in Claude account offers, else the models
-  Settings → AI agents lists for Claude, else Opus, Sonnet and Haiku
+  Settings → Claude lists, else Opus, Sonnet and Haiku
 - and the effort menu offers the levels Claude Code says the model takes,
   every level when it does not say, none for a model that takes none
 - and a new session starts on the model and effort the bar shows, else

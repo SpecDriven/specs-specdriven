@@ -66,7 +66,7 @@ again into the feature they made.
 [test: is built the way Jira shows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraUrl.test.ts#L41 ]
 [test: is a Jira issue, a Confluence page, or nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L34 ]
 [test: at most five of each kind, and at least one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L49 ]
-[test: a modal dialog with the url field, Add and Analyze, naming the folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L79 ]
+[test: a modal dialog with the url field, Add and Analyze, naming the folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L77 ]
 [test: a url is a Jira issue or a Confluence page row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L147 ]
 [test: Add waits for an issue or page url on a site with a token, within the limits : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L162 ]
 [test: refuses more than five of a kind, an unknown url, and a site without a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L227 ]
@@ -87,7 +87,7 @@ again into the feature they made.
 - and the Codex plugin answers such turns through `codex exec`, read-only
   and ephemeral, the answer's shape given as a schema
 
-[test: the agent is named with one, chosen with two, missed with none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L92 ]
+[test: the agent is named with one, chosen with two, missed with none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L90 ]
 [test: the agents offered are the available ones that answer one-shot turns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L142 ]
 [test: needs an agent that answers one-shot turns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L243 ]
 [test: asks the chosen agent, and passes the names already shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L289 ]
@@ -175,21 +175,21 @@ again into the feature they made.
 
 - Given: the import dialog, with an agent that can read the sources
 - When: the user looks under the agent
-- Then: a Model field, a dropdown of the models Settings → AI agents lists
-  for that agent, holds the default set for it in Settings → Jira, else the
-  list's first; Analyze asks the agent with the model the field shows, and
-  choosing another agent fills in that agent's; with no models listed the
-  field offers none and the agent answers with its own default
-- and Settings → Jira has an "Import model" row per such agent, remembered
-  on this device, since which models answer depends on its account or proxy
+- Then: a Model field, a dropdown of the models that agent offers — what
+  its sign-in lists (the account's models, a proxy's `GET /v1/models`, its
+  CLI's aliases), narrowed to the names the agent's own Settings section
+  lists for it (Settings → Claude's "Claude models") — holds the agent's own
+  default (Settings → Claude's), else the first; Analyze asks the agent with
+  the model the field shows, and choosing another agent fills in that
+  agent's; an agent that offers no models gets its Settings list
+  alone, and with none listed either the field offers none and the agent
+  answers with its own default
 - and a model name that is not one (spaces, a leading dash) is said under
   the field and refused by the server; the Claude plugin passes the model to
   Claude Code, the Codex plugin to `codex exec -m`
 
-[test: a Model field of the agent's list, its first chosen unless Settings set the default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L104 ]
+[test: a Model field of the models the agent offers, its default chosen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L102 ]
 [test: a model name is a CLI's name for one; anything else is said : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L133 ]
-[test: one row per agent that can analyze, filled with its default or its list's first; none without one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L244 ]
-[test: a blank model clears the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L264 ]
 [test: the model asked for reaches the agent; none leaves the agent's own; an odd name is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L305 ]
 [test: a model asked for is the query's model : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L60 ]
 [test: no model asked for and none in Settings leaves Claude Code's own default : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L79 ]
