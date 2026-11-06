@@ -1,5 +1,7 @@
 # Agent plugins
 
+**Updated by:** jmeowmeow
+
 The coding agent pane drives whatever coding agent a plugin supplies. The core defines the agent interface and keeps a registry of providers; Claude, Codex and Pi are providers like any a future plugin brings, and the app names none of them.
 
 ## S1: A plugin supplies a coding agent @v1 [proposed]
