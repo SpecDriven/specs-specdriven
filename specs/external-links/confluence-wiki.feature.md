@@ -7,6 +7,11 @@ wiki (REST API 7.19), as a child of a parent page the user names by its url —
 wiki is reached with a personal access token, one per wiki, kept on the
 user's device and never in the data repo.
 
+Confluence is switched on in Settings, off until then. While it is off there
+is no "Publish to Confluence…" anywhere, the publish routes refuse, and an
+agent session is handed no Confluence server; a token saved before is kept
+and counts again the moment Confluence is switched back on.
+
 Once published, the feature links its page the way it links its ticket and
 its qTest test case (external-links/qtest-test-cases.feature.md): one
 `[Confluence:<page id>](<page url>)` line under the feature's heading, held
@@ -381,3 +386,28 @@ in the feature's Automerge document and written into the `.feature.md` while
 
 [test: the desktop app says how to run it and where the tokens are : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L98 ]
 [test: the desktop app's export is the records, tokens included, owner-only, and follows every change : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L112 ]
+
+## S17: Confluence is switched on in Settings @v1 [proposed]
+
+- Given: Settings → Confluence
+- When: the user looks at it on a fresh device
+- Then: Confluence is off — the switch is the one the Aha! import uses, off
+  until the user turns it on, stored only when on (an absent setting is off),
+  and a value that is not a boolean is refused
+- and while it is off there is no "Publish to Confluence…" in a feature's ⋯
+  menu or a folder's, and the Confluence section shows only the switch, not the
+  token list
+- and the publish route and the folder's Confluence route refuse with 403
+  while it is off, even with a token saved, and nothing is written to the wiki
+- and an agent session started while it is off is handed no Confluence server,
+  even with a token saved (external-links/confluence-wiki — "An agent session
+  can read the wiki")
+- and a token saved before counts again as soon as it is switched back on: the
+  switch gates the feature, never the tokens
+
+[test: off by default: a fresh device refuses publish and the folder route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L612 ]
+
+[test: switched off refuses both routes, even with a saved token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L622 ]
+[test: Confluence switched off in Settings hands out no MCP server, even with a saved token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L63 ]
+[test: Confluence absent from Settings (the default) hands out no MCP server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L69 ]
+[test: each is off until switched on, and off is stored as an absent key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L400 ]
