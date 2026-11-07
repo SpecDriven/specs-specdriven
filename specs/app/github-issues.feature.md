@@ -144,6 +144,7 @@ Allow to access GitHub issues from the app.
 [test: an already-committed image reuses its url without a second commit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L322 ]
 [test: an image with no bytes on disk is left as-is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L336 ]
 [test: a refused upload keeps the local link rather than failing the issue : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L347 ]
+[test: a body with no app image is sent untouched, no contents call : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L360 ]
 
 ## S8: Requests to GitHub carry the user's sign-in @v1 [proposed]
 
