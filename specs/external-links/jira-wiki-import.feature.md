@@ -223,6 +223,8 @@ again into the feature they made.
 [test: off by default, a fresh device refuses both sides : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L350 ]
 [test: a jira-only import rejects a Confluence url with 400 before any read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L433 ]
 [test: a wiki-only import rejects a Jira url with 400 before any read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L442 ]
+[test: a jira-only import proposes from Jira urls : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L451 ]
+[test: both on shows the combined heading, field and placeholder (the default) : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L183 ]
 [test: Jira only shows the Jira heading and field, and a Confluence url is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L191 ]
 [test: Confluence only shows the Confluence heading and field, and a Jira url is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L207 ]
 [test: each is off until switched on, and off is stored as an absent key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L400 ]
