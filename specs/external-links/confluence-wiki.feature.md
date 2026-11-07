@@ -301,9 +301,9 @@ in the feature's Automerge document and written into the `.feature.md` while
   other: in a mode that asks, the first call raises the pane's permission
   card
 
-[test: no wiki token, no server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L47 ]
-[test: a saved token brings the Confluence server, run from the app's source with its token file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L51 ]
-[test: the demo and the hosted app hand out none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L65 ]
+[test: no wiki token, no server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L54 ]
+[test: a saved token brings the Confluence server, run from the app's source with its token file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L58 ]
+[test: the demo and the hosted app hand out none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L72 ]
 [test: a saved wiki token hands the provider the Confluence MCP server; none, nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L525 ]
 [test: three read-only tools, under the server's name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L217 ]
 [test: the instructions name the saved wikis, never a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L208 ]
@@ -379,5 +379,5 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and a session of the web server points the server at the app's own token
   file instead
 
-[test: the desktop app says how to run it and where the tokens are : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L74 ]
-[test: the desktop app's export is the records, tokens included, owner-only, and follows every change : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L88 ]
+[test: the desktop app says how to run it and where the tokens are : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L81 ]
+[test: the desktop app's export is the records, tokens included, owner-only, and follows every change : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L95 ]
