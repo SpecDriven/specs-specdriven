@@ -248,6 +248,47 @@
 [test: closing a session removes its worktree when nothing is uncommitted, keeps it otherwise, and keeps the branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L182 ]
 [test: the pane asks whether a folder can have a worktree, and on which branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L216 ]
 [test: a session name becomes a branch-safe slug : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L228 ]
-[test: the Worktree box offers a worktree for a repo, remembers the pick, and the first message asks for one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L146 ]
-[test: a folder that is no repo greys the box out, and the remembered pick is not sent there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L169 ]
-[test: a worktree session shows the folder it was started in and its branch, and closing it says a kept worktree's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L192 ]
+[test: the Worktree box offers a worktree for a repo, remembers the pick, and the first message asks for one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L154 ]
+[test: a folder that is no repo greys the box out, and the remembered pick is not sent there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L177 ]
+[test: a worktree session shows the folder it was started in and its branch, and closing it says a kept worktree's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L200 ]
+
+## S10: A worktree session opens in a Ghostty shell @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+- Given: Settings → Workflow → "Open worktrees in Ghostty" is on, Ghostty is
+  installed where the app runs, and the coding agent pane shows a session
+  that runs in its own git worktree
+- When: the user clicks the worktree's branch in the pane's bar
+- Then: a Ghostty shell opens in the folder the agent works in — the picked
+  folder's place inside the worktree — so the user can look at, run and
+  commit the agent's work by hand
+- and on a Mac the app hands the folder to Ghostty.app (`open -a`), which
+  opens it in the instance already running, as a window or a tab as
+  Ghostty's own settings say; elsewhere it runs `ghostty
+  --working-directory=<folder>`; Ghostty has no Windows build
+- and the server takes the folder from the session's own record, never from
+  the request (POST /api/agent/chat/:id/ghostty), and hands it to Ghostty as
+  one argument, never through a shell
+- and the setting is off by default and kept in .specdriven/settings.json
+  (`ghostty`); off, the branch stays a plain label and the route refuses
+  with a 409
+- and without Ghostty the setting's hint says where to get it and a click
+  toasts the same (502); a worktree removed since says its folder is gone
+  (404), and a launcher that fails says why
+- and the demo and the hosted app run on a server, not the user's machine:
+  they hide the setting, and refuse it and the route with a 403
+
+[test: Ghostty is the app bundle on a Mac, the binary on PATH elsewhere, and nothing on Windows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L107 ]
+[test: the folder is handed over as one argument, never through a shell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L127 ]
+[test: the Ghostty setting defaults to OFF and only an explicit true turns it on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L138 ]
+[test: the state reports the Ghostty setting and whether Ghostty is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L145 ]
+[test: the Ghostty setting round-trips through the settings file, OFF stored as an absent key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L154 ]
+[test: the demo and the hosted app cannot turn Ghostty on, nor open it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L167 ]
+[test: the open-in-Ghostty route is a POST on a session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L184 ]
+[test: a worktree session opens Ghostty in the folder its agent works in, inside the worktree : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L189 ]
+[test: with the setting off, Ghostty missing or the folder gone, nothing opens and the reason is said : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L198 ]
+[test: a launcher that fails is reported, not swallowed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L223 ]
+[test: with Ghostty on, a click on the worktree's branch asks the server to open a shell there, and a refusal is toasted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L221 ]
