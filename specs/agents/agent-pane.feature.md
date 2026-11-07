@@ -230,7 +230,8 @@
 - and the box remembers the last pick; it is greyed out, with the reason in
   its tooltip, for a folder that is not in a git repo, a repo with no commit
   yet, or when git is not on PATH, and POST /api/agent/chat refuses
-  `worktree: true` there with a 400
+  `worktree: true` there with a 400; a tight bar shows the box with a branch
+  icon in place of the word
 - and a worktree session's bar shows the folder it was started in and the
   branch it works on; picking another folder starts the new session in a
   worktree too, where that folder can have one
