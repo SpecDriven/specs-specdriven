@@ -125,7 +125,27 @@ Allow to access GitHub issues from the app.
   while an issues view is on screen — an idle app spends none of GitHub's
   rate limit
 
-## S7: Requests to GitHub carry the user's sign-in @v1 [proposed]
+## S7: Pasted images in an issue are uploaded to GitHub @v1 [proposed]
+
+- Given: the user writes an issue, a change to one, or a comment whose body
+  embeds an image pasted into the app (`/api/images/<name>`, a file only this
+  app serves)
+- When: the create, edit or comment is sent to GitHub
+- Then: each such image is committed into the code repository (under
+  `.specdriven/issue-images/`) and its link in the body is rewritten to the
+  raw GitHub url, so the image shows on GitHub instead of a broken local link
+- and the image's name is content-addressed, so the same screenshot across
+  several issues is stored once and is not re-committed
+- and an image whose bytes are not on disk, or that GitHub refuses to host (no
+  push access, a rate limit), keeps its local link rather than failing the
+  issue, and a body that embeds no such image is sent to GitHub untouched
+
+[test: a stored image is committed to the code repo and its url rewritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L309 ]
+[test: an already-committed image reuses its url without a second commit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L322 ]
+[test: an image with no bytes on disk is left as-is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L336 ]
+[test: a refused upload keeps the local link rather than failing the issue : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L347 ]
+
+## S8: Requests to GitHub carry the user's sign-in @v1 [proposed]
 
 **Created by:** vydra
 
@@ -145,7 +165,7 @@ Allow to access GitHub issues from the app.
   issues to show, and every write is refused: no New issue, Edit, Close,
   Reopen or Comment is offered, and the routes behind them answer 403
 
-## S8: Requests to GitHub go to the code repo's host @v1 [proposed]
+## S9: Requests to GitHub go to the code repo's host @v1 [proposed]
 
 - Given: the code repo lives on github.com or on a GitHub Enterprise host,
   and the user is signed in in Settings, through the GitHub CLI, or both
@@ -168,7 +188,7 @@ Allow to access GitHub issues from the app.
 [test: an Enterprise code repo has issues when the app is signed in on its host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L158 ]
 [test: Enterprise remotes in every spelling name the repo on the sign-in's host only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L172 ]
 
-## S9: The Issues tab shows the code repo's GitHub issues @v1 [proposed]
+## S10: The Issues tab shows the code repo's GitHub issues @v1 [proposed]
 
 **Created by:** vydra
 
@@ -194,7 +214,7 @@ Allow to access GitHub issues from the app.
   worktree's too — so it works on every git engine, including the built-in
   one on a machine with no git
 
-## S10: Update an issue @v1 [proposed]
+## S11: Update an issue @v1 [proposed]
 
 **Created by:** vydra
 
