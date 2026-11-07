@@ -27,10 +27,10 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and the token is kept on this device only: an owner-only file, or the OS
   key store in the desktop app — never settings.json or the data repo
 
-[test: a token Confluence accepts is kept, owner-only, and listed without the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L270 ]
-[test: a token Confluence refuses, or answers as anonymous, is not kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L280 ]
-[test: a blank token or a url that is no wiki is refused before Confluence is asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L290 ]
-[test: a saved token replaces the wiki's last one, and can be removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L296 ]
+[test: a token Confluence accepts is kept, owner-only, and listed without the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L271 ]
+[test: a token Confluence refuses, or answers as anonymous, is not kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L281 ]
+[test: a blank token or a url that is no wiki is refused before Confluence is asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L291 ]
+[test: a saved token replaces the wiki's last one, and can be removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L297 ]
 [test: lists each wiki with who its token signs in as, never the token, each with Remove : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L217 ]
 [test: offers the url and token fields, the token as a password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L225 ]
 [test: a bare wiki url, or any page of it, normalized : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L66 ]
@@ -77,11 +77,11 @@ in the feature's Automerge document and written into the `.feature.md` while
   missing; what Confluence refuses (no such page, a token it no longer
   accepts, a space the token cannot write to) is shown as one sentence
 
-[test: creates the page under the parent, links it from the feature and remembers the parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L307 ]
-[test: each feature remembers the parent it was last published under : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L339 ]
-[test: a /display/ parent url is found by its title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L412 ]
-[test: what cannot be published says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L453 ]
-[test: a token Confluence no longer accepts is reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L468 ]
+[test: creates the page under the parent, links it from the feature and remembers the parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L308 ]
+[test: each feature remembers the parent it was last published under : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L340 ]
+[test: a /display/ parent url is found by its title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L413 ]
+[test: what cannot be published says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L454 ]
+[test: a token Confluence no longer accepts is reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L469 ]
 [test: a modal dialog with the parent url, the two scopes and Publish : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L26 ]
 [test: Publish waits for a page url on a wiki with a token, and says what is missing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L90 ]
 [test: reads the /spaces/KEY/pages/ID form, title or not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L10 ]
@@ -101,11 +101,11 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and a page of the same title elsewhere in the space is not taken over: the
   publish is refused, naming that page
 
-[test: publishing again updates the page it links, as a new version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L361 ]
-[test: the linked page moves under a new parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L377 ]
-[test: a linked page that was deleted is found again by its title, or created anew : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L385 ]
-[test: a page of the same title under the parent is updated rather than duplicated : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L394 ]
-[test: a page of the same title elsewhere in the space is not taken over : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L402 ]
+[test: publishing again updates the page it links, as a new version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L362 ]
+[test: the linked page moves under a new parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L378 ]
+[test: a linked page that was deleted is found again by its title, or created anew : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L386 ]
+[test: a page of the same title under the parent is updated rather than duplicated : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L395 ]
+[test: a page of the same title elsewhere in the space is not taken over : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L403 ]
 [test: a feature published before says publishing again updates its page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L48 ]
 [test: a page url lies on its wiki, and not on another : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L79 ]
 
@@ -117,7 +117,7 @@ in the feature's Automerge document and written into the `.feature.md` while
   the server refuses the Confluence routes — the hosted app keeps no device
   secrets
 
-[test: the hosted app refuses Confluence altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L502 ]
+[test: the hosted app refuses Confluence altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L503 ]
 
 ## S7: The Confluence line in the feature file @v1 [proposed]
 
@@ -142,7 +142,7 @@ in the feature's Automerge document and written into the `.feature.md` while
 [test: a three-way merge keeps the side that changed it, ours when both did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L143 ]
 [test: writes the line while links are published; with links off the editor still sees it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L156 ]
 [test: a file in the other form is not drift; an edited page link is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceLinks.test.ts#L168 ]
-[test: with Publish external links off the file has no line, but the feature keeps the link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L445 ]
+[test: with Publish external links off the file has no line, but the feature keeps the link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L446 ]
 
 ## S8: What the page contains @v1 [proposed]
 
@@ -177,10 +177,10 @@ in the feature's Automerge document and written into the `.feature.md` while
 [test: a test reference is a link named after the test : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L80 ]
 [test: an image on the web is embedded by url; one the app stores as the page's attachment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L86 ]
 [test: names each stored image a page shows once, in order; escaped text is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L223 ]
-[test: the images a page shows are uploaded as its attachments, once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L516 ]
-[test: a page whose images cannot be attached is still published, with a warning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L584 ]
-[test: several images go up in one upload : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L539 ]
-[test: an image edited in place since it was stored is attached again under the name its bytes earn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L555 ]
+[test: the images a page shows are uploaded as its attachments, once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L517 ]
+[test: a page whose images cannot be attached is still published, with a warning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L585 ]
+[test: several images go up in one upload : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L540 ]
+[test: an image edited in place since it was stored is attached again under the name its bytes earn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L556 ]
 [test: renames the attachments it is told to, every use of each, and leaves the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L232 ]
 [test: a stored name while the bytes are the ones it was given for; its stem with their hash once they differ : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L63 ]
 [test: paragraphs keep their soft breaks : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L98 ]
@@ -188,7 +188,7 @@ in the feature's Automerge document and written into the `.feature.md` while
 [test: lists, task items, quotes and rules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L106 ]
 [test: tables, with a header row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L113 ]
 [test: fenced code is a code macro, CDATA kept whole : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceStorage.test.ts#L119 ]
-[test: published only leaves the proposed scenarios out of the page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L420 ]
+[test: published only leaves the proposed scenarios out of the page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L421 ]
 
 ## S9: Changes made in Confluence are not overwritten unnoticed @v1 [proposed]
 
@@ -209,14 +209,14 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and a page changed between the check and the update is refused by
   Confluence itself, and the publish says so without replacing anything
 
-[test: publishing records the page's version in the feature's document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L611 ]
-[test: a page changed in Confluence since the last publish is not overwritten without confirmation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L623 ]
-[test: Publish anyway replaces the changes and records the new version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L644 ]
-[test: a version recorded by a teammate's publish is no conflict : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L658 ]
-[test: a page published before versions were recorded publishes and starts recording : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L671 ]
-[test: the app's versions carry a message in the page history : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L698 ]
-[test: saving the file keeps the recorded version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L707 ]
-[test: a page changed between the version check and the update is reported, not replaced : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L714 ]
+[test: publishing records the page's version in the feature's document : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L635 ]
+[test: a page changed in Confluence since the last publish is not overwritten without confirmation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L647 ]
+[test: Publish anyway replaces the changes and records the new version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L668 ]
+[test: a version recorded by a teammate's publish is no conflict : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L682 ]
+[test: a page published before versions were recorded publishes and starts recording : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L695 ]
+[test: the app's versions carry a message in the page history : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L722 ]
+[test: saving the file keeps the recorded version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L731 ]
+[test: a page changed between the version check and the update is reported, not replaced : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L738 ]
 [test: says who changed the page in Confluence and offers to publish anyway : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L64 ]
 
 ## S10: A failed publish shows what Confluence answered, and is logged @v1 [proposed]
@@ -237,11 +237,11 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and a failure the app finds before asking Confluence (no token, a url that
   names no page) stays a plain sentence with no detail box
 
-[test: answers the request, the status and Confluence's answer as details : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L756 ]
-[test: is recorded in the log under confluence, with what Confluence answered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L775 ]
-[test: a refusal Confluence explains is logged as a warning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L792 ]
-[test: an unreachable wiki is logged with the network error, and no status : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L801 ]
-[test: a long answer is cut to a readable length : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L815 ]
+[test: answers the request, the status and Confluence's answer as details : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L780 ]
+[test: is recorded in the log under confluence, with what Confluence answered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L799 ]
+[test: a refusal Confluence explains is logged as a warning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L816 ]
+[test: an unreachable wiki is logged with the network error, and no status : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L825 ]
+[test: a long answer is cut to a readable length : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L839 ]
 [test: shows the error as a line that opens the details on click, and closes them again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceFailureDetails.test.tsx#L93 ]
 [test: an unreachable wiki says there was no answer, and shows no body : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceFailureDetails.test.tsx#L120 ]
 [test: an error without details stays plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceFailureDetails.test.tsx#L133 ]
@@ -272,8 +272,8 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and the hosted app and the demo offer no such menu entry, and the server
   refuses the folder's Confluence route there
 
-[test: a folder lists its features, its subfolders' too, with the page each links and its last parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L478 ]
-[test: the hosted app refuses Confluence altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L502 ]
+[test: a folder lists its features, its subfolders' too, with the page each links and its last parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L479 ]
+[test: the hosted app refuses Confluence altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L503 ]
 [test: a modal dialog with the parent url, the two scopes and each feature checked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L122 ]
 [test: waits for the folder's features, and says when there are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L139 ]
 [test: Publish waits for a page url on a wiki with a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L145 ]

@@ -129,7 +129,7 @@ again into the feature they made.
 [test: names are cleaned and repeats told apart; a body keeps nothing the parser would lift out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L180 ]
 [test: the title, each scenario kept or dropped with its body on show, and Create with the count : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L194 ]
 [test: Create waits for a title and a kept scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L216 ]
-[test: writes the kept scenarios as proposed into the folder, naming the sources : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L358 ]
+[test: writes the kept scenarios as proposed into the folder, naming the sources : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L434 ]
 
 ## S5: More than fifteen is asked about before continuing @v1 [proposed]
 
@@ -158,7 +158,7 @@ again into the feature they made.
 
 [test: what Jira or Confluence refuses says which url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L337 ]
 [test: a text-only JSON answer parses too; a failed turn or an odd answer says who could not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L319 ]
-[test: a feature already there is reported, not replaced; a title or scenarios are needed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L368 ]
+[test: a feature already there is reported, not replaced; a title or scenarios are needed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L444 ]
 
 ## S7: Off in the demo and the hosted app @v1 [proposed]
 
@@ -168,8 +168,8 @@ again into the feature they made.
   the server refuses the Jira and import routes — the demo has no token and
   no agent, the hosted app keeps no device secrets
 
-[test: the hosted app refuses Jira and the import altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L382 ]
-[test: demo mode refuses the import : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L397 ]
+[test: the hosted app refuses Jira and the import altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L458 ]
+[test: demo mode refuses the import : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L473 ]
 
 ## S8: The model the agent answers with @v1 [proposed]
 
