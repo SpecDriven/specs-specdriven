@@ -292,3 +292,63 @@
 [test: with the setting off, Ghostty missing or the folder gone, nothing opens and the reason is said : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L198 ]
 [test: a launcher that fails is reported, not swallowed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L223 ]
 [test: with Ghostty on, a click on the worktree's branch asks the server to open a shell there, and a refusal is toasted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L221 ]
+
+## S11: The session popover shows the folder, the branch and the context window @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+- Given: a session in the coding agent pane
+- When: the user clicks the ring beside the session's name in the pane's
+  header, as in Claude Desktop
+- Then: a popover opens on the folder the session works in (its name, then
+  the folder it sits in, the home folder written as ~), the branch — for a
+  worktree session the session's own branch with a Worktree tag, the branch
+  it was made from and where the worktree is; otherwise the branch the folder
+  has checked out, or "Not in a git repository" — and how full the agent's
+  context window is
+- and the window reads "15% used · 151.5k / 1M" over a thin bar split into
+  what fills it (MCP tools, system tools, messages, system prompt, memory
+  files, skills), the reserve the agent keeps for compacting and the free
+  space, each named in a legend with its tokens and share; the parts keep
+  their colours as they grow, and tool schemas the agent has not loaded are
+  listed but not counted
+- and under the legend each part made of things — MCP tools, memory files,
+  skills, system tools — opens on a list of them, biggest first, with the
+  count beside its name ("MCP tools 132")
+- and the ring fills with the share in use and says it ("15%"), amber from
+  70% and red from 90%; it stays empty until the agent has counted
+- and the agent counts its window once the session is ready, after every
+  turn once the message box is free again, and after compacting; Refresh
+  asks it to count every category with the API ("Measured"), and waits
+  while a turn runs; the count comes down the session's stream, and the log
+  keeps only the newest
+- and Claude reports what fills the window and offers Refresh; Codex reports
+  the count and its window's size alone; an agent that reports nothing (Pi)
+  says so; POST /api/agent/chat/:id/context refuses with a 409 an agent that
+  cannot count on request, or a session still starting
+- and the session list leaves the count out and the session's record keeps
+  its totals only; the demo's simulated session counts too; the home folder
+  is never sent from the demo or a shared server
+
+[test: a worktree session shows its folder, branch, base and the window by category : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L186 ]
+[test: Refresh is there only for an agent that counts on request, and waits for the turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L209 ]
+[test: an agent that counts nothing says so, and one that counts says when : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L225 ]
+[test: a measured count says so, and a count with no window shows no bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L233 ]
+[test: the header button shows how full the window is, and nothing while unknown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L241 ]
+[test: write counts the way Claude Desktop does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L85 ]
+[test: give a share of the window to one decimal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L99 ]
+[test: the home folder is ~, and a long path loses its middle, whole folders first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L110 ]
+[test: a folder's parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L123 ]
+[test: the percentage needs a window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L133 ]
+[test: the bar draws used parts in their colour order, then the reserve and free space : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L145 ]
+[test: an agent with totals only gets one used part, a derived reserve and what is left : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L165 ]
+[test: a context event leaves the transcript as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L177 ]
+[test: the header ring opens the session popover on the folder, its branch and the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L139 ]
+[test: Refresh asks the agent to count every category, and a count on the stream moves the ring : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L173 ]
+[test: a provider's context count reaches the pane, the log keeps the newest, and the record its totals : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L352 ]
+[test: the pane's Refresh asks the provider to count again, and is refused where it cannot : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L400 ]
+[test: a demo session counts its context window, and counts it again on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L293 ]
+[test: Codex's token usage is the context count, the last request's tokens of the model's window : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L985 ]
+[test: a Codex session shows its context count as Codex reports it, once per change : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1002 ]

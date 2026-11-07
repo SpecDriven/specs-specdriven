@@ -322,3 +322,31 @@ The switch is ON by default, and the setting is saved to
 [test: the pane's choices are the models the sign-in offers, else Claude Code's aliases, narrowed to the data repo's list : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1170 ]
 [test: a session carried on under a new sign-in keeps the model and effort the pane switched to : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1240 ]
 [test: an account model keeps the effort levels Claude Code lists for it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L217 ]
+
+## S14: Claude reports its context usage to the pane @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+- Given: a Claude session in the coding agent pane
+- When: the session is ready, a turn ends, or Claude Code compacts the
+  conversation
+- Then: the plugin asks Claude Code for its /context count — the cheap one,
+  from the last response and local estimates — and hands it to the pane's
+  session popover (agent-pane.feature.md S11): the window's size, the
+  tokens in it, where it compacts, and every category with what it is made
+  of (MCP tools by server, memory files, skills, system tools)
+- and the count is asked for after the turn has freed the message box, never
+  before, and a count overtaken by a newer one is dropped
+- and the popover's Refresh asks Claude Code to count every category with
+  the API, shown as measured
+- and a Claude Code too old to answer is asked once; from then on each
+  turn's own figures stand in: the tokens the last request carried, of the
+  model's window
+- and the plugin runs on apps without the popover too, where it counts
+  nothing
+
+[test: Claude Code's context count becomes the pane's slices, with what each is made of : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1327 ]
+[test: Claude counts its context once ready and after every turn, and Refresh measures it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1362 ]
+[test: a Claude Code that cannot count its context is asked once, then each turn's totals stand in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1401 ]
