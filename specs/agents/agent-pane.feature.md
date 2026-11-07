@@ -140,7 +140,6 @@
 [test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L208 ]
 [test: the model menu lists the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L450 ]
 [test: a model off the list still shows, and with no default the agent's own leads the menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L466 ]
-[test: a model's description that only repeats its name is left off, as a proxy's rows carry it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L475 ]
 [test: the effort menu offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L486 ]
 [test: the pane switches a running session's model and effort, and the pick becomes the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L227 ]
 [test: an agent's choices and defaults are listed for the pane and kept through the provider : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L268 ]
@@ -207,3 +206,47 @@
 [test: pasted images go to Claude as image blocks before the text, and images alone carry no text block : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L431 ]
 [test: pasted images go to Codex as localImage items, read from the copies the app keeps : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L680 ]
 [test: pasted images go to pi with its prompt command, as its image items : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-pi/test/piChat.test.ts#L476 ]
+
+## S9: A session can run in its own git worktree @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+- Given: the new-session screen of the coding agent pane, with a folder in
+  a git repo picked in the bar
+- When: the user ticks Worktree beside the folder, as in Claude Desktop, and
+  sends the first message
+- Then: the session gets a git worktree of its own — a new branch
+  `specdriven/<session name>-<id>` off the branch the folder has checked
+  out — and the agent works there instead of in the folder, so its edits
+  never touch the user's checkout and two sessions never share one
+- and this works for every agent (Claude, Codex, Pi, any agent plugin): the
+  app makes the worktree and hands the agent its path as the folder to work
+  in, and a folder deep inside the repo keeps its place inside the worktree
+- and worktrees live under the settings folder (`~/.specdriven/worktrees/
+  <repo>/<name>`), outside every repo, so neither the repo's own tools nor
+  the app's data-folder watcher see them
+- and the box remembers the last pick; it is greyed out, with the reason in
+  its tooltip, for a folder that is not in a git repo, a repo with no commit
+  yet, or when git is not on PATH, and POST /api/agent/chat refuses
+  `worktree: true` there with a 400
+- and a worktree session's bar shows the folder it was started in and the
+  branch it works on; picking another folder starts the new session in a
+  worktree too, where that folder can have one
+- and ending the session removes its worktree when nothing in it is
+  uncommitted, and keeps it — saying where — when something is; the branch
+  and every commit on it always stay
+- and a worktree whose agent cannot start is removed again with its branch
+
+[test: a session started with a worktree works in one of its own, on a new branch off the folder's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L103 ]
+[test: a folder inside the repo keeps its place inside the worktree, and two sessions never share one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L127 ]
+[test: a worktree of the data repo has no second folder beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L139 ]
+[test: a folder that cannot have a worktree is refused, and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L149 ]
+[test: a worktree whose agent cannot start goes again, branch and all : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L174 ]
+[test: closing a session removes its worktree when nothing is uncommitted, keeps it otherwise, and keeps the branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L182 ]
+[test: the pane asks whether a folder can have a worktree, and on which branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L216 ]
+[test: a session name becomes a branch-safe slug : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L228 ]
+[test: the Worktree box offers a worktree for a repo, remembers the pick, and the first message asks for one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L146 ]
+[test: a folder that is no repo greys the box out, and the remembered pick is not sent there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L169 ]
+[test: a worktree session shows the folder it was started in and its branch, and closing it says a kept worktree's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L192 ]
