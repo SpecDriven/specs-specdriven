@@ -195,11 +195,11 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
   server reads
 
 [test: a saved wiki token hands the provider the Confluence MCP server; none, nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L525 ]
-[test: the MCP servers the app asks for reach the SDK as stdio servers, by name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1278 ]
-[test: mcpServerConfigs keys the SDK's stdio configs by server name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1305 ]
-[test: the MCP servers the app asks for reach `codex app-server` as -c overrides, never the user's config : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L980 ]
-[test: strings are quoted with their quotes, backslashes and control characters escaped : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1002 ]
-[test: a server is one inline table under its name, and an odd name is made a bare key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1008 ]
+[test: the MCP servers the app asks for reach the SDK as stdio servers, by name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1283 ]
+[test: mcpServerConfigs keys the SDK's stdio configs by server name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1310 ]
+[test: the MCP servers the app asks for reach `codex app-server` as -c overrides, never the user's config : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L986 ]
+[test: strings are quoted with their quotes, backslashes and control characters escaped : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1008 ]
+[test: a server is one inline table under its name, and an odd name is made a bare key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1014 ]
 
 ## S9: A coding session should check that source is up to date @v1 [proposed]
 

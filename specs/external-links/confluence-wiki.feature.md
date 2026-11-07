@@ -314,8 +314,8 @@ in the feature's Automerge document and written into the `.feature.md` while
 [test: the instructions name the saved wikis, never a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L208 ]
 [test: no token saved is said in so many words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L152 ]
 [test: one wiki needs no base; several do, and the message lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L156 ]
-[test: the MCP servers the app asks for reach the SDK as stdio servers, by name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1278 ]
-[test: the MCP servers the app asks for reach `codex app-server` as -c overrides, never the user's config : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L980 ]
+[test: the MCP servers the app asks for reach the SDK as stdio servers, by name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1283 ]
+[test: the MCP servers the app asks for reach `codex app-server` as -c overrides, never the user's config : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L986 ]
 
 ## S13: The agent reads a page by its link @v1 [proposed]
 
