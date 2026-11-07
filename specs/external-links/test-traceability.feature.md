@@ -148,6 +148,13 @@ Read as the table, every line under the heading that held no url used to be drop
 - And: an anchor on a `@Test` annotation, decorator or comment names the declaration right under it; an anchor inside a test's body names the test it sits in
 - And: Java and Kotlin methods, `test(…)` / `it(…)` titles and functions in TypeScript and JavaScript, Python `def`s and Go `func`s are recognised
 - And: the name can be changed by hand before or after it is filled in, and is written to the file as `[test: <name> : <url> ]`
+- And: a title a formatter wrapped onto the line under `test(`, and a test declared through a name the file binds to a test function (`const withImages = test.if(…)`), are named the same way, from the call's line, the title's line or the body
+
+[test: a title a formatter wrapped under `test(` is named from the call, the title or the body : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testName.test.ts#L170 ]
+[test: a wrapped title under a chained `test.if(…)(` is named, however nested the condition : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testName.test.ts#L198 ]
+[test: modifier arguments over several lines, and a title in pieces, are read through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testName.test.ts#L224 ]
+[test: a test declared through an alias the file binds is named by its title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testName.test.ts#L249 ]
+[test: an alias is a test function with modifiers and no title, bound by const, let or var : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testName.test.ts#L282 ]
 
 ## S13: the test name is the file name @v1 [proposed]
 
