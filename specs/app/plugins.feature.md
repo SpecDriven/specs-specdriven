@@ -307,22 +307,27 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: a start leaves the marketplaces alone with the built-ins only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L607 ]
 [test: the start's refresh pulls every marketplace only when an external plugin is installed, and logs one it cannot reach : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L205 ]
 
-## S11: A marketplace that can no longer be refreshed is re-cloned @v1 [proposed]
+## S11: Refresh clones a marketplace afresh when its copy can no longer be pulled @v1 [proposed]
 
 - Given: a marketplace's copy in `~/.specdriven/marketplaces/<name>` can no
-  longer be pulled — its upstream history was rewritten, so Refresh reports
-  "refusing to merge unrelated histories"
-- When: the user presses Re-clone beside the marketplace on the Plugins page
+  longer be pulled — its upstream history was rewritten ("refusing to merge
+  unrelated histories"), or a checkout was left half-done
+- When: the user presses Refresh on the Plugins page — offered whether or
+  not the marketplace list has been browsed yet
 - Then: the copy is thrown away and the marketplace is cloned again through
   the app's own git engine, its index read and listed, and Refresh pulls
   again from then on
+- and there is no separate Re-clone action: Refresh does it when needed
 - and the fresh clone takes the old copy's place only once it is whole: a
-  remote that cannot be reached is reported and the old copy stays
+  remote that cannot be reached is reported beside the marketplace and the
+  old copy stays
 - and installed plugins are left as they are
-- and the hosted app and the hosted demo offer no Re-clone
+- and the hosted app and the hosted demo neither pull nor clone again
 
-[test: a marketplace whose history was rewritten upstream is re-cloned, and one that cannot be reached keeps its copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L268 ]
-[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L512 ]
+[test: Refresh clones a marketplace afresh when its history was rewritten upstream, and one that cannot be reached keeps its copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L268 ]
+[test: offers Refresh before the list is browsed, and no Re-clone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L106 ]
+[test: Refresh before browsing opens the list with a single pulling read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L114 ]
+[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L507 ]
 
 ## S12: A tab's sidebar uses the section head @v1 [proposed]
 
