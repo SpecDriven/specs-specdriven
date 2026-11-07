@@ -468,3 +468,31 @@ agent or plugin calling the API gets the same.
 [test: a feature's typed name is saved cleaned : https://github.com/SpecDriven/specdriven-app/blob/main/tests/features.test.ts#L132 ]
 [test: a published scenario keeps its heading verbatim : https://github.com/SpecDriven/specdriven-app/blob/main/tests/scenarioRenameLoop.test.ts#L130 ]
 [test: a plugin folder and a trusted folder are saved trimmed, inner spaces kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsWhitespace.test.ts#L53 ]
+
+## S12: Specs section head counts the project's scenarios by status @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+The `Features` section head in the left pane carries a small rollup of how
+many scenarios the project has in each status, so the balance of draft,
+proposed and published work is visible at a glance without opening a feature.
+
+- Given: a project whose features hold scenarios in a mix of draft, proposed
+  and published states
+- Then: the `Features` head shows three counts — draft, proposed, published —
+  each beside its status glyph, in that order, reusing the same glyph
+  vocabulary as the filter menu and the status chips (the Design system's one
+  status-icon set).
+- The counts are the project totals across every feature, and do not change
+  when a Status, Assignee or attribute filter narrows the tree below.
+- A status with no scenarios still shows its `0`, so the three always read
+  together.
+- A project with no scenarios at all shows no rollup rather than three zeroes.
+- The rollup names itself for a screen reader as `<n> draft, <n> proposed,
+  <n> published`; the glyphs themselves are decorative.
+
+[test: shows each status count with a glyph and names the triplet : https://github.com/SpecDriven/specdriven-app/blob/main/tests/statusCounts.test.tsx#L11 ]
+[test: renders nothing when there are no scenarios : https://github.com/SpecDriven/specdriven-app/blob/main/tests/statusCounts.test.tsx#L26 ]
+[test: counts zero in a status without hiding the others : https://github.com/SpecDriven/specdriven-app/blob/main/tests/statusCounts.test.tsx#L30 ]
