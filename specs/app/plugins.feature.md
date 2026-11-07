@@ -97,12 +97,12 @@ Plugins can be developed in any repository and then deployed to https://github.c
   visitor browses the marketplace, the Event Models marked installed, with
   no Install, Update, Remove or Refresh
 
-[test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L304 ]
-[test: a plugin is reinstalled from a marketplace that was removed and added back under another name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L355 ]
-[test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L430 ]
-[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L389 ]
-[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L512 ]
-[test: the hosted demo installs the Event Models from the marketplace at start and lists them on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L540 ]
+[test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L309 ]
+[test: a plugin is reinstalled from a marketplace that was removed and added back under another name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L360 ]
+[test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L435 ]
+[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L394 ]
+[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L517 ]
+[test: the hosted demo installs the Event Models from the marketplace at start and lists them on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L544 ]
 
 ## S3: A plugin is scaffolded, built and linked from the command line @v1 [proposed]
 
@@ -231,9 +231,9 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and an index that does not parse is reported beside the marketplace's
   name and does not hide the other marketplaces
 
-[test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L218 ]
-[test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L168 ]
-[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L497 ]
+[test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L220 ]
+[test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L170 ]
+[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L502 ]
 
 ## S8: The profile lists enabled plugins in tab order @v1 [proposed]
 
@@ -303,8 +303,8 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and with only the built-in plugins nothing is pulled; neither the hosted
   app, the hosted demo nor the read-only site pulls at all
 
-[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L605 ]
-[test: a start leaves the marketplaces alone with the built-ins only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L607 ]
+[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L609 ]
+[test: a start leaves the marketplaces alone with the built-ins only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L611 ]
 [test: the start's refresh pulls every marketplace only when an external plugin is installed, and logs one it cannot reach : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L205 ]
 
 ## S11: Refresh clones a marketplace afresh when its copy can no longer be pulled @v1 [proposed]
@@ -322,12 +322,13 @@ Plugins can be developed in any repository and then deployed to https://github.c
   remote that cannot be reached is reported beside the marketplace and the
   old copy stays
 - and installed plugins are left as they are
-- and the hosted app and the hosted demo neither pull nor clone again
+- and the hosted demo neither pulls nor clones again; the hosted app pulls
+  but never throws a copy away to clone it afresh
 
-[test: Refresh clones a marketplace afresh when its history was rewritten upstream, and one that cannot be reached keeps its copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L268 ]
+[test: Refresh clones a marketplace afresh when its history was rewritten upstream, and one that cannot be reached keeps its copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L270 ]
 [test: offers Refresh before the list is browsed, and no Re-clone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L106 ]
 [test: Refresh before browsing opens the list with a single pulling read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L114 ]
-[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L507 ]
+[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L517 ]
 
 ## S12: A tab's sidebar uses the section head @v1 [proposed]
 
