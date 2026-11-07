@@ -233,6 +233,7 @@ Plugins can be developed in any repository and then deployed to https://github.c
 
 [test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L220 ]
 [test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L170 ]
+[test: Browse reads the cache, and Refresh afterwards pulls : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L124 ]
 [test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L502 ]
 
 ## S8: The profile lists enabled plugins in tab order @v1 [proposed]
