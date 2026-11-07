@@ -35,10 +35,10 @@ again into the feature they made.
 - and the token is kept on this device only: an owner-only file, or the OS
   key store in the desktop app — never settings.json or the data repo
 
-[test: a token Jira accepts is kept, owner-only, and listed without the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L187 ]
-[test: a token Jira refuses, or that names nobody, is not kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L200 ]
-[test: a blank token or a url that is no site is refused before Jira is asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L210 ]
-[test: a saved token replaces the site's last one, and can be removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L216 ]
+[test: a token Jira accepts is kept, owner-only, and listed without the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L188 ]
+[test: a token Jira refuses, or that names nobody, is not kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L201 ]
+[test: a blank token or a url that is no site is refused before Jira is asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L211 ]
+[test: a saved token replaces the site's last one, and can be removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L217 ]
 [test: lists each site with who its token signs in as, never the token, each with Remove : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L224 ]
 [test: offers the url and token fields, the token as a password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L233 ]
 [test: a bare site url, or any issue url of it, normalized : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraUrl.test.ts#L47 ]
@@ -69,8 +69,8 @@ again into the feature they made.
 [test: a modal dialog with the url field, Add and Analyze, naming the folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L79 ]
 [test: a url is a Jira issue or a Confluence page row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L147 ]
 [test: Add waits for an issue or page url on a site with a token, within the limits : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L162 ]
-[test: refuses more than five of a kind, an unknown url, and a site without a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L227 ]
-[test: reads the issues and the page as markdown into one turn, and answers the proposal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L252 ]
+[test: refuses more than five of a kind, an unknown url, and a site without a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L228 ]
+[test: reads the issues and the page as markdown into one turn, and answers the proposal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L253 ]
 
 ## S3: The agent that reads them @v1 [proposed]
 
@@ -89,8 +89,8 @@ again into the feature they made.
 
 [test: the agent is named with one, chosen with two, missed with none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L92 ]
 [test: the agents offered are the available ones that answer one-shot turns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L142 ]
-[test: needs an agent that answers one-shot turns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L243 ]
-[test: asks the chosen agent, and passes the names already shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L289 ]
+[test: needs an agent that answers one-shot turns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L244 ]
+[test: asks the chosen agent, and passes the names already shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L290 ]
 [test: is held to a title, at most fifteen scenarios and the names of the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L74 ]
 [test: the provider advertises one-shot turns and answers them through codex exec : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/oneShot.test.ts#L101 ]
 [test: runs `codex exec` read-only, ephemeral, on the work dir, with the schema and out file; the prompt on stdin : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/oneShot.test.ts#L106 ]
@@ -129,7 +129,7 @@ again into the feature they made.
 [test: names are cleaned and repeats told apart; a body keeps nothing the parser would lift out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L180 ]
 [test: the title, each scenario kept or dropped with its body on show, and Create with the count : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L194 ]
 [test: Create waits for a title and a kept scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L216 ]
-[test: writes the kept scenarios as proposed into the folder, naming the sources : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L357 ]
+[test: writes the kept scenarios as proposed into the folder, naming the sources : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L358 ]
 
 ## S5: More than fifteen is asked about before continuing @v1 [proposed]
 
@@ -143,7 +143,7 @@ again into the feature they made.
 
 [test: more than fifteen is said, with Continue; nothing when the sources hold no more : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L209 ]
 [test: more than fifteen scenarios in one answer are cut to fifteen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L108 ]
-[test: asks the chosen agent, and passes the names already shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L289 ]
+[test: asks the chosen agent, and passes the names already shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L290 ]
 
 ## S6: What cannot be imported says why @v1 [proposed]
 
@@ -156,9 +156,9 @@ again into the feature they made.
   the agent that could not, the file already there by its name — and
   nothing is written
 
-[test: what Jira or Confluence refuses says which url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L336 ]
-[test: a text-only JSON answer parses too; a failed turn or an odd answer says who could not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L318 ]
-[test: a feature already there is reported, not replaced; a title or scenarios are needed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L367 ]
+[test: what Jira or Confluence refuses says which url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L337 ]
+[test: a text-only JSON answer parses too; a failed turn or an odd answer says who could not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L319 ]
+[test: a feature already there is reported, not replaced; a title or scenarios are needed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L368 ]
 
 ## S7: Off in the demo and the hosted app @v1 [proposed]
 
@@ -168,8 +168,8 @@ again into the feature they made.
   the server refuses the Jira and import routes — the demo has no token and
   no agent, the hosted app keeps no device secrets
 
-[test: the hosted app refuses Jira and the import altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L381 ]
-[test: demo mode refuses the import : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L396 ]
+[test: the hosted app refuses Jira and the import altogether : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L382 ]
+[test: demo mode refuses the import : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L397 ]
 
 ## S8: The model the agent answers with @v1 [proposed]
 
@@ -190,7 +190,7 @@ again into the feature they made.
 
 [test: a Model field of the models the agent offers, its default chosen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L102 ]
 [test: a model name is a CLI's name for one; anything else is said : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L133 ]
-[test: the model asked for reaches the agent; none leaves the agent's own; an odd name is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L305 ]
+[test: the model asked for reaches the agent; none leaves the agent's own; an odd name is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L306 ]
 [test: a model asked for is the query's model : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L60 ]
 [test: no model asked for and none in Settings leaves Claude Code's own default : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L79 ]
 [test: no model asked for and none in Settings is the first the data repo lists for Claude : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L85 ]
