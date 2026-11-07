@@ -201,3 +201,32 @@ again into the feature they made.
 [test: no model asked for and none in Settings leaves Claude Code's own default : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L79 ]
 [test: no model asked for and none in Settings is the first the data repo lists for Claude : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/oneShot.test.ts#L85 ]
 [test: a model asked for goes to codex exec as -m; none asked for leaves Codex's own default : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/oneShot.test.ts#L144 ]
+
+## S9: Jira and Confluence imports are switched on in Settings @v1 [proposed]
+
+- Given: Settings → Jira and Settings → Confluence, each with an on/off
+  switch that is off on a fresh device
+- When: the user turns a switch on or off
+- Then: off is kept as an absent setting (the opt-in default), on as the
+  setting set; a non-boolean value is refused
+- and the folder's ⋯ menu shows one import item only while a switch is on:
+  "Import from Jira/Wiki here…" with both, "Import from Jira here…" with
+  only Jira, "Import from Confluence here…" with only Confluence, and none
+  with neither
+- and the one-kind dialog takes only that kind's urls — a Jira-only import
+  refuses a Confluence page url, and the other way round — and the propose
+  and create routes refuse the kind whose switch is off, so a stale combined
+  request made while a switch was on is refused once it is off
+- and the tokens a site already has are kept while its switch is off, ready
+  for when it is turned back on
+
+[test: off by default: a fresh device refuses both sides : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L350 ]
+[test: only:'jira' rejects a Confluence url with 400 before any read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L433 ]
+[test: only:'wiki' rejects a Jira url with 400 before any read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L442 ]
+[test: Jira only: the Jira heading and field, and a Confluence url is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L191 ]
+[test: Confluence only: the Confluence heading and field, and a Jira url is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L207 ]
+
+[test: each is off until switched on, and off is stored as an absent key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L400 ]
+[test: Jira off refuses a Jira url and a combined set; Confluence still works : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L363 ]
+[test: Confluence off refuses a page url and a combined set; Jira still works : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L373 ]
+[test: create refuses the off side : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L383 ]
