@@ -405,9 +405,8 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and a token saved before counts again as soon as it is switched back on: the
   switch gates the feature, never the tokens
 
-[test: off by default: a fresh device refuses publish and the folder route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L612 ]
-
+[test: off by default, a fresh device refuses publish and the folder route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L612 ]
 [test: switched off refuses both routes, even with a saved token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L622 ]
-[test: Confluence switched off in Settings hands out no MCP server, even with a saved token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L63 ]
-[test: Confluence absent from Settings (the default) hands out no MCP server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L69 ]
+[test: Confluence switched off in Settings hands out none, even with a saved token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L63 ]
+[test: Confluence absent from Settings (the default) hands out none, even with a saved token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L69 ]
 [test: each is off until switched on, and off is stored as an absent key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L400 ]

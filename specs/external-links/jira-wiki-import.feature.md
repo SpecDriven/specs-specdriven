@@ -220,12 +220,11 @@ again into the feature they made.
 - and the tokens a site already has are kept while its switch is off, ready
   for when it is turned back on
 
-[test: off by default: a fresh device refuses both sides : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L350 ]
-[test: only:'jira' rejects a Confluence url with 400 before any read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L433 ]
-[test: only:'wiki' rejects a Jira url with 400 before any read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L442 ]
-[test: Jira only: the Jira heading and field, and a Confluence url is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L191 ]
-[test: Confluence only: the Confluence heading and field, and a Jira url is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L207 ]
-
+[test: off by default, a fresh device refuses both sides : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L350 ]
+[test: a jira-only import rejects a Confluence url with 400 before any read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L433 ]
+[test: a wiki-only import rejects a Jira url with 400 before any read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L442 ]
+[test: Jira only shows the Jira heading and field, and a Confluence url is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L191 ]
+[test: Confluence only shows the Confluence heading and field, and a Jira url is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L207 ]
 [test: each is off until switched on, and off is stored as an absent key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L400 ]
 [test: Jira off refuses a Jira url and a combined set; Confluence still works : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L363 ]
 [test: Confluence off refuses a page url and a combined set; Jira still works : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L373 ]
