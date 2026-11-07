@@ -16,6 +16,10 @@ Claude Agent can use either a Claude Account and an API Proxy.
   detected" to make that address and token the app's own
 - and the token is kept in the app's own owner-only store (OS-encrypted in
   the desktop app), never shown on the page, and never sent back to it
+- and a pasted token a request cannot carry — with a space, a line break or
+  a letter outside ASCII in it, such as a pasted "Bearer sk-…" — is refused
+  with why, and no answer to the page quotes a token, however a request
+  with it failed
 - and Claude Code's own files are never edited
 - and "Check connection" asks the proxy for its model list and reports OK,
   a refused token, or an unreachable proxy
@@ -29,6 +33,8 @@ proxy for the account sign-in.
 [test: detectClaudeProxy reads the environment, then each settings file, the later winning : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L127 ]
 [test: a store round-trips through an owner-only file under the app's home, and is cached : https://github.com/SpecDriven/specdriven-app/blob/main/tests/secrets.test.ts#L39 ]
 [test: a corrupt or empty file reads as no secret : https://github.com/SpecDriven/specdriven-app/blob/main/tests/secrets.test.ts#L58 ]
+[test: a pasted token never comes back in Check proxy's words or the model list's error, whatever it holds : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/signIn.property.test.ts#L690 ]
+[test: whatever a failed request says, Check proxy and the model list say it without the token : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/signIn.property.test.ts#L714 ]
 
 ## S2: Choose how Claude signs in @v1 [published]
 
