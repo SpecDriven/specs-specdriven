@@ -171,7 +171,7 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: the lists come from the state payload; anything else is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelsSettings.test.tsx#L174 ]
 [test: a Model field of the models the agent offers, its default chosen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L102 ]
 [test: the names Settings → Claude lists narrow the offered models, in the list's order, the first chosen until another is : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L111 ]
-[test: the pane's choices are the models the sign-in offers, else Claude Code's aliases, narrowed to the data repo's list : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1170 ]
+[test: the pane's choices are the models the sign-in offers, else Claude Code's aliases, narrowed to the data repo's list : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1183 ]
 [test: the default model is a dropdown of only the models the app lists for Claude, the first until another is chosen : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L44 ]
 [test: an app that keeps no model lists leaves the default model a free field : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L61 ]
 [test: Claude's list comes from the app's state payload, keyed by agent : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/defaultModel.test.tsx#L67 ]
@@ -195,9 +195,9 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
   server reads
 
 [test: a saved wiki token hands the provider the Confluence MCP server; none, nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L624 ]
-[test: the MCP servers the app asks for reach the SDK as stdio servers, by name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1283 ]
-[test: mcpServerConfigs keys the SDK's stdio configs by server name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1310 ]
-[test: the MCP servers the app asks for reach `codex app-server` as -c overrides, never the user's config : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L986 ]
+[test: the MCP servers the app asks for reach the SDK as stdio servers, by name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1296 ]
+[test: mcpServerConfigs keys the SDK's stdio configs by server name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1323 ]
+[test: the MCP servers the app asks for reach `codex app-server` as -c overrides, never the user's config : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L987 ]
 [test: strings are quoted with their quotes, backslashes and control characters escaped : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1008 ]
 [test: a server is one inline table under its name, and an odd name is made a bare key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1014 ]
 
