@@ -10,6 +10,12 @@ scenarios into a new `.feature.md` in the chosen folder and opens it. When
 the sources describe more than fifteen scenarios the dialog says so and asks
 before fetching the rest.
 
+Jira and Confluence are each switched on in Settings, off until then. With
+both on the importer reads either kind in one dialog; with only one on it
+reads only that kind, and the ⋯ menu item names it ("Import from Jira
+here…" / "Import from Confluence here…"); with neither on there is no import
+item at all.
+
 Jira is Server / Data Center (REST API 2), reached with a personal access
 token kept per site on this device like the Confluence token
 (external-links/confluence-wiki.feature.md) — never in settings.json or the
@@ -39,8 +45,8 @@ again into the feature they made.
 [test: a token Jira refuses, or that names nobody, is not kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L201 ]
 [test: a blank token or a url that is no site is refused before Jira is asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L211 ]
 [test: a saved token replaces the site's last one, and can be removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L217 ]
-[test: lists each site with who its token signs in as, never the token, each with Remove : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L224 ]
-[test: offers the url and token fields, the token as a password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L233 ]
+[test: lists each site with who its token signs in as, never the token, each with Remove : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L263 ]
+[test: offers the url and token fields, the token as a password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L272 ]
 [test: a bare site url, or any issue url of it, normalized : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraUrl.test.ts#L47 ]
 [test: two urls are the same site by origin and context path, whatever the case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraUrl.test.ts#L54 ]
 
@@ -66,7 +72,7 @@ again into the feature they made.
 [test: is built the way Jira shows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraUrl.test.ts#L41 ]
 [test: is a Jira issue, a Confluence page, or nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L34 ]
 [test: at most five of each kind, and at least one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L49 ]
-[test: a modal dialog with the url field, Add and Analyze, naming the folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L79 ]
+[test: a modal dialog with the url field, Add and Analyze, naming the folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L77 ]
 [test: a url is a Jira issue or a Confluence page row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L147 ]
 [test: Add waits for an issue or page url on a site with a token, within the limits : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L162 ]
 [test: refuses more than five of a kind, an unknown url, and a site without a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L228 ]
@@ -87,7 +93,7 @@ again into the feature they made.
 - and the Codex plugin answers such turns through `codex exec`, read-only
   and ephemeral, the answer's shape given as a schema
 
-[test: the agent is named with one, chosen with two, missed with none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L92 ]
+[test: the agent is named with one, chosen with two, missed with none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L90 ]
 [test: the agents offered are the available ones that answer one-shot turns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L142 ]
 [test: needs an agent that answers one-shot turns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L244 ]
 [test: asks the chosen agent, and passes the names already shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L290 ]
@@ -127,8 +133,8 @@ again into the feature they made.
 [test: a key read from the url when the title is not one; repeats dropped; no more than five : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L202 ]
 [test: a wiki-only import links no ticket : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L219 ]
 [test: names are cleaned and repeats told apart; a body keeps nothing the parser would lift out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L180 ]
-[test: the title, each scenario kept or dropped with its body on show, and Create with the count : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L194 ]
-[test: Create waits for a title and a kept scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L216 ]
+[test: the title, each scenario kept or dropped with its body on show, and Create with the count : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L233 ]
+[test: Create waits for a title and a kept scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L255 ]
 [test: writes the kept scenarios as proposed into the folder, naming the sources : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L469 ]
 
 ## S5: More than fifteen is asked about before continuing @v1 [proposed]
@@ -141,7 +147,7 @@ again into the feature they made.
   proposed already, and appends the next batch — until nothing is left
 - and an answer with more than fifteen scenarios in it is cut to fifteen
 
-[test: more than fifteen is said, with Continue; nothing when the sources hold no more : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L209 ]
+[test: more than fifteen is said, with Continue; nothing when the sources hold no more : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L248 ]
 [test: more than fifteen scenarios in one answer are cut to fifteen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiImportPlan.test.ts#L108 ]
 [test: asks the chosen agent, and passes the names already shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L290 ]
 
