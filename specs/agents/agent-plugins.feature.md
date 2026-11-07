@@ -207,12 +207,41 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 
 **Updated by:** jmeowmeow
 
-When starting a coding session, whether with a LLM agent or a human session, SpecDriven should check the state of the local source for the app under development so that new code is based on the appropriate starting branch state.
+- Given: a coding session is about to start in a folder that is the code
+  repository under development (not the SpecDriven data repo, which the app
+  already pulls and pushes on its own)
+- When: the user starts the session and the branch there is not already clean
+  and level with its remote of record
+- Then: before the agent runs, the pane reads that branch's state — its name,
+  how far it is ahead of and behind its upstream after a bounded live fetch,
+  and whether the working tree is dirty — and shows it so new work branches
+  from the right place
+- and online, with a clean tree, it offers to bring the branch up to date
+  before the session — a merge (`git pull --no-rebase`) or a rebase (`git pull
+  --rebase`) — or to start as it is; the chosen refresh runs first and the
+  session starts only once it finishes
+- and offline, with no upstream, or with a dirty tree, it shows the local state
+  (the last the repo saw of its origin, if any) and offers no refresh, only to
+  start as it is or cancel, saying why a refresh is off
+- and a refresh that leaves conflicts, or fails, is reported and the session is
+  not started until it is resolved; a branch already clean and up to date, or a
+  folder that is not a code repository, starts with no dialog
 
-When offline, display the current branch state and confirm whether to proceed.
-
-When online, display the current branch state and offer to update the branch via merge or rebase.
-
-Offer the user a dialog which will run a "git pull" or appropriate source refresh before starting a session.
-
-Handle the offline case appropriately. In this case, only local state can be checked, such as which branches are active and what the local repository last saw from an origin repo, if any. The offline case is similar to one where there is no remote source of record (no external origin) for a branch.
+[test: a clean branch level with its upstream is online, up to date, not dirty : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L74 ]
+[test: a branch whose origin advanced is reported behind, after a live fetch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L91 ]
+[test: a local commit the upstream lacks is reported ahead : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L101 ]
+[test: an uncommitted change marks the tree dirty : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L111 ]
+[test: a branch with no upstream is local only, not an error : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L118 ]
+[test: a detached HEAD is reported as such, with no branch to refresh : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L127 ]
+[test: a folder that is not a git repository is reported, not thrown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L137 ]
+[test: an unreachable remote reports offline but still returns the last-known state : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L156 ]
+[test: refreshSource with merge advances a behind branch to its upstream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L175 ]
+[test: refreshSource with rebase replays local work on top of the upstream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L190 ]
+[test: refreshSource refuses a dirty working tree rather than half-applying : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L210 ]
+[test: refreshSource reports a conflict instead of leaving a silent half-merge : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L223 ]
+[test: the source status is read for an absolute path over the API : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L237 ]
+[test: the refresh runs the merge and reports success over the API : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L250 ]
+[test: a behind branch offers Rebase, Update, Start anyway, and Cancel : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sourceCheckDialog.test.tsx#L71 ]
+[test: offline and local-only drop the refresh buttons and keep confirm-or-cancel : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sourceCheckDialog.test.tsx#L81 ]
+[test: the why-off hint shows when a refresh is blocked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sourceCheckDialog.test.tsx#L88 ]
+[test: busy disables every action so a refresh cannot be double-run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sourceCheckDialog.test.tsx#L97 ]
