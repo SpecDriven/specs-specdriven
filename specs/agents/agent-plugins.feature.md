@@ -200,3 +200,19 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: the MCP servers the app asks for reach `codex app-server` as -c overrides, never the user's config : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L980 ]
 [test: strings are quoted with their quotes, backslashes and control characters escaped : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1002 ]
 [test: a server is one inline table under its name, and an odd name is made a bare key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1008 ]
+
+## S9: A coding session should check that source is up to date @v1 [proposed]
+
+**Created by:** jmeowmeow
+
+**Updated by:** jmeowmeow
+
+When starting a coding session, whether with a LLM agent or a human session, SpecDriven should check the state of the local source for the app under development so that new code is based on the appropriate starting branch state.
+
+When offline, display the current branch state and confirm whether to proceed.
+
+When online, display the current branch state and offer to update the branch via merge or rebase.
+
+Offer the user a dialog which will run a "git pull" or appropriate source refresh before starting a session.
+
+Handle the offline case appropriately. In this case, only local state can be checked, such as which branches are active and what the local repository last saw from an origin repo, if any. The offline case is similar to one where there is no remote source of record (no external origin) for a branch.
