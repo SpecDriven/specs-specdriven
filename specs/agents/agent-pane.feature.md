@@ -24,10 +24,10 @@
 - and a wait of 0 turns the limit off; a session that talks to the API
   directly is never held to it
 
-[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1025 ]
-[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1048 ]
-[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1061 ]
-[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1072 ]
+[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1028 ]
+[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1051 ]
+[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1064 ]
+[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1075 ]
 
 ## S2: The agent pane starts Claude in Auto mode @v1 [published]
 
@@ -95,7 +95,7 @@
 - and a `cwd` that is not absolute, or names a folder that does not exist, is
   refused with an error
 
-[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L664 ]
+[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L667 ]
 
 ## S6: The composer bar picks the folder, model, effort and mode @v1 [proposed]
 
@@ -203,7 +203,7 @@
 [test: a session started with pasted images hands them to the provider with its first turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L472 ]
 [test: pasted images are refused for an agent that reads none, and when they are not images, too many or too big : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L488 ]
 [test: a pasted image gets a reply that says the simulation cannot look at it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L297 ]
-[test: pasted images go to Claude as image blocks before the text, and images alone carry no text block : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L433 ]
+[test: pasted images go to Claude as image blocks before the text, and images alone carry no text block : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L436 ]
 [test: pasted images go to Codex as localImage items, read from the copies the app keeps : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L680 ]
 [test: pasted images go to pi with its prompt command, as its image items : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-pi/test/piChat.test.ts#L476 ]
 
