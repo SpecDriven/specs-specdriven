@@ -3,9 +3,9 @@
 **Assigned:** David
 
 SpecDriven can check for a newer release and, as the desktop app, install it
-and restart into it: **Check for Updates…** in the user menu at the lower
-left, and in the app menu on macOS (Help on Windows and Linux), opens the
-Updates page.
+and restart into it: **Check for Updates…** — clicking the version beside
+the user name at the lower left, or the app menu on macOS (Help on Windows
+and Linux) — opens the Updates page.
 
 ## How an update installs
 
@@ -57,8 +57,8 @@ should, and the installer one-liner from `main` is the way forward once.
 ## S1: Check for Updates finds the newest release @v1 [proposed]
 
 - Given: the desktop app, running some version
-- When: the user chooses Check for Updates… — from the user menu, or from the
-  app menu (Help on Windows and Linux)
+- When: the user chooses Check for Updates… — by clicking the version at the
+  lower left, or from the app menu (Help on Windows and Linux)
 - Then: the Updates page opens and asks the releases page's `latest`
   redirect which release is newest, and says either that this version is up
   to date, or which newer version is available, with a link to its release
@@ -189,9 +189,10 @@ should, and the installer one-liner from `main` is the way forward once.
 - When: it starts, and once a day after that while it runs — not the web
   server, the demo or a hosted copy, which cannot update themselves
 - Then: it asks the releases page which release is newest, without holding
-  up the start, and a newer one puts a dot on the version at the lower left
-  and on Check for Updates… in the user menu, saying on hover which version
-  is available; either opens the Updates page as before
+  up the start, and a newer one puts a dot on the version at the lower left,
+  saying on hover which version is available; clicking the version opens the
+  Updates page, as it always does on the desktop app, and the user menu has
+  no Check for Updates… of its own
 - and a check that fails — no network, a page that names no release — is a
   debug line in the app's log and nothing on screen; the next look is a day
   on, and the manual check is there meanwhile
@@ -202,4 +203,5 @@ should, and the installer one-liner from `main` is the way forward once.
 [test: a check that fails is swallowed, counts as the day's check, and leaves the last answer alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L480 ]
 [test: a newer release puts a dot on the version, saying which version is out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateHint.test.tsx#L9 ]
 [test: no newer release known, no dot — the release-notes dot is its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateHint.test.tsx#L17 ]
-[test: carries the same dot and hint, and opens the Updates page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateHint.test.tsx#L30 ]
+[test: on the desktop app the version is a button to the Updates page, carrying the same dot and hint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateHint.test.tsx#L30 ]
+[test: elsewhere the version is plain text, no way to the Updates page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateHint.test.tsx#L51 ]
