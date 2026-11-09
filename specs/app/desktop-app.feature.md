@@ -327,8 +327,8 @@ AND  open links in IntelliJ is Off
 - Then: each opens what it names — the Pomodoro bar, the coding agent pane,
   the collapsed sidebar — instead of starting to drag the window
 
-[test: every control in the header stays clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L156 ]
-[test: the header's icon buttons stay clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L169 ]
+[test: every control in the header stays clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L155 ]
+[test: the header's icon buttons stay clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L168 ]
 
 ## S11: the internal protocol serves only the app's bundled files @v1 [proposed]
 
@@ -395,10 +395,10 @@ AND  open links in IntelliJ is Off
 - Then: the window moves, as it does from the sidebar header; a click on a
   crumb, the feature's name or an icon in that row still does what it names
 
-[test: the editor pane's header is a drag region too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L194 ]
-[test: every control in the editor header stays clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L199 ]
-[test: off macOS the editor header is not a drag region : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L211 ]
-[test: the opt-out is scoped to the two headers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L225 ]
+[test: the editor pane's header is a drag region too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L193 ]
+[test: every control in the editor header stays clickable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L198 ]
+[test: off macOS the editor header is not a drag region : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L210 ]
+[test: the opt-out is scoped to the two headers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dragRegion.test.ts#L224 ]
 
 ## S16: the window reopens where it was left @v1 [proposed]
 
