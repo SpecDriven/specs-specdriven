@@ -309,9 +309,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and neither the hosted app, the hosted demo nor the read-only site pulls
   at all
 
-[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L609 ]
-[test: a start leaves the marketplaces alone with the built-ins only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L611 ]
-[test: the start's refresh pulls every marketplace only when an external plugin is installed, and logs one it cannot reach : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L205 ]
+[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L624 ]
+[test: a start leaves the marketplaces alone with the built-ins only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L626 ]
+[test: the start's refresh pulls the default marketplace always and the others only when an external plugin is installed, and logs one it cannot reach : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L206 ]
+[test: the default marketplace is known by its url, whatever its name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L27 ]
 
 ## S11: Refresh clones a marketplace afresh when its copy can no longer be pulled @v1 [proposed]
 
@@ -392,3 +393,13 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and with nothing to update, the marketplace not reachable, a plugin
   linked from a folder or shipped with the data folder, or in the hosted
   app, the hosted demo or the read-only site, no dialog appears
+
+[test: a plugin whose index row is newer, or pinned to another ref, is offered; nothing else is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L52 ]
+[test: versions compare part by part, a pre-release before its release : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L18 ]
+[test: the start's check reads the installed plugins against the indexes it is handed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L78 ]
+[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L624 ]
+[test: lists each plugin ticked, with the version installed and the one offered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L84 ]
+[test: Update runs the ticked plugins in order and closes once all are updated : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L95 ]
+[test: a failure is shown beside its row, the others still update, and Close answers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L107 ]
+[test: Not now updates nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L125 ]
+[test: the offer is empty when the server refuses or answers none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L133 ]
