@@ -41,6 +41,7 @@ lists the 10 newest entries of that list, with the same icons, the open one tick
 [test: entries saved before open times keep their order, spec folders then code repositories : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L179 ]
 [test: forgetting a folder drops its open time, and a stored map keeps only times : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L193 ]
 [test: GET /api/state lists spec folders and code repositories together, newest first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L295 ]
+[test: keeps well-formed entries in order and drops the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L252 ]
 [test: GET /api/state says where each GitHub url on the list is cloned : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L168 ]
 [test: PUT /api/state forgetDataRepo removes a folder from the list and persists it, the folder itself untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L255 ]
 [test: the open folder cannot be removed from the list — switch away first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L288 ]
