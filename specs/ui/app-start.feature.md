@@ -32,6 +32,11 @@ Local state lives in `.specdriven/settings.json`, looked up in this order:
 uses for the install prefix. Settings are saved back to whichever of the two
 the app read; when neither exists, the project one is created.
 
+Two runs use the home file only: the desktop app (desktop-app.feature.md
+"Data locations"), and a run from the app's own source checkout (the
+specdriven-app repository or a worktree of it), so every checkout, worktree
+and the desktop app share one settings file.
+
 ## S1: a clone without a token is refused when signed out @v1 [proposed]
 
 - Given: the app is not signed in to the repository's GitHub host
@@ -284,3 +289,25 @@ the app read; when neither exists, the project one is created.
 [test: reports the server unreachable after every try is refused, without throwing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootStateRetry.test.ts#L53 ]
 [test: an error answer is reported with the server's message and not retried : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootStateRetry.test.ts#L60 ]
 [test: a server that never answers is reported as stuck after the timeout, not retried : https://github.com/SpecDriven/specdriven-app/blob/main/tests/bootStateRetry.test.ts#L69 ]
+
+## S18: the app's own checkout uses the home settings file @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+- Given: the app runs from its own source checkout — the specdriven-app
+  repository or one of its worktrees — with no `SPECDRIVEN_ROOT` pointing
+  elsewhere
+- When: it reads or saves settings
+- Then: it uses `~/.specdriven/settings.json`, even when the checkout has a
+  `.specdriven/settings.json` of its own
+- and with no home file yet, the checkout's old settings file is read, and
+  the first save moves those settings to the home file
+- and with no settings file anywhere, the home one is created
+- and agent session records and worktrees live beside the home file too
+
+[test: the app's own checkout reads and writes the home settings file even with a project one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L204 ]
+[test: the app's own checkout creates the home settings file when there is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L216 ]
+[test: the app's own checkout reads its old project settings until the first save moves them home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L224 ]
+[test: another project's package.json does not count as the app's checkout : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L254 ]

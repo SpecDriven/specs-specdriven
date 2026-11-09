@@ -92,11 +92,11 @@ the OS application-data directory (`~/Library/Application Support/SpecDriven`
 on macOS, `~/.config/SpecDriven` on Linux, `%APPDATA%\SpecDriven` on Windows)
 via `SPECDRIVEN_ROOT`:
 
-- Settings follow the usual lookup (app-start.feature.md) with the
-  app-data directory as the "project root": an existing
-  `~/.specdriven/settings.json` is picked up and written back — shared with
-  the web version, so both see the same data repo. With no settings file
-  anywhere, the desktop app keeps its own under the app-data directory.
+- Settings are `~/.specdriven/settings.json` only (app-start.feature.md
+  "Settings file"), shared with the web version, so both see the same data
+  repo. A settings file an older version left under the app-data directory
+  is read only while there is no home file, and the first save moves it
+  home; with no settings file anywhere, the home one is created.
 - GitHub data repos are cloned under the app-data directory
   (`.../SpecDriven/repos/<name>`) via `SPECDRIVEN_REPOS_DIR`, instead of the
   web version's sibling-of-the-checkout location.
@@ -246,10 +246,14 @@ to the user-only token file next to the home settings file.
 
 - Given: the web version has recorded a data repo in `~/.specdriven/settings.json`
 - When: the desktop app starts
-- Then: it opens that data repo without asking
+- Then: it opens that data repo without asking, even when a settings file
+  is also under the app-data directory
+- and settings it saves go to `~/.specdriven/settings.json`, never to the
+  app-data directory
 
-[test: the home settings file is used when the project has none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L58 ]
-[test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L73 ]
+[test: the home settings file is used when the project has none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L61 ]
+[test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L76 ]
+[test: the desktop app reads and writes only the home settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L236 ]
 
 ## S6: GitHub data repos are cloned under the app-data directory @v1 [proposed]
 

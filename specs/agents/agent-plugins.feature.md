@@ -77,7 +77,7 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: only agents whose CLI is there are usable, in rank order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L42 ]
 [test: the state's agents list is what the pane reads, and nothing stands in for it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L49 ]
 [test: an unchosen dialog opens on the first usable agent by rank : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionDialog.test.tsx#L77 ]
-[test: the session target is only ever desktop or a registered agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L162 ]
+[test: the session target is only ever desktop or a registered agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L165 ]
 
 ## S5: The pane offers to install an agent plugin @v1 [proposed]
 
