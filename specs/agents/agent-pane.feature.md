@@ -58,7 +58,7 @@
   has a native chooser)
 - and a running agent cannot move, so picking another folder starts a new
   session there with the same agent, mode, model and effort; the old session
-  stays in the Sessions menu
+  keeps its tab
 - and on the new-session screen the same chip picks the folder the session
   will start in
 - and the data repo is offered by its absolute path, though settings may
@@ -135,8 +135,8 @@
 [test: the effort menu offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L455 ]
 [test: the pane's model list is loaded again once it has gone stale, and readers at once share the load : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelRefresh.test.tsx#L83 ]
 [test: the pane's model list is loaded again when the model menu opens, and the menu lists what came back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelRefresh.test.tsx#L112 ]
-[test: the pane switches a running session's model and effort, and the pick becomes the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L227 ]
-[test: an agent's choices and defaults are listed for the pane and kept through the provider : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L268 ]
+[test: the pane switches a running session's model and effort, and the pick becomes the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L251 ]
+[test: an agent's choices and defaults are listed for the pane and kept through the provider : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L292 ]
 [test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L208 ]
 [test: the model menu lists the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L450 ]
 [test: a model off the list still shows, and with no default the agent's own leads the menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L466 ]
@@ -144,8 +144,8 @@
 
 ## S7: A new session starts from the message box @v1 [proposed]
 
-- Given: the pane with no session open, or "New session" from the Sessions
-  menu
+- Given: the pane with no session open, or the + at the end of the session
+  tabs
 - Then: it shows a message box with the bar under it — the agent (when more
   than one can start), the folder, the model, the effort and the mode — and
   no form to fill in
@@ -161,7 +161,7 @@
 
 [test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L482 ]
 [test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L476 ]
-[test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L204 ]
+[test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L228 ]
 [test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L513 ]
 [test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L507 ]
 
@@ -196,9 +196,9 @@
 [test: an image goes as it is when its type and size fit, else it is scaled to fit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L100 ]
 [test: a pasted image shows as a thumbnail, can be removed, and is sent with the first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L146 ]
 [test: an agent that reads no images refuses the paste by name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L221 ]
-[test: images pasted into a message reach the provider, are kept in the session's folder and served back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L531 ]
-[test: a session started with pasted images hands them to the provider with its first turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L571 ]
-[test: pasted images are refused for an agent that reads none, and when they are not images, too many or too big : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L587 ]
+[test: images pasted into a message reach the provider, are kept in the session's folder and served back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L557 ]
+[test: a session started with pasted images hands them to the provider with its first turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L597 ]
+[test: pasted images are refused for an agent that reads none, and when they are not images, too many or too big : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L613 ]
 [test: a pasted image gets a reply that says the simulation cannot look at it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L343 ]
 [test: pasted images go to Claude as image blocks before the text, and images alone carry no text block : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L449 ]
 [test: pasted images go to Codex as localImage items, read from the copies the app keeps : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L684 ]
@@ -344,8 +344,56 @@
 [test: a context event leaves the transcript as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L177 ]
 [test: the header ring opens the session popover on the folder, its branch and the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L139 ]
 [test: Refresh asks the agent to count every category, and a count on the stream moves the ring : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L173 ]
-[test: a provider's context count reaches the pane, the log keeps the newest, and the record its totals : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L352 ]
-[test: the pane's Refresh asks the provider to count again, and is refused where it cannot : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L400 ]
+[test: a provider's context count reaches the pane, the log keeps the newest, and the record its totals : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L376 ]
+[test: the pane's Refresh asks the provider to count again, and is refused where it cannot : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L424 ]
 [test: a demo session counts its context window, and counts it again on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L293 ]
 [test: Codex's token usage is the context count, the last request's tokens of the model's window : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1030 ]
 [test: a Codex session shows its context count as Codex reports it, once per change : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1047 ]
+
+## S12: Each session has its own tab, at most five @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+- Given: the coding agent pane with sessions open, as in Claude Code
+- Then: a row of tabs under the pane's header holds one tab per open
+  session, in the order they started, each with its name and a dot for how
+  it is doing (working, waiting for an answer, ready, ended, failed); the
+  full name, the agent, its state and its folder show on hover
+- When: the user clicks a tab, or moves to it with the arrow keys, Home or
+  End
+- Then: the pane shows that session's transcript and composer, and the
+  header its name; the other sessions run on behind it, each followed live,
+  so their dots keep up and a question one of them asks still raises a toast
+- and on reload every open session comes back as a tab, the one last shown
+  in front
+- When: the user clicks the + at the end of the row
+- Then: the new-session screen opens on a "New session" tab of its own,
+  which has nothing to close and goes when another tab is picked
+- and at most five sessions are open at once, ended ones included, since an
+  ended session keeps its tab until it is closed: with five open the + is
+  greyed out and says "At most 5 sessions — close one to start another",
+  the new-session screen says why it cannot send, and POST /api/agent/chat
+  (as every other way a session starts — a spec's Start session, a
+  self-fix) answers 409 "At most 5 coding agent sessions can be open at once
+  — close one first"
+- When: the user closes a tab with its ×, a middle-click or Delete
+- Then: the session ends and its tab goes, and the tab to its right is
+  shown, else the one to its left, else the new-session screen
+- and a session whose agent is still working, or waiting for an answer,
+  asks "End this session?" first, and No keeps it; one that is ready, ended
+  or failed closes at once
+
+[test: each open session has a tab in start order, every one followed, and a click shows its transcript : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L200 ]
+[test: the arrow keys, Home and End move between tabs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L220 ]
+[test: + opens the new-session screen on a tab of its own, until five tabs are open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L239 ]
+[test: with five tabs open, ended ones among them, + and the message box wait for one to close : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L253 ]
+[test: × closes an idle tab at once and shows the tab to its right : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L268 ]
+[test: × on a tab whose agent is at work asks first, and a no keeps the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L284 ]
+[test: closing the last tab leaves the new-session screen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L307 ]
+[test: tabs run in the order their sessions started, and a closed tab hands over to its right, else its left : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L174 ]
+[test: five open tabs, ended ones included, leave no room for another : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L182 ]
+[test: a session asks before closing only while its agent is at work : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L189 ]
+[test: a tab's tooltip names the session, its agent, its state and its folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L195 ]
+[test: at most five sessions are open at once, an ended one holding its tab until it is closed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L120 ]

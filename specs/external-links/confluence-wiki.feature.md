@@ -309,7 +309,7 @@ in the feature's Automerge document and written into the `.feature.md` while
 [test: no wiki token, no server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L59 ]
 [test: a saved token brings the Confluence server, run from the app's source with its token file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L75 ]
 [test: the demo and the hosted app hand out none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L89 ]
-[test: a saved wiki token hands the provider the Confluence MCP server; none, nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L624 ]
+[test: a saved wiki token hands the provider the Confluence MCP server; none, nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L650 ]
 [test: three read-only tools, under the server's name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L217 ]
 [test: the instructions name the saved wikis, never a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L208 ]
 [test: no token saved is said in so many words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L152 ]
