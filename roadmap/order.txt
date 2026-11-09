@@ -6,6 +6,7 @@ demo.md
 docs-as-code.md
 freemium.md
 image-support.md
+specification-import-from-existing-documents.md
 integration-priorities.md
 lada-s-patterns.md
 landing-page.md
@@ -25,3 +26,4 @@ test-plan.md
 testing.md
 ui.md
 use-in-education.md
+reverse-eng-extract-intent.md
