@@ -496,3 +496,34 @@ proposed and published work is visible at a glance without opening a feature.
 [test: shows each status count with a glyph and names the triplet : https://github.com/SpecDriven/specdriven-app/blob/main/tests/statusCounts.test.tsx#L11 ]
 [test: renders nothing when there are no scenarios : https://github.com/SpecDriven/specdriven-app/blob/main/tests/statusCounts.test.tsx#L26 ]
 [test: counts zero in a status without hiding the others : https://github.com/SpecDriven/specdriven-app/blob/main/tests/statusCounts.test.tsx#L30 ]
+
+## S13: A push that fails is shown @v1 [proposed]
+
+- Given: the app cannot push to the data repo's remote — the built-in
+  engine with no GitHub sign-in, or no network
+- When: a sync commits an edit and its push fails
+- Then: the edit stays committed on this computer
+- and the Sync button shows a warning whose tooltip gives the reason
+- and a toast gives the reason once, not on every sync, with a way into
+  Settings when the reason is a missing sign-in
+- and the editors' autosave hints say the edit is saved on this computer
+  only, instead of "the next sync pushes it"
+- and all three go back to normal once a push goes through
+
+A failed push used to reach the log and nothing else, so the page kept
+promising a push that was not happening (git-operations.md).
+
+[test: a tick whose push fails keeps the commit and tells the page why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pushFailure.test.ts#L76 ]
+[test: while a push fails the Sync button, a toast and the autosave hint say so, and all clear once it goes through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncProblem.test.tsx#L134 ]
+[test: the listing carries the push problem to the page, and null when there is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncProblem.test.tsx#L174 ]
+[test: an autosave hint promises a push only while pushes go through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncProblem.test.tsx#L188 ]
+
+## S14: Commits a failed push left behind are pushed by the next sync @v1 [proposed]
+
+- Given: earlier syncs committed edits they could not push
+- and nothing has been edited since
+- When: a sync runs that can reach the remote — the user signed in, or
+  the network is back
+- Then: the waiting commits are pushed, without waiting for the next edit
+
+[test: commits a failed push left behind go up on the next tick that can push, with nothing new to save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pushFailure.test.ts#L97 ]
