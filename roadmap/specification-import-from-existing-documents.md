@@ -8,4 +8,4 @@ Given that the amount of information maybe substantial - we want to employ an 'o
 
 We want to give the user an option of which strategy they want to use.
 
-Investigate using our Plugin architecture to capture each strategy and to be able to host it on companie's private Plugin Marketplace.
+Investigate using our Plugin architecture to capture each strategy and to be able to host it on company's private Plugin Marketplace.
