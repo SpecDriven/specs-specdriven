@@ -1,12 +1,12 @@
 auth.md
 coding-agent-ui.md
+specification-import-from-existing-documents.md
 coding-session-tracking-and-reporting.md
 dashboards.md
 demo.md
 docs-as-code.md
 freemium.md
 image-support.md
-specification-import-from-existing-documents.md
 integration-priorities.md
 lada-s-patterns.md
 landing-page.md
