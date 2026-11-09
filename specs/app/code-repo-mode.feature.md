@@ -33,25 +33,26 @@ machine — not in the demo, the hosted app or the read-only site.
 - When: the first-run screen asks where the specs are and the user picks
   "A code repository", then names a folder (typed, or with Browse…)
 - Then: the app opens that folder in code repository mode
-- and the folder list ("Spec folders") has a "Code repositories" section:
-  the code repositories opened before, most recent first, each one openable
-  and removable from the list (the folder itself stays on disk), plus
+- and the code repositories opened before are on the same folder list as
+  the specification folders (Manage folders and the recent folders menu),
+  most recent first, each marked by a code-folder icon, openable and
+  removable from the list (the folder itself stays on disk), plus
   "Open a code repository…"
 - and the open folder, spec or code, is badged and cannot be removed
 - and a path that names no folder is refused, saying so
 - and the demo, the hosted app and the read-only site offer none of this,
   and refuse it if asked
 
-[test: PUT /api/state openCodeRepo opens the folder and GET /api/state reports the mode : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L155 ]
-[test: a code repository must be an existing folder named by its absolute path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L173 ]
-[test: the demo and the hosted app open no code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L184 ]
-[test: an open code repository takes the place of the specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L109 ]
-[test: the code repositories list keeps the open one first, each once, and forgets on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L133 ]
-[test: another code repository can be opened from the open one, and the old one forgotten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L233 ]
-[test: with a code repository open, the last specifications folder can be removed from the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L245 ]
-[test: lists the code repositories opened before, with Open a code repository… : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L157 ]
-[test: the open folder is badged whether it is a spec folder or a code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L166 ]
-[test: where code repositories cannot be opened, the dialog has none of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L177 ]
+[test: PUT /api/state openCodeRepo opens the folder and GET /api/state reports the mode : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L217 ]
+[test: a code repository must be an existing folder named by its absolute path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L235 ]
+[test: the demo and the hosted app open no code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L246 ]
+[test: an open code repository takes the place of the specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L115 ]
+[test: the code repositories list keeps the open one first, each once, and forgets on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L139 ]
+[test: another code repository can be opened from the open one, and the old one forgotten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L317 ]
+[test: with a code repository open, the last specifications folder can be removed from the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L329 ]
+[test: spec folders and code repositories share one list, in the given order, each marked by its kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L163 ]
+[test: the open folder is badged whether it is a spec folder or a code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L174 ]
+[test: where code repositories cannot be opened, the dialog has none of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L202 ]
 
 ## S2: The app runs no git in a code repository @v1 [proposed]
 
@@ -67,8 +68,8 @@ machine — not in the demo, the hosted app or the read-only site.
 - and the routes that read or write specifications answer that no
   specifications folder is open
 
-[test: a sync runs no git in the code repository and writes nothing into it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L206 ]
-[test: the specification routes answer that no specifications folder is open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L197 ]
+[test: a sync runs no git in the code repository and writes nothing into it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L268 ]
+[test: the specification routes answer that no specifications folder is open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L259 ]
 [test: an open code repository mounts the Files tab and none of the specification modules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L254 ]
 
 ## S3: The navigation pane lists the repository's files @v1 [proposed]
@@ -163,10 +164,10 @@ machine — not in the demo, the hosted app or the read-only site.
 - and the Worktree option still runs the session in a worktree of its own
   (the one git command made in the repository, at the user's request)
 
-[test: a coding agent session runs in the code repository, with no specifications folder behind it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L258 ]
-[test: a folder the pane picks inside the code repository is where the session runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L270 ]
-[test: a code gen session from the spec dialog needs a specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L277 ]
-[test: a code repository keeps a plugin list of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L143 ]
+[test: a coding agent session runs in the code repository, with no specifications folder behind it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L342 ]
+[test: a folder the pane picks inside the code repository is where the session runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L354 ]
+[test: a code gen session from the spec dialog needs a specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L361 ]
+[test: a code repository keeps a plugin list of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L205 ]
 
 ## S7: Switching back to a specifications folder @v1 [proposed]
 
@@ -178,4 +179,4 @@ machine — not in the demo, the hosted app or the read-only site.
   is synced as on any folder switch
 - and the code repository stays on the list for next time
 
-[test: a specifications folder takes the place of the code repository, which stays on the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L221 ]
+[test: a specifications folder takes the place of the code repository, which stays on the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L283 ]
