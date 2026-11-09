@@ -24,10 +24,10 @@
 - and a wait of 0 turns the limit off; a session that talks to the API
   directly is never held to it
 
-[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1041 ]
-[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1064 ]
-[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1077 ]
-[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1088 ]
+[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1039 ]
+[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1062 ]
+[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1075 ]
+[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1086 ]
 
 ## S2: The agent pane starts Claude in Auto mode @v1 [published]
 
@@ -65,7 +65,7 @@
   name it relative to the app
 
 [test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L339 ]
-[test: GET /api/state names the open folder's absolute path, though settings name it relative to the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L157 ]
+[test: GET /api/state names the open folder's absolute path, though settings name it relative to the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L164 ]
 
 ## S4: The mode menu describes each mode @v1 [proposed]
 
@@ -95,7 +95,7 @@
 - and a `cwd` that is not absolute, or names a folder that does not exist, is
   refused with an error
 
-[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L680 ]
+[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L678 ]
 
 ## S6: The composer bar picks the folder, model, effort and mode @v1 [proposed]
 
@@ -137,10 +137,6 @@
 [test: the pane's model list is loaded again when the model menu opens, and the menu lists what came back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelRefresh.test.tsx#L112 ]
 [test: the pane switches a running session's model and effort, and the pick becomes the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L251 ]
 [test: an agent's choices and defaults are listed for the pane and kept through the provider : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L292 ]
-[test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L208 ]
-[test: the model menu lists the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L450 ]
-[test: a model off the list still shows, and with no default the agent's own leads the menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L466 ]
-[test: the effort menu offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L486 ]
 
 ## S7: A new session starts from the message box @v1 [proposed]
 
@@ -162,8 +158,6 @@
 [test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L482 ]
 [test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L476 ]
 [test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L228 ]
-[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L513 ]
-[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L507 ]
 
 ## S8: Paste an image into the message @v1 [proposed]
 
@@ -200,8 +194,8 @@
 [test: a session started with pasted images hands them to the provider with its first turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L597 ]
 [test: pasted images are refused for an agent that reads none, and when they are not images, too many or too big : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L613 ]
 [test: a pasted image gets a reply that says the simulation cannot look at it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L343 ]
-[test: pasted images go to Claude as image blocks before the text, and images alone carry no text block : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L449 ]
-[test: pasted images go to Codex as localImage items, read from the copies the app keeps : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L684 ]
+[test: pasted images go to Claude as image blocks before the text, and images alone carry no text block : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L447 ]
+[test: pasted images go to Codex as localImage items, read from the copies the app keeps : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L682 ]
 [test: pasted images go to pi with its prompt command, as its image items : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-pi/test/piChat.test.ts#L476 ]
 
 ## S9: A session can run in its own git worktree @v1 [proposed]
@@ -347,8 +341,8 @@
 [test: a provider's context count reaches the pane, the log keeps the newest, and the record its totals : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L376 ]
 [test: the pane's Refresh asks the provider to count again, and is refused where it cannot : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L424 ]
 [test: a demo session counts its context window, and counts it again on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L293 ]
-[test: Codex's token usage is the context count, the last request's tokens of the model's window : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1030 ]
-[test: a Codex session shows its context count as Codex reports it, once per change : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1047 ]
+[test: Codex's token usage is the context count, the last request's tokens of the model's window : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1002 ]
+[test: a Codex session shows its context count as Codex reports it, once per change : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1019 ]
 
 ## S12: Each session has its own tab, at most five @v1 [proposed]
 
@@ -424,6 +418,41 @@
 [test: with no session open, the header shows API or ACNT for the agent a new session starts on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L46 ]
 [test: the header's agent with no session is the one picked, while usable, else the first usable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L65 ]
 [test: a sign-in change asks again for every list already loaded, so the chip follows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L73 ]
-[test: describeSignIn says API through the proxy, or the Claude account and whether it is signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1477 ]
-[test: the pane's choices carry the sign-in a new session would start under, when the host says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1496 ]
-[test: the app's choices route carries the sign-in, Not logged in with no one signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1505 ]
+[test: describeSignIn says API through the proxy, or the Claude account and whether it is signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1443 ]
+[test: the pane's choices carry the sign-in a new session would start under, when the host says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1462 ]
+[test: the app's choices route carries the sign-in, Not logged in with no one signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1471 ]
+
+## S14: Switching folders tries the agent's API again @v1 [proposed]
+
+- Given: an agent whose API goes through an endpoint of its own, such as
+  Claude signed in with API through a proxy
+- When: the user switches folders — opens a code repository, or picks
+  another specifications folder
+- Then: the app tries the agent's API again from the folder now open, so a
+  proxy that went quiet while the user was elsewhere is woken before the
+  first turn waits on it; the switch itself does not wait
+- and Claude checks the proxy a session in that folder would use — the one
+  Settings → Claude names, else the folder's own Claude Code settings — up
+  to three times, a second apart, and a proxy that refuses the token is an
+  answer, not tried again
+- and when the API does not answer, the pane says so under its header, with
+  the API's address, with or without a session open, and a Retry button
+  that tries again from the open folder; once it answers the line goes
+- and an agent signed in to an account has nothing to try and shows nothing
+
+[test: a proxy that refuses the token is an answer: not tried again, and reported as not ready : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/reconnect.test.ts#L84 ]
+
+[test: opening a code repository tries the agent's API from it, and the choices carry the answer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentReconnect.test.ts#L118 ]
+[test: picking another specifications folder tries the API again from that folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentReconnect.test.ts#L128 ]
+[test: a settings change that switches no folder tries nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentReconnect.test.ts#L136 ]
+[test: Retry tries again from the open folder and the answer replaces the last one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentReconnect.test.ts#L144 ]
+[test: an agent with nothing to try has no answer, and a try that throws is a failed one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentReconnect.test.ts#L155 ]
+[test: tries that overlap share one call to the agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentReconnect.test.ts#L169 ]
+[test: the pane warns of an API that did not answer, with Retry, and says nothing once it does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentReconnect.test.ts#L180 ]
+[test: a proxy that answers is reported as answering, after one check with the stored token : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/reconnect.test.ts#L59 ]
+[test: an unreachable proxy is tried again a moment later, and answers the second time : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/reconnect.test.ts#L67 ]
+[test: a proxy that never answers is reported down after every try, naming its address : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/reconnect.test.ts#L74 ]
+[test: a proxy that answers something other than the model list still answers : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/reconnect.test.ts#L91 ]
+[test: an account sign-in has nothing to try : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/reconnect.test.ts#L95 ]
+[test: the proxy is the one the folder's own Claude Code settings name, when Settings names none : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/reconnect.test.ts#L102 ]
+[test: withReconnect gives the provider the app's reconnect hook : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/reconnect.test.ts#L113 ]

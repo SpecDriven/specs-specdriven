@@ -43,13 +43,13 @@ machine — not in the demo, the hosted app or the read-only site.
 - and the demo, the hosted app and the read-only site offer none of this,
   and refuse it if asked
 
-[test: PUT /api/state openCodeRepo opens the folder and GET /api/state reports the mode : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L217 ]
-[test: a code repository must be an existing folder named by its absolute path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L235 ]
-[test: the demo and the hosted app open no code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L246 ]
+[test: PUT /api/state openCodeRepo opens the folder and GET /api/state reports the mode : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L252 ]
+[test: a code repository must be an existing folder named by its absolute path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L270 ]
+[test: the demo and the hosted app open no code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L281 ]
 [test: an open code repository takes the place of the specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L115 ]
 [test: the code repositories list keeps the open one first, each once, and forgets on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L139 ]
-[test: another code repository can be opened from the open one, and the old one forgotten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L317 ]
-[test: with a code repository open, the last specifications folder can be removed from the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L329 ]
+[test: another code repository can be opened from the open one, and the old one forgotten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L352 ]
+[test: with a code repository open, the last specifications folder can be removed from the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L364 ]
 [test: spec folders and code repositories share one list, in the given order, each marked by its kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L163 ]
 [test: the open folder is badged whether it is a spec folder or a code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L174 ]
 [test: where code repositories cannot be opened, the dialog has none of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L202 ]
@@ -68,8 +68,8 @@ machine — not in the demo, the hosted app or the read-only site.
 - and the routes that read or write specifications answer that no
   specifications folder is open
 
-[test: a sync runs no git in the code repository and writes nothing into it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L268 ]
-[test: the specification routes answer that no specifications folder is open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L259 ]
+[test: a sync runs no git in the code repository and writes nothing into it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L303 ]
+[test: the specification routes answer that no specifications folder is open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L294 ]
 [test: an open code repository mounts the Files tab and none of the specification modules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L254 ]
 
 ## S3: The navigation pane lists the repository's files @v1 [proposed]
@@ -164,10 +164,10 @@ machine — not in the demo, the hosted app or the read-only site.
 - and the Worktree option still runs the session in a worktree of its own
   (the one git command made in the repository, at the user's request)
 
-[test: a coding agent session runs in the code repository, with no specifications folder behind it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L342 ]
-[test: a folder the pane picks inside the code repository is where the session runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L354 ]
-[test: a code gen session from the spec dialog needs a specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L361 ]
-[test: a code repository keeps a plugin list of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L205 ]
+[test: a coding agent session runs in the code repository, with no specifications folder behind it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L377 ]
+[test: a folder the pane picks inside the code repository is where the session runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L389 ]
+[test: a code gen session from the spec dialog needs a specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L396 ]
+[test: a code repository keeps a plugin list of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L240 ]
 
 ## S7: Switching back to a specifications folder @v1 [proposed]
 
@@ -179,4 +179,4 @@ machine — not in the demo, the hosted app or the read-only site.
   is synced as on any folder switch
 - and the code repository stays on the list for next time
 
-[test: a specifications folder takes the place of the code repository, which stays on the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L283 ]
+[test: a specifications folder takes the place of the code repository, which stays on the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L318 ]

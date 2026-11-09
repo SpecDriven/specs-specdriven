@@ -37,6 +37,11 @@ Two runs use the home file only: the desktop app (desktop-app.feature.md
 specdriven-app repository or a worktree of it), so every checkout, worktree
 and the desktop app share one settings file.
 
+The file says which version of its format it is in (`settingsVersion`; a file
+without one is version 0). A new version of the app that changes what the
+file stores upgrades an older file when it starts, keeping the file as it
+was beside it; a file a newer app wrote is read as it is.
+
 ## S1: a clone without a token is refused when signed out @v1 [proposed]
 
 - Given: the app is not signed in to the repository's GitHub host
@@ -314,3 +319,33 @@ and the desktop app share one settings file.
 [test: the app's own checkout creates the home settings file when there is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L216 ]
 [test: the app's own checkout reads its old project settings until the first save moves them home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L224 ]
 [test: another project's package.json does not count as the app's checkout : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L254 ]
+
+## S19: a new app version upgrades the settings file @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+- Given: a settings file written by an older version of the app, in an older
+  format — the version it carries (`settingsVersion`), or none, which is
+  version 0
+- When: a new version of the app starts
+- Then: it runs, in order, the upgrade steps the file has not had, and
+  saves the file in its own format with its own version
+- and the file as it was is kept beside it as `settings.json.v<old version>.bak`
+  (a copy already there is kept: it holds the oldest file)
+- and every setting the steps do not change is kept as it was
+- and the next start finds nothing to do
+- and a file a newer version of the app wrote is read as it is: nothing is
+  rewritten and its version is not lowered
+- and a file that does not parse is left alone
+
+[test: there is one upgrade step per version, from 1 up to this app's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsVersion.test.ts#L67 ]
+[test: a file without a version, or with a malformed one, is version 0 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsVersion.test.ts#L74 ]
+[test: an older file has the steps it has not had and is stamped with this app's version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsVersion.test.ts#L80 ]
+[test: a file a newer app wrote is left as it is, its version not lowered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsVersion.test.ts#L106 ]
+[test: readState reads an older file in this app's format, without touching the file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsVersion.test.ts#L118 ]
+[test: upgrading the file saves it in this app's format and keeps the old one beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsVersion.test.ts#L128 ]
+[test: a backup already there is kept, as it holds the oldest file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsVersion.test.ts#L149 ]
+[test: a newer app's file, an unreadable file and no file are left alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsVersion.test.ts#L157 ]
+[test: starting the app upgrades an older settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsVersion.test.ts#L169 ]

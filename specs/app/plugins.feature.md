@@ -192,7 +192,7 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: an older device-wide list is copied to the folders the file knows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L277 ]
 [test: an older file with a folder but no plugin list keeps the Notebook on in that folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L153 ]
 [test: a folder picked in this app still shows Specs alone after a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L166 ]
-[test: an older file with folders but no list gives them the defaults; one with repos does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L308 ]
+[test: an older file with folders but no list gives them the defaults; one with repos does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L313 ]
 
 ## S6: Plugin urls serve the app shell @v1 [proposed]
 
@@ -290,19 +290,24 @@ Plugins can be developed in any repository and then deployed to https://github.c
 
 ## S10: The marketplaces are refreshed on start when external plugins are installed @v1 [proposed]
 
-- Given: a plugin from outside the app is installed — from a marketplace,
-  linked from a folder, or in the data folder's own plugins folder
+- Given: the Plugins page names the default SpecDriven marketplace
+  (`https://github.com/SpecDriven/plugins`), under whatever name
 - When: the app starts
-- Then: every marketplace the Plugins page names is pulled once in the
-  background, so the marketplace list offers Update for a plugin whose
-  index row moved on since the last start, without pressing Refresh
+- Then: the default marketplace is pulled once in the background, even
+  with only the built-in plugins, so the agent plugins and the update
+  check below read its index as it is now
+- and when a plugin from outside the app is installed — from a
+  marketplace, linked from a folder, or in the data folder's own plugins
+  folder — every other marketplace the Plugins page names is pulled too,
+  so the marketplace list offers Update for a plugin whose index row moved
+  on since the last start, without pressing Refresh
 - and the start does not wait for it: the app opens at once, and the agent
   plugins installed for the commands found on this machine
   (agents/agent-plugins.feature.md) read the index once the pull is over
 - and a marketplace that cannot be reached keeps the copy it had, is
   logged, and does not hold up the others
-- and with only the built-in plugins nothing is pulled; neither the hosted
-  app, the hosted demo nor the read-only site pulls at all
+- and neither the hosted app, the hosted demo nor the read-only site pulls
+  at all
 
 [test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L609 ]
 [test: a start leaves the marketplaces alone with the built-ins only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L611 ]
@@ -368,3 +373,22 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - And: the tab bar is one row however many tabs there are — the open tab
   shows its name, the others their icon with a tooltip, except in the
   drawer on a small screen, where every tab keeps its name
+
+## S14: Plugins with an update are offered in a dialog at start @v1 [proposed]
+
+- Given: a plugin installed from a marketplace whose index row, after the
+  start's refresh, names a newer version than the one installed — or pins
+  it to another ref
+- When: the app starts
+- Then: once the refresh is over a "Plugin updates" dialog lists each such
+  plugin with the version installed and the version offered, every one
+  ticked
+- and Update fetches the ticked plugins one after another the way the
+  marketplace list's Update does — their tabs and routes are remounted
+  without a restart — showing each one's progress and, beside it, why one
+  failed while the others still update
+- and Not now closes the dialog and changes nothing; it is offered again at
+  the next start, and not again in this run of the app, a reload included
+- and with nothing to update, the marketplace not reachable, a plugin
+  linked from a folder or shipped with the data folder, or in the hosted
+  app, the hosted demo or the read-only site, no dialog appears

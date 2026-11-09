@@ -75,12 +75,12 @@ version (app/open-source-license.feature.md).
   never overwrites it, never follows one that is a symlink, and does not
   read one over 1 MB
 
-[test: only GitHub repos are kept, in canonical form, once each, at most ten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L45 ]
-[test: the list is stored per user, reports a change, and goes with the account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L53 ]
-[test: a worker's settings give the open repo first, then its recent ones; no file says nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L69 ]
-[test: a settings file that is a symlink is not followed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L78 ]
-[test: a worker with no settings gets the remembered repos; one with settings keeps its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L89 ]
-[test: after the volume is lost, the user's next worker opens the repo they had open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L100 ]
+[test: only GitHub repos are kept, in canonical form, once each, at most ten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L46 ]
+[test: the list is stored per user, reports a change, and goes with the account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L54 ]
+[test: a worker's settings give the open repo first, then its recent ones; no file says nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L70 ]
+[test: a settings file that is a symlink is not followed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L91 ]
+[test: a worker with no settings gets the remembered repos; one with settings keeps its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L102 ]
+[test: after the volume is lost, the user's next worker opens the repo they had open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L121 ]
 [test: a snapshot read into a fresh database gives back accounts, roles, allowed emails, secrets that still open, recent repos and live sessions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L86 ]
 
 ## S4: A worker cannot reach another person's folder @v1 [proposed]
