@@ -4,4 +4,4 @@ It is often advantageous to generate an initial set of specification from existi
 
 These documents maybe web-based such as Aha!, Jira, or Confluence Wiki or maybe files we can read on the filesystem or download via a link.
 
-Given that
+Given that the amount of in
