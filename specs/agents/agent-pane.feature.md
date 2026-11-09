@@ -398,3 +398,21 @@
 [test: a session asks before closing only while its agent is at work : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L189 ]
 [test: a tab's tooltip names the session, its agent, its state and its folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L195 ]
 [test: at most five sessions are open at once, an ended one holding its tab until it is closed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L120 ]
+
+## S13: The pane header says whether the agent spends an account or the API @v1 [proposed]
+
+- Given: a session of an agent that reports its sign-in, such as Claude
+- When: the session is open in the coding agent pane
+- Then: the right of the pane's header always shows one of two words: API
+  while the session's calls go through the API — an API key, a bearer
+  token, an API proxy or a cloud provider such as Bedrock — or ACNT while
+  it spends a Claude account's plan
+- and an account that is not signed in yet still reads ACNT, in red
+- and the chip's tooltip keeps the agent's own words for the sign-in — the
+  plan's name, the proxy's address, who is signed in and where the
+  credential came from
+- and Settings → Claude names the second way to sign in "API", next to
+  "Claude account (email login)"
+
+[test: the account chip reads API for a key, a token, a proxy or a provider, ACNT for an account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L8 ]
+[test: the account chip's tooltip names the sign-in, then who and where from, once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L19 ]

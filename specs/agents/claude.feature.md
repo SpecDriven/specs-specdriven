@@ -11,7 +11,7 @@ Claude Agent can use either a Claude Account and an API Proxy.
 - Given: Claude Code's own settings (`~/.claude/settings.json`, the data
   folder's `.claude/settings.json` or `.claude/settings.local.json`) or the
   environment carry `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN`
-- When: the Settings page's Claude section is on "API proxy"
+- When: the Settings page's Claude section is on "API"
 - Then: it shows the detected address and where it came from, with "Use
   detected" to make that address and token the app's own
 - and the token is kept in the app's own owner-only store (OS-encrypted in
