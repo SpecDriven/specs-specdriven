@@ -112,6 +112,15 @@ Settings` instead of hanging on a credential prompt.
 A commit that fails is reported as a failure. The app never says a spec
 was committed and pushed when it was not.
 
+A push that fails is not silent either. The edit is committed on this
+computer, so nothing is lost, but it is not on the remote, and the page
+says so for as long as that is true: the Sync button turns into a warning
+whose tooltip gives the reason, a toast gives it once (with a way into
+Settings when the reason is a missing sign-in), and the editors' autosave
+hints stop promising that the next sync pushes the edit. The commits left
+behind are pushed by the next sync that can reach the remote — a tick or
+the Sync button — whether or not there is anything new to save.
+
 ## a failed pull is an error, not a merge conflict @v1 [proposed]
 
 - When: a publish's `git pull` fails without leaving conflicted files —
@@ -132,6 +141,21 @@ was committed and pushed when it was not.
 [test: system git hands the token to the sign-in's host through the scoped helper : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L201 ]
 [test: the token is never offered to another host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L186 ]
 
+## a push that fails is shown @v1 [proposed]
+
+- Given: the app cannot push to the data repo's remote — the built-in
+  engine with no GitHub sign-in, or no network
+- When: a sync commits an edit and its push fails
+- Then: the edit stays committed on this computer
+- and the Sync button shows a warning whose tooltip gives the reason
+- and a toast gives the reason once, not on every sync
+- and the editors' autosave hints say the edit is saved on this computer
+  only, instead of "the next sync pushes it"
+- and all three go back to normal once a push goes through
+
+[test: a tick whose push fails keeps the commit and tells the page why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pushFailure.test.ts#L76 ]
+[test: while a push fails the Sync button, a toast and the autosave hint say so, and all clear once it goes through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncProblem.test.tsx#L134 ]
+
 ## choose the engine in settings @v1 [proposed]
 
 - When: the user picks `System git` as the Git engine in the Settings dialog
@@ -139,6 +163,16 @@ was committed and pushed when it was not.
 - and clone, pull and push authenticate with the app's own sign-in
 - and each engine's option is refused when its binary is not installed,
   which never refuses the built-in one
+
+## commits a failed push left behind are pushed by the next sync @v1 [proposed]
+
+- Given: earlier syncs committed edits they could not push
+- and nothing has been edited since
+- When: a sync runs that can reach the remote — the user signed in, or
+  the network is back
+- Then: the waiting commits are pushed, without waiting for the next edit
+
+[test: commits a failed push left behind go up on the next tick that can push, with nothing new to save : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pushFailure.test.ts#L97 ]
 
 ## connect to GitHub via the browser @v1 [proposed]
 
