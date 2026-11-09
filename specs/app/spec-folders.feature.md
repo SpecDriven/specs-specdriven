@@ -14,7 +14,9 @@ Support opening and switching between multiple specifications folders. (Currentl
 
 **Updated by:** vydra
 
-Open new folders from the local file system. "Change data directory"
+Open new folders from the local file system ("Open another folder…"). Manage folders — in the
+recent folders menu and the command palette — is the only way to change the open folder; there
+is no separate "Change data directory" button.
 
 Ability to delete specification folders.
 

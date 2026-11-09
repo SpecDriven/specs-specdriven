@@ -61,7 +61,7 @@ machine — not in the demo, the hosted app or the read-only site.
 - When: the reload interval passes, or the app starts with it open
 - Then: nothing is pulled, committed or pushed, and the app writes no file
   into the repository besides the ones the user saves
-- and Sync, "Sync now" and "Change data folder" are not offered
+- and Sync and "Sync now" are not offered
 - and plugins found in the repository's `.specdriven/plugins` folder are not
   loaded
 - and the routes that read or write specifications answer that no

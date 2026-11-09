@@ -120,9 +120,12 @@ and the desktop app share one settings file.
 
 - Given: a data repo is configured, and the sidebar header shows its folder
   name only — parent folders appear in a tooltip, and the full path in the
-  edit dialog
-- When: the user clicks the edit (✎) button next to the name
-- Then: a dialog opens pre-filled with the current data repo
+  Data directory dialog
+- When: the user opens Manage folders… (the recent folders menu next to the
+  name, or the command palette) and chooses "Open another folder…"
+- Then: the Data directory dialog opens pre-filled with the current data repo
+- and the header has no separate edit (✎) button: Manage folders is the one
+  place to open, add or remove a folder
 - and confirming a new value switches the app to that repo, resetting the
   view to home (the old selection belonged to the old repo)
 - and a value the server rejects leaves the current repo in place, with the
