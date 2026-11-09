@@ -7,3 +7,5 @@ These documents maybe web-based such as Aha!, Jira, or Confluence Wiki or maybe 
 Given that the amount of information maybe substantial - we want to employ an 'orchestrator' strategy.
 
 We want to give the user an option of which strategy they want to use.
+
+Investigate using our 
