@@ -401,13 +401,18 @@
 
 ## S13: The pane header says whether the agent spends an account or the API @v1 [proposed]
 
-- Given: a session of an agent that reports its sign-in, such as Claude
-- When: the session is open in the coding agent pane
+- Given: an agent that reports its sign-in, such as Claude
+- When: the coding agent pane is open — with a session in it, or with none
+  yet, on the new-session screen
 - Then: the right of the pane's header always shows one of two words: API
-  while the session's calls go through the API — an API key, a bearer
-  token, an API proxy or a cloud provider such as Bedrock — or ACNT while
-  it spends a Claude account's plan
+  while the agent's calls go through the API — an API key, a bearer token,
+  an API proxy or a cloud provider such as Bedrock — or ACNT while it
+  spends a Claude account's plan
+- and with no session open the chip speaks for the agent a new session
+  would start on, from the sign-in Settings → Claude has chosen; once a
+  session reports its own sign-in, the chip shows that
 - and an account that is not signed in yet still reads ACNT, in red
+- and a sign-in changed in Settings shows in the chip without a reload
 - and the chip's tooltip keeps the agent's own words for the sign-in — the
   plan's name, the proxy's address, who is signed in and where the
   credential came from
@@ -416,3 +421,9 @@
 
 [test: the account chip reads API for a key, a token, a proxy or a provider, ACNT for an account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L8 ]
 [test: the account chip's tooltip names the sign-in, then who and where from, once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L19 ]
+[test: with no session open, the header shows API or ACNT for the agent a new session starts on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L46 ]
+[test: the header's agent with no session is the one picked, while usable, else the first usable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L65 ]
+[test: a sign-in change asks again for every list already loaded, so the chip follows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L73 ]
+[test: describeSignIn says API through the proxy, or the Claude account and whether it is signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1477 ]
+[test: the pane's choices carry the sign-in a new session would start under, when the host says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1496 ]
+[test: the app's choices route carries the sign-in, Not logged in with no one signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1505 ]
