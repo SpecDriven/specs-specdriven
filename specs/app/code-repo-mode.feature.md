@@ -42,6 +42,17 @@ machine — not in the demo, the hosted app or the read-only site.
 - and the demo, the hosted app and the read-only site offer none of this,
   and refuse it if asked
 
+[test: PUT /api/state openCodeRepo opens the folder and GET /api/state reports the mode : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L155 ]
+[test: a code repository must be an existing folder named by its absolute path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L173 ]
+[test: the demo and the hosted app open no code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L184 ]
+[test: an open code repository takes the place of the specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L109 ]
+[test: the code repositories list keeps the open one first, each once, and forgets on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L133 ]
+[test: another code repository can be opened from the open one, and the old one forgotten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L233 ]
+[test: with a code repository open, the last specifications folder can be removed from the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L245 ]
+[test: lists the code repositories opened before, with Open a code repository… : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L157 ]
+[test: the open folder is badged whether it is a spec folder or a code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L166 ]
+[test: where code repositories cannot be opened, the dialog has none of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L177 ]
+
 ## S2: The app runs no git in a code repository @v1 [proposed]
 
 **Created by:** vydra
@@ -55,6 +66,10 @@ machine — not in the demo, the hosted app or the read-only site.
   loaded
 - and the routes that read or write specifications answer that no
   specifications folder is open
+
+[test: a sync runs no git in the code repository and writes nothing into it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L206 ]
+[test: the specification routes answer that no specifications folder is open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L197 ]
+[test: an open code repository mounts the Files tab and none of the specification modules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L254 ]
 
 ## S3: The navigation pane lists the repository's files @v1 [proposed]
 
@@ -72,6 +87,18 @@ machine — not in the demo, the hosted app or the read-only site.
 - and Refresh lists them again, as does coming back to the window — an agent
   or the IDE may have added files
 
+[test: the files routes are registered with their methods : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L76 ]
+[test: outside code repository mode the files routes have no folder to serve : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L85 ]
+[test: a path that leaves the repository or names git's folder is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L99 ]
+[test: the routes refuse a path outside the repository with 400 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L108 ]
+[test: a folder lists folders first, in natural order, without .git or what is ignored : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L117 ]
+[test: a link is listed as what it points to : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L126 ]
+[test: a folder that is not there is 404, a file is not a folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L132 ]
+[test: git check-ignore decides what a git repository ignores, tracked files excepted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L137 ]
+[test: the store lists the top folder, and a folder when it is opened : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L89 ]
+[test: the tree is treeitems, folders opening in place, files linking to their url, depth by level : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L198 ]
+[test: a folder that cannot be read says why, and an empty repository says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L211 ]
+
 ## S4: A file opens in a plain text editor @v1 [proposed]
 
 **Created by:** vydra
@@ -88,6 +115,23 @@ machine — not in the demo, the hosted app or the read-only site.
   the editor says why
 - and the home view opens the repository's README.md when it has one
 
+[test: the tab's urls are home at / and /files, and /files/<path> for a file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L24 ]
+[test: a file opens with its text, time and line endings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L155 ]
+[test: a missing, binary, non-UTF-8 or too large file is not opened as text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L166 ]
+[test: a save writes the text in place, keeping the file's permissions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L179 ]
+[test: a save keeps Windows line endings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L195 ]
+[test: a file changed on disk since it was opened is not overwritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L202 ]
+[test: a file deleted on disk since it was opened is not silently made again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L218 ]
+[test: a save with no text is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L225 ]
+[test: Markdown files get Markdown's highlighting, every other file is plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L36 ]
+[test: a file opens, saves what changed with its time and line endings, and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L106 ]
+[test: a file changed on disk is not overwritten until the user says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L128 ]
+[test: Reload from disk drops the editor's text for the file as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L149 ]
+[test: opening another file saves the one it replaces; leaving saves it too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L161 ]
+[test: a file the server will not show as text says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L179 ]
+[test: the status words follow the file's state : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L233 ]
+[test: the tab's home opens the README when the repository has one; search finds loaded files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L278 ]
+
 ## S5: Open the file in IntelliJ IDEA @v1 [proposed]
 
 **Created by:** vydra
@@ -100,6 +144,14 @@ machine — not in the demo, the hosted app or the read-only site.
   command that makes the symlink
 - and the button works for a file the editor could not show as text
 
+[test: idea gets --line only when a line is given : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L232 ]
+[test: Open in IntelliJ runs idea on the file, at the cursor's line : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L237 ]
+[test: Open in IntelliJ works for a file the editor cannot show : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L245 ]
+[test: without idea on PATH the click is refused with the symlink to make : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L251 ]
+[test: Open in IntelliJ refuses a bad request before anything runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L261 ]
+[test: a launcher that fails to start is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L269 ]
+[test: the pane's header names the file's folders and offers Open in IntelliJ : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L220 ]
+
 ## S6: The coding agent works in the code repository @v1 [proposed]
 
 **Created by:** vydra
@@ -111,6 +163,11 @@ machine — not in the demo, the hosted app or the read-only site.
 - and the Worktree option still runs the session in a worktree of its own
   (the one git command made in the repository, at the user's request)
 
+[test: a coding agent session runs in the code repository, with no specifications folder behind it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L258 ]
+[test: a folder the pane picks inside the code repository is where the session runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L270 ]
+[test: a code gen session from the spec dialog needs a specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L277 ]
+[test: a code repository keeps a plugin list of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L143 ]
+
 ## S7: Switching back to a specifications folder @v1 [proposed]
 
 **Created by:** vydra
@@ -120,3 +177,5 @@ machine — not in the demo, the hosted app or the read-only site.
 - Then: the Specs tab, the modules' tabs and Sync come back, and the folder
   is synced as on any folder switch
 - and the code repository stays on the list for next time
+
+[test: a specifications folder takes the place of the code repository, which stays on the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L221 ]
