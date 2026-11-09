@@ -357,18 +357,19 @@
 **Updated by:** vydra
 
 - Given: the coding agent pane with sessions open, as in Claude Code
-- Then: a row of tabs under the pane's header holds one tab per open
-  session, in the order they started, each with its name and a dot for how
-  it is doing (working, waiting for an answer, ready, ended, failed); the
-  full name, the agent, its state and its folder show on hover
+- Then: the pane's header line holds one tab per open session, on the one
+  line with the pane's chips and buttons rather than on a row of its own,
+  in the order they started, each with its name and a dot for how it is
+  doing (working, waiting for an answer, ready, ended, failed); the full
+  name, the agent, its state and its folder show on hover
 - When: the user clicks a tab, or moves to it with the arrow keys, Home or
   End
-- Then: the pane shows that session's transcript and composer, and the
-  header its name; the other sessions run on behind it, each followed live,
+- Then: the pane shows that session's transcript and composer, its tab in
+  front; the other sessions run on behind it, each followed live,
   so their dots keep up and a question one of them asks still raises a toast
 - and on reload every open session comes back as a tab, the one last shown
   in front
-- When: the user clicks the + at the end of the row
+- When: the user clicks the + after the tabs
 - Then: the new-session screen opens on a "New session" tab of its own,
   which has nothing to close and goes when another tab is picked
 - and at most five sessions are open at once, ended ones included, since an
