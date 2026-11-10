@@ -4,22 +4,25 @@
   the app's own git when the machine has neither
 
 Every git operation the app performs — clone, pull, push, commit, mv, rm —
-runs through one of three engines. The `Git engine` setting in the Settings
-dialog picks which (stored in the settings file as `gitEngine`):
+runs through one of three engines. Settings → Git & GitHub does not offer
+the engine itself: it offers the Git access (app/user-info-settings.feature.md
+"Git access") — the GitHub CLI, a personal access token, or the GitHub
+account sign-in — and the access picks the engine, stored in the settings
+file as `gitEngine` (and `gitAccess: "account"` for the account sign-in):
 
-- `gh` — the GitHub CLI, on top of the system git binary. Credentials come
-  from gh's own credential helper, scoped to github.com so helpers
+- `gh` — the GitHub CLI access, on top of the system git binary.
+  Credentials come from gh's own credential helper, scoped to each host gh
+  is logged in to (github.com and GitHub Enterprise hosts alike) so helpers
   configured for other hosts are left alone, and a GitHub repo is cloned
-  with `gh repo clone` — unless the app has a GitHub sign-in of its own
-  (below), which is the person's explicit choice and wins over gh's
-  account. It cannot be chosen when no gh is installed.
-- `cli` — plain system git, authenticating with the app's own GitHub
-  sign-in below, or with whatever credentials the machine already has. It
-  cannot be chosen when no git is installed.
+  with `gh repo clone`. The app's own token is not used on this engine:
+  the access is exclusive. It cannot be chosen when no gh is installed.
+- `cli` — plain system git, the engine of the token and account accesses,
+  authenticating with the app's own GitHub sign-in below, or with whatever
+  credentials the machine already has.
 - `js` — the built-in engine: git implemented in JavaScript, running
   inside the app against the ordinary files on disk. It needs nothing
-  installed, so it can always be chosen, and it authenticates with the
-  app's own GitHub sign-in.
+  installed, so the token and account accesses fall back to it where git
+  is not installed, and it authenticates with the app's own GitHub sign-in.
 
 With no choice recorded the engine is the best of what the machine has:
 `gh` wherever gh is installed, then `cli` wherever git is, and `js` when
@@ -106,8 +109,11 @@ specs repository and **Contents: Read and write** is enough.
   github.com only.
 
 With no credentials at all, public repos still work and a private one
-fails fast with `authentication required — sign in with GitHub in
-Settings` instead of hanging on a credential prompt.
+fails fast with `authentication required — …` instead of hanging on a
+credential prompt, naming the way in the chosen Git access offers: `gh auth
+login` for the GitHub CLI, adding a GitHub personal access token in
+Settings for the token, signing in with GitHub in Settings for the account
+sign-in.
 
 A commit that fails is reported as a failure. The app never says a spec
 was committed and pushed when it was not.
@@ -136,20 +142,21 @@ failed push left behind are pushed by the next sync".)
 - Given: the user pasted a personal access token for a host
 - When: a data repo on that host is cloned, pulled or pushed
 - Then: the built-in engine and system git authenticate with that token
-- and the GitHub CLI engine uses it too instead of gh's own account
+- and the GitHub CLI access does not use it: that access is gh's account
 - and no request to any other host carries it
 
 [test: the built-in engine clones and pushes to GitHub Enterprise with the token, with no git installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L166 ]
 [test: system git hands the token to the sign-in's host through the scoped helper : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L201 ]
 [test: the token is never offered to another host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/personalAccessToken.test.ts#L186 ]
 
-## choose the engine in settings @v1 [proposed]
+## choose the Git access in settings @v1 [proposed]
 
-- When: the user picks `System git` as the Git engine in the Settings dialog
-- Then: the choice is saved to the settings file (app-start.feature.md)
+- When: the user picks `GitHub Personal Access Token` as the Git access in
+  Settings
+- Then: system git is saved as the engine in the settings file
+  (app-start.feature.md), or the built-in one where git is not installed
 - and clone, pull and push authenticate with the app's own sign-in
-- and each engine's option is refused when its binary is not installed,
-  which never refuses the built-in one
+- and the GitHub CLI access is refused when gh is not installed
 
 ## connect to GitHub via the browser @v1 [proposed]
 
@@ -168,7 +175,8 @@ failed push left behind are pushed by the next sync".)
 - When: the GitHub CLI engine is in effect and `gh auth token` has nothing
 - Then: git runs with the machine's own credentials and git identity, as
   it would on the system-git engine
-- and the Settings dialog says gh is signed out and how to fix it
+- and Settings says gh is signed out and how to fix it
+- and a failed sign-in says to run `gh auth login`
 
 ## paste a personal access token in settings @v1 [proposed]
 

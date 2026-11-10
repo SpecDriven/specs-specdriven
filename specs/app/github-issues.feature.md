@@ -177,17 +177,18 @@ Allow to access GitHub issues from the app.
 - and it carries the app's sign-in only when that sign-in was made on the
   same host; a GitHub Enterprise token is never offered to github.com or any
   other host, the rule git follows too
-- and the GitHub CLI's token goes to github.com only, and only while its
-  account is in use — signing out of the app turns it off
+- and with the GitHub CLI as the Git access (app/user-info-settings.feature.md),
+  gh's token goes to each host gh is logged in to, and the app's own token
+  is not used; with an app sign-in as the access, gh's token is not used
 - and a GitHub Enterprise code repo gets an Issues tab when the app is signed
   in on its host, with its origin in any spelling git writes
 
-[test: issues of a GitHub Enterprise repository are read from its host's API with its token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L105 ]
-[test: a GitHub Enterprise token never reaches another host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L113 ]
-[test: a github.com sign-in goes to github.com only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L128 ]
-[test: the GitHub CLI token is used for github.com only, while its account is in use : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L137 ]
-[test: an Enterprise code repo has issues when the app is signed in on its host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L158 ]
-[test: Enterprise remotes in every spelling name the repo on the sign-in's host only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L172 ]
+[test: issues of a GitHub Enterprise repository are read from its host's API with its token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L118 ]
+[test: a GitHub Enterprise token never reaches another host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L126 ]
+[test: a github.com sign-in goes to github.com only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L141 ]
+[test: with the GitHub CLI as the Git access, gh's token goes to each host gh is logged in to : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L150 ]
+[test: an Enterprise code repo has issues when the app is signed in on its host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L174 ]
+[test: Enterprise remotes in every spelling name the repo on the sign-in's host only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issuesTokenHost.test.ts#L188 ]
 
 ## S10: The Issues tab shows the code repo's GitHub issues @v1 [proposed]
 

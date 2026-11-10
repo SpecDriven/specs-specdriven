@@ -27,6 +27,9 @@ links to automated tests, which stay editable (traceability.feature.md).
   name — the file's `# <name>` heading — not the file name.
   - the edited name is committed and pushed to GitHub
   - the file name stays unchanged, so links to the feature keep working
+  - Enter, Save or leaving the field saves the name; ESC or Cancel closes it
+    unsaved
+  - a background sync never closes the field or drops what is typed in it
 
 Sync button (immediate data reload), disabled with a progress label while
 running. No "Syncing…"/"Synced" status update at the bottom of the page.
@@ -43,9 +46,9 @@ the page.
 ## Feature entry menu
 
 Each feature entry in the left pane has a drop down menu (a `⋯` button,
-visible on hover) with `Rename`, `Move up`, `Move down`, `Move to folder…`,
-`Copy link` and `Delete` — all on the menu itself, with no submenu, in that
-order. Every row's `⋯` in the sidebar — a folder's, a scenario's, a roadmap
+visible on hover) with `Rename`, `Edit display name`, `Move up`, `Move down`,
+`Move to folder…`, `Copy link` and `Delete` — all on the menu itself, with
+no submenu, in that order. Every row's `⋯` in the sidebar — a folder's, a scenario's, a roadmap
 page's, a test plan's — keeps the same order: name, place, share, derive,
 delete.
 
@@ -55,7 +58,12 @@ delete.
   - The rename is a `git mv`, committed and pushed.
   - The feature's url follows the file name, so links to the old name go stale.
   - The feature name (the `# <name>` heading) is untouched — renaming that is
-    the Edit link on the main page.
+    `Edit display name`, or the Edit link on the main page.
+- `Edit display name` edits the feature name — the `# <name>` heading the
+  tree and the page show — in a dialog filled with the current name.
+  - The heading is rewritten, committed and pushed; the file name and the
+    feature's url stay the same.
+  - A blank name is not saved.
 - `Move to folder…` offers the list of folders and moves the file into the
   chosen one — the same `git mv` as dragging it there (folders.feature.md).
 - `Copy link` puts the feature's url on the clipboard (navigation.feature.md
@@ -186,8 +194,8 @@ feature page, where a long feature pushes the resolutions out of sight.
 
 A settings page in the editor pane, at `/settings` — not a dialog, which was
 too small (user-info-settings.feature.md "open Settings"). Its sections are
-listed on the left: General, Sync, Specs, Project management, Workflow and
-Git & GitHub. Settings are saved to the settings file
+listed on the left: General, Git & GitHub, Sync, Specs, Project management
+and Workflow. Settings are saved to the settings file
 (`.specdriven/settings.json`, app-start.feature.md) the moment a control
 changes; there is no Save button. The plugins have their own page
 (app/plugins.feature.md).
@@ -275,7 +283,7 @@ The title is worked out from the files themselves, by reading each changed spec 
 [test: nothing but the app's own documents is said so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L259 ]
 [test: no files at all keeps the old title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L264 ]
 [test: reads modified, untracked, renamed and quoted entries : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L270 ]
-[test: the auto-save commit names the feature and the scenarios that changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/reload.test.ts#L126 ]
+[test: the auto-save commit names the feature and the scenarios that changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/reload.test.ts#L128 ]
 
 ## S4: Feature Text Scroll Pane @v1 [published]
 

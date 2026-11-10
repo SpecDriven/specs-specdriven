@@ -139,6 +139,14 @@ leave the window blank).
 - When: the user opens `/features/<something>` that doesn't resolve to a file
 - Then: the app shows home with a note that the feature was not found and the
   link may be stale
+- And: the link is called stale only when the file is missing from a folder
+  that was pulled; a miss behind a failed pull says the folder could not be
+  synced and the feature may not have arrived yet, and any other failure —
+  no folder open, a server error — is reported as what it is
+
+[test: a file that is not there in a synced folder is a stale link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L55 ]
+[test: a miss behind a failed pull names the pull, not the link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L59 ]
+[test: any other answer is reported as what it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L69 ]
 
 ## S5: link to a missing scenario @v1 [proposed]
 
@@ -410,3 +418,28 @@ Allow to collapse and expand the outline.
 [test: with the setting on, published, proposed and draft scenarios go together : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deleteScenarios.test.ts#L104 ]
 [test: a pick that is no longer there fails the batch before anything is deleted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deleteScenarios.test.ts#L119 ]
 [test: a malformed or empty list is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deleteScenarios.test.ts#L131 ]
+
+## S20: a link opens on synced data @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+- Given: a teammate has just pushed a new feature and shared its
+  `specdriven://` link
+- When: the user follows the link, in the folder that is open or in another
+  one on their folder list
+- Then: the folder is synced with its remote before the link is resolved —
+  one sync tick for the open folder, the switch's own pull for another — so
+  the feature opens rather than waiting for the next reload tick
+- And: a sync that fails does not hold the link up; what is on this computer
+  opens, and a page that is not there says the sync failed (S4)
+- And: a code repository opened directly is never pulled
+
+[test: a link runs one sync tick before it is resolved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L17 ]
+[test: a pull that failed is handed back as the reason : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L23 ]
+[test: a tick that failed outright is the reason too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L28 ]
+[test: a server with nothing to sync does not hold the link up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L32 ]
+[test: an unreachable server does not throw : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L37 ]
+[test: reads the problem off an answer, and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L46 ]
+[test: a pull that cannot reach the remote is kept as the folder's pull problem : https://github.com/SpecDriven/specdriven-app/blob/main/tests/reload.test.ts#L165 ]

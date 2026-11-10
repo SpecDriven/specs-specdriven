@@ -262,9 +262,9 @@ was beside it; a file a newer app wrote is read as it is.
 - and a clone that fails still names the url and the reason, with the
   sign-in hint when credentials are the problem
 
-[test: the bundled engine never hands just-git the absolute clone target : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L310 ]
-[test: a failed clone on the bundled engine reports the url and git's output : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L324 ]
-[test: the bundled engine clones into an absolute target whose parent does not exist : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L338 ]
+[test: the bundled engine never hands just-git the absolute clone target : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L326 ]
+[test: a failed clone on the bundled engine reports the url and git's output : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L340 ]
+[test: the bundled engine clones into an absolute target whose parent does not exist : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L354 ]
 
 ## S16: the project settings file wins @v1 [proposed]
 
