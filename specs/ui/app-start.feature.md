@@ -7,7 +7,9 @@
 When the application starts, if the settings file does not
 contain the name of the last data repo, the user is asked the name of the data repo.
 
-The first-run screen offers two ways in: open a folder on this computer,
+The first-run screen offers two ways in: open a folder on this computer —
+a specification folder or a code repository, in one field, told apart by
+what is inside —
 or clone a GitHub repository with a personal access token — so someone with
 neither git nor the GitHub CLI installed, and without the GitHub App
 sign-in, can still get a repository they can push to. The built-in git
@@ -158,8 +160,10 @@ was beside it; a file a newer app wrote is read as it is.
 - Given: no data repo is configured, in the local web app or the desktop
   app
 - When: the app starts
-- Then: the user picks between "Open a folder on this computer" — a path,
-  with Browse… where there is a native chooser — and "Clone from GitHub"
+- Then: the user picks between "Open a folder on this computer" — one
+  path field for a specification folder or a code repository, with the
+  recent folders on it and Browse… where there is a native chooser — and
+  "Clone from GitHub"
 - and the hosted app keeps its single GitHub url field, its token living
   on the account page
 
@@ -349,3 +353,91 @@ was beside it; a file a newer app wrote is read as it is.
 [test: a backup already there is kept, as it holds the oldest file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsVersion.test.ts#L149 ]
 [test: a newer app's file, an unreadable file and no file are left alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsVersion.test.ts#L157 ]
 [test: starting the app upgrades an older settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsVersion.test.ts#L169 ]
+
+## S20: one field opens a specification folder or a code repository @v1 [proposed]
+
+**Created by:** vydra
+
+- Given: no folder is open, in the local web app or the desktop app
+- When: the user names a folder in the first-run screen's one path field —
+  typed, or with Browse… — and clicks "Open this folder"
+- Then: a folder that holds a `.specdriven` folder and a `specs` folder
+  opens as a specification folder
+- and a folder without those that holds a well-known build tool's file —
+  Maven's pom.xml, npm's package.json, Gradle, Cargo, Go, Python, Make and
+  the like — opens as a code repository (code-repo-mode.feature.md)
+- and a `specs` symlink, the link a code repository carries to the specs
+  it implements, does not count as a `specs` folder
+- and a folder that is neither is asked about: "A specification folder",
+  which adds `.specdriven` and `specs` to it, or "A code repository", which
+  leaves it as it is
+- and a folder opened before opens as the kind it was opened as
+- and a GitHub url is cloned and opened as a specification folder; a path
+  that names no folder is made, on a yes, as a new specification folder
+  with both folders; a path that names a file is refused
+- and the hosted app and the demo keep their own single field
+
+[test: a folder with .specdriven and specs inside is a specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L65 ]
+[test: a specification folder that also holds a build file is still a specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L70 ]
+[test: one of the two folders alone does not make a specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L75 ]
+[test: a folder with a well-known build tool's file is a code repository, named by the tool : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L80 ]
+[test: a code repository's specs link does not make it a specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L103 ]
+[test: an empty folder with another name, and a specs-… folder with files, cannot be told : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L120 ]
+[test: a missing path and a file are reported as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L125 ]
+[test: a repository url is a url, whatever is on disk : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L133 ]
+[test: a relative path is read against the app's folder, and ~ is the home folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L139 ]
+[test: the build files name each tool, exact names before project-named ones : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L151 ]
+[test: POST /api/folder-kind answers the kind of the folder at a path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L171 ]
+[test: the demo and the hosted app tell no folder's kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L180 ]
+[test: a folder made on request starts as a specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L199 ]
+[test: there is one path field and one button, for a specification folder or a code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L67 ]
+[test: Browse… is there only where there is a native chooser : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L80 ]
+[test: while a folder opens, the button waits and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L85 ]
+[test: an error is shown under the field : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L90 ]
+[test: the screen asks which kind it is, naming the folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L100 ]
+[test: each answer hands back its kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L110 ]
+[test: with no question, nothing is asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L121 ]
+[test: each kind of folder has its step : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L182 ]
+[test: a malformed answer is no verdict : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L193 ]
+[test: a folder opened before as one kind opens as that kind again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L213 ]
+[test: the first-run field's chooser is titled for either kind of folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderChooser.test.ts#L197 ]
+
+## S21: an empty specs- folder is set up on a yes @v1 [proposed]
+
+**Created by:** vydra
+
+- Given: an empty folder whose name starts with `specs-` — git's own
+  `.git` folder does not make it non-empty
+- When: the user names it in the first-run screen's folder field
+- Then: the app asks whether it is a specification folder
+- and on a yes a `.specdriven` folder and a `specs` folder are added
+  inside it, and it opens as a specification folder
+- and on a no nothing is added, and the first-run screen stays
+- and an empty folder with any other name is asked about as a folder of
+  neither kind
+
+[test: an empty folder named specs-… is asked about; git's own folder does not make it non-empty : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L115 ]
+[test: initSpecFolder adds .specdriven and specs, leaving what is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L160 ]
+[test: PUT /api/state initSpecFolder sets up the picked folder and opens it as specifications : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L189 ]
+[test: initSpecFolder makes nothing at a path that names no folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L206 ]
+
+## S22: the folder field lists the recent folders @v1 [proposed]
+
+**Created by:** vydra
+
+- Given: the first-run screen, with folders opened before — after
+  "Log out", say
+- When: the user clicks the ▾ on the folder field
+- Then: a list drops down with the ten most recent folders, specification
+  folders and code repositories together, newest first, each with the icon
+  of its kind, its name and its path
+- and picking one fills the field with its path, leaving the user to
+  confirm with "Open this folder"
+- and it opens as the kind the list has it as
+- and with no folder opened before there is no ▾
+
+[test: the field carries a Recent folders button, closed at first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L127 ]
+[test: with no folder opened before, there is no drop-down : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L133 ]
+[test: opening it lists the folders newest first, each with its kind and path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L139 ]
+[test: it lists at most ten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L156 ]
+[test: picking a folder fills the field, hands back the entry and closes the list — the button still opens it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L164 ]

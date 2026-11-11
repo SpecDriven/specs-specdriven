@@ -16,22 +16,29 @@ In that mode the app is a guest in the developer's repository:
   Notebook, Issues, Tests) are hidden, and so are Sync and the data-folder
   actions
 - the navigation pane lists the repository's files like an IDE
-- the editor pane is a plain text editor, with a button that opens the file
-  in IntelliJ IDEA — most developers will edit in their own IDE
+- the editor pane is a plain text editor that colours source code by its
+  language, with a button that opens the file in IntelliJ IDEA — most
+  developers will edit in their own IDE
 - the coding agent pane works in the repository
 
-The mode is chosen, never guessed from the folder's contents: a code
-repository linked to a spec repo carries a `specs` link, and a spec repo may
-hold code. It is offered only where the app runs on the developer's own
-machine — not in the demo, the hosted app or the read-only site.
+The first-run screen has one folder field for both kinds, and tells them
+apart by what is inside (ui/app-start.feature.md "one field opens a
+specification folder or a code repository"): a specification folder holds
+`.specdriven` and `specs`; a code repository holds a build tool's file — a
+`specs` link to the spec repo it implements does not make it a specification
+folder — and a folder that is neither is asked about. "Open a code
+repository…" opens the named folder as code, whatever it holds. The mode is
+offered only where the app runs on the developer's own machine — not in the
+demo, the hosted app or the read-only site.
 
 ## S1: Open a code repository @v1 [proposed]
 
 **Created by:** vydra
 
 - Given: the app on the developer's own machine
-- When: the first-run screen asks where the specs are and the user picks
-  "A code repository", then names a folder (typed, or with Browse…)
+- When: the user names a code repository's folder in the first-run
+  screen's folder field (typed, with Browse…, or from its recent folders),
+  or picks "Open a code repository…" and names one
 - Then: the app opens that folder in code repository mode
 - and the code repositories opened before are on the same folder list as
   the specification folders (Manage folders and the recent folders menu),
@@ -124,7 +131,7 @@ machine — not in the demo, the hosted app or the read-only site.
 [test: a file changed on disk since it was opened is not overwritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L202 ]
 [test: a file deleted on disk since it was opened is not silently made again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L218 ]
 [test: a save with no text is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L225 ]
-[test: Markdown files get Markdown's highlighting, every other file is plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L36 ]
+[test: Markdown files get Markdown's highlighting, a file in no known language is plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L36 ]
 [test: a file opens, saves what changed with its time and line endings, and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L106 ]
 [test: a file changed on disk is not overwritten until the user says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L128 ]
 [test: Reload from disk drops the editor's text for the file as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L149 ]
@@ -180,3 +187,39 @@ machine — not in the demo, the hosted app or the read-only site.
 - and the code repository stays on the list for next time
 
 [test: a specifications folder takes the place of the code repository, which stays on the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L318 ]
+
+## S8: Source files are highlighted by language @v1 [proposed]
+
+**Created by:** vydra
+
+- Given: a code repository open in the app
+- When: the user opens a Java, JavaScript, TypeScript, Python, Bash, SQL,
+  YAML or JSON file
+- Then: the editor colours its keywords, strings, numbers and other
+  constants, comments, types, and the names of functions and declared
+  members; variables, operators and brackets keep the text's own colour
+- and the colours follow the app's light and dark themes
+- and the language is taken from the file's extension (`.java`; `.js`,
+  `.mjs`, `.cjs`, `.jsx`; `.ts`, `.mts`, `.cts`, `.tsx`; `.py`, `.pyi`;
+  `.sh`, `.bash`, `.zsh`, `.ksh`; `.sql`; `.yaml`, `.yml`; `.json`,
+  `.jsonc`), a shell start-up file's name (`.bashrc`, `.zshrc`, `.profile`),
+  or, for a file with no extension, the interpreter its first line names
+  (`#!/bin/bash`, `#!/usr/bin/env python3`, `#!/usr/bin/env node`)
+- and a Markdown file keeps Markdown's colours, and a file in any other
+  language shows as plain text
+- and highlighting is all that changes: the text shows at once and is
+  coloured when the language has loaded, and typing, Enter's indentation,
+  saving and Vim's keys work as in any other file
+
+[test: a file's extension picks its language, whatever its case or folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L25 ]
+[test: a file in no known language is plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L54 ]
+[test: a shell start-up file is Bash by its name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L60 ]
+[test: a script with no extension is the language its first line runs it with : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L64 ]
+[test: every language paints its keywords, strings, constants, comments, types and names : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L231 ]
+[test: names, operators and brackets stay the text's own colour : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L242 ]
+[test: a member read is not painted in a program, a key is in JSON : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L250 ]
+[test: Markdown keeps its own colours : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L255 ]
+[test: Enter keeps the line's own indentation, never the grammar's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L262 ]
+[test: a source file's keywords and strings are painted once its grammar has loaded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L349 ]
+[test: a file in no known language shows as plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L359 ]
+[test: a source file is painted with Vim's keys on too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L365 ]

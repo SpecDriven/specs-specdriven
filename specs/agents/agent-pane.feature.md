@@ -251,9 +251,9 @@
 [test: closing a session removes its worktree when nothing is uncommitted, keeps it otherwise, and keeps the branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L182 ]
 [test: the pane asks whether a folder can have a worktree, and on which branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L216 ]
 [test: a session name becomes a branch-safe slug : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L228 ]
-[test: the Worktree box offers a worktree for a repo, remembers the pick, and the first message asks for one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L154 ]
-[test: a folder that is no repo greys the box out, and the remembered pick is not sent there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L177 ]
-[test: a worktree session shows the folder it was started in and its branch, and closing it says a kept worktree's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L200 ]
+[test: the Worktree box offers a worktree for a repo, remembers the pick, and the first message asks for one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L155 ]
+[test: a folder that is no repo greys the box out, and the remembered pick is not sent there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L178 ]
+[test: a worktree session shows the folder it was started in and its branch, and closing it says a kept worktree's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L201 ]
 
 ## S10: A worktree session opens in a Ghostty shell @v1 [proposed]
 
@@ -294,7 +294,7 @@
 [test: a worktree session opens Ghostty in the folder its agent works in, inside the worktree : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L189 ]
 [test: with the setting off, Ghostty missing or the folder gone, nothing opens and the reason is said : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L198 ]
 [test: a launcher that fails is reported, not swallowed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L223 ]
-[test: with Ghostty on, a click on the worktree's branch asks the server to open a shell there, and a refusal is toasted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L221 ]
+[test: with Ghostty on, a click on the worktree's branch asks the server to open a shell there, and a refusal is toasted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L222 ]
 
 ## S11: The session popover shows the folder, the branch and the context window @v1 [proposed]
 
@@ -335,21 +335,21 @@
   its totals only; the demo's simulated session counts too; the home folder
   is never sent from the demo or a shared server
 
-[test: a worktree session shows its folder, branch, base and the window by category : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L186 ]
-[test: Refresh is there only for an agent that counts on request, and waits for the turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L209 ]
-[test: an agent that counts nothing says so, and one that counts says when : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L225 ]
-[test: a measured count says so, and a count with no window shows no bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L233 ]
-[test: the header button shows how full the window is, and nothing while unknown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L241 ]
-[test: write counts the way Claude Desktop does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L85 ]
-[test: give a share of the window to one decimal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L99 ]
-[test: the home folder is ~, and a long path loses its middle, whole folders first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L110 ]
-[test: a folder's parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L123 ]
-[test: the percentage needs a window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L133 ]
-[test: the bar draws used parts in their colour order, then the reserve and free space : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L145 ]
-[test: an agent with totals only gets one used part, a derived reserve and what is left : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L165 ]
-[test: a context event leaves the transcript as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L177 ]
-[test: the header ring opens the session popover on the folder, its branch and the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L139 ]
-[test: Refresh asks the agent to count every category, and a count on the stream moves the ring : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L173 ]
+[test: a worktree session shows its folder, branch, base and the window by category : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L187 ]
+[test: Refresh is there only for an agent that counts on request, and waits for the turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L210 ]
+[test: an agent that counts nothing says so, and one that counts says when : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L226 ]
+[test: a measured count says so, and a count with no window shows no bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L234 ]
+[test: the header button shows how full the window is, and nothing while unknown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L242 ]
+[test: write counts the way Claude Desktop does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L86 ]
+[test: give a share of the window to one decimal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L100 ]
+[test: the home folder is ~, and a long path loses its middle, whole folders first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L111 ]
+[test: a folder's parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L124 ]
+[test: the percentage needs a window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L134 ]
+[test: the bar draws used parts in their colour order, then the reserve and free space : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L146 ]
+[test: an agent with totals only gets one used part, a derived reserve and what is left : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L166 ]
+[test: a context event leaves the transcript as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L178 ]
+[test: the header ring opens the session popover on the folder, its branch and the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L140 ]
+[test: Refresh asks the agent to count every category, and a count on the stream moves the ring : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L174 ]
 [test: a provider's context count reaches the pane, the log keeps the newest, and the record its totals : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L376 ]
 [test: the pane's Refresh asks the provider to count again, and is refused where it cannot : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L424 ]
 [test: a demo session counts its context window, and counts it again on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L293 ]
@@ -392,17 +392,17 @@
   asks "End this session?" first, and No keeps it; one that is ready, ended
   or failed closes at once
 
-[test: each open session has a tab in start order, every one followed, and a click shows its transcript : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L200 ]
-[test: the arrow keys, Home and End move between tabs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L224 ]
-[test: + opens the new-session screen on a tab of its own, until five tabs are open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L243 ]
-[test: with five tabs open, ended ones among them, + and the message box wait for one to close : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L257 ]
-[test: × closes an idle tab at once and shows the tab to its right : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L272 ]
-[test: × on a tab whose agent is at work asks first, and a no keeps the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L288 ]
-[test: closing the last tab leaves the new-session screen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L311 ]
-[test: tabs run in the order their sessions started, and a closed tab hands over to its right, else its left : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L174 ]
-[test: five open tabs, ended ones included, leave no room for another : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L182 ]
-[test: a session asks before closing only while its agent is at work : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L189 ]
-[test: a tab's tooltip names the session, its agent, its state and its folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L195 ]
+[test: each open session has a tab in start order, every one followed, and a click shows its transcript : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L201 ]
+[test: the arrow keys, Home and End move between tabs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L225 ]
+[test: + opens the new-session screen on a tab of its own, until five tabs are open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L244 ]
+[test: with five tabs open, ended ones among them, + and the message box wait for one to close : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L258 ]
+[test: × closes an idle tab at once and shows the tab to its right : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L273 ]
+[test: × on a tab whose agent is at work asks first, and a no keeps the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L289 ]
+[test: closing the last tab leaves the new-session screen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L312 ]
+[test: tabs run in the order their sessions started, and a closed tab hands over to its right, else its left : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L175 ]
+[test: five open tabs, ended ones included, leave no room for another : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L183 ]
+[test: a session asks before closing only while its agent is at work : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L190 ]
+[test: a tab's tooltip names the session, its agent, its state and its folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L196 ]
 [test: at most five sessions are open at once, an ended one holding its tab until it is closed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L120 ]
 
 ## S13: The pane header says whether the agent spends an account or the API @v1 [proposed]
@@ -536,3 +536,33 @@
 [test: the files follow the user's words in one line; a /command goes as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L695 ]
 [test: only paths inside the open folder are taken : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L703 ]
 [test: a message's files are shown under it and told to the agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L715 ]
+
+## S18: Switching folders closes the other folder's sessions @v1 [proposed]
+
+- Given: the coding agent pane with sessions open in one folder — a
+  specifications folder, or a code repository opened in its place
+- When: the user switches to another folder
+- Then: every session started while the other folder was open ends, as
+  its tab's × would end it, before the switch is done: its agent stops, its
+  record says it ended, and a worktree of its own goes unless something in
+  it is uncommitted
+- and its transcript ends with "The folder was switched; this session
+  belonged to another folder." where a tab closed with × says "Session
+  ended."
+- and a session belongs to the folder open when it started, even when the
+  pane picked another folder for it to work in
+- and the pane is ready for the folder now open: the closed sessions' tabs
+  go, the new-session screen shows with the new folder's default, files
+  kept from the other folder go, and the agents' models are read again
+- and a toast says how many sessions were closed, as "Closed 2 coding agent
+  sessions from the other folder"
+- and picking the folder that is already open, or a settings change that
+  switches no folder, closes nothing
+
+[test: a session belongs to the folder open when it started, not the folder the pane picked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentFolderSwitch.test.ts#L96 ]
+[test: picking another specifications folder closes the sessions of the one before, before it answers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentFolderSwitch.test.ts#L103 ]
+[test: opening a code repository closes the specifications folder's sessions, and switching back closes its : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentFolderSwitch.test.ts#L119 ]
+[test: the open folder's own sessions stay, and a change that switches no folder closes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentFolderSwitch.test.ts#L128 ]
+[test: the pane drops the closed sessions' tabs after a switch and opens on the new-session screen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentFolderSwitch.test.ts#L137 ]
+[test: a closed session's transcript says it belonged to another folder; a folder written with a slash is the same folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentFolderSwitch.test.ts#L154 ]
+[test: the toast after a switch says how many sessions went, and nothing when none did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentFolderSwitch.test.ts#L176 ]
