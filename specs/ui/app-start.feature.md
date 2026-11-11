@@ -39,8 +39,8 @@ Two runs use the home file only: the desktop app (desktop-app.feature.md
 specdriven-app repository or a worktree of it), so every checkout, worktree
 and the desktop app share one settings file.
 
-The file is YAML. Until version 0.1.265 it was JSON, `settings.json` in the
-same two places: one still there is read as it is, and converted to
+The file is YAML. It used to be JSON, `settings.json` in the same two
+places: one still there is read as it is, and converted to
 `settings.yaml` when the app starts, so an existing installation keeps its
 settings. The JSON file is kept beside it as `settings.json.bak`.
 
