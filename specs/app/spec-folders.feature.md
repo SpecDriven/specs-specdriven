@@ -43,9 +43,9 @@ lists the 10 newest entries of that list, with the same icons, the open one tick
 [test: forgetting a folder takes only that kind's entry off the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L230 ]
 [test: GET /api/state lists spec folders and code repositories together, newest first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L330 ]
 [test: keeps well-formed entries in order and drops the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L252 ]
-[test: GET /api/state says where each GitHub url on the list is cloned : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L175 ]
-[test: PUT /api/state forgetDataRepo removes a folder from the list and persists it, the folder itself untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L262 ]
-[test: the open folder cannot be removed from the list — switch away first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L295 ]
+[test: GET /api/state says where each GitHub url on the list is cloned : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L176 ]
+[test: PUT /api/state forgetDataRepo removes a folder from the list and persists it, the folder itself untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L263 ]
+[test: the open folder cannot be removed from the list — switch away first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L296 ]
 
 ## S2: One entry per repository @v1 [proposed]
 
@@ -57,11 +57,11 @@ every name of that repository off the list.
 The coding agent pane offers the data repo's folder once too: for a GitHub url, the folder it is
 cloned to.
 
-[test: a url and its own clone opened by path are one entry, the open one kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L397 ]
-[test: a checkout whose origin is the url is the same repository, in any remote form : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L411 ]
-[test: other repositories stay apart, even urls that share a clone folder name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L425 ]
-[test: picking the clone folder by path replaces the url on the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L433 ]
-[test: removing a repository from the list takes its other names with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L446 ]
+[test: a url and its own clone opened by path are one entry, the open one kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L398 ]
+[test: a checkout whose origin is the url is the same repository, in any remote form : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L412 ]
+[test: other repositories stay apart, even urls that share a clone folder name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L426 ]
+[test: picking the clone folder by path replaces the url on the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L434 ]
+[test: removing a repository from the list takes its other names with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L447 ]
 
 ## S3: Switch spec folder @v1 [proposed]
 
@@ -76,8 +76,8 @@ A path that names no folder is not opened silently: the app says there is no fol
 whether to create it as a new, empty spec folder. Declining keeps the current folder open.
 
 [test: nothing on it can be pressed — no buttons, and it says the rest waits : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L57 ]
-[test: a missing folder is refused with a 404, nothing made, the open folder kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L335 ]
-[test: createDataRepo makes the missing folder and opens it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L350 ]
-[test: a path to a file is not a folder to open, even with createDataRepo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L360 ]
+[test: a missing folder is refused with a 404, nothing made, the open folder kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L336 ]
+[test: createDataRepo makes the missing folder and opens it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L351 ]
+[test: a path to a file is not a folder to open, even with createDataRepo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L361 ]
 [test: a modal dialog names the folder being opened and the step it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L23 ]
 [test: the steps read done → current → pending as the switch advances : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L35 ]

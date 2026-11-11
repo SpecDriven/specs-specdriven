@@ -76,7 +76,7 @@ twice as big as it looked on screen — so an image can be sized in place.
 [test: a name with no usable stem falls back to 'image' : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L46 ]
 [test: inserts at the caret and leaves the caret after it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L324 ]
 [test: a selection becomes the alt text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/markdown.test.tsx#L331 ]
-[test: image routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L50 ]
+[test: image routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L51 ]
 
 ## S3: repeated upload of the same image @v1 [proposed]
 
@@ -194,4 +194,4 @@ twice as big as it looked on screen — so an image can be sized in place.
 [test: null for missing images : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L77 ]
 [test: refuses names storeImage would never generate : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L83 ]
 [test: maps stored extensions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L100 ]
-[test: image routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L50 ]
+[test: image routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L51 ]

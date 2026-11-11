@@ -75,12 +75,12 @@ version (app/open-source-license.feature.md).
   never overwrites it, never follows one that is a symlink, and does not
   read one over 1 MB
 
-[test: only GitHub repos are kept, in canonical form, once each, at most ten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L46 ]
-[test: the list is stored per user, reports a change, and goes with the account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L54 ]
-[test: a worker's settings give the open repo first, then its recent ones; no file says nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L70 ]
-[test: a settings file that is a symlink is not followed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L91 ]
-[test: a worker with no settings gets the remembered repos; one with settings keeps its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L102 ]
-[test: after the volume is lost, the user's next worker opens the repo they had open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L121 ]
+[test: only GitHub repos are kept, in canonical form, once each, at most ten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L48 ]
+[test: the list is stored per user, reports a change, and goes with the account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L56 ]
+[test: a worker's settings give the open repo first, then its recent ones; no file says nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L72 ]
+[test: a settings file that is a symlink is not followed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L93 ]
+[test: a worker with no settings gets the remembered repos; one with settings keeps its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L104 ]
+[test: after the volume is lost, the user's next worker opens the repo they had open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L123 ]
 [test: a snapshot read into a fresh database gives back accounts, roles, allowed emails, secrets that still open, recent repos and live sessions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L86 ]
 
 ## S4: A worker cannot reach another person's folder @v1 [proposed]
@@ -96,8 +96,8 @@ version (app/open-source-license.feature.md).
 - and outside the hosted image, where the gateway cannot change user ids,
   the workers share its user and the gateway logs a warning
 
-[test: each worker runs as its own uid, owning its folder alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L128 ]
-[test: the worker command drops to the user's uid with no way back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L169 ]
+[test: each worker runs as its own uid, owning its folder alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L129 ]
+[test: the worker command drops to the user's uid with no way back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L170 ]
 [test: a data repo's code-repo path is ignored, so it cannot point into another user's folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L149 ]
 
 ## S5: Accounts survive a redeploy @v1 [proposed]
@@ -130,7 +130,7 @@ version (app/open-source-license.feature.md).
 [test: a push that loses a race to another writer is redone on top of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L209 ]
 [test: the token and repo come from the environment; no token means no datastore : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L67 ]
 [test: the token reaches git through the credential helper's environment, not argv : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L78 ]
-[test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L53 ]
+[test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L54 ]
 
 ## S6: Admins give and take the admin role @v1 [proposed]
 
@@ -200,10 +200,10 @@ version (app/open-source-license.feature.md).
 [test: signed in, the app's pages come from the gateway and its API from the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L213 ]
 [test: two users reach two different workers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L222 ]
 [test: request bodies pass through and streamed answers stream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L232 ]
-[test: two users get two workers with separate settings, folders and environments : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L84 ]
-[test: restart stops the worker; the next request starts a fresh one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L109 ]
-[test: idle workers are stopped by the sweep : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L118 ]
-[test: user ids that are not UUIDs never become paths : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L80 ]
+[test: two users get two workers with separate settings, folders and environments : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L85 ]
+[test: restart stops the worker; the next request starts a fresh one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L110 ]
+[test: idle workers are stopped by the sweep : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L119 ]
+[test: user ids that are not UUIDs never become paths : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L81 ]
 [test: page paths get the shell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L26 ]
 [test: bundled assets are served immutable, and nothing outside the build is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L34 ]
 [test: the API, plugin bundles and writes are the worker's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L42 ]
@@ -400,6 +400,6 @@ version (app/open-source-license.feature.md).
 [test: a different master key cannot open the secret : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L40 ]
 [test: the store keeps ciphertext only and lists hints, never values : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L52 ]
 [test: agent key names are short lowercase slugs, and github is reserved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L98 ]
-[test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L53 ]
+[test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L54 ]
 [test: the env token backend reads the gateway's record and refuses to change it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L117 ]
 [test: agent keys arrive as SPECDRIVEN_AGENT_KEY_<NAME> variables : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L127 ]

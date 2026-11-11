@@ -306,9 +306,9 @@ in the feature's Automerge document and written into the `.feature.md` while
   other: in a mode that asks, the first call raises the pane's permission
   card
 
-[test: no wiki token, no server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L59 ]
-[test: a saved token brings the Confluence server, run from the app's source with its token file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L75 ]
-[test: the demo and the hosted app hand out none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L89 ]
+[test: no wiki token, no server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L60 ]
+[test: a saved token brings the Confluence server, run from the app's source with its token file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L76 ]
+[test: the demo and the hosted app hand out none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L90 ]
 [test: a saved wiki token hands the provider the Confluence MCP server; none, nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L650 ]
 [test: three read-only tools, under the server's name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L217 ]
 [test: the instructions name the saved wikis, never a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpConfluence.test.ts#L208 ]
@@ -382,8 +382,8 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and a session of the web server points the server at the app's own token
   file instead
 
-[test: the desktop app says how to run it and where the tokens are : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L98 ]
-[test: the desktop app's export is the records, tokens included, owner-only, and follows every change : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L112 ]
+[test: the desktop app says how to run it and where the tokens are : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L99 ]
+[test: the desktop app's export is the records, tokens included, owner-only, and follows every change : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L113 ]
 
 ## S17: Confluence is switched on in Settings @v1 [proposed]
 
@@ -405,6 +405,6 @@ in the feature's Automerge document and written into the `.feature.md` while
 
 [test: off by default, a fresh device refuses publish and the folder route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L612 ]
 [test: switched off refuses both routes, even with a saved token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L622 ]
-[test: Confluence switched off in Settings hands out none, even with a saved token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L63 ]
-[test: Confluence absent from Settings (the default) hands out none, even with a saved token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L69 ]
+[test: Confluence switched off in Settings hands out none, even with a saved token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L64 ]
+[test: Confluence absent from Settings (the default) hands out none, even with a saved token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcp.test.ts#L70 ]
 [test: each is off until switched on, and off is stored as an absent key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L400 ]

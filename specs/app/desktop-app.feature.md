@@ -251,9 +251,9 @@ to the user-only token file next to the home settings file.
 - and settings it saves go to `~/.specdriven/settings.yaml`, never to the
   app-data directory
 
-[test: the home settings file is used when the project has none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L61 ]
-[test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L76 ]
-[test: the desktop app reads and writes only the home settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L236 ]
+[test: the home settings file is used when the project has none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L62 ]
+[test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L77 ]
+[test: the desktop app reads and writes only the home settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L237 ]
 
 ## S6: GitHub data repos are cloned under the app-data directory @v1 [proposed]
 

@@ -324,10 +324,10 @@ was beside it; a file a newer app wrote is read as it is.
 - and with no settings file anywhere, the home one is created
 - and agent session records and worktrees live beside the home file too
 
-[test: the app's own checkout reads and writes the home settings file even with a project one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L204 ]
-[test: the app's own checkout creates the home settings file when there is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L216 ]
-[test: the app's own checkout reads its old project settings until the first save moves them home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L224 ]
-[test: another project's package.json does not count as the app's checkout : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L254 ]
+[test: the app's own checkout reads and writes the home settings file even with a project one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L205 ]
+[test: the app's own checkout creates the home settings file when there is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L217 ]
+[test: the app's own checkout reads its old project settings until the first save moves them home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L225 ]
+[test: another project's package.json does not count as the app's checkout : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L255 ]
 
 ## S19: a new app version upgrades the settings file @v1 [proposed]
 
@@ -469,3 +469,18 @@ was beside it; a file a newer app wrote is read as it is.
   no settings, and the next save sets it aside as `settings.json.bak`
 - and the hosted app reads a worker's `settings.json` until that worker
   converts it, and never writes a settings file over it
+
+[test: settings are saved as YAML, in settings.yaml : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L75 ]
+[test: every value comes back from settings.yaml as it was saved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L85 ]
+[test: a settings.json from before YAML is read as it is, until it is converted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L128 ]
+[test: converting writes the same settings as settings.yaml and keeps settings.json as settings.json.bak : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L139 ]
+[test: an older settings.json is converted, then upgraded to this app's format : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L155 ]
+[test: starting the app converts a settings.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L175 ]
+[test: settings.yaml wins over a settings.json beside it, which is left alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L183 ]
+[test: a save converts a settings.json the start did not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L196 ]
+[test: a settings.json that does not parse is not converted; the next save sets it aside : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L205 ]
+[test: the home settings.json is converted where it is, and saves stay in the home folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L218 ]
+[test: a project settings.json still wins over the home settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L231 ]
+[test: the desktop app converts the home settings.json, not one under its app data : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L243 ]
+[test: the settings file view shows a home settings.json that has not been converted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L256 ]
+[test: a worker's settings.json from before YAML is read, and not seeded over : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L164 ]
