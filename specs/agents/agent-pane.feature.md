@@ -224,6 +224,24 @@
   `specdriven/<session name>-<id>` off the branch the folder has checked
   out — and the agent works there instead of in the folder, so its edits
   never touch the user's checkout and two sessions never share one
+- and where the repo has an `origin`, the session starts from up-to-date
+  code: the folder has to be on origin's main branch (its default branch,
+  else `main`), and before the worktree branches off it the app fetches
+  origin and fast-forwards a main that fell behind, leaving uncommitted
+  changes as they are
+- and what a fast-forward cannot fix refuses the session with a 409 that
+  says what to do, and nothing is made: another branch or a detached HEAD
+  checked out, a main with commits origin does not have, or a fast-forward
+  that uncommitted changes stand in the way of — the app never switches,
+  rebases or resets the user's checkout; the box's tooltip names the branch
+  sessions start from, and says so when the folder is not on it
+- and with origin out of reach the session still starts, from main as last
+  fetched, and a notice that stays on screen says so, as does the session
+  popover; a worktree session shows no "Start from up-to-date source"
+  dialog, since the app has made sure itself
+- and the specifications folder is left as it stands — the app keeps it
+  level with its remote itself — as is a repo with no `origin`, whose
+  sessions branch off whatever is checked out
 - and this works for every agent (Claude, Codex, Pi, any agent plugin): the
   app makes the worktree and hands the agent its path as the folder to work
   in, and a folder deep inside the repo keeps its place inside the worktree
@@ -251,9 +269,17 @@
 [test: closing a session removes its worktree when nothing is uncommitted, keeps it otherwise, and keeps the branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L182 ]
 [test: the pane asks whether a folder can have a worktree, and on which branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L216 ]
 [test: a session name becomes a branch-safe slug : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L228 ]
+[test: a worktree session starts from main level with origin, and a main that fell behind is fast-forwarded first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L264 ]
+[test: a folder on another branch, or a main with commits origin lacks, is refused with nothing left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L287 ]
+[test: a main that cannot be fast-forwarded over uncommitted changes is refused, and the changes stay : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L323 ]
+[test: with origin out of reach the worktree starts from main as last fetched, and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L338 ]
+[test: the specifications folder, which the app keeps level itself, is neither fetched nor moved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L351 ]
+[test: the pane learns which branch a worktree session has to start from : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L366 ]
 [test: the Worktree box offers a worktree for a repo, remembers the pick, and the first message asks for one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L155 ]
 [test: a folder that is no repo greys the box out, and the remembered pick is not sent there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L178 ]
 [test: a worktree session shows the folder it was started in and its branch, and closing it says a kept worktree's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L201 ]
+[test: a worktree session on the code repo starts with no source dialog, and says when origin was out of reach : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L273 ]
+[test: the Worktree box says which branch the session starts from, and when the folder is not on it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L329 ]
 
 ## S10: A worktree session opens in a Ghostty shell @v1 [proposed]
 

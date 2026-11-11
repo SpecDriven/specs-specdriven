@@ -224,6 +224,10 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 - and a refresh that leaves conflicts, or fails, is reported and the session is
   not started until it is resolved; a branch already clean and up to date, or a
   folder that is not a code repository, starts with no dialog
+- and a session that gets its own worktree starts with no dialog either: the
+  app itself brings main level with origin before the worktree branches off
+  it, or refuses and says why (agent-pane "A session can run in its own git
+  worktree")
 
 [test: a clean branch level with its upstream is online, up to date, not dirty : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L78 ]
 [test: a branch whose origin advanced is reported behind, after a live fetch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L95 ]
