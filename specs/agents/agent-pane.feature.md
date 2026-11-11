@@ -410,26 +410,28 @@
 - Given: an agent that reports its sign-in, such as Claude
 - When: the coding agent pane is open — with a session in it, or with none
   yet, on the new-session screen
-- Then: the right of the pane's header always shows one of two words: API
-  while the agent's calls go through the API — an API key, a bearer token,
-  an API proxy or a cloud provider such as Bedrock — or ACNT while it
-  spends a Claude account's plan
+- Then: the right of the pane's header always shows one of two icons: a
+  plug while the agent's calls go through the API — an API key, a bearer
+  token, an API proxy or a cloud provider such as Bedrock — or a person
+  while it spends a Claude account's plan
 - and with no session open the chip speaks for the agent a new session
   would start on, from the sign-in Settings → Claude has chosen; once a
   session reports its own sign-in, the chip shows that
-- and an account that is not signed in yet still reads ACNT, in red
+- and an account that is not signed in yet still shows the person, in red
 - and a sign-in changed in Settings shows in the chip without a reload
-- and the chip's tooltip keeps the agent's own words for the sign-in — the
-  plan's name, the proxy's address, who is signed in and where the
-  credential came from
+- and the chip's tooltip says which of the two it is, API or Account, then
+  keeps the agent's own words for the sign-in — the plan's name, the
+  proxy's address, who is signed in and where the credential came from
+- and a screen reader hears the same word, API or Account, with the
+  sign-in's name, the icon itself being silent
 - and Settings → Claude names the second way to sign in "API", next to
   "Claude account (email login)"
 
-[test: the account chip reads API for a key, a token, a proxy or a provider, ACNT for an account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L8 ]
-[test: the account chip's tooltip names the sign-in, then who and where from, once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L19 ]
-[test: with no session open, the header shows API or ACNT for the agent a new session starts on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L46 ]
-[test: the header's agent with no session is the one picked, while usable, else the first usable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L65 ]
-[test: a sign-in change asks again for every list already loaded, so the chip follows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L73 ]
+[test: the account chip shows the plug for a key, a token, a proxy or a provider, the person for an account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L9 ]
+[test: the account chip's tooltip says API or Account, then the sign-in, who and where from, once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L20 ]
+[test: with no session open, the header shows the plug or the person for the agent a new session starts on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L57 ]
+[test: the header's agent with no session is the one picked, while usable, else the first usable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L83 ]
+[test: a sign-in change asks again for every list already loaded, so the chip follows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L91 ]
 [test: describeSignIn says API through the proxy, or the Claude account and whether it is signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1443 ]
 [test: the pane's choices carry the sign-in a new session would start under, when the host says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1462 ]
 [test: the app's choices route carries the sign-in, Not logged in with no one signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1471 ]
@@ -468,3 +470,69 @@
 [test: an account sign-in has nothing to try : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/reconnect.test.ts#L95 ]
 [test: the proxy is the one the folder's own Claude Code settings name, when Settings names none : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/reconnect.test.ts#L102 ]
 [test: withReconnect gives the provider the app's reconnect hook : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/reconnect.test.ts#L113 ]
+
+## S15: Up and Down recall sent messages @v1 [proposed]
+
+- Given: the coding agent pane's message box, with a session or on the
+  new-session screen, and messages sent from this device before
+- When: the user presses Up with the caret on the box's first line
+- Then: the box shows the message sent last; each further Up shows the one
+  before it, and at the oldest it stays
+- and Down shows the one after, and past the newest the box gets back the
+  draft that was being typed when Up was first pressed
+- and Down recalls nothing until Up has, and inside a message of several
+  lines the arrows move the caret as they always did
+- and the history is one list for every session, kept on the device: the
+  last 100 messages, a message sent twice in a row kept once
+- and while the "/" popup is open the arrows move through its commands
+  instead
+
+[test: a sent message joins the history, once in a row, the oldest falling off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentComposer.test.tsx#L70 ]
+[test: Up walks back through sent messages and Down returns to the draft : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentComposer.test.tsx#L82 ]
+[test: Up and Down recall sent messages, from the box's first and last line only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentComposer.test.tsx#L179 ]
+
+## S16: /help lists the commands @v1 [proposed]
+
+- Given: the coding agent pane's message box
+- When: the user sends `/help`
+- Then: a panel over the box lists every "/" command — the pane's own and
+  the ones the session's agent reported — each with its arguments and what
+  it does, and the box's keys
+- and nothing is sent to the agent, so it answers while the agent is
+  mid-turn and on the new-session screen, where it says the agent's own
+  commands are listed once a session has started
+- and `/help` is in the "/" popup with the agent's commands; an agent with
+  a `/help` of its own has one row there, and the pane still answers it
+- and Escape, the panel's close button or the next message closes it
+
+[test: /help is the pane's own command, listed beside the agent's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentComposer.test.tsx#L99 ]
+[test: /help lists the commands in the pane and sends nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentComposer.test.tsx#L211 ]
+
+## S17: The open feature or file goes with a message @v1 [proposed]
+
+- Given: the coding agent pane beside a feature, or — with a code
+  repository open — beside a file in the Files tab
+- When: the user sends a message
+- Then: the agent is told the open file in a line after the user's words,
+  by its path — relative to the folder the agent works in, in full when it
+  is elsewhere (a specification while the session runs in the code
+  repository), and in the worktree for a worktree session — and reads it
+  itself
+- and the message box shows the file as a chip above the text, dashed
+  because it changes as the main pane does
+- and the chip's pin keeps the file in the context when something else is
+  opened; a kept file's chip is solid, and the newly opened one joins it
+- and every chip has a remove button: removing a kept file drops it, and
+  removing the open file stops the open file going with messages — on this
+  device, until the chip the row then offers adds it back
+- and the message's bubble in the transcript names the files it went with
+- and a "/" command goes to the agent as it is, with no files
+- and the server takes only paths inside the open folder, at most 20
+
+[test: the open file goes with a message unless removed; pinned files stay : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentComposer.test.tsx#L113 ]
+[test: the open feature goes with a message; it can be kept, removed and added back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentComposer.test.tsx#L241 ]
+[test: a message to a running session carries the files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentComposer.test.tsx#L309 ]
+[test: a file is named relative to the agent's folder, or in full outside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L682 ]
+[test: the files follow the user's words in one line; a /command goes as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L695 ]
+[test: only paths inside the open folder are taken : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L703 ]
+[test: a message's files are shown under it and told to the agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L715 ]

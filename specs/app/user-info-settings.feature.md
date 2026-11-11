@@ -7,7 +7,7 @@
 - lower left corner of the screen should show the current user
 - by default this is the user on the OS
 - User Menu will have user info, settings and plugins options
-- in the desktop app, the User Menu also signs in with a GitHub token and signs out
+- in the desktop app, the User Menu also switches the GitHub account and logs out
 
 The lower left corner of the sidebar shows a user chip: an avatar circle with
 the user's initials and the user name, with the running app's version (e.g.
@@ -19,9 +19,13 @@ reports both via `/api/state`.
 - Clicking the chip opens the User Menu just above it, with "User info",
   "Settings" and "Plugins", and on every copy "What's new", the release
   notes (app/release-notes.feature.md). In the desktop and local app it also offers the
-  GitHub sign-in: "Sign in with token…" while signed out; "Switch account…"
-  and "Sign out" while signed in. Signing out leaves the GitHub CLI alone:
-  it is a Git access of its own, chosen in Settings. The hosted app keeps its own "Account &
+  "Switch account…" while signed in with a token, and "Log out" always.
+  Log out forgets the app's GitHub token, closes the open folder and goes
+  back to the first-run screen, where the user opens a folder or clones
+  from GitHub with a token (ui/app-start.feature.md). It leaves the GitHub
+  CLI alone: that is a Git access of its own, chosen in Settings. The
+  menu has no "Sign in with token…": signing in is the first-run
+  screen's, and Settings'. The hosted app keeps its own "Account &
   tokens" and "Sign out" (app/hosted-app.feature.md); the demo has neither.
 - Settings and Plugins are pages, not dialogs: each takes the whole editor
   pane, the sidebar stays beside it, and each has its own url (`/settings`,
@@ -93,7 +97,7 @@ reports both via `/api/state`.
   offered, and an access left on it falls back to the personal access
   token until the switch comes back on
 - The personal access token is not behind the switch; the user menu always
-  offers "Sign in with token…", or "Switch account…" and "Sign out"
+  offers "Log out", and "Switch account…" while signed in with a token
 - The hosted app's "Account & tokens" is its own and is not behind the
   switch
 
@@ -137,7 +141,7 @@ reports both via `/api/state`.
 
 - When: the user clicks the chip
 - Then: a menu appears with "User info", "Settings" and "Plugins", and in
-  the desktop app the GitHub sign-in entries
+  the desktop app "Log out" (and "Switch account…" while signed in)
 - and ESC or clicking anywhere else closes it
 
 ## S4: see the current user @v1 [proposed]
@@ -170,10 +174,10 @@ reports both via `/api/state`.
 - and once the user authorizes there, the page shows
   "Signed in as <login>"
 
-## S7: sign in with a token from the user menu @v1 [proposed]
+## S7: switch account with a token from the user menu @v1 [proposed]
 
-- When: the user picks "Sign in with token…" from the user menu (or
-  "Switch account…" while signed in)
+- When: the user picks "Switch account…" from the user menu, offered
+  while signed in with a token
 - Then: a dialog asks for the GitHub host — github.com unless changed, a
   GitHub Enterprise host otherwise — and a personal access token
 - and signed in already, it names the account the token would replace
@@ -186,10 +190,10 @@ reports both via `/api/state`.
 [test: signed out, a modal dialog with the host and token fields : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tokenSignInDialog.test.tsx#L14 ]
 [test: signed in, it names the account the token would replace : https://github.com/SpecDriven/specdriven-app/blob/main/tests/tokenSignInDialog.test.tsx#L27 ]
 
-## S8: sign out from the user menu @v1 [proposed]
+## S8: sign out of the token in Settings @v1 [proposed]
 
-- When: the user picks "Sign out" from the user menu — offered while the
-  app is signed in
+- When: the user clicks "Sign out" under the personal access token in
+  Settings → Git & GitHub — offered while the app is signed in
 - Then: the app forgets its GitHub token
 - and the chip shows the OS user again, unless the GitHub CLI is the Git
   access
@@ -228,8 +232,8 @@ reports both via `/api/state`.
 - When: the user opens Settings → Git & GitHub
 - Then: the Git access radios offer the GitHub CLI and the personal access
   token, and no "GitHub account sign-in"
-- and the user menu offers "Sign in with token…" (or "Switch account…"
-  and "Sign out" once signed in with a token)
+- and the user menu offers "Log out" (and "Switch account…" once signed
+  in with a token)
 - and turning the switch on adds "GitHub account sign-in" as the third
   radio; turning it off again while that is chosen falls back to the token
 
@@ -304,3 +308,24 @@ reports both via `/api/state`.
 [test: humanizeKey turns camelCase into words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileView.test.ts#L132 ]
 [test: offers Copy contents beside Close : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileDialog.test.tsx#L40 ]
 [test: copies the view as plain text, sections as headings and nested rows indented : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileView.test.ts#L139 ]
+
+## S14: log out from the user menu @v1 [proposed]
+
+- Given: the desktop or local app, with a folder open
+- When: the user picks "Log out" from the user menu
+- Then: what was saved is synced first, and then the app forgets its
+  GitHub token
+- and the open folder — a specifications folder or a code repository —
+  is closed, so the app shows the first-run screen: "Open a folder on this
+  computer" or "Clone from GitHub" with a personal access token
+  (ui/app-start.feature.md "first run offers a folder or a clone")
+- and a reload shows the first-run screen too
+- and the recent folders stay listed, and nothing on disk is removed
+- and the GitHub CLI is left alone: nothing about it changes
+- and the user menu has no "Sign in with token…"
+
+[test: signed out, the user menu offers Log out and no token sign-in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/accountMenu.test.ts#L7 ]
+[test: signed in, it offers Switch account and Log out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/accountMenu.test.ts#L11 ]
+[test: the hosted app and the demo offer neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/accountMenu.test.ts#L15 ]
+[test: log out clears the app's token and closes the open folder, keeping the folder lists : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signOut.test.ts#L92 ]
+[test: log out closes an open code repository too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signOut.test.ts#L112 ]

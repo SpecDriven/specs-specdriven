@@ -219,10 +219,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 
 - Given: the Plugins page names one or more marketplaces, each a git url
 - When: the user opens the marketplace list, or presses Refresh
-- Then: each marketplace is cloned or pulled through the app's own git
-  engine into `~/.specdriven/marketplaces/<name>`, so it works with `gh`,
-  the app's sign-in or the bundled JavaScript git alike, and its
-  `marketplace.json` is read
+- Then: each marketplace is cloned by the first way that works, or pulled
+  through the app's own git engine, into `~/.specdriven/marketplaces/<name>`,
+  so it works with `gh`, the app's sign-in or the bundled JavaScript git
+  alike, and its `marketplace.json` is read
 - and the index names the marketplace and its owner and lists plugins,
   each with a name, a description, a version, a category and a source —
   a git url with a ref, or a subdirectory of the marketplace itself
@@ -321,9 +321,9 @@ Plugins can be developed in any repository and then deployed to https://github.c
   unrelated histories"), or a checkout was left half-done
 - When: the user presses Refresh on the Plugins page — offered whether or
   not the marketplace list has been browsed yet
-- Then: the copy is thrown away and the marketplace is cloned again through
-  the app's own git engine, its index read and listed, and Refresh pulls
-  again from then on
+- Then: the copy is thrown away and the marketplace is cloned again by the
+  first way that works, its index read and listed, and Refresh pulls again
+  from then on
 - and there is no separate Re-clone action: Refresh does it when needed
 - and the fresh clone takes the old copy's place only once it is whole: a
   remote that cannot be reached is reported beside the marketplace and the
@@ -403,3 +403,22 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: a failure is shown beside its row, the others still update, and Close answers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L107 ]
 [test: Not now updates nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L125 ]
 [test: the offer is empty when the server refuses or answers none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L133 ]
+
+## S15: A plugin repository is cloned by the first way that works @v1 [proposed]
+
+- Given: a marketplace, or a plugin the index names by a git url, is not
+  on this computer yet — or Refresh is cloning a marketplace afresh
+- When: the app clones it
+- Then: it tries the git installed on the computer first, then the git
+  built into the app, then the GitHub CLI, moving on to the next when one
+  fails, whatever Git access Settings names
+- and a way this computer does not have is skipped: no git installed
+  leaves the built-in git alone, and the hosted app never uses the GitHub
+  CLI
+- and what a failed try left behind is removed before the next one starts
+- and when every way fails the error names each one with its reason
+
+[test: the system git is tried first, then the built-in git, then the GitHub CLI : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginRepoClone.test.ts#L47 ]
+[test: a way that fails hands over to the next, which starts from an empty folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginRepoClone.test.ts#L71 ]
+[test: when every way fails the error names each with its reason, and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginRepoClone.test.ts#L90 ]
+[test: a plugin repository is cloned whichever engine Settings names, and with no git installed at all : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginRepoClone.test.ts#L106 ]
