@@ -16,3 +16,5 @@ https://taskfile.dev/
 - https://leansoftware.ai/go/clinic-nov-5-LL-3-brains
 - https://leansoftware.ai/go/clinic-nov-5-coding-agent-workshop
 - https://leansoftware.ai/go/clinic-nov-5-software-factory-course
+
+https://www.linkedin.com/company/effect-ts/
