@@ -32,12 +32,13 @@ reports both via `/api/state`.
   what was open before; each page links to the other.
 - ESC or a click elsewhere closes the menu.
 - "User info" opens a dialog showing the OS user, the signed-in GitHub
-  account, and the name/email that author the app's commits to the data
+  account, and the name that authors the app's commits to the data
   repo — the GitHub identity when signed in
   (git-operations.feature.md), else the system git identity
-  (user.name / user.email from git config, read in the data repo's
+  (user.name from git config, read in the data repo's
   folder — where the commits are made — so the repo's own config and an
-  `includeIf "gitdir:…"` rule apply, not just the global one). Missing
+  `includeIf "gitdir:…"` rule apply, not just the global one). The commit
+  email is not shown. Missing
   values show "not set"; no GitHub account shows "not signed in".
 - User info also names the settings file, `~/.specdriven/settings.json`,
   with "View settings file…": a wider, read-only dialog showing that file
@@ -216,8 +217,8 @@ reports both via `/api/state`.
 **Updated by:** vydra
 
 - When: the user picks "User info" from the menu
-- Then: a dialog shows the OS user, the GitHub account, and the name and
-  email used for commits to the data repo
+- Then: a dialog shows the OS user, the GitHub account, and the name used
+  for commits to the data repo, without the commit email
 
 [test: signed out, the identity is git's as resolved in the data repo, not the app's folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/user.test.ts#L60 ]
 
