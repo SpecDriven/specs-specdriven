@@ -273,7 +273,7 @@ reports both via `/api/state`.
 - When: the user opens "User info" from the user menu and clicks "View
   settings file…"
 - Then: a dialog shows the path ~/.specdriven/settings.yaml and the
-  file's contents as labelled sections, not JSON — switches On or Off,
+  file's contents as labelled sections, not YAML — switches On or Off,
   intervals in seconds, engines and accesses in words, recent folders as a
   list written from ~
 - and keys the app no longer reads are marked "no longer used"
@@ -283,9 +283,9 @@ reports both via `/api/state`.
 - and nothing in the dialog changes a setting
 - and "Copy contents" copies what the dialog shows to the clipboard as
   plain text — the same labels and values, sections as headings, nested
-  values indented — not the JSON
+  values indented — not the YAML
 
-[test: shows ~/.specdriven/settings.yaml as labelled sections, not JSON : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileDialog.test.tsx#L24 ]
+[test: shows ~/.specdriven/settings.yaml as labelled sections, not YAML : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileDialog.test.tsx#L24 ]
 [test: switches read On and Off, intervals in seconds, engines and accesses in words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileView.test.ts#L23 ]
 [test: recent folders are a list of paths from ~ with their kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileView.test.ts#L52 ]
 [test: a key the app no longer reads is marked deprecated : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileView.test.ts#L85 ]
