@@ -39,6 +39,11 @@ Two runs use the home file only: the desktop app (desktop-app.feature.md
 specdriven-app repository or a worktree of it), so every checkout, worktree
 and the desktop app share one settings file.
 
+The file is YAML. Until version 0.1.265 it was JSON, `settings.json` in the
+same two places: one still there is read as it is, and converted to
+`settings.yaml` when the app starts, so an existing installation keeps its
+settings. The JSON file is kept beside it as `settings.json.bak`.
+
 The file says which version of its format it is in (`settingsVersion`; a file
 without one is version 0). A new version of the app that changes what the
 file stores upgrades an older file when it starts, keeping the file as it
@@ -441,3 +446,26 @@ was beside it; a file a newer app wrote is read as it is.
 [test: opening it lists the folders newest first, each with its kind and path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L139 ]
 [test: it lists at most ten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L156 ]
 [test: picking a folder fills the field, hands back the entry and closes the list — the button still opens it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L164 ]
+
+## S23: an existing settings.json is converted to settings.yaml @v1 [proposed]
+
+- Given: a settings file an older version of the app left as
+  `settings.json` — in the project, or in the home folder
+- When: a new version of the app starts
+- Then: the same settings are written as `settings.yaml` in the same
+  folder, and the app reads and saves that file from then on
+- and `settings.json` is kept beside it as `settings.json.bak`
+- and nothing but the format changes in that step: an older file is then
+  upgraded as any other (its copy is `settings.yaml.v<old version>.bak`)
+- and every value comes back as it was saved — text that looks like a
+  number, a switch or nothing, an empty text, a folder path or a url used
+  as a key
+- and the next start finds nothing to do
+- and until it is converted a `settings.json` is read as it is, where the
+  settings file is looked up; a save converts one the start did not
+- and a `settings.json` beside a `settings.yaml` is not read, and is left
+  as it is
+- and a `settings.json` that does not parse is not converted: it reads as
+  no settings, and the next save sets it aside as `settings.json.bak`
+- and the hosted app reads a worker's `settings.json` until that worker
+  converts it, and never writes a settings file over it
