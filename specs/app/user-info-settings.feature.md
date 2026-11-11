@@ -46,7 +46,7 @@ reports both via `/api/state`.
   values show "not set"; no GitHub account shows "not signed in".
 - User info also names the settings file, `~/.specdriven/settings.yaml`,
   with "View settings file…": a wider, read-only dialog showing that file
-  — always the home one — in readable form rather than JSON: grouped
+  — always the home one — in readable form rather than YAML: grouped
   sections (Folders, Git & GitHub, Sync, Specs, Integrations, Agents,
   Plugins, Logging, Other) with the Settings page's labels, switches as
   On / Off, intervals in seconds, folders as lists written from `~`, and
@@ -292,10 +292,10 @@ reports both via `/api/state`.
 [test: shows the home file even when a project settings file is the one in effect : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileRoute.test.ts#L51 ]
 [test: without the file, it says there is none yet : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileDialog.test.tsx#L47 ]
 [test: names the file the app reads when a project settings file is in effect : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileDialog.test.tsx#L55 ]
-[test: a file that is not JSON says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileDialog.test.tsx#L62 ]
+[test: a file that is not YAML says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileDialog.test.tsx#L62 ]
 [test: reads the home settings file as written, without upgrading it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileRoute.test.ts#L40 ]
 [test: with no home file it says so, and does not fall back to the project file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileRoute.test.ts#L61 ]
-[test: a file that is not JSON is reported, not thrown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileRoute.test.ts#L69 ]
+[test: a file that is not YAML is reported, not thrown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileRoute.test.ts#L69 ]
 [test: is a GET route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileRoute.test.ts#L78 ]
 [test: answers with the home file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileRoute.test.ts#L83 ]
 [test: the hosted app refuses it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileRoute.test.ts#L93 ]
