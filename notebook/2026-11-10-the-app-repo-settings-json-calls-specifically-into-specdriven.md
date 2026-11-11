@@ -10,4 +10,4 @@ When deciding to detach a repo from SpecDriven workflow, it's worth considering 
 
 These should be cleaned up, or the dependencies should be modified so that the app repo can be removed from the workflow without changes.
 
-Context: hooks related to age
+Context: hooks related to agent session lifecycle as defined and mediated by SpecDriven's agent plug-ins.
