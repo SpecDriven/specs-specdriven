@@ -25,10 +25,10 @@ picked, so the app never opens on data the last run left behind.
 
 ## Settings file
 
-Local state lives in `.specdriven/settings.json`, looked up in this order:
+Local state lives in `.specdriven/settings.yaml`, looked up in this order:
 
-- `./.specdriven/settings.json`, relative to the directory the app runs from
-- `~/.specdriven/settings.json`, so one settings file can serve every checkout
+- `./.specdriven/settings.yaml`, relative to the directory the app runs from
+- `~/.specdriven/settings.yaml`, so one settings file can serve every checkout
 
 `SPECDRIVEN_HOME` overrides that home directory — the same variable install.sh
 uses for the install prefix. Settings are saved back to whichever of the two
@@ -190,7 +190,7 @@ was beside it; a file a newer app wrote is read as it is.
 - Given: a plain `.specdriven` file (the old layout) is in the project root
 - When: the app starts
 - Then: it is read as the settings file
-- and the next save moves it to `./.specdriven/settings.json`, preserving
+- and the next save moves it to `./.specdriven/settings.yaml`, preserving
   every setting
 
 ## S11: no settings file anywhere @v1 [proposed]
@@ -209,7 +209,7 @@ was beside it; a file a newer app wrote is read as it is.
 
 **Updated by:** vydra
 
-- Given: `~/.specdriven/settings.json` names a data repo, and the project has
+- Given: `~/.specdriven/settings.yaml` names a data repo, and the project has
   no settings file
 - When: the app starts
 - Then: the user is not asked for a data repo
@@ -312,8 +312,8 @@ was beside it; a file a newer app wrote is read as it is.
   repository or one of its worktrees — with no `SPECDRIVEN_ROOT` pointing
   elsewhere
 - When: it reads or saves settings
-- Then: it uses `~/.specdriven/settings.json`, even when the checkout has a
-  `.specdriven/settings.json` of its own
+- Then: it uses `~/.specdriven/settings.yaml`, even when the checkout has a
+  `.specdriven/settings.yaml` of its own
 - and with no home file yet, the checkout's old settings file is read, and
   the first save moves those settings to the home file
 - and with no settings file anywhere, the home one is created
@@ -336,7 +336,7 @@ was beside it; a file a newer app wrote is read as it is.
 - When: a new version of the app starts
 - Then: it runs, in order, the upgrade steps the file has not had, and
   saves the file in its own format with its own version
-- and the file as it was is kept beside it as `settings.json.v<old version>.bak`
+- and the file as it was is kept beside it as `settings.yaml.v<old version>.bak`
   (a copy already there is kept: it holds the oldest file)
 - and every setting the steps do not change is kept as it was
 - and the next start finds nothing to do

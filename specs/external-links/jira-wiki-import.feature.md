@@ -18,7 +18,7 @@ item at all.
 
 Jira is Server / Data Center (REST API 2), reached with a personal access
 token kept per site on this device like the Confluence token
-(external-links/confluence-wiki.feature.md) — never in settings.json or the
+(external-links/confluence-wiki.feature.md) — never in settings.yaml or the
 data repo. Nothing is written to Jira or Confluence.
 
 Not in this version: Jira Cloud (an API token with the user's email, and
@@ -39,7 +39,7 @@ again into the feature they made.
   token itself, with a Remove button
 - and saving a token for a site that already has one replaces it
 - and the token is kept on this device only: an owner-only file, or the OS
-  key store in the desktop app — never settings.json or the data repo
+  key store in the desktop app — never settings.yaml or the data repo
 
 [test: a token Jira accepts is kept, owner-only, and listed without the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L188 ]
 [test: a token Jira refuses, or that names nobody, is not kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraImport.test.ts#L201 ]

@@ -92,7 +92,7 @@ the OS application-data directory (`~/Library/Application Support/SpecDriven`
 on macOS, `~/.config/SpecDriven` on Linux, `%APPDATA%\SpecDriven` on Windows)
 via `SPECDRIVEN_ROOT`:
 
-- Settings are `~/.specdriven/settings.json` only (app-start.feature.md
+- Settings are `~/.specdriven/settings.yaml` only (app-start.feature.md
   "Settings file"), shared with the web version, so both see the same data
   repo. A settings file an older version left under the app-data directory
   is read only while there is no home file, and the first save moves it
@@ -244,11 +244,11 @@ to the user-only token file next to the home settings file.
 
 **Updated by:** vydra
 
-- Given: the web version has recorded a data repo in `~/.specdriven/settings.json`
+- Given: the web version has recorded a data repo in `~/.specdriven/settings.yaml`
 - When: the desktop app starts
 - Then: it opens that data repo without asking, even when a settings file
   is also under the app-data directory
-- and settings it saves go to `~/.specdriven/settings.json`, never to the
+- and settings it saves go to `~/.specdriven/settings.yaml`, never to the
   app-data directory
 
 [test: the home settings file is used when the project has none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L61 ]

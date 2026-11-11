@@ -196,7 +196,7 @@ A settings page in the editor pane, at `/settings` — not a dialog, which was
 too small (user-info-settings.feature.md "open Settings"). Its sections are
 listed on the left: General, Git & GitHub, Sync, Specs, Project management
 and Workflow. Settings are saved to the settings file
-(`.specdriven/settings.json`, app-start.feature.md) the moment a control
+(`.specdriven/settings.yaml`, app-start.feature.md) the moment a control
 changes; there is no Save button. The plugins have their own page
 (app/plugins.feature.md).
 

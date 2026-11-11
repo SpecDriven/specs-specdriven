@@ -34,7 +34,7 @@ again into the feature it made.
   itself, with a Remove button
 - and saving a key for a site that already has one replaces it
 - and the key is kept on this device only: an owner-only file, or the OS
-  key store in the desktop app — never settings.json or the data repo
+  key store in the desktop app — never settings.yaml or the data repo
 
 [test: a key Aha! accepts is kept, owner-only, and listed without the key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L164 ]
 [test: a key Aha! refuses, or that signs in as nobody, is not kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaImport.test.ts#L174 ]

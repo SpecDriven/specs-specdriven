@@ -44,7 +44,7 @@ reports both via `/api/state`.
   `includeIf "gitdir:…"` rule apply, not just the global one). The commit
   email is not shown. Missing
   values show "not set"; no GitHub account shows "not signed in".
-- User info also names the settings file, `~/.specdriven/settings.json`,
+- User info also names the settings file, `~/.specdriven/settings.yaml`,
   with "View settings file…": a wider, read-only dialog showing that file
   — always the home one — in readable form rather than JSON: grouped
   sections (Folders, Git & GitHub, Sync, Specs, Integrations, Agents,
@@ -272,7 +272,7 @@ reports both via `/api/state`.
 
 - When: the user opens "User info" from the user menu and clicks "View
   settings file…"
-- Then: a dialog shows the path ~/.specdriven/settings.json and the
+- Then: a dialog shows the path ~/.specdriven/settings.yaml and the
   file's contents as labelled sections, not JSON — switches On or Off,
   intervals in seconds, engines and accesses in words, recent folders as a
   list written from ~
@@ -285,7 +285,7 @@ reports both via `/api/state`.
   plain text — the same labels and values, sections as headings, nested
   values indented — not the JSON
 
-[test: shows ~/.specdriven/settings.json as labelled sections, not JSON : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileDialog.test.tsx#L24 ]
+[test: shows ~/.specdriven/settings.yaml as labelled sections, not JSON : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileDialog.test.tsx#L24 ]
 [test: switches read On and Off, intervals in seconds, engines and accesses in words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileView.test.ts#L23 ]
 [test: recent folders are a list of paths from ~ with their kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileView.test.ts#L52 ]
 [test: a key the app no longer reads is marked deprecated : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileView.test.ts#L85 ]

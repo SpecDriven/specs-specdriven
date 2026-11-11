@@ -233,7 +233,7 @@ Sources, in load order:
    from GitHub
 4. explicit paths in settings — the vibe-coded plugin under development
 
-The profile lives in the device-local `.specdriven/settings.json`, beside
+The profile lives in the device-local `.specdriven/settings.yaml`, beside
 today's switches, so the promise that a module switch does not follow the
 user to another device still holds:
 

@@ -234,7 +234,7 @@ Note: if this scenario was saved by the user, next Cancel jsut exits the editor 
 
 Given: the Settings page (user-info-settings.feature.md "open Settings")
 When: the user changes "Autosave interval (seconds)" in its Specs section
-Then: the new interval is saved to .specdriven/settings.json as soon as the
+Then: the new interval is saved to .specdriven/settings.yaml as soon as the
 field is left, with no Save button, and the open editor autosaves at it
 - the interval is at least 3 seconds and 6 seconds by default; a smaller
   one typed in the field turns back into the 6 second default, and the

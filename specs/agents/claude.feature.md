@@ -222,7 +222,7 @@ The server refuses a code gen session while the switch is off, so nothing can
 reach the Claude CLI even outside the UI.
 
 The switch is ON by default, and the setting is saved to
-.specdriven/settings.json.
+.specdriven/settings.yaml.
 
 ## S11: The agent pane follows a new Claude sign-in without a restart @v1 [proposed]
 
@@ -280,7 +280,7 @@ The switch is ON by default, and the setting is saved to
   so the list carries the account's models under their own names, not
   "Set by ANTHROPIC_DEFAULT_MODEL"
 - and the value saves itself when the field loses focus or Enter is pressed,
-  to the plugin's section of .specdriven/settings.json, and a value with
+  to the plugin's section of .specdriven/settings.yaml, and a value with
   spaces or that is no model id is refused with a message
 - and every Claude session the coding agent pane starts afterwards runs on
   that model, as do the app's one-shot Claude calls that ask for no model of

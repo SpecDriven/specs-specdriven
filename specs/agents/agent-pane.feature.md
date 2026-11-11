@@ -301,7 +301,7 @@
 - and the server takes the folder from the session's own record, never from
   the request (POST /api/agent/chat/:id/ghostty), and hands it to Ghostty as
   one argument, never through a shell
-- and the setting is off by default and kept in .specdriven/settings.json
+- and the setting is off by default and kept in .specdriven/settings.yaml
   (`ghostty`); off, the branch stays a plain label and the route refuses
   with a 409
 - and without Ghostty the setting's hint says where to get it and a click

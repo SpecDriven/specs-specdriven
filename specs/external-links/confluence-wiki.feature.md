@@ -30,7 +30,7 @@ in the feature's Automerge document and written into the `.feature.md` while
   itself, with a Remove button
 - and saving a token for a wiki that already has one replaces it
 - and the token is kept on this device only: an owner-only file, or the OS
-  key store in the desktop app — never settings.json or the data repo
+  key store in the desktop app — never settings.yaml or the data repo
 
 [test: a token Confluence accepts is kept, owner-only, and listed without the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L271 ]
 [test: a token Confluence refuses, or answers as anonymous, is not kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluencePublish.test.ts#L281 ]

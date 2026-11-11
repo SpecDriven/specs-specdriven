@@ -24,7 +24,7 @@ through the same contract a third party's plugin would use. Further
 plugins load from folders on this machine or from a marketplace, a git
 repository holding an index. Which plugins are on, and in what order, is
 the profile. Each data folder has its own, kept in
-`.specdriven/settings.json` on this machine like the module switches it
+`.specdriven/settings.yaml` on this machine like the module switches it
 replaces.
 
 ## Marketpalce
@@ -168,7 +168,7 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - Then: the plugins, their tabs and their routes switch with the folder,
   and Settings → Plugins shows the open folder's switches
 - and each folder's list is kept under `plugins.repos[<folder>].enabled` in
-  `.specdriven/settings.json` on this machine, so it stays device-local: it
+  `.specdriven/settings.yaml` on this machine, so it stays device-local: it
   does not follow the data repo to another machine or another clone
 - and a folder opened for the first time shows Specs alone, and nothing is
   written for it until its plugins change
@@ -242,7 +242,7 @@ Plugins can be developed in any repository and then deployed to https://github.c
 
 **Updated by:** vydra
 
-- Given: `.specdriven/settings.json` on this machine holds an ordered
+- Given: `.specdriven/settings.yaml` on this machine holds an ordered
   `enabled` list for the open data folder, under `plugins.repos[<folder>]`
   ("Each data folder keeps its own plugins")
 - When: the app starts

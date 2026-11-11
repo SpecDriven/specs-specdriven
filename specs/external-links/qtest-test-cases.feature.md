@@ -138,7 +138,7 @@ qTest never sees it.
   token itself, with a Remove button
 - and saving a token for a site that already has one replaces it
 - and the token is kept on this device only: an owner-only file, or the OS
-  key store in the desktop app — never settings.json or the data repo
+  key store in the desktop app — never settings.yaml or the data repo
 - and the hosted app, which keeps no device secrets, offers none of this
 
 [test: a token qTest accepts is kept, owner-only, and listed without the token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestPublish.test.ts#L344 ]

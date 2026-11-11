@@ -217,7 +217,7 @@ it does.
 - Then: the tab disappears; an entry that is open leaves the editor and the
   app goes home; the server refuses the notebook's requests while the switch
   is off; the folder and its entries are left alone
-- and the switch is stored in `.specdriven/settings.json` on this machine
+- and the switch is stored in `.specdriven/settings.yaml` on this machine
   like the roadmap's, so it does not follow the user to another device
 
 [test: the notebook setting is on unless explicitly turned off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/notebook.test.ts#L74 ]
