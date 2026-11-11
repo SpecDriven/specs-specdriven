@@ -243,9 +243,9 @@ field is left, with no Save button, and the open editor autosaves at it
 This replaces "Configure Autosave in Settings Dialog": Settings is a page in
 the editor pane, not a dialog.
 
-[test: the autosave interval defaults to 6 seconds and never goes below 3 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/editorAutosave.test.ts#L57 ]
-[test: Settings saves the autosave interval to the settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/editorAutosave.test.ts#L81 ]
-[test: an interval below the 3 second minimum is refused, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/editorAutosave.test.ts#L90 ]
+[test: the autosave interval defaults to 6 seconds and never goes below 3 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/editorAutosave.test.ts#L58 ]
+[test: Settings saves the autosave interval to the settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/editorAutosave.test.ts#L82 ]
+[test: an interval below the 3 second minimum is refused, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/editorAutosave.test.ts#L91 ]
 
 ## S19: Configure Autosave in Settings Dialog @v1 [published]
 
