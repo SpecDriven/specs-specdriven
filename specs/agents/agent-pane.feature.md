@@ -601,4 +601,4 @@
 
 Repo name followed by branch name.
 
-![image](/api/images/image-6a0233ee.png)
+![image](/api/images/image-markup-6885989d.png)
