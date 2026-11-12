@@ -602,6 +602,5 @@
 Repo name followed by branch name followed by '[] Worktree'
 Repo name and branch name need max width set so they don't take up too much space compared to other fields in the footer.
 
-Branch should s
 
 ![image](/api/images/image-markup-6885989d.png)
