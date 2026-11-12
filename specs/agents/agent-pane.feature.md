@@ -592,3 +592,13 @@
 [test: the pane drops the closed sessions' tabs after a switch and opens on the new-session screen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentFolderSwitch.test.ts#L137 ]
 [test: a closed session's transcript says it belonged to another folder; a folder written with a slash is the same folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentFolderSwitch.test.ts#L154 ]
 [test: the toast after a switch says how many sessions went, and nothing when none did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentFolderSwitch.test.ts#L176 ]
+
+## S19: Footer cmponents @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+Repo name followed by branch name.
+
+![image](/api/images/image-6a0233ee.png)
