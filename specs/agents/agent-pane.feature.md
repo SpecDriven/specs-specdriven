@@ -600,5 +600,6 @@
 **Updated by:** vydra
 
 Repo name followed by branch name followed by '[] Worktree'
+Repo name
 
 ![image](/api/images/image-markup-6885989d.png)
