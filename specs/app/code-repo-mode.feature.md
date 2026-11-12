@@ -77,7 +77,7 @@ demo, the hosted app or the read-only site.
 
 [test: a sync runs no git in the code repository and writes nothing into it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L303 ]
 [test: the specification routes answer that no specifications folder is open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L294 ]
-[test: an open code repository mounts the Files tab and none of the specification modules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L254 ]
+[test: an open code repository mounts the Files tab and none of the specification modules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L255 ]
 
 ## S3: The navigation pane lists the repository's files @v1 [proposed]
 
@@ -104,8 +104,8 @@ demo, the hosted app or the read-only site.
 [test: a folder that is not there is 404, a file is not a folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L132 ]
 [test: git check-ignore decides what a git repository ignores, tracked files excepted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L137 ]
 [test: the store lists the top folder, and a folder when it is opened : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L89 ]
-[test: the tree is treeitems, folders opening in place, files linking to their url, depth by level : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L198 ]
-[test: a folder that cannot be read says why, and an empty repository says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L211 ]
+[test: the tree is treeitems, folders opening in place, files linking to their url, depth by level : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L199 ]
+[test: a folder that cannot be read says why, and an empty repository says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L212 ]
 
 ## S4: A file opens in a plain text editor @v1 [proposed]
 
@@ -137,8 +137,8 @@ demo, the hosted app or the read-only site.
 [test: Reload from disk drops the editor's text for the file as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L149 ]
 [test: opening another file saves the one it replaces; leaving saves it too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L161 ]
 [test: a file the server will not show as text says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L179 ]
-[test: the status words follow the file's state : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L233 ]
-[test: the tab's home opens the README when the repository has one; search finds loaded files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L278 ]
+[test: the status words follow the file's state : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L234 ]
+[test: the tab's home opens the README when the repository has one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L279 ]
 
 ## S5: Open the file in IntelliJ IDEA @v1 [proposed]
 
@@ -158,7 +158,7 @@ demo, the hosted app or the read-only site.
 [test: without idea on PATH the click is refused with the symlink to make : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L251 ]
 [test: Open in IntelliJ refuses a bad request before anything runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L261 ]
 [test: a launcher that fails to start is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesApi.test.ts#L269 ]
-[test: the pane's header names the file's folders and offers Open in IntelliJ : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L220 ]
+[test: the pane's header names the file's folders and offers Open in IntelliJ : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesTab.test.tsx#L221 ]
 
 ## S6: The coding agent works in the code repository @v1 [proposed]
 
@@ -220,6 +220,6 @@ demo, the hosted app or the read-only site.
 [test: a member read is not painted in a program, a key is in JSON : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L250 ]
 [test: Markdown keeps its own colours : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L255 ]
 [test: Enter keeps the line's own indentation, never the grammar's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L262 ]
-[test: a source file's keywords and strings are painted once its grammar has loaded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L349 ]
-[test: a file in no known language shows as plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L359 ]
-[test: a source file is painted with Vim's keys on too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L365 ]
+[test: a source file's keywords and strings are painted once its grammar has loaded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L380 ]
+[test: a file in no known language shows as plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L390 ]
+[test: a source file is painted with Vim's keys on too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L396 ]
