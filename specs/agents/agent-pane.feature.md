@@ -605,6 +605,6 @@ Repo name and branch name need max width set so they don't take up too much spac
 
 ![image](/api/images/image-markup-6885989d.png)
 
-When Code agen pane has minimal width, the footer is difficult to use.
+Note: When Code agent pane has minimal width, the footer is difficult to use.
 
 ![image](/api/images/image-0956594e.png)
