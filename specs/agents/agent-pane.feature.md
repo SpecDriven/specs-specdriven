@@ -168,6 +168,7 @@
 [test: picking another agent swaps the models and the effort levels under it, and the session it starts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L261 ]
 [test: picking a model keeps the picker open with that model's effort levels, and picking an effort closes it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L281 ]
 [test: a short list picks a model by its number, and the arrows move through the models and the levels : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L308 ]
+[test: a list of nine models still picks by number, and a tenth brings the search field : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L333 ]
 [test: a long list gets a search field where typing narrows it, Enter picks the first match and digits are text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L331 ]
 [test: a running session picks only its model and effort, switching the session itself : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L365 ]
 [test: an agent that cannot switch models in a session still picks its effort, and one with nothing to pick is plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L384 ]
