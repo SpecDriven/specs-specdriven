@@ -113,41 +113,71 @@
 
 - Given: the coding agent pane, with a session or on the new-session screen
 - Then: the message box holds a bar under the text, as in Claude Desktop:
-  the folder on the left; the model, the effort and the permission mode on
-  the right; Send at the end
+  the folder on the left; the model chip and the permission mode on the
+  right; Send at the end
 - and the bar is always one row: a narrow pane shortens the folder's name
-  and drops the chips' chevrons rather than wrapping, the model, effort and
+  and drops the chips' chevrons rather than wrapping, the model and the
   mode keep their names whole until the folder's is down to a few letters,
   and the pane is never narrower than 420px ("Footer cmponents" has the
   order in which things give way)
-- and the model menu lists the models the agent offers, by display name
-  with a line about each (left off when it only repeats the name), the one
-  the session runs on checked and the one new sessions start on badged
+- and the model chip shows the agent's icon, the model's name and, after
+  it, the effort (left off while the agent decides it); it opens one picker
+  for the agent, the model and the effort, since the effort levels depend
+  on the model and the models on the agent
+- and on the new-session screen, when more than one agent can start, the
+  picker's first row is an icon per agent: Claude's, OpenAI's for Codex,
+  OpenCode's and Pi's own marks, and a robot for any other agent; the
+  picked one sits on a filled box with a rule under it; hovering or
+  focusing an icon shows the agent's name over its description; picking
+  one swaps the models and the levels under it and puts the mode back to
+  that agent's default, and writes nothing; a running session has no such
+  row, its agent being fixed
+- and the picker lists the models the agent offers, by display name with a
+  line about each (left off when it only repeats the name), the one the
+  session runs on checked and the one new sessions start on badged
   "Default"; a session that reports the full id of an alias still finds its
   row
-- and the model menu lists what the agent offers now, not what it offered
-  when the window opened: the pane loads the list again once it is a minute
-  old and as the menu opens, so an agent whose sign-in gains or loses a
-  model is followed without switching its plugin off and on
-- and the effort menu offers "Default" (the agent decides) and each level
-  the chosen model takes — Low, Medium, High, Extra high, Max — and is
-  hidden for a model that takes none
+- and a list of up to nine models picks by its number keys; a longer one
+  has a search field instead, focused as the picker opens, that keeps the
+  models holding every word typed in their name or their id; Enter there
+  picks the first one left, Down goes into the list
+- and the picker lists what the agent offers now, not what it offered when
+  the window opened: the pane loads the list again once it is a minute old
+  and as the picker opens, so an agent whose sign-in gains or loses a model
+  is followed without switching its plugin off and on
+- and under the models is a row of effort buttons: "Default" (the agent
+  decides) and each level the chosen model takes — Low, Medium, High, Extra
+  high, Max — each explained in its tooltip; the row is left out for a
+  model that takes none
+- and picking a model keeps the picker open, so the effort can be picked
+  for it; picking an effort, ESC or a click outside closes it
 - and picking a model or effort in a running session switches it from the
   next request on, notes nothing in the transcript, and makes it what the
   agent's new sessions start on
-- and an agent that offers no models shows the model it reports as plain
-  text, and one with no permission gate says "No permission gate" where the
-  mode would be
+- and an agent that cannot switch models in a running session offers only
+  the effort there, one that offers neither shows the model it reports as
+  plain text, and one with no permission gate says "No permission gate"
+  where the mode would be
 - and the header keeps the sessions menu, the status dot, the billing chip,
   Stop and close
 
 [test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L456 ]
-[test: the model menu lists the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L761 ]
-[test: a model off the list still shows, and with no default the agent's own leads the menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L777 ]
-[test: a model's description that only repeats its name is left off, as a proxy's rows carry it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L786 ]
-[test: the effort menu offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L797 ]
+[test: one chip names the agent by its icon, the model and the effort, and opens one picker for all three : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L185 ]
+[test: each agent is an icon named by its label, and its tooltip gives the name and what the agent is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L216 ]
+[test: an agent's mark is drawn in the text colour, hidden from assistive tech : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L244 ]
+[test: picking another agent swaps the models and the effort levels under it, and the session it starts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L261 ]
+[test: picking a model keeps the picker open with that model's effort levels, and picking an effort closes it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L281 ]
+[test: a short list picks a model by its number, and the arrows move through the models and the levels : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L308 ]
+[test: a long list gets a search field where typing narrows it, Enter picks the first match and digits are text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L331 ]
+[test: a running session picks only its model and effort, switching the session itself : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L365 ]
+[test: an agent that cannot switch models in a session still picks its effort, and one with nothing to pick is plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L384 ]
+[test: the model list holds the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L759 ]
+[test: a model off the list still shows, and with no default the agent's own leads the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L773 ]
+[test: a model's description that only repeats its name is left off, as a proxy's rows carry it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L782 ]
+[test: a search keeps the models that hold every word typed, in the name or the value : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L793 ]
+[test: the effort row offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L803 ]
 [test: the pane's model list is loaded again once it has gone stale, and readers at once share the load : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelRefresh.test.tsx#L83 ]
-[test: the pane's model list is loaded again when the model menu opens, and the menu lists what came back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelRefresh.test.tsx#L112 ]
+[test: the pane's model list is loaded again when the model picker opens, and it lists what came back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelRefresh.test.tsx#L112 ]
 [test: the pane switches a running session's model and effort, and the pick becomes the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L251 ]
 [test: an agent's choices and defaults are listed for the pane and kept through the provider : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L292 ]
 
@@ -155,9 +185,9 @@
 
 - Given: the pane with no session open, or the + at the end of the session
   tabs
-- Then: it shows a message box with the bar under it — the agent (when more
-  than one can start), the folder, the model, the effort and the mode — and
-  no form to fill in
+- Then: it shows a message box with the bar under it — the folder, the
+  model chip (where the agent is picked when more than one can start, with
+  the model and the effort) and the mode — and no form to fill in
 - When: the user sends the first message
 - Then: a session starts with that message as its first turn, in the folder,
   on the model and effort and in the mode the bar shows, named after the
@@ -609,10 +639,10 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
 
 ![image](/api/images/image-0956594e.png)
 
-- Then: the bar under the message box reads, from the left: the agent (when
-  more than one can start), the folder's name, the branch the folder has
-  checked out, and the Worktree box; a running session shows the folder and
-  the branch — its own for a worktree session — and no box
+- Then: the bar under the message box reads, from the left: the folder's
+  name, the branch the folder has checked out, and the Worktree box; a
+  running session shows the folder and the branch — its own for a worktree
+  session — and no box (the agent is picked in the model chip, on the right)
 - and the folder's name and the branch's are each cut off with an ellipsis
   at about 18 letters, the whole name in the tooltip; a folder in no git
   repository shows no branch, and a detached HEAD reads "detached"
@@ -620,10 +650,11 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
   the window is looked at again, since it changes outside the bar
 - and the bar stays one row down to the pane's narrowest (420px) with no
   chip on top of another: a narrowing pane drops, in this order, the chips'
-  chevrons, the word "Worktree" (a branch icon stands in), the agent's name
-  (its icon stays), a new session's branch, and the folder's icon; past
-  that the folder's and the branch's names shorten, and only once they are
-  down to a few letters the model's, then the effort's and the mode's
+  chevrons, the word "Worktree" (a branch icon stands in), a new session's
+  branch, and the folder's icon; past that the folder's and the branch's
+  names shorten, and only once they are down to a few letters the model
+  chip's — its effort before the model's name, its agent icon never — and
+  then the mode's
 
 [test: a new session's bar shows the folder, then the branch it has checked out, then the Worktree box : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentBarFooter.test.tsx#L141 ]
 [test: a session in the folder itself shows the branch the folder has checked out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentBarFooter.test.tsx#L162 ]
@@ -633,7 +664,7 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
 [test: a branch is named as git names it, a detached HEAD as detached, and no repository not at all : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentBarFooter.test.tsx#L263 ]
 [test: the folder's and the branch's names are capped below the width any chip may take : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentBarFooter.test.tsx#L317 ]
 [test: the bar is one row laid out chip by chip, so a chip gives way and never sits on its neighbour : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentBarFooter.test.tsx#L332 ]
-[test: a narrowing bar drops its chevrons, the Worktree word, the agent's name and a new session's branch, in that order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentBarFooter.test.tsx#L352 ]
+[test: a narrowing bar drops its chevrons, the Worktree word, a new session's branch and the folder's icon, in that order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentBarFooter.test.tsx#L356 ]
 
 ## S20: The transcript view shows a session at three levels of detail @v1 [proposed]
 
