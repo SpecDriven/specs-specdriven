@@ -169,14 +169,14 @@
 [test: picking a model keeps the picker open with that model's effort levels, and picking an effort closes it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L281 ]
 [test: a short list picks a model by its number, and the arrows move through the models and the levels : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L308 ]
 [test: a list of nine models still picks by number, and a tenth brings the search field : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L333 ]
-[test: a long list gets a search field where typing narrows it, Enter picks the first match and digits are text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L331 ]
-[test: a running session picks only its model and effort, switching the session itself : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L365 ]
-[test: an agent that cannot switch models in a session still picks its effort, and one with nothing to pick is plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L384 ]
+[test: a long list gets a search field where typing narrows it, Enter picks the first match and digits are text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L357 ]
+[test: a running session picks only its model and effort, switching the session itself : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L391 ]
+[test: an agent that cannot switch models in a session still picks its effort, and one with nothing to pick is plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L410 ]
 [test: the model list holds the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L759 ]
-[test: a model off the list still shows, and with no default the agent's own leads the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L773 ]
-[test: a model's description that only repeats its name is left off, as a proxy's rows carry it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L782 ]
-[test: a search keeps the models that hold every word typed, in the name or the value : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L793 ]
-[test: the effort row offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L803 ]
+[test: a model off the list still shows, and with no default the agent's own leads the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L787 ]
+[test: a model's description that only repeats its name is left off, as a proxy's rows carry it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L796 ]
+[test: a search keeps the models that hold every word typed, in the name or the value : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L807 ]
+[test: the effort row offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L817 ]
 [test: the pane's model list is loaded again once it has gone stale, and readers at once share the load : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelRefresh.test.tsx#L83 ]
 [test: the pane's model list is loaded again when the model picker opens, and it lists what came back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelRefresh.test.tsx#L112 ]
 [test: the pane switches a running session's model and effort, and the pick becomes the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L251 ]
@@ -199,8 +199,8 @@
   spaces or an effort that is no level is refused, and an agent with no
   effort setting is never handed one
 
-[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L826 ]
-[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L820 ]
+[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L840 ]
+[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L834 ]
 [test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L228 ]
 
 ## S8: Paste an image into the message @v1 [proposed]
