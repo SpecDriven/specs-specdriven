@@ -99,9 +99,9 @@ should, and the installer one-liner from `main` is the way forward once.
 [test: the installer in the running app's source does it, told the version and not to start anything : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L222 ]
 [test: on Windows it is install.ps1, run as a file by PowerShell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L246 ]
 [test: a version that is not newer, not a version, or already installing is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L254 ]
-[test: the installer's output is kept, newest last, to the last thousand lines : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L288 ]
-[test: the real runner streams a command's output line by line and reports a command that is not there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L296 ]
-[test: GET says where things stand; check, install and restart drive them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L342 ]
+[test: the installer's output is kept, newest last, to the last thousand lines : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L293 ]
+[test: the real runner streams a command's output line by line and reports a command that is not there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L301 ]
+[test: GET says where things stand; check, install and restart drive them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L347 ]
 [test: while installing, the installer's output is on the page and nothing is offered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L101 ]
 [test: the installer's last lines are what the page shows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L69 ]
 [test: SPECDRIVEN_HANDOVER=0 builds the macOS app and opens nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L872 ]
@@ -152,9 +152,10 @@ should, and the installer one-liner from `main` is the way forward once.
 [test: the new app starts only once the old process has gone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L203 ]
 [test: a path with spaces and quotes in it is an argument, never part of the script : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L220 ]
 [test: the waiting shell is the system's own, and gives up waiting rather than never starting the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L236 ]
-[test: the new app does not inherit this AppImage's own variables : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L246 ]
-[test: the built app is the .app, the AppImage or the unpacked exe the local build leaves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L306 ]
-[test: the runtime's activator gets the new source tree; without one the new app's path is handed back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L322 ]
+[test: only an absolute path is handed to the shell, nothing it could look up on PATH or read as an option : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L246 ]
+[test: the new app does not inherit this AppImage's own variables : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L255 ]
+[test: the built app is the .app, the AppImage or the unpacked exe the local build leaves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L311 ]
+[test: the runtime's activator gets the new source tree; without one the new app's path is handed back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L327 ]
 
 ## S5: Updating is refused where it cannot work @v1 [proposed]
 
@@ -169,8 +170,8 @@ should, and the installer one-liner from `main` is the way forward once.
   the machine it serves from
 
 [test: the desktop app with Bun, its source and a shell can; each missing piece is a reason : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L186 ]
-[test: a check that finds nothing is a 502 with the reason; an install that cannot run is a 409 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L375 ]
-[test: the demo and a hosted copy refuse every route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L397 ]
+[test: a check that finds nothing is a 502 with the reason; an install that cannot run is a 409 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L380 ]
+[test: the demo and a hosted copy refuse every route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L402 ]
 [test: where the app cannot update itself, the reasons and the installer one-liner take Install's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L116 ]
 
 ## S6: A failed install changes nothing that runs @v1 [proposed]
@@ -184,7 +185,7 @@ should, and the installer one-liner from `main` is the way forward once.
   unbuilt tree, as the installer leaves it (specs/app/installation.feature.md
   "a build that fails leaves the source in place")
 
-[test: an installer that fails, or finishes without what it promised, leaves a failed install and changes nothing that runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L265 ]
+[test: an installer that fails, or finishes without what it promised, leaves a failed install and changes nothing that runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L270 ]
 [test: a failed install shows the reason, the output and the way to try again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L108 ]
 
 ## S7: Where the app cannot replace itself it says where the new one is @v1 [proposed]
@@ -214,10 +215,10 @@ should, and the installer one-liner from `main` is the way forward once.
   debug line in the app's log and nothing on screen; the next look is a day
   on, and the manual check is there meanwhile
 
-[test: the desktop app checks once a day, counted from the last check, and /api/state names the newer version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L424 ]
-[test: the version running, or a newer one, leaves the chip unmarked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L455 ]
-[test: the web server, the demo and a hosted copy never check by themselves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L464 ]
-[test: a check that fails is swallowed, counts as the day's check, and leaves the last answer alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L480 ]
+[test: the desktop app checks once a day, counted from the last check, and /api/state names the newer version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L429 ]
+[test: the version running, or a newer one, leaves the chip unmarked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L460 ]
+[test: the web server, the demo and a hosted copy never check by themselves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L469 ]
+[test: a check that fails is swallowed, counts as the day's check, and leaves the last answer alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L485 ]
 [test: a newer release puts a dot on the version, saying which version is out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateHint.test.tsx#L9 ]
 [test: no newer release known, no dot — the release-notes dot is its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateHint.test.tsx#L17 ]
 [test: on the desktop app the version is a button to the Updates page, carrying the same dot and hint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateHint.test.tsx#L30 ]
