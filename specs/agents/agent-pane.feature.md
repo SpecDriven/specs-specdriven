@@ -54,7 +54,7 @@
 - and Codex starts in Manual (its "auto" is the same policy), and pi has no
   permission gate
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L709 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L706 ]
 
 ## S3: The folder chip switches the folder the agent works in @v1 [proposed]
 
@@ -76,7 +76,7 @@
 - and the data repo is offered by its absolute path, though settings may
   name it relative to the app
 
-[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L670 ]
+[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L667 ]
 [test: GET /api/state names the open folder's absolute path, though settings name it relative to the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L165 ]
 
 ## S4: The mode menu describes each mode @v1 [proposed]
@@ -92,7 +92,7 @@
   starts in
 - and pressing a number key (1–5) chooses that mode directly
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L709 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L706 ]
 
 ## S5: The server runs a chat in the folder the pane picked @v1 [proposed]
 
@@ -161,7 +161,7 @@
 - and the header keeps the sessions menu, the status dot, the billing chip,
   Stop and close
 
-[test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L456 ]
+[test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L453 ]
 [test: one chip names the agent by its icon, the model and the effort, and opens one picker for all three : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L185 ]
 [test: each agent is an icon named by its label, and its tooltip gives the name and what the agent is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L216 ]
 [test: an agent's mark is drawn in the text colour, hidden from assistive tech : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L244 ]
@@ -198,8 +198,8 @@
   spaces or an effort that is no level is refused, and an agent with no
   effort setting is never handed one
 
-[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L824 ]
-[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L818 ]
+[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L826 ]
+[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L820 ]
 [test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L228 ]
 
 ## S8: Paste an image into the message @v1 [proposed]
@@ -700,20 +700,20 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
 - and the demo's simulated session thinks and makes a run of calls, so all
   three views can be tried there
 
-[test: Normal folds each run of tool calls into one line and leaves thinking and start-up notes out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L286 ]
-[test: Thinking shows every call on its own row and what the agent thought : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L298 ]
-[test: Verbose shows everything, in the order it happened : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L302 ]
-[test: a call still running or one that failed stays out of a run in Normal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L306 ]
-[test: Normal says a thought is happening only while it streams; an error note shows in every view : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L326 ]
-[test: a subagent's traffic sits inside its call's row, and inline a step in under Verbose : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L334 ]
-[test: a run's line counts each kind of call, in the order they first appear : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L407 ]
-[test: thinking streams into one item, and the settled block replaces the stream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L179 ]
-[test: an empty thinking block adds nothing, and a turn's result ends a thought still streaming : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L199 ]
-[test: what a subagent says and calls is marked with the call that started it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L211 ]
-[test: each transcript view renders its rows, a folded run, the thinking or every call opened : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L517 ]
-[test: Normal shows a thought still streaming as one line, and a subagent call says how many calls it made : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L557 ]
-[test: a subagent call counts the calls made under it, folded runs and deeper subagents included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L354 ]
-[test: the view is kept on the device, Normal until one is picked and for a value it does not know : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L372 ]
+[test: Normal folds each run of tool calls into one line and leaves thinking and start-up notes out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L283 ]
+[test: Thinking shows every call on its own row and what the agent thought : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L295 ]
+[test: Verbose shows everything, in the order it happened : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L299 ]
+[test: a call still running or one that failed stays out of a run in Normal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L303 ]
+[test: Normal says a thought is happening only while it streams; an error note shows in every view : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L323 ]
+[test: a subagent's traffic sits inside its call's row, and inline a step in under Verbose : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L331 ]
+[test: a run's line counts each kind of call, in the order they first appear : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L404 ]
+[test: thinking streams into one item, and the settled block replaces the stream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L176 ]
+[test: an empty thinking block adds nothing, and a turn's result ends a thought still streaming : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L196 ]
+[test: what a subagent says and calls is marked with the call that started it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L208 ]
+[test: each transcript view renders its rows, a folded run, the thinking or every call opened : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L514 ]
+[test: Normal shows a thought still streaming as one line, and a subagent call says how many calls it made : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L554 ]
+[test: a subagent call counts the calls made under it, folded runs and deeper subagents included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L351 ]
+[test: the view is kept on the device, Normal until one is picked and for a value it does not know : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L369 ]
 [test: the popover offers Normal, Thinking and Verbose, with Normal picked on a device that never chose : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L200 ]
 [test: the Thinking choice says when the agent does not report its thinking : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L215 ]
 [test: the popover's Transcript row switches the view, the transcript follows, and the choice is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L177 ]
