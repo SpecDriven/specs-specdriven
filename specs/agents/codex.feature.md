@@ -138,10 +138,11 @@ Note: this section is not offered in the demo or the hosted app, which run no Co
   Codex started outside the app signs the account out again
 
 [test: loginStatus asks `codex login status` as the account sign-in starts Codex: a ChatGPT login, or none : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L313 ]
+[test: the sign-in check's finding is one sentence: the account, and whether Codex lists its models : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L324 ]
+
 [test: Sign in runs `codex login` under the account sign-in, and is done once the CLI reports a ChatGPT login : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L341 ]
 [test: a cancelled sign-in stops the CLI, and Sign out is refused unless a ChatGPT account is signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L367 ]
 [test: signed out, the ChatGPT account says so plainly and offers Sign in and a check : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L286 ]
 [test: signed in, the ChatGPT account names the account and offers Check sign-in and Sign out : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L293 ]
 [test: the ChatGPT account warns that signing in replaces Codex's own API key, and of a config that signs the account out : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L300 ]
 [test: while the browser sign-in is under way the section says to finish it there and offers only Cancel; with no Codex there is nothing to sign in with : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L314 ]
-[test: the sign-in check's finding is one sentence: the account, and whether Codex lists its models : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L324 ]

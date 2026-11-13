@@ -27,14 +27,16 @@ the profile. Each data folder has its own, kept in
 `.specdriven/settings.yaml` on this machine like the module switches it
 replaces.
 
-## Marketpalce
+## Releases
 
-Plugin marketplace will be hosted in 'marketplace' folder on https://github.com/SpecDriven/specdriven-app-release.
-Pligins will be store as zip files.
-
-## Plgin deployment
-
-Plugins can be developed in any repository and then deployed to https://github.com/SpecDriven/specdriven-app-release/marketplace
+A plugin in the marketplace is released in versions. Beside its source in
+the marketplace repository, a `release` folder holds one zip per version
+and `releases.json`, which lists them with their checksums and what each
+needs of the app. The app installs from those zips, so any version in the
+folder can be installed and an older one put back. A release is cut with
+`specdriven plugin release` and published by merging it into the
+marketplace's `main`. A plugin with no `release` folder is installed as
+its folder is.
 
 ## References
 
@@ -87,6 +89,9 @@ Plugins can be developed in any repository and then deployed to https://github.c
   newer app, is refused with the reason and nothing is left behind
 - and Update fetches the ref the index now names and remounts the plugin;
   Remove switches it off, unwinds it and deletes its folder
+- and a plugin the marketplace releases in versions is unpacked from the
+  zip of one version instead of cloned or copied: the newest this app can
+  run, or the one picked
 - and Reinstall — or Install of a plugin whose id is installed already,
   from this marketplace or from one that was removed and added back under
   another name — shows the same consent, naming what it replaces, and on
@@ -97,12 +102,12 @@ Plugins can be developed in any repository and then deployed to https://github.c
   visitor browses the marketplace, the Event Models marked installed, with
   no Install, Update, Remove or Refresh
 
-[test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L309 ]
-[test: a plugin is reinstalled from a marketplace that was removed and added back under another name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L360 ]
+[test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L329 ]
+[test: a plugin is reinstalled from a marketplace that was removed and added back under another name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L380 ]
 [test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L435 ]
-[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L394 ]
-[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L517 ]
-[test: the hosted demo installs the Event Models from the marketplace at start and lists them on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L544 ]
+[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L414 ]
+[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L663 ]
+[test: the hosted demo installs the Event Models from the marketplace at start and lists them on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L691 ]
 
 ## S3: A plugin is scaffolded, built and linked from the command line @v1 [proposed]
 
@@ -125,8 +130,8 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and a bad id, a folder already in use or an unknown command are refused
   with the reason
 
-[test: plugin new, build and link take a plugin from nothing to a mounted tab : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginCli.test.ts#L51 ]
-[test: plugin new refuses a bad id or a folder in use, and an unknown command shows the usage : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginCli.test.ts#L93 ]
+[test: plugin new, build and link take a plugin from nothing to a mounted tab : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginCli.test.ts#L56 ]
+[test: plugin new refuses a bad id or a folder in use, and an unknown command shows the usage : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginCli.test.ts#L98 ]
 
 ## S4: A plugin loads from a local folder @v1 [proposed]
 
@@ -228,13 +233,18 @@ Plugins can be developed in any repository and then deployed to https://github.c
   a git url with a ref, or a subdirectory of the marketplace itself
 - and the list shows every plugin with those fields, marks the ones
   already installed and offers Install, Update or Remove accordingly
+- and a plugin kept in a subdirectory with a `release` folder is listed
+  with the versions that folder holds, on a version chip beside its
+  actions
 - and an index that does not parse is reported beside the marketplace's
   name and does not hide the other marketplaces
+- and the SpecDriven marketplace is always among them, whatever the
+  settings name; any other can be added and removed
 
-[test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L220 ]
-[test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L170 ]
-[test: Browse reads the cache, and Refresh afterwards pulls : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L124 ]
-[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L502 ]
+[test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L240 ]
+[test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L172 ]
+[test: Browse reads the cache, and Refresh afterwards pulls : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L125 ]
+[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L522 ]
 
 ## S8: The profile lists enabled plugins in tab order @v1 [proposed]
 
@@ -309,10 +319,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and neither the hosted app, the hosted demo nor the read-only site pulls
   at all
 
-[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L624 ]
-[test: a start leaves the marketplaces alone with the built-ins only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L626 ]
+[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L771 ]
+[test: a start leaves the marketplaces alone with the built-ins only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L773 ]
 [test: the start's refresh pulls the default marketplace always and the others only when an external plugin is installed, and logs one it cannot reach : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L206 ]
-[test: the default marketplace is known by its url, whatever its name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L27 ]
+[test: the default marketplace is known by its url, whatever its name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L39 ]
 
 ## S11: Refresh clones a marketplace afresh when its copy can no longer be pulled @v1 [proposed]
 
@@ -332,10 +342,10 @@ Plugins can be developed in any repository and then deployed to https://github.c
 - and the hosted demo neither pulls nor clones again; the hosted app pulls
   but never throws a copy away to clone it afresh
 
-[test: Refresh clones a marketplace afresh when its history was rewritten upstream, and one that cannot be reached keeps its copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L270 ]
-[test: offers Refresh before the list is browsed, and no Re-clone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L106 ]
-[test: Refresh before browsing opens the list with a single pulling read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L114 ]
-[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L517 ]
+[test: Refresh clones a marketplace afresh when its history was rewritten upstream, and one that cannot be reached keeps its copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L290 ]
+[test: offers Refresh before the list is browsed, and no Re-clone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L107 ]
+[test: Refresh before browsing opens the list with a single pulling read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L115 ]
+[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L663 ]
 
 ## S12: A tab's sidebar uses the section head @v1 [proposed]
 
@@ -390,14 +400,16 @@ Plugins can be developed in any repository and then deployed to https://github.c
   failed while the others still update
 - and Not now closes the dialog and changes nothing; it is offered again at
   the next start, and not again in this run of the app, a reload included
+- and a plugin released in versions is offered the newest version this
+  app can run, and is not listed while the user holds it at an older one
 - and with nothing to update, the marketplace not reachable, a plugin
   linked from a folder or shipped with the data folder, or in the hosted
   app, the hosted demo or the read-only site, no dialog appears
 
-[test: a plugin whose index row is newer, or pinned to another ref, is offered; nothing else is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L52 ]
-[test: versions compare part by part, a pre-release before its release : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L18 ]
-[test: the start's check reads the installed plugins against the indexes it is handed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L78 ]
-[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L624 ]
+[test: a plugin whose index row is newer, or pinned to another ref, is offered; nothing else is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L64 ]
+[test: versions compare part by part, a pre-release before its release : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L30 ]
+[test: the start's check reads the installed plugins against the indexes it is handed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L91 ]
+[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L771 ]
 [test: lists each plugin ticked, with the version installed and the one offered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L84 ]
 [test: Update runs the ticked plugins in order and closes once all are updated : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L95 ]
 [test: a failure is shown beside its row, the others still update, and Close answers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L107 ]
@@ -422,3 +434,206 @@ Plugins can be developed in any repository and then deployed to https://github.c
 [test: a way that fails hands over to the next, which starts from an empty folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginRepoClone.test.ts#L71 ]
 [test: when every way fails the error names each with its reason, and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginRepoClone.test.ts#L90 ]
 [test: a plugin repository is cloned whichever engine Settings names, and with no git installed at all : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginRepoClone.test.ts#L106 ]
+
+## S16: A plugin is released as a versioned zip in its release folder @v1 [proposed]
+
+- Given: a plugin's folder in a marketplace repository, its `package.json`
+  naming version 1.19.0
+- When: its author runs `specdriven plugin release` in the folder
+- Then: the plugin is built and `release/<id>-1.19.0.zip` is written beside
+  its source, holding what runs — `package.json`, the built halves under
+  `dist/` without their source maps, the README and the licence — and none
+  of its sources
+- and `release/releases.json` lists the version on top with the zip's
+  name, its SHA-256, its size, the day, the plugin api it speaks, the
+  oldest app it runs in and the note given with `--notes`
+- and the same files always give the same zip
+- and a version that is in the folder already is refused: a release is
+  never written again
+- and the newest ten versions are kept unless `--keep` says otherwise; an
+  older one's zip and row are dropped
+- and committing the folder to the marketplace is what publishes the
+  version: the marketplace list then offers every version in it, newest
+  first
+
+[test: plugin release adds package.json's version to the release folder as a zip, and never writes one again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginCli.test.ts#L115 ]
+[test: plugin release keeps the newest ten versions when --keep does not say otherwise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginCli.test.ts#L175 ]
+[test: a zip unpacks to the files it was written from : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginZip.test.ts#L50 ]
+[test: the same files give the same bytes, whatever order they are handed in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginZip.test.ts#L61 ]
+[test: the system's unzip reads a zip this app wrote : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginZip.test.ts#L146 ]
+[test: this app reads a zip the system's zip wrote, folders and all : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginZip.test.ts#L155 ]
+[test: a zip is unpacked into a folder, its subfolders made : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginZip.test.ts#L67 ]
+[test: the checksum is the one every zip tool computes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginZip.test.ts#L74 ]
+[test: releases.json is read newest first, and refused when it is not a list of zips with checksums : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L111 ]
+[test: a release is named after its plugin and version, a scope folded into the name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L149 ]
+[test: the marketplace lists a plugin's released versions, newest first, with why this app cannot run one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginReleases.test.ts#L212 ]
+
+## S17: Any released version of a plugin can be installed @v1 [proposed]
+
+- Given: a marketplace plugin with several versions in its release folder
+- When: the user opens the version chip on its row in the marketplace list
+- Then: the menu lists every version, newest first, each with its date and
+  note, and the installed one is ticked
+- and a version this app cannot run — it needs a newer SpecDriven, or
+  another plugin api — is greyed with the reason, and a withdrawn version
+  is not listed unless it is the one installed
+- and before an install the version picked is the one Install names in its
+  consent and fetches; untouched, that is the newest this app can run
+- and on an installed plugin, picking another version switches to it at
+  once: its zip is unpacked in place of the installed folder, and the
+  plugin's tab and routes are remounted without a restart
+- and Reinstall unpacks the installed version afresh, not the newest
+- and a plugin with no release folder has no chip and installs from its
+  folder as before
+
+[test: the chip names the newest version this app can run, and its menu the others with why one cannot be picked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L210 ]
+[test: the version picked is the one Install stages and confirms : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L233 ]
+[test: an installed plugin switches to the version picked at once; held, it says so and Update names where it goes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L259 ]
+[test: the menu's rows say what each version is; the newest offered passes over what this app cannot run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L303 ]
+[test: a switch asks the server for the version by the plugin's id, a scope encoded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L328 ]
+[test: any released version can be installed, and an older one is held with no update offered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginReleases.test.ts#L282 ]
+
+## S18: A plugin rolled back to an older version stays there until the user updates it @v1 [proposed]
+
+- Given: a plugin installed at 1.19.0, with 1.18.0 in its release folder
+- When: the user picks 1.18.0 from its version chip
+- Then: the plugin runs 1.18.0, its row says it is held, and it remembers
+  the version it replaced
+- and the start's "Plugin updates" dialog does not offer 1.19.0 while the
+  plugin is held
+- and the row's Update names where it goes — "Update to v1.19.0" — and
+  pressing it moves the plugin there and lets go of the hold
+- and the older version is unpacked from the marketplace's copy on this
+  computer, so it is put back with no network
+- and a plugin on a version that was withdrawn since is offered the newest
+  good one at the next start, held or not, and its row offers to move
+  there
+
+[test: a plugin rolled back is held at that version and remembers the one it replaced; Update moves it on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginReleases.test.ts#L308 ]
+[test: a version this machine already has the zip of is put back without the network : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginReleases.test.ts#L333 ]
+[test: a plugin on a version that was withdrawn is offered the newest good one at start, held or not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginReleases.test.ts#L350 ]
+[test: a released plugin is offered the newest version this app runs — unless held — and moved off a withdrawn one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L201 ]
+[test: an install record keeps the checksum, the version it replaced and the hold : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L188 ]
+[test: on the newest version this app runs there is no Update; on a withdrawn one, Move names the way off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L289 ]
+
+## S19: A plugin that fails after an update offers its previous version @v1 [proposed]
+
+- Given: a plugin that was moved from 1.18.0 to 1.19.0 and now fails to
+  load
+- When: the user opens the Plugins page
+- Then: under the plugin's error a "Roll back to v1.18.0" link puts the
+  version it replaced back, held there like any version picked by hand
+- and the version put back loads at once, without a restart, its tab and
+  routes back; so does an update past the version that failed
+- and a roll back the app cannot do says why under the plugin
+- and a plugin that loads, one that was never on another version, and the
+  hosted demo offer no such link
+- and a held plugin's row says so beside its version
+
+[test: a version that fails to load is rolled back to the one it replaced, which loads without a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginReleases.test.ts#L405 ]
+[test: a plugin that fails after a version change offers the version it replaced, and nothing else does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginsPageRollback.test.tsx#L124 ]
+[test: a roll back the server refuses says why under the plugin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginsPageRollback.test.tsx#L149 ]
+[test: a held plugin says so beside its version, and the hosted demo offers no roll back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginsPageRollback.test.tsx#L161 ]
+
+## S20: A release whose checksum does not match is refused @v1 [proposed]
+
+- Given: a release zip in the marketplace's copy that is not the file
+  `releases.json` lists — its SHA-256 differs, it holds another version
+  than its row says, or it is not there
+- When: the user installs that version, or switches to it
+- Then: the app refuses with the reason and nothing is installed: no
+  folder is left under `~/.specdriven/plugins`, and a plugin installed
+  already keeps running the version it had
+- and a zip that carries anything but plain files under its own folder — a
+  symlink, an encrypted entry, a path that leaves the folder, more bytes
+  than it declares — is refused the same way, before a file is written
+- and a `releases.json` the app cannot read is reported on that plugin's
+  row, where nothing of it installs, and does not hide the other plugins
+
+[test: a zip that is not what releases.json says is refused and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginReleases.test.ts#L371 ]
+[test: a zip with an entry that leaves the folder is refused and nothing is written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginZip.test.ts#L88 ]
+[test: a symlink, an encrypted entry, a zip64 zip and an unknown compression are refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginZip.test.ts#L101 ]
+[test: an entry whose bytes are not what it declares is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginZip.test.ts#L122 ]
+[test: a zip past the limits, a truncated one and a file that is no zip are refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginZip.test.ts#L137 ]
+[test: a zip with more entries than a release could hold is refused by default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginZip.test.ts#L165 ]
+[test: a path that would leave the folder is not an entry : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginZip.test.ts#L79 ]
+
+## S21: An app too old for the newest release installs the newest one it can run @v1 [proposed]
+
+- Given: a plugin whose newest release needs a newer SpecDriven than this
+  one, with an older release this app can run
+- When: the user presses Install or Update, or the app installs an agent's
+  plugin on its own
+- Then: the newest version this app can run is installed, not the newest
+  one listed, and the consent names that version
+- and the start's "Plugin updates" dialog offers that version and no newer
+  one
+- and a pre-release version is never chosen this way: it is installed only
+  when picked
+- and when no version runs in this app the install is refused with what
+  the newest one needs
+
+[test: Install unpacks the newest version this app can run from its zip : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginReleases.test.ts#L257 ]
+[test: a release this app cannot run says why; the newest it can run is what Install means : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L167 ]
+
+## S22: An empty repository is initialized as a marketplace @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+A company keeps its own plugins in a marketplace of its own — a private
+repository, say — set up from the app rather than by copying the SpecDriven
+one by hand.
+
+- Given: a repository the user has created on its git host, empty or
+  holding only what the host put there, and no `marketplace.json`
+- When: the user chooses Initialize marketplace… in the Marketplaces section
+  of the Plugins page and gives its git url
+- Then: the app clones it through its git engine, writes a
+  `marketplace.json` named after the repository with no plugins, a README
+  saying how to add and release plugins and how users add the marketplace,
+  a `plugins` folder, and the CI workflow, scripts and `.gitignore` of the
+  SpecDriven marketplace as the app's copy of it has them
+- and commits them and pushes `main`, which then tracks the remote's
+- and only once the push has gone through is the marketplace added to the
+  list and the list opened, showing it with no plugins
+- and a README or `.gitignore` already in the repository is kept, as are
+  its commits
+- and a repository that already has a `marketplace.json`, one already on
+  the list, one that cannot be cloned and one that refuses the push are
+  each refused with the reason, nothing is added and no working copy is
+  left behind
+- and the hosted demo and a hosted worker offer no such thing
+
+[test: an empty repository is initialized as a marketplace: index, README and CI pushed to main : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L577 ]
+
+[test: a repository with commits keeps them, and its own README : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L619 ]
+[test: a repository that is a marketplace already, or cannot be pushed to, is refused with nothing left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L636 ]
+[test: a marketplace's owner is read from its url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L656 ]
+[test: the cli engine publishes the first branch of an empty repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L373 ]
+[test: a repository that already has a branch gets the commit on that branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L397 ]
+[test: Initialize posts the url and adds the marketplace once the server has pushed it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L387 ]
+[test: a refused initialization is shown and nothing is added : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L399 ]
+[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L663 ]
+
+## S23: The SpecDriven marketplace cannot be removed @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+- Given: the Marketplaces section of the Plugins page
+- When: the user looks for a way to remove the SpecDriven marketplace
+  (`https://github.com/SpecDriven/plugins`)
+- Then: its row is marked Default and has no Remove; every other
+  marketplace's row has one
+- and settings that leave it out — an empty list saved by an earlier
+  version, or a settings file edited by hand — get it back, first on the
+  list; one that lists it under another name keeps that name and place
+- and a marketplace that took its name for another url is listed under
+  that name with a number after it
+
+[test: the settings name the marketplaces, and the SpecDriven index is always among them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L208 ]
+[test: the SpecDriven marketplace stays on the list whatever the settings say; the others can go : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L533 ]
+[test: the SpecDriven marketplace has no Remove; another one does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L380 ]

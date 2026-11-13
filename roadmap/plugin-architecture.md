@@ -452,6 +452,48 @@ root, since those are the store's history. A settings file with the old
 install loads the `dist/` it ships, even on Bun, since it comes without
 its dependencies. The demo has no Models tab until a plugin is installed.
 
+**Phase 4 — versioned releases.** A marketplace plugin has had one
+version: whatever `main` held. Update replaced the installed folder with
+the current copy, nothing older was kept, and a plugin whose newest
+version needed a newer app was refused outright. Now a plugin kept in a
+subdirectory is released: a `release` folder beside its source holds one
+zip per version (`<id>-<version>.zip`: `package.json`, `dist/` without
+source maps, README, licence) and `releases.json`, newest first, each row
+with the zip's name, SHA-256, size, date, `api`, `minAppVersion`, notes
+and, for a version withdrawn, `yanked`. `marketplace.json` is unchanged —
+the folder's presence is what makes a row released — so apps released
+before this keep installing the committed `dist/`, and a git-url row or a
+marketplace without `release` folders behaves as it did.
+
+The app reads `releases.json` when it reads the index, and installs from
+the zips already in the marketplace's clone: the newest version this app
+can run, or the one asked for, its checksum checked before it is unpacked
+by a small strict reader (`src/plugins/host/zip.ts`: plain files, stored
+or deflated; symlinks, encryption, zip64 and paths that leave the folder
+refused). Because the zips are on disk, an older version is put back with
+no network. The install record gains `sha256`, `previous` (the version
+the last switch replaced) and `held` (an older version picked on purpose,
+which the start's update offer then leaves alone). Releases are cut by
+`specdriven plugin release` in the pull request that changes the plugin;
+merging is still publishing.
+
+Decided: zips live in `SpecDriven/plugins` beside the source rather than
+in a distribution-only repository or as GitHub Release assets — no new
+download or sign-in path, and CI can check a zip against the source next
+to it. The cost is repository size, since zips do not delta-compress
+(about 0.5 MB per agent-claude release): the release command keeps the
+newest ten versions, and cloning marketplaces shallow is the follow-up
+that bounds history. Still to do in the marketplace repository: a
+`scripts/release.ts` wrapper that also sets the row's version, release
+checks in `check-index.ts` (every zip matches its checksum and its
+manifest, source version = newest release = row version), a
+`check-release.ts` that compares the newest zip's `dist/` with a rebuild
+and fails when a released zip changed, and a backfill of recent versions.
+`dist/` stays committed per plugin until its `minAppVersion` reaches the
+first app release with this phase. Not in this phase: signing
+`releases.json`, versions for git-url sources, and asking for consent
+again when a version switch changes the permissions declared.
+
 ## Testing
 
 With `bun test`: the kernel (effects unwind last-in-first-out and children
