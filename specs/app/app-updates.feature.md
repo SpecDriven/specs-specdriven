@@ -145,9 +145,12 @@ should, and the installer one-liner from `main` is the way forward once.
   never happens and the app does not come back
 - and the new app starts with none of the old AppImage's own environment,
   which names the mount that has just gone
+- and a SpecDriven installed under a path with a space or a quote in it
+  restarts like any other
 
 [test: Windows and Linux start the new build where the installer left it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L111 ]
 [test: the new app starts only once the old process has gone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L203 ]
+[test: a path with spaces and quotes in it is an argument, never part of the script : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L220 ]
 [test: the waiting shell is the system's own, and gives up waiting rather than never starting the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L236 ]
 [test: the new app does not inherit this AppImage's own variables : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L246 ]
 [test: the built app is the .app, the AppImage or the unpacked exe the local build leaves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L306 ]
