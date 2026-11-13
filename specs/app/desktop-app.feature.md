@@ -160,7 +160,10 @@ credentials and clones wherever it is installed, plain git where only that
 is, and the built-in engine on a machine with neither — so the desktop app
 works on a fresh machine with nothing installed. A packaged macOS app
 launches with a minimal PATH, so the usual Homebrew locations are appended
-— that is where both binaries usually live.
+— that is where both binaries usually live — and so are the folders the
+coding agents' own installers use, `~/.local/bin` for Claude and
+`~/.opencode/bin` for OpenCode, because agent plugins are installed for the
+commands found on PATH (agent-plugins.feature.md).
 
 The GitHub sign-in token is stored OS-encrypted (Electron safeStorage,
 keychain-backed on macOS); when the OS offers no key store it falls back

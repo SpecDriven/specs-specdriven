@@ -33,15 +33,15 @@ plugins in tab order"). What a demo could show next is on the roadmap
   writes nothing into the demo's files
 
 [test: the coding agent pane is on and is the only target on offer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L117 ]
-[test: a demo session starts and plays a scripted Claude Code turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L210 ]
+[test: a demo session starts and plays a scripted Claude Code turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L214 ]
 [test: readBrief pulls the name and the specs out of the generated prompt : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L139 ]
 [test: the script streams its text before settling it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L163 ]
-[test: allowing the write finishes the turn and returns the session to idle : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L242 ]
-[test: denying the write still closes the turn, and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L259 ]
-[test: a follow-up message gets a scripted reply, and the session stays up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L276 ]
-[test: a chat started with no specs gets the short reply, not the spec script : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L327 ]
-[test: Stop mid-turn returns the session to idle without ending it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L356 ]
-[test: the whole session writes no file into the demo dataset : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L364 ]
+[test: allowing the write finishes the turn and returns the session to idle : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L251 ]
+[test: denying the write still closes the turn, and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L268 ]
+[test: a follow-up message gets a scripted reply, and the session stays up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L285 ]
+[test: a chat started with no specs gets the short reply, not the spec script : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L336 ]
+[test: Stop mid-turn returns the session to idle without ending it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L365 ]
+[test: the whole session writes no file into the demo dataset : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L373 ]
 
 ## S2: A page load starts the demo afresh @v1 [proposed]
 

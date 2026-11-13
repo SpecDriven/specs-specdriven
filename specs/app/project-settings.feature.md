@@ -69,7 +69,7 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 [test: code repos are stored relative when beside the data repo, the default only when not first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L112 ]
 [test: a sibling path, a nested one and a stranger's are stored as the file should hold them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L132 ]
 [test: a bare folder name is a sibling of the data folder; paths are kept as typed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L60 ]
-[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L339 ]
+[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L670 ]
 
 ## S3: Choose the default code repository @v1 [proposed]
 

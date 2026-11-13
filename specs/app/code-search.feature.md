@@ -89,7 +89,7 @@ are.
 - and when the file has changed since the search, so that the line is no
   longer there, the editor goes to the file's last line
 
-[test: a plain click on a result opens it in the app, and a modified click is left to the browser : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesSearch.test.tsx#L261 ]\n[test: a place asked of the editor is selected, at once and when asked later, a line past the end being the last : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L343 ]
+[test: a plain click on a result opens it in the app, and a modified click is left to the browser : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesSearch.test.tsx#L261 ]\n[test: a place asked of the editor is selected, at once and when asked later, a line past the end being the last : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeLanguage.test.tsx#L379 ]
 
 [test: a result asks the editor for its place once, and the request is dropped when another file opens : https://github.com/SpecDriven/specdriven-app/blob/main/tests/filesSearch.test.tsx#L232 ]
 

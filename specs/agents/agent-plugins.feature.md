@@ -26,8 +26,8 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: the pane's permission card answers the provider, and a withdrawn or ended question is denied : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L144 ]
 [test: Stop and the mode go to the provider, and are refused where it declares neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L189 ]
 [test: a turn the provider refuses is noted and the composer freed; a provider that dies ends the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L327 ]
-[test: the provider's facts reach the pane through ready and update, and quiet keeps them off the log : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L344 ]
-[test: switching a plugin off ends the sessions its provider was driving : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L539 ]
+[test: the provider's facts reach the pane through ready and update, and quiet keeps them off the log : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L380 ]
+[test: switching a plugin off ends the sessions its provider was driving : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L575 ]
 [test: a Claude plugin switched off takes its routes and its provider away : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L868 ]
 [test: an installed plugin whose manifest says autoEnable switches itself on in the open folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L238 ]
 [test: an agent plugin that arrives while the window is open offers the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L60 ]
@@ -72,7 +72,7 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
   the first one whose command is on PATH, by rank; the "Run in" choice of the
   session dialog lists the agents the plugins supply, by rank
 
-[test: no plugin, the wrong plugin, or a missing CLI is a clear refusal, and the default is the first by rank : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L472 ]
+[test: no plugin, the wrong plugin, or a missing CLI is a clear refusal, and the default is the first by rank : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L508 ]
 [test: a session's agent is read off the descriptors, or a fallback when its plugin is gone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L26 ]
 [test: only agents whose CLI is there are usable, in rank order : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L42 ]
 [test: the state's agents list is what the pane reads, and nothing stands in for it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L49 ]
@@ -194,7 +194,7 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 - and no token travels in the options: the environment names the file the
   server reads
 
-[test: a saved wiki token hands the provider the Confluence MCP server; none, nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L650 ]
+[test: a saved wiki token hands the provider the Confluence MCP server; none, nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L686 ]
 [test: mcpServerConfigs keys the SDK's stdio configs by server name : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1289 ]
 [test: strings are quoted with their quotes, backslashes and control characters escaped : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L981 ]
 [test: a server is one inline table under its name, and an odd name is made a bare key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L987 ]
@@ -207,7 +207,9 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 
 - Given: a coding session is about to start in a folder that is the code
   repository under development (not the SpecDriven data repo, which the app
-  already pulls and pushes on its own)
+  already pulls and pushes on its own) — the project's code repository, or
+  the repository open in code repository mode (app/code-repo-mode "The
+  coding agent works in the code repository")
 - When: the user starts the session and the branch there is not already clean
   and level with its remote of record
 - Then: before the agent runs, the pane reads that branch's state — its name,
@@ -239,13 +241,15 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: no git on PATH degrades to a reason, not a crash : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L150 ]
 [test: an unreachable remote reports offline but still returns the last-known state : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L160 ]
 [test: refreshSource with merge advances a behind branch to its upstream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L179 ]
-[test: refreshSource with rebase replays local work on top of the upstream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L194 ]
-[test: refreshSource refuses a dirty working tree rather than half-applying : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L214 ]
-[test: refreshSource reports a conflict instead of leaving a silent half-merge : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L227 ]
-[test: GET /api/agent/source returns the branch's status for an absolute path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L241 ]
-[test: GET /api/agent/source rejects a relative path and a missing folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L249 ]
-[test: POST /api/agent/source/refresh runs the merge and reports success : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L254 ]
-[test: POST /api/agent/source/refresh validates the path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L264 ]
+[test: refreshSource on a branch already level with its upstream pulls nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L196 ]
+[test: in code repository mode a branch behind origin asks to pull before the session, and Update & start pulls then starts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L391 ]
+[test: refreshSource with rebase replays local work on top of the upstream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L204 ]
+[test: refreshSource refuses a dirty working tree rather than half-applying : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L224 ]
+[test: refreshSource reports a conflict instead of leaving a silent half-merge : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L237 ]
+[test: GET /api/agent/source returns the branch's status for an absolute path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L251 ]
+[test: GET /api/agent/source rejects a relative path and a missing folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L259 ]
+[test: POST /api/agent/source/refresh runs the merge and reports success : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L264 ]
+[test: POST /api/agent/source/refresh validates the path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L274 ]
 [test: names how far behind and ahead the branch is of its upstream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sourceCheckDialog.test.tsx#L36 ]
 [test: flags an offline (last-known) comparison and uncommitted changes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sourceCheckDialog.test.tsx#L41 ]
 [test: says local-only and detached in words, with no upstream talk : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sourceCheckDialog.test.tsx#L45 ]
@@ -255,3 +259,23 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: offline and local-only drop the refresh buttons and keep confirm-or-cancel : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sourceCheckDialog.test.tsx#L81 ]
 [test: the why-off hint shows when a refresh is blocked, not when it is available : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sourceCheckDialog.test.tsx#L88 ]
 [test: busy disables every action so a refresh cannot be double-run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sourceCheckDialog.test.tsx#L97 ]
+
+## S10: A provider reports the agent's thinking @v1 [proposed]
+
+- Given: an agent plugin whose agent says what it reasoned before it answers
+- When: the agent thinks during a turn
+- Then: the provider puts the thinking in the session's log as it streams
+  (a thinking delta for the message it belongs to) and then whole, as a
+  thinking block of that message; the whole block replaces the deltas in
+  the log, as a reply's text replaces its own
+- and a provider says in its capabilities that it reports thinking; one that
+  does not is no error, and the pane's Thinking view then shows no thoughts
+- and a delta may name the subagent call it streams under, as a whole
+  message and a tool result already do, so the pane can keep a subagent's
+  traffic with the call that started it
+- and thinking is never dropped or cut by the core: which of it a reader
+  sees is the pane's transcript view alone
+- and an app from before thinking ignores both the delta and the block, so
+  a plugin that sends them still runs there
+
+[test: a provider's thinking reaches the log, and the settled block replaces its deltas : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L346 ]

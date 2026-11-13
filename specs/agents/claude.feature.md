@@ -185,7 +185,7 @@ If error code, display the error to the user in an error box.
 
 [test: the pins are for the SDK version package.json depends on, one per platform : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/binary.test.ts#L46 ]
 [test: with no Claude Code anywhere, the email sign-in fetches this platform's first, then signs in with it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L482 ]
-[test: a failed turn keeps why it failed even when the reply already said it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L112 ]
+[test: a failed turn keeps why it failed even when the reply already said it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L119 ]
 [test: an agent with its own Settings section offers the way there, and only that agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L108 ]
 [test: a turn that failed to sign in offers the agent's Settings section beside its hint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L120 ]
 
@@ -245,7 +245,7 @@ The switch is ON by default, and the setting is saved to
 [test: a new sign-in that cannot start Claude leaves the session as it was, saying so : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L943 ]
 [test: a provider's sign-in change is a change for its id alone; an unknown id is nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L89 ]
 [test: an agent's sign-in change has every open page re-read the agents : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L100 ]
-[test: a provider's sign-in change refreshes its live sessions, and a failed refresh is a note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L501 ]
+[test: a provider's sign-in change refreshes its live sessions, and a failed refresh is a note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L537 ]
 
 ## S12: Choose the model Claude starts on @v1 [proposed]
 
@@ -350,3 +350,31 @@ The switch is ON by default, and the setting is saved to
 [test: Claude Code's context count becomes the pane's slices, with what each is made of : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1334 ]
 [test: Claude counts its context once ready and after every turn, and Refresh measures it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1369 ]
 [test: a Claude Code that cannot count its context is asked once, then each turn's totals stand in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1408 ]
+
+## S15: Claude reports its thinking to the pane @v1 [proposed]
+
+- Given: a Claude session in the coding agent pane
+- When: Claude thinks before it answers or between tool calls
+- Then: the plugin passes the thinking on as it streams and then whole, as
+  a block of the message it belongs to, for the pane's Thinking and Verbose
+  transcript views
+- and the plugin asks Claude Code to report thinking as a summary rather
+  than nothing, once per run of Claude Code; a Claude Code that refuses the
+  request still runs the session
+- and the plugin never switches thinking on or changes how much of it there
+  is: whether Claude thinks stays with Claude Code's own settings (always
+  thinking, the effort), so with thinking turned off there the pane shows
+  no thoughts and a turn takes no longer than before
+- and thinking Claude keeps to itself (redacted, or sent empty) adds nothing
+  to the transcript
+- and a subagent's thinking and words are marked, from the first of them,
+  with the call that started the subagent
+- and the plugin says it reports thinking, so the pane's Thinking choice
+  carries no note that it has nothing to show
+- and the plugin runs on apps from before the transcript views too, which
+  ignore the thinking
+
+[test: what Claude thinks streams into the event log and settles as a thinking block of its message : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L466 ]
+[test: mapSdkMessage passes on what Claude thinks, streamed and whole, and nothing for thinking Claude keeps to itself : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L497 ]
+[test: a session asks Claude Code for a summary of its thinking and leaves thinking itself as its settings have it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L560 ]
+[test: a Claude Code that refuses the thinking request still runs the session : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L576 ]
