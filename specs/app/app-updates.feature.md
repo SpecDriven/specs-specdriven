@@ -37,7 +37,12 @@ Where the app runs from differs by platform, so does the restart:
 - On Windows and Linux the build under the new tree is the app
   (`release\win-unpacked\SpecDriven.exe`, the `.AppImage`), and the Start
   menu shortcut already reaches it through `current`: the app quits and
-  starts that executable.
+  starts that executable. On Linux it cannot start it itself: an AppImage
+  runs out of a mount of its own files that goes the moment the app exits,
+  so anything the app starts from inside itself dies with it and the app
+  simply never comes back. A shell of the system's own, detached from the
+  app, waits for it to quit — the single-instance lock is held until then —
+  and starts the new `.AppImage` instead.
 - On macOS the installer's `.dmg` is for dragging the app into
   Applications, so the copy there is what has to change: the running bundle
   is renamed aside as `SpecDriven.app.previous`, the new one is copied to the
@@ -121,11 +126,11 @@ should, and the installer one-liner from `main` is the way forward once.
   Applications can ask for an administrator
 
 [test: on macOS, a newer release warns that Admin privileges may be needed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L90 ]
-[test: a Mac app run from the install's own release directory is not copied anywhere, the new one just starts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L77 ]
-[test: a Mac app in Applications is replaced where it is, and started from there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L57 ]
-[test: the running bundle steps aside as .previous, a stale .previous first going, and the new one is copied to its path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L147 ]
-[test: a copy that fails puts the running bundle back and reports the failure : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L161 ]
-[test: the bundle of an executable is its .app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L135 ]
+[test: a Mac app run from the install's own release directory is not copied anywhere, the new one just starts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L78 ]
+[test: a Mac app in Applications is replaced where it is, and started from there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L58 ]
+[test: the running bundle steps aside as .previous, a stale .previous first going, and the new one is copied to its path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L150 ]
+[test: a copy that fails puts the running bundle back and reports the failure : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L164 ]
+[test: the bundle of an executable is its .app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L138 ]
 
 ## S4: Windows and Linux restart into the new tree @v1 [proposed]
 
@@ -134,8 +139,17 @@ should, and the installer one-liner from `main` is the way forward once.
 - Then: the app quits and starts the new tree's `SpecDriven.exe` or
   `.AppImage`; the tree that was running stays as the install's copy to go
   back to
+- and on Linux the new `.AppImage` is started by a detached shell waiting
+  for the app to quit, not by the app itself: an AppImage takes its own
+  files away with it as it exits, so a restart it starts from inside itself
+  never happens and the app does not come back
+- and the new app starts with none of the old AppImage's own environment,
+  which names the mount that has just gone
 
-[test: Windows and Linux start the new build where the installer left it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L110 ]
+[test: Windows and Linux start the new build where the installer left it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L111 ]
+[test: the new app starts only once the old process has gone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L203 ]
+[test: the waiting shell is the system's own, and gives up waiting rather than never starting the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L236 ]
+[test: the new app does not inherit this AppImage's own variables : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L246 ]
 [test: the built app is the .app, the AppImage or the unpacked exe the local build leaves : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L306 ]
 [test: the runtime's activator gets the new source tree; without one the new app's path is handed back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L322 ]
 
@@ -179,8 +193,8 @@ should, and the installer one-liner from `main` is the way forward once.
 - Then: nothing is renamed or started; the page says why and where the new
   app is, for the user to start or move by hand
 
-[test: an Applications folder that is not writable, or no bundle at all, leaves the swap to the user and says where the new app is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L90 ]
-[test: a new version with no built app cannot be started : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L125 ]
+[test: an Applications folder that is not writable, or no bundle at all, leaves the swap to the user and says where the new app is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L91 ]
+[test: a new version with no built app cannot be started : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updateActivation.test.ts#L128 ]
 [test: a restart the shell could not do says so, with the new app's path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L129 ]
 
 ## S8: The desktop app checks once a day and marks the version chip @v1 [proposed]
