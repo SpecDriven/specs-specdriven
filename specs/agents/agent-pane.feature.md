@@ -31,15 +31,15 @@
 - and a wait of 0 turns the limit off; a session that talks to the API
   directly is never held to it
 
-[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1041 ]
-[test: a Claude turn whose request the proxy leaves unanswered is sent again, three tries in all : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1073 ]
-[test: a Claude turn whose second try gets an answer runs on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1112 ]
-[test: Claude Code's own retries count toward the three tries : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1135 ]
-[test: Stop while the pane waits to try again ends the turn, with nothing sent again : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1155 ]
-[test: a prompt a session starts with is tried again the same way : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1185 ]
-[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1203 ]
-[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1216 ]
-[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1227 ]
+[test: a Claude turn behind a proxy that does not answer is stopped after the wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1189 ]
+[test: a Claude turn whose request the proxy leaves unanswered is sent again, three tries in all : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1221 ]
+[test: a Claude turn whose second try gets an answer runs on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1260 ]
+[test: Claude Code's own retries count toward the three tries : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1283 ]
+[test: Stop while the pane waits to try again ends the turn, with nothing sent again : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1303 ]
+[test: a prompt a session starts with is tried again the same way : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1333 ]
+[test: a Claude turn whose API answers in time is left to run : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1351 ]
+[test: a Claude turn without a proxy, or with no limit set, has no wait : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1364 ]
+[test: the first-response wait is a setting, 15 seconds unless changed : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1375 ]
 
 ## S2: The agent pane starts Claude in Auto mode @v1 [published]
 
@@ -54,7 +54,7 @@
 - and Codex starts in Manual (its "auto" is the same policy), and pi has no
   permission gate
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L706 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L709 ]
 
 ## S3: The folder chip switches the folder the agent works in @v1 [proposed]
 
@@ -76,7 +76,7 @@
 - and the data repo is offered by its absolute path, though settings may
   name it relative to the app
 
-[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L667 ]
+[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L670 ]
 [test: GET /api/state names the open folder's absolute path, though settings name it relative to the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L165 ]
 
 ## S4: The mode menu describes each mode @v1 [proposed]
@@ -92,7 +92,7 @@
   starts in
 - and pressing a number key (1–5) chooses that mode directly
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L706 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L709 ]
 
 ## S5: The server runs a chat in the folder the pane picked @v1 [proposed]
 
@@ -107,7 +107,7 @@
 - and a `cwd` that is not absolute, or names a folder that does not exist, is
   refused with an error
 
-[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L678 ]
+[test: a folder the pane picks is where the chat works, over the code repo : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L828 ]
 
 ## S6: The composer bar picks the folder, model, effort and mode @v1 [proposed]
 
@@ -161,7 +161,7 @@
 - and the header keeps the sessions menu, the status dot, the billing chip,
   Stop and close
 
-[test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L453 ]
+[test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L456 ]
 [test: one chip names the agent by its icon, the model and the effort, and opens one picker for all three : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L185 ]
 [test: each agent is an icon named by its label, and its tooltip gives the name and what the agent is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L216 ]
 [test: an agent's mark is drawn in the text colour, hidden from assistive tech : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L244 ]
@@ -174,7 +174,7 @@
 [test: an agent that cannot switch models in a session still picks its effort, and one with nothing to pick is plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L410 ]
 [test: the model list holds the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L759 ]
 [test: a model off the list still shows, and with no default the agent's own leads the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L787 ]
-[test: a model's description that only repeats its name is left off, as a proxy's rows carry it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L796 ]
+[test: a model's description that only repeats its name is left off, as a proxy's rows carry it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L786 ]
 [test: a search keeps the models that hold every word typed, in the name or the value : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L807 ]
 [test: the effort row offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L817 ]
 [test: the pane's model list is loaded again once it has gone stale, and readers at once share the load : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelRefresh.test.tsx#L83 ]
@@ -199,8 +199,8 @@
   spaces or an effort that is no level is refused, and an agent with no
   effort setting is never handed one
 
-[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L840 ]
-[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L834 ]
+[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L824 ]
+[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L818 ]
 [test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L228 ]
 
 ## S8: Paste an image into the message @v1 [proposed]
@@ -238,7 +238,7 @@
 [test: a session started with pasted images hands them to the provider with its first turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L633 ]
 [test: pasted images are refused for an agent that reads none, and when they are not images, too many or too big : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L649 ]
 [test: a pasted image gets a reply that says the simulation cannot look at it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L352 ]
-[test: pasted images go to Claude as image blocks before the text, and images alone carry no text block : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L447 ]
+[test: pasted images go to Claude as image blocks before the text, and images alone carry no text block : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L597 ]
 [test: pasted images go to Codex as localImage items, read from the copies the app keeps : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L682 ]
 [test: pasted images go to pi with its prompt command, as its image items : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-pi/test/piChat.test.ts#L476 ]
 
@@ -490,9 +490,9 @@
 [test: with no session open, the header shows the plug or the person for the agent a new session starts on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L57 ]
 [test: the header's agent with no session is the one picked, while usable, else the first usable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L83 ]
 [test: a sign-in change asks again for every list already loaded, so the chip follows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentAccount.test.ts#L91 ]
-[test: describeSignIn says API through the proxy, or the Claude account and whether it is signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1443 ]
-[test: the pane's choices carry the sign-in a new session would start under, when the host says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1462 ]
-[test: the app's choices route carries the sign-in, Not logged in with no one signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1471 ]
+[test: describeSignIn says API through the proxy, or the Claude account and whether it is signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1732 ]
+[test: the pane's choices carry the sign-in a new session would start under, when the host says : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1751 ]
+[test: the app's choices route carries the sign-in, Not logged in with no one signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1760 ]
 
 ## S14: Switching folders tries the agent's API again @v1 [proposed]
 
