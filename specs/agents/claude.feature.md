@@ -270,6 +270,12 @@ The switch is ON by default, and the setting is saved to
   list left it out is not used — the dropdown shows the list's first, and
   the pane, the import and the app's other Claude calls start on it; an empty field with no list leaves Claude
   Code's own default, whatever its settings or account pick
+- and a default the sign-in does not offer — one chosen under the API before
+  Claude switched to the account, or the other way round — is not used: the
+  dropdown shows the menu's first, the coding agent pane's model menu shows
+  no row for it, and a new Claude starts as with no default; the same model
+  under its other name (an id the account offers by alias) is held, and the
+  default is kept, so switching back brings it back
 - and that list is one row per model: the row Claude Code names for it
   (`default`, `opus`, `sonnet`, `haiku`, Fable), never the explicit ids of
   the same models an organization is also offered (`claude-opus-4-8`,
