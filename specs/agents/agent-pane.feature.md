@@ -759,21 +759,21 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
   "Send now" and DELETE /api/agent/chat/:id/waiting/:messageId takes the
   message back, each a 404 once the message has gone
 
-[test: a message sent while the agent works waits, and is sent when the turn ends : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L119 ]
-[test: Send now stops the turn and sends the message as soon as it has stopped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L152 ]
-[test: Stop sends nothing after it, and Send now on a waiting message then sends it at once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L187 ]
-[test: a turn that failed leaves the waiting messages waiting until a turn ends well : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L207 ]
-[test: a waiting message can be taken back, and one that is gone answers 404 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L225 ]
-[test: an agent that cannot be stopped refuses Send now, and at most ten messages wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L245 ]
-[test: a waiting message keeps its pasted images and hands them to the agent when it goes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L265 ]
-[test: a session that ends never sends what waited, and the log still shows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L281 ]
-[test: a waiting message whose turn cannot start is noted, and the ones behind it keep waiting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L300 ]
+[test: a message sent while the agent works waits, and is sent when the turn ends : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L123 ]
+[test: Send now stops the turn and sends the message as soon as it has stopped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L156 ]
+[test: Stop sends nothing after it, and Send now on a waiting message then sends it at once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L191 ]
+[test: a turn that failed leaves the waiting messages waiting until a turn ends well : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L211 ]
+[test: a waiting message can be taken back, and one that is gone answers 404 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L229 ]
+[test: an agent that cannot be stopped refuses Send now, and at most ten messages wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L249 ]
+[test: a waiting message keeps its pasted images and hands them to the agent when it goes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L269 ]
+[test: a session that ends never sends what waited, and the log still shows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L285 ]
+[test: a waiting message whose turn cannot start is noted, and the ones behind it keep waiting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L304 ]
 [test: a queued message waits under the transcript, and joins it where it was sent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L76 ]
 [test: a message taken back leaves the waiting list, and a transcript with none has an empty one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L96 ]
 [test: the message box takes a message while the agent works, not while it starts or after it ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L109 ]
 [test: a waiting message offers Send now where the agent can be stopped or is ready, and never after the end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L118 ]
 [test: a waiting row shows the message, what it waits for, Send now and a way to take it back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L133 ]
-[test: the message box sends a message mid-turn, and Send now and remove on a waiting one call the server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L182 ]
+[test: the message box sends a message mid-turn, and Send now and remove on a waiting one call the server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L197 ]
 
 ## S22: A message that waited is tried again before its failure shows @v1 [proposed]
 
@@ -794,5 +794,5 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
   again: their failure is shown at once
 - and this is the app's doing, the same for every agent plugin
 
-[test: the turn Send now stopped ends as stopped, not failed, and the agent's words on it are not shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L1 ]
+[test: the turn Send now stopped ends as stopped, not failed, and the agent's words on it are not shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L325 ]
 [test: ends with a quiet "Turn stopped" footer, not a failure : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L1 ]
