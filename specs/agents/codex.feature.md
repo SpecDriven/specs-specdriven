@@ -146,3 +146,24 @@ Note: this section is not offered in the demo or the hosted app, which run no Co
 [test: signed in, the ChatGPT account names the account and offers Check sign-in and Sign out : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L293 ]
 [test: the ChatGPT account warns that signing in replaces Codex's own API key, and of a config that signs the account out : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L300 ]
 [test: while the browser sign-in is under way the section says to finish it there and offers only Cancel; with no Codex there is nothing to sign in with : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L314 ]
+
+## S6: Codex offers the reasoning efforts its model takes @v1 [proposed]
+
+- Given: the coding agent pane's model picker is on Codex
+- When: a model is picked
+- Then: the Effort row offers the levels that model takes, as Codex says:
+  its own list for the signed-in ChatGPT account, and for the API's models
+  the catalog shipped with the Codex CLI (`codex debug models --bundled`,
+  read offline and under no sign-in)
+- and a model Codex knows no efforts for — one its catalog lacks, such as
+  `gpt-4.1` — has no Effort row, and Codex levels the pane has no name for
+  (`minimal`, `ultra`) are left out
+- and a new session runs at the default effort — the one Settings → Codex's
+  "Default effort" names, else the model's own — and a pick in the pane
+  becomes that default, and switches a running session from its next turn
+- and the effort goes to Codex with each turn, lowered to the highest level
+  below it that the turn's model takes, else the model's lowest
+- and back on "Default" after another level, the next turn asks for the
+  model's own default effort, since Codex keeps the last effort it was given
+
+Note: Codex keeps a session's effort for the turns after, even across a switch to a model that takes none, and offers no way to clear it
