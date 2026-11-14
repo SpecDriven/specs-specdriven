@@ -796,6 +796,6 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
 
 [test: the turn Send now stopped ends as stopped, not failed, and the agent's words on it are not shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L325 ]
 [test: a message that waited is sent again when its turn fails before the agent says anything, and fails out loud after three more tries : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L343 ]
-[test: a retried message that gets through shows no failure, and the waiting ones follow : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L372 ]
-[test: a failure after the agent said something, a Stop, or a message that never waited is not tried again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L389 ]
+[test: a retried message that gets through shows no failure, and the waiting ones follow : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L373 ]
+[test: a failure after the agent said something, a Stop, or a message that never waited is not tried again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L390 ]
 [test: a turn Send now stopped ends with a quiet Turn stopped footer, not a failure : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L153 ]
