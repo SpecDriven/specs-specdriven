@@ -774,3 +774,25 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
 [test: a waiting message offers Send now where the agent can be stopped or is ready, and never after the end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L118 ]
 [test: a waiting row shows the message, what it waits for, Send now and a way to take it back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L133 ]
 [test: the message box sends a message mid-turn, and Send now and remove on a waiting one call the server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L182 ]
+
+## S22: A message that waited is tried again before its failure shows @v1 [proposed]
+
+- Given: a message that waited for a turn (S21), sent when the turn ended or
+  by "Send now"
+- When: "Send now" stops the turn under way
+- Then: that turn ends with a quiet "Turn stopped" footer, not a red "Turn
+  failed (during execution)", and what the agent said about being stopped
+  (Claude Code's `[ede_diagnostic] …` line) is not shown
+- When: the message's own turn fails before the agent has said anything
+- Then: the message is sent again, with no new bubble and no error shown,
+  up to 3 more times; only a fourth failure is shown, and the messages that
+  wait behind it keep waiting as after any failed turn
+- and a try that gets through shows no failure, and the waiting messages
+  follow it as usual
+- and a failure after the agent began to answer, a turn the user stopped
+  with Stop, and a message typed while no turn was under way are not tried
+  again: their failure is shown at once
+- and this is the app's doing, the same for every agent plugin
+
+[test: the turn Send now stopped ends as stopped, not failed, and the agent's words on it are not shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L1 ]
+[test: ends with a quiet "Turn stopped" footer, not a failure : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L1 ]
