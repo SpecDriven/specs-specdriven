@@ -33,13 +33,13 @@ that `codex login status` found signed in to one; and where one is on file,
 an API launch says so, so that a `forced_login_method = "api"` in Codex's
 own config does not sign the account out.
 
-[test: the API sign-in reaches Codex as a model provider of its own, its key in the environment and on no command line : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L233 ]
-[test: the API sign-in keeps a ChatGPT login on file from being signed out, and leaves Codex alone with nothing of its own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L258 ]
-[test: the account sign-in sets the API aside, and is never required of a Codex with no ChatGPT login : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L275 ]
-[test: describeSignIn says the API and its host, or the ChatGPT account and whether it is signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L295 ]
-[test: a session under the API sign-in starts Codex with the API as its provider and the key in its environment : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L475 ]
-[test: a session under the account sign-in is refused while no ChatGPT account is signed in, and starts once one is : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L493 ]
-[test: a codex session spawns `codex app-server` on the work dir and is ready once its thread starts : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L568 ]
+[test: the API sign-in reaches Codex as a model provider of its own, its key in the environment and on no command line : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L243 ]
+[test: the API sign-in keeps a ChatGPT login on file from being signed out, and leaves Codex alone with nothing of its own : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L268 ]
+[test: the account sign-in sets the API aside, and is never required of a Codex with no ChatGPT login : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L285 ]
+[test: describeSignIn says the API and its host, or the ChatGPT account and whether it is signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L305 ]
+[test: a session under the API sign-in starts Codex with the API as its provider and the key in its environment : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L491 ]
+[test: a session under the account sign-in is refused while no ChatGPT account is signed in, and starts once one is : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L509 ]
+[test: a codex session spawns `codex app-server` on the work dir and is ready once its thread starts : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L590 ]
 
 ## S2: API settings are filled in from Codex's own config @v1 [proposed]
 
@@ -60,13 +60,13 @@ own config does not sign the account out.
 - and "Check connection" asks the API for its model list (`GET
   <address>/models`) and reports OK, a refused key, or an unreachable API
 
-[test: readCodexConfig reads the provider Codex's config names, its address and key variable, and a required login : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L176 ]
-[test: detectCodexApi finds the address in Codex's config and the key in its auth.json, or in the variable the provider names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L188 ]
-[test: Check connection asks the API for its model list with the key, and never says the key back : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L387 ]
-[test: GET /api/codex/auth reports the mode, the ChatGPT login and the API — never a key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L407 ]
-[test: Check connection and the model list go to the address in effect with the stored key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L458 ]
-[test: the API shows what Codex's own config carries, with Use detected, and never calls the address a proxy : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L254 ]
-[test: with no address anywhere the API is OpenAI's own, called with the key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L270 ]
+[test: readCodexConfig reads the provider Codex's config names, its address and key variable, and a required login : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L186 ]
+[test: detectCodexApi finds the address in Codex's config and the key in its auth.json, or in the variable the provider names : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L198 ]
+[test: Check connection asks the API for its model list with the key, and never says the key back : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L397 ]
+[test: GET /api/codex/auth reports the mode, the ChatGPT login and the API — never a key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L417 ]
+[test: Check connection and the model list go to the address in effect with the stored key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L474 ]
+[test: the API shows what Codex's own config carries, with Use detected, and never calls the address a proxy : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L343 ]
+[test: with no address anywhere the API is OpenAI's own, called with the key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L359 ]
 
 ## S3: Choose how Codex signs in @v1 [proposed]
 
@@ -84,9 +84,9 @@ own config does not sign the account out.
 Note: this section is not offered in the demo or the hosted app, which run no Codex of their own
 
 [test: the stored choice is normalized; an address must be http(s), and loses its trailing slash : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L157 ]
-[test: with no choice stored, an API in Codex's own config means the API, and nothing there means the ChatGPT account : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L209 ]
-[test: PUT /api/codex/settings stores the choice, the address and the model, and null forgets them : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L436 ]
-[test: the sign-in routes refuse in the demo and the hosted app : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L449 ]
+[test: with no choice stored, an API in Codex's own config means the API, and nothing there means the ChatGPT account : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L219 ]
+[test: PUT /api/codex/settings stores the choice, the address, the model and the effort, and null forgets them : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L446 ]
+[test: the sign-in routes refuse in the demo and the hosted app : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L465 ]
 
 ## S4: Codex lists the models its sign-in offers @v1 [proposed]
 
@@ -107,17 +107,17 @@ Note: this section is not offered in the demo or the hosted app, which run no Co
 - and with no list from the sign-in and none in the data repo, "Default
   model" is a field for a model id
 
-[test: the API's models are read from GET <address>/models with the key as a bearer token : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L55 ]
-[test: an API that refuses the key, or fails, says why without the key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L69 ]
-[test: a ChatGPT account's models are Codex's own list for it, the hidden ones left out : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L81 ]
-[test: the sign-in's models are asked for once per sign-in, kept a while, and asked again when it changes : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L95 ]
-[test: the data repo's list for Codex narrows the menu, in its own order, keeping a name the sign-in does not offer : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L119 ]
-[test: the pane's model menu is what the sign-in offers, narrowed by the data repo's list, with the default a session starts on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L144 ]
-[test: a Codex with no Settings of its own offers no model menu and no account chip : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L184 ]
-[test: Default model is a dropdown of the models the API lists, with Codex's own default until one is chosen : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L216 ]
-[test: Default model is narrowed to the Codex models the data repo lists, the first until another is chosen : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L228 ]
-[test: with no model list from the sign-in and none in the data repo, Default model is a field for a model id : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L241 ]
-[test: a session starts on the model Settings → Codex names, and reports the sign-in it started under : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L613 ]
+[test: the API's models are read from GET <address>/models with the key as a bearer token : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L59 ]
+[test: an API that refuses the key, or fails, says why without the key : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L73 ]
+[test: a ChatGPT account's models are Codex's own list for it, the hidden ones left out : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L85 ]
+[test: the sign-in's models are asked for once per sign-in, kept a while, and asked again when it changes : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L165 ]
+[test: the data repo's list for Codex narrows the menu, in its own order, keeping a name the sign-in does not offer : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L189 ]
+[test: the pane's model menu is what the sign-in offers, narrowed by the data repo's list, with the default a session starts on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L214 ]
+[test: a Codex with no Settings of its own offers no model menu and no account chip : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L260 ]
+[test: Default model is a dropdown of the models the API lists, with Codex's own default until one is chosen : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L305 ]
+[test: Default model is narrowed to the Codex models the data repo lists, the first until another is chosen : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L317 ]
+[test: with no model list from the sign-in and none in the data repo, Default model is a field for a model id : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L330 ]
+[test: a session starts on the model Settings → Codex names, and reports the sign-in it started under : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L635 ]
 
 ## S5: Sign in to Codex with a ChatGPT account @v1 [proposed]
 
@@ -137,15 +137,15 @@ Note: this section is not offered in the demo or the hosted app, which run no Co
 - and while Codex's own config requires API keys the section says that a
   Codex started outside the app signs the account out again
 
-[test: loginStatus asks `codex login status` as the account sign-in starts Codex: a ChatGPT login, or none : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L313 ]
-[test: the sign-in check's finding is one sentence: the account, and whether Codex lists its models : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L324 ]
+[test: loginStatus asks `codex login status` as the account sign-in starts Codex: a ChatGPT login, or none : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L323 ]
+[test: the sign-in check's finding is one sentence: the account, and whether Codex lists its models : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L413 ]
 
-[test: Sign in runs `codex login` under the account sign-in, and is done once the CLI reports a ChatGPT login : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L341 ]
-[test: a cancelled sign-in stops the CLI, and Sign out is refused unless a ChatGPT account is signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L367 ]
-[test: signed out, the ChatGPT account says so plainly and offers Sign in and a check : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L286 ]
-[test: signed in, the ChatGPT account names the account and offers Check sign-in and Sign out : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L293 ]
-[test: the ChatGPT account warns that signing in replaces Codex's own API key, and of a config that signs the account out : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L300 ]
-[test: while the browser sign-in is under way the section says to finish it there and offers only Cancel; with no Codex there is nothing to sign in with : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L314 ]
+[test: Sign in runs `codex login` under the account sign-in, and is done once the CLI reports a ChatGPT login : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L351 ]
+[test: a cancelled sign-in stops the CLI, and Sign out is refused unless a ChatGPT account is signed in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/signIn.test.ts#L377 ]
+[test: signed out, the ChatGPT account says so plainly and offers Sign in and a check : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L375 ]
+[test: signed in, the ChatGPT account names the account and offers Check sign-in and Sign out : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L382 ]
+[test: the ChatGPT account warns that signing in replaces Codex's own API key, and of a config that signs the account out : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L389 ]
+[test: while the browser sign-in is under way the section says to finish it there and offers only Cancel; with no Codex there is nothing to sign in with : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L403 ]
 
 ## S6: Codex offers the reasoning efforts its model takes @v1 [proposed]
 
@@ -167,3 +167,11 @@ Note: this section is not offered in the demo or the hosted app, which run no Co
   model's own default effort, since Codex keeps the last effort it was given
 
 Note: Codex keeps a session's effort for the turns after, even across a switch to a model that takes none, and offers no way to clear it
+
+[test: a ChatGPT account's models carry the efforts Codex lists for each, as the pane's levels : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L101 ]
+[test: an API's models take the efforts Codex's own catalog gives them, and none for a model it does not know : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L126 ]
+[test: an effort a model does not take is lowered to the highest it takes below it, else its lowest : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L154 ]
+[test: the pane's model menu is what the sign-in offers, narrowed by the data repo's list, with the default a session starts on : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L214 ]
+[test: Default effort is a select of the pane's levels, the model's own default when none is set : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/models.test.tsx#L293 ]
+[test: a session runs at the effort Settings → Codex names, lowered to one its model takes, and the pane's pick goes with the next turn : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L657 ]
+[test: with no effort picked, turns ask Codex for none : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L687 ]
