@@ -723,3 +723,54 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
 [test: the popover's Transcript row switches the view, the transcript follows, and the choice is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L177 ]
 [test: the script streams its text before settling it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L163 ]
 [test: a demo session starts and plays a scripted Claude Code turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L214 ]
+
+## S21: A message sent while the agent works waits for the turn @v1 [proposed]
+
+- Given: a session in the coding agent pane whose agent is at work on a
+  turn, or waiting for an answer to a permission card
+- When: the user types another message and sends it
+- Then: it is not refused: it shows at the foot of the transcript in a
+  dashed bubble that says "Queued — sent when this turn ends", with the
+  images and files it goes with, and the message box is free for the next
+- and when the turn ends by itself the first waiting message is sent as the
+  next turn, in the place in the transcript where it went, and the session
+  works on without going idle between; the ones behind it follow, one a
+  turn, in the order they were sent
+- When: the user clicks "Send now" on a waiting message, as in Claude
+  Desktop
+- Then: the turn under way is stopped — the transcript says "Stopped for
+  your message." and an open permission card closes — and that message is
+  sent as soon as the agent has stopped, ahead of any that waited before it;
+  the agent carries on in the same session, with what the stopped turn did
+  still in its context
+- and each waiting message has a button that takes it back unsent
+- and Stop only stops: the waiting messages stay, now saying "Not sent
+  yet", and so they do after a turn that failed or one that could not
+  start; there "Send now" sends one at once, a message typed then goes at
+  once too, and the rest follow the next turn that ends well
+- and an agent that cannot be stopped offers no "Send now": its waiting
+  messages go when the turn ends
+- and at most 10 messages wait at once; a session that ends never sends
+  what waited, and its transcript says "Not sent — the session ended"
+- and this is the app's doing, the same for every agent (Claude, Codex, Pi,
+  OpenCode, any agent plugin): the agent is handed one message a turn
+- and POST /api/agent/chat/:id/message answers a `queued` event for a
+  message that waits; POST /api/agent/chat/:id/waiting/:messageId/send is
+  "Send now" and DELETE /api/agent/chat/:id/waiting/:messageId takes the
+  message back, each a 404 once the message has gone
+
+[test: a message sent while the agent works waits, and is sent when the turn ends : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L112 ]
+[test: Send now stops the turn and sends the message as soon as it has stopped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L145 ]
+[test: Stop sends nothing after it, and Send now on a waiting message then sends it at once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L180 ]
+[test: a turn that failed leaves the waiting messages waiting until a turn ends well : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L200 ]
+[test: a waiting message can be taken back, and one that is gone answers 404 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L218 ]
+[test: an agent that cannot be stopped refuses Send now, and at most ten messages wait : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L238 ]
+[test: a waiting message keeps its pasted images and hands them to the agent when it goes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L258 ]
+[test: a session that ends never sends what waited, and the log still shows it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L274 ]
+[test: a waiting message whose turn cannot start is noted, and the ones behind it keep waiting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L288 ]
+[test: a queued message waits under the transcript, and joins it where it was sent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L76 ]
+[test: a message taken back leaves the waiting list, and a transcript with none has an empty one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L96 ]
+[test: the message box takes a message while the agent works, not while it starts or after it ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L109 ]
+[test: a waiting message offers Send now where the agent can be stopped or is ready, and never after the end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L118 ]
+[test: a waiting row shows the message, what it waits for, Send now and a way to take it back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L133 ]
+[test: the message box sends a message mid-turn, and Send now and remove on a waiting one call the server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L182 ]
