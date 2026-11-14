@@ -17,6 +17,9 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 - and a provider whose command is missing is refused with its own words,
   and a session on a provider whose plugin is switched off ends with a note
   saying so
+- and an agent that comes or goes while the app runs — its plugin installed,
+  switched on or off, updated or removed, in this window or another — is
+  offered or taken away in every open window's pane without a reload
 
 [test: lists providers by rank and describes them for the client : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L11 ]
 [test: the default is the lowest-ranked provider whose CLI is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L35 ]
@@ -31,6 +34,7 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: a Claude plugin switched off takes its routes and its provider away : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L868 ]
 [test: an installed plugin whose manifest says autoEnable switches itself on in the open folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L238 ]
 [test: an agent plugin that arrives while the window is open offers the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L60 ]
+[test: an agent that comes or goes has every open page re-read the agents, once per change : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L120 ]
 
 ## S2: A session record from before agent plugins still opens @v1 [proposed]
 

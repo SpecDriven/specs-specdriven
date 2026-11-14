@@ -340,6 +340,9 @@ has, one column to its left.
   sidebar width and the theme — a per-device preference, not shared team
   state. Closing the agent pane brings the editor back without forgetting the
   choice: reopening the pane hides it again.
+- Opening a page that lives in the editor pane — Updates from the version
+  button, Settings, Plugins, What's new — shows the editor again, as `\`
+  would, so the page never opens out of sight behind the agent pane.
 
 ## S7: Keyboard shortcuts come from one registry @v1 [proposed]
 

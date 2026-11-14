@@ -423,9 +423,11 @@
 - Given: the coding agent pane with sessions open, as in Claude Code
 - Then: the pane's header line holds one tab per open session, on the one
   line with the pane's chips and buttons rather than on a row of its own,
-  in the order they started, each with its name and a dot for how it is
-  doing (working, waiting for an answer, ready, ended, failed); the full
-  name, the agent, its state and its folder show on hover
+  in the order they started, each with its agent's mark (the one the model
+  picker shows for that agent, else a robot), a dot on the mark's corner for
+  how it is doing (working, waiting for an answer, ready, ended, failed),
+  and its name; the full name, the agent, its state and its folder show on
+  hover
 - When: the user clicks a tab, or moves to it with the arrow keys, Home or
   End
 - Then: the pane shows that session's transcript and composer, its tab in
@@ -451,12 +453,13 @@
   or failed closes at once
 
 [test: each open session has a tab in start order, every one followed, and a click shows its transcript : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L201 ]
-[test: the arrow keys, Home and End move between tabs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L225 ]
-[test: + opens the new-session screen on a tab of its own, until five tabs are open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L244 ]
-[test: with five tabs open, ended ones among them, + and the message box wait for one to close : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L258 ]
-[test: × closes an idle tab at once and shows the tab to its right : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L273 ]
-[test: × on a tab whose agent is at work asks first, and a no keeps the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L289 ]
-[test: closing the last tab leaves the new-session screen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L312 ]
+[test: each tab leads with its agent's mark, as in the model picker, with the session's dot on it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L225 ]
+[test: the arrow keys, Home and End move between tabs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L248 ]
+[test: + opens the new-session screen on a tab of its own, until five tabs are open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L267 ]
+[test: with five tabs open, ended ones among them, + and the message box wait for one to close : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L281 ]
+[test: × closes an idle tab at once and shows the tab to its right : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L296 ]
+[test: × on a tab whose agent is at work asks first, and a no keeps the session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L312 ]
+[test: closing the last tab leaves the new-session screen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L335 ]
 [test: tabs run in the order their sessions started, and a closed tab hands over to its right, else its left : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L175 ]
 [test: five open tabs, ended ones included, leave no room for another : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L183 ]
 [test: a session asks before closing only while its agent is at work : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L190 ]
