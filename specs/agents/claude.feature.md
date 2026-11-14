@@ -330,26 +330,29 @@ The switch is ON by default, and the setting is saved to
 **Updated by:** vydra
 
 - Given: a Claude session in the coding agent pane
-- When: the session is ready, a turn ends, or Claude Code compacts the
-  conversation
+- When: the session is ready, a request of a turn fills the window further,
+  a turn ends, or Claude Code compacts the conversation
 - Then: the plugin asks Claude Code for its /context count — the cheap one,
   from the last response and local estimates — and hands it to the pane's
   session popover (agent-pane.feature.md S11): the window's size, the
   tokens in it, where it compacts, and every category with what it is made
   of (MCP tools by server, memory files, skills, system tools)
-- and the count is asked for after the turn has freed the message box, never
-  before, and a count overtaken by a newer one is dropped
+- and while a turn goes on the meter moves with it: each of the turn's own
+  requests that carries more tokens than the last is counted once, however
+  many blocks its reply has, so the user sees the window filling up
+- and the turn's last count is asked for after the turn has freed the
+  message box, and a count overtaken by a newer one is dropped
 - and the popover's Refresh asks Claude Code to count every category with
   the API, shown as measured
-- and a Claude Code too old to answer is asked once; from then on each
-  turn's own figures stand in: the tokens the last request carried, of the
-  model's window
+- and a Claude Code too old to answer is asked once; from then on the
+  turns' own figures stand in, during a turn too: the tokens the last
+  request carried, of the model's window once a turn has said what it is
 - and the plugin runs on apps without the popover too, where it counts
   nothing
 
 [test: Claude Code's context count becomes the pane's slices, with what each is made of : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1623 ]
-[test: Claude counts its context once ready and after every turn, and Refresh measures it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1658 ]
-[test: a Claude Code that cannot count its context is asked once, then each turn's totals stand in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1697 ]
+[test: Claude counts its context once ready, as a turn fills the window and after it, and Refresh measures it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1668 ]
+[test: a Claude Code that cannot count its context is asked once, then each turn's totals stand in : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1718 ]
 
 ## S15: Claude reports its thinking to the pane @v1 [proposed]
 
