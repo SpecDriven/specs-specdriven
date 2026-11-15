@@ -36,7 +36,7 @@ proxy for the account sign-in.
 [test: a pasted token never comes back in Check proxy's words or the model list's error, whatever it holds : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/signIn.property.test.ts#L708 ]
 [test: whatever a failed request says, Check proxy and the model list say it without the token : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/signIn.property.test.ts#L732 ]
 
-## S2: Choose how Claude signs in @v1 [proposed]
+## S2: Choose how Claude signs in @v1 [published]
 
 **Updated by:** vydra
 
