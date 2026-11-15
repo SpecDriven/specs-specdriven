@@ -13,7 +13,8 @@ Imagined design:
 - Visualization of current sharing and usage -- (data saved at the team level aside from the dev and specs)
 
 Private Marketplace:
-- Because 
+- Because terms of use are negotiated differently for different providers
+- Within an org boundary (like the existing one)
 
  
 Setting up a shared-token session:
