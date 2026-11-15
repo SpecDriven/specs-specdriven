@@ -435,7 +435,8 @@ version (app/open-source-license.feature.md).
 - **And** the worker sets itself up as it starts: its account as git's
   author, and the remembered repos when it has no settings file (A person's
   recent data repos survive a redeploy)
-- **And** the gateway reads a worker's settings as that worker's user id
+- **And** the gateway reads a worker's settings as that worker's user id,
+  in a process that carries none of the gateway's own keys
 - **And** a folder that turns out to be a link, or another user id's, stops
   that worker from starting; folders from before this rule are brought in
   line on each worker's next start
@@ -445,6 +446,7 @@ version (app/open-source-license.feature.md).
 [test: the worker names its account as git's author, in a file of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L35 ]
 [test: a link where the git author goes is replaced, and what it points at is untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L43 ]
 [test: the worker writes the remembered repos into a settings file that is missing, and keeps one that is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L53 ]
+[test: a command the gateway runs for a worker carries none of the gateway's environment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L126 ]
 
 ## S22: Stopping a worker ends everything it started @v1 [proposed]
 
