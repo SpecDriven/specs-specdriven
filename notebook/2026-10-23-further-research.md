@@ -22,3 +22,5 @@ https://www.linkedin.com/company/effect-ts/
 https://therecsfiles.dev/
 
 https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs/SKILL.md
+
+https://agentsinthecloud.com/
