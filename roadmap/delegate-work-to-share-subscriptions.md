@@ -15,6 +15,10 @@ Imagined design:
 Setting up a shared-token session:
 - A **private** repository in the org, which is the datastore for the allowed token sharing
 - SpecDriven app must be running, with live and current credentials for the model source (Claude).
-- Plug-in for sharing must be installed and compatible with the
+- Plug-in for sharing must be installed and compatible with the coding agent plugin (or an alternative to ...)
+- Sharing must be enabled on the donor.
+
+Advice:
+- Run the donor account
 
 ![account-sharing-plugin.excalidraw](/api/images/account-sharing-plugin-excalidraw-70ac51a7.svg)
