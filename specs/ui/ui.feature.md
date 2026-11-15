@@ -543,47 +543,71 @@ promising a push that was not happening (git-operations.md).
 
 - Given: the data repo's remote stops answering in the middle of a pull,
   push, fetch or clone
-- When: the command has run past its time limit — 50 seconds for a pull,
-  push or fetch, 10 minutes for a clone
+- When: the command has reported no progress for 50 seconds
 - Then: the command is stopped
 - and the sync reports it the way it reports any failed pull or push,
   naming the command and its limit
 - and a sync started with the Sync button reports that, rather than losing
   its connection to the app first
-- and edits saved meanwhile are committed, and pushed once the remote
-  answers again
+- and the remote is waited for once: the pushes of that sync, and a sync
+  asked for while it waited, do not wait out the limit again
+- and edits saved meanwhile are committed at once, and pushed by the first
+  sync the remote answers
+- and a command that keeps reporting progress is not stopped for being
+  slow — a large file on a slow connection finishes — until it has run 30
+  minutes in all
+- and when it is the GitHub CLI that does not answer, git goes on with
+  github.com alone, and the CLI is asked again until it answers
 
 A remote that never answered used to hold the sync, and every save behind
 it, for as long as the connection stayed open (git-operations.md). The
-built-in engine runs inside the app and cannot be stopped in the middle of
-a command, so it has no time limit.
+limit is on silence, not on length: git is asked to report its progress, so
+a transfer that is slow is told from one that hangs. The built-in engine
+runs inside the app and cannot be stopped in the middle of a command, so it
+has no time limit.
 
-[test: a pull that hangs is stopped at its limit and a save behind it still reaches the remote : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/hungGit.test.ts#L54 ]
+[test: a pull that hangs is stopped, and an edit saved meanwhile is committed at once and pushed when the remote answers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/hungGit.test.ts#L80 ]
+[test: a remote that answers nothing is waited for once, by the sync that found it and by the one asked for meanwhile : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/hungGit.test.ts#L112 ]
+[test: a pull that keeps reporting progress is left to finish, however long it has run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/hungGit.test.ts#L149 ]
 [test: a command past its time limit is stopped and answers with exit code 124 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/commands.test.ts#L48 ]
 [test: a command that ignores SIGTERM is killed after the grace period : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/commands.test.ts#L61 ]
 [test: an interrupted run stops its process before the interruption completes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/commands.test.ts#L71 ]
 [test: a command that finishes within its limit answers as it would without one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/commands.test.ts#L84 ]
 [test: without a limit, input reaches stdin and a missing command answers with exit code 1 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/commands.test.ts#L89 ]
+[test: a command that keeps writing runs past its quiet limit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/commands.test.ts#L101 ]
+[test: a command that has gone quiet for its limit is stopped and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/commands.test.ts#L111 ]
+[test: a limit is worded in the unit a person would use : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/commands.test.ts#L128 ]
+[test: the commands that move data are limited by their silence, the ones that only ask by their length : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/gitLimits.test.ts#L44 ]
+[test: the progress a command reported is not part of what it says when it fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/gitLimits.test.ts#L53 ]
+[test: a gh that was too slow to answer is asked again until it answers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/gitLimits.test.ts#L81 ]
 
 ## S16: Git operations on one folder run one at a time @v1 [proposed]
 
-- When: two saves, or a save and a sync, commit or talk to the remote on
-  the same data folder at the same moment
-- Then: they run one after the other
+- When: two saves, or a save and a sync, work on the same data folder at
+  the same moment
+- Then: what changes the folder's files — a commit, a merge, a move —
+  runs one after the other
+- and what talks to the remote — a fetch, a push — runs one after the
+  other
+- and a commit does not wait for the remote: an edit is committed while a
+  pull is still waiting on the network
 - and every one of them is committed and pushed
 - and operations on different folders do not wait for each other
 
 Saves that committed at the same moment used to race each other for the
-index, and one of them failed.
+index, and one of them failed. On the built-in engine, which runs inside
+the app, everything on one folder takes turns.
 
 [test: saves committing at once on one folder all reach the remote : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/repoLock.test.ts#L28 ]
 [test: a folder's lock does not hold up another folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/repoLock.test.ts#L44 ]
+[test: a folder's local work does not wait for its remote work, and remote work takes turns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/repoLock.test.ts#L91 ]
 
 ## S17: Sync ticks never overlap @v1 [proposed]
 
 - When: a sync is asked for while one is running on the same folder — by
   the reload timer, the Sync button, or the app starting
 - Then: it waits for the running one to finish, then runs
+- and syncs asked for while one is already waiting are served by that one
 - and a sync that takes longer than the reload interval is not started
   again beside itself
 - and a reload frequency changed during a sync takes effect after it,
@@ -591,7 +615,8 @@ index, and one of them failed.
 - and a save waits only for the git command running, not for the whole
   sync
 
-[test: ticks asked for at once on one folder take turns and both go through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/hungGit.test.ts#L74 ]
+[test: syncs asked for while one waits are served by one tick : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/hungGit.test.ts#L132 ]
+[test: ticks asked for at once on one folder take turns and both go through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/hungGit.test.ts#L166 ]
 [test: ticks on one folder take turns; a save is not held up by a tick : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sync/repoLock.test.ts#L68 ]
 [test: a task slower than the interval is never entered twice : https://github.com/SpecDriven/specdriven-app/blob/main/tests/reload.test.ts#L108 ]
 [test: a new frequency set while the task runs does not start a second one beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/reload.test.ts#L119 ]
