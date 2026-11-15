@@ -46,6 +46,8 @@ Choose  "Sign in with": "Claude account (email login)"
 
 or "API Proxy"
 
+![image](/api/images/image-3ee5a62b.png)
+
 Click 'Check Connection' to validate connectivity to the LLM API service.
 
 The choice saves itself the moment it changes, to
