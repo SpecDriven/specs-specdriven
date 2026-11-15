@@ -13,6 +13,8 @@ Imagined design:
 - Visualization of current sharing and usage -- (data saved at the team level aside from the dev and specs)
 
 Setting up a shared-token session:
-- A repo
+- A **private** repository in the org, which is the datastore for the allowed token sharing
+- SpecDriven app must be running, with live and current credentials for the model source (Claude).
+- Plug-in for sharing must be installed and compatible with the
 
 ![account-sharing-plugin.excalidraw](/api/images/account-sharing-plugin-excalidraw-70ac51a7.svg)
