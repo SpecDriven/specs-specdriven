@@ -96,8 +96,8 @@ version (app/open-source-license.feature.md).
 - and outside the hosted image, where the gateway cannot change user ids,
   the workers share its user and the gateway logs a warning
 
-[test: each worker runs as its own uid, owning its folders alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L170 ]
-[test: the worker command drops to the user's uid with no way back, under its caps : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L366 ]
+[test: each worker runs as its own uid, owning its folders alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L171 ]
+[test: the worker command drops to the user's uid with no way back, under its caps : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L371 ]
 [test: a data repo's code-repo path is ignored, so it cannot point into another user's folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L149 ]
 
 ## S5: Accounts survive a redeploy @v1 [proposed]
@@ -130,7 +130,7 @@ version (app/open-source-license.feature.md).
 [test: a push that loses a race to another writer is redone on top of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L209 ]
 [test: the token and repo come from the environment; no token means no datastore : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L67 ]
 [test: the token reaches git through the credential helper's environment, not argv : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayDatastore.test.ts#L78 ]
-[test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L63 ]
+[test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L64 ]
 
 ## S6: Admins give and take the admin role @v1 [proposed]
 
@@ -200,10 +200,10 @@ version (app/open-source-license.feature.md).
 [test: signed in, the app's pages come from the gateway and its API from the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L221 ]
 [test: two users reach two different workers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L230 ]
 [test: request bodies pass through and streamed answers stream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L240 ]
-[test: two users get two workers with separate settings, folders and environments : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L100 ]
-[test: restart stops the worker; the next request starts a fresh one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L126 ]
-[test: idle workers are stopped by the sweep : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L135 ]
-[test: user ids that are not UUIDs never become paths : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L96 ]
+[test: two users get two workers with separate settings, folders and environments : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L101 ]
+[test: restart stops the worker; the next request starts a fresh one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L127 ]
+[test: idle workers are stopped by the sweep : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L136 ]
+[test: user ids that are not UUIDs never become paths : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L97 ]
 [test: page paths get the shell : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L26 ]
 [test: bundled assets are served immutable, and nothing outside the build is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L34 ]
 [test: the API, plugin bundles and writes are the worker's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L42 ]
@@ -400,7 +400,7 @@ version (app/open-source-license.feature.md).
 [test: a different master key cannot open the secret : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L40 ]
 [test: the store keeps ciphertext only and lists hints, never values : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L52 ]
 [test: agent key names are short lowercase slugs, and github is reserved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L98 ]
-[test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L63 ]
+[test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L64 ]
 [test: the env token backend reads the gateway's record and refuses to change it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L117 ]
 [test: agent keys arrive as SPECDRIVEN_AGENT_KEY_<NAME> variables : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L127 ]
 
@@ -441,8 +441,8 @@ version (app/open-source-license.feature.md).
   that worker from starting; folders from before this rule are brought in
   line on each worker's next start
 
-[test: links a worker leaves in its folders lead the gateway nowhere : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L234 ]
-[test: a folder that is a link, or another uid's, stops the worker from starting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L269 ]
+[test: links a worker leaves in its folders lead the gateway nowhere : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L235 ]
+[test: a folder that is a link, or another uid's, stops the worker from starting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L270 ]
 [test: the worker names its account as git's author, in a file of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L35 ]
 [test: a link where the git author goes is replaced, and what it points at is untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L43 ]
 [test: the worker writes the remembered repos into a settings file that is missing, and keeps one that is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L53 ]
@@ -458,8 +458,8 @@ version (app/open-source-license.feature.md).
   person's process is touched
 - **And** this holds when the worker had already exited by itself
 
-[test: stopping a worker ends every process of its uid, and no one else's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L297 ]
-[test: only a worker's uid can have its processes ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L340 ]
+[test: stopping a worker ends every process of its uid, and no one else's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L298 ]
+[test: only a worker's uid can have its processes ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L341 ]
 
 ## S23: A repository's contents cannot make a hosted worker run code @v1 [proposed]
 
@@ -499,7 +499,7 @@ version (app/open-source-license.feature.md).
 - **And** the service's variables set these numbers; the two budgets are off
   unless set
 
-[test: a worker starts under the kernel's caps on processes and open files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L346 ]
+[test: a worker starts under the kernel's caps on processes and open files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L351 ]
 [test: limits come from the environment; what is unset or not a number keeps its default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L40 ]
 [test: a folder's size and the volume's free space are measured; what is not there is not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L55 ]
 [test: no worker starts while the volume is nearly full : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L66 ]
