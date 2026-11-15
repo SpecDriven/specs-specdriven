@@ -621,3 +621,36 @@ the app, everything on one folder takes turns.
 [test: a task slower than the interval is never entered twice : https://github.com/SpecDriven/specdriven-app/blob/main/tests/reload.test.ts#L108 ]
 [test: a new frequency set while the task runs does not start a second one beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/reload.test.ts#L119 ]
 [test: a task that throws does not end the schedule : https://github.com/SpecDriven/specdriven-app/blob/main/tests/reload.test.ts#L134 ]
+
+## S18: Quitting the app ends its work in order @v1 [proposed]
+
+- When: the app is quit — the desktop app is closed, or the web server is
+  stopped with Ctrl-C or a signal from outside
+- Then: no new sync begins, and the web server takes no new request
+- and a sync or a save in the middle of its git work gets two seconds to
+  finish it
+- and a git command still running after that is stopped, and nothing is
+  started in its place
+- and the coding agent sessions are ended and their records saved before
+  the app is gone
+- and the app is gone within about four seconds, whatever was running
+- and the web server exits with the signal's usual code: 130 after Ctrl-C,
+  143 after a stop
+
+The web server used to end on the spot, in the middle of whatever it was
+doing, and a git command waiting on a remote that never answered was left
+running after it. The desktop app ended its agent sessions without waiting
+for their records to be saved. What a shutdown cuts short is picked up by
+the next start: commits that were not pushed go up with its first sync.
+
+[test: SIGTERM ends the web server in order, which stops listening and exits with 143 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L325 ]
+[test: a git command that hangs does not hold the shutdown up and does not outlive the server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L340 ]
+[test: closing the locks waits for the git work that runs, then turns new work away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L74 ]
+[test: a sync that runs while the locks close still gets its git work done; the next one is turned away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L102 ]
+[test: git work that outlasts the wait is not waited for, and what it would do next does not begin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L136 ]
+[test: git work asked of the app after its locks closed is refused as shutting down : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L170 ]
+[test: disposing the runtime interrupts what still waits on it, and nothing runs on it afterwards : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L177 ]
+[test: a command still running at shutdown is stopped, and its run answers as a failed command : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L196 ]
+[test: stages run one after another, the steps of a stage side by side : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L209 ]
+[test: a step that fails or does not answer within its limit is reported, and the shutdown goes on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L240 ]
+[test: src/server/shutdown.ts loads first without a cycle through what it stops : https://github.com/SpecDriven/specdriven-app/blob/main/tests/importCycles.test.ts#L51 ]
