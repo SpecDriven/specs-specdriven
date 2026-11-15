@@ -60,14 +60,14 @@ a scenario still carries one.
 - and a feature imported from Jira (external-links/jira-wiki-import.feature.md)
   starts with the issues it was read from as its tickets, at most five
 
-[test: a feature carries several tickets, one line each, in order, and writes them back together : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L565 ]
-[test: a repeated ticket is dropped on parse, the first kept; a scenario still takes one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L578 ]
-[test: the list is set whole — reconcile replaces it, an empty target clears it, a no-op leaves the heads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L592 ]
-[test: an older document's single link reads as a list of one, and the first change retires it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L608 ]
-[test: a three-way merge takes the side that changed the list, ours when both did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L635 ]
-[test: with the setting off, the editor's view folds every ticket back; drift absorbs a hand-added one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L646 ]
-[test: the chip reads the one ticket, or counts them, or offers to link one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L664 ]
-[test: a repeat, or a sixth, cannot join the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L671 ]
+[test: a feature carries several tickets, one line each, in order, and writes them back together : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L584 ]
+[test: a repeated ticket is dropped on parse, the first kept; a scenario still takes one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L597 ]
+[test: the list is set whole — reconcile replaces it, an empty target clears it, a no-op leaves the heads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L611 ]
+[test: an older document's single link reads as a list of one, and the first change retires it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L627 ]
+[test: a three-way merge takes the side that changed the list, ours when both did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L654 ]
+[test: with the setting off, the editor's view folds every ticket back; drift absorbs a hand-added one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L665 ]
+[test: the chip reads the one ticket, or counts them, or offers to link one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L683 ]
+[test: a repeat, or a sixth, cannot join the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L690 ]
 [test: sets the list — the document holds it, the file one line each, the view has them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureTickets.test.ts#L73 ]
 [test: refuses a sixth, a repeat, a malformed ticket and a qTest or Confluence link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureTickets.test.ts#L106 ]
 [test: a document from before the list is migrated by the first change : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureTickets.test.ts#L118 ]
@@ -80,3 +80,15 @@ a scenario still carries one.
 [test: a malformed body, a non-http url, a sixth and a repeat are 400s with a reason : https://github.com/SpecDriven/specdriven-app/blob/main/tests/featureTickets.test.ts#L152 ]
 [test: with none, only the add row; with the tool set in Settings, the url alone is asked for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ticketLinkField.test.tsx#L25 ]
 [test: the server's refusal shows under the fields, and saving disables the buttons : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ticketLinkField.test.tsx#L45 ]
+
+## S5: A pasted url suggests the tool only when it is on the tool's own site @v1 [proposed]
+
+- **Given** the add row of a ticket link, with the tool and ticket id empty
+- **When** the user pastes a url on Asana, Trello, Shortcut, Monday or
+  Linear — the tool's own domain or a subdomain of it, such as
+  `app.asana.com` or `acme.monday.com`
+- **Then** the tool's name and the ticket id the url gives away are filled in
+- **And** a url on a site whose name only ends in, or contains, the tool's
+  domain — `notasana.com`, `monday.com.other.example` — suggests no tool
+
+[test: a tool is suggested for its own domain and subdomains only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/externalLinks.test.ts#L441 ]

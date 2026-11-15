@@ -403,3 +403,20 @@ version (app/open-source-license.feature.md).
 [test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L54 ]
 [test: the env token backend reads the gateway's record and refuses to change it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L117 ]
 [test: agent keys arrive as SPECDRIVEN_AGENT_KEY_<NAME> variables : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L127 ]
+
+## S20: Signing in opens the page that was asked for, and never another site @v1 [proposed]
+
+- **Given** someone signed out who opens a page of the app, or follows a
+  sign-in link that names where to go next
+- **When** they sign in
+- **Then** the browser opens the page they asked for, with its query and
+  fragment; with nothing named it opens the app
+- **And** a sign-in link naming another site — outright, or dressed up as a
+  path with a second slash, a backslash, or a tab or newline the browser
+  would drop — opens the app instead, so a link someone was sent can never
+  lead from a real sign-in to somebody else's page
+
+[test: a same-site path is kept, with its query and fragment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayNext.test.ts#L13 ]
+[test: no value, or one that is not a path, goes to the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayNext.test.ts#L19 ]
+[test: a value the browser would load from another site goes to the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayNext.test.ts#L27 ]
+[test: what is returned is the path the browser resolves, not the raw value : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayNext.test.ts#L39 ]
