@@ -6,7 +6,7 @@
 
 **Kind:** Observation
 
-Fable ran on Claude Cl
+Fable ran on Claude Cloud:
 
 Write-once chunks of change —
 git carries them, peers converge;
