@@ -12,13 +12,17 @@ Imagined design:
 - Visualization across participating team members of subscription token limits and refill rates
 - Visualization of current sharing and usage -- (data saved at the team level aside from the dev and specs)
 
+Private Marketplace:
+- Because 
+
+ 
 Setting up a shared-token session:
 - A **private** repository in the org, which is the datastore for the allowed token sharing
 - SpecDriven app must be running, with live and current credentials for the model source (Claude).
 - Plug-in for sharing must be installed and compatible with the coding agent plugin (or an alternative to ...)
 - Sharing must be enabled on the donor.
 - Should there be a designated account sharing server, with every team participant logged in?
-- Is there something lik
+- Is there something like a 1:1 between the private repository and the SpecDriven 
 
 Advice:
 - Run the donor account on a (cloud?) server that doesn't go to sleep
