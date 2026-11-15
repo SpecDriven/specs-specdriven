@@ -7,4 +7,7 @@ Scenario:
 - A team is aligned in common practices, so that sharing subscriptions is appropriate to the common goals
 - A team member may request sharing subscriptions from others who have plenty of tokens
 
-Imagined des
+Imagined design:
+- Settings to allow specific other users to share authorized sessions
+- Visualization across participating team members of subscription token limits and refill rates
+- Visualization of current sharing and usage -- (data save at 
