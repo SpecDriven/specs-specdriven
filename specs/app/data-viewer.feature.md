@@ -29,6 +29,7 @@ repo.
 [test: readDoc returns what is on disk with its chunk files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L222 ]
 [test: sourceFileOf maps a store directory back to its data repo file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeStore.test.ts#L344 ]
 [test: keep answering while the data is newer than the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataViewer.test.ts#L322 ]
+[test: an unreadable chunk is skipped and named, and the rest still loads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/docStore.test.ts#L72 ]
 
 ## S2: A document's history lists its changes newest first @v1 [proposed]
 

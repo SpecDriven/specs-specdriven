@@ -120,6 +120,9 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: a corrupt or empty file reads as no secret : https://github.com/SpecDriven/specdriven-app/blob/main/tests/secrets.test.ts#L58 ]
 [test: the Claude token keeps its old file, through the store the Claude plugin owns : https://github.com/SpecDriven/specdriven-app/blob/main/tests/secrets.test.ts#L70 ]
 [test: the backend factory swaps every store, the ones handed out before included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/secrets.test.ts#L80 ]
+[test: a store keeps its record in secrets/<name>.json, and a name gives the same store every time : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/credentials.test.ts#L96 ]
+[test: a legacy store stays in its old file beside the settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/credentials.test.ts#L111 ]
+[test: a new factory reaches stores already handed out, and null restores the files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/credentials.test.ts#L130 ]
 
 ## S7: Each agent offers the models the data repo lists @v1 [proposed]
 

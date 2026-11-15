@@ -309,6 +309,7 @@ reports both via `/api/state`.
 [test: humanizeKey turns camelCase into words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileView.test.ts#L132 ]
 [test: offers Copy contents beside Close : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileDialog.test.tsx#L40 ]
 [test: copies the view as plain text, sections as headings and nested rows indented : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsFileView.test.ts#L139 ]
+[test: the file view shows the home file as written and says when it is not a settings object : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/settings.test.ts#L113 ]
 
 ## S14: log out from the user menu @v1 [proposed]
 

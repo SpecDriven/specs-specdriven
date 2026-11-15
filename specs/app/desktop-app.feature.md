@@ -257,6 +257,7 @@ to the user-only token file next to the home settings file.
 [test: the home settings file is used when the project has none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L62 ]
 [test: settings are saved back to the home settings file when only it exists : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L77 ]
 [test: the desktop app reads and writes only the home settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L237 ]
+[test: where the home file is the only one, the project file is not written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/settings.test.ts#L74 ]
 
 ## S6: GitHub data repos are cloned under the app-data directory @v1 [proposed]
 
@@ -317,6 +318,7 @@ AND  open links in IntelliJ is Off
   file next to the home settings file
 
 [test: token round-trips through the file backend across backend resets : https://github.com/SpecDriven/specdriven-app/blob/main/tests/auth.test.ts#L249 ]
+[test: a save lands in an owner-only file under the app home and loads back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/credentials.test.ts#L34 ]
 
 ## S10: the header's icons work inside the drag region @v1 [proposed]
 

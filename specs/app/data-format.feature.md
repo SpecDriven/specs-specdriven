@@ -70,6 +70,7 @@ Formats so far:
 [test: a newer Automerge document is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L140 ]
 [test: a document in this app's schema loads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L158 ]
 [test: the data format is pinned to the schema versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L49 ]
+[test: a too-new document rejects with the DataTooNewError itself : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/docStore.test.ts#L140 ]
 
 ## S3: Data saved by a newer app blocks App from opening @v1 [published]
 

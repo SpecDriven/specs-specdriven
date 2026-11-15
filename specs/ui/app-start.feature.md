@@ -208,6 +208,9 @@ was beside it; a file a newer app wrote is read as it is.
 - When: the app starts
 - Then: the user is asked for the data repo
 
+[test: no settings file anywhere reads as empty state and names no file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/settings.test.ts#L31 ]
+[test: a write with no file anywhere creates the project file, and a read finds it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/settings.test.ts#L36 ]
+
 ## S12: only the home settings file exists @v1 [proposed]
 
 **Created by:** vydra
@@ -219,6 +222,8 @@ was beside it; a file a newer app wrote is read as it is.
 - When: the app starts
 - Then: the user is not asked for a data repo
 - and settings saved from the Settings page go back to the home settings file
+
+[test: the home file is the fallback, and a write goes back to it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/settings.test.ts#L49 ]
 
 ## S13: picking the data directory with the native folder chooser @v1 [proposed]
 
@@ -286,6 +291,9 @@ was beside it; a file a newer app wrote is read as it is.
 - Then: the project settings file is used
 - and saving settings leaves the home settings file untouched
 
+[test: the project file wins over the home one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/settings.test.ts#L66 ]
+[test: a settings file that does not parse is empty state, not a reason to read the home file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/settings.test.ts#L87 ]
+
 ## S17: the server cannot be reached at start @v1 [proposed]
 
 **Created by:** vydra
@@ -328,6 +336,7 @@ was beside it; a file a newer app wrote is read as it is.
 [test: the app's own checkout creates the home settings file when there is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L217 ]
 [test: the app's own checkout reads its old project settings until the first save moves them home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L225 ]
 [test: another project's package.json does not count as the app's checkout : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L255 ]
+[test: a root whose package.json names this app is an app checkout, so the home file is the only one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/settings.test.ts#L105 ]
 
 ## S19: a new app version upgrades the settings file @v1 [proposed]
 
