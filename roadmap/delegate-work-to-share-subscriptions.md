@@ -11,3 +11,8 @@ Imagined design:
 - Settings to allow specific other users to share authorized sessions
 - Visualization across participating team members of subscription token limits and refill rates
 - Visualization of current sharing and usage -- (data saved at the team level aside from the dev and specs)
+
+Setting up a shared-token session:
+- A repo
+
+![account-sharing-plugin.excalidraw](/api/images/account-sharing-plugin-excalidraw-70ac51a7.svg)
