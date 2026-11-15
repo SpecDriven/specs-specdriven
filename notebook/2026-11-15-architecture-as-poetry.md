@@ -6,6 +6,8 @@
 
 **Kind:** Observation
 
+Fable ran on Claude Cl
+
 Write-once chunks of change —
 git carries them, peers converge;
 markdown mends the drift.
