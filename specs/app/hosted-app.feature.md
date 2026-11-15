@@ -477,8 +477,8 @@ version (app/open-source-license.feature.md).
 
 [test: the %s engine of a hosted worker checks a symlink out as a plain file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedGit.test.ts#L61 ]
 [test: outside the hosted app the %s engine still checks a symlink out as one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedGit.test.ts#L82 ]
-[test: a hosted worker's git runs no hook a write into .git left there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedGit.test.ts#L93 ]
-[test: a hosted worker's git fetches over http(s) only, never from a local path or a command posing as a url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedGit.test.ts#L115 ]
+[test: a hosted worker's git runs no hook a write into .git left there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedGit.test.ts#L94 ]
+[test: a hosted worker's git fetches over http(s) only, never from a local path or a command posing as a url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedGit.test.ts#L116 ]
 [test: symlinks in the cloned repositories become plain files holding their target; .git is left alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L73 ]
 
 ## S24: One person cannot use up what the others need @v1 [proposed]
