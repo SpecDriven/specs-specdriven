@@ -33,6 +33,7 @@ again into the feature it made.
 - and the site is listed with the user the key signs in as, never the key
   itself, with a Remove button
 - and saving a key for a site that already has one replaces it
+- and keys for two sites saved at the same moment are both kept
 - and the key is kept on this device only: an owner-only file, or the OS
   key store in the desktop app — never settings.yaml or the data repo
 
@@ -44,6 +45,9 @@ again into the feature it made.
 [test: offers the url and key fields, the key as a password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaDialogs.test.tsx#L67 ]
 [test: is the origin of the site url, or of any record url of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaUrl.test.ts#L82 ]
 [test: two urls are the same site by origin, whatever the case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ahaUrl.test.ts#L88 ]
+[test: each kind keeps its own file, and a kind gives the same store every time : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/siteTokens.test.ts#L114 ]
+[test: two tokens saved at the same moment are both kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/siteTokens.test.ts#L170 ]
+[test: one kind's tokens are not another's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/siteTokens.test.ts#L64 ]
 
 ## S2: Import a feature by its url @v1 [proposed]
 

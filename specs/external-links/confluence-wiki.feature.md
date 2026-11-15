@@ -29,6 +29,7 @@ in the feature's Automerge document and written into the `.feature.md` while
 - and the wiki is listed with the user the token signs in as, never the token
   itself, with a Remove button
 - and saving a token for a wiki that already has one replaces it
+- and tokens for two wikis saved at the same moment are both kept
 - and the token is kept on this device only: an owner-only file, or the OS
   key store in the desktop app — never settings.yaml or the data repo
 
@@ -40,6 +41,8 @@ in the feature's Automerge document and written into the `.feature.md` while
 [test: offers the url and token fields, the token as a password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceDialogs.test.tsx#L225 ]
 [test: a bare wiki url, or any page of it, normalized : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L66 ]
 [test: two urls are the same wiki by origin and context path, whatever the case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/confluenceUrl.test.ts#L73 ]
+[test: each kind keeps its own file, and a kind gives the same store every time : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/siteTokens.test.ts#L114 ]
+[test: two tokens saved at the same moment are both kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/siteTokens.test.ts#L170 ]
 
 ## S2: Confluence is reserved for the page link @v1 [proposed]
 

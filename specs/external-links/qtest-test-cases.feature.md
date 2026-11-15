@@ -137,6 +137,7 @@ qTest never sees it.
 - and the site is listed with how many projects the token reaches, never the
   token itself, with a Remove button
 - and saving a token for a site that already has one replaces it
+- and tokens for two sites saved at the same moment are both kept
 - and the token is kept on this device only: an owner-only file, or the OS
   key store in the desktop app — never settings.yaml or the data repo
 - and the hosted app, which keeps no device secrets, offers none of this
@@ -151,6 +152,8 @@ qTest never sees it.
 [test: offers the url and token fields, the token as a password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestDialogs.test.tsx#L82 ]
 [test: is the site itself, or any portal url of it, normalized : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestUrl.test.ts#L63 ]
 [test: two urls are the same site by origin and context path, whatever the case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/qtestUrl.test.ts#L70 ]
+[test: each kind keeps its own file, and a kind gives the same store every time : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/siteTokens.test.ts#L114 ]
+[test: two tokens saved at the same moment are both kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/siteTokens.test.ts#L170 ]
 
 ## S9: Create qTest test cases from a feature @v1 [proposed]
 

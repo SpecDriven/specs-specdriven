@@ -104,8 +104,8 @@ should, and the installer one-liner from `main` is the way forward once.
 [test: GET says where things stand; check, install and restart drive them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appUpdate.test.ts#L347 ]
 [test: while installing, the installer's output is on the page and nothing is offered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L101 ]
 [test: the installer's last lines are what the page shows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/updatesPage.test.tsx#L69 ]
-[test: SPECDRIVEN_HANDOVER=0 builds the macOS app and opens nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L872 ]
-[test: SPECDRIVEN_HANDOVER=0 makes the AppImage runnable but does not start it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L898 ]
+[test: SPECDRIVEN_HANDOVER=0 builds the macOS app and opens nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L868 ]
+[test: SPECDRIVEN_HANDOVER=0 makes the AppImage runnable but does not start it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/install.test.ts#L894 ]
 [test: SPECDRIVEN_HANDOVER=0 builds the app and adds the shortcut, but does not start it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/installPs1.test.ts#L513 ]
 
 ## S3: On macOS the new app takes the running one's place @v1 [proposed]

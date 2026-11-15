@@ -38,6 +38,7 @@ again into the feature they made.
 - and the site is listed with the user the token signs in as, never the
   token itself, with a Remove button
 - and saving a token for a site that already has one replaces it
+- and tokens for two sites saved at the same moment are both kept
 - and the token is kept on this device only: an owner-only file, or the OS
   key store in the desktop app — never settings.yaml or the data repo
 
@@ -49,6 +50,13 @@ again into the feature they made.
 [test: offers the url and token fields, the token as a password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraWikiDialog.test.tsx#L272 ]
 [test: a bare site url, or any issue url of it, normalized : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraUrl.test.ts#L47 ]
 [test: two urls are the same site by origin and context path, whatever the case : https://github.com/SpecDriven/specdriven-app/blob/main/tests/jiraUrl.test.ts#L54 ]
+[test: a token lands in the kind's owner-only file under the app home and is found by its site : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/siteTokens.test.ts#L68 ]
+[test: a second token for a site replaces the first and leaves the other sites alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/siteTokens.test.ts#L84 ]
+[test: forgetting a site keeps the rest, and forgetting the last one removes the file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/siteTokens.test.ts#L98 ]
+[test: two tokens saved at the same moment are both kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/siteTokens.test.ts#L170 ]
+[test: a read that started before a save does not bring the old list back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/siteTokens.test.ts#L185 ]
+[test: the list of sites names who each token signs in as and never carries a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/siteTokens.test.ts#L40 ]
+[test: tokens for several sites saved at once are all kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/siteTokens.test.ts#L56 ]
 
 ## S2: The sources: up to five issues and five pages @v1 [proposed]
 
