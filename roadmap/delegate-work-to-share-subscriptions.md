@@ -17,6 +17,7 @@ Setting up a shared-token session:
 - SpecDriven app must be running, with live and current credentials for the model source (Claude).
 - Plug-in for sharing must be installed and compatible with the coding agent plugin (or an alternative to ...)
 - Sharing must be enabled on the donor.
+- Should there be a designated account sharing server, with every participant logged
 
 Advice:
 - Run the donor account on a (cloud?) server that doesn't go to sleep
