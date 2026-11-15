@@ -14,4 +14,4 @@ Copy-pasted image (consider drag and drop insertion as well)
 
 ![Screenshot_20261115_123642](/api/images/screenshot-20261115-123642-markup-145a3f8f.png)
 
-![Screenshot_20261115_123608](/api/images/screenshot-20261115-123608-1fa95985.png)
+![Screenshot_20261115_123608](/api/images/screenshot-20261115-123608-markup-80d50a5e.png)
