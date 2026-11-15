@@ -10,6 +10,8 @@ DV would like to consider better behavior (more useful or obvious behavior) when
 
 (or what happens if there's no remote, but just a local Git repository)
 
-Copy-pasted image (cons
+Copy-pasted image (consider drag and drop insertion as well)
 
 ![Screenshot_20261115_123642](/api/images/screenshot-20261115-123642-acc4d61a.png)
+
+![Screenshot_20261115_123608](/api/images/screenshot-20261115-123608-1fa95985.png)
