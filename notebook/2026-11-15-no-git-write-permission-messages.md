@@ -6,7 +6,7 @@
 
 **Kind:** Observation
 
-DV would like to consider better behavior (more useful or obvious behavior) when the user of SpecDriven opens a spec repository without write permissions to the remote.
+DV would like to consider better behavior (more useful or obvious behavior, especially from the point of view of a **product manager**) when the user of SpecDriven opens a spec repository without write permissions to the remote.
 
 (or what happens if there's no remote, but just a local Git repository)
 
