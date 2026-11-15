@@ -19,6 +19,6 @@ Setting up a shared-token session:
 - Sharing must be enabled on the donor.
 
 Advice:
-- Run the donor account
+- Run the donor account on a (cloud?) server that doesn't go to sleep
 
 ![account-sharing-plugin.excalidraw](/api/images/account-sharing-plugin-excalidraw-70ac51a7.svg)
