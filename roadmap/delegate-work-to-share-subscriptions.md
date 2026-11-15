@@ -4,4 +4,7 @@ In order to share work across individually measured accounts, a team may share a
 
 Scenario:
 - A team has individually measured subscriptions for model traffic (this is a misalignment -- by-developer)
-- A team is aligned in common practices, so that sharing subscriptions is appropriate to the commo
+- A team is aligned in common practices, so that sharing subscriptions is appropriate to the common goals
+- A team member may request sharing subscriptions from others who have plenty of tokens
+
+Imagined des
