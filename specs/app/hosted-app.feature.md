@@ -90,14 +90,14 @@ version (app/open-source-license.feature.md).
   accounts database or to the gateway's process
 - Then: the operating system refuses it: each worker runs as a user id of
   its own, without supplementary groups and with no way to gain
-  privileges, and its folder belongs to that user id alone
+  privileges, and its folders belong to that user id alone
 - and a data repo's `code-repo` path is ignored in a hosted worker, so it
   cannot point into another person's folder
 - and outside the hosted image, where the gateway cannot change user ids,
   the workers share its user and the gateway logs a warning
 
-[test: each worker runs as its own uid, owning its folder alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L129 ]
-[test: the worker command drops to the user's uid with no way back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L170 ]
+[test: each worker runs as its own uid, owning its folders alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L170 ]
+[test: the worker command drops to the user's uid with no way back, under its caps : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L366 ]
 [test: a data repo's code-repo path is ignored, so it cannot point into another user's folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L149 ]
 
 ## S5: Accounts survive a redeploy @v1 [proposed]
@@ -420,3 +420,98 @@ version (app/open-source-license.feature.md).
 [test: no value, or one that is not a path, goes to the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayNext.test.ts#L19 ]
 [test: a value the browser would load from another site goes to the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayNext.test.ts#L27 ]
 [test: what is returned is the path the browser resolves, not the raw value : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayNext.test.ts#L39 ]
+
+## S21: The gateway never writes inside a person's folder @v1 [proposed]
+
+- **Given** a worker's folders, whose contents the person's data repo can
+  shape, links included
+- **When** the gateway prepares the folders, starts the worker, notes the
+  worker's repos or stops it
+- **Then** nothing left in those folders changes or shows a file outside
+  them: a link put where the gateway would write or read leads nowhere
+- **And** the person's top folder is the gateway's: the worker can list it,
+  and cannot add, rename or replace the five folders in it — home, root,
+  repos, run and tmp — which are the worker's alone
+- **And** the worker sets itself up as it starts: its account as git's
+  author, and the remembered repos when it has no settings file (A person's
+  recent data repos survive a redeploy)
+- **And** the gateway reads a worker's settings as that worker's user id
+- **And** a folder that turns out to be a link, or another user id's, stops
+  that worker from starting; folders from before this rule are brought in
+  line on each worker's next start
+
+[test: links a worker leaves in its folders lead the gateway nowhere : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L234 ]
+[test: a folder that is a link, or another uid's, stops the worker from starting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L269 ]
+[test: the worker names its account as git's author, in a file of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L35 ]
+[test: a link where the git author goes is replaced, and what it points at is untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L43 ]
+[test: the worker writes the remembered repos into a settings file that is missing, and keeps one that is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L53 ]
+
+## S22: Stopping a worker ends everything it started @v1 [proposed]
+
+- **Given** a worker that started other processes and let go of them
+- **When** the worker is stopped — idle, restarted for a changed secret or
+  a password reset, or the service shutting down — or is about to start
+  again
+- **Then** every process running as its user id ends with it, and no other
+  person's process is touched
+- **And** this holds when the worker had already exited by itself
+
+[test: stopping a worker ends every process of its uid, and no one else's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L297 ]
+[test: only a worker's uid can have its processes ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L340 ]
+
+## S23: A repository's contents cannot make a hosted worker run code @v1 [proposed]
+
+- **Given** a data repo that holds a symlink, a hook in its `.git` folder,
+  or a remote that is not an http(s) url
+- **When** a hosted worker clones it, pulls, commits or pushes
+- **Then** a symlink is checked out as a plain file holding the link's
+  target, on the system git and on the bundled engine alike; to git it is
+  still that link, unchanged
+- **And** no hook runs
+- **And** a remote that is a local path, or that names a command to run, is
+  refused: a hosted worker fetches over http and https only
+- **And** a clone from before this rule has its symlinks replaced the same
+  way when the worker starts, with its `.git` folder left alone
+- **And** on a person's own machine nothing changes: a symlink is checked
+  out as one, and hooks run
+
+[test: the %s engine of a hosted worker checks a symlink out as a plain file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedGit.test.ts#L61 ]
+[test: outside the hosted app the %s engine still checks a symlink out as one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedGit.test.ts#L82 ]
+[test: a hosted worker's git runs no hook a write into .git left there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedGit.test.ts#L93 ]
+[test: a hosted worker's git fetches over http(s) only, never from a local path or a command posing as a url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedGit.test.ts#L115 ]
+[test: symlinks in the cloned repositories become plain files holding their target; .git is left alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L73 ]
+
+## S24: One person cannot use up what the others need @v1 [proposed]
+
+- **Given** several people's workers sharing one container and one volume
+- **When** a worker starts, and every minute while it runs
+- **Then** it starts under a cap on its processes, 512, and on the files
+  each may hold open, 4096, with a temp folder of its own
+- **And** no worker starts while the volume has less than 256 MB free; the
+  person is told the service is out of disk space
+- **And** where a disk budget is set, a worker whose folder holds more is
+  stopped, its person is told how much the folder holds, and it starts
+  again once the folder is under the budget
+- **And** where a memory budget is set, a worker holding more is stopped,
+  and starts again on its person's next request
+- **And** the service's variables set these numbers; the two budgets are off
+  unless set
+
+[test: a worker starts under the kernel's caps on processes and open files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L346 ]
+[test: limits come from the environment; what is unset or not a number keeps its default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L40 ]
+[test: a folder's size and the volume's free space are measured; what is not there is not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L55 ]
+[test: no worker starts while the volume is nearly full : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L66 ]
+[test: a worker whose folder is over its budget is stopped, and starts again once it is under : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L80 ]
+[test: a worker holding more memory than its budget is stopped, and starts again when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L105 ]
+[test: where there is no /proc entry, a process's memory is not known : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L119 ]
+
+## S25: A worker's answer cannot act on the gateway's pages @v1 [proposed]
+
+- **Given** a signed-in person whose worker answers a request
+- **When** the gateway passes the answer on to the browser
+- **Then** no cookie the worker set goes with it, so the session stays the
+  one the gateway gave
+- **And** an answer on the API, opened as a page, runs no script and loads
+  nothing
+
+[test: a worker's answer sets no cookie, and on the API cannot run as a page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L251 ]
