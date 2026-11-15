@@ -42,6 +42,8 @@ proxy for the account sign-in.
 
 Choose  "Sign in with": "Claude account (email login)" 
 
+![image](/api/images/image-114f0520.png)
+
 or "API Proxy"
 
 ![image](/api/images/image-d17863c2.png)
