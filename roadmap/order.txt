@@ -6,6 +6,7 @@ dashboards.md
 demo.md
 docs-as-code.md
 freemium.md
+delegate-work-to-share-subscriptions.md
 image-support.md
 integration-priorities.md
 lada-s-patterns.md
