@@ -3,10 +3,10 @@ coding-agent-ui.md
 specification-import-from-existing-documents.md
 coding-session-tracking-and-reporting.md
 dashboards.md
+delegate-work-to-share-subscriptions.md
 demo.md
 docs-as-code.md
 freemium.md
-delegate-work-to-share-subscriptions.md
 image-support.md
 integration-priorities.md
 lada-s-patterns.md
