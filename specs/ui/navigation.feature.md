@@ -442,4 +442,4 @@ Allow to collapse and expand the outline.
 [test: a server with nothing to sync does not hold the link up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L32 ]
 [test: an unreachable server does not throw : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L37 ]
 [test: reads the problem off an answer, and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L46 ]
-[test: a pull that cannot reach the remote is kept as the folder's pull problem : https://github.com/SpecDriven/specdriven-app/blob/main/tests/reload.test.ts#L165 ]
+[test: a pull that cannot reach the remote is kept as the folder's pull problem : https://github.com/SpecDriven/specdriven-app/blob/main/tests/reload.test.ts#L217 ]
