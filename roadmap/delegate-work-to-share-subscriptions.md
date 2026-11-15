@@ -15,7 +15,6 @@ Imagined design:
 Private Marketplace:
 - Because terms of use are negotiated differently for different providers
 - Within an org boundary (like the existing one)
-
  
 Setting up a shared-token session:
 - A **private** repository in the org, which is the datastore for the allowed token sharing
