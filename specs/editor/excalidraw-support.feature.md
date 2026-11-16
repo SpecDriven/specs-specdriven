@@ -22,6 +22,11 @@ Click on the icon to open Excalidaraw pane and use it to create the diagram.
 
 Link to the diagram will be embedded into the feature file similar to how we handle images.
 
+Excalidraw support is on by default; a person who turns it off in Settings keeps it off on that device.
+
+[test: remembers an off choice on the device, and an on choice too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L52 ]
+[test: reads on when storage is unavailable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L61 ]
+
 ## S2: Edit Excalidraw diagram @v1 [published]
 
 **Created by:** RomanWright

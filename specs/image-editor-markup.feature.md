@@ -21,8 +21,8 @@ Save burns the markup into a PNG of the original's own pixel size — a shape ru
 - **Then** a red, unfilled, sharp-cornered box surrounds that part
 - **And** after Save the image in the body shows the box, at the image's own pixel size, with its alt text and width unchanged
 
-[test: carries a markup button in the editable preview once the switch is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L178 ]
-[test: is offered by the toolbar with the caret in its link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L203 ]
+[test: carries a markup button in the editable preview once the switch is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L137 ]
+[test: is offered by the toolbar with the caret in its link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L163 ]
 [test: any image stored in the data repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageMarkup.test.ts#L63 ]
 [test: is the original's stem, without its hash, marked as markup : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageMarkup.test.ts#L87 ]
 [test: falls back to 'image' : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageMarkup.test.ts#L99 ]
@@ -89,7 +89,7 @@ Save burns the markup into a PNG of the original's own pixel size — a shape ru
 [test: not a diagram, which has its own editor : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageMarkup.test.ts#L71 ]
 [test: not an image from anywhere else, whose pixels the canvas cannot read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageMarkup.test.ts#L77 ]
 [test: names only an image stored here as its original : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageMarkup.test.ts#L176 ]
-[test: carries none while the switch is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L185 ]
-[test: carries none on a published (read-only) body : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L189 ]
-[test: is never a diagram, nor an image from elsewhere : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L196 ]
-[test: is not offered by the toolbar while the switch is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L210 ]
+[test: carries none while the switch is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L144 ]
+[test: carries none on a published (read-only) body : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L149 ]
+[test: is never a diagram, nor an image from elsewhere : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L156 ]
+[test: is not offered by the toolbar while the switch is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/excalidrawPref.test.tsx#L170 ]
