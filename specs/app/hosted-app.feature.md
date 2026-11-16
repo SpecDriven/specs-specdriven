@@ -718,3 +718,110 @@ version (app/open-source-license.feature.md).
 [test: asking what this kernel offers changes nothing, and the answer names what is missing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L207 ]
 [test: where the system has no way to confine a worker, nothing is applied and that is said : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L227 ]
 [test: the confinement is on unless the service is told otherwise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L233 ]
+
+## S33: A person connects their GitHub account instead of pasting a token @v1 [proposed]
+
+- Given: a hosted service that has a GitHub App of its own, and a signed-in
+  person on their account page
+- When: they press Connect GitHub and confirm at GitHub
+- Then: the account page shows the GitHub account they connected, and a
+  link to install the app on their specs repository
+- and the gateway keeps who they are on GitHub, an id and a login, and no
+  token: the one GitHub gave for the sign-in answers that one question and
+  is revoked at once
+- and a token they pasted before is deleted, and their worker starts again
+  without one; until they connect, that token keeps working
+- and no token can be pasted any more
+- and a sign-in that did not set out from this browser, for this account,
+  connects nothing: not a code someone else sent, not one whose way back
+  was changed, and not one the person cancelled at GitHub
+- and signed out, the way to GitHub leads to sign-in first
+- and Disconnect removes the link and stops their worker
+- and who a person is on GitHub goes to the datastore with their account,
+  so a redeploy without the volume still knows it
+- and the app is set up with three of the service's variables, a client
+  id, a client secret and a private key: with none of them people paste a
+  token as before, and with only some the service refuses to start
+
+[test: with the app, the account page offers connecting and takes no pasted token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L131 ]
+[test: without the app nothing of it is served : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L142 ]
+[test: signed out, the way to GitHub leads to sign-in first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L151 ]
+[test: back from GitHub with its code, the person is who GitHub says, the pasted token is deleted, and the worker starts again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L160 ]
+[test: a code that did not come back to the browser that set out links nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L182 ]
+[test: GitHub's own return after the app was installed on a repository just shows the account page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L211 ]
+[test: disconnecting removes the link and stops the worker, which ends its tokens : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L219 ]
+[test: the secret a browser carries to GitHub never reaches its worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L241 ]
+[test: a sign-in says who the person is, and its token is revoked at once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L127 ]
+[test: where the app is installed comes from GitHub's own description of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L141 ]
+[test: who a person is on GitHub is kept without a secret, goes to the datastore and comes back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L224 ]
+[test: none of the three variables means no app; some of them is a mistake that stops the start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L91 ]
+[test: the private key is read as the file, with its line ends escaped, or in base64 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L98 ]
+
+## S34: A worker gets a GitHub token for one repository, for an hour @v1 [proposed]
+
+- Given: a person who has connected GitHub, whose worker is about to fetch
+  from a repository or push to it
+- When: the worker's git asks the gateway for that repository's token
+- Then: the gateway makes one that lasts an hour and reaches that
+  repository alone, and only when the app is installed on the repository
+  and the person's GitHub account has access to it there
+- and the token can write only if the person can: someone who can only
+  read the repository gets a token that can only read it
+- and what a person may do is asked of GitHub each time a token is made,
+  by the account's id, so access taken away on GitHub is gone here within
+  the hour, and a login that passed to somebody else gets nothing
+- and the worker holds no GitHub token, in its environment or on disk: its
+  git gets the token through a helper as it needs it, on the system's git
+  and on the bundled engine alike, and the commits are the person's
+- and with no token to give, the sync fails as it does with no sign-in,
+  and the app says to connect GitHub and install the app on the repository
+- and a token is handed out again until its hour is nearly over, a refusal
+  stands for a minute, and one person's worker can make the gateway ask
+  GitHub only so many times in ten minutes
+- and when the worker stops, for any reason, the tokens it was given are
+  revoked
+
+[test: a worker's git opens the repository with a token it asked the gateway for, and the token ends with the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerGithub.test.ts#L125 ]
+[test: with the service's app, a worker is told who the person is on GitHub and where to ask, and holds no token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerGithub.test.ts#L102 ]
+[test: its own word is signed with the private key, for nine minutes, in the app's name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L115 ]
+[test: a token is for one repository, to write it when the person may write it there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L151 ]
+[test: a person who can only read gets a token that can only read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L168 ]
+[test: no token where the app is not installed, the person has no access, or the login is now someone else's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L177 ]
+[test: a repository's name is owner/name and nothing that names another path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L105 ]
+[test: no token for a person who has not connected GitHub : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L245 ]
+[test: a token is handed out again until its hour is nearly over, then a new one is made and the old one ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L252 ]
+[test: asking twice at once asks GitHub once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L266 ]
+[test: a refusal stands for a minute, and a worker cannot make the gateway ask GitHub without end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L274 ]
+[test: when a worker stops, the tokens it was given end, and one still being made is never handed out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L291 ]
+[test: git's helper answers git with the repository's token, and with nothing when there is none to ask for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L131 ]
+[test: a real git clones and pushes with the token its helper fetched, which is nowhere in its environment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L143 ]
+[test: the bundled engine asks the gateway the same way, with no git installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L197 ]
+[test: the repository is the first two parts of a url's path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L123 ]
+[test: with the service's GitHub App, the sign-in is who the person is and holds no token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L132 ]
+[test: what a failed sync says to do names the app where the service has one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L146 ]
+[test: where the service has a GitHub App, the hint names the app and the connected account, not a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L40 ]
+
+## S35: Only a person's own worker can ask for their GitHub tokens @v1 [proposed]
+
+- Given: several people's workers in one container, each with a user id of
+  its own
+- When: a worker's git asks for a token
+- Then: it asks on a socket of that worker's own, in a folder that belongs
+  to the gateway and that only that worker's user id may pass through:
+  another worker's user id cannot reach the socket, and the worker itself
+  can neither replace it nor put anything beside it
+- and the gateway answers only when the other end of the connection is
+  that worker's user id, as the kernel reports it: anyone else, root
+  included, is hung up on before anything is read
+- and which person is asking is never something the request says
+- and one connection carries one request: what is not a request gets no
+  token, and nothing after the first line is read
+- and the socket goes when the worker stops, and a worker that asks a
+  moment before its gateway listens waits for it
+
+[test: the gateway's uid listens in a folder only that worker can enter, and answers that worker's uid alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L240 ]
+[test: the kernel says which uid is on the other end of a socket : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L296 ]
+[test: only the worker's uid is answered, and anyone else on the other end is hung up on unheard : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L94 ]
+[test: a worker asks for one repository and gets its token, or the reason there is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L74 ]
+[test: one request a connection, so what is not a request gets no token and nothing after the first line is read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L83 ]
+[test: the socket goes with the worker, and one that is not there yet is waited for a moment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L110 ]
