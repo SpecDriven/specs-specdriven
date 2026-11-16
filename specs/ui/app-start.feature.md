@@ -492,4 +492,4 @@ was beside it; a file a newer app wrote is read as it is.
 [test: a project settings.json still wins over the home settings file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L236 ]
 [test: the desktop app converts the home settings.json, not one under its app data : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L248 ]
 [test: the settings file view shows a home settings.json that has not been converted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/settingsYaml.test.ts#L261 ]
-[test: a worker's settings.json from before YAML is read, and not seeded over : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L164 ]
+[test: a worker's settings.json from before YAML is read, and not seeded over : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L183 ]
