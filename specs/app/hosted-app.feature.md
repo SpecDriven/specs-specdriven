@@ -607,8 +607,8 @@ version (app/open-source-license.feature.md).
 [test: email links lead to the account host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L357 ]
 [test: signing out on either host ends both sessions, and so does a changed password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L364 ]
 [test: only sign-ins go into the datastore, where an app session read back would count as one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L415 ]
-[test: with one host, the app's own session answers are the sign-in's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L496 ]
-[test: the account url is an https url on another host than the app's, and needs the app's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L512 ]
+[test: with one host, the app's own session answers are the sign-in's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L517 ]
+[test: the account url is an https url on another host than the app's, and needs the app's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L533 ]
 [test: each of the gateway's three cookies belongs to one host, is hidden from script, and never reaches a worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L470 ]
 
 ## S29: A signed-in browser is handed to the app's host with a code that works once @v1 [proposed]
