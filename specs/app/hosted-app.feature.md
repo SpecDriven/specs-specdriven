@@ -655,6 +655,7 @@ version (app/open-source-license.feature.md).
   the browser says what would be blocked and blocks nothing, or turn it off
 
 [test: the app's pages carry a policy that runs only the app's own script : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L424 ]
+[test: an inline script is hashed as the browser reads it, however its tags are written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L496 ]
 
 ## S31: A worker is confined to its own folder and one way out @v1 [proposed]
 
