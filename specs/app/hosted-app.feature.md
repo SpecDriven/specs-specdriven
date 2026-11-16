@@ -757,6 +757,8 @@ version (app/open-source-license.feature.md).
 [test: a GitHub account that is one person's here cannot be connected to another's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L184 ]
 [test: what stops a person's worker is limited, so it cannot be done without end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L213 ]
 [test: back from GitHub with its code, the person is who GitHub says, the pasted token is deleted, and the worker starts again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L225 ]
+[test: a code that did not come back to the browser that set out links nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L247 ]
+[test: GitHub's own return after the app was installed on a repository just shows the account page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L276 ]
 [test: disconnecting removes the link and stops the worker, which ends its tokens : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L284 ]
 [test: the secret a browser carries to GitHub never reaches its worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L306 ]
 [test: a sign-in says who the person is, and its token is revoked at once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L142 ]
