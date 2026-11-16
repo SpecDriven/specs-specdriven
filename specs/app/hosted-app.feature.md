@@ -97,7 +97,7 @@ version (app/open-source-license.feature.md).
   the workers share its user and the gateway logs a warning
 
 [test: each worker runs as its own uid, owning its folders alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L217 ]
-[test: the worker command drops to the user's uid with no way back, under its caps : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L564 ]
+[test: the worker command drops to the user's uid with no way back, under its caps : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L588 ]
 [test: a data repo's code-repo path is ignored, so it cannot point into another user's folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L172 ]
 
 ## S5: Accounts survive a redeploy @v1 [proposed]
@@ -146,7 +146,7 @@ version (app/open-source-license.feature.md).
 - and a new account is a user, and a database from before the roles keeps
   its accounts as users and its invites as allowed emails
 
-[test: an admin gives and takes the admin role, which applies at once, but never from the last admin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L442 ]
+[test: an admin gives and takes the admin role, which applies at once, but never from the last admin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L450 ]
 [test: accounts start as users : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L57 ]
 [test: a database from before the roles keeps its accounts as users and its invites as allowed emails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L62 ]
 
@@ -163,15 +163,37 @@ version (app/open-source-license.feature.md).
 - and adding an address can email it an invitation to the sign-up page,
   unless it already has an account; a domain is never emailed
 - and taking an entry off the list stops new sign-ups only: an account
-  already made keeps working
+  already made keeps working until an admin deletes it (Admins delete an
+  account)
 
-[test: an admin opens the admin page and sees the allowed emails and the users : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L388 ]
-[test: an admin allows an address, which is invited and can sign up, and takes it off again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L405 ]
-[test: a domain on the list lets every address in it sign up, and is never emailed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L433 ]
+[test: an admin opens the admin page and sees the allowed emails and the users : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L396 ]
+[test: an admin allows an address, which is invited and can sign up, and takes it off again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L413 ]
+[test: a domain on the list lets every address in it sign up, and is never emailed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L441 ]
 [test: an allowed entry is an address or @ and a domain, trimmed and lowercased : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L48 ]
 [test: an invite goes only to an address without an account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L114 ]
 
-## S8: Change the password on the account page @v1 [proposed]
+## S8: Admins delete an account @v1 [proposed]
+
+- Given: a signed-in admin on the admin page, which lists every account
+- When: they choose Delete on another account, and confirm
+- Then: that person is signed out at once, everywhere
+- and their worker stops, with every process of their uid
+- and their folder on the service is deleted, and only then the account,
+  with its sessions, links, GitHub account and recent repos
+- and it is gone from the list; the allowed entries they added stay
+- and the address can sign up again only while it is allowed
+- and nobody deletes their own account there, and the last admin stays
+- and if their folder cannot be deleted, the account is kept, signed out,
+  and the page says to try again
+
+[test: an admin deletes an account, which is signed out and loses its worker and folder before the account goes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L474 ]
+[test: when an account's folder cannot be deleted, the account stays, signed out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L504 ]
+[test: an admin may delete another account, but not their own, a missing one or the last admin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L131 ]
+[test: deleting an account takes everything tied to it, and its allowed entries stay without who added them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L145 ]
+[test: a deleted account's folder goes once its worker is stopped, and never while it runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L240 ]
+[test: deleting an account ends its uid's processes and deletes its folder, and touches no one else's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L387 ]
+
+## S9: Change the password on the account page @v1 [proposed]
 
 - Given: a signed-in person on the account page
 - When: they give their current password and a new one
@@ -180,9 +202,9 @@ version (app/open-source-license.feature.md).
 - and without the right current password nothing changes
 
 [test: changing the password needs the current one and ends every session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L150 ]
-[test: changing the password signs this browser in again and ends the others : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L352 ]
+[test: changing the password signs this browser in again and ends the others : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L360 ]
 
-## S9: Each person gets a worker of their own @v1 [proposed]
+## S10: Each person gets a worker of their own @v1 [proposed]
 
 - Given: two signed-in people
 - When: each uses the app
@@ -197,9 +219,9 @@ version (app/open-source-license.feature.md).
   the password
 - and an account id that is not a UUID never becomes a folder path
 
-[test: signed in, the app's pages come from the gateway and its API from the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L222 ]
-[test: two users reach two different workers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L231 ]
-[test: request bodies pass through and streamed answers stream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L241 ]
+[test: signed in, the app's pages come from the gateway and its API from the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L230 ]
+[test: two users reach two different workers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L239 ]
+[test: request bodies pass through and streamed answers stream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L249 ]
 [test: two users get two workers with separate settings, folders and environments : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L106 ]
 [test: restart stops the worker; the next request starts a fresh one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L133 ]
 [test: idle workers are stopped by the sweep : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L180 ]
@@ -208,7 +230,7 @@ version (app/open-source-license.feature.md).
 [test: bundled assets are served immutable, and nothing outside the build is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L34 ]
 [test: the API, plugin bundles and writes are the worker's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAppShell.test.ts#L42 ]
 
-## S10: Only admins open the admin page @v1 [proposed]
+## S11: Only admins open the admin page @v1 [proposed]
 
 - Given: a signed-in person who is not an admin
 - When: they open `/admin` or call the `/auth/admin/*` API
@@ -219,11 +241,11 @@ version (app/open-source-license.feature.md).
 - and signed out, `/admin` sends the browser to sign-in and comes back
   after, and the API answers 401
 
-[test: an admin gives and takes the admin role, which applies at once, but never from the last admin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L442 ]
-[test: signed out, the admin page leads to sign-in and its API refuses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L381 ]
-[test: a new account is a user, with no admin API, no admin page and no invites to send : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L370 ]
+[test: an admin gives and takes the admin role, which applies at once, but never from the last admin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L450 ]
+[test: signed out, the admin page leads to sign-in and its API refuses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L389 ]
+[test: a new account is a user, with no admin API, no admin page and no invites to send : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L378 ]
 
-## S11: Requests from anywhere else are refused @v1 [proposed]
+## S12: Requests from anywhere else are refused @v1 [proposed]
 
 - Given: the gateway answering at its public url
 - When: a request names another host, or a write comes from another site
@@ -235,12 +257,12 @@ version (app/open-source-license.feature.md).
 - and the health check answers without a Host check or a session, for the
   hosting platform
 
-[test: a request for another host name is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L156 ]
-[test: a cross-site write is refused before it reaches the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L270 ]
-[test: the sign-in pages carry a strict CSP and are never framed or cached : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L198 ]
-[test: the health check answers without a Host check or a session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L151 ]
+[test: a request for another host name is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L164 ]
+[test: a cross-site write is refused before it reaches the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L278 ]
+[test: the sign-in pages carry a strict CSP and are never framed or cached : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L206 ]
+[test: the health check answers without a Host check or a session : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L159 ]
 
-## S12: Reset a forgotten password @v1 [proposed]
+## S13: Reset a forgotten password @v1 [proposed]
 
 - Given: the forgot-password page
 - When: someone enters an email address
@@ -255,10 +277,10 @@ version (app/open-source-license.feature.md).
 [test: a forgotten password gets a reset link that expires in 30 minutes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L115 ]
 [test: forgot sends nothing for an unknown address, and sign-up of a taken one sends a reset : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L126 ]
 [test: a reset ends every session and sends a change notice : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L135 ]
-[test: forgot answers the same for known and unknown addresses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L305 ]
-[test: a reset through the API ends the old session and restarts the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L313 ]
+[test: forgot answers the same for known and unknown addresses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L313 ]
+[test: a reset through the API ends the old session and restarts the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L321 ]
 
-## S13: Sign in and out @v1 [proposed]
+## S14: Sign in and out @v1 [proposed]
 
 - Given: an account with a password
 - When: its owner signs in with it
@@ -274,16 +296,16 @@ version (app/open-source-license.feature.md).
 - and signed out, the app's pages send the browser to sign-in and its API
   answers 401
 
-[test: login, logout and a wrong password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L283 ]
-[test: repeated wrong passwords are rate limited : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L295 ]
+[test: login, logout and a wrong password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L291 ]
+[test: repeated wrong passwords are rate limited : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L303 ]
 [test: the rate limiter allows max attempts per window, then refuses until it passes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L211 ]
 [test: the session cookie is HttpOnly, SameSite=Lax, and __Host- Secure over https : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L200 ]
 [test: a session is stored as a hash, slides with use and ends at 30 days : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L176 ]
 [test: an unused session expires after 14 days : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L192 ]
 [test: tokens are stored as SHA-256 hex : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L116 ]
-[test: signed out, the app redirects pages to sign-in and refuses the API : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L189 ]
+[test: signed out, the app redirects pages to sign-in and refuses the API : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L197 ]
 
-## S14: Sign up with an email address @v1 [proposed]
+## S15: Sign up with an email address @v1 [proposed]
 
 - Given: the gateway's sign-up page
 - When: someone enters an email address
@@ -305,9 +327,9 @@ version (app/open-source-license.feature.md).
 [test: an address cannot sign in until its link sets a password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L78 ]
 [test: forgot sends nothing for an unknown address, and sign-up of a taken one sends a reset : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L126 ]
 [test: emails are trimmed and lowercased; non-emails are refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAccounts.test.ts#L170 ]
-[test: sign-up, set password, and the session reaches the user's worker without the gateway cookie : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L210 ]
+[test: sign-up, set password, and the session reaches the user's worker without the gateway cookie : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L218 ]
 
-## S15: The Admin item under Settings shows for admins only @v1 [proposed]
+## S16: The Admin item under Settings shows for admins only @v1 [proposed]
 
 - Given: a signed-in person using the hosted app
 - When: they open the user menu
@@ -316,10 +338,10 @@ version (app/open-source-license.feature.md).
 - and the account page links to the admin page for admins only
 - and the role comes from the gateway's `/auth/me`, not from the worker
 
-[test: an admin opens the admin page and sees the allowed emails and the users : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L388 ]
-[test: a new account is a user, with no admin API, no admin page and no invites to send : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L370 ]
+[test: an admin opens the admin page and sees the allowed emails and the users : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L396 ]
+[test: a new account is a user, with no admin API, no admin page and no invites to send : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L378 ]
 
-## S16: The master key is rotated without losing secrets @v1 [proposed]
+## S17: The master key is rotated without losing secrets @v1 [proposed]
 
 - Given: a deployment with stored secrets
 - When: the operator sets a new master key and moves the current one to
@@ -332,7 +354,7 @@ version (app/open-source-license.feature.md).
 [test: rotating the master key re-seals old rows, which then need only the new key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L78 ]
 [test: a master key must be 32 bytes, and production requires one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L50 ]
 
-## S17: The original admin is set up on a database with no admin @v1 [proposed]
+## S18: The original admin is set up on a database with no admin @v1 [proposed]
 
 - Given: a gateway starting on a database with no admin, after the
   datastore restore (Accounts survive a redeploy), so a fresh volume takes
@@ -350,7 +372,7 @@ version (app/open-source-license.feature.md).
 [test: an existing original account becomes the admin with the chosen password, its old sign-ins ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L93 ]
 [test: a database that has an admin, whoever it is, keeps it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayAdmin.test.ts#L105 ]
 
-## S18: The start screen leads to the account and admin pages @v1 [proposed]
+## S19: The start screen leads to the account and admin pages @v1 [proposed]
 
 - Given: a signed-in person in the hosted app with no specs repo open yet,
   or whose worker does not answer, so there is no user menu
@@ -371,7 +393,7 @@ version (app/open-source-license.feature.md).
 [test: other errors and no error get no hint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L46 ]
 [test: a refused clone points at the account page's token, not Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L179 ]
 
-## S19: Tokens are kept sealed, and no AI agent's API key is kept @v1 [proposed]
+## S20: Tokens are kept sealed, and no AI agent's API key is kept @v1 [proposed]
 
 - Given: a signed-in person on the account page
 - When: they save a GitHub token
@@ -392,8 +414,8 @@ version (app/open-source-license.feature.md).
   nowhere to save one, and keys saved before are deleted when the
   database is migrated, so the service is not responsible for them
 
-[test: the GitHub token is checked with GitHub, stored sealed, shown by hint, and restarts the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L326 ]
-[test: the account keeps no AI agent API keys, with nowhere to save one and none listed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L342 ]
+[test: the GitHub token is checked with GitHub, stored sealed, shown by hint, and restarts the worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L334 ]
+[test: the account keeps no AI agent API keys, with nowhere to save one and none listed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L350 ]
 [test: agent API keys saved before are deleted when the database is migrated, and the GitHub token stays : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L96 ]
 [test: a sealed secret opens with the same key and associated data : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L26 ]
 [test: a ciphertext moved to another user or name, or altered, does not open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L33 ]
@@ -402,7 +424,7 @@ version (app/open-source-license.feature.md).
 [test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L68 ]
 [test: the env token backend reads the gateway's record and refuses to change it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L118 ]
 
-## S20: Signing in opens the page that was asked for, and never another site @v1 [proposed]
+## S21: Signing in opens the page that was asked for, and never another site @v1 [proposed]
 
 - **Given** someone signed out who opens a page of the app, or follows a
   sign-in link that names where to go next
@@ -419,7 +441,7 @@ version (app/open-source-license.feature.md).
 [test: a value the browser would load from another site goes to the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayNext.test.ts#L27 ]
 [test: what is returned is the path the browser resolves, not the raw value : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayNext.test.ts#L39 ]
 
-## S21: The gateway never writes inside a person's folder @v1 [proposed]
+## S22: The gateway never writes inside a person's folder @v1 [proposed]
 
 - **Given** a worker's folders, whose contents the person's data repo can
   shape, links included
@@ -446,7 +468,7 @@ version (app/open-source-license.feature.md).
 [test: the worker writes the remembered repos into a settings file that is missing, and keeps one that is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L53 ]
 [test: a command the gateway runs for a worker carries none of the gateway's environment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L126 ]
 
-## S22: Stopping a worker ends everything it started @v1 [proposed]
+## S23: Stopping a worker ends everything it started @v1 [proposed]
 
 - **Given** a worker that started other processes and let go of them
 - **When** the worker is stopped — idle, restarted for a changed secret or
@@ -459,10 +481,10 @@ version (app/open-source-license.feature.md).
   same
 
 [test: stopping a worker ends every process of its uid, and no one else's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L344 ]
-[test: only a worker's uid can have its processes ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L534 ]
-[test: a process that ends whatever is sent to end it is ended all the same : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L517 ]
+[test: only a worker's uid can have its processes ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L558 ]
+[test: a process that ends whatever is sent to end it is ended all the same : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L541 ]
 
-## S23: A repository's contents cannot make a hosted worker run code @v1 [proposed]
+## S24: A repository's contents cannot make a hosted worker run code @v1 [proposed]
 
 - **Given** a data repo that holds a symlink, a hook in its `.git` folder,
   or a remote that is not an http(s) url
@@ -484,7 +506,7 @@ version (app/open-source-license.feature.md).
 [test: a hosted worker's git fetches over http(s) only, never from a local path or a command posing as a url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedGit.test.ts#L116 ]
 [test: symlinks in the cloned repositories become plain files holding their target; .git is left alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkerStart.test.ts#L73 ]
 
-## S24: One person cannot use up what the others need @v1 [proposed]
+## S25: One person cannot use up what the others need @v1 [proposed]
 
 - **Given** several people's workers sharing one container and one volume
 - **When** a worker starts, and every minute while it runs
@@ -500,7 +522,7 @@ version (app/open-source-license.feature.md).
 - **And** the service's variables set these numbers; the two budgets are off
   unless set
 
-[test: a worker starts under the kernel's caps on processes and open files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L544 ]
+[test: a worker starts under the kernel's caps on processes and open files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L568 ]
 [test: limits come from the environment; what is unset or not a number keeps its default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L40 ]
 [test: a folder's size and the volume's free space are measured; what is not there is not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L55 ]
 [test: no worker starts while the volume is nearly full : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L66 ]
@@ -508,7 +530,7 @@ version (app/open-source-license.feature.md).
 [test: a worker holding more memory than its budget is stopped, and starts again when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L105 ]
 [test: where there is no /proc entry, a process's memory is not known : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayLimits.test.ts#L119 ]
 
-## S25: A worker's answer cannot act on the gateway's pages @v1 [proposed]
+## S26: A worker's answer cannot act on the gateway's pages @v1 [proposed]
 
 - **Given** a signed-in person whose worker answers a request
 - **When** the gateway passes the answer on to the browser
@@ -517,9 +539,9 @@ version (app/open-source-license.feature.md).
 - **And** an answer on the API, opened as a page, runs no script and loads
   nothing
 
-[test: a worker's answer sets no cookie, and on the API cannot run as a page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L252 ]
+[test: a worker's answer sets no cookie, and on the API cannot run as a page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L260 ]
 
-## S26: The part that answers the internet is not root @v1 [proposed]
+## S27: The part that answers the internet is not root @v1 [proposed]
 
 - **Given** the hosted service, whose first process starts as root so that
   each person's worker can have a user id of its own
@@ -544,20 +566,20 @@ version (app/open-source-license.feature.md).
   connection to it
 - **And** on a developer's machine there is one process, and it says so
 
-[test: started as root, the gateway that answers requests is not root, and a person's worker runs as their own uid : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L279 ]
-[test: the spawner starts a worker only for a user id that is one and a uid that is a worker's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L56 ]
-[test: the spawner takes an environment of plain names and text, and caps and a port that are numbers in range : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L72 ]
-[test: the spawner's socket answers only a connection that says the key, and only messages of its own kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L125 ]
-[test: a wrong key is refused, a worker's end reaches the gateway, and a lost spawner is noticed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L184 ]
-[test: a settings file filled to break the spawner's connection fails that one answer and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L161 ]
-[test: a worker started through the spawner's socket serves its person, and stops when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L203 ]
-[test: the gateway's folder on the volume takes in the database and datastore an older volume kept beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L234 ]
-[test: root hands the gateway's folder to the gateway's uid once, and stays out of it afterwards : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L259 ]
+[test: started as root, the gateway that answers requests is not root, and a person's worker runs as their own uid : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L322 ]
+[test: the spawner starts a worker only for a user id that is one and a uid that is a worker's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L57 ]
+[test: the spawner takes an environment of plain names and text, and caps and a port that are numbers in range : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L77 ]
+[test: the spawner's socket answers only a connection that says the key, and only messages of its own kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L131 ]
+[test: a wrong key is refused, a worker's end reaches the gateway, and a lost spawner is noticed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L190 ]
+[test: a settings file filled to break the spawner's connection fails that one answer and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L167 ]
+[test: a worker started through the spawner's socket serves its person, and stops when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L209 ]
+[test: the gateway's folder on the volume takes in the database and datastore an older volume kept beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L277 ]
+[test: root hands the gateway's folder to the gateway's uid once, and stays out of it afterwards : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L302 ]
 [test: a worker's settings are read as text by one side and made sense of by the other : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L96 ]
 [test: the launcher becomes the program it is told to, in its folder and with its environment alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L160 ]
-[test: the worker command drops to the user's uid with no way back, under its caps : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L564 ]
+[test: the worker command drops to the user's uid with no way back, under its caps : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L588 ]
 
-## S27: A worker serves only its own gateway's requests @v1 [proposed]
+## S28: A worker serves only its own gateway's requests @v1 [proposed]
 
 - **Given** a worker, which owns the folder its socket is in and could put a
   link to another person's socket there
@@ -573,10 +595,10 @@ version (app/open-source-license.feature.md).
   person's worker reaches the socket
 
 [test: a worker refuses a request that does not carry its own key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L145 ]
-[test: the gateway's uid reaches a worker's socket; another worker's uid does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L390 ]
+[test: the gateway's uid reaches a worker's socket; another worker's uid does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L414 ]
 [test: a hosted worker given a key answers only a request that carries it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L188 ]
 
-## S28: The account pages have a host of their own @v1 [proposed]
+## S29: The account pages have a host of their own @v1 [proposed]
 
 - **Given** a service set up with an account url as well as its public url
 - **When** a browser asks either host for something
@@ -609,7 +631,7 @@ version (app/open-source-license.feature.md).
 [test: the account url is an https url on another host than the app's, and needs the app's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L533 ]
 [test: each of the gateway's three cookies belongs to one host, is hidden from script, and never reaches a worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L470 ]
 
-## S29: A signed-in browser is handed to the app's host with a code that works once @v1 [proposed]
+## S30: A signed-in browser is handed to the app's host with a code that works once @v1 [proposed]
 
 - **Given** a service with an account host, and a browser with no session on
   the app's host
@@ -638,7 +660,7 @@ version (app/open-source-license.feature.md).
 [test: where to land after a hand-over is a path on the app's host, whatever the link says : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L313 ]
 [test: using the app keeps the sign-in alive, up to 30 days from signing in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L393 ]
 
-## S30: The app's pages run only the app's own script @v1 [proposed]
+## S31: The app's pages run only the app's own script @v1 [proposed]
 
 - **Given** a signed-in person, and specs whose markdown, images and
   diagrams a teammate can shape
@@ -655,7 +677,7 @@ version (app/open-source-license.feature.md).
 [test: the app's pages carry a policy that runs only the app's own script : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L424 ]
 [test: an inline script is hashed as the browser reads it, however its tags are written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L496 ]
 
-## S31: A worker is confined to its own folder and one way out @v1 [proposed]
+## S32: A worker is confined to its own folder and one way out @v1 [proposed]
 
 - **Given** a worker running as its person's user id, on a kernel that lets
   a process narrow itself
@@ -678,7 +700,7 @@ version (app/open-source-license.feature.md).
 - **And** the service's variables can add hosts to the proxy's list, and can
   turn the confinement off, leaving the user id of its own
 
-[test: a worker is confined to its own folders and the proxy's port, and gets only its own environment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L428 ]
+[test: a worker is confined to its own folders and the proxy's port, and gets only its own environment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L452 ]
 [test: the worker's environment sends git and its own requests through the gateway's proxy, when there is one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L166 ]
 [test: a worker's plan gives it its own folders, the system and the app's code to read, and one port : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L33 ]
 [test: the file rights follow the kernel's Landlock version, and the code is never writable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L47 ]
@@ -696,7 +718,7 @@ version (app/open-source-license.feature.md).
 [test: the proxy holds a limited number of connections at once, and closes one it refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L123 ]
 [test: git, told of the proxy through its environment, reaches the stand-in through it and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L153 ]
 
-## S32: The service says at each start what holds its workers @v1 [proposed]
+## S33: The service says at each start what holds its workers @v1 [proposed]
 
 - **Given** a platform whose kernel may or may not let a process narrow
   itself, or may do so for files and not for the network
@@ -717,7 +739,7 @@ version (app/open-source-license.feature.md).
 [test: where the system has no way to confine a worker, nothing is applied and that is said : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L227 ]
 [test: the confinement is on unless the service is told otherwise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L233 ]
 
-## S33: A person connects their GitHub account instead of pasting a token @v1 [proposed]
+## S34: A person connects their GitHub account instead of pasting a token @v1 [proposed]
 
 - Given: a hosted service that has a GitHub App of its own, and a signed-in
   person on their account page
@@ -748,24 +770,24 @@ version (app/open-source-license.feature.md).
   id, a client secret and a private key: with none of them people paste a
   token as before, and with only some the service refuses to start
 
-[test: with the app, the account page offers connecting and takes no pasted token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L133 ]
-[test: without the app nothing of it is served : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L144 ]
-[test: signed out, nothing sets out for GitHub, and the way back leads to sign-in first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L154 ]
-[test: only the account page sets out for GitHub, never a link or another site's page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L164 ]
-[test: a GitHub account that is one person's here cannot be connected to another's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L184 ]
-[test: what stops a person's worker is limited, so it cannot be done without end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L213 ]
-[test: back from GitHub with its code, the person is who GitHub says, the pasted token is deleted, and the worker starts again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L225 ]
-[test: a code that did not come back to the browser that set out links nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L247 ]
-[test: GitHub's own return after the app was installed on a repository just shows the account page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L276 ]
-[test: disconnecting removes the link and stops the worker, which ends its tokens : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L284 ]
-[test: the secret a browser carries to GitHub never reaches its worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L306 ]
+[test: with the app, the account page offers connecting and takes no pasted token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L134 ]
+[test: without the app nothing of it is served : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L145 ]
+[test: signed out, nothing sets out for GitHub, and the way back leads to sign-in first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L155 ]
+[test: only the account page sets out for GitHub, never a link or another site's page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L165 ]
+[test: a GitHub account that is one person's here cannot be connected to another's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L185 ]
+[test: what stops a person's worker is limited, so it cannot be done without end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L214 ]
+[test: back from GitHub with its code, the person is who GitHub says, the pasted token is deleted, and the worker starts again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L226 ]
+[test: a code that did not come back to the browser that set out links nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L248 ]
+[test: GitHub's own return after the app was installed on a repository just shows the account page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L277 ]
+[test: disconnecting removes the link and stops the worker, which ends its tokens : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L285 ]
+[test: the secret a browser carries to GitHub never reaches its worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L307 ]
 [test: a sign-in says who the person is, and its token is revoked at once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L142 ]
 [test: where the app is installed comes from GitHub's own description of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L156 ]
 [test: who a person is on GitHub is kept without a secret, goes to the datastore and comes back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L270 ]
 [test: none of the three variables means no app; some of them is a mistake that stops the start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L106 ]
 [test: the private key is read as the file, with its line ends escaped, or in base64 : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L113 ]
 
-## S34: A worker gets a GitHub token for one repository, for an hour @v1 [proposed]
+## S35: A worker gets a GitHub token for one repository, for an hour @v1 [proposed]
 
 - Given: a person who has connected GitHub, whose worker is about to fetch
   from a repository or push to it
@@ -820,7 +842,7 @@ version (app/open-source-license.feature.md).
 [test: what a failed sync says to do names the app where the service has one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L144 ]
 [test: where the service has a GitHub App, the hint names the app and the connected account, not a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L40 ]
 
-## S35: Only a person's own worker can ask for their GitHub tokens @v1 [proposed]
+## S36: Only a person's own worker can ask for their GitHub tokens @v1 [proposed]
 
 - Given: several people's workers in one container, each with a user id of
   its own
@@ -845,23 +867,49 @@ version (app/open-source-license.feature.md).
 [test: one request a connection, so what is not a request gets no token and nothing after the first line is read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L83 ]
 [test: the socket goes with the worker, and one that is not there yet is waited for a moment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L110 ]
 
-## S36: Start AI Session copies the prompt for the person's own agent @v1 [proposed]
+## S37: Start AI Session opens Claude Code with the prompt @v1 [proposed]
 
 - Given: a signed-in person in the hosted app, with specs checked in the
   sidebar or single scenarios checked on their cards, or with only a
   feature open
 - When: they click Start AI Session
-- Then: no dialog opens and no agent runs on the service: the prompt for
-  what is checked — or, with nothing checked, for the open feature — is
-  copied to the clipboard at once
-- and the note under the button says to paste it into their AI agent in
-  its own browser tab
-- and with nothing checked and no feature open, nothing is copied and the
-  app says what to select
-- and the copy works in Safari too, which copies only during the click:
-  the clipboard is handed the prompt while it is still being built
+- Then: no dialog opens and no agent runs on the service: a new browser tab
+  opens on Claude Code on the web (claude.ai/code) with the prompt for what
+  is checked — or, with nothing checked, for the open feature — in the
+  link, so it arrives in Claude's box under the person's own claude.ai
+  sign-in
+- and the prompt gives the specifications in full and names no folder of
+  the service: the work runs in the cloud, on the repository the person
+  picks there
+- and the note under the button says the tab is open, and to pick the
+  repository and send
+- and the prompt is copied to the clipboard as well: one too long for a
+  link opens Claude Code without it, and the note says to paste it
+- and a browser that blocks the new tab gets a link in the note that opens
+  Claude Code with the prompt; a prompt too long for a link that could not
+  be copied either opens nothing, and the note offers a Copy prompt button
+- and with nothing checked and no feature open, nothing opens and the app
+  says what to select
+- and it works in Safari too, which opens a tab and copies only during the
+  click: the tab is opened and the clipboard handed the prompt while the
+  prompt is still being built
 
 [test: the hosted app copies what is checked, else the open feature, else says what to do : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startSessionDialog.test.tsx#L40 ]
 [test: a text still on its way is copied once it arrives, through a ClipboardItem made at once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/clipboard.test.ts#L40 ]
 [test: a text that fails to arrive throws its own error, and nothing is copied : https://github.com/SpecDriven/specdriven-app/blob/main/tests/clipboard.test.ts#L49 ]
 [test: a browser that refuses the ClipboardItem write gets the text the plain way : https://github.com/SpecDriven/specdriven-app/blob/main/tests/clipboard.test.ts#L55 ]
+[test: the prompt rides in q with its newlines, spaces and ampersands encoded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWeb.test.ts#L43 ]
+[test: a prompt whose link would pass the cap gets no link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWeb.test.ts#L51 ]
+[test: an empty tab opens at once, without a handle on the app, and goes where it is sent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWeb.test.ts#L81 ]
+[test: a blocked pop-up is no tab : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWeb.test.ts#L99 ]
+[test: in a browser the copy is asked for and the tab opened before the prompt is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWeb.test.ts#L105 ]
+[test: a prompt that fits its link opens Claude Code with it, copied or not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWeb.test.ts#L116 ]
+[test: a prompt too long for a link is pasted, the tab on Claude Code without it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWeb.test.ts#L123 ]
+[test: too long and not copied closes the tab and hands the prompt back to copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWeb.test.ts#L130 ]
+[test: a blocked tab leaves a link, with the prompt when it fits and to paste into when not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWeb.test.ts#L136 ]
+[test: a prompt that fails to build closes the tab and throws its own error : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWeb.test.ts#L145 ]
+[test: says the tab is open and what is left to do there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWebNote.test.tsx#L15 ]
+[test: a blocked tab leaves a link that opens Claude Code in a tab of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWebNote.test.tsx#L28 ]
+[test: a prompt that went nowhere offers one classed button to copy it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWebNote.test.tsx#L39 ]
+[test: a session in the cloud is told the specs are below, and no folder of this machine : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agent.test.ts#L70 ]
+[test: the prompt route builds the cloud prompt, with no folder of this machine in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSession.test.ts#L281 ]

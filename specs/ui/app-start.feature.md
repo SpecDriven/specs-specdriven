@@ -332,10 +332,10 @@ was beside it; a file a newer app wrote is read as it is.
 - and with no settings file anywhere, the home one is created
 - and agent session records and worktrees live beside the home file too
 
-[test: the app's own checkout reads and writes the home settings file even with a project one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L205 ]
-[test: the app's own checkout creates the home settings file when there is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L217 ]
-[test: the app's own checkout reads its old project settings until the first save moves them home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L225 ]
-[test: another project's package.json does not count as the app's checkout : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L255 ]
+[test: the app's own checkout reads and writes the home settings file even with a project one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L220 ]
+[test: the app's own checkout creates the home settings file when there is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L232 ]
+[test: the app's own checkout reads its old project settings until the first save moves them home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L240 ]
+[test: another project's package.json does not count as the app's checkout : https://github.com/SpecDriven/specdriven-app/blob/main/tests/state.test.ts#L270 ]
 [test: a root whose package.json names this app is an app checkout, so the home file is the only one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/settings.test.ts#L105 ]
 
 ## S19: a new app version upgrades the settings file @v1 [proposed]
