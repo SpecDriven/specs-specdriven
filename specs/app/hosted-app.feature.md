@@ -549,6 +549,7 @@ version (app/open-source-license.feature.md).
 [test: a worker started through the spawner's socket serves its person, and stops when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L177 ]
 [test: the gateway's folder on the volume takes in the database and datastore an older volume kept beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L208 ]
 [test: root hands the gateway's folder to the gateway's uid once, and stays out of it afterwards : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L233 ]
+[test: a worker's settings are read as text by one side and made sense of by the other : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayRepos.test.ts#L96 ]
 [test: the launcher becomes the program it is told to, in its folder and with its environment alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L148 ]
 [test: the worker command drops to the user's uid with no way back, under its caps : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L544 ]
 
@@ -569,6 +570,7 @@ version (app/open-source-license.feature.md).
 
 [test: a worker refuses a request that does not carry its own key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L145 ]
 [test: the gateway's uid reaches a worker's socket; another worker's uid does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L389 ]
+[test: a hosted worker given a key answers only a request that carries it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L166 ]
 
 ## S28: The account pages have a host of their own @v1 [proposed]
 
@@ -601,6 +603,7 @@ version (app/open-source-license.feature.md).
 [test: only sign-ins go into the datastore, where an app session read back would count as one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L381 ]
 [test: with one host, the app's own session answers are the sign-in's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L436 ]
 [test: the account url is an https url on another host than the app's, and needs the app's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L452 ]
+[test: each of the gateway's three cookies belongs to one host, is hidden from script, and never reaches a worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L449 ]
 
 ## S29: A signed-in browser is handed to the app's host with a code that works once @v1 [proposed]
 
@@ -699,3 +702,6 @@ version (app/open-source-license.feature.md).
 
 [test: on this kernel, a confined process keeps to its folder and its one port : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L196 ]
 [test: what holds a worker is said in one line, and so is what does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L170 ]
+[test: asking what this kernel offers changes nothing, and the answer names what is missing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L197 ]
+[test: where the system has no way to confine a worker, nothing is applied and that is said : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L217 ]
+[test: the confinement is on unless the service is told otherwise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L223 ]
