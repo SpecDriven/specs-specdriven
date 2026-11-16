@@ -911,5 +911,5 @@ version (app/open-source-license.feature.md).
 [test: says the tab is open and what is left to do there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWebNote.test.tsx#L15 ]
 [test: a blocked tab leaves a link that opens Claude Code in a tab of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWebNote.test.tsx#L28 ]
 [test: a prompt that went nowhere offers one classed button to copy it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWebNote.test.tsx#L39 ]
-[test: a session in the cloud is told the specs are below, and no folder of this machine : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agent.test.ts#L70 ]
-[test: the prompt route builds the cloud prompt, with no folder of this machine in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSession.test.ts#L281 ]
+[test: a session in the cloud is told the specs are below, and no folder of this machine : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agent.test.ts#L97 ]
+[test: the prompt route builds the cloud prompt, with no folder of this machine in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSession.test.ts#L313 ]

@@ -13,9 +13,9 @@
 
 The parser used to trim the body, which took the indentation off its first line. For an indented fence line that turned the line into a fence opener: the file was written with a fence never closed, every later save of the feature was refused, and the scenario under it vanished from the editor while still being in the document.
 
-[test: a body's first-line indentation survives the round trip : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L370 ]
-[test: a description's first-line indentation survives too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L381 ]
-[test: trimBlankLines drops blank edge lines and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L388 ]
+[test: a body's first-line indentation survives the round trip : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L426 ]
+[test: a description's first-line indentation survives too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L437 ]
+[test: trimBlankLines drops blank edge lines and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L444 ]
 [test: a body opening with an indented fence line saves, and saves again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/features.test.ts#L976 ]
 
 ## S2: A Failed Autosave Is Retried @v1 [proposed]
@@ -176,8 +176,8 @@ SpecDriven saves the contents of the editor at the defined interval.
 
 Text ending inside a fence reads every later scenario heading as fenced content: the scenarios under them are swallowed into the body above and would be removed from the feature as if deleted. The buffer is in that state for a few keystrokes whenever a fence is typed, which is how a proposed scenario was once erased by an autosave.
 
-[test: unclosedFence reports the line of a fence left open at the end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L61 ]
-[test: featureTextError refuses a feature whose last code fence is never closed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L69 ]
+[test: unclosedFence reports the line of a fence left open at the end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L62 ]
+[test: featureTextError refuses a feature whose last code fence is never closed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L70 ]
 [test: is refused, and keeps the scenario the open fence would swallow : https://github.com/SpecDriven/specdriven-app/blob/main/tests/features.test.ts#L291 ]
 [test: lands once the fence is closed again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/features.test.ts#L301 ]
 [test: a publish is refused the same way : https://github.com/SpecDriven/specdriven-app/blob/main/tests/features.test.ts#L309 ]

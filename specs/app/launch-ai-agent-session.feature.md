@@ -74,5 +74,25 @@ Agent's Notion of a Coding Session vs. SpecDriven's Notion of a Coding Session
 [test: the desktop app opens no tab ahead, and the browser only once the prompt is copied : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWeb.test.ts#L159 ]
 [test: the desktop app pastes a long prompt, and opens nothing when it could not copy it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWeb.test.ts#L172 ]
 [test: the desktop app says the browser, not a tab : https://github.com/SpecDriven/specdriven-app/blob/main/tests/claudeWebNote.test.tsx#L23 ]
-[test: a session in the cloud is told the specs are below, and no folder of this machine : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agent.test.ts#L70 ]
-[test: the prompt route builds the cloud prompt, with no folder of this machine in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSession.test.ts#L281 ]
+[test: a session in the cloud is told the specs are below, and no folder of this machine : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agent.test.ts#L97 ]
+[test: the prompt route builds the cloud prompt, with no folder of this machine in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSession.test.ts#L313 ]
+
+## S3: The session prompt carries the specs without their test links @v1 [proposed]
+
+- Given: selected specs or scenarios whose scenarios carry test links, as
+  `[test: … ]` lines under a scenario, a token on a rule's own line, or an
+  older Tests table
+- When: an AI session is started over them — the prompt copied to the
+  clipboard, opened in Claude Code on the web, or run in the Claude app or
+  the coding agent pane
+- Then: the prompt holds each spec's heading, description and scenarios as
+  written, and none of the test links: which tests automate a scenario is
+  the app's bookkeeping, not part of what to build
+- and a rule that carried a link on its own line keeps its words
+- and a test link shown inside fenced code is part of the spec and stays
+- and the spec file itself is unchanged: only the prompt goes without
+
+[test: no session prompt carries the specs' test links : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSession.test.ts#L281 ]
+[test: the prompt carries a spec without its test links : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agent.test.ts#L71 ]
+[test: withoutTestLinks drops every test link and keeps the rest of the spec : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L341 ]
+[test: withoutTestLinks hands a spec with no test link back as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L388 ]
