@@ -206,9 +206,9 @@ to the user-only token file next to the home settings file.
   `--all`, alongside the macOS dmg and zip
 - and with no flag the build packages only for the machine it runs on
 
-[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L22 ]
-[test: a Mac cross-builds the Linux app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L28 ]
-[test: a release build packages every target and architecture in package.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L51 ]
+[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L23 ]
+[test: a Mac cross-builds the Linux app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L29 ]
+[test: a release build packages every target and architecture in package.json : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L52 ]
 [test: packaging never rebuilds native modules for the build machine : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L47 ]
 
 ## S3: a maximized session comes back maximized @v1 [published]
@@ -238,8 +238,8 @@ to the user-only token file next to the home settings file.
 - and a mistyped flag or an unsupported host stops the same way, naming the
   problem
 
-[test: the macOS app is only built on macOS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L33 ]
-[test: an unsupported host or a mistyped flag stops before packaging : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L46 ]
+[test: the macOS app is only built on macOS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L34 ]
+[test: an unsupported host or a mistyped flag stops before packaging : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L47 ]
 
 ## S5: desktop and web share settings @v1 [proposed]
 
@@ -428,10 +428,10 @@ AND  open links in IntelliJ is Off
 - and `--win` on macOS or Linux stops before packaging, saying the Windows app
   can only be built on Windows, while `--all` there still means macOS and Linux
 
-[test: the Windows app is only built on Windows, and --all leaves it out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L38 ]
-[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L22 ]
-[test: --local packages only the installer this machine starts, for its own architecture : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L55 ]
-[test: --host-arch packages the release installers for this machine's architecture only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L71 ]
+[test: the Windows app is only built on Windows, and --all leaves it out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L39 ]
+[test: without flags the build targets the machine it runs on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L23 ]
+[test: --local packages only the installer this machine starts, for its own architecture : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L56 ]
+[test: --host-arch packages the release installers for this machine's architecture only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L72 ]
 
 ## S18: every artifact carries the application icon @v1 [proposed]
 
@@ -482,6 +482,20 @@ AND  open links in IntelliJ is Off
 - and a build whose bundle still names a path on the build machine fails
   instead of shipping
 
-[test: Automerge's nodejs entry reads its wasm from beside the bundle, not the builder's node_modules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L113 ]
-[test: cbor-extract hands its loader the cbor-extract/ directory beside the bundle : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L126 ]
-[test: a bundle that still bakes a build-machine path in is caught : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L136 ]
+[test: Automerge's nodejs entry reads its wasm from beside the bundle, not the builder's node_modules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L114 ]
+[test: cbor-extract hands its loader the cbor-extract/ directory beside the bundle : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L127 ]
+[test: a bundle that still bakes a build-machine path in is caught : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L164 ]
+
+## S21: the app starts on Electron, which is not Bun @v1 [proposed]
+
+- Given: a desktop build, whose main process runs the app's server code on
+  Electron's Node instead of Bun
+- When: the app is launched
+- Then: every module loads and the window opens: nothing read while the app
+  starts needs a value only Bun has, such as the folder a module is in
+  (`import.meta.dir`)
+- and a build whose bundle reads such a value fails instead of shipping,
+  naming the lines that do
+
+[test: a bundle that reads a Bun-only import.meta field is caught : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L140 ]
+[test: the hosted credential helper is found without Bun's import.meta.dir : https://github.com/SpecDriven/specdriven-app/blob/main/tests/buildDesktop.test.ts#L156 ]
