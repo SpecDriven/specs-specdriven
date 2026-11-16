@@ -37,7 +37,7 @@ version (app/open-source-license.feature.md).
 [test: the agent pane lists no sessions rather than refusing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L80 ]
 [test: other settings still change in a hosted worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L108 ]
 [test: the git engine is never gh in a hosted worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L113 ]
-[test: the user shown is the gateway's account, not the container's OS user : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L173 ]
+[test: the user shown is the gateway's account, not the container's OS user : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L176 ]
 
 ## S2: A password link works once @v1 [proposed]
 
@@ -98,7 +98,7 @@ version (app/open-source-license.feature.md).
 
 [test: each worker runs as its own uid, owning its folders alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L219 ]
 [test: the worker command drops to the user's uid with no way back, under its caps : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L566 ]
-[test: a data repo's code-repo path is ignored, so it cannot point into another user's folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L183 ]
+[test: a data repo's code-repo path is ignored, so it cannot point into another user's folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L186 ]
 
 ## S5: Accounts survive a redeploy @v1 [proposed]
 
@@ -369,7 +369,7 @@ version (app/open-source-license.feature.md).
 [test: a user who is not an admin gets no admin link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L19 ]
 [test: a token GitHub refuses points at the account page's token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L30 ]
 [test: other errors and no error get no hint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedStartNav.test.tsx#L46 ]
-[test: a refused clone points at the account page's token, not Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L190 ]
+[test: a refused clone points at the account page's token, not Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L193 ]
 
 ## S19: Tokens and keys are kept sealed @v1 [proposed]
 
@@ -402,7 +402,7 @@ version (app/open-source-license.feature.md).
 [test: agent key names are short lowercase slugs, and github is reserved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySecrets.test.ts#L98 ]
 [test: the worker environment carries the user's folders and secrets, not the gateway's keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L71 ]
 [test: the env token backend reads the gateway's record and refuses to change it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L120 ]
-[test: agent keys arrive as SPECDRIVEN_AGENT_KEY_<NAME> variables : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L161 ]
+[test: agent keys arrive as SPECDRIVEN_AGENT_KEY_<NAME> variables : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L164 ]
 
 ## S20: Signing in opens the page that was asked for, and never another site @v1 [proposed]
 
@@ -576,7 +576,7 @@ version (app/open-source-license.feature.md).
 
 [test: a worker refuses a request that does not carry its own key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L147 ]
 [test: the gateway's uid reaches a worker's socket; another worker's uid does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L392 ]
-[test: a hosted worker given a key answers only a request that carries it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L199 ]
+[test: a hosted worker given a key answers only a request that carries it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/hostedMode.test.ts#L202 ]
 
 ## S28: The account pages have a host of their own @v1 [proposed]
 
@@ -743,14 +743,14 @@ version (app/open-source-license.feature.md).
   id, a client secret and a private key: with none of them people paste a
   token as before, and with only some the service refuses to start
 
-[test: with the app, the account page offers connecting and takes no pasted token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L131 ]
-[test: without the app nothing of it is served : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L142 ]
-[test: signed out, the way to GitHub leads to sign-in first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L151 ]
-[test: back from GitHub with its code, the person is who GitHub says, the pasted token is deleted, and the worker starts again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L160 ]
-[test: a code that did not come back to the browser that set out links nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L182 ]
-[test: GitHub's own return after the app was installed on a repository just shows the account page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L211 ]
-[test: disconnecting removes the link and stops the worker, which ends its tokens : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L219 ]
-[test: the secret a browser carries to GitHub never reaches its worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L241 ]
+[test: with the app, the account page offers connecting and takes no pasted token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L133 ]
+[test: without the app nothing of it is served : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L144 ]
+[test: signed out, the way to GitHub leads to sign-in first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L153 ]
+[test: back from GitHub with its code, the person is who GitHub says, the pasted token is deleted, and the worker starts again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L162 ]
+[test: a code that did not come back to the browser that set out links nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L184 ]
+[test: GitHub's own return after the app was installed on a repository just shows the account page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L213 ]
+[test: disconnecting removes the link and stops the worker, which ends its tokens : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L221 ]
+[test: the secret a browser carries to GitHub never reaches its worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L243 ]
 [test: a sign-in says who the person is, and its token is revoked at once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L127 ]
 [test: where the app is installed comes from GitHub's own description of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L141 ]
 [test: who a person is on GitHub is kept without a secret, goes to the datastore and comes back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L224 ]
@@ -792,7 +792,7 @@ version (app/open-source-license.feature.md).
 [test: a token is handed out again until its hour is nearly over, then a new one is made and the old one ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L252 ]
 [test: asking twice at once asks GitHub once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L266 ]
 [test: a refusal stands for a minute, and a worker cannot make the gateway ask GitHub without end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L274 ]
-[test: when a worker stops, the tokens it was given end, and one still being made is never handed out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L291 ]
+[test: when a worker stops, the tokens it was given end, and one still being made is never handed out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L295 ]
 [test: git's helper answers git with the repository's token, and with nothing when there is none to ask for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L131 ]
 [test: a real git clones and pushes with the token its helper fetched, which is nowhere in its environment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L143 ]
 [test: the bundled engine asks the gateway the same way, with no git installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L197 ]
