@@ -457,9 +457,12 @@ version (app/open-source-license.feature.md).
 - **Then** every process running as its user id ends with it, and no other
   person's process is touched
 - **And** this holds when the worker had already exited by itself
+- **And** a process that ends whatever is sent to end it is ended all the
+  same
 
 [test: stopping a worker ends every process of its uid, and no one else's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L346 ]
 [test: only a worker's uid can have its processes ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L517 ]
+[test: a process that ends whatever is sent to end it is ended all the same : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L519 ]
 
 ## S23: A repository's contents cannot make a hosted worker run code @v1 [proposed]
 
@@ -539,6 +542,8 @@ version (app/open-source-license.feature.md).
   root's or the gateway's, and the worker's environment reaches no program
   that runs as root
 - **And** a stop from the platform ends the gateway, then every worker
+- **And** nothing a worker leaves for root to read can end the gateway's
+  connection to it
 - **And** on a developer's machine there is one process, and it says so
 
 [test: started as root, the gateway that answers requests is not root, and a person's worker runs as their own uid : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L253 ]
@@ -546,6 +551,7 @@ version (app/open-source-license.feature.md).
 [test: the spawner takes an environment of plain names and text, and caps and a port that are numbers in range : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L72 ]
 [test: the spawner's socket answers only a connection that says the key, and only messages of its own kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L125 ]
 [test: a wrong key is refused, a worker's end reaches the gateway, and a lost spawner is noticed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L158 ]
+[test: a settings file filled to break the spawner's connection fails that one answer and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L161 ]
 [test: a worker started through the spawner's socket serves its person, and stops when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L177 ]
 [test: the gateway's folder on the volume takes in the database and datastore an older volume kept beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L208 ]
 [test: root hands the gateway's folder to the gateway's uid once, and stays out of it afterwards : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L233 ]
@@ -618,6 +624,8 @@ version (app/open-source-license.feature.md).
   that browser before sending it off, so a code made for one browser signs
   no other browser in
 - **And** several tabs sent off together all come back signed in
+- **And** a secret the app's host did not make itself is never used, so
+  script on the app's host cannot put one of its own in the browser
 - **And** where the browser lands is always a page on the app's host
 - **And** the app's session ends when the sign-in it came from ends, and
   using the app keeps that sign-in alive, up to 30 days from signing in
@@ -628,6 +636,7 @@ version (app/open-source-license.feature.md).
 [test: a signed-in browser is handed over with a code and lands on the page it asked for, with a cookie of the app host's own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L166 ]
 [test: a hand-over code works once, only with the secret in the browser it was made for, and for a minute : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L242 ]
 [test: several tabs sent off together all come back signed in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L276 ]
+[test: a hand-over secret the gateway did not make is never used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L278 ]
 [test: where to land after a hand-over is a path on the app's host, whatever the link says : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L292 ]
 [test: using the app keeps the sign-in alive, up to 30 days from signing in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L372 ]
 
@@ -665,6 +674,8 @@ version (app/open-source-license.feature.md).
 - **And** the worker can make no call that reaches another process's
   memory, a mount, a namespace or the kernel itself
 - **And** everything the worker starts is held to the same
+- **And** the proxy holds a limited number of connections at once, and one
+  that does not say where it wants to go is closed
 - **And** the service's variables can add hosts to the proxy's list, and can
   turn the confinement off, leaving the user id of its own
 
@@ -683,7 +694,7 @@ version (app/open-source-license.feature.md).
 [test: a tunnel anywhere else is refused, and the refusal is logged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L79 ]
 [test: a plain http request goes through to a host on the list, one request a connection, and nowhere else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L94 ]
 [test: what is not a proxy request is turned away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L114 ]
-[test: git, told of the proxy through its environment, reaches the stand-in through it and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L123 ]
+[test: the proxy holds a limited number of connections at once, and closes one it refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L123 ]
 
 ## S32: The service says at each start what holds its workers @v1 [proposed]
 
