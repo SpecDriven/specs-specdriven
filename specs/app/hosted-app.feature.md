@@ -517,3 +517,185 @@ version (app/open-source-license.feature.md).
   nothing
 
 [test: a worker's answer sets no cookie, and on the API cannot run as a page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayServer.test.ts#L251 ]
+
+## S26: The part that answers the internet is not root @v1 [proposed]
+
+- **Given** the hosted service, whose first process starts as root so that
+  each person's worker can have a user id of its own
+- **When** it starts
+- **Then** that first process only readies the volume and starts, stops and
+  reports on workers; it answers no web request and opens no network
+  connection
+- **And** the gateway — which answers the internet, signs people in and
+  holds the master key — is started by it as a user id that is not root
+- **And** the gateway keeps its database and the datastore's clone in a
+  folder of its own on the volume; files an older volume kept beside the
+  users' folders are moved into it on the first start
+- **And** the gateway asks for a worker over a socket that only it can
+  open, after saying a key made at that start; anything else that reaches
+  the socket is cut off at its first line
+- **And** nothing in such a request picks what root does: the user id must
+  be one the gateway made, the user id to run as must be a worker's, never
+  root's or the gateway's, and the worker's environment reaches no program
+  that runs as root
+- **And** a stop from the platform ends the gateway, then every worker
+- **And** on a developer's machine there is one process, and it says so
+
+[test: started as root, the gateway that answers requests is not root, and a person's worker runs as their own uid : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L250 ]
+[test: the spawner starts a worker only for a user id that is one and a uid that is a worker's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L56 ]
+[test: the spawner takes an environment of plain names and text, and caps and a port that are numbers in range : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L72 ]
+[test: the spawner's socket answers only a connection that says the key, and only messages of its own kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L125 ]
+[test: a wrong key is refused, a worker's end reaches the gateway, and a lost spawner is noticed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L158 ]
+[test: a worker started through the spawner's socket serves its person, and stops when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L177 ]
+[test: the gateway's folder on the volume takes in the database and datastore an older volume kept beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L208 ]
+[test: root hands the gateway's folder to the gateway's uid once, and stays out of it afterwards : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySpawner.test.ts#L233 ]
+[test: the launcher becomes the program it is told to, in its folder and with its environment alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L148 ]
+[test: the worker command drops to the user's uid with no way back, under its caps : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L544 ]
+
+## S27: A worker serves only its own gateway's requests @v1 [proposed]
+
+- **Given** a worker, which owns the folder its socket is in and could put a
+  link to another person's socket there
+- **When** a request reaches a worker
+- **Then** the worker answers only a request that carries the key the
+  gateway made for that worker when it started it; any other is refused
+- **And** so a request the gateway was led to send to another person's
+  worker is refused there
+- **And** a browser cannot bring a key of its own: the gateway's replaces it
+- **And** every start of a worker gets a new key
+- **And** the gateway, which is neither root nor the worker, reaches the
+  worker's socket and nothing else in the person's folder; no other
+  person's worker reaches the socket
+
+[test: a worker refuses a request that does not carry its own key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L145 ]
+[test: the gateway's uid reaches a worker's socket; another worker's uid does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L389 ]
+
+## S28: The account pages have a host of their own @v1 [proposed]
+
+- **Given** a service set up with an account url as well as its public url
+- **When** a browser asks either host for something
+- **Then** the account host serves sign-in, sign-up, password reset, the
+  account page, the admin page and their API, and sends a request for
+  anything else to the app's host
+- **And** the app's host serves the app and each person's worker, sends a
+  request for one of the account pages to the account host, and serves none
+  of the account's API
+- **And** the app's host says who is signed in — the email and the role —
+  and no more of the account
+- **And** a change sent to the account host from a page on the app's host is
+  refused, with the person's cookies or without
+- **And** the sign-in's cookie means nothing on the app's host, and the app
+  host's cookie means nothing on the account host
+- **And** email links lead to the account host
+- **And** signing out on either host, or changing the password, ends the
+  person's sessions on both
+- **And** only sign-ins are copied to the datastore
+- **And** without an account url everything stays on the one host, and the
+  service says at start that the account pages share it
+
+[test: each host serves its own half and points to the other for the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L295 ]
+[test: the app host's cookie reaches the worker and nothing else; the sign-in cookie means nothing on the app's host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L176 ]
+[test: script shown on the app's host cannot write to the account host, with the person's cookies or without : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L202 ]
+[test: email links lead to the account host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L323 ]
+[test: signing out on either host ends both sessions, and so does a changed password : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L330 ]
+[test: only sign-ins go into the datastore, where an app session read back would count as one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L381 ]
+[test: with one host, the app's own session answers are the sign-in's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L436 ]
+[test: the account url is an https url on another host than the app's, and needs the app's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L452 ]
+
+## S29: A signed-in browser is handed to the app's host with a code that works once @v1 [proposed]
+
+- **Given** a service with an account host, and a browser with no session on
+  the app's host
+- **When** the browser opens a page of the app
+- **Then** it is sent to the account host, signs in there if it has not, and
+  is sent back with a code; the app's host then gives it a cookie of its
+  own and shows the page that was asked for
+- **And** the code works once, for a minute
+- **And** the code works only together with a secret the app's host left in
+  that browser before sending it off, so a code made for one browser signs
+  no other browser in
+- **And** several tabs sent off together all come back signed in
+- **And** where the browser lands is always a page on the app's host
+- **And** the app's session ends when the sign-in it came from ends, and
+  using the app keeps that sign-in alive, up to 30 days from signing in
+- **And** a browser that cannot finish is shown a page to try again from,
+  not sent round again
+
+[test: signed out, the app's host sends a page to the account host to sign in, and refuses the API : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L129 ]
+[test: a signed-in browser is handed over with a code and lands on the page it asked for, with a cookie of the app host's own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L153 ]
+[test: a hand-over code works once, only with the secret in the browser it was made for, and for a minute : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L229 ]
+[test: several tabs sent off together all come back signed in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L263 ]
+[test: where to land after a hand-over is a path on the app's host, whatever the link says : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L279 ]
+[test: using the app keeps the sign-in alive, up to 30 days from signing in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L359 ]
+
+## S30: The app's pages run only the app's own script @v1 [proposed]
+
+- **Given** a signed-in person, and specs whose markdown, images and
+  diagrams a teammate can shape
+- **When** the gateway serves one of the app's pages
+- **Then** the page carries a policy under which only script served by the
+  service's own host runs, and the page's one inline script by its hash
+- **And** no text is run as script
+- **And** the page sends nothing to another site and is framed by none; the
+  one exception is the diagram editor's fonts, from the one address they
+  are published at
+- **And** the service's variables can send the policy as report-only, where
+  the browser says what would be blocked and blocks nothing, or turn it off
+
+[test: the app's pages carry a policy that runs only the app's own script : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayHosts.test.ts#L390 ]
+
+## S31: A worker is confined to its own folder and one way out @v1 [proposed]
+
+- **Given** a worker running as its person's user id, on a kernel that lets
+  a process narrow itself
+- **When** the worker is started
+- **Then** it can read the system's files and the app's code, and change
+  neither
+- **And** it can write in its own five folders and nowhere else — not in
+  the shared temp folder, and not in a file anyone on the machine may write
+- **And** it can read no file outside those, even one anyone may read
+- **And** it can connect to one port, the gateway's outbound proxy, and
+  listen on none; it can make no UDP socket
+- **And** the proxy lets a connection through to GitHub and GitHub's API and
+  refuses every other, saying so in the log; git and the app's own requests
+  go through it
+- **And** the worker can make no call that reaches another process's
+  memory, a mount, a namespace or the kernel itself
+- **And** everything the worker starts is held to the same
+- **And** the service's variables can add hosts to the proxy's list, and can
+  turn the confinement off, leaving the user id of its own
+
+[test: a worker is confined to its own folders and the proxy's port, and gets only its own environment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L427 ]
+[test: the worker's environment sends git and its own requests through the gateway's proxy, when there is one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayWorkers.test.ts#L166 ]
+[test: a worker's plan gives it its own folders, the system and the app's code to read, and one port : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L31 ]
+[test: the file rights follow the kernel's Landlock version, and the code is never writable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L45 ]
+[test: TCP is confined from Landlock 4, and only when there is a port to allow : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L70 ]
+[test: the %s system-call filter lets a program's everyday calls through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L77 ]
+[test: the %s filter refuses the calls that reach other processes, mounts, namespaces and the kernel : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L84 ]
+[test: the %s filter lets a thread or a child be made, never a namespace : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L98 ]
+[test: the %s filter leaves a worker unix sockets and TCP, and no other kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L113 ]
+[test: a call made as another architecture ends the process, and x86-64's second numbering is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L137 ]
+[test: workers may reach GitHub and its API, a stand-in the environment names, and what the operator adds : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L53 ]
+[test: a tunnel to a host on the list is opened, and bytes pass both ways : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L70 ]
+[test: a tunnel anywhere else is refused, and the refusal is logged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L79 ]
+[test: a plain http request goes through to a host on the list, one request a connection, and nowhere else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L94 ]
+[test: what is not a proxy request is turned away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L114 ]
+[test: git, told of the proxy through its environment, reaches the stand-in through it and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L123 ]
+
+## S32: The service says at each start what holds its workers @v1 [proposed]
+
+- **Given** a platform whose kernel may or may not let a process narrow
+  itself, or may do so for files and not for the network
+- **When** the service starts
+- **Then** it starts a throwaway process the way it starts a worker, has it
+  try what a worker must be able to do and what it must not, and logs one
+  line: the kernel, and which of files, network and system calls are held
+- **And** what the kernel does not offer is left out and named in that
+  line; the user id of its own still keeps people's files apart
+- **And** a worker that could not do something it must is reported as
+  broken in that line
+- **And** `bun src/gateway/index.ts probe` prints the same line on any
+  machine
+
+[test: on this kernel, a confined process keeps to its folder and its one port : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L196 ]
+[test: what holds a worker is said in one line, and so is what does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewaySandbox.test.ts#L170 ]
