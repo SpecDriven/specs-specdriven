@@ -18,6 +18,8 @@ logs and the coding agents.
 - and a fetch that fails leaves the site showing what it had
 
 [test: a change pushed to the repo shows up after the next refresh : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L174 ]
+[test: shows a pushed change to its scenario after the next refresh : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L160 ]
+[test: is left as it is while nothing changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L175 ]
 
 ## S2: A visitor browses the specs and the roadmap without signing in @v1 [proposed]
 
