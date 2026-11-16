@@ -735,8 +735,15 @@ version (app/open-source-license.feature.md).
 - and a sign-in that did not set out from this browser, for this account,
   connects nothing: not a code someone else sent, not one whose way back
   was changed, and not one the person cancelled at GitHub
-- and signed out, the way to GitHub leads to sign-in first
-- and Disconnect removes the link and stops their worker
+- and setting out for GitHub is something only the account page does: a
+  link, or a page somewhere else that a signed-in browser is sent to,
+  starts nothing; signed out, nothing sets out, and the way back leads to
+  sign-in first
+- and a GitHub account that is connected to one person's account here
+  cannot be connected to another's until it is disconnected there, and the
+  page says so
+- and Disconnect removes the link and stops their worker; what stops a
+  worker from the account page can be done only so often in an hour
 - and who a person is on GitHub goes to the datastore with their account,
   so a redeploy without the volume still knows it
 - and the app is set up with three of the service's variables, a client
@@ -745,10 +752,11 @@ version (app/open-source-license.feature.md).
 
 [test: with the app, the account page offers connecting and takes no pasted token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L133 ]
 [test: without the app nothing of it is served : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L144 ]
-[test: signed out, the way to GitHub leads to sign-in first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L153 ]
+[test: signed out, nothing sets out for GitHub, and the way back leads to sign-in first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L154 ]
+[test: only the account page sets out for GitHub, never a link or another site's page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L164 ]
+[test: a GitHub account that is one person's here cannot be connected to another's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L184 ]
+[test: what stops a person's worker is limited, so it cannot be done without end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L213 ]
 [test: back from GitHub with its code, the person is who GitHub says, the pasted token is deleted, and the worker starts again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L162 ]
-[test: a code that did not come back to the browser that set out links nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L184 ]
-[test: GitHub's own return after the app was installed on a repository just shows the account page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L213 ]
 [test: disconnecting removes the link and stops the worker, which ends its tokens : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L221 ]
 [test: the secret a browser carries to GitHub never reaches its worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubConnect.test.ts#L243 ]
 [test: a sign-in says who the person is, and its token is revoked at once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L127 ]
@@ -774,10 +782,17 @@ version (app/open-source-license.feature.md).
   git gets the token through a helper as it needs it, on the system's git
   and on the bundled engine alike, and the commits are the person's
 - and with no token to give, the sync fails as it does with no sign-in,
-  and the app says to connect GitHub and install the app on the repository
+  and the app says to connect GitHub and install the app on the repository;
+  the refusal reads the same whether the app is not installed there or the
+  person has no access, so asking tells nobody which repositories exist
+- and the token is for the repository GitHub named and no other: a
+  repository that was renamed or moved is not followed to its new place
 - and a token is handed out again until its hour is nearly over, a refusal
-  stands for a minute, and one person's worker can make the gateway ask
-  GitHub only so many times in ten minutes
+  stands for a minute, and one person can make the gateway ask GitHub only
+  so many times in ten minutes, however often their worker stops and
+  starts; so can everyone together
+- and a token for a repository the person can no longer reach is revoked
+  when that is found out
 - and when the worker stops, for any reason, the tokens it was given are
   revoked
 
@@ -792,6 +807,10 @@ version (app/open-source-license.feature.md).
 [test: a token is handed out again until its hour is nearly over, then a new one is made and the old one ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L252 ]
 [test: asking twice at once asks GitHub once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L266 ]
 [test: a refusal stands for a minute, and a worker cannot make the gateway ask GitHub without end : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L274 ]
+[test: everyone's workers together can ask GitHub only so often : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L345 ]
+[test: a token whose repository the person can no longer reach is ended when that is found out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L365 ]
+[test: the token handed out is for the repository GitHub named, by its id, and never for another : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L183 ]
+[test: a refusal says the same whether the app is not installed or the person has no access : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L205 ]
 [test: when a worker stops, the tokens it was given end, and one still being made is never handed out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayGithubApp.test.ts#L295 ]
 [test: git's helper answers git with the repository's token, and with nothing when there is none to ask for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L131 ]
 [test: a real git clones and pushes with the token its helper fetched, which is nowhere in its environment : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayTokenSocket.test.ts#L143 ]
