@@ -13,9 +13,9 @@
 
 The parser used to trim the body, which took the indentation off its first line. For an indented fence line that turned the line into a fence opener: the file was written with a fence never closed, every later save of the feature was refused, and the scenario under it vanished from the editor while still being in the document.
 
-[test: a body's first-line indentation survives the round trip : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L426 ]
-[test: a description's first-line indentation survives too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L437 ]
-[test: trimBlankLines drops blank edge lines and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L444 ]
+[test: a body's first-line indentation survives the round trip : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L371 ]
+[test: a description's first-line indentation survives too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L382 ]
+[test: trimBlankLines drops blank edge lines and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L389 ]
 [test: a body opening with an indented fence line saves, and saves again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/features.test.ts#L976 ]
 
 ## S2: A Failed Autosave Is Retried @v1 [proposed]

@@ -94,5 +94,5 @@ Agent's Notion of a Coding Session vs. SpecDriven's Notion of a Coding Session
 
 [test: no session prompt carries the specs' test links : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSession.test.ts#L281 ]
 [test: the prompt carries a spec without its test links : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agent.test.ts#L71 ]
-[test: withoutTestLinks drops every test link and keeps the rest of the spec : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L341 ]
-[test: withoutTestLinks hands a spec with no test link back as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L388 ]
+[test: withoutTestLinks drops every test link and keeps the rest of the spec : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L398 ]
+[test: withoutTestLinks hands a spec with no test link back as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L445 ]
