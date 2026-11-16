@@ -695,6 +695,7 @@ version (app/open-source-license.feature.md).
 [test: a plain http request goes through to a host on the list, one request a connection, and nowhere else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L94 ]
 [test: what is not a proxy request is turned away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L114 ]
 [test: the proxy holds a limited number of connections at once, and closes one it refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L123 ]
+[test: git, told of the proxy through its environment, reaches the stand-in through it and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gatewayEgress.test.ts#L153 ]
 
 ## S32: The service says at each start what holds its workers @v1 [proposed]
 
