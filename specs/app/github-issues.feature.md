@@ -141,10 +141,10 @@ Allow to access GitHub issues from the app.
   issue, and a body that embeds no such image is sent to GitHub untouched
 
 [test: a stored image is committed to the code repo and its url rewritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L309 ]
-[test: an already-committed image reuses its url without a second commit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L322 ]
-[test: an image with no bytes on disk is left as-is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L336 ]
-[test: a refused upload keeps the local link rather than failing the issue : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L347 ]
-[test: a body with no app image is sent untouched, no contents call : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L360 ]
+[test: an already-committed image reuses its url without a second commit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L364 ]
+[test: an image with no bytes on disk is left as-is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L385 ]
+[test: a refused upload keeps the local link rather than failing the issue : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L396 ]
+[test: a body with no app image is sent untouched, no contents call : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L410 ]
 
 ## S8: Requests to GitHub carry the user's sign-in @v1 [proposed]
 
