@@ -185,7 +185,7 @@ If error code, display the error to the user in an error box.
 
 [test: the pins are for the SDK version package.json depends on, one per platform : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/binary.test.ts#L46 ]
 [test: with no Claude Code anywhere, the email sign-in fetches this platform's first, then signs in with it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/auth.test.ts#L482 ]
-[test: a failed turn keeps why it failed even when the reply already said it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L119 ]
+[test: a failed turn keeps why it failed even when the reply already said it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L116 ]
 [test: an agent with its own Settings section offers the way there, and only that agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L108 ]
 [test: a turn that failed to sign in offers the agent's Settings section beside its hint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentDescriptors.test.tsx#L120 ]
 
@@ -245,7 +245,7 @@ The switch is ON by default, and the setting is saved to
 [test: a new sign-in that cannot start Claude leaves the session as it was, saying so : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1093 ]
 [test: a provider's sign-in change is a change for its id alone; an unknown id is nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L89 ]
 [test: an agent's sign-in change has every open page re-read the agents : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRegistry.test.ts#L100 ]
-[test: a provider's sign-in change refreshes its live sessions, and a failed refresh is a note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L537 ]
+[test: a provider's sign-in change refreshes its live sessions, and a failed refresh is a note : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L681 ]
 
 ## S12: Choose the model Claude starts on @v1 [proposed]
 
@@ -387,3 +387,30 @@ The switch is ON by default, and the setting is saved to
 [test: mapSdkMessage passes on what Claude thinks, streamed and whole, and nothing for thinking Claude keeps to itself : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L497 ]
 [test: a session asks Claude Code for a summary of its thinking and leaves thinking itself as its settings have it : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L560 ]
 [test: a Claude Code that refuses the thinking request still runs the session : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L576 ]
+
+## S16: Claude lists its MCP servers, turns them on and off and signs in to them @v1 [proposed]
+
+- Given: a Claude session in the coding agent pane
+- When: the session popover asks for the session's MCP servers
+- Then: the list is Claude Code's own: the servers the app handed the
+  session (shown as SpecDriven) and the ones Claude Code's user, project and
+  local settings, its plugins and the claude.ai account bring, each with
+  Claude Code's status; "pending" reads as connecting, and a status the
+  plugin does not know is shown as failed with that status as the reason
+- and the switch is Claude Code's own: Claude Code remembers a server turned
+  off for the session's folder, so it stays off in later sessions there
+  until it is turned on again
+- and Reconnect asks Claude Code to connect the server again; when it still
+  fails, the reason is shown in Claude Code's words
+- and Sign in is offered for a server that needs one and is not a local
+  command: Claude Code answers with the page to sign in on, waits on
+  localhost for the browser to come back, and connects the server by itself;
+  a claude.ai connector's page is on claude.ai
+- and a Claude Code that does not know the sign-in request says to run
+  `claude` in a terminal and sign in with /mcp
+
+[test: Claude Code's MCP servers become the popover's rows with the status, where each comes from and what can be done : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1866 ]
+[test: a started sign-in gives the page to open, and none when nothing is left for the user to do : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1888 ]
+[test: the popover's MCP list is Claude Code's, and its switch, Reconnect and Sign in are Claude Code's requests : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1906 ]
+[test: a Claude Code that cannot start an MCP sign-in says how to sign in instead : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1944 ]
+[test: the Claude agent says it lists its MCP servers : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1955 ]

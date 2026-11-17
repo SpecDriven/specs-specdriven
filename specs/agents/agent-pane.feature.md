@@ -54,7 +54,7 @@
 - and Codex starts in Manual (its "auto" is the same policy), and pi has no
   permission gate
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L709 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L724 ]
 
 ## S3: The folder chip switches the folder the agent works in @v1 [proposed]
 
@@ -76,7 +76,7 @@
 - and the data repo is offered by its absolute path, though settings may
   name it relative to the app
 
-[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L670 ]
+[test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L685 ]
 [test: GET /api/state names the open folder's absolute path, though settings name it relative to the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L165 ]
 
 ## S4: The mode menu describes each mode @v1 [proposed]
@@ -92,7 +92,7 @@
   starts in
 - and pressing a number key (1–5) chooses that mode directly
 
-[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L709 ]
+[test: the mode menu numbers every mode and badges the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L724 ]
 
 ## S5: The server runs a chat in the folder the pane picked @v1 [proposed]
 
@@ -161,7 +161,7 @@
 - and the header keeps the sessions menu, the status dot, the billing chip,
   Stop and close
 
-[test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L456 ]
+[test: the pane stays between its minimum and 60% of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L471 ]
 [test: one chip names the agent by its icon, the model and the effort, and opens one picker for all three : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L185 ]
 [test: each agent is an icon named by its label, and its tooltip gives the name and what the agent is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L216 ]
 [test: an agent's mark is drawn in the text colour, hidden from assistive tech : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L244 ]
@@ -172,15 +172,15 @@
 [test: a long list gets a search field where typing narrows it, Enter picks the first match and digits are text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L357 ]
 [test: a running session picks only its model and effort, switching the session itself : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L391 ]
 [test: an agent that cannot switch models in a session still picks its effort, and one with nothing to pick is plain text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelPicker.test.tsx#L410 ]
-[test: the model list holds the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L759 ]
-[test: a model off the list still shows, and with no default the agent's own leads the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L787 ]
-[test: a model's description that only repeats its name is left off, as a proxy's rows carry it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L786 ]
-[test: a search keeps the models that hold every word typed, in the name or the value : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L807 ]
-[test: the effort row offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L817 ]
+[test: the model list holds the agent's models, the running one checked and the default badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L777 ]
+[test: a model off the list still shows, and with no default the agent's own leads the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L805 ]
+[test: a model's description that only repeats its name is left off, as a proxy's rows carry it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L814 ]
+[test: a search keeps the models that hold every word typed, in the name or the value : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L825 ]
+[test: the effort row offers the levels the model takes, after the agent's own default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L835 ]
 [test: the pane's model list is loaded again once it has gone stale, and readers at once share the load : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelRefresh.test.tsx#L83 ]
 [test: the pane's model list is loaded again when the model picker opens, and it lists what came back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentModelRefresh.test.tsx#L112 ]
-[test: the pane switches a running session's model and effort, and the pick becomes the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L251 ]
-[test: an agent's choices and defaults are listed for the pane and kept through the provider : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L292 ]
+[test: the pane switches a running session's model and effort, and the pick becomes the agent's default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L265 ]
+[test: an agent's choices and defaults are listed for the pane and kept through the provider : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L306 ]
 
 ## S7: A new session starts from the message box @v1 [proposed]
 
@@ -199,9 +199,9 @@
   spaces or an effort that is no level is refused, and an agent with no
   effort setting is never handed one
 
-[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L824 ]
-[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L818 ]
-[test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L228 ]
+[test: a new session starts from the message box, with the folder and mode in its bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L858 ]
+[test: a session is named after the first line of its first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L852 ]
+[test: a session starts on the model and effort the pane picked, and refuses ones that are none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L242 ]
 
 ## S8: Paste an image into the message @v1 [proposed]
 
@@ -234,10 +234,10 @@
 [test: an image goes as it is when its type and size fit, else it is scaled to fit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L100 ]
 [test: a pasted image shows as a thumbnail, can be removed, and is sent with the first message : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L146 ]
 [test: an agent that reads no images refuses the paste by name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentImagePaste.test.tsx#L221 ]
-[test: images pasted into a message reach the provider, are kept in the session's folder and served back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L593 ]
-[test: a session started with pasted images hands them to the provider with its first turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L633 ]
-[test: pasted images are refused for an agent that reads none, and when they are not images, too many or too big : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L649 ]
-[test: a pasted image gets a reply that says the simulation cannot look at it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L352 ]
+[test: images pasted into a message reach the provider, are kept in the session's folder and served back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L737 ]
+[test: a session started with pasted images hands them to the provider with its first turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L777 ]
+[test: pasted images are refused for an agent that reads none, and when they are not images, too many or too big : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L793 ]
+[test: a pasted image gets a reply that says the simulation cannot look at it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L399 ]
 [test: pasted images go to Claude as image blocks before the text, and images alone carry no text block : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L597 ]
 [test: pasted images go to Codex as localImage items, read from the copies the app keeps : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L682 ]
 [test: pasted images go to pi with its prompt command, as its image items : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-pi/test/piChat.test.ts#L476 ]
@@ -393,24 +393,24 @@
   its totals only; the demo's simulated session counts too; the home folder
   is never sent from the demo or a shared server
 
-[test: a worktree session shows its folder, branch, base and the window by category : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L229 ]
-[test: Refresh is there only for an agent that counts on request, and waits for the turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L252 ]
-[test: an agent that counts nothing says so, and one that counts says when : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L268 ]
-[test: a measured count says so, and a count with no window shows no bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L276 ]
-[test: the header button shows how full the window is, and nothing while unknown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L284 ]
-[test: write counts the way Claude Desktop does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L96 ]
-[test: give a share of the window to one decimal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L110 ]
-[test: the home folder is ~, and a long path loses its middle, whole folders first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L121 ]
-[test: a folder's parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L134 ]
-[test: the percentage needs a window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L144 ]
-[test: the bar draws used parts in their colour order, then the reserve and free space : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L156 ]
-[test: an agent with totals only gets one used part, a derived reserve and what is left : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L176 ]
-[test: a context event leaves the transcript as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L188 ]
-[test: the header ring opens the session popover on the folder, its branch and the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L140 ]
-[test: Refresh asks the agent to count every category, and a count on the stream moves the ring : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L233 ]
-[test: a provider's context count reaches the pane, the log keeps the newest, and the record its totals : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L412 ]
-[test: the pane's Refresh asks the provider to count again, and is refused where it cannot : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L460 ]
-[test: a demo session counts its context window, and counts it again on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L302 ]
+[test: a worktree session shows its folder, branch, base and the window by category : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L232 ]
+[test: Refresh is there only for an agent that counts on request, and waits for the turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L255 ]
+[test: an agent that counts nothing says so, and one that counts says when : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L271 ]
+[test: a measured count says so, and a count with no window shows no bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L279 ]
+[test: the header button shows how full the window is, and nothing while unknown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L287 ]
+[test: write counts the way Claude Desktop does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L99 ]
+[test: give a share of the window to one decimal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L113 ]
+[test: the home folder is ~, and a long path loses its middle, whole folders first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L124 ]
+[test: a folder's parent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L137 ]
+[test: the percentage needs a window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L147 ]
+[test: the bar draws used parts in their colour order, then the reserve and free space : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L159 ]
+[test: an agent with totals only gets one used part, a derived reserve and what is left : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L179 ]
+[test: a context event leaves the transcript as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L191 ]
+[test: the header ring opens the session popover on the folder, its branch and the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L156 ]
+[test: Refresh asks the agent to count every category, and a count on the stream moves the ring : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L249 ]
+[test: a provider's context count reaches the pane, the log keeps the newest, and the record its totals : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L426 ]
+[test: the pane's Refresh asks the provider to count again, and is refused where it cannot : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L474 ]
+[test: a demo session counts its context window, and counts it again on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L303 ]
 [test: Codex's token usage is the context count, the last request's tokens of the model's window : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1002 ]
 [test: a Codex session shows its context count as Codex reports it, once per change : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-codex/test/codexChat.test.ts#L1019 ]
 
@@ -464,7 +464,7 @@
 [test: five open tabs, ended ones included, leave no room for another : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L183 ]
 [test: a session asks before closing only while its agent is at work : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L190 ]
 [test: a tab's tooltip names the session, its agent, its state and its folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentTabs.test.tsx#L196 ]
-[test: at most five sessions are open at once, an ended one holding its tab until it is closed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L120 ]
+[test: at most five sessions are open at once, an ended one holding its tab until it is closed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L134 ]
 
 ## S13: The pane header says whether the agent spends an account or the API @v1 [proposed]
 
@@ -593,10 +593,10 @@
 [test: the open file goes with a message unless removed; pinned files stay : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentComposer.test.tsx#L113 ]
 [test: the open feature goes with a message; it can be kept, removed and added back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentComposer.test.tsx#L241 ]
 [test: a message to a running session carries the files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentComposer.test.tsx#L309 ]
-[test: a file is named relative to the agent's folder, or in full outside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L718 ]
-[test: the files follow the user's words in one line; a /command goes as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L731 ]
-[test: only paths inside the open folder are taken : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L739 ]
-[test: a message's files are shown under it and told to the agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L751 ]
+[test: a file is named relative to the agent's folder, or in full outside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L862 ]
+[test: the files follow the user's words in one line; a /command goes as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L875 ]
+[test: only paths inside the open folder are taken : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L883 ]
+[test: a message's files are shown under it and told to the agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L895 ]
 
 ## S18: Switching folders closes the other folder's sessions @v1 [proposed]
 
@@ -680,7 +680,7 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
   this device opens in it from then on; a device that never picked one shows
   Normal
 - and Normal is the conversation: a run of two or more tool calls in a row
-  is one line that says what they did ("Read 3 files, ran 2 commands") and
+  is one line that says what they did ("Read 3 files, edited 2 files") and
   opens on the calls themselves; a call still running, a call that failed
   and a call alone stay their own row; what the agent thought is left out,
   with one "Thinking…" line while it is thinking; the notes an agent starts
@@ -688,9 +688,13 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
 - and Thinking shows every tool call on its own closed row, as the pane did
   before the views, and what the agent thought, dimmed, above the words it
   led to and streamed as it comes
+- and the shell commands the agent runs (its Bash calls) are left out of
+  Normal and Thinking, whether they finished, failed or are still running,
+  and a subagent's too; a run's line in Normal does not count them
 - and Verbose shows everything: every tool call opened on its input and its
-  output (long output scrolls in its own box), what the agent thought, the
-  notes an agent starts with, and how many turns the reply took
+  output (long output scrolls in its own box), the shell commands among them,
+  what the agent thought, the notes an agent starts with, and how many turns
+  the reply took
 - and what a subagent said and called sits inside the row of the call that
   started it, which says how many calls it made; under Verbose it is shown
   inline where it happened, a step in
@@ -705,24 +709,25 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
   three views can be tried there
 
 [test: Normal folds each run of tool calls into one line and leaves thinking and start-up notes out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L283 ]
-[test: Thinking shows every call on its own row and what the agent thought : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L295 ]
-[test: Verbose shows everything, in the order it happened : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L299 ]
-[test: a call still running or one that failed stays out of a run in Normal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L303 ]
-[test: Normal says a thought is happening only while it streams; an error note shows in every view : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L323 ]
-[test: a subagent's traffic sits inside its call's row, and inline a step in under Verbose : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L331 ]
-[test: a run's line counts each kind of call, in the order they first appear : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L404 ]
+[test: Thinking shows every call on its own row and what the agent thought : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L296 ]
+[test: Verbose shows everything, in the order it happened : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L300 ]
+[test: a call still running or one that failed stays out of a run in Normal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L304 ]
+[test: Normal and Thinking leave every shell command out, Verbose shows each one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L324 ]
+[test: Normal says a thought is happening only while it streams; an error note shows in every view : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L341 ]
+[test: a subagent's traffic sits inside its call's row, and inline a step in under Verbose : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L349 ]
+[test: a run's line counts each kind of call, in the order they first appear : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L422 ]
 [test: thinking streams into one item, and the settled block replaces the stream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L176 ]
 [test: an empty thinking block adds nothing, and a turn's result ends a thought still streaming : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L196 ]
 [test: what a subagent says and calls is marked with the call that started it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L208 ]
-[test: each transcript view renders its rows, a folded run, the thinking or every call opened : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L514 ]
-[test: Normal shows a thought still streaming as one line, and a subagent call says how many calls it made : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L554 ]
-[test: a subagent call counts the calls made under it, folded runs and deeper subagents included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L351 ]
-[test: the view is kept on the device, Normal until one is picked and for a value it does not know : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L369 ]
-[test: the popover offers Normal, Thinking and Verbose, with Normal picked on a device that never chose : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L200 ]
-[test: the Thinking choice says when the agent does not report its thinking : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L215 ]
-[test: the popover's Transcript row switches the view, the transcript follows, and the choice is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L177 ]
-[test: the script streams its text before settling it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L163 ]
-[test: a demo session starts and plays a scripted Claude Code turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L214 ]
+[test: each transcript view renders its rows, a folded run, the thinking or every call opened : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L532 ]
+[test: Normal shows a thought still streaming as one line, and a subagent call says how many calls it made : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L572 ]
+[test: a subagent call counts the calls made under it, folded runs and deeper subagents included : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L369 ]
+[test: the view is kept on the device, Normal until one is picked and for a value it does not know : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L387 ]
+[test: the popover offers Normal, Thinking and Verbose, with Normal picked on a device that never chose : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L203 ]
+[test: the Thinking choice says when the agent does not report its thinking : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L218 ]
+[test: the popover's Transcript row switches the view, the transcript follows, and the choice is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L193 ]
+[test: the script streams its text before settling it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L164 ]
+[test: a demo session starts and plays a scripted Claude Code turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L215 ]
 
 ## S21: A message sent while the agent works waits for the turn @v1 [proposed]
 
@@ -799,3 +804,47 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
 [test: a retried message that gets through shows no failure, and the waiting ones follow : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L373 ]
 [test: a failure after the agent said something, a Stop, or a message that never waited is not tried again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaiting.test.ts#L390 ]
 [test: a turn Send now stopped ends with a quiet Turn stopped footer, not a failure : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWaitingPane.test.tsx#L153 ]
+
+## S23: The session popover lists the MCP servers and turns them on, off and signs in @v1 [proposed]
+
+- Given: a running session of an agent that lists its MCP servers (Claude)
+- When: the user opens the session popover (S11)
+- Then: under the context window a row "MCP servers" says how many servers
+  the session has, and opens on one line per server: a dot for how it stands
+  (green connected, amber needs sign-in, red failed, grey disabled, pulsing
+  while it connects), its name, where it is configured (project, user,
+  local, claude.ai, or SpecDriven for a server the app handed the session)
+  and its status in words ("Connected · 3 tools", "Needs sign-in", "Failed",
+  "Disabled", "Connecting…")
+- and the row opens by itself, with a dot beside the count, when a server
+  failed or needs a sign-in
+- and each server has a switch: off disables the server, on enables it
+  again; the row follows the agent's answer, and a refusal is shown with the
+  agent's words
+- and a server that needs a sign-in has a "Sign in" button: the agent starts
+  the sign-in, the app opens its page in the browser and keeps it in the row
+  as "Open the sign-in page"; the list then asks again every two seconds,
+  for up to five minutes, until the server no longer needs it
+- and a failed server has a "Reconnect" button, and its error as a tooltip
+- and the list is the agent's answer at that moment: asked when the popover
+  opens and after every action (GET /api/agent/chat/:id/mcp, and POST the
+  same with the server's name and enable, disable, reconnect or
+  authenticate), never kept in the session's log or record
+- and the routes answer 409 for an agent that does not list its MCP servers,
+  a session still starting or ended, and an action the server does not
+  offer, and 404 for a server the session does not have; an agent with no
+  list (Codex, OpenCode, Pi) shows no row
+- and the demo's simulated session has four servers to try it on: two that
+  work, one that wants a sign-in and one that failed
+
+[test: each status has its words, and a failure outranks a sign-in for the row's warning : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L321 ]
+[test: the row counts the servers and opens by itself when one wants something : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L331 ]
+[test: a server's row says where it comes from and how it stands, with a switch that is on unless disabled : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L341 ]
+[test: Sign in is offered where a sign-in can start, Reconnect where a server failed, each with a button class : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L353 ]
+[test: a started sign-in leaves its page as a link while the server still needs it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L371 ]
+[test: before the agent answered the count waits; no servers and a failed list say so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L380 ]
+[test: the popover has the row only for an agent that lists its servers, and only while the session runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/sessionRail.test.tsx#L391 ]
+[test: the popover lists the MCP servers, a switch turns one off, and Sign in opens the page and waits for the server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentRail.test.tsx#L282 ]
+[test: the popover's MCP servers are the provider's, and each action is relayed and answered with the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L525 ]
+[test: MCP servers are refused for an agent that does not list them, a session still starting, and an ended one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L616 ]
+[test: a demo session lists its MCP servers, and turning one off, signing in and reconnecting change the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demoAgent.test.ts#L338 ]
