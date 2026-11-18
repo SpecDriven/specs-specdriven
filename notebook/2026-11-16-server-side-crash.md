@@ -8,6 +8,6 @@
 
 Noticed around 8am
 
-![image](/api/images/image-b5f03b37.png)
+![image](/.images/image-b5f03b37.png)
 
-![image](/api/images/image-05131da0.png)
+![image](/.images/image-05131da0.png)

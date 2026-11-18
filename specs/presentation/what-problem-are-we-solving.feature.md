@@ -17,7 +17,7 @@ UX: Figma
 PM, Eng, Test: Jira, Wiki, Teams chats, Meeting notes
 Test: qTest
 
-![tower-of-babel.excalidraw](/api/images/tower-of-babel-excalidraw-25316346.svg)
+![tower-of-babel.excalidraw](/.images/tower-of-babel-excalidraw-25316346.svg)
 
 ## S2: Where they should be @v1 [proposed]
 
@@ -25,7 +25,7 @@ Test: qTest
 
 **Updated by:** David Vydra
 
-![tower-finished.excalidraw](/api/images/tower-finished-excalidraw-b5a57a81.svg)
+![tower-finished.excalidraw](/.images/tower-finished-excalidraw-b5a57a81.svg)
 
 ## S3: Behavior Driven Development @v1 [proposed]
 

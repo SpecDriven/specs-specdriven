@@ -6,9 +6,10 @@
 
 A scenario body can embed images — a screenshot pasted from the clipboard or
 an image file picked from disk. Images live in the data repo like everything
-else, so they sync through git with the features that reference them. The
-`![...](/api/images/<name>)` references resolve inside the app; on GitHub the
-files are browsable under `.images/`.
+else, so they sync through git with the features that reference them. In
+the app an image is referenced as `![...](/api/images/<name>)`, the route
+that serves it; a markdown file names it by its path in the repo,
+`![...](/.images/<name>)`, so GitHub shows it where it renders the file.
 
 - In the scenario editor pane's Write tab, pasting clipboard content that
   contains an image uploads it and inserts `![alt](/api/images/<name>)` at
@@ -195,3 +196,32 @@ twice as big as it looked on screen — so an image can be sized in place.
 [test: refuses names storeImage would never generate : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L83 ]
 [test: maps stored extensions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/images.test.ts#L100 ]
 [test: image routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L50 ]
+
+## S10: an image shows where GitHub renders the file @v1 [proposed]
+
+- Given: a feature or a page whose text embeds stored images
+- When: the app writes its markdown file
+- Then: each image is named by its path from the data repo's root,
+  `![alt](/.images/<name>)` or `<img src="/.images/<name>" …>`, which GitHub
+  resolves against the repository, so the file shows its images there
+- and the app reads either form as `/api/images/<name>`, so the editor, the
+  document and a published scenario's body are unchanged and the image
+  loads from the app's own route
+- and a file written the old way, with `/api/images/<name>`, is rewritten in
+  the new form by the next sync, with no edit absorbed and nothing refused
+- and an image a file names by its repo path counts as referenced, so it is
+  not offered as unused
+- Otherwise: a longer address that only ends like one
+  (`http://host/api/images/<name>`), or a name the app would never
+  generate, is left as written
+
+[test: a stored image goes by its repo path in a file and by its route in the app : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageRefs.test.ts#L39 ]
+[test: an address that only ends like a stored image is left as written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageRefs.test.ts#L54 ]
+[test: a feature file names its images by their path in the repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageRefs.test.ts#L86 ]
+[test: a feature reads the same from a file in either image form : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageRefs.test.ts#L93 ]
+[test: a page names its images by their path in the repo and reads either form : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageRefs.test.ts#L104 ]
+[test: a file written the old way moves to the new form without touching its published scenario : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageRefs.test.ts#L112 ]
+[test: a page written the old way moves to the new form : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageRefs.test.ts#L135 ]
+[test: an image a file names by its repo path counts as referenced : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageRefs.test.ts#L149 ]
+[test: an image named by its path in the repo loads from the app's route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageRefs.test.ts#L167 ]
+[test: the path a file names is where the image is stored, for every image type : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imageRefs.test.ts#L178 ]

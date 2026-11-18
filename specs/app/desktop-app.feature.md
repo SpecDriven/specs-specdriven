@@ -295,7 +295,7 @@ to the user-only token file next to the home settings file.
 
 - Given: a scenario with a link to an automated test on GitHub 
 AND  open links in IntelliJ is Off
-<img src="/api/images/image-1486276d.png" alt="image" width="643">
+<img src="/.images/image-1486276d.png" alt="image" width="643">
 - When: the user clicks the test link in the desktop app
 - Then: the link opens in the default browser and the app window stays where
   it was

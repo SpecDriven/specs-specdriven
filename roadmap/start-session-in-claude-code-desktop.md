@@ -92,4 +92,4 @@ sessions" scan, used by the in-app importer) does set `title: l.title` with
 Captured from the below Excalidraw diagram:
 
 
-![specdriven-agent-dispatch-notes.excalidraw](/api/images/specdriven-agent-dispatch-notes-excalidraw-ffc27c60.svg)
+![specdriven-agent-dispatch-notes.excalidraw](/.images/specdriven-agent-dispatch-notes-excalidraw-ffc27c60.svg)

@@ -42,11 +42,11 @@ proxy for the account sign-in.
 
 Choose  "Sign in with": "Claude account (email login)" 
 
-![image](/api/images/image-114f0520.png)
+![image](/.images/image-114f0520.png)
 
 or "API Proxy"
 
-![image](/api/images/image-3ee5a62b.png)
+![image](/.images/image-3ee5a62b.png)
 
 Click 'Check Connection' to validate connectivity to the LLM API service.
 

@@ -34,7 +34,7 @@ Save burns the markup into a PNG of the original's own pixel size — a shape ru
 
 **Updated by:** Jeffrey Miller
 
-<img src="/api/images/image-markup-ec8a9012.png" alt="image" width="833">
+<img src="/.images/image-markup-ec8a9012.png" alt="image" width="833">
 
 - **Given** an image open in the markup pane
 - **When** the user picks the Arrow tool (or presses `A`), presses where the arrow starts, drags, and releases where it should point

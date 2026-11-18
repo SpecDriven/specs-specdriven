@@ -30,6 +30,10 @@ Formats so far:
 - 2: scenario headings carry their position, `## S1: <name> @v1 [published]`
   (crud-feature.md "Feature file format"). An earlier release reads the
   number as part of the name and would rewrite the file without it.
+- 3: a markdown file names a stored image by its path in the repo,
+  `/.images/<name>` (editor/images.md "an image shows where GitHub renders
+  the file"). An earlier release reads that as an edit to the body: it
+  writes a published scenario's file back, and shows no image for the rest.
 
 ## S1: A blocked app does not push @v1 [proposed]
 
@@ -81,7 +85,7 @@ Formats so far:
   it while the app is open
 - Then: the update screen takes the place of the app
 
-![image](/api/images/image-3898c71c.png)
+![image](/.images/image-3898c71c.png)
 
 on backend:
 

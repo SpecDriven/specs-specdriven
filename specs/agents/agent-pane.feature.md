@@ -639,11 +639,11 @@
 Repo name followed by branch name followed by '[] Worktree'
 Repo name and branch name need max width set so they don't take up too much space compared to other fields in the footer.
 
-![image](/api/images/image-markup-6885989d.png)
+![image](/.images/image-markup-6885989d.png)
 
 Note: When Code agent pane has minimal width, the footer is difficult to use.
 
-![image](/api/images/image-0956594e.png)
+![image](/.images/image-0956594e.png)
 
 - Then: the bar under the message box reads, from the left: the folder's
   name, the branch the folder has checked out, and the Worktree box; a
