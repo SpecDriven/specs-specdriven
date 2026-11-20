@@ -152,8 +152,8 @@ draft → proposed → published wins.
 - and stopping live sync waits for an absorb already running to finish, so
   nothing is written into the data folder after the bridge has stopped
 
-[test: a remote absorb keeps a local disk edit the sync tick has not absorbed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L164 ]
-[test: stopping waits for an absorb in flight, and absorbs nothing after : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L210 ]
+[test: a remote absorb keeps a local disk edit the sync tick has not absorbed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L173 ]
+[test: stopping waits for an absorb in flight, and absorbs nothing after : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L219 ]
 
 ## S7: markdown edited outside the app @v1 [proposed]
 
@@ -185,10 +185,10 @@ by default and the Settings page warns that on a public server anyone
 holding a document's id can read that document; peers with private data
 point it at a self-hosted sync server instead.
 
-[test: document ids derive deterministically from the docid uuid : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L98 ]
-[test: a local save reaches the other peer over websocket alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L107 ]
-[test: concurrent edits on both peers merge through the sync server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L143 ]
-[test: a peer that starts after the edit still catches up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L195 ]
+[test: document ids derive deterministically from the docid uuid : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L107 ]
+[test: a local save reaches the other peer over websocket alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L116 ]
+[test: concurrent edits on both peers merge through the sync server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L152 ]
+[test: a peer that starts after the edit still catches up : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L204 ]
 
 ## S9: published scenarios stay immutable @v1 [proposed]
 
@@ -219,3 +219,146 @@ line. Each save becomes CRDT operations in the feature's document. When
 their pushes meet in a git pull, the markdown conflicts — but the sync tick
 resolves it from the merged document, character-level, with no conflict
 dialog. Both edits survive on both peers, byte-identical.
+
+## S11: a peer's edit shows on screen as it arrives @v1 [proposed]
+
+An edit from a peer reaches this machine over the sync server within
+moments. The screen shows it then, not at the next timed refresh up to a
+minute later.
+
+- **Given** live sync is on, and peer B has the app open on a feature
+- **When** an edit to that feature arrives from peer A over the sync server
+  and changes something
+- **Then** B's screen shows the edit as soon as it is in B's file — the
+  server tells every open page which feature changed, on the change stream
+  the pages already hold open, with no second connection and no polling
+- **And** each page re-reads its view by the rules of the timed refresh: the
+  feature list, the open feature, the README and the plugins' views, leaving
+  alone whatever holds an unsaved edit
+- **And** edits that arrive together — a peer catching up after time
+  offline — share one re-read rather than one each
+- **But** what arrived holding nothing new, and the page's own saves, tell
+  the pages nothing
+- **And** a page that never hears of an edit (the stream dropped, live sync
+  is off) still shows it at its next timed refresh, as before
+
+[test: a peer's edit is announced once it has landed, and only an edit that changed something : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L292 ]
+[test: an edit that comes over a real websocket server is announced the same way : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L323 ]
+[test: the change stream tells every open page which feature a peer changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/documentsEvent.test.ts#L16 ]
+[test: a page hears of a peer's edit apart from the plugin news on the same stream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/documentsEvent.test.ts#L66 ]
+[test: a page that asks for plugin news alone listens for nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/documentsEvent.test.ts#L89 ]
+[test: a documents event that names no feature still reads as one, with no name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/documentsEvent.test.ts#L96 ]
+[test: calls that come together share one run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/coalesce.test.ts#L8 ]
+[test: a call during a run earns one more run after it, never two at a time : https://github.com/SpecDriven/specdriven-app/blob/main/tests/coalesce.test.ts#L19 ]
+[test: a run that fails does not stop the next call from running : https://github.com/SpecDriven/specdriven-app/blob/main/tests/coalesce.test.ts#L38 ]
+[test: cancel drops a run that is waiting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/coalesce.test.ts#L50 ]
+
+## S12: a sync server of its own for each data repository @v1 [proposed]
+
+One sync server address can serve many data repositories without mixing
+them: each repository gets a server of its own, with its own documents and
+its own storage (cloudflare/sync-server — a Cloudflare Worker with one
+Durable Object per repository).
+
+- **Given** Settings names a sync server address with `{repo}` in it, such
+  as wss://sync.example.com/{repo}, and the data repository's origin is
+  acme/specs on GitHub
+- **When** live sync starts
+- **Then** the app syncs with that repository's own server,
+  wss://sync.example.com/acme/specs, and edits reach the other peers of that
+  repository through it
+- **And** another data repository behind the same address has a different
+  server, which shares no document and no storage with this one
+- **And** an address without `{repo}` is dialled as it is, as before
+- **But** a data folder whose origin is no GitHub repository has no server to
+  go to, and stays on git alone
+
+[test: an address with {repo} becomes the data repository's own server, opened with a pass : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoSyncServer.test.ts#L78 ]
+[test: a plain sync server address is dialled as it is, and no GitHub access goes anywhere : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoSyncServer.test.ts#L68 ]
+[test: a data folder with no GitHub repository, or no sign-in, has no sync server to go to : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoSyncServer.test.ts#L111 ]
+[test: a writer gets a pass, and the pass opens that repository's own sync server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L134 ]
+[test: a pass for one repository does not open another's sync server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L152 ]
+[test: an edit on one peer reaches another through the repository's sync server : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L320 ]
+
+## S13: only people who can push to a repository may use its sync server @v1 [proposed]
+
+- **Given** a sync server that keeps a server per data repository
+- **When** the app asks it for access with the user's GitHub sign-in
+- **Then** the server asks GitHub whether that sign-in can push to the
+  repository, and hands the app a pass for that repository when it can
+- **And** the pass lasts an hour, and the app renews it before it runs out
+  with nothing for the user to do
+- **But** someone who can only read the repository, or whom GitHub does not
+  know, gets no pass: nothing of theirs is synced and nothing is sent to them
+- **And** without a current pass for that repository — none, a made-up one,
+  another repository's, one that ran out — the connection is refused
+- **And** someone whose write access was taken away is disconnected when
+  their pass runs out, and gets no new one
+- **And** a server that cannot be reached is asked again a minute later,
+  while one that said no is not asked again until Settings or the sign-in
+  change
+
+[test: only a token GitHub says can push to the repository is let in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L72 ]
+[test: a token GitHub rejects, a repository it cannot see and a GitHub that is down are all refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L95 ]
+[test: someone who can only read the repository gets no pass : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L170 ]
+[test: no pass, no connection : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L161 ]
+[test: a pass opens the repository it was signed for until it runs out, and nothing else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L35 ]
+[test: a connection is closed when its pass runs out, and the next check is set for the next one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L478 ]
+[test: a pass that was altered or made up is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L44 ]
+[test: a server with no signing secret, a plain request and a name that is no repository are turned away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L189 ]
+[test: a no from the sync server is final and in its own words, an unreachable one is tried again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoSyncServer.test.ts#L125 ]
+[test: a sync server that could not be reached is asked again in a minute, one that said no is not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoSyncServer.test.ts#L145 ]
+[test: a pass is renewed well before it runs out, and never in a hurry : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoSyncServer.test.ts#L160 ]
+[test: the pass the app is given opens the sync server's socket for that repository alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoSyncServer.test.ts#L168 ]
+
+## S14: the user's GitHub access goes only where the user pointed it @v1 [proposed]
+
+Proving write access means showing the sync server the user's GitHub
+sign-in, so the app is careful where that goes.
+
+- **Given** Settings names a sync server address
+- **When** live sync starts
+- **Then** the GitHub sign-in is sent only to an address with `{repo}` in
+  it — never to a plain sync server such as wss://sync.automerge.org
+- **And** only over an encrypted connection (wss://), or to a server on this
+  machine
+- **And** only after the server said which GitHub it checks against, and
+  that is the GitHub the data repository is on
+- **And** neither the sign-in nor the pass is written to the log
+
+[test: the GitHub token is not sent to a server that checks another GitHub : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoSyncServer.test.ts#L92 ]
+[test: the GitHub token is not sent over an unencrypted connection, except to this machine : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoSyncServer.test.ts#L100 ]
+[test: the server says which GitHub it checks against, so a peer can tell before sending a token : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L182 ]
+
+## S15: a repository's sync server keeps its documents while it sleeps @v1 [proposed]
+
+- **Given** every peer of a data repository has disconnected, and its sync
+  server is no longer running
+- **When** a peer that was away connects later
+- **Then** the server starts again with the documents it had, from its own
+  durable storage, and the peer receives the edits made while it was away
+  with no other peer online
+
+[test: the sync server still has a repository's edits after it slept, for a peer that was away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L331 ]
+[test: what the sync server stores is read back whole, however large : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L218 ]
+[test: a range is the keys under a prefix, and no key that merely starts the same : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L238 ]
+
+## S16: a repository's sync server sleeps while nobody is editing @v1 [proposed]
+
+An app stays connected for as long as it is open, edited in or not. So that
+an open, idle app costs nothing, the server does not stay running for it.
+
+- **Given** peers connected to a repository's sync server, none of which has
+  saved an edit for a while, so that the server has gone out of memory —
+  the peers still connected, and none of them told
+- **When** one of them saves an edit
+- **Then** the server wakes, learns again who is connected from what it
+  noted on each connection, and passes the edit on to the others within
+  moments — nobody reconnects
+- **And** a peer that has sent nothing since the server woke still receives
+  it: every peer of a repository is offered every document of that
+  repository
+- **And** a connection whose pass runs out while the server sleeps is still
+  closed on time
+
+[test: the sync server sleeps while its peers stay connected, and passes on the next edit when it wakes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncServer.test.ts#L443 ]

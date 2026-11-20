@@ -526,8 +526,8 @@ promising a push that was not happening (git-operations.md).
 
 [test: a tick whose push fails keeps the commit and tells the page why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pushFailure.test.ts#L76 ]
 [test: while a push fails the Sync button, a toast and the autosave hint say so, and all clear once it goes through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncProblem.test.tsx#L134 ]
-[test: the listing carries the push problem to the page, and null when there is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncProblem.test.tsx#L174 ]
-[test: an autosave hint promises a push only while pushes go through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncProblem.test.tsx#L188 ]
+[test: the listing carries the push problem to the page, and null when there is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncProblem.test.tsx#L179 ]
+[test: an autosave hint promises a push only while pushes go through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/syncProblem.test.tsx#L193 ]
 
 ## S14: Commits a failed push left behind are pushed by the next sync @v1 [proposed]
 

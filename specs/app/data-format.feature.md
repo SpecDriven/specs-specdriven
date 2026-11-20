@@ -58,7 +58,7 @@ Formats so far:
 [test: a blocked app does not push : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L78 ]
 [test: the API refuses writes to a blocked folder and marks its reads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L136 ]
 [test: switching folders, Sync, sign-in, the log and the data viewer still work : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L168 ]
-[test: a live-sync peer's operations are not absorbed while the folder is blocked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L244 ]
+[test: a live-sync peer's operations are not absorbed while the folder is blocked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L253 ]
 [test: later ticks keep pulling, so a rolled-back folder syncs again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L99 ]
 [test: a folder rolled back to this format is unblocked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L109 ]
 

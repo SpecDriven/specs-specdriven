@@ -102,6 +102,30 @@ reports both via `/api/state`.
 - The hosted app's "Account & tokens" is its own and is not behind the
   switch
 
+## Signed commits
+
+- Some repositories only take signed commits. Settings → Git & GitHub has a
+  "Signed commits" list of GitHub urls — a repository, an owner or a whole
+  host — and the app signs every commit it makes to a repository on it
+- The app holds no key: such a commit is signed the way git on this
+  computer signs one, with `user.signingkey` and `gpg.format` from its git
+  config (GPG, SSH or X.509), and is authored by this computer's git user,
+  whose key it is — not by the GitHub account the app otherwise commits as
+- An SSH key locked with a passphrase needs it entered once in Settings;
+  the app keeps it with its other secrets, never in the settings file. A
+  key an ssh-agent holds needs none, and a GPG key's passphrase stays
+  gpg-agent's to ask for
+- Git also signs wherever its own config says so (`commit.gpgsign`), on
+  the list or off it. So no commit the app makes ever asks for a
+  passphrase on the terminal the app was started from, and none may take
+  longer than two minutes: a commit left waiting would hold every later
+  save in the folder, and a switch to another folder, behind it. The
+  passphrase kept in Settings unlocks the key for those commits too
+- The built-in JavaScript git cannot sign, so it refuses to commit to a
+  listed repository; the hosted app and the demo sign nothing
+- Known limit: the passphrase reaches ssh-keygen through a shell script,
+  which has not been tried on Windows
+
 ## S1: open Plugins @v1 [proposed]
 
 **Created by:** vydra
@@ -331,3 +355,122 @@ reports both via `/api/state`.
 [test: the hosted app and the demo offer neither : https://github.com/SpecDriven/specdriven-app/blob/main/tests/accountMenu.test.ts#L15 ]
 [test: log out clears the app's token and closes the open folder, keeping the folder lists : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signOut.test.ts#L92 ]
 [test: log out closes an open code repository too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signOut.test.ts#L112 ]
+
+## S15: list the repositories whose commits are signed @v1 [proposed]
+
+- Given: a repository that only takes signed commits
+- When: the user opens Settings → Git & GitHub and, under "Signed
+  commits", enters its GitHub url and clicks "Add"
+- Then: the url joins the list, written as `https://github.com/owner/repo`
+  whichever way it was entered — with `.git`, without `https://`, or as
+  `git@github.com:owner/repo.git`
+- and a url that names an owner covers every repository of that owner, and
+  one that names only a host covers every repository on it; each entry
+  says which
+- and something that is not a url — a folder, a bare `owner/repo` — is
+  turned down with a message, and the list stays as it was
+- and "Remove" takes a url off the list
+- and the list is kept in the settings file as `signedCommitRepos`, and
+  holds from the next commit on
+
+[test: a listed url names a repository, an owner or a host, in any form it is written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L195 ]
+[test: a folder, a bare owner/repo and anything else that names no host is not a url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L212 ]
+[test: the list is kept as written urls, each once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L218 ]
+[test: a remote is signed when a listed url covers its repository, its owner or its host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L232 ]
+[test: with nothing listed no commit is signed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L250 ]
+[test: the signed-commit urls round-trip through the settings file, and take effect at once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L259 ]
+[test: an entry that is not a url is refused, and the list stays as it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L278 ]
+[test: lists each signed url with what it covers, and a field to add another : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommitsSettings.test.tsx#L19 ]
+[test: adding takes a url in any form and keeps it as written; a non-url and a repeat are turned down : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommitsSettings.test.tsx#L56 ]
+[test: a url is described by how much it covers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommitsSettings.test.tsx#L67 ]
+
+## S16: a commit to a listed repository is signed @v1 [proposed]
+
+- Given: a data repo whose `origin` a listed url covers
+- and git on this computer set up to sign: `user.signingkey`, and
+  `gpg.format` for an SSH or X.509 key
+- When: the app commits to it — an autosaved edit, a publish, a rename, a
+  delete, or the merge of a pull
+- Then: the commit is signed with that key
+- and its author is this computer's git user, not the GitHub account:
+  GitHub verifies a signature only for the email its key was made for.
+  User info names that author
+- and a commit to a repository no listed url covers is made as before —
+  authored by the GitHub account, and signed only if git's own config
+  says so
+- and the app keeps no key, and writes nothing into git's config
+
+[test: a commit to a listed repository is signed, and authored by this computer's git user : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L289 ]
+[test: a commit to a repository that is not listed is left unsigned, authored by the GitHub account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L302 ]
+[test: the sync's own commit and the merge of a pull are signed too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L314 ]
+[test: User info names this computer's git user as the commit author of a listed data repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L381 ]
+[test: only the git commands that can make a commit are told to sign : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L490 ]
+
+## S17: the built-in git refuses to commit where commits are signed @v1 [proposed]
+
+- Given: the built-in JavaScript git is the engine — no git is installed
+- and the data repo is on the "Signed commits" list
+- When: the app would commit to it
+- Then: nothing is committed, and the reason says that the built-in git
+  cannot sign and to install git
+- and what was saved stays in the folder, to be committed once an engine
+  that signs is in use
+
+[test: the built-in git cannot sign, so it refuses a commit to a listed repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L363 ]
+
+## S18: keep the SSH signing key's passphrase @v1 [proposed]
+
+- Given: an SSH signing key that is locked with a passphrase, and that no
+  ssh-agent holds
+- When: the user enters the passphrase under "Signed commits" in Settings
+  and clicks "Save passphrase"
+- Then: it is first tried on the key git signs with; one that does not
+  unlock it is refused, and none is kept
+- and one that does is kept on this computer, apart from the settings
+  file, and is never shown or sent back: Settings only says that a
+  passphrase is kept
+- and from then on the app's signed commits are made with that key, the
+  passphrase handed to ssh-keygen for the length of that one command
+- and "Remove" forgets it
+- and with no key file to try it on, it is kept unchecked, and Settings
+  says so
+- and while none is kept, an askpass program of the user's own
+  (`SSH_ASKPASS`) is left to answer ssh-keygen
+- and a passphrase saved or removed by another copy of the app on this
+  computer — the desktop app beside a development server — holds here
+  from the next commit, without a restart
+
+[test: a commit is signed with a passphrase-protected key once its passphrase is kept in Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L400 ]
+[test: a passphrase that does not unlock the signing key is refused, and none is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L425 ]
+[test: the passphrase is kept apart from the settings file, never sent back, and removed on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L438 ]
+[test: a passphrase is one non-empty line; with no key to try it on, it is kept unchecked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L457 ]
+[test: the passphrase field is a password field, and a kept passphrase is named, not shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommitsSettings.test.tsx#L39 ]
+[test: ssh-keygen is answered with the kept passphrase, else by the user's own askpass, and never on the terminal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L511 ]
+[test: a passphrase saved by another copy of the app is found without a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L591 ]
+[test: saving a passphrase reports what the server said, and removing one asks the server to forget it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommitsSettings.test.tsx#L73 ]
+
+## S19: a commit that cannot be signed is shown @v1 [proposed]
+
+- Given: a data repo whose commits are signed — it is on the "Signed
+  commits" list, or git's own config signs every commit
+  (`commit.gpgsign`)
+- and git cannot sign there — no signing key, or a locked one with no
+  passphrase kept
+- When: a sync tries to commit an edit
+- Then: the commit fails at once, rather than wait for a passphrase nobody
+  is there to type
+- and the edit stays saved in the folder
+- and the Sync button and a toast say why, as they do for a push that
+  fails (ui/ui.feature.md "A push that fails is shown"), with a way into
+  Settings; for a locked key they say to enter its passphrase there
+- and both clear once a sync commits
+- and a signing program that never answers — a GPG prompt nobody sees —
+  is stopped after two minutes, and the commit fails the same way
+- and so a save, a sync or a switch to another folder never waits on a
+  passphrase prompt in the terminal the app was started from
+
+[test: a commit that cannot be signed fails, saying where git looks for the key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L345 ]
+[test: a sync whose commit cannot be signed tells the page why, until one is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L471 ]
+[test: a failed signature names its fix, a locked key's passphrase or else where git looks for the key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L500 ]
+[test: a signing program that never answers is stopped, and the commit fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L539 ]
+[test: a commit git signs by its own config, off the list, fails at once on a locked key instead of waiting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L567 ]
