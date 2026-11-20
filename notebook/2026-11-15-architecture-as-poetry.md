@@ -11,3 +11,5 @@ Fable ran on Claude Cloud. prompt: write me a Haiku poem about this apps' persis
 Write-once chunks of change —
 git carries them, peers converge;
 markdown mends the drift.
+
+test
