@@ -404,16 +404,16 @@ was beside it; a file a newer app wrote is read as it is.
 [test: POST /api/folder-kind answers the kind of the folder at a path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L171 ]
 [test: the demo and the hosted app tell no folder's kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L180 ]
 [test: a folder made on request starts as a specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderKind.test.ts#L199 ]
-[test: there is one path field and one button, for a specification folder or a code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L67 ]
-[test: Browse… is there only where there is a native chooser : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L80 ]
-[test: while a folder opens, the button waits and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L85 ]
-[test: an error is shown under the field : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L90 ]
-[test: the screen asks which kind it is, naming the folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L100 ]
-[test: each answer hands back its kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L110 ]
-[test: with no question, nothing is asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L121 ]
-[test: each kind of folder has its step : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L182 ]
-[test: a malformed answer is no verdict : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L193 ]
-[test: a folder opened before as one kind opens as that kind again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L213 ]
+[test: there is one path field and one button, for a specification folder or a code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L68 ]
+[test: Browse… is there only where there is a native chooser : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L81 ]
+[test: while a folder opens, the button waits and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L86 ]
+[test: an error is shown under the field : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L91 ]
+[test: the screen asks which kind it is, naming the folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L101 ]
+[test: each answer hands back its kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L111 ]
+[test: with no question, nothing is asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L122 ]
+[test: each kind of folder has its step : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L183 ]
+[test: a malformed answer is no verdict : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L194 ]
+[test: a folder opened before as one kind opens as that kind again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L214 ]
 [test: the first-run field's chooser is titled for either kind of folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folderChooser.test.ts#L197 ]
 
 ## S21: an empty specs- folder is set up on a yes @v1 [proposed]
@@ -450,11 +450,11 @@ was beside it; a file a newer app wrote is read as it is.
 - and it opens as the kind the list has it as
 - and with no folder opened before there is no ▾
 
-[test: the field carries a Recent folders button, closed at first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L127 ]
-[test: with no folder opened before, there is no drop-down : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L133 ]
-[test: opening it lists the folders newest first, each with its kind and path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L139 ]
-[test: it lists at most ten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L156 ]
-[test: picking a folder fills the field, hands back the entry and closes the list — the button still opens it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L164 ]
+[test: the field carries a Recent folders button, closed at first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L128 ]
+[test: with no folder opened before, there is no drop-down : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L134 ]
+[test: opening it lists the folders newest first, each with its kind and path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L140 ]
+[test: it lists at most ten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L157 ]
+[test: picking a folder fills the field, hands back the entry and closes the list — the button still opens it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L165 ]
 
 ## S23: an existing settings.json is converted to settings.yaml @v1 [proposed]
 

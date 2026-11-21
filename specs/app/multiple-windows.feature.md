@@ -27,6 +27,11 @@ before: several browser tabs there all show the same one.
   with the window they came from, and answers them for that window's
   folder. While several windows are open a request that names none of them
   is refused rather than answered for a folder its page may not be showing.
+- Each window is named after its folder: its title is the folder's name,
+  then the page open in it ("specs-insurance — Checkout"), so the Dock
+  menu, the Window menu and the task switcher tell the windows apart. A
+  window with no folder open is titled "SpecDriven". The page's own title —
+  what a browser tab and a link preview show — is unchanged.
 - All windows belong to one running app: launching it a second time focuses
   the window used last instead of starting another app.
 - A development run (`bun run dev:electron`) has the same windows. Their
@@ -54,7 +59,9 @@ before: several browser tabs there all show the same one.
   opens, and each time its window comes back to the front while it is up.
 - A window opened for a folder opens it the way a folder picked by hand is
   opened: asked about when the folder is missing or its kind is not clear,
-  pulled, and put at the front of the recent list.
+  pulled, and put at the front of the recent list. Meanwhile it shows the
+  app loading, not the first-run screen, which comes up only when the folder
+  could not be opened.
 - A `specdriven://` link (navigation.feature.md "links from outside the
   app") opens in the window that shows the link's folder. When no window
   shows it and the folder is on the recent list, it opens in a new window.
@@ -172,11 +179,15 @@ before: several browser tabs there all show the same one.
 - **Given** the folder dialog lists folders A, B and C, and A is open
 - **When** the user picks "Open in new window" for folder B
 - **Then** a second window opens folder B, as a folder picked by hand is opened
+- **And** the second window never shows the first-run screen on the way: it
+  shows the app loading, then folder B — the first-run screen comes up only
+  when folder B could not be opened, with the reason
 - **And** the first window still shows folder A
 
 [test: every folder but the open one can be opened in a window of its own, where there are windows to open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L260 ]
 [test: outside the desktop app the action is not offered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L272 ]
 [test: the action hands back the entry with its kind, and switches nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L277 ]
+[test: a window opening the folder it was opened for does not show the first-run screen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startFolder.test.tsx#L226 ]
 [test: Open in new window asks the shell for a window on the folder, or for one that asks for a folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L373 ]
 [test: a window opened for a folder tells its page once, as it boots, and opens it like a folder picked by hand : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L398 ]
 
@@ -366,3 +377,18 @@ before: several browser tabs there all show the same one.
 [test: a development run loads its windows from the dev server, on the port it listens on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/devFrontend.test.ts#L9 ]
 [test: only requests to the dev server's own address pass through the desktop process : https://github.com/SpecDriven/specdriven-app/blob/main/tests/devFrontend.test.ts#L16 ]
 [test: a page the dev server has no route for loads the app shell, and a missing file stays missing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/devFrontend.test.ts#L31 ]
+
+## S25: each window is named after its folder @v1 [proposed]
+
+- **Given** two windows, one on folder `specs-insurance` with the feature
+  Checkout open, and one on the code repository `bookshop`
+- **When** the user opens the app's Dock menu or its Window menu
+- **Then** the windows are listed as "specs-insurance — Checkout" and
+  "bookshop"
+- **And** a window that switches to another folder is listed under that
+  folder's name from then on
+- **And** a window with no folder open is listed as "SpecDriven"
+
+[test: a window is titled with its folder's name, then the page open in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowTitle.test.ts#L9 ]
+[test: a window with no folder keeps its page's title, and a title that is not the app's is kept whole : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowTitle.test.ts#L23 ]
+[test: a window goes by its code repository, else its specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowTitle.test.ts#L31 ]
