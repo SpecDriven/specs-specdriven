@@ -100,12 +100,12 @@ leave the window blank).
 - Then: the same window moves to the linked feature — no second window and no
   reload — and Back returns to what was on screen before
 
-[test: a link moves the open window to the linked page, with no second window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L120 ]
-[test: the move is a history push, so Back returns and nothing reloads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L128 ]
-[test: a minimized window is restored and brought to the front : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L140 ]
-[test: a window still loading takes the link once it has loaded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L146 ]
-[test: a second launch carrying a link shows it in the running window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L154 ]
-[test: a second launch without a link only brings the window to the front : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L162 ]
+[test: a link moves the open window to the linked page, with no second window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L140 ]
+[test: the move is a history push, so Back returns and nothing reloads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L148 ]
+[test: a minimized window is restored and brought to the front : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L160 ]
+[test: a window still loading takes the link once it has loaded : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L166 ]
+[test: a second launch carrying a link shows it in the running window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L174 ]
+[test: a second launch without a link only brings the window to the front : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L182 ]
 
 ## S2: browser history and reload @v1 [proposed]
 
@@ -215,9 +215,9 @@ leave the window blank).
 [test: surrounding whitespace from a copy-paste is tolerated : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L45 ]
 [test: other schemes and non-urls are not deep links : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L49 ]
 [test: finds the link among the launch arguments : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L217 ]
-[test: with no window open, a link opens one on the linked page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L170 ]
-[test: a launch by link opens the first window on that page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L179 ]
-[test: a specdriven link in a spec body is followed in place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L60 ]
+[test: with no window open, a link opens one on the linked page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L190 ]
+[test: a launch by link opens the first window on that page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L199 ]
+[test: a specdriven link in a spec body is followed in place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L61 ]
 [test: the installed app declares the specdriven scheme to the OS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linuxPackage.test.ts#L51 ]
 
 ## S9: open a scenario link @v1 [proposed]
@@ -322,8 +322,8 @@ Allow to collapse and expand the outline.
 [test: the built shell's ./ asset urls become root-relative, so they load at any path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L60 ]
 [test: absolute, remote and parent-relative urls pass through untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L72 ]
 [test: single-quoted attributes are rewritten too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/static.test.ts#L79 ]
-[test: the last of two or more launches is by link to a nested page; a lone launch is plain : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L59 ]
-[test: a launch by link must have loaded the window at the linked path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L68 ]
+[test: the last of two or more launches is by link to a nested page; a lone launch is plain : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L68 ]
+[test: a launch by link must have loaded the window at the linked path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L77 ]
 
 ## S16: clone a scenario @v1 [proposed]
 

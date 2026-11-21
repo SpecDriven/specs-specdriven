@@ -103,13 +103,16 @@ via `SPECDRIVEN_ROOT`:
 
 ## Window
 
-- One main window; launching the app a second time focuses the existing
-  window instead of opening another.
+- One running app: launching it a second time focuses the window used last
+  instead of starting another. A folder can be opened in a window of its
+  own, and every window open at quit comes back
+  (multiple-windows.feature.md).
 - The window opens at 1280×860, centered, and can never be made smaller
   than 1280×700 — below that the layout starts hiding buttons and
   scrollbars.
-- The window remembers its size, position, and maximized state across
-  restarts (`window-state.json` in the app-data directory). Remembered
+- Each window remembers its size, position, and maximized state across
+  restarts, by the folder it shows (`window-state.json` in the app-data
+  directory). Remembered
   geometry is clamped to the minimums and to the displays actually
   present; a missing or unreadable file simply means the centered default.
 - On macOS the window uses the hidden-inset title bar: the traffic lights sit
@@ -131,7 +134,8 @@ via `SPECDRIVEN_ROOT`:
 - The app registers the `specdriven://` scheme with the OS, so a link shared
   by chat or email launches it, or focuses the running window, on that spec
   (navigation.feature.md "links from outside the app"). A second launch
-  carrying a link still focuses the one window rather than opening another.
+  carrying a link starts no second app: the link opens in the window that
+  shows its folder (multiple-windows.feature.md "Opening a window").
   The installed bundle declares the scheme to the OS — in `Info.plist` on
   macOS, in the desktop entry's `MimeType` on Linux.
 
@@ -186,13 +190,13 @@ to the user-only token file next to the home settings file.
   uncaught main-process exception or prints a crash signature fails the run,
   naming what went wrong
 
-[test: a launch that rendered, held and quit with 0 passes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L43 ]
-[test: dying before being asked to quit fails, naming how it died : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L47 ]
-[test: a window that never renders fails even when the quit is clean : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L84 ]
-[test: a quit that hangs, exits non-zero, or leaves a dead window fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L89 ]
-[test: an exception the main process's listener recorded fails the run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L98 ]
-[test: fatal signatures fail the run grouped by kind; notes do not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L117 ]
-[test: the output scan finds crashes and ignores a headless box's usual noise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L129 ]
+[test: a launch that rendered, held and quit with 0 passes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L52 ]
+[test: dying before being asked to quit fails, naming how it died : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L56 ]
+[test: a window that never renders fails even when the quit is clean : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L93 ]
+[test: a quit that hangs, exits non-zero, or leaves a dead window fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L98 ]
+[test: an exception the main process's listener recorded fails the run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L107 ]
+[test: fatal signatures fail the run grouped by kind; notes do not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L126 ]
+[test: the output scan finds crashes and ignores a headless box's usual noise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/crashTestDesktop.test.ts#L138 ]
 
 ## S2: a Mac builds the Linux app too @v1 [proposed]
 
@@ -300,10 +304,10 @@ AND  open links in IntelliJ is Off
 - Then: the link opens in the default browser and the app window stays where
   it was
 
-[test: a test link on GitHub opens in the browser, not in a new window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L23 ]
-[test: a click that would navigate the window away goes to the browser instead : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L28 ]
-[test: the app's own pages stay in the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L36 ]
-[test: schemes that are not web pages go nowhere : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L53 ]
+[test: a test link on GitHub opens in the browser, not in a new window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L24 ]
+[test: a click that would navigate the window away goes to the browser instead : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L29 ]
+[test: the app's own pages stay in the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L37 ]
+[test: schemes that are not web pages go nowhere : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkRouting.test.ts#L54 ]
 
 ## S9: the GitHub sign-in survives a restart without an OS key store @v1 [proposed]
 
