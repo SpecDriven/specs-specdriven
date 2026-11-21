@@ -132,10 +132,10 @@ was beside it; a file a newer app wrote is read as it is.
 
 - Given: a data repo is configured, and the sidebar header shows its folder
   name only — parent folders appear in a tooltip, and the full path in the
-  Data directory dialog
+  "Open a folder" dialog
 - When: the user opens Manage folders… (the recent folders menu next to the
   name, or the command palette) and chooses "Open another folder…"
-- Then: the Data directory dialog opens pre-filled with the current data repo
+- Then: the "Open a folder" dialog opens pre-filled with the open folder
 - and the header has no separate edit (✎) button: Manage folders is the one
   place to open, add or remove a folder
 - and confirming a new value switches the app to that repo, resetting the

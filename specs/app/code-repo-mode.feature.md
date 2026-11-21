@@ -28,10 +28,11 @@ apart by what is inside (ui/app-start.feature.md "one field opens a
 specification folder or a code repository"): a specification folder holds
 `.specdriven` and `specs`; a code repository holds a build tool's file — a
 `specs` link to the spec repo it implements does not make it a specification
-folder — and a folder that is neither is asked about. "Open a code
-repository…" opens the named folder as code, whatever it holds. The mode is
-offered only where the app runs on the developer's own machine — not in the
-demo, the hosted app or the read-only site.
+folder — and a folder that is neither is asked about. Manage folders'
+"Open another folder…" tells them apart the same way: there is no separate
+button for a code repository. The mode is offered only where the app runs on
+the developer's own machine — not in the demo, the hosted app or the
+read-only site.
 
 ## S1: Open a code repository @v1 [proposed]
 
@@ -40,13 +41,15 @@ demo, the hosted app or the read-only site.
 - Given: the app on the developer's own machine
 - When: the user names a code repository's folder in the first-run
   screen's folder field (typed, with Browse…, or from its recent folders),
-  or picks "Open a code repository…" and names one
+  or names one under Manage folders → "Open another folder…"
 - Then: the app opens that folder in code repository mode
 - and the code repositories opened before are on the same folder list as
   the specification folders (Manage folders and the recent folders menu),
   most recent first, each marked by a code-folder icon, openable and
-  removable from the list (the folder itself stays on disk), plus
-  "Open a code repository…"
+  removable from the list (the folder itself stays on disk)
+- and "Open another folder…" opens a folder with a build file as a code
+  repository, one with `.specdriven` and `specs` as a specification folder,
+  and asks which it is when the folder has neither
 - and the open folder, spec or code, is badged and cannot be removed
 - and a path that names no folder is refused, saying so
 - and the demo, the hosted app and the read-only site offer none of this,
@@ -60,8 +63,8 @@ demo, the hosted app or the read-only site.
 [test: another code repository can be opened from the open one, and the old one forgotten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L352 ]
 [test: with a code repository open, the last specifications folder can be removed from the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L364 ]
 [test: spec folders and code repositories share one list, in the given order, each marked by its kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L163 ]
-[test: the open folder is badged whether it is a spec folder or a code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L174 ]
-[test: where code repositories cannot be opened, the dialog has none of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L202 ]
+[test: the open folder is badged whether it is a spec folder or a code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L176 ]
+[test: where code repositories cannot be opened, the dialog has none of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L203 ]
 
 ## S2: The app runs no git in a code repository @v1 [proposed]
 

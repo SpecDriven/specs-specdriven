@@ -14,9 +14,12 @@ Support opening and switching between multiple specifications folders. (Currentl
 
 **Updated by:** vydra
 
-Open new folders from the local file system ("Open another folder…"). Manage folders — in the
-recent folders menu and the command palette — is the only way to change the open folder; there
-is no separate "Change data directory" button.
+Open new folders from the local file system ("Open another folder…") — a specification folder
+or, where the app can open them, a code repository, told apart by what is inside as on the
+first-run screen (ui/app-start.feature.md "one field opens a specification folder or a code
+repository"). Manage folders — in the recent folders menu and the command palette — is the only
+way to change the open folder; there is no separate "Change data directory" button, and none for
+a code repository.
 
 Ability to delete specification folders.
 
@@ -30,19 +33,22 @@ specification folder, a code folder for a code repository — named in its toolt
 opened both ways is two entries, one per kind. The recent folders menu beside the folder name
 lists the 10 newest entries of that list, with the same icons, the open one ticked.
 
+In the desktop app a folder another window shows is marked as well
+(multiple-windows.feature.md "the folder dialog marks the folders other windows show").
+
 [test: lists every folder by name with its path, the open one badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L83 ]
 [test: every folder but the open one can be opened or removed from the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L94 ]
 [test: a GitHub url shows the folder it is cloned to : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L106 ]
 [test: offers to open another folder from the file system, and to close : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L124 ]
 [test: spec folders and code repositories share one list, in the given order, each marked by its kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L163 ]
-[test: the same path as a spec folder and as a code repository is two entries, only the open kind badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L185 ]
-[test: Open and Remove hand back the entry with its kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L210 ]
+[test: the same path as a spec folder and as a code repository is two entries, only the open kind badged : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L187 ]
+[test: Open and Remove hand back the entry with its kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L211 ]
 [test: spec folders and code repositories make one list, the open one first, then newest first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L151 ]
 [test: the stored list is cleaned, each path once per kind, at most 10 of each kind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L185 ]
 [test: an older file's two lists and open times become the one list, in the order it showed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L206 ]
 [test: forgetting a folder takes only that kind's entry off the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L230 ]
 [test: GET /api/state lists spec folders and code repositories together, newest first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L330 ]
-[test: keeps well-formed entries in order and drops the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L318 ]
+[test: keeps well-formed entries in order and drops the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L412 ]
 [test: GET /api/state says where each GitHub url on the list is cloned : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L176 ]
 [test: PUT /api/state forgetDataRepo removes a folder from the list and persists it, the folder itself untouched : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L263 ]
 [test: the open folder cannot be removed from the list — switch away first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/recentFolders.test.ts#L296 ]

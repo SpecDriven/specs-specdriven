@@ -29,8 +29,11 @@ before: several browser tabs there all show the same one.
   is refused rather than answered for a folder its page may not be showing.
 - All windows belong to one running app: launching it a second time focuses
   the window used last instead of starting another app.
-- A development run (`bun run dev:electron`) has one window: its pages are
-  answered by the dev server, which knows one folder.
+- A development run (`bun run dev:electron`) has the same windows. Their
+  pages come from the dev server, so a frontend edit hot-reloads in every
+  window; their requests are answered by the desktop app itself, each for
+  its window's folder, as in the packaged app. An edit to the server or to
+  the shell shows after the next launch.
 
 ## Opening a window
 
@@ -44,6 +47,11 @@ before: several browser tabs there all show the same one.
   window as before. The recent-folders menu has **New window**, which opens
   a window that asks for a folder. Both are offered in the desktop app
   only.
+- The folder dialog marks every folder another window shows **other
+  window**. Such a folder has **Show window**, which brings that window to
+  the front, in place of both ways of opening it, and it stays on the list
+  until that window is closed. The dialog reads the list again each time it
+  opens, and each time its window comes back to the front while it is up.
 - A window opened for a folder opens it the way a folder picked by hand is
   opened: asked about when the folder is missing or its kind is not clear,
   pulled, and put at the front of the recent list.
@@ -116,8 +124,8 @@ before: several browser tabs there all show the same one.
 
 [test: a run without windows reads the settings file as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/workspace.test.ts#L108 ]
 [test: detached work reads the settings file, not the window's folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/workspace.test.ts#L242 ]
-[test: with no window registered the start syncs the folder the settings file names : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L146 ]
-[test: where there is no shell to open a window, the action is not offered and the route is not there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L391 ]
+[test: with no window registered the start syncs the folder the settings file names : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L147 ]
+[test: where there is no shell to open a window, the action is not offered and the route is not there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L392 ]
 
 ## S3: switching folders in one window leaves the others alone @v1 [proposed]
 
@@ -156,7 +164,7 @@ before: several browser tabs there all show the same one.
 
 [test: File holds New Window, Open Folder… and the recent folders, each opening a window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L45 ]
 [test: with no recent folders the submenu says so, and File ends in Quit off macOS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L59 ]
-[test: without them the standard File menu stays — a development run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L66 ]
+[test: without them the standard File menu stays : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L66 ]
 [test: a window with no folder open is asked for one, whatever the settings name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/workspace.test.ts#L118 ]
 
 ## S7: a folder opens in a window of its own from the folder dialog @v1 [proposed]
@@ -169,8 +177,8 @@ before: several browser tabs there all show the same one.
 [test: every folder but the open one can be opened in a window of its own, where there are windows to open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L260 ]
 [test: outside the desktop app the action is not offered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L272 ]
 [test: the action hands back the entry with its kind, and switches nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L277 ]
-[test: Open in new window asks the shell for a window on the folder, or for one that asks for a folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L372 ]
-[test: a window opened for a folder tells its page once, as it boots, and opens it like a folder picked by hand : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L397 ]
+[test: Open in new window asks the shell for a window on the folder, or for one that asks for a folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L373 ]
+[test: a window opened for a folder tells its page once, as it boots, and opens it like a folder picked by hand : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L398 ]
 
 ## S8: opening a folder that is already open focuses its window @v1 [proposed]
 
@@ -179,9 +187,9 @@ before: several browser tabs there all show the same one.
 - **Then** the first window comes to the front
 - **And** the second window still shows folder B
 
-[test: picking a folder another window shows brings that window forward and switches nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L415 ]
-[test: a GitHub url and the folder it is cloned into are the same folder to the windows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L467 ]
-[test: bringing a window forward and closing the others are the shell's to do, and nothing without one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L494 ]
+[test: picking a folder another window shows brings that window forward and switches nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L416 ]
+[test: a GitHub url and the folder it is cloned into are the same folder to the windows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L498 ]
+[test: bringing a window forward and closing the others are the shell's to do, and nothing without one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L525 ]
 
 ## S9: a folder open in a window cannot be removed from the list @v1 [proposed]
 
@@ -189,7 +197,7 @@ before: several browser tabs there all show the same one.
 - **When** the user removes folder B from the recent list in the first window
 - **Then** the app refuses, saying the folder is open in another window
 
-[test: a folder open in a window cannot be taken off the recent list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L440 ]
+[test: a folder open in a window cannot be taken off the recent list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L471 ]
 
 ## S10: every open folder is synced @v1 [proposed]
 
@@ -198,10 +206,10 @@ before: several browser tabs there all show the same one.
 - **Then** each folder's changes are committed to its own repository
 - **And** a window showing a code repository is not synced
 
-[test: the app's start syncs the folder of every window, and no code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L134 ]
-[test: a window opened later has its folder synced as it opens : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L152 ]
-[test: the reload tick syncs every open folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L164 ]
-[test: a folder a window leaves is synced once more : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L178 ]
+[test: the app's start syncs the folder of every window, and no code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L135 ]
+[test: a window opened later has its folder synced as it opens : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L153 ]
+[test: the reload tick syncs every open folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L165 ]
+[test: a folder a window leaves is synced once more : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L179 ]
 [test: a timer loop started by a window's request works for no window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/workspace.test.ts#L227 ]
 
 ## S11: a sync server is connected once per open folder @v1 [proposed]
@@ -211,7 +219,7 @@ before: several browser tabs there all show the same one.
 - **When** one window switches to another folder
 - **Then** its connection moves to that folder and the other window's stays
 
-[test: a sync server named in Settings is connected once per open specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L264 ]
+[test: a sync server named in Settings is connected once per open specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L265 ]
 
 ## S12: a plugin shows only in the window of the folder that enabled it @v1 [proposed]
 
@@ -221,12 +229,12 @@ before: several browser tabs there all show the same one.
 - **Then** only A's window has the Roadmap tab
 - **And** no `roadmap` folder is created in folder B
 
-[test: a plugin switched on for one open folder shows in that folder's window alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L294 ]
-[test: a plugin's files are created in the folder that has it on, and in no other : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L310 ]
-[test: a plugin stays loaded while any open folder uses it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L323 ]
-[test: a window that closes takes the plugins only its folder used with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L339 ]
-[test: a plugin's routes and sync hooks are its own, and answer only where it is let through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L520 ]
-[test: each window is let through to its own folder's plugins, and a tick to its folder's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L544 ]
+[test: a plugin switched on for one open folder shows in that folder's window alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L295 ]
+[test: a plugin's files are created in the folder that has it on, and in no other : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L311 ]
+[test: a plugin stays loaded while any open folder uses it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L324 ]
+[test: a window that closes takes the plugins only its folder used with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L340 ]
+[test: a plugin's routes and sync hooks are its own, and answer only where it is let through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L551 ]
+[test: each window is let through to its own folder's plugins, and a tick to its folder's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L575 ]
 
 ## S13: each window has its own folder picker @v1 [proposed]
 
@@ -234,7 +242,7 @@ before: several browser tabs there all show the same one.
 - **When** each opens the folder picker
 - **Then** two pickers open, and each window gets its own answer
 
-[test: each window has its own folder picker, and its own answer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L245 ]
+[test: each window has its own folder picker, and its own answer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L246 ]
 
 ## S14: a window lists its own folder's agent sessions @v1 [proposed]
 
@@ -242,8 +250,8 @@ before: several browser tabs there all show the same one.
 - **When** each window lists its sessions
 - **Then** each shows only the session of its own folder
 
-[test: a window lists its own folder's sessions, not another window's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L189 ]
-[test: switching folders in one window ends its old folder's sessions and no other window's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L202 ]
+[test: a window lists its own folder's sessions, not another window's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L190 ]
+[test: switching folders in one window ends its old folder's sessions and no other window's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L203 ]
 
 ## S15: closing a window ends its folder's agent sessions @v1 [proposed]
 
@@ -252,8 +260,8 @@ before: several browser tabs there all show the same one.
 - **Then** the session of its folder ends
 - **And** the first window's session goes on
 
-[test: closing a window while another stays ends its folder's sessions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L213 ]
-[test: closing the last window leaves its sessions running : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L236 ]
+[test: closing a window while another stays ends its folder's sessions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L214 ]
+[test: closing the last window leaves its sessions running : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L237 ]
 [test: a closed window drops out of the open set; its record keeps its folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/workspace.test.ts#L185 ]
 
 ## S16: closing a window with a working session asks first @v1 [proposed]
@@ -262,7 +270,7 @@ before: several browser tabs there all show the same one.
 - **When** the user closes the second window and cancels
 - **Then** the window stays open and the session goes on
 
-[test: a window whose folder has a session at work is one to ask about before it closes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L224 ]
+[test: a window whose folder has a session at work is one to ask about before it closes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L225 ]
 
 ## S17: all windows come back after a restart @v1 [proposed]
 
@@ -329,4 +337,32 @@ before: several browser tabs there all show the same one.
 - **Then** what was saved in both folders is pushed first
 - **And** the first shows the sign-in screen and the second closes
 
-[test: signing out in one window closes the others : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L450 ]
+[test: signing out in one window closes the others : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L481 ]
+
+## S23: the folder dialog marks the folders other windows show @v1 [proposed]
+
+- **Given** three windows, on folders A and B and on code repository C, and
+  folder D on the recent list, open in no window
+- **When** the user opens the folder dialog in the first window
+- **Then** A is badged "open", and B and C are badged "other window"
+- **And** B and C each have "Show window", which brings their window to the
+  front, and neither Open, "Open in new window" nor a working remove button
+- **And** D has Open, "Open in new window" and remove, as before
+
+[test: each window is told which folders on the list the other windows show : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L441 ]
+[test: a folder another window shows is badged, offers its window, and is neither opened nor removed here : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L328 ]
+[test: Show window hands back the entry of the folder whose window comes forward : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specFolders.test.tsx#L367 ]
+
+## S24: a development run opens several windows @v1 [proposed]
+
+- **Given** `bun run dev` is running, and `bun run dev:electron` beside it
+- **When** the user opens folder B in a new window while the first shows
+  folder A
+- **Then** each window shows its own folder, and both come back after a
+  restart of the development run
+- **And** an edit to the frontend hot-reloads in both windows
+- **And** a page the dev server has no route for still loads the app
+
+[test: a development run loads its windows from the dev server, on the port it listens on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/devFrontend.test.ts#L9 ]
+[test: only requests to the dev server's own address pass through the desktop process : https://github.com/SpecDriven/specdriven-app/blob/main/tests/devFrontend.test.ts#L16 ]
+[test: a page the dev server has no route for loads the app shell, and a missing file stays missing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/devFrontend.test.ts#L31 ]
