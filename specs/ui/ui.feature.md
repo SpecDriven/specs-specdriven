@@ -658,3 +658,45 @@ the next start: commits that were not pushed go up with its first sync.
 [test: stopping the background work stops the reload timer, and may be asked for twice : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L365 ]
 [test: the shutdown's limits add up to less than the five seconds a hosted gateway waits before it kills a worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L374 ]
 [test: signal handlers asked for again by a hot reload are installed once and act for the reloaded code : https://github.com/SpecDriven/specdriven-app/blob/main/tests/shutdown.test.ts#L393 ]
+
+## S19: A spec folder that cannot be pushed to opens read only @v1 [proposed]
+
+- Given: a spec folder whose git repository has no remote, or whose remote
+  does not let this account push — write access not granted, or no
+  sign-in
+- When: the folder is opened
+- Then: the app asks the remote with a dry-run push, which sends nothing
+- and a dialog says the folder is read only, why — in the remote's own
+  words, without the ssh host key drawing — and what to do: add a remote,
+  ask for write access or sign in, then Check again
+- and a "Read only" chip beside the folder name opens the dialog again
+- and the specs lock as on the public specs site: no create, edit, move or
+  delete, scenarios and the README shown as pages, the plugin tabs' pages
+  too
+- and Settings, the folder switch and Sync's pulls stay as they were
+- and the failing push is not also shown as a toast or a struck-through
+  Sync icon
+- and a remote that does not answer — offline, too slow — leaves the
+  folder editable; a folder that is not a git repository of its own stays
+  editable too
+- and Check again, or a later sync, unlocks the folder once a remote is
+  added or write access granted
+
+Issue #467: a spec repo without write access used to open as if it could be
+edited; every edit was saved on this computer only, and the push's error —
+ssh host key art included — came up as a toast.
+
+[test: a git repository with no remote opens read only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L105 ]
+[test: a remote that takes pushes leaves the folder editable and is sent nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L123 ]
+[test: a folder that is no git repository of its own stays editable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L133 ]
+[test: a remote that does not answer leaves the folder editable : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L140 ]
+[test: a remote that refuses this account's pushes opens the folder read only, in the remote's words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L161 ]
+[test: GitHub's refusals over ssh and https are a no, in git's words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L184 ]
+[test: a credential problem is a no with the sign-in hint : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L196 ]
+[test: a network that is down says nothing about access : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L202 ]
+[test: ssh's host key art is taken out of what git said and nothing else is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L211 ]
+[test: 200 takes pushes, asked at the receive-pack refs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L235 ]
+[test: 401 is a no with the sign-in hint, 403 a no in the host's words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L245 ]
+[test: a host that cannot be reached, or a credential in the url, says nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L261 ]
+[test: a folder this account cannot push to opens read only with a dialog, and Check again unlocks it once access is granted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnlyPage.test.tsx#L140 ]
+[test: the listing carries why the folder is read only, and null when it is not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnlyPage.test.tsx#L206 ]
