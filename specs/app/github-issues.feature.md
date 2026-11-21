@@ -131,27 +131,23 @@ Allow to access GitHub issues from the app.
   embeds an image pasted into the app (`/api/images/<name>`, a file only this
   app serves)
 - When: the create, edit or comment is sent to GitHub
-- Then: each such image is committed into the code repository on a branch
-  of its own (`specdriven-issue-images`, an orphan branch made on the first
-  upload), never the default branch, so a protected default branch that asks
-  for pull requests does not refuse it
-- and its link in the body is rewritten to the file's GitHub url
-  (`<repo>/blob/specdriven-issue-images/<name>?raw=true`), so the image shows
-  on GitHub, for a private repository too, instead of a broken local link
+- Then: each such image is committed into the code repository's default
+  branch (under `.specdriven/issue-images/`)
+- and its link in the body is rewritten to the file's GitHub url with
+  `?raw=true`, so the image shows on GitHub, for a private repository too,
+  instead of a broken local link
 - and the image's name is content-addressed, so the same screenshot across
   several issues is stored once and is not re-committed
 - and an image whose bytes are not on disk, or that GitHub refuses to host (no
-  push access, a rate limit), keeps its local link rather than failing the
-  issue, and a body that embeds no such image is sent to GitHub untouched
+  push access, a protected default branch, a rate limit), keeps its local link
+  rather than failing the issue, and a body that embeds no such image is sent
+  to GitHub untouched
 
-[test: a stored image is committed to the images branch and its url rewritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L311 ]
-[test: a missing images branch is created as an orphan before the first commit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L332 ]
-[test: an images branch made by a concurrent upload is used, not an error : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L351 ]
-[test: an already-committed image reuses its url without a second commit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L364 ]
-[test: an image on a GitHub Enterprise repo is shown from that host : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L378 ]
-[test: an image with no bytes on disk is left as-is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L385 ]
-[test: a refused upload keeps the local link rather than failing the issue : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L396 ]
-[test: a body with no app image is sent untouched, no contents call : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L410 ]
+[test: a stored image is committed to the repo and its url rewritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L310 ]
+[test: an already-committed image reuses its url without a second commit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L327 ]
+[test: an image with no bytes on disk is left as-is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L341 ]
+[test: a refused upload keeps the local link rather than failing the issue : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L352 ]
+[test: a body with no app image is sent untouched, no contents call : https://github.com/SpecDriven/specdriven-app/blob/main/tests/issues.test.ts#L365 ]
 
 ## S8: Requests to GitHub carry the user's sign-in @v1 [proposed]
 
