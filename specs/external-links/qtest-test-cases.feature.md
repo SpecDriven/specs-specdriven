@@ -298,7 +298,7 @@ qTest never sees it.
 - and an answered call is logged as info, a refusal qTest explains (400, 401,
   403, 404) as a warning, and a server error or a site that could not be
   reached as an error
-- and when Publish test cases or Save token fails because of what qTest
+- and when Publish test cases or Save fails because of what qTest
   answered, the dialog shows the failure as one line, and clicking it opens
   a detail box: the request (method and url), what the app sent, qTest's
   status, its content type, when it failed, and what qTest answered; a site
