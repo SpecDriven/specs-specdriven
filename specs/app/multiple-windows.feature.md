@@ -30,6 +30,7 @@ before: several browser tabs there all show the same one.
 - Each window is named after its folder: its title is the folder's name,
   then the page open in it ("specs-insurance — Checkout"), so the Dock
   menu, the Window menu and the task switcher tell the windows apart. A
+  title longer than 36 characters is cut there and ends in "…". A
   window with no folder open is titled "SpecDriven". The page's own title —
   what a browser tab and a link preview show — is unchanged.
 - All windows belong to one running app: launching it a second time focuses
@@ -388,7 +389,9 @@ before: several browser tabs there all show the same one.
 - **And** a window that switches to another folder is listed under that
   folder's name from then on
 - **And** a window with no folder open is listed as "SpecDriven"
+- **And** a title longer than 36 characters is cut to 36, ending in "…"
 
 [test: a window is titled with its folder's name, then the page open in it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowTitle.test.ts#L9 ]
-[test: a window with no folder keeps its page's title, and a title that is not the app's is kept whole : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowTitle.test.ts#L23 ]
-[test: a window goes by its code repository, else its specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowTitle.test.ts#L31 ]
+[test: a window with no folder keeps its page's title, and a title that is not the app's is kept whole : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowTitle.test.ts#L21 ]
+[test: a window goes by its code repository, else its specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowTitle.test.ts#L29 ]
+[test: a long window title is cut to 36 characters, ending in an ellipsis : https://github.com/SpecDriven/specdriven-app/blob/main/tests/windowTitle.test.ts#L37 ]
