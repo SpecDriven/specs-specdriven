@@ -16,3 +16,5 @@ Questions/Bumps
 * Watching the spec extraction as a conversation with the LLM is less than straightforward; it's witnessed in the "Observability" window which is reached using the panel with the user login.
 
 * A flaw with Observability is that if you scroll to the bottom, the search widget disappears and Ctrl-F does nothing (I expected to have it pop up a "Find" dialog). We may want to make the header widgets stay in place, and/or allow keyboard shortcuts; however we should consider that keyboard shortcuts may be aliased to people's other plugins or preferences -- do we want some, and how?
+
+![image](/.images/image-db1c8af8.png)
