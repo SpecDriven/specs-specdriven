@@ -505,6 +505,8 @@ Goal: ask user if this repo should be initialized and init the repo before conti
 
 ## S28: Tests are linked in a pass of their own @v1 [proposed]
 
+**Updated by:** vydra
+
 - **Given** the dialog's last step, for a project that has tests and a repository on github.com, with an agent to draft the specs
 - **Then** "Link the project's tests to the scenarios" is offered, ticked, saying how many test files the project has, which repository the links point at, and that it takes one more agent turn for each feature
 - **And** for a project with no tests, or with no repository on github.com, it cannot be ticked and says why; without an agent it is not offered
@@ -514,6 +516,8 @@ Goal: ask user if this repo should be initialized and init the repo before conti
 - **And** a feature whose code has no tests is passed over without a turn, and says so
 - **And** left unticked, no linking turn is asked
 - **And** a run asked to link the tests of a project with nowhere for the links to point drafts the specs all the same, and says why the tests are not linked
+
+![image](/.images/image-6536f750.png)
 
 [test: linking is offered ticked when the project has tests and a repository on github.com : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L43 ]
 [test: linking cannot be ticked for a project with nowhere for the links to point and says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L52 ]
