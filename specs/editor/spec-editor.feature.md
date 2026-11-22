@@ -207,11 +207,11 @@ server refuses the change too.
 
 An edit of the feature's file that the app has not absorbed yet — another scenario rewritten by hand or by an agent, seconds before — is kept, and does not take the unpublish back.
 
-[test: with the setting off, the unpublish route refuses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L71 ]
-[test: with the setting on, a published spec moves back to proposed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L80 ]
-[test: an unpublished spec is editable again, and Publish takes it back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L96 ]
-[test: only a published scenario can be unpublished : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L106 ]
-[test: an unpublished spec keeps its tests and links, and the change is committed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L114 ]
+[test: with the setting off, the unpublish route refuses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L72 ]
+[test: with the setting on, a published spec moves back to proposed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L81 ]
+[test: an unpublished spec is editable again, and Publish takes it back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L97 ]
+[test: only a published scenario can be unpublished : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L107 ]
+[test: an unpublished spec keeps its tests and links, and the change is committed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L115 ]
 [test: an unpublish survives an edit of the file the app has not absorbed yet : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L144 ]
 [test: with the setting on, Back to proposed moves the scenario back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublishChip.test.tsx#L149 ]
 [test: with the setting off, it is a plain badge : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublishChip.test.tsx#L167 ]
