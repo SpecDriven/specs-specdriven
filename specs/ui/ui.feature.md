@@ -669,7 +669,7 @@ the next start: commits that were not pushed go up with its first sync.
 - and a dialog says the folder is read only, why — in the remote's own
   words, without the ssh host key drawing — and what to do: add a remote,
   ask for write access or sign in, then Check again
-- and a "Read only" chip beside the folder name opens the dialog again
+- and a "Read only" line under the folder name opens the dialog again
 - and the specs lock as on the public specs site: no create, edit, move or
   delete, scenarios and the README shown as pages, the plugin tabs' pages
   too
@@ -698,5 +698,5 @@ ssh host key art included — came up as a toast.
 [test: 200 takes pushes, asked at the receive-pack refs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L235 ]
 [test: 401 is a no with the sign-in hint, 403 a no in the host's words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L245 ]
 [test: a host that cannot be reached, or a credential in the url, says nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnly.test.ts#L261 ]
-[test: a folder this account cannot push to opens read only with a dialog, and Check again unlocks it once access is granted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnlyPage.test.tsx#L140 ]
-[test: the listing carries why the folder is read only, and null when it is not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnlyPage.test.tsx#L206 ]
+[test: a folder this account cannot push to opens read only with a dialog, and Check again unlocks it once access is granted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnlyPage.test.tsx#L142 ]
+[test: the listing carries why the folder is read only, and null when it is not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/repoReadOnlyPage.test.tsx#L214 ]
