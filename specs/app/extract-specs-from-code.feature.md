@@ -6,7 +6,7 @@ The flow is a dialog of three steps and a run in the background:
 
 - **Project** — the folder of the code project. It is read, never written to.
 - **Review** — the folders proposed from the project's build files and layout: tick the ones to make, rename them, nest one inside another, or have an agent regroup them by business area.
-- **Specification folder** — its name, the GitHub account its repository goes under, and the agent that drafts.
+- **Specification folder** — a new one, with its name and the GitHub account its repository goes under, or one that already exists; and the agent that drafts.
 - **Drafting** — once the new folder is open, an agent reads each chosen folder's code, one folder at a time, and writes features of `[proposed]` scenarios. A pill in the sidebar says how far it is.
 
 Java, JavaScript, TypeScript and Python projects are read. What is extracted is a claim about intent, not a fact: every scenario is written `[proposed]`, for a person to read, correct and publish.
@@ -25,13 +25,13 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 - **And** a project with no Java, JavaScript, TypeScript or Python code says so, and goes no further
 - **And** nothing is written into the project
 
-[test: proposes the project's modules and the specification folder it would get : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L108 ]
-[test: says so when the project holds no code it can read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L124 ]
-[test: refuses a folder that is not there, a relative path and a specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L140 ]
-[test: the snapshot holds the files the project does not ignore, and its build files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L83 ]
+[test: proposes the project's modules and the specification folder it would get : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L111 ]
+[test: says so when the project holds no code it can read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L127 ]
+[test: refuses a folder that is not there, a relative path and a specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L143 ]
+[test: the snapshot holds the files the project does not ignore, and its build files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L86 ]
 [test: asks for the code project first, and says what will happen to it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L195 ]
-[test: every button has the app's button look : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L219 ]
-[test: a code project is named by an absolute path, a leading tilde being the home folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L310 ]
+[test: every button has the app's button look : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L257 ]
+[test: a code project is named by an absolute path, a leading tilde being the home folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L444 ]
 
 ## S2: Modules from JavaScript and TypeScript workspaces @v1 [proposed]
 
@@ -221,25 +221,59 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 - **And** the folder opens in this window, in place of what was open
 - **And** nothing is written into the code project
 
-[test: makes the specification folder beside the project, set up and pointing back at it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L170 ]
+[test: makes the specification folder beside the project, set up and pointing back at it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L173 ]
 [test: a project's specification folder is specs-<project>, in characters a repository takes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L62 ]
-[test: it is named after the project and goes beside it, wherever the project is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L298 ]
+[test: it is named after the project and goes beside it, wherever the project is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L432 ]
+[test: the specification folder is a new one beside the project, named after it, unless one is there already : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L219 ]
 
 ## S14: A name that is taken is refused @v1 [proposed]
 
 - **Given** the specification folder's name
 - **Then** a name GitHub would not take for a repository is refused as it is typed: letters, digits, dots, dashes and underscores only, at most 100 characters, not ending in `.git`
 - **And** when something already sits at the place, the folder is not made: another name is asked for
-- **And** when a specification folder already sits there, the dialog says so and offers "Open it instead"
+- **And** when a specification folder already sits there, the dialog says so and offers "Add to it instead"
 - **And** the code project's own folder cannot be its specification folder
 
-[test: a name that is taken is refused, a specification folder there named as one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L221 ]
-[test: a name a repository cannot have is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L233 ]
-[test: a specification folder that is already there is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L134 ]
+[test: a name that is taken is refused, a specification folder there named as one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L224 ]
+[test: a name a repository cannot have is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L236 ]
+[test: a specification folder that is already there is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L137 ]
 [test: a name a repository cannot have is said why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L68 ]
-[test: the code project's own folder cannot be its specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L321 ]
+[test: the code project's own folder cannot be its specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L455 ]
 
-## S15: Published to GitHub @v1 [proposed]
+## S15: Add to a specification folder that already exists @v1 [proposed]
+
+- **Given** the Specification folder step, which asks where the specifications go: "A new specification folder" or "An existing specification folder"
+- **When** the user picks the existing one and names it — a folder on this computer, typed or picked with Browse…, or a repository's GitHub url — and clicks "Add and open"
+- **Then** the chosen folders are added to that folder, and it opens in this window; a repository named by its url is cloned first, where the app keeps its clones, and opens by its url
+- **And** what the folder holds stays as it is: its README, its features, and the display name of a spec folder that was already there
+- **And** the code project is added to the code repositories its project-settings.yaml names; the default one stays, unless the folder named none
+- **And** what was written is committed and pushed, as an edit in the folder is; no folder is made beside the project and no repository on GitHub
+- **And** a project that already has a specification folder — one of its suggested name beside it, or the one its specs link points into — has "An existing specification folder" chosen and filled in when the step opens
+- **And** otherwise the folder that is open is filled in, behind "A new specification folder"
+- **And** only a specification folder can be added to: a folder without .specdriven and specs, one that is not there, a path that is not absolute, the code project itself, and a url that is not a GitHub repository's are refused, each saying why
+- **And** a specs link that cannot be made — the project has a folder called specs of its own — is said, and the folders are added all the same
+- **And** the specs are drafted from the project the dialog was opened on, which must be one of the folder's code repositories — not from its default one
+- **And** nothing is drafted when the folder that is open is not the one the folders were added to
+
+[test: the chosen folders are added, and what the folder holds stays as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L273 ]
+[test: the code project joins the folder's code repositories, the default staying what it was : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L286 ]
+[test: a folder that names no code repository gets the project as its default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L299 ]
+[test: the specs link is made into the existing folder when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L305 ]
+[test: only a specification folder can be added to : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L310 ]
+[test: the analysis names the specification folder a project already has : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L323 ]
+[test: a specs link that leads nowhere useful names no specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L335 ]
+[test: the folder is named by its path, and opens by that path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L355 ]
+[test: a specs link that cannot be made is said, and the folders are added all the same : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L370 ]
+[test: the repository is cloned, the folders added to it, and it opens by its url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L370 ]
+[test: a repository that is not a specification folder is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L397 ]
+[test: specs are drafted from the project the request names, not the folder's default one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L357 ]
+[test: without a name the default one is read, and its code is not the other's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L366 ]
+[test: a project that is not one of the folder's is not read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L373 ]
+[test: nothing is drafted into a folder other than the one the folders were made in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L381 ]
+[test: a project that already has a specification folder is offered that one to add to : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L232 ]
+[test: the folder that is open is filled in as the existing one, without being chosen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L248 ]
+
+## S16: Published to GitHub @v1 [proposed]
 
 - **Given** a GitHub sign-in — the app's own, or the GitHub CLI's when that is the Git access
 - **Then** "Create a repository on <host>" is ticked, with the account it goes under: first the owner of the code project's own GitHub repository, then the account signed in, then its organisations — on the code project's host, a GitHub Enterprise one included
@@ -256,10 +290,10 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 [test: an account's own goes to /user/repos, an organisation's to /orgs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L196 ]
 [test: one that holds someone's work is refused; one with only its first commit is taken : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L206 ]
 [test: the folder is a clone of the new repository, set up and pushed in one commit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L244 ]
-[test: a repository's owner and host are checked before anything is made : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L345 ]
-[test: no repository unless asked for; a private one unless it says otherwise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L328 ]
+[test: a repository's owner and host are checked before anything is made : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L405 ]
+[test: no repository unless asked for; a private one unless it says otherwise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L462 ]
 
-## S16: Without GitHub the folder stays local and can be published later @v1 [proposed]
+## S17: Without GitHub the folder stays local and can be published later @v1 [proposed]
 
 - **Given** no GitHub sign-in, a sign-in that may not create repositories, or "Create a repository" unticked
 - **Then** the folder is made on this computer all the same, and the reason GitHub gave is said in GitHub's own words
@@ -275,21 +309,21 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 [test: a folder left on this computer is published later, with what it holds by then : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L293 ]
 [test: an open folder on this computer is offered the accounts it could be published under : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L312 ]
 [test: publishing later refuses a repository that holds someone's work : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L334 ]
-[test: Publish to GitHub is a modal dialog that waits for the accounts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L324 ]
+[test: Publish to GitHub is a modal dialog that waits for the accounts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L362 ]
 [test: a folder that already pushes somewhere else is not published again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L325 ]
 [test: once published, the folder is published from then on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractionProgress.test.tsx#L205 ]
 
-## S17: The code project is linked in project-settings.yaml; the specs link is optional @v1 [proposed]
+## S18: The code project is linked in project-settings.yaml; the specs link is optional @v1 [proposed]
 
 - **Given** the new specification folder
 - **Then** its project-settings.yaml names the code project as its code repository, by a path relative to the folder (`../<project>`), so that it holds for a teammate with the two side by side
 - **And** "Add a specs link to the code project" is unticked: ticked, a `specs` link to the new folder's specs is made in the code project — the only thing ever written there
 - **And** a link that cannot be made — something already sits at `specs` — is said, and the folder is made all the same
 
-[test: makes the project's specs link when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L190 ]
-[test: a link that cannot be made is reported, and the folder is still made : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L197 ]
+[test: makes the project's specs link when asked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L193 ]
+[test: a link that cannot be made is reported, and the folder is still made : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L200 ]
 
-## S18: Chosen folders are created with their names and order @v1 [proposed]
+## S19: Chosen folders are created with their names and order @v1 [proposed]
 
 - **Given** the folders chosen in the review
 - **Then** each is made under `specs/` at its path, nested ones under their parents
@@ -298,14 +332,14 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 - **And** the server makes only folders that draw on code its own analysis of the project found, each piece of code in at most one folder: a path a page sends is never trusted
 - **And** a folder that is already there keeps its display name
 
-[test: nested folders are made under their parents : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L204 ]
-[test: folders may only draw on code the project has, each piece once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L240 ]
-[test: are slug paths, each named once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L262 ]
-[test: draw on each analysed folder at most once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L272 ]
-[test: a folder with no code of its own is made but not drafted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L281 ]
-[test: folders already there keep their names, and an order by name writes no order file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L341 ]
+[test: nested folders are made under their parents : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L207 ]
+[test: folders may only draw on code the project has, each piece once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L243 ]
+[test: are slug paths, each named once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L396 ]
+[test: draw on each analysed folder at most once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L406 ]
+[test: a folder with no code of its own is made but not drafted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L415 ]
+[test: folders already there keep their names, and an order by name writes no order file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L475 ]
 
-## S19: A folder's code is read within a budget @v1 [proposed]
+## S20: A folder's code is read within a budget @v1 [proposed]
 
 - **Given** a folder whose specs are drafted
 - **Then** the agent is shown its files in this order: README and documents, API contracts (OpenAPI, protobuf, GraphQL), tests, the files a module is entered through, then the rest
@@ -329,7 +363,7 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 [test: a path that leaves the project is not read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentDraft.test.ts#L186 ]
 [test: a folder with nothing an agent could be shown is empty from the start, and no turn is spent on it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L321 ]
 
-## S20: Features are drafted as proposed scenarios naming their source files @v1 [proposed]
+## S21: Features are drafted as proposed scenarios naming their source files @v1 [proposed]
 
 - **Given** the new specification folder, open
 - **Then** an agent drafts a feature for each chosen folder, one folder at a time, in the background
@@ -348,7 +382,7 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 [test: is one the parser reads back — proposed scenarios, in order, naming their source files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentDraft.test.ts#L302 ]
 [test: many source files are named up to a few, then counted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentDraft.test.ts#L324 ]
 
-## S21: Progress and cancel @v1 [proposed]
+## S22: Progress and cancel @v1 [proposed]
 
 - **Given** specs being drafted
 - **Then** a pill above the user corner says how far the run is: "Drafting specs — 4 of 12 folders"
@@ -361,9 +395,9 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 
 [test: cancel abandons the turn in flight; resume takes up what was not done : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L232 ]
 [test: a finished run is dismissed; its features stay : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L297 ]
-[test: the pill says how far a run is, and how it ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L255 ]
-[test: a folder's line says what came of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L265 ]
-[test: no pill without a run; with one, its label : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L306 ]
+[test: the pill says how far a run is, and how it ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L293 ]
+[test: a folder's line says what came of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L303 ]
+[test: no pill without a run; with one, its label : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L344 ]
 [test: what is asked of it is a copy, so nothing a caller does to the answer reaches the run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L310 ]
 [test: cancel, retry and dismiss on a folder that has no run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L332 ]
 [test: asks once when a folder opens, and not at all without one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractionProgress.test.tsx#L122 ]
@@ -371,7 +405,7 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 [test: another folder starts from nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractionProgress.test.tsx#L152 ]
 [test: keeps asking while a run is at work, and stops when it is over : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractionProgress.test.tsx#L162 ]
 
-## S22: Retry a folder; resume an interrupted run @v1 [proposed]
+## S23: Retry a folder; resume an interrupted run @v1 [proposed]
 
 - **Given** a run that is over, with folders that failed, were cancelled or were never reached
 - **Then** a failed or cancelled folder offers Retry, and the run offers Resume for all of them
@@ -383,12 +417,12 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 [test: a folder that fails is retried on its own; what was drafted is not drafted again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L186 ]
 [test: a run the app is closed on shows as interrupted on the next start, and is resumed by hand : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L256 ]
 [test: with no agent the run waits, interrupted, and goes on once one is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L280 ]
-[test: a run at work is polled; one with something left can be taken up again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L285 ]
-[test: the list links each drafted feature, and offers Retry for a folder that failed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L296 ]
+[test: a run at work is polled; one with something left can be taken up again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L323 ]
+[test: the list links each drafted feature, and offers Retry for a folder that failed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L334 ]
 [test: a retry that names a folder with nothing left says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L340 ]
 [test: Cancel, Retry and Dismiss go to the server, and a refusal comes back in words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractionProgress.test.tsx#L179 ]
 
-## S23: Answers are checked the same way for every agent @v1 [proposed]
+## S24: Answers are checked the same way for every agent @v1 [proposed]
 
 - **Given** agents that keep to an answer's schema (Codex), and agents that only read it as words (Claude, OpenCode)
 - **Then** every answer is read the same way — as structured data, or as JSON found inside the agent's words — and checked by the app
@@ -408,20 +442,20 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 [test: JSON wrapped in words is read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentRefine.test.ts#L175 ]
 [test: an answer that is not a draft fails the folder with the agent named : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L208 ]
 
-## S24: Not in the demo, the hosted app or the read-only site @v1 [proposed]
+## S25: Not in the demo, the hosted app or the read-only site @v1 [proposed]
 
 - **Given** the demo, the hosted app or the read-only site
 - **Then** none of this is offered — they open no folders on the machine they run on — and the routes refuse it if asked
 - **And** drafting refuses folders that draw on code the project does not have, a model that is not a model's name, and a specification folder that names no code repository
 
-[test: is not offered in the demo or a hosted worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L155 ]
-[test: the demo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L362 ]
-[test: folders that draw on code the project does not have, and a model that is not a name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L349 ]
-[test: a folder that names no code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L355 ]
+[test: is not offered in the demo or a hosted worker : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L158 ]
+[test: the demo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L404 ]
+[test: folders that draw on code the project does not have, and a model that is not a name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L391 ]
+[test: a folder that names no code repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L397 ]
 [test: an unknown job, and the demo, are refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentRefine.test.ts#L322 ]
-[test: every one refuses a hosted worker, and the ones on an open folder go through it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L357 ]
+[test: every one refuses a hosted worker, and the ones on an open folder go through it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L491 ]
 
-## S25: From the desktop app's File menu @v1 [proposed]
+## S26: From the desktop app's File menu @v1 [proposed]
 
 - **Given** the desktop app
 - **When** the user picks File → "Extract Specs from Code Project…"
@@ -430,4 +464,4 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 - **And** with no window open, a new window opens on the screen that offers it
 
 [test: File offers Extract Specs from Code Project… where the shell can start it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L67 ]
-[test: the desktop app's menu and the page agree on the event that starts the dialog : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L388 ]
+[test: the desktop app's menu and the page agree on the event that starts the dialog : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L522 ]
