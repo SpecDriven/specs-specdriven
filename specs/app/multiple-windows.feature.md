@@ -174,7 +174,7 @@ before: several browser tabs there all show the same one.
 
 [test: File holds New Window, Open Folder… and the recent folders, each opening a window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L45 ]
 [test: with no recent folders the submenu says so, and File ends in Quit off macOS : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L59 ]
-[test: without them the standard File menu stays : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L66 ]
+[test: without them the standard File menu stays : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L80 ]
 [test: a window with no folder open is asked for one, whatever the settings name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/workspace.test.ts#L118 ]
 
 ## S7: a folder opens in a window of its own from the folder dialog @v1 [proposed]
