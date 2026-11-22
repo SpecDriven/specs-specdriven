@@ -477,7 +477,7 @@ Clicking on it, renders:
 - **And** with no window open, a new window opens on the screen that offers it
 
 [test: File offers Extract Specs from Code Project… where the shell can start it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L67 ]
-[test: the desktop app's menu and the page agree on the event that starts the dialog : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L524 ]
+[test: the desktop app's menu and the page agree on the event that starts the dialog : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L526 ]
 
 ## S27: Target specs repo is not initialized @v1 [proposed]
 
@@ -492,11 +492,11 @@ Then: we get
 
 Goal: ask user if this repo should be initialized and init the repo before continuing.
 
-[test: an empty repository is asked about, and nothing is written until the user agrees : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L557 ]
-[test: once agreed, it is set up, the folders added, and all of it pushed as one commit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L565 ]
-[test: a repository holding only what GitHub starts one with keeps its README : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L585 ]
-[test: a folder holding anything else, or a code repository's specs link, is still refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L598 ]
-[test: a new folder is not made over it; the answer offers to add to it instead : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L609 ]
+[test: an empty repository is asked about, and nothing is written until the user agrees : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L559 ]
+[test: once agreed, it is set up, the folders added, and all of it pushed as one commit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L567 ]
+[test: a repository holding only what GitHub starts one with keeps its README : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L587 ]
+[test: a folder holding anything else, or a code repository's specs link, is still refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L600 ]
+[test: a new folder is not made over it; the answer offers to add to it instead : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L611 ]
 [test: an empty repository named by its url is asked about, then set up, pushed and opened by its url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L405 ]
 [test: an empty repository is asked about, and set up only on a yes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L114 ]
 [test: Not now leaves the folder as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L131 ]
