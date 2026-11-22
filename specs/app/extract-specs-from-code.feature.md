@@ -1,5 +1,7 @@
 # Extract specs from a code project
 
+**Updated by:** vydra
+
 SpecDriven normally starts from specifications: a folder of features, written first. A team that already has code and no specifications has no way in. **Extract specs from a code project** is that way in: choose the project's folder, and the app works out its module structure, proposes folders for its specifications, makes a specification folder named `specs-<project>` beside it — with a repository on GitHub — and has an agent draft the first features from the code.
 
 The flow is a dialog of three steps and a run in the background:
