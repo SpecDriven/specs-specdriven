@@ -63,7 +63,7 @@ When the spec is proposed or published, the application stores the author who cr
 [test: Delete removes the draft spec : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditor.test.ts#L47 ]
 [test: Propose lands the draft in the feature file as proposed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditor.test.ts#L63 ]
 [test: Publish promotes a draft scenario straight to published : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specEditor.test.ts#L77 ]
-[test: new spec has an author — a scenario added by a save is created by whoever saved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L123 ]
+[test: new spec has an author — a scenario added by a save is created by whoever saved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsAuthorship.test.ts#L124 ]
 
 ## S5: Delete Published Spec @v1 [published]
 

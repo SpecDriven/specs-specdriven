@@ -235,7 +235,7 @@ folders do ("order folders").
 [test: buildTree orders features by feature order, the rest by name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L610 ]
 [test: featureNamesMoved and featureDrop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L633 ]
 [test: setFeatureOrder commits and pushes feature-order.txt; renameFeatureFile keeps the place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/folders.test.ts#L841 ]
-[test: a feature order reads as a reorder of the folder's features : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L202 ]
+[test: a feature order reads as a reorder of the folder's features : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L220 ]
 [test: folder routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L191 ]
 
 ## S11: new folder gets a display name @v1 [proposed]

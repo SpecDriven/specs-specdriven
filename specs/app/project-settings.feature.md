@@ -1,8 +1,8 @@
 # project-settings
 
-- every data folder's project-settings.json, edited from the user menu
+- every data folder's project-settings.yaml, edited from the user menu
 
-A data repo describes its project in `project-settings.json` at its root:
+A data repo describes its project in `project-settings.yaml` at its root:
 the people working on it, the code repositories that implement its specs,
 and whether the feature files carry authorship. The file is checked in, so
 every teammate's app reads the same project.
@@ -12,14 +12,20 @@ settings** in the user menu edits it in the editor pane, the way Settings
 does: every control saves the moment it changes, and the next sync commits
 and pushes the file like any saved change.
 
-```json
-{
-  "members": [{ "name": "Ada Lovelace", "email": "ada@acme.example" }],
-  "code-repos": ["../acme-app", "../acme-mobile"],
-  "default-code-repo": "../acme-app",
-  "authors-in-markdown": true
-}
+```yaml
+members:
+  - name: Ada Lovelace
+    email: ada@acme.example
+code-repos:
+  - ../acme-app
+  - ../acme-mobile
+default-code-repo: ../acme-app
+authors-in-markdown: true
 ```
+
+The file is YAML, like the app's own settings file. A data folder from
+before keeps it as `project-settings.json`, which the app converts the first
+time it opens the folder.
 
 A code repository is optional, and there may be several. One is the
 default: where a coding session runs, whose GitHub issues the Issues tab
@@ -66,8 +72,8 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 - and the first repository added becomes the default
 - and the agent pane offers every listed repository as a folder to run in
 
-[test: code repos are stored relative when beside the data repo, the default only when not first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L112 ]
-[test: a sibling path, a nested one and a stranger's are stored as the file should hold them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L132 ]
+[test: code repos are stored relative when beside the data repo, the default only when not first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L178 ]
+[test: a sibling path, a nested one and a stranger's are stored as the file should hold them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L198 ]
 [test: a bare folder name is a sibling of the data folder; paths are kept as typed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L60 ]
 [test: the folder menu offers the code repo, the data repo, then folders sessions used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L685 ]
 
@@ -80,7 +86,8 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 - and coding sessions, the Issues tab, IntelliJ test links and the entity
   scan all use the default repository
 
-[test: code-repos lists several, the first the default unless default-code-repo says otherwise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L42 ]
+[test: code-repos lists several, the first the default unless default-code-repo says otherwise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L47 ]
+[test: a code repo named in project-settings.yaml is where the desktop session opens : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSession.test.ts#L127 ]
 
 ## S4: Edit the project members @v1 [proposed]
 
@@ -91,7 +98,7 @@ folder — `../acme-app` — which holds for every teammate with the same layout
   without duplicate names
 - and a feature's Assigned dropdown offers the new list
 
-[test: members are written as objects, in order, without duplicates : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L140 ]
+[test: members are written as objects, in order, without duplicates : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L206 ]
 [test: a member is a name, with the email in angle brackets : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L70 ]
 
 ## S5: Open Project settings from the user menu @v1 [proposed]
@@ -109,7 +116,7 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 
 ## S6: The settings file is created for every data folder @v1 [proposed]
 
-- Given: a data folder with no `project-settings.json`
+- Given: a data folder with no `project-settings.yaml` and no `project-settings.json`
 - When: the app opens it — the sync at start, or the tick after switching
   to it
 - Then: the file is made with no members and no code repositories, and the
@@ -118,20 +125,20 @@ folder — `../acme-app` — which holds for every teammate with the same layout
   which is someone's to fix by hand
 - and the demo's dataset, which ships its own, is left alone
 
-[test: makes the empty settings once and never touches a file that is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L82 ]
-[test: the reload tick makes it for a data folder that has none, but not in the demo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L92 ]
-[test: a file that does not parse is refused rather than overwritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L146 ]
-[test: project-settings.json is named alone and stays out of a shared title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L151 ]
+[test: makes the empty settings once and never touches a file that is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L87 ]
+[test: the reload tick makes it for a data folder that has none, but not in the demo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L158 ]
+[test: a file that does not parse is refused rather than overwritten : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L212 ]
+[test: project-settings.yaml is named alone and stays out of a shared title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L151 ]
 
 ## S7: The single code-repo key keeps working @v1 [proposed]
 
-- Given: a settings file from before, with `"code-repo": "../acme-app"`
+- Given: a settings file from before, with `code-repo: ../acme-app`
 - Then: it reads as a list of that one repository, the default
 - When: the page saves the repositories
 - Then: the file holds `code-repos` instead, and the older key is dropped
 
-[test: the older single code-repo key reads as a list of one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L67 ]
-[test: a bare member list becomes an object, and the authorship switch keeps the other keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L155 ]
+[test: the older single code-repo key reads as a list of one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L72 ]
+[test: a bare member list becomes an object, and the authorship switch keeps the other keys : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L221 ]
 
 ## S8: A code repo that is not on this computer is offered for cloning @v1 [proposed]
 
@@ -164,3 +171,27 @@ folder — `../acme-app` — which holds for every teammate with the same layout
 [test: the route starts the clone, and the folder counts as missing until the clone is done : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoClone.test.ts#L122 ]
 [test: a missing repo is cloned from the suggested url, shows the clone running, then is found : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L269 ]
 [test: a failed clone shows its error with a way to try again; nothing is offered where cloning is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsPage.test.tsx#L333 ]
+
+## S9: A settings file from before YAML is converted @v1 [proposed]
+
+- Given: a data folder whose project settings are in `project-settings.json`,
+  written by an app from before YAML
+- When: the app opens it — the sync at start, or the tick after switching
+  to it
+- Then: the same settings are written to `project-settings.yaml`, every key
+  kept, and `project-settings.json` is removed
+- and the next sync commits both as one change, "Convert project settings to
+  YAML", and pushes it, so every teammate's app gets the YAML file
+- and until then the JSON file is read as it is, and a save from the Project
+  settings page converts it too
+- and a JSON file that does not parse is left as it is for someone to fix by
+  hand, and a JSON file beside a YAML one is not read
+- and the data format goes to 4 at the same sync, so an app from before YAML,
+  which reads only the JSON file, stops instead of making an empty one
+  (data-format.feature.md)
+
+[test: a project-settings.json from before YAML is converted to the same settings, and the JSON file removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L97 ]
+[test: the reload tick converts a teammate's project-settings.json and pushes it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L136 ]
+[test: a save through the app converts a JSON file the tick has not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L129 ]
+[test: a JSON file that does not parse is left for someone to fix, and a stray one beside the YAML is not read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/projectSettingsWrite.test.ts#L115 ]
+[test: project-settings.json converted to project-settings.yaml is one housekeeping entry : https://github.com/SpecDriven/specdriven-app/blob/main/tests/saveSummary.test.ts#L166 ]
