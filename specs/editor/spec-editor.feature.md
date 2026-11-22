@@ -77,6 +77,8 @@ Then: a confirmation dialog pops up with: "Danger Zone! Confirm that you want to
 The user can click "Confirm" button or the "Cancel" button.
 If confirmed, the spec is deleted.
 
+[test: a published spec's delete survives an edit of the file the app has not absorbed yet : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L163 ]
+
 ## S6: Previous and next scenario @v1 [proposed]
 
 From one scenario's editor, step to the scenario before or after it without
@@ -203,10 +205,13 @@ takes it back to [published].
 With the setting off, the published status chip is a plain badge, and the
 server refuses the change too.
 
+An edit of the feature's file that the app has not absorbed yet — another scenario rewritten by hand or by an agent, seconds before — is kept, and does not take the unpublish back.
+
 [test: with the setting off, the unpublish route refuses : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L71 ]
 [test: with the setting on, a published spec moves back to proposed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L80 ]
 [test: an unpublished spec is editable again, and Publish takes it back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L96 ]
 [test: only a published scenario can be unpublished : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L106 ]
 [test: an unpublished spec keeps its tests and links, and the change is committed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L114 ]
+[test: an unpublish survives an edit of the file the app has not absorbed yet : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublish.test.ts#L144 ]
 [test: with the setting on, Back to proposed moves the scenario back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublishChip.test.tsx#L149 ]
 [test: with the setting off, it is a plain badge : https://github.com/SpecDriven/specdriven-app/blob/main/tests/unpublishChip.test.tsx#L167 ]
