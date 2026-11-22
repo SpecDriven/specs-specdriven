@@ -18,19 +18,21 @@ SpecDriven, the agents it starts and the folders it fills can take a lot of a co
 - and the figures change as the agent works, every 3 seconds, while the tab is shown
 - Otherwise: the process list cannot be read, and only the app's own processes are counted, with a line saying why
 
-[test: ps output, an executable path with spaces, and the command line beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L36 ]
-[test: PowerShell's Win32_Process JSON, a list, one object, or junk : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L56 ]
-[test: the tree is the root and everything under it, nothing beside it; a loop ends : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L63 ]
-[test: the app and its helpers, one branch per agent with its children, MCP servers, and the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L84 ]
-[test: Electron's report names its processes and its figure wins over ps : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L96 ]
-[test: the web server is the Server, without a desktop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L109 ]
-[test: this process's tree from the reader, with the machine's memory : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L121 ]
-[test: an unreadable process table still counts this process, and says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L143 ]
-[test: the commands reading the process table are left out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L130 ]
-[test: memory answers with this process in its groups : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceRoutes.test.ts#L46 ]
-[test: memory groups with the total, measured again while shown and not while the window is hidden : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L232 ]
-[test: a tiny group still shows in the bar; nothing at all is empty : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L204 ]
-[test: sizes read as people read them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L196 ]
+[test: ps output, an executable path with spaces, and the command line beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L37 ]
+[test: PowerShell's Win32_Process JSON, a list, one object, or junk : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L57 ]
+[test: the tree is the root and everything under it, nothing beside it; a loop ends : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L64 ]
+[test: the app and its helpers, one branch per agent with its children, MCP servers, and the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L85 ]
+[test: Electron's report names its processes and its figure wins over ps : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L97 ]
+[test: the web server is the Server, without a desktop : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L110 ]
+[test: this process's tree from the reader, with the machine's memory : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L122 ]
+[test: an unreadable process table still counts this process, and says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L152 ]
+[test: the commands reading the process table are left out : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L131 ]
+[test: a ps the app started, or the reading command itself, counts as measuring : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L144 ]
+[test: memory answers with this process in its groups : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceRoutes.test.ts#L48 ]
+[test: memory is measured every 3 seconds by default : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L206 ]
+[test: memory groups with the total, measured again while shown and not while the window is hidden : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L246 ]
+[test: a tiny group still shows in the bar; nothing at all is empty : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L218 ]
+[test: sizes read as people read them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L210 ]
 [test: lists the entries, searches through the server and saves verbosity : https://github.com/SpecDriven/specdriven-app/blob/main/tests/observabilityPage.test.tsx#L194 ]
 [test: resource routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L259 ]
 
@@ -42,13 +44,14 @@ SpecDriven, the agents it starts and the folders it fills can take a lot of a co
 - and the running version is marked "running", the previous one "kept to go back to", and a worktree "in use" or "uncommitted changes"
 - and Refresh measures again
 
-[test: files add up; a link is not followed, and a hard-linked file counts once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L175 ]
-[test: an unreadable folder counts as itself and does not stop the walk : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L192 ]
-[test: every place, with the cleanups each offers and the free space : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L273 ]
-[test: the desktop app's data folder, the browser cache apart from the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L316 ]
-[test: a spec folder, files, git history and the Automerge store, each counted once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L333 ]
-[test: disk groups with free space, tags, and a cleanup only after confirming : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L266 ]
-[test: disk is measured once, again on Refresh, and again after a cleanup : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L358 ]
+[test: files add up; a link is not followed, and a hard-linked file counts once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L184 ]
+[test: an unreadable folder counts as itself and does not stop the walk : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L201 ]
+[test: every place, with the cleanups each offers and the free space : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L282 ]
+[test: the desktop app's data folder, the browser cache apart from the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L325 ]
+[test: a spec folder, files, git history and the Automerge store, each counted once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L342 ]
+[test: disk groups with free space, tags, and a cleanup only after confirming : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L281 ]
+[test: disk is measured once, again on Refresh, and again after a cleanup : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L367 ]
+[test: the places measured are the SpecDriven home and the settings beside it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceRoutes.test.ts#L57 ]
 
 ## S3: Remove an agent worktree @v1 [proposed]
 
@@ -58,13 +61,13 @@ SpecDriven, the agents it starts and the folders it fills can take a lot of a co
 - and a worktree with uncommitted changes says in the confirmation that they are lost, and goes only after that confirmation
 - Otherwise: a running agent session works in the worktree, and its Remove button is off and says so; the server refuses it too
 
-[test: a clean worktree goes; its branch stays : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L392 ]
-[test: uncommitted changes are lost only when the request says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L401 ]
-[test: a worktree a session works in, and anything that is not a worktree, are refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L409 ]
-[test: the last worktree of a repo takes its folder with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L419 ]
-[test: the confirmation names what goes and how much it frees : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L209 ]
-[test: a request is checked before anything runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L463 ]
-[test: a cleanup request that is not one is refused before anything runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceRoutes.test.ts#L36 ]
+[test: a clean worktree goes; its branch stays : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L401 ]
+[test: uncommitted changes are lost only when the request says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L410 ]
+[test: a worktree a session works in, and anything that is not a worktree, are refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L418 ]
+[test: the last worktree of a repo takes its folder with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L428 ]
+[test: the confirmation names what goes and how much it frees : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L223 ]
+[test: a request is checked before anything runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L472 ]
+[test: a cleanup request that is not one is refused before anything runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceRoutes.test.ts#L38 ]
 
 ## S4: Clear the browser cache, old logs and the previous version @v1 [proposed]
 
@@ -74,9 +77,9 @@ SpecDriven, the agents it starts and the folders it fills can take a lot of a co
 - and each says how much it freed
 - Otherwise: the version is the running one, and it is never offered or deleted
 
-[test: old logs go; the one being written stays : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L428 ]
-[test: the kept version goes with its zip; the running one is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L435 ]
-[test: the browser cache is cleared through the desktop app, and only there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L443 ]
+[test: old logs go; the one being written stays : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L437 ]
+[test: the kept version goes with its zip; the running one is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L444 ]
+[test: the browser cache is cleared through the desktop app, and only there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceUsage.test.ts#L452 ]
 
 ## S5: Resources stay out of the demo and the hosted app @v1 [proposed]
 
@@ -85,5 +88,5 @@ SpecDriven, the agents it starts and the folders it fills can take a lot of a co
 - Then: nothing is measured or deleted, and the answer says Resources are not shown in the demo, or not available in the hosted app
 - and the tab shows that reason in place of the figures
 
-[test: the demo and the hosted app refuse every resource route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceRoutes.test.ts#L20 ]
-[test: a refused request shows the server's reason : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L308 ]
+[test: the demo and the hosted app refuse every resource route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourceRoutes.test.ts#L22 ]
+[test: a refused request shows the server's reason : https://github.com/SpecDriven/specdriven-app/blob/main/tests/resourcesPanel.test.tsx#L323 ]
