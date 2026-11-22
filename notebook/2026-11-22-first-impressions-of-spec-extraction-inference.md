@@ -6,4 +6,8 @@
 
 **Kind:** Observation
 
-DV guided JM around the inference of specs from an existing project, using the Federated Wiki wiki-
+DV guided JM around the inference of specs from an existing project, using the Federated Wiki wiki-server project.
+
+The federated wiki project sorted into two modules, applying "File -> Extract Specs from Code Project"
+
+Questions/Bu
