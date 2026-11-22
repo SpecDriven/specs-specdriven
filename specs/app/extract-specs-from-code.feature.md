@@ -519,6 +519,10 @@ Goal: ask user if this repo should be initialized and init the repo before conti
 
 ![image](/.images/image-6536f750.png)
 
+Final result:
+
+![image](/.images/image-ac44191b.png)
+
 [test: linking is offered ticked when the project has tests and a repository on github.com : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L43 ]
 [test: linking cannot be ticked for a project with nowhere for the links to point and says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L52 ]
 [test: linking cannot be ticked for a project that has no tests : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L59 ]
