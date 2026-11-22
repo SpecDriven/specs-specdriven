@@ -17,9 +17,9 @@ logs and the coding agents.
   it and shows it, and an open page re-reads on the same cadence
 - and a fetch that fails leaves the site showing what it had
 
-[test: a change pushed to the repo shows up after the next refresh : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L188 ]
-[test: shows a pushed change to its scenario after the next refresh : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L160 ]
-[test: is left as it is while nothing changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L175 ]
+[test: a change pushed to the repo shows up after the next refresh : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L267 ]
+[test: shows a pushed change to its scenario after the next refresh : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L163 ]
+[test: is left as it is while nothing changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L178 ]
 
 ## S2: A visitor browses the specs and the roadmap without signing in @v1 [proposed]
 
@@ -31,9 +31,9 @@ logs and the coding agents.
 - and the site names the spec repo, no one is signed in, and the only
   plugin is the Roadmap
 
-[test: the state says read-only, names the repo and no one signed in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L127 ]
-[test: features and the roadmap are served : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L149 ]
-[test: on the hosted image the site listens publicly, keeps HOME off /root and fetches no plugins : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L54 ]
+[test: the state says read-only, names the repo and no one signed in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L174 ]
+[test: features and the roadmap are served : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L202 ]
+[test: on the hosted image the site listens publicly, keeps HOME off /root and fetches no plugins : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L96 ]
 
 ## S3: Nothing a visitor does changes the spec repo @v1 [proposed]
 
@@ -44,9 +44,9 @@ logs and the coding agents.
 - and the app serves a copy of the repo with no `.git`, so nothing it does
   can commit or push
 
-[test: only the reads the site shows are allowed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L40 ]
-[test: every write and every other read is refused before it runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L159 ]
-[test: the app serves a copy with no .git, so nothing it does can commit or push : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L180 ]
+[test: only the reads the site shows are allowed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L82 ]
+[test: every write and every other read is refused before it runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L238 ]
+[test: the app serves a copy with no .git, so nothing it does can commit or push : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L259 ]
 
 ## S4: The site shows SpecDriven's own spec repo @v1 [proposed]
 
@@ -57,8 +57,8 @@ logs and the coding agents.
 - and a repo that is not a GitHub https url, a branch name git would read as
   an option, or a bad refresh interval stops the start
 
-[test: the site shows SpecDriven's spec repo unless told otherwise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L21 ]
-[test: a repo that is no GitHub url, a branch git reads as an option and a bad cadence stop the start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L32 ]
+[test: the site shows SpecDriven's spec repo unless told otherwise : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L22 ]
+[test: a repo that is no GitHub url, a branch git reads as an option and a bad cadence stop the start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L52 ]
 
 ## S5: A visitor copies a deep link to a feature or a scenario @v1 [proposed]
 
