@@ -467,3 +467,16 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 
 [test: File offers Extract Specs from Code Project… where the shell can start it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appMenu.test.ts#L67 ]
 [test: the desktop app's menu and the page agree on the event that starts the dialog : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L522 ]
+
+## S27: Target specs repo is not initialized @v1 [proposed]
+
+**Created by:** vydra
+
+**Updated by:** vydra
+
+Given: an empty repo exists and is cloned locally
+When: we try to use it for extracting specs
+Then: we get
+![image](/.images/image-b746fffb.png)
+
+Goal: ask user if this repo should be initialized and init the repo before continuing.
