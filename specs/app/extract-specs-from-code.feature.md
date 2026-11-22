@@ -498,7 +498,125 @@ Goal: ask user if this repo should be initialized and init the repo before conti
 [test: a folder holding anything else, or a code repository's specs link, is still refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L598 ]
 [test: a new folder is not made over it; the answer offers to add to it instead : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L609 ]
 [test: an empty repository named by its url is asked about, then set up, pushed and opened by its url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L405 ]
-[test: an empty repository is asked about, and set up only on a yes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L108 ]
-[test: Not now leaves the folder as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L125 ]
-[test: set up from where the new folder would go, the yes is already given : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L134 ]
+[test: an empty repository is asked about, and set up only on a yes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L114 ]
+[test: Not now leaves the folder as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L131 ]
+[test: set up from where the new folder would go, the yes is already given : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L140 ]
 [test: an empty repository where the new folder would go is offered to set up and add to : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L257 ]
+
+## S28: Tests are linked in a pass of their own @v1 [proposed]
+
+- **Given** the dialog's last step, for a project that has tests and a repository on github.com, with an agent to draft the specs
+- **Then** "Link the project's tests to the scenarios" is offered, ticked, saying how many test files the project has, which repository the links point at, and that it takes one more agent turn for each feature
+- **And** for a project with no tests, or with no repository on github.com, it cannot be ticked and says why; without an agent it is not offered
+- **When** the run has drafted every folder
+- **Then** it goes on, in the same run, to link tests: one agent turn for each feature it wrote, on the agent and model the run was given
+- **And** each scenario a test checks gets that test under Automated tests, by its name, linked to its line on GitHub
+- **And** a feature whose code has no tests is passed over without a turn, and says so
+- **And** left unticked, no linking turn is asked
+- **And** a run asked to link the tests of a project with nowhere for the links to point drafts the specs all the same, and says why the tests are not linked
+
+[test: linking is offered ticked when the project has tests and a repository on github.com : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L43 ]
+[test: linking cannot be ticked for a project with nowhere for the links to point and says why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L52 ]
+[test: linking cannot be ticked for a project that has no tests : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L59 ]
+[test: linking is not offered where no agent drafts the specs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L65 ]
+[test: the analysis says whether the project's tests can be linked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L409 ]
+[test: a run asked to link tests goes on to link them once the specs are drafted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L146 ]
+[test: a feature whose code has no tests is passed over without a turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L187 ]
+[test: a run not asked to link tests asks no linking turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L209 ]
+[test: a project with no repository on github.com is drafted and says why its tests are not linked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L197 ]
+
+## S29: The app finds the tests; the agent only matches them @v1 [proposed]
+
+- **Given** a feature that was extracted from code
+- **Then** the tests it is matched against are those of the directories it was extracted from, as the module analysis assigns them; the test files its scenarios name as their source come first, then the ones named after a source file a scenario names, then the rest
+- **And** the app lists the tests itself: in JavaScript and TypeScript the `test(…)` and `it(…)` calls with a title, through modifiers and a file's own aliases, a wrapped title included and a `describe` group not; in Java and Kotlin the methods under `@Test` and its kin, and in Java a `public void test…()`; in Python `def test…`; in Go `func Test…` — never a helper or a set-up method
+- **And** the agent is shown the feature's scenarios by number, the text of the test files as far as one turn takes, and every test by an id, file and name; a test whose text did not fit is marked so
+- **And** the agent answers with scenario numbers and test ids only: it is never asked for a url, a line or a test's name
+- **And** a scenario or a test it was not shown is dropped, a test named twice counts once, and a scenario keeps at most six tests
+- **And** an answer wrapped in words is read; one that is no answer fails the feature, which can be retried
+
+[test: a TypeScript file lists its test and it calls with the line each starts on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testName.test.ts#L353 ]
+[test: a Java file lists the methods under a test annotation and none of its helpers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testName.test.ts#L377 ]
+[test: Kotlin, Python and Go files list their tests by the language's own mark : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testName.test.ts#L403 ]
+[test: the line a test is listed at names that same test : https://github.com/SpecDriven/specdriven-app/blob/main/tests/testName.test.ts#L412 ]
+[test: the directories a feature was extracted from are read back from its first line : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L48 ]
+[test: the files a scenario rests on are read back from its source line : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L58 ]
+[test: tests a scenario names come first, then tests named after its source files, then the rest : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L66 ]
+[test: every scenario in the file is offered for linking by its number : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L80 ]
+[test: the prompt lists the scenarios and every test by id and marks tests whose text is not shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L89 ]
+[test: links to scenarios and tests the agent was shown are kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L109 ]
+[test: a scenario or a test the agent made up is dropped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L117 ]
+[test: a scenario keeps no more tests than the cap : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L126 ]
+[test: an answer wrapped in words is read and an answer that is no answer is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L132 ]
+[test: the agent is shown the scenarios and the tests by id and never asked for a url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L171 ]
+[test: a feature with more tests than one turn lists is shown the first of them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L300 ]
+
+## S30: Test links are built by the app and only ever added @v1 [proposed]
+
+- **Given** the tests an agent matched to a feature's scenarios
+- **Then** each link is built by the app: the test's name, and a github.com url made of the project's repository, its default branch, the file's path from the repository's top — the project may be a folder inside it — and the line the test starts on
+- **And** a path is escaped, and a test title holding `:` or `]` is written without them, so that the token stays one token
+- **And** a project whose origin is not a repository on github.com has nowhere for links to point
+- **And** the links go onto the feature as it is when the agent has answered: a scenario renamed or removed in the meantime gets none, and a feature that is gone is passed over
+- **And** a scenario keeps every link it has; a test it links already — by url, or as the same test at another line — is not added twice
+- **And** linking a second time changes nothing
+
+[test: a project on github.com links to its repository's default branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L214 ]
+[test: a project that is a folder inside its repository links with the folder in the path : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L229 ]
+[test: a project with no repository on github.com has nowhere for links to point : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L238 ]
+[test: a linked scenario gets a named test link and the feature still parses the same : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L145 ]
+[test: links a scenario already has are kept and the same test is not added twice : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L158 ]
+[test: a scenario renamed since the agent read the feature gets no link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L181 ]
+[test: a test title a token cannot carry is written without its colons and brackets : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L188 ]
+[test: linking again adds no link a scenario already has : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L269 ]
+[test: a link the agent gives for a scenario removed during the turn is not written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L311 ]
+
+## S31: Tests are linked later, on their own @v1 [proposed]
+
+- **Given** a specification folder that is open, with specs extracted from a code project
+- **When** the user picks "Link tests…" in the list of a drafting run that is over and did not link, "Link tests to specs…" under Manage folders, or "Link tests to specs…" in the command palette
+- **Then** a dialog names the code repository — chosen, when the folder has several — with how many test files it has and where the links point, and asks which features to link: every extracted one, or one folder's, starting on the folder selected in the sidebar
+- **And** it asks for the agent and model, and Link tests starts the run in the background
+- **And** only features that say which code they were extracted from are linked: one a person wrote, or imported from elsewhere, is left alone
+- **And** a folder with no code repository, with no extracted feature, or with no agent says so in place of the fields, and a repository whose tests cannot be linked says why
+- **And** the run is refused while specs are still being drafted, when no feature in the scope was extracted from code, and when the project has no repository on github.com
+
+[test: the dialog says what will be linked and where the links point : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L86 ]
+[test: the folder selected in the sidebar is the scope it starts on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L100 ]
+[test: a repository whose tests cannot be linked says why and cannot be started on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L106 ]
+[test: a folder with nothing extracted, no code repository or no agent says so in place of the fields : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L114 ]
+[test: the dialog waits for what could be linked before it offers anything : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L140 ]
+[test: the agent picked last time is the one the dialog starts on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L123 ]
+[test: the folders dialog offers linking only where a specification folder is open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L146 ]
+[test: a run that drafted without linking offers to link the tests once it is over : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractionProgress.test.tsx#L231 ]
+[test: a run still at work or one that linked its tests does not offer it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractionProgress.test.tsx#L241 ]
+[test: a run whose project has nowhere for links to point says why in place of the offer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractionProgress.test.tsx#L250 ]
+[test: the open folder's repositories and extracted features are listed for linking : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L417 ]
+[test: the features extracted before get their tests linked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L248 ]
+[test: a feature that was not extracted from code is left alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L281 ]
+[test: only one folder's features are linked when a folder is named : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L291 ]
+[test: linking is refused when no feature was extracted or the project is not on github.com : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L364 ]
+[test: linking is refused while specs are still being drafted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L381 ]
+[test: a feature with no extracted-from line names no directories : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentTestLinks.test.ts#L52 ]
+
+## S32: Linking progress, cancel and retry @v1 [proposed]
+
+- **Given** a run that is linking tests
+- **Then** the pill says so — "Linking tests — 3 of 12 features" — and, once over, how many links were added, or how many features failed
+- **And** a run that drafts and then links says which of the two it is at, and ends on "Specs drafted — 5 features, 12 tests linked"
+- **And** each folder's line says what came of its tests, and the list of a run that only links opens each feature it linked
+- **And** Cancel abandons the turn in flight and writes nothing for it; Resume takes up the features that are left
+- **And** a feature whose turn failed keeps its drafted scenarios, and Retry links it without drafting anything again
+- **And** with no agent to ask the run waits, saying so, and can be resumed
+- **And** each feature given its links shows in the page as one that was written does
+
+[test: a run that only links tests says how many features it is through and how it ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L175 ]
+[test: a run that drafts and then links says which of the two it is at : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L187 ]
+[test: a folder's line says what came of its tests : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L201 ]
+[test: a run with tests left to link can be taken up again and each linked feature reloads the page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L221 ]
+[test: the list of a linking run opens each feature it linked and names the count : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L230 ]
+[test: the pill of a linking run is named for what it does and flags a failed feature : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkTestsDialog.test.tsx#L243 ]
+[test: a run that is cancelled stops linking and resumes where it stopped : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L323 ]
+[test: a failed linking turn leaves the drafted feature and is retried on its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L218 ]
+[test: with no agent to ask the run waits and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentLinking.test.ts#L352 ]
+[test: a feature given its links is told to the page like a feature written : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractionProgress.test.tsx#L256 ]
