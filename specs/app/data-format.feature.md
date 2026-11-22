@@ -80,9 +80,9 @@ The folder is unblocked when it returns to a format this app reads:
 [test: the data format is pinned to the schema versions : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L49 ]
 [test: a too-new document rejects with the DataTooNewError itself : https://github.com/SpecDriven/specdriven-app/blob/main/tests/persistence/docStore.test.ts#L140 ]
 
-## S3: Data saved by a newer app blocks App from opening @v1 [published]
+## S3: Data saved by a newer app blocks App from opening @v1 [proposed]
 
-**Updated by:** David Vydra
+**Updated by:** vydra
 
 - Given: a data folder whose marker names a format newer than this app's
 - When: the app starts on it, the user opens it, or a teammate's push raises
