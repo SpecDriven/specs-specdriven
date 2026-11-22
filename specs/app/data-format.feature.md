@@ -39,21 +39,25 @@ Formats so far:
 
 **Updated by:** vydra
 
-- Given: a teammate on a newer app has raised the folder's format and pushed
-  the marker
+A folder is blocked while its data is in a newer format than this app reads. The app keeps pulling the folder, and writes nothing to it or to git.
+
+- Given: this app has a markdown edit on disk that it has not committed yet
+- and a teammate on a newer app pushes a marker with a higher `format`
 - When: this app's sync tick pulls that commit
-- Then: the tick stops right after the pull: no migration, no drift import
-  into the documents, no plugin pass, no commit and no push
-- and an edit already on disk is left as it is, uncommitted
-- and every API request that would write to the folder is refused with
-  `409 app-outdated`
-- and the requests that write nothing to the folder still work: switching
-  folders, Sync, sign-in, the log and the data viewer
-- and a live-sync peer's operations are not absorbed while the folder is
-  blocked
-- and later ticks keep pulling, so once the folder is rolled back to a
-  format this app reads, the next tick is unblocked and syncs the edit it
-  had left
+- Then: the tick ends right after the pull: it does not migrate the data, import markdown edits into the documents, run the plugins' sync passes, commit, or push
+- and the edit stays on disk as it is, uncommitted
+
+While the folder is blocked:
+
+- an API request that would write to the folder is refused with `409 app-outdated`
+- the requests that write nothing to the folder still work: switching folders, Sync, sign-in, the log and the data viewer
+- changes from a live-sync peer are not written to the documents or the markdown files
+
+The folder is unblocked when it returns to a format this app reads:
+
+- Given: the teammate reverts the marker and pushes
+- When: this app's next sync tick pulls the revert
+- Then: the tick runs in full, and commits and pushes the edit it had left
 
 [test: a blocked app does not push : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L78 ]
 [test: the API refuses writes to a blocked folder and marks its reads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L136 ]
