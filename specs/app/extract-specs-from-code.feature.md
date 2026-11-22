@@ -33,6 +33,10 @@ When import started, we see in the lower left corner:
 
 ![image](/.images/image-e92379d0.png)
 
+Clicking on it, renders:
+
+![image](/.images/image-daa5b199.png)
+
 [test: proposes the project's modules and the specification folder it would get : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L111 ]
 [test: says so when the project holds no code it can read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L127 ]
 [test: refuses a folder that is not there, a relative path and a specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L143 ]
