@@ -48,7 +48,7 @@ delete the ones they do not want.
 [test: a thumbnail opens the image with where it is used; the All tab shows every image : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imagesPage.test.tsx#L189 ]
 [test: nothing stored, and a server error, each say so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/imagesPage.test.tsx#L232 ]
 [test: Images has its own url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/route.test.ts#L345 ]
-[test: image routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L50 ]
+[test: image routes match by method : https://github.com/SpecDriven/specdriven-app/blob/main/tests/api.test.ts#L51 ]
 
 ## S2: Delete the selected images @v1 [proposed]
 
