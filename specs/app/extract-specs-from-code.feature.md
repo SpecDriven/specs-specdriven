@@ -491,3 +491,14 @@ Then: we get
 ![image](/.images/image-b746fffb.png)
 
 Goal: ask user if this repo should be initialized and init the repo before continuing.
+
+[test: an empty repository is asked about, and nothing is written until the user agrees : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L557 ]
+[test: once agreed, it is set up, the folders added, and all of it pushed as one commit : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L565 ]
+[test: a repository holding only what GitHub starts one with keeps its README : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L585 ]
+[test: a folder holding anything else, or a code repository's specs link, is still refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L598 ]
+[test: a new folder is not made over it; the answer offers to add to it instead : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L609 ]
+[test: an empty repository named by its url is asked about, then set up, pushed and opened by its url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L405 ]
+[test: an empty repository is asked about, and set up only on a yes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L108 ]
+[test: Not now leaves the folder as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L125 ]
+[test: set up from where the new folder would go, the yes is already given : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L134 ]
+[test: an empty repository where the new folder would go is offered to set up and add to : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L257 ]
