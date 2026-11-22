@@ -89,7 +89,7 @@ The folder is unblocked when it returns to a format this app reads:
   it while the app is open
 - Then: the update screen takes the place of the app
 
-![image](/.images/image-3898c71c.png)
+![image](/.images/image-b4139b96.png)
 
 on backend:
 
