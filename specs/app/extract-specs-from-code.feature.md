@@ -75,10 +75,10 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 [test: without a readable include, folders with a build.gradle are the projects : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentModules.test.ts#L188 ]
 [test: the project's own coordinates are read, not its parent's or a dependency's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L131 ]
 [test: every module is listed, a profile's too, a commented one not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L139 ]
-[test: a name that is a property is not a name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L143 ]
-[test: includes become folders, in Groovy and in Kotlin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L149 ]
-[test: an include over several lines, and a commented one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L161 ]
-[test: includeFlat is a sibling folder, and projectDir moves a project : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L166 ]
+[test: a name that is a property is not a name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L153 ]
+[test: includes become folders, in Groovy and in Kotlin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L159 ]
+[test: an include over several lines, and a commented one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L171 ]
+[test: includeFlat is a sibling folder, and projectDir moves a project : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L176 ]
 
 ## S4: Java packages below the base package @v1 [proposed]
 
@@ -100,10 +100,10 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 [test: a src layout's package is split into its subpackages : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentModules.test.ts#L234 ]
 [test: Django apps are named as such : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentModules.test.ts#L259 ]
 [test: uv workspace members and folders with their own pyproject are modules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentModules.test.ts#L282 ]
-[test: tables, arrays over several lines and comments are read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L176 ]
-[test: the name and the src layout of setuptools, Poetry and a package-dir : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L193 ]
-[test: uv workspace members are read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L204 ]
-[test: setup.py and setup.cfg say where the packages are : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L211 ]
+[test: tables, arrays over several lines and comments are read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L186 ]
+[test: the name and the src layout of setuptools, Poetry and a package-dir : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L203 ]
+[test: uv workspace members are read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L214 ]
+[test: setup.py and setup.cfg say where the packages are : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L221 ]
 
 ## S6: A project without modules falls back to its source folders @v1 [proposed]
 
