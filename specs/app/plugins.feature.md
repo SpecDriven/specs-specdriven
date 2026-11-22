@@ -66,8 +66,8 @@ its folder is.
   where they were loaded from
 - and a built-in plugin can be switched off but never uninstalled
 
-[test: the browser loader registers the tab while the server says it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L204 ]
-[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L31 ]
+[test: the browser loader registers the tab while the server says it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L210 ]
+[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L33 ]
 
 ## S2: A plugin from the marketplace is installed with consent @v1 [proposed]
 
@@ -102,12 +102,12 @@ its folder is.
   visitor browses the marketplace, the Event Models marked installed, with
   no Install, Update, Remove or Refresh
 
-[test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L329 ]
-[test: a plugin is reinstalled from a marketplace that was removed and added back under another name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L380 ]
-[test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L435 ]
-[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L414 ]
-[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L663 ]
-[test: the hosted demo installs the Event Models from the marketplace at start and lists them on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L691 ]
+[test: a subdirectory plugin is staged and described first, and installed only on confirmation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L342 ]
+[test: a plugin is reinstalled from a marketplace that was removed and added back under another name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L393 ]
+[test: a git-url plugin is installed pinned to the ref the index names, updated to the ref it names now, and removed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L468 ]
+[test: a plugin the app cannot run is refused with the reason and nothing is left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L427 ]
+[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L679 ]
+[test: the hosted demo installs the Event Models from the marketplace at start and lists them on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L707 ]
 
 ## S3: A plugin is scaffolded, built and linked from the command line @v1 [proposed]
 
@@ -158,12 +158,12 @@ its folder is.
 
 [test: a plugin folder under ~/.specdriven/plugins is found, built, mounted and served : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L114 ]
 [test: an edit rebuilds the plugin under a new revision and remounts it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L176 ]
-[test: a plugin whose folder goes away is unwound and reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L259 ]
-[test: a manifest the app cannot accept is refused with the reason, and loads nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L274 ]
-[test: a plugin under the data repo asks for trust before its first load : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L317 ]
-[test: a plugin that fails to load fails alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L347 ]
-[test: a runtime that cannot build loads dist/ only, and refuses a bundle with its own React : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L360 ]
-[test: the browser loader imports a served bundle and remounts it at a new revision : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L398 ]
+[test: a plugin whose folder goes away is unwound and reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L266 ]
+[test: a manifest the app cannot accept is refused with the reason, and loads nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L281 ]
+[test: a plugin under the data repo asks for trust before its first load : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L324 ]
+[test: a plugin that fails to load fails alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L354 ]
+[test: a runtime that cannot build loads dist/ only, and refuses a bundle with its own React : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L367 ]
+[test: the browser loader imports a served bundle and remounts it at a new revision : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L405 ]
 
 ## S5: Each data folder keeps its own plugins @v1 [proposed]
 
@@ -191,14 +191,14 @@ its folder is.
   the other folders list it, switched off
 - and uninstalling a plugin takes it off every folder's list
 
-[test: each data folder keeps its own plugins, and a new one shows Specs alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L113 ]
-[test: a fresh install shows Specs alone without a settings write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L96 ]
-[test: an older device-wide list carries over to the folder that is open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L160 ]
-[test: each data folder keeps its own profile; a new one shows Specs alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L267 ]
-[test: an older device-wide list is copied to the folders the file knows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L293 ]
-[test: an older file with a folder but no plugin list keeps the Notebook on in that folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L179 ]
-[test: a folder picked in this app still shows Specs alone after a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L195 ]
-[test: an older file with folders but no list gives them the defaults; one with repos does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L338 ]
+[test: each data folder keeps its own plugins, and a new one shows Specs alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L114 ]
+[test: a fresh install shows Specs alone without a settings write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L97 ]
+[test: an older device-wide list carries over to the folder that is open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L161 ]
+[test: each data folder keeps its own profile; a new one shows Specs alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L273 ]
+[test: an older device-wide list is copied to the folders the file knows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L299 ]
+[test: an older file with a folder but no plugin list keeps the Notebook on in that folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L182 ]
+[test: a folder picked in this app still shows Specs alone after a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L198 ]
+[test: an older file with folders but no list gives them the defaults; one with repos does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L344 ]
 
 ## S6: Plugin urls serve the app shell @v1 [proposed]
 
@@ -215,7 +215,7 @@ its folder is.
 - and with the plugin off the url goes home, and a url no plugin claims
   shows the not-found page
 
-[test: the plugin's urls serve the app shell whether it is on or off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L184 ]
+[test: the plugin's urls serve the app shell whether it is on or off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L190 ]
 
 ## S7: The marketplace is a git repository with an index @v1 [proposed]
 
@@ -242,10 +242,10 @@ its folder is.
 - and the SpecDriven marketplace is always among them, whatever the
   settings name; any other can be added and removed
 
-[test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L240 ]
-[test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L172 ]
+[test: each marketplace is cloned through the git engine and its index listed; a broken one is reported on its own row : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L253 ]
+[test: marketplace.json is read as an index, and refused when it is not one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L185 ]
 [test: Browse reads the cache, and Refresh afterwards pulls : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L125 ]
-[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L522 ]
+[test: the settings carry the marketplaces, and GET /api/state lists them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L535 ]
 
 ## S8: The profile lists enabled plugins in tab order @v1 [proposed]
 
@@ -271,10 +271,10 @@ its folder is.
 - and the list is device-local, like the switches it replaces: it does not
   follow the user to another machine
 
-[test: a settings file from before plugins is read as the matching profile : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L92 ]
-[test: the profile's order is the tab order, and an id nothing provides is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L142 ]
-[test: a settings file with the old switches is rewritten as the profile on start, and works as it did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L69 ]
-[test: PUT /api/state takes the profile whole, or a legacy switch as an alias : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L208 ]
+[test: a settings file from before plugins is read as the matching profile : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L94 ]
+[test: the profile's order is the tab order, and an id nothing provides is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L144 ]
+[test: a settings file with the old switches is rewritten as the profile on start, and works as it did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L70 ]
+[test: PUT /api/state takes the profile whole, or a legacy switch as an alias : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L211 ]
 [test: Specs alone, and every other optional setting on except IntelliJ IDEA : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L143 ]
 [test: a visitor turns the roadmap on and it lists the dataset's pages : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L128 ]
 
@@ -295,7 +295,7 @@ its folder is.
 - and switching it on again mounts it afresh, with its tab, shortcuts and
   routes back, without a restart
 
-[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L31 ]
+[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L33 ]
 [test: switching a folder plugin off unwinds its routes, and on mounts it again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L217 ]
 [test: effects unwind last-in-first-out, and only once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/kernel.test.ts#L21 ]
 [test: a plugin waits for its injects and unmounts when one goes away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/kernel.test.ts#L43 ]
@@ -321,8 +321,8 @@ its folder is.
 - and neither the hosted app, the hosted demo nor the read-only site pulls
   at all
 
-[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L771 ]
-[test: a start leaves the marketplaces alone with the built-ins only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L773 ]
+[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L787 ]
+[test: a start leaves the marketplaces alone with the built-ins only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L789 ]
 [test: the start's refresh pulls the default marketplace always and the others only when an external plugin is installed, and logs one it cannot reach : https://github.com/SpecDriven/specdriven-app/blob/main/tests/autoInstall.test.ts#L206 ]
 [test: the default marketplace is known by its url, whatever its name : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L39 ]
 
@@ -344,10 +344,10 @@ its folder is.
 - and the hosted demo neither pulls nor clones again; the hosted app pulls
   but never throws a copy away to clone it afresh
 
-[test: Refresh clones a marketplace afresh when its history was rewritten upstream, and one that cannot be reached keeps its copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L290 ]
+[test: Refresh clones a marketplace afresh when its history was rewritten upstream, and one that cannot be reached keeps its copy : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L303 ]
 [test: offers Refresh before the list is browsed, and no Re-clone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L107 ]
 [test: Refresh before browsing opens the list with a single pulling read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L115 ]
-[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L663 ]
+[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L679 ]
 
 ## S12: A tab's sidebar uses the section head @v1 [proposed]
 
@@ -411,7 +411,7 @@ its folder is.
 [test: a plugin whose index row is newer, or pinned to another ref, is offered; nothing else is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L64 ]
 [test: versions compare part by part, a pre-release before its release : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L30 ]
 [test: the start's check reads the installed plugins against the indexes it is handed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdates.test.ts#L91 ]
-[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L771 ]
+[test: a start pulls the marketplaces when an external plugin is installed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L787 ]
 [test: lists each plugin ticked, with the version installed and the one offered : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L84 ]
 [test: Update runs the ticked plugins in order and closes once all are updated : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L95 ]
 [test: a failure is shown beside its row, the others still update, and Close answers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginUpdatesDialog.test.tsx#L107 ]
@@ -610,14 +610,14 @@ one by hand.
 
 [test: an empty repository is initialized as a marketplace: index, README and CI pushed to main : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L577 ]
 
-[test: a repository with commits keeps them, and its own README : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L619 ]
-[test: a repository that is a marketplace already, or cannot be pushed to, is refused with nothing left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L636 ]
-[test: a marketplace's owner is read from its url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L656 ]
+[test: a repository with commits keeps them, and its own README : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L635 ]
+[test: a repository that is a marketplace already, or cannot be pushed to, is refused with nothing left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L652 ]
+[test: a marketplace's owner is read from its url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L672 ]
 [test: the cli engine publishes the first branch of an empty repository : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L373 ]
 [test: a repository that already has a branch gets the commit on that branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/gitEngine.test.ts#L397 ]
 [test: Initialize posts the url and adds the marketplace once the server has pushed it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L387 ]
 [test: a refused initialization is shown and nothing is added : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L399 ]
-[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L663 ]
+[test: the hosted demo browses the marketplaces, never refreshed, and changes nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L679 ]
 
 ## S23: The SpecDriven marketplace cannot be removed @v1 [proposed]
 
@@ -636,8 +636,8 @@ one by hand.
 - and a marketplace that took its name for another url is listed under
   that name with a number after it
 
-[test: the settings name the marketplaces, and the SpecDriven index is always among them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L208 ]
-[test: the SpecDriven marketplace stays on the list whatever the settings say; the others can go : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L533 ]
+[test: the settings name the marketplaces, and the SpecDriven index is always among them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L221 ]
+[test: the SpecDriven marketplace stays on the list whatever the settings say; the others can go : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplace.test.ts#L546 ]
 [test: the SpecDriven marketplace has no Remove; another one does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginMarketplacePage.test.tsx#L380 ]
 
 ## S24: Specs is a built-in plugin @v1 [proposed]
@@ -662,12 +662,12 @@ one by hand.
 - and with every plugin switched off the sidebar says so and links to the
   Plugins page
 
-[test: Specs is listed first as a built-in plugin, and switching it off holds across a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L252 ]
-[test: a list from before Specs was a plugin reads with Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L279 ]
-[test: switched on, Specs is a tab where the list puts it, and its tree is the sidebar when picked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L178 ]
-[test: the rail carries the tabs in the list's order, Specs only while it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L204 ]
-[test: with Specs switched off a feature's link opens home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L218 ]
-[test: with every plugin switched off the sidebar says where to switch one on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L229 ]
+[test: Specs is listed first as a built-in plugin, and switching it off holds across a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L255 ]
+[test: a list from before Specs was a plugin reads with Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L282 ]
+[test: switched on, Specs is a tab where the list puts it, and its tree is the sidebar when picked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L182 ]
+[test: the rail carries the tabs in the list's order, Specs only while it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L208 ]
+[test: with Specs switched off a feature's link opens home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L222 ]
+[test: with every plugin switched off the sidebar says where to switch one on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L233 ]
 
 ## S25: A folder's plugins are picked from its data the first time it opens @v1 [proposed]
 
@@ -692,8 +692,9 @@ one by hand.
 - and plugins from the marketplace take no part: only the built-in ones
   are picked by their data
 
-[test: the list is made from the data once, what has data goes on and Specs goes off where another has some : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L291 ]
-[test: a folder of notebook entries opens on the Notebook alone, and one with specs too shows both : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L315 ]
-[test: a folder used before the check is looked at once, its tasks go on and its empty Specs off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L350 ]
-[test: a folder of notebook entries opens on the Notebook alone, with the README in the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L165 ]
-[test: a folder with features and notebook entries shows both, Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L195 ]
+[test: the list is made from the data once, what has data goes on and Specs goes off where another has some : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L294 ]
+[test: a folder of notebook entries opens on the Notebook alone, and one with specs too shows both : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L339 ]
+[test: a folder used before the check is looked at once, its tasks go on and its empty Specs off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L374 ]
+[test: a folder of notebook entries opens on the Notebook alone, with the README in the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L169 ]
+[test: a folder with features and notebook entries shows both, Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L199 ]
+[test: a folder has Specs data once a feature file lies under its specs folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L324 ]
