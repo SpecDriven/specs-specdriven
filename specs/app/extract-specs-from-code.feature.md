@@ -17,6 +17,8 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 
 ## S1: Choose the code project @v1 [proposed]
 
+**Updated by:** vydra
+
 - **Given** the app on the developer's own machine
 - **When** the user picks "Extract specs from code" on the first-run screen, "Extract specs from code…" under Manage folders, or "Extract specs from a code project…" in the command palette
 - **Then** a dialog asks for the code project's folder — typed, or picked with Browse… — and reads it
@@ -26,6 +28,10 @@ The specification folder is an ordinary one afterwards (spec-folders.feature.md)
 - **And** a folder that is not there, a path that is not absolute, and a specification folder are refused, each saying why
 - **And** a project with no Java, JavaScript, TypeScript or Python code says so, and goes no further
 - **And** nothing is written into the project
+
+When import started, we see in the lower left corner:
+
+![image](/.images/image-e92379d0.png)
 
 [test: proposes the project's modules and the specification folder it would get : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L111 ]
 [test: says so when the project holds no code it can read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L127 ]
