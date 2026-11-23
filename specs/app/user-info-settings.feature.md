@@ -128,8 +128,9 @@ reports both via `/api/state`.
   longer than two minutes: a commit left waiting would hold every later
   save in the folder, and a switch to another folder, behind it. The
   passphrase kept in Settings unlocks the key for those commits too
-- The built-in JavaScript git cannot sign, so it refuses to commit where
-  commits are signed; the hosted app and the demo sign nothing
+- The built-in JavaScript git cannot sign, so it refuses to commit to a
+  repository known to take only signed commits — one `signedCommitRepos`
+  covers; the hosted app and the demo sign nothing
 - Known limit: the passphrase reaches ssh-keygen through a shell script,
   which has not been tried on Windows
 
@@ -423,7 +424,8 @@ reports both via `/api/state`.
 ## S17: the built-in git refuses to commit where commits are signed @v1 [proposed]
 
 - Given: the built-in JavaScript git is the engine — no git is installed
-- and the data repo's commits are signed (S15)
+- and the data repo is covered by `signedCommitRepos` — written there, or
+  remembered from a refused push (S20)
 - When: the app would commit to it
 - Then: nothing is committed, and the reason says that the built-in git
   cannot sign and to install git
