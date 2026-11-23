@@ -58,7 +58,7 @@ A folder is blocked while its data is in a newer format than this app reads. The
 While the folder is blocked:
 
 - an API request that would write to the folder is refused with `409 app-outdated`
-- the requests that write nothing to the folder still work: switching folders, Sync, sign-in, the log and the data viewer
+- the requests that write nothing to the folder still work: switching folders, Sync, sign-in, the log, the data viewer and updating the app
 - changes from a live-sync peer are not written to the documents or the markdown files
 
 The folder is unblocked when it returns to a format this app reads:
@@ -69,7 +69,7 @@ The folder is unblocked when it returns to a format this app reads:
 
 [test: a blocked app does not push : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L78 ]
 [test: the API refuses writes to a blocked folder and marks its reads : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L136 ]
-[test: switching folders, Sync, sign-in, the log and the data viewer still work : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L168 ]
+[test: switching folders, Sync, sign-in, the log, the data viewer and updating the app still work : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L168 ]
 [test: a live-sync peer's operations are not absorbed while the folder is blocked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/automerge/automergeNetsync.test.ts#L253 ]
 [test: later ticks keep pulling, so a rolled-back folder syncs again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L99 ]
 [test: a folder rolled back to this format is unblocked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L134 ]
@@ -107,14 +107,14 @@ on backend:
 - and a marker git left conflict markers in reads as its highest format
 
 [test: data saved by a newer app blocks this one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L126 ]
-[test: data saved by a newer app blocks this one at start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L201 ]
+[test: data saved by a newer app blocks this one at start : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L202 ]
 [test: a marker git left conflict markers in reads as its highest format : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L157 ]
-[test: an answer carrying the header reports the version it asks for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L76 ]
-[test: an empty header still reports, with no version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L85 ]
-[test: ordinary answers pass through, and stopping restores fetch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L94 ]
+[test: an answer carrying the header reports the version it asks for : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L131 ]
+[test: an empty header still reports, with no version : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L140 ]
+[test: ordinary answers pass through, and stopping restores fetch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L149 ]
 [test: server and client agree on the blocked-folder header : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L66 ]
 [test: an unreadable marker is ignored : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormat.test.ts#L174 ]
-[test: a folder in this format opens as usual : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L213 ]
+[test: a folder in this format opens as usual : https://github.com/SpecDriven/specdriven-app/blob/main/tests/dataFormatGuard.test.ts#L214 ]
 
 ## S4: The update screen says what to install @v1 [proposed]
 
@@ -123,15 +123,21 @@ on backend:
 - and on macOS and Linux it shows the `curl … install.sh | sh` line, on
   Windows the `irm … install.ps1 | iex` line, each with a Copy button, and in
   the desktop app a link to the latest release
+- and where the app can update itself, "Install & restart" leads, the same
+  button as on the Updates page: it checks for the newest release, installs
+  it and shows the installer's progress in place of the instructions, then
+  "Restart now"; where it cannot, the instructions above are the way
 - and "Check again" runs a sync and reopens the folder if it is no longer
   blocked
-- and "Open another folder" goes to the folder chooser
 
-[test: it names the version the folder needs and the one running : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L28 ]
-[test: macOS and Linux get the curl installer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L43 ]
-[test: Windows gets the PowerShell installer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L49 ]
-[test: the desktop app points at the latest release : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L57 ]
-[test: a folder that names no version still says to update : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L37 ]
+[test: it names the version the folder needs and the one running : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L54 ]
+[test: macOS and Linux get the curl installer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L98 ]
+[test: Windows gets the PowerShell installer : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L104 ]
+[test: the desktop app points at the latest release : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L112 ]
+[test: a folder that names no version still says to update : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L92 ]
+[test: where the app can update itself, Install & restart leads, as on the Updates page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L63 ]
+[test: where it cannot, Check again is the one button and the instructions stay : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L68 ]
+[test: once Install & restart is pressed, the installer's progress and Restart now take the instructions' place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/appOutdated.test.tsx#L74 ]
 
 ## S5: The format marker is written on first sync @v1 [proposed]
 
