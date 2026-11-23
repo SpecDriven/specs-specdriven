@@ -418,8 +418,8 @@ reports both via `/api/state`.
 [test: a commit to a listed repository is signed, and authored by this computer's git user : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L526 ]
 [test: a commit to a repository that is not listed is left unsigned, authored by the GitHub account : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L539 ]
 [test: the sync's own commit and the merge of a pull are signed too : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L551 ]
-[test: User info names this computer's git user as the commit author of a listed data repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L618 ]
-[test: only the git commands that can make a commit are told to sign : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L727 ]
+[test: User info names this computer's git user as the commit author of a listed data repo : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L623 ]
+[test: only the git commands that can make a commit are told to sign : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L732 ]
 
 ## S17: the built-in git refuses to commit where commits are signed @v1 [proposed]
 
@@ -456,13 +456,13 @@ reports both via `/api/state`.
   computer — the desktop app beside a development server — holds here
   from the next commit, without a restart
 
-[test: a commit is signed with a passphrase-protected key once its passphrase is kept in Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L637 ]
-[test: a passphrase that does not unlock the signing key is refused, and none is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L662 ]
-[test: the passphrase is kept apart from the settings file, never sent back, and removed on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L675 ]
-[test: a passphrase is one non-empty line; with no key to try it on, it is kept unchecked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L694 ]
+[test: a commit is signed with a passphrase-protected key once its passphrase is kept in Settings : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L642 ]
+[test: a passphrase that does not unlock the signing key is refused, and none is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L667 ]
+[test: the passphrase is kept apart from the settings file, never sent back, and removed on request : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L680 ]
+[test: a passphrase is one non-empty line; with no key to try it on, it is kept unchecked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L699 ]
 [test: the passphrase field is a password field, and a kept passphrase is named, not shown : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommitsSettings.test.tsx#L44 ]
-[test: ssh-keygen is answered with the kept passphrase, else by the user's own askpass, and never on the terminal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L748 ]
-[test: a passphrase saved by another copy of the app is found without a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L828 ]
+[test: ssh-keygen is answered with the kept passphrase, else by the user's own askpass, and never on the terminal : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L753 ]
+[test: a passphrase saved by another copy of the app is found without a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L833 ]
 [test: saving a passphrase reports what the server said, and removing one asks the server to forget it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommitsSettings.test.tsx#L61 ]
 
 ## S19: a commit that cannot be signed is shown @v1 [proposed]
@@ -484,10 +484,10 @@ reports both via `/api/state`.
   passphrase prompt in the terminal the app was started from
 
 [test: a commit that cannot be signed fails, saying where git looks for the key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L582 ]
-[test: a sync whose commit cannot be signed tells the page why, until one is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L708 ]
-[test: a failed signature names its fix, a locked key's passphrase or else where git looks for the key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L737 ]
-[test: a signing program that never answers is stopped, and the commit fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L776 ]
-[test: a commit git signs by its own config, off the list, fails at once on a locked key instead of waiting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L804 ]
+[test: a sync whose commit cannot be signed tells the page why, until one is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L713 ]
+[test: a failed signature names its fix, a locked key's passphrase or else where git looks for the key : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L742 ]
+[test: a signing program that never answers is stopped, and the commit fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L781 ]
+[test: a commit git signs by its own config, off the list, fails at once on a locked key instead of waiting : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L809 ]
 
 ## S20: a push refused for want of a signature is remembered, and what waited is signed @v1 [proposed]
 
