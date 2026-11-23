@@ -509,10 +509,15 @@ reports both via `/api/state`.
   this computer's git user
 - and where the waiting commits cannot be signed — no key, a locked one —
   the branch does not move and the push problem stands
+- and a push refused again although everything waiting is signed — the
+  host does not know the key — makes no commit again
+- and a remote that is a folder on this computer, with no url to keep, is
+  remembered for as long as the app runs
 - and the built-in JavaScript git signs nothing: the repository is
   remembered, and it refuses to commit there from then on (S17)
 
 [test: a push refused for want of a signature is remembered, and the waiting commits are signed and pushed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L407 ]
 [test: where the waiting commits cannot be signed, the push problem stands and the branch has not moved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L453 ]
+[test: a repository that refused unsigned commits is remembered once, by its url, and a remote without one for as long as the app runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L1 ]
 [test: a refused push is recognized by the host's words about signatures : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L375 ]
 [test: a commit object is read for what making it again needs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/signedCommits.test.ts#L391 ]
