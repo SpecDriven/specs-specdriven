@@ -97,26 +97,32 @@ logs and the coding agents.
   one shown ticked
 - and picking another opens that project's README, and from then on every
   page, feature, search and refresh is that project's, after a reload too
+- and the address bar names the project shown (`?project=<id>`) on every
+  page the visitor opens, so the url they copy from it opens that project
 - and a browser tab brought back to the front shows its own project again,
   though another tab picked a different one meanwhile
 - and a site showing one project has no ▾
 
 [test: lists them under the folder name's ▾, the visitor's ticked, and links name the project : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L195 ]
-[test: with one project there is no ▾ and links name none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L218 ]
+[test: with one project there is no ▾ and links name none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L236 ]
 [test: a visitor's cookie picks the project every request is answered for; any other cookie, the first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L217 ]
 [test: a visitor's project is read from their cookie, and only a well-formed id counts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L75 ]
-[test: a tab coming back to the front puts its own project back in the cookie : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L54 ]
-[test: only well-formed project rows are read from the state : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L63 ]
+[test: a tab coming back to the front puts its own project back in the cookie : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L100 ]
+[test: only well-formed project rows are read from the state : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L109 ]
+[test: the address bar names the visitor's project, on every page the app opens : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L218 ]
+[test: the address bar names the tab's project through the page's own navigation : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L52 ]
+[test: a site showing one project names none in the address bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L67 ]
+[test: picking another project opens its home with the address bar naming it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L83 ]
 
 ## S8: A copied link opens the project it was copied in @v1 [proposed]
 
 - Given: the public specs site showing several projects
 - When: a visitor presses "Copy link" on a feature or a scenario
 - Then: the url names the project (`?project=<id>`)
-- and whoever opens it sees that project, the parameter gone from the
+- and whoever opens it sees that project, the parameter kept in the
   address bar
 - and a link naming no project the site knows opens the project the
   visitor had, or the first
 
-[test: a ?project= link picks the project and leaves the address bar : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L40 ]
-[test: a malformed project id is dropped from the url and picks nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L47 ]
+[test: a ?project= link picks the project, and the address bar keeps naming it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L45 ]
+[test: a malformed project id picks nothing, and the project shown replaces it in the url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L75 ]

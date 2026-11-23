@@ -203,7 +203,7 @@ before: several browser tabs there all show the same one.
 
 [test: picking a folder another window shows brings that window forward and switches nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L416 ]
 [test: a GitHub url and the folder it is cloned into are the same folder to the windows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L498 ]
-[test: bringing a window forward and closing the others are the shell's to do, and nothing without one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L525 ]
+[test: bringing a window forward and closing the others are the shell's to do, and nothing without one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L539 ]
 
 ## S9: a folder open in a window cannot be removed from the list @v1 [proposed]
 
@@ -247,8 +247,8 @@ before: several browser tabs there all show the same one.
 [test: a plugin's files are created in the folder that has it on, and in no other : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L311 ]
 [test: a plugin stays loaded while any open folder uses it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L324 ]
 [test: a window that closes takes the plugins only its folder used with it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L340 ]
-[test: a plugin's routes and sync hooks are its own, and answer only where it is let through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L551 ]
-[test: each window is let through to its own folder's plugins, and a tick to its folder's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L575 ]
+[test: a plugin's routes and sync hooks are its own, and answer only where it is let through : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L565 ]
+[test: each window is let through to its own folder's plugins, and a tick to its folder's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/multiWindow.test.ts#L589 ]
 
 ## S13: each window has its own folder picker @v1 [proposed]
 
