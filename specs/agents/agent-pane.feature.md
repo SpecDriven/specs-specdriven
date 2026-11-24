@@ -953,3 +953,117 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
 [test: a permission card offers Allow always only with a rule to keep : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L594 ]
 [test: a question card lists the options and a way to send answers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L615 ]
 [test: the pane's permission card answers the provider, and a withdrawn or ended question is denied : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L158 ]
+
+## S26: MCP servers before a session are listed, turned on and off and signed in to from the header's ⋯ menu @v1 [proposed]
+
+- Given: the new-session screen, with an agent picked that manages its MCP
+  servers before a session (Claude)
+- When: the user opens the header's ⋯ menu and chooses "MCP servers…"
+- Then: a dialog "MCP servers" opens, naming the agent and the folder a
+  session would start in — the folder the screen picked, else the default
+  one — and lists every MCP server a session started there would get, asked
+  of the agent with no session running
+- and a line under the title counts the servers and their tools, and says
+  what the tools take of a new session's context window, in tokens and as a
+  share of the window, and how much more once the tools the agent loads on
+  demand are loaded
+- and each server's line is the session popover's (S23): its dot, its name,
+  where it is configured and how it stands, a switch that turns it off and
+  on, "Sign in" for one that needs it — the page opens in the browser, stays
+  in the line as a link, and the list asks again every two seconds for up
+  to five minutes — and "Reconnect" for one that failed; a refusal is shown
+  with the agent's words
+- and the ⋯ menu is there only while no session is open in the pane, and
+  only for an agent that manages its MCP servers before a session; a running
+  session has the popover's list
+- and the list is the agent's answer at that moment (GET
+  /api/agent/agents/:agent/mcp with the picked folder as `cwd`, and POST the
+  same with the server's name and enable, disable, reconnect or
+  authenticate); closing the dialog tells the agent, which may stop what it
+  kept running for it (POST /api/agent/agents/:agent/mcp/release)
+- and the routes answer 409 for an agent that does not manage its MCP
+  servers and for an action the server does not offer, 404 for a server the
+  agent does not list and 403 in a hosted workspace; the read-only site has
+  none of them
+- and the demo's simulated Claude has four servers to try it on, kept in
+  memory folder by folder
+
+[test: the header's ⋯ menu offers MCP servers… before a session, for an agent that manages them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L502 ]
+[test: an agent that does not manage its MCP servers has no ⋯ menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L534 ]
+[test: the line under the title counts the servers, their tools and what they take of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L143 ]
+[test: the dialog lists the agent's servers, shows the one picked, and turns one off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L320 ]
+[test: Sign in opens the agent's page, keeps a link to it, and the list asks again until the server connects : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L371 ]
+[test: an agent that cannot be asked says why, and one with no servers says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L468 ]
+[test: the dialog's MCP servers are the provider's, asked with no session, for the folder a session would start in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcpCatalog.test.ts#L295 ]
+[test: MCP servers before a session are refused for an agent that does not manage them, and never offered read-only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcpCatalog.test.ts#L397 ]
+[test: the demo's MCP servers are listed, changed, added and deleted in memory, folder by folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcpCatalog.test.ts#L484 ]
+
+## S27: MCP servers before a session can be added and deleted @v1 [proposed]
+
+- Given: the "MCP servers…" dialog of an agent that manages its MCP servers
+  before a session
+- When: the user clicks "Add server"
+- Then: a form stands where the server's details stood and takes the
+  server's name (letters, numbers, hyphens and underscores), where it is
+  kept — "This folder only", "All my folders" or "Shared with the repo", of
+  those the agent takes, the first picked — and its kind: "Command" with
+  the command, its arguments one per line and its environment as NAME=value
+  lines, or "HTTP" or "SSE" with the url and its headers as Name: value
+  lines
+- and "Shared with the repo" says that the server is kept in a file the
+  repo commits, and that anything typed, secrets included, goes into it
+- and what is missing or wrong is said in the form and nothing is sent: no
+  name, a name already listed, no command, a url that is not http or https,
+  a line that is no pair
+- and "Add server" hands the draft to the agent: the new server is listed
+  and shown, and a refusal stays in the form in the agent's own words
+- When: the user picks a server the agent can delete and clicks "Delete
+  server…"
+- Then: the dialog asks once more in place, saying where the server is
+  taken from, and "Delete" removes it from there — the place the list says
+  it is kept, never one the request names
+- and a server the agent cannot delete — one the app handed over, one of a
+  claude.ai account or of a plugin — has no Delete
+- and POST /api/agent/agents/:agent/mcp/servers takes the draft with the
+  picked folder as `cwd`, answering 400 for a draft that does not hold;
+  DELETE the same takes the server's name and the folder in the query,
+  answering 409 for a server that cannot be deleted
+
+[test: Add server takes the form's draft to the agent, and Delete asks once more before it deletes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L400 ]
+[test: the form's lines become arguments and name–value pairs, and a draft the server would take : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L167 ]
+[test: the dialog's row picks its server, and the form offers what the agent takes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L231 ]
+[test: a server's draft is checked for its name, where it is kept, its kind and what that kind needs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcpCatalog.test.ts#L258 ]
+[test: a server is added from a checked draft and deleted from where the list says it is kept : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcpCatalog.test.ts#L353 ]
+
+## S28: MCP servers before a session show their details, their context cost and their usage @v1 [proposed]
+
+- Given: the "MCP servers…" dialog
+- When: the user picks a server in the list; the first is picked until then
+- Then: the right side says how the server stands, and why when it failed;
+  where it is kept, or where it comes from when that is no place the agent
+  can delete it from; its kind; its command and arguments or its url; the
+  names of the environment variables and headers it is given — never their
+  values; and what the server calls itself, with its version
+- and "Context" says what the server's tools take of a new session's
+  context window, in tokens and as a share of the window with a bar, and
+  how much more once the tools the agent loads on demand are loaded; a
+  server that is not connected says it is counted once it is
+- and "Usage" says how often the server was called, in how many sessions,
+  how many calls failed and when it was last used: the app counts the MCP
+  tool calls of the sessions it runs, keeps each session's count in its
+  record, and sums the sessions of that agent that worked in the folder — a
+  session in a worktree counts for the folder it was made from
+- and the count covers only sessions the app ran, from the first one it
+  counted, which the dialog names; a server never called says "No calls
+  counted yet"
+- and "Tools" lists the server's tools, the costliest first, each with its
+  tokens — "on demand" for one the agent loads only when it looks for it —
+  its calls and its errors, then the tools only the count knows: a server
+  that is off lists none, yet its calls were counted
+
+[test: a server's details say where it is kept, how it is reached, what it costs and how it was used : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L190 ]
+[test: a server's tools stand with their use, the costliest first, then the ones only the count knows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L155 ]
+[test: a session's MCP calls are counted into its record and shown in the dialog's usage : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcpCatalog.test.ts#L434 ]
+[test: an MCP tool the agent calls is counted, and a result that comes back an error is its error : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcpCatalog.test.ts#L168 ]
+[test: the sessions' counts are summed by server, the longest name that fits a tool taking it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcpCatalog.test.ts#L192 ]
+[test: a record's count is read back only where it has the shape, and a record without one says nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentMcpCatalog.test.ts#L218 ]
