@@ -17,10 +17,10 @@ logs and the coding agents.
   it and shows it, and an open page re-reads on the same cadence
 - and a fetch that fails leaves the site showing what it had
 
-[test: a change pushed to the repo shows up after the next refresh : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L267 ]
+[test: a change pushed to the repo shows up after the next refresh : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L353 ]
 [test: shows a pushed change to its scenario after the next refresh : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L163 ]
 [test: is left as it is while nothing changed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L178 ]
-[test: each project is refreshed on its own, a push to the second shows in it alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L277 ]
+[test: each project is refreshed on its own, a push to the second shows in it alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L363 ]
 
 ## S2: A visitor browses the specs and the roadmap without signing in @v1 [proposed]
 
@@ -32,9 +32,9 @@ logs and the coding agents.
 - and the site names the spec repo, no one is signed in, and the only
   plugin is the Roadmap
 
-[test: the state says read-only, names the repo and no one signed in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L174 ]
-[test: features and the roadmap are served : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L202 ]
-[test: on the hosted image the site listens publicly, keeps HOME off /root and fetches no plugins : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L96 ]
+[test: the state says read-only, names the repo and no one signed in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L239 ]
+[test: features and the roadmap are served : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L288 ]
+[test: on the hosted image the site listens publicly, keeps HOME off /root and fetches no plugins : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L105 ]
 
 ## S3: Nothing a visitor does changes the spec repo @v1 [proposed]
 
@@ -46,8 +46,8 @@ logs and the coding agents.
   can commit or push
 
 [test: only the reads the site shows are allowed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L82 ]
-[test: every write and every other read is refused before it runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L238 ]
-[test: the app serves a copy with no .git, so nothing it does can commit or push : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L259 ]
+[test: every write and every other read is refused before it runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L324 ]
+[test: the app serves a copy with no .git, so nothing it does can commit or push : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L345 ]
 
 ## S4: The site shows SpecDriven's own spec repo @v1 [proposed]
 
@@ -105,7 +105,7 @@ logs and the coding agents.
 
 [test: lists them under the folder name's ▾, the visitor's ticked, and links name the project : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L195 ]
 [test: with one project there is no ▾ and links name none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyOpenPage.test.tsx#L236 ]
-[test: a visitor's cookie picks the project every request is answered for; any other cookie, the first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L217 ]
+[test: a visitor's cookie picks the project every request is answered for; any other cookie, the first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L303 ]
 [test: a visitor's project is read from their cookie, and only a well-formed id counts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L75 ]
 [test: a tab coming back to the front puts its own project back in the cookie : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L100 ]
 [test: only well-formed project rows are read from the state : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L109 ]
@@ -126,3 +126,17 @@ logs and the coding agents.
 
 [test: a ?project= link picks the project, and the address bar keeps naming it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L45 ]
 [test: a malformed project id picks nothing, and the project shown replaces it in the url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnlyProject.test.ts#L75 ]
+
+## S9: A visitor opens the Event Models, read-only @v1 [proposed]
+
+- Given: the public specs site, whose spec repo holds Event Models
+- When: the site starts
+- Then: it installs the Event Models plugin from SpecDriven's marketplace
+  into its own home, in the background, and their tab appears next to
+  Specs and the Roadmap once it has loaded
+- and a visitor can open each model's canvas and inspect it, but every
+  write to a model is refused
+- and the site reads no other plugin folder, so a plugin in the shown repo
+  runs no code
+
+[test: the Event Models are installed from the marketplace at start and mounted; a write to a model is still refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/readOnly.test.ts#L267 ]
