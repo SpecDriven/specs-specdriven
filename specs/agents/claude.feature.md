@@ -414,3 +414,55 @@ The switch is ON by default, and the setting is saved to
 [test: the popover's MCP list is Claude Code's, and its switch, Reconnect and Sign in are Claude Code's requests : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1906 ]
 [test: a Claude Code that cannot start an MCP sign-in says how to sign in instead : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1944 ]
 [test: the Claude agent says it lists its MCP servers : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/pane.test.ts#L1955 ]
+
+## S17: Claude manages its MCP servers before a session @v1 [proposed]
+
+- Given: Claude picked on the coding agent pane's new-session screen, and
+  no session running
+- When: the pane's "MCP servers…" dialog asks for the folder's MCP servers
+- Then: the plugin starts a Claude Code for the dialog alone, in the folder
+  a session would start in, with the settings a session loads — the user's,
+  the repo's and the folder's — and the servers the app would hand a
+  session; it is given no prompt, so it sends nothing to the API and keeps
+  no session
+- and the list is that Claude Code's own, as in a session (S16), with what
+  it says of each server: where it is kept, its kind, its command and
+  arguments or its url, what the server calls itself and its version, and
+  its tools; a header's or an environment variable's value is never passed
+  on, only its name
+- and what a server's tools take of the context window is Claude Code's own
+  /context count, tool by tool: loaded from a session's first turn, or only
+  once Claude Code loads them on demand; a Claude Code too old to count
+  still lists the servers
+- and the switch, Reconnect and Sign in are requests to that same Claude
+  Code, which stays up while the dialog is open — a sign-in comes back to it
+  on localhost — and is stopped when the dialog shuts, after five idle
+  minutes, when the sign-in in Settings changes, and when it does not answer
+  within twenty seconds
+- and a server turned off here is off for the sessions started in that
+  folder afterwards, as Claude Code remembers it
+- When: the dialog adds a server
+- Then: the plugin runs `claude mcp add-json --scope <scope> -- <name> -`
+  in the folder with the server's definition on stdin, so a token in a
+  header or a key in the environment is never on a command line; "This
+  folder only" is Claude Code's local scope, "All my folders" its user
+  scope, and "Shared with the repo" its project scope, the repo's .mcp.json
+- When: the dialog deletes a server
+- Then: the plugin runs `claude mcp remove --scope <scope> -- <name>` for
+  the scope Claude Code names for the server; only a server kept in the
+  local, user or project scope can be deleted — not one the app handed
+  over, a claude.ai connector or a plugin's server
+- and Claude Code's refusal — a name already kept in that scope, a
+  definition it does not take — is shown in its own words
+- and after a server is added or deleted the dialog's Claude Code is
+  started afresh, as a running one does not see the change
+
+[test: Claude Code's servers become the dialog's details, with what their tools cost and never a secret : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/mcpAdmin.test.ts#L69 ]
+[test: the list is a Claude Code's own, started in the folder as a session would be and never given a prompt : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/mcpAdmin.test.ts#L243 ]
+[test: a Claude Code too old to count the context still lists the servers : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/mcpAdmin.test.ts#L299 ]
+[test: the dialog's switch, Reconnect and Sign in are requests to the kept Claude Code : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/mcpAdmin.test.ts#L313 ]
+[test: a Claude Code that does not answer in time is stopped, and one left alone goes after a while : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/mcpAdmin.test.ts#L349 ]
+[test: a server is added and deleted with Claude Code's own commands, its definition on stdin : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/mcpAdmin.test.ts#L370 ]
+[test: a draft becomes the definition claude mcp add-json takes, and a refusal keeps Claude Code's words : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/mcpAdmin.test.ts#L128 ]
+[test: the provider says it manages its MCP servers and where it can add one : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/mcpAdmin.test.ts#L409 ]
+[test: the app's MCP servers dialog is answered by Claude with no session running : https://github.com/SpecDriven/plugins/blob/main/plugins/agent-claude/test/mcpAdmin.test.ts#L421 ]
