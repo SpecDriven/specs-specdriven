@@ -1568,7 +1568,7 @@
             ],
             "comments": [
               {
-                "description": "specs/agents/opencode.feature.md S3 — no scenario for the pane itself"
+                "description": "specs/agents/agent-pane.feature.md S25"
               }
             ],
             "linkedId": "slice-ask-permission",
@@ -1877,7 +1877,7 @@
             ],
             "comments": [
               {
-                "description": "specs/agents/opencode.feature.md S3 — no scenario for the pane itself"
+                "description": "specs/agents/agent-pane.feature.md S25"
               }
             ],
             "linkedId": "slice-answer-permission",
@@ -1935,7 +1935,7 @@
             ],
             "comments": [
               {
-                "description": "src/server/agentChat.ts answerPermission — no scenario"
+                "description": "specs/agents/agent-pane.feature.md S25"
               }
             ],
             "linkedId": "slice-answer-permission",
@@ -1997,7 +1997,7 @@
             ],
             "comments": [
               {
-                "description": "src/server/agentChat.ts answerPermission — no scenario"
+                "description": "specs/agents/agent-pane.feature.md S25"
               }
             ],
             "linkedId": "slice-answer-permission",
@@ -2047,7 +2047,7 @@
             ],
             "comments": [
               {
-                "description": "src/server/agentChat.ts resolvePending — no scenario"
+                "description": "specs/agents/agent-pane.feature.md S25"
               }
             ],
             "linkedId": "slice-answer-permission",
@@ -4305,7 +4305,7 @@
             ],
             "comments": [
               {
-                "description": "src/server/agentChat.ts finish — no scenario"
+                "description": "specs/agents/agent-pane.feature.md S25"
               }
             ],
             "linkedId": "slice-end-session",
@@ -5059,6 +5059,12 @@
   "links": {
     "slice-agent-turn": {
       "feature": "specs/agents/agent-plugins.feature.md"
+    },
+    "slice-answer-permission": {
+      "feature": "specs/agents/agent-pane.feature.md"
+    },
+    "slice-ask-permission": {
+      "feature": "specs/agents/agent-pane.feature.md"
     },
     "slice-change-settings": {
       "feature": "specs/agents/agent-pane.feature.md"
