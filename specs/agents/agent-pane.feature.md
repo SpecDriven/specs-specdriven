@@ -901,3 +901,55 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
 [test: a repo whose only remote is not called origin is read through that one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/defaultBranch.test.ts#L112 ]
 [test: a repo with no remote takes the branch init.defaultBranch names, else main, else master : https://github.com/SpecDriven/specdriven-app/blob/main/tests/defaultBranch.test.ts#L119 ]
 [test: ls-remote --symref output is read for the branch HEAD points at : https://github.com/SpecDriven/specdriven-app/blob/main/tests/defaultBranch.test.ts#L132 ]
+
+## S25: A permission card asks before the agent uses a tool @v1 [proposed]
+
+- Given: a session in the coding agent pane whose agent has a permission
+  gate, in a mode that does not let a tool call through by itself
+- When: the agent wants to use the tool
+- Then: the turn waits and a card shows in the transcript where the call
+  would run: a title — the agent's own, else "Claude wants to use Bash",
+  with the agent's and the tool's names — a one-line summary of the call,
+  and the call's input behind an "Input" row that opens
+- and the session is waiting for an answer: its tab's dot says so, and a
+  message sent meanwhile waits for the turn (see "A message sent while the
+  agent works waits for the turn")
+- and the card offers "Allow once" and "Deny…", and "Allow always" only
+  when the agent suggested a rule with the request and can keep one; its
+  tooltip says whether the rule holds for the rest of the session or is
+  kept
+- When: the user clicks "Allow once" or "Allow always"
+- Then: the call runs with the input the card showed, the card says
+  "Allowed" in place of its buttons, and the turn carries on; "Allow
+  always" also applies the suggested rule, so the agent stops asking for
+  this, and for a request that came with no rule it is a plain allow
+- When: the user clicks "Deny…"
+- Then: the card asks "Why not?" in a box whose text the agent reads; Enter
+  or Deny sends the denial with that reason, or with "Denied in SpecDriven"
+  when the box is empty, Back returns to the buttons, and the card then
+  says "Denied"
+- and several cards can be open at once; the session works on when the last
+  of them has its answer
+- and a card nobody answered closes by itself as denied: "Denied (stopped)"
+  when the turn is stopped (Stop, or "Send now" on a waiting message), when
+  the agent takes its request back or when the turn ends with the card
+  still open, and "Denied (session ended)" when the session ends
+- and a question the agent asks (Claude's AskUserQuestion) shows as a
+  question card instead: each question with its options — one pick, or
+  several where the question allows — and an "Other…" box for what the
+  options do not cover; "Send answers" is ready once every question has an
+  answer, "Skip" dismisses the card unanswered, and the card then says
+  "Answered" or "Dismissed"
+- and an answer to a card that has already closed is refused with a 404
+  "no such permission request — it may have been answered"
+- and this is the app's doing, the same for every agent with a permission
+  gate; an agent with none shows "No permission gate" in the bar and never
+  a card
+- and POST /api/agent/chat/:id/permission takes the `requestId` and the
+  `behavior` (allow or deny), with a `message` for a denial, `remember` for
+  "Allow always" and `updatedInput` for a question's answers
+
+[test: permission requests become cards that resolve in place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L132 ]
+[test: a permission card offers Allow always only with a rule to keep : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L594 ]
+[test: a question card lists the options and a way to send answers : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentPane.test.tsx#L615 ]
+[test: the pane's permission card answers the provider, and a withdrawn or ended question is denied : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentEngine.test.ts#L158 ]
