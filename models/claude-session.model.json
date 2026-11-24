@@ -2,10 +2,4844 @@
   "format": "specdriven-event-model/1",
   "name": "Claude Session",
   "model": {
-    "slices": []
+    "slices": [
+      {
+        "id": "slice-start-session",
+        "title": "Start a session",
+        "sliceType": "STATE_CHANGE",
+        "status": "Done",
+        "index": 0,
+        "context": "Agent session",
+        "screens": [
+          {
+            "id": "new-session-screen",
+            "title": "New session",
+            "type": "SCREEN",
+            "fields": [
+              {
+                "name": "message",
+                "type": "String",
+                "example": "Add a CSV export to the claims list"
+              },
+              {
+                "name": "folder",
+                "type": "String",
+                "example": "/Users/dana/dev/insurance-app"
+              },
+              {
+                "name": "worktree",
+                "type": "Boolean",
+                "example": "false"
+              },
+              {
+                "name": "agent",
+                "type": "String",
+                "example": "claude"
+              },
+              {
+                "name": "model",
+                "type": "String",
+                "example": "claude-sonnet-5-5"
+              },
+              {
+                "name": "effort",
+                "type": "String",
+                "example": "high"
+              },
+              {
+                "name": "permissionMode",
+                "type": "String",
+                "example": "auto"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "start-session",
+                "title": "Start Session",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "description": "The pane with no session open, or the + after the session tabs: a message box with the bar under it — folder, Worktree box, model chip, mode — and no form to fill in.",
+            "slice": "slice-start-session"
+          }
+        ],
+        "processors": [],
+        "commands": [
+          {
+            "id": "start-session",
+            "title": "Start Session",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "agent",
+                "type": "String",
+                "example": "claude"
+              },
+              {
+                "name": "prompt",
+                "type": "String",
+                "example": "Add a CSV export to the claims list"
+              },
+              {
+                "name": "folder",
+                "type": "String",
+                "example": "/Users/dana/dev/insurance-app"
+              },
+              {
+                "name": "worktree",
+                "type": "Boolean",
+                "example": "false"
+              },
+              {
+                "name": "model",
+                "type": "String",
+                "example": "claude-sonnet-5-5",
+                "optional": true
+              },
+              {
+                "name": "effort",
+                "type": "String",
+                "example": "high",
+                "optional": true
+              },
+              {
+                "name": "permissionMode",
+                "type": "String",
+                "example": "auto"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "new-session-screen",
+                "title": "New session",
+                "type": "INBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "session-started",
+                "title": "Session Started",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "apiEndpoint": "POST /api/agent/chat",
+            "createsAggregate": true,
+            "description": "createChatSession in src/server/agentChat.ts. Refused with a 409 when five sessions are open, ended ones included; with worktree: true the app first makes a git worktree on a new branch, and refuses when the folder cannot have one. The prompt is the first turn, so a Message Sent follows the Session Started.",
+            "slice": "slice-start-session"
+          }
+        ],
+        "readmodels": [],
+        "events": [
+          {
+            "id": "session-started",
+            "title": "Session Started",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "generated": true,
+                "idAttribute": true
+              },
+              {
+                "name": "name",
+                "type": "String",
+                "example": "Add a CSV export to the claims list"
+              },
+              {
+                "name": "agent",
+                "type": "String",
+                "example": "claude"
+              },
+              {
+                "name": "cwd",
+                "type": "String",
+                "example": "/Users/dana/dev/insurance-app"
+              },
+              {
+                "name": "project",
+                "type": "String",
+                "example": "/Users/dana/dev/specs-insurance"
+              },
+              {
+                "name": "worktreeBranch",
+                "type": "String",
+                "example": "specdriven/add-a-csv-export-to-the-claims-list-3f9a1c",
+                "optional": true
+              },
+              {
+                "name": "permissionMode",
+                "type": "String",
+                "example": "auto"
+              },
+              {
+                "name": "status",
+                "type": "String",
+                "example": "starting"
+              },
+              {
+                "name": "startedAt",
+                "type": "DateTime",
+                "example": "2026-11-24T09:15:00Z",
+                "generated": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "start-session",
+                "title": "Start Session",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "agent-provider",
+                "title": "Agent (Claude, Codex, Pi, OpenCode)",
+                "type": "OUTBOUND",
+                "elementType": "AUTOMATION"
+              },
+              {
+                "id": "open-sessions",
+                "title": "Open sessions",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The session record (ChatSessionMeta) is kept and the log's first entry is a `status` event with status \"starting\". The session is named after the first line of the message and belongs to the folder open in the app (`project`), whatever folder it works in.",
+            "slice": "slice-start-session"
+          }
+        ],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-first-message-starts-a-session",
+            "title": "The first message starts a session",
+            "given": [],
+            "when": [
+              {
+                "id": "step-1-start-session",
+                "title": "Start Session",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "model": "claude-sonnet-5-5",
+                    "agent": "claude",
+                    "effort": "high",
+                    "folder": "/Users/dana/dev/insurance-app",
+                    "permissionMode": "auto",
+                    "prompt": "Add a CSV export to the claims list",
+                    "worktree": false
+                  }
+                ],
+                "linkedId": "start-session"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-2-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "status": "starting",
+                    "agent": "claude",
+                    "cwd": "/Users/dana/dev/insurance-app",
+                    "permissionMode": "auto"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-3-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S7"
+              }
+            ],
+            "linkedId": "slice-start-session",
+            "sliceName": "Start a session"
+          },
+          {
+            "id": "spec-sixth-session-refused",
+            "title": "A sixth session is refused",
+            "given": [
+              {
+                "id": "step-4-session-started",
+                "title": "Five sessions are open, ended ones included",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "status": "running"
+                  },
+                  {
+                    "name": "Fix the date filter",
+                    "status": "idle"
+                  },
+                  {
+                    "name": "Rename policy number",
+                    "status": "ended"
+                  },
+                  {
+                    "name": "Upgrade the test runner",
+                    "status": "awaiting_input"
+                  },
+                  {
+                    "name": "Draft the release notes",
+                    "status": "idle"
+                  }
+                ],
+                "linkedId": "session-started"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-5-start-session",
+                "title": "Start Session",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "agent": "claude",
+                    "prompt": "Tidy the imports"
+                  }
+                ],
+                "linkedId": "start-session"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-6-error",
+                "title": "At most 5 coding agent sessions can be open at once — close one first",
+                "type": "SPEC_ERROR"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S12"
+              }
+            ],
+            "linkedId": "slice-start-session",
+            "sliceName": "Start a session"
+          },
+          {
+            "id": "spec-worktree-session",
+            "title": "A worktree session works on a branch of its own",
+            "given": [],
+            "when": [
+              {
+                "id": "step-7-start-session",
+                "title": "Start Session",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "agent": "codex",
+                    "folder": "/Users/dana/dev/insurance-app",
+                    "prompt": "Add a CSV export to the claims list",
+                    "worktree": true
+                  }
+                ],
+                "linkedId": "start-session"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-8-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "agent": "codex",
+                    "cwd": "~/.specdriven/worktrees/insurance-app-b41e07/add-a-csv-export-to-the-claims-list-3f9a1c",
+                    "worktreeBranch": "specdriven/add-a-csv-export-to-the-claims-list-3f9a1c"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-9-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S9"
+              }
+            ],
+            "linkedId": "slice-start-session",
+            "sliceName": "Start a session"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-send-message",
+        "title": "Send a message",
+        "sliceType": "STATE_CHANGE",
+        "status": "Done",
+        "index": 1,
+        "context": "Agent session",
+        "screens": [
+          {
+            "id": "message-box",
+            "title": "Message box",
+            "type": "SCREEN",
+            "fields": [
+              {
+                "name": "text",
+                "type": "String",
+                "example": "Also add a column for the adjuster"
+              },
+              {
+                "name": "images",
+                "type": "Custom",
+                "cardinality": "List",
+                "example": "pasted-screenshot.png",
+                "optional": true
+              },
+              {
+                "name": "refs",
+                "type": "String",
+                "cardinality": "List",
+                "example": "specs/claims/claims-list.feature.md",
+                "optional": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "send-message",
+                "title": "Send Message",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "description": "The composer of an open session. It is free again as soon as a message is sent, whether that message started a turn or waits for one.",
+            "slice": "slice-send-message"
+          }
+        ],
+        "processors": [],
+        "commands": [
+          {
+            "id": "send-message",
+            "title": "Send Message",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "text",
+                "type": "String",
+                "example": "Also add a column for the adjuster"
+              },
+              {
+                "name": "images",
+                "type": "Custom",
+                "cardinality": "List",
+                "example": "pasted-screenshot.png",
+                "optional": true
+              },
+              {
+                "name": "refs",
+                "type": "String",
+                "cardinality": "List",
+                "example": "specs/claims/claims-list.feature.md",
+                "optional": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "message-box",
+                "title": "Message box",
+                "type": "INBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "message-sent",
+                "title": "Message Sent",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "message-queued",
+                "title": "Message Queued",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "apiEndpoint": "POST /api/agent/chat/:id/message",
+            "description": "sendChatMessage. With no turn under way the message starts one; while the agent works, or waits for a permission answer, it is kept as a waiting message instead of being refused. Refused when the session has ended, when 10 messages already wait, or when more than 10 images go with it.",
+            "slice": "slice-send-message"
+          }
+        ],
+        "readmodels": [],
+        "events": [
+          {
+            "id": "message-sent",
+            "title": "Message Sent",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "messageId",
+                "type": "UUID",
+                "example": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                "generated": true,
+                "idAttribute": true
+              },
+              {
+                "name": "text",
+                "type": "String",
+                "example": "Add a CSV export to the claims list"
+              },
+              {
+                "name": "images",
+                "type": "Custom",
+                "cardinality": "List",
+                "example": "",
+                "optional": true
+              },
+              {
+                "name": "refs",
+                "type": "String",
+                "cardinality": "List",
+                "example": "",
+                "optional": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "send-message",
+                "title": "Send Message",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "agent-provider",
+                "title": "Agent (Claude, Codex, Pi, OpenCode)",
+                "type": "OUTBOUND",
+                "elementType": "AUTOMATION"
+              },
+              {
+                "id": "waiting-messages",
+                "title": "Waiting messages",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "send-waiting-now",
+                "title": "Send Waiting Message Now",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "send-next-waiting",
+                "title": "Send Next Waiting Message",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "transcript",
+                "title": "Transcript",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "open-sessions",
+                "title": "Open sessions",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The log's `user` event: the message begins a turn and is handed to the agent, and an idle session becomes running. A message that waited is sent under the id it waited with.",
+            "slice": "slice-send-message"
+          },
+          {
+            "id": "message-queued",
+            "title": "Message Queued",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "messageId",
+                "type": "UUID",
+                "example": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                "generated": true,
+                "idAttribute": true
+              },
+              {
+                "name": "text",
+                "type": "String",
+                "example": "Also add a column for the adjuster"
+              },
+              {
+                "name": "images",
+                "type": "Custom",
+                "cardinality": "List",
+                "example": "",
+                "optional": true
+              },
+              {
+                "name": "refs",
+                "type": "String",
+                "cardinality": "List",
+                "example": "",
+                "optional": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "send-message",
+                "title": "Send Message",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "waiting-messages",
+                "title": "Waiting messages",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "transcript",
+                "title": "Transcript",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The log's `queued` event: the message waits for the turn under way to end. The log drops it once the Message Sent, or the Message Taken Back, with the same id is in.",
+            "slice": "slice-send-message"
+          }
+        ],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-message-starts-a-turn",
+            "title": "A message to a ready session starts a turn",
+            "given": [
+              {
+                "id": "step-10-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "status": "starting",
+                    "agent": "claude",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-11-agent-ready",
+                "title": "Agent Ready",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "idle",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "agent-ready"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-12-send-message",
+                "title": "Send Message",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "send-message"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-13-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "message-sent"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S7"
+              }
+            ],
+            "linkedId": "slice-send-message",
+            "sliceName": "Send a message"
+          },
+          {
+            "id": "spec-message-waits-for-the-turn",
+            "title": "A message sent while the agent works waits for the turn",
+            "given": [
+              {
+                "id": "step-14-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "status": "starting",
+                    "agent": "claude",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-15-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-16-send-message",
+                "title": "Send Message",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "send-message"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-17-message-queued",
+                "title": "Message Queued",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "message-queued"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S21"
+              }
+            ],
+            "linkedId": "slice-send-message",
+            "sliceName": "Send a message"
+          },
+          {
+            "id": "spec-eleventh-waiting-message-refused",
+            "title": "An eleventh waiting message is refused",
+            "given": [
+              {
+                "id": "step-18-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              },
+              {
+                "id": "step-19-message-queued",
+                "title": "Ten messages already wait",
+                "type": "SPEC_EVENT",
+                "linkedId": "message-queued"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-20-send-message",
+                "title": "Send Message",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "And one more thing"
+                  }
+                ],
+                "linkedId": "send-message"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-21-error",
+                "title": "At most 10 messages can wait for a turn — remove one, or wait",
+                "type": "SPEC_ERROR"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S21"
+              }
+            ],
+            "linkedId": "slice-send-message",
+            "sliceName": "Send a message"
+          },
+          {
+            "id": "spec-message-to-ended-session-refused",
+            "title": "A message to an ended session is refused",
+            "given": [
+              {
+                "id": "step-22-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "status": "starting",
+                    "agent": "claude",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-23-session-ended",
+                "title": "Session Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "ended",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-ended"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-24-send-message",
+                "title": "Send Message",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Are you still there?"
+                  }
+                ],
+                "linkedId": "send-message"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-25-error",
+                "title": "The session has ended",
+                "type": "SPEC_ERROR"
+              }
+            ],
+            "comments": [
+              {
+                "description": "src/server/agentChat.ts checkSendable — no scenario"
+              }
+            ],
+            "linkedId": "slice-send-message",
+            "sliceName": "Send a message"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-agent-turn",
+        "title": "The agent works on the turn",
+        "sliceType": "AUTOMATION",
+        "status": "Done",
+        "index": 2,
+        "context": "Agent session",
+        "screens": [],
+        "processors": [
+          {
+            "id": "agent-provider",
+            "title": "Agent (Claude, Codex, Pi, OpenCode)",
+            "type": "AUTOMATION",
+            "context": "EXTERNAL",
+            "fields": [],
+            "dependencies": [
+              {
+                "id": "session-started",
+                "title": "Session Started",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "message-sent",
+                "title": "Message Sent",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "record-agent-output",
+                "title": "Record Agent Output",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "description": "The coding agent an agent plugin supplies. It starts when the session does, takes one message a turn, and reports what it does through the host the core hands it (AgentHost, src/plugins/host/agents.ts). The core names no agent.",
+            "slice": "slice-agent-turn"
+          }
+        ],
+        "commands": [
+          {
+            "id": "record-agent-output",
+            "title": "Record Agent Output",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "output",
+                "type": "Custom",
+                "example": "assistant message, tool result, result, ready"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "agent-provider",
+                "title": "Agent (Claude, Codex, Pi, OpenCode)",
+                "type": "INBOUND",
+                "elementType": "AUTOMATION"
+              },
+              {
+                "id": "agent-ready",
+                "title": "Agent Ready",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "agent-replied",
+                "title": "Agent Replied",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "tool-result-recorded",
+                "title": "Tool Result Recorded",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "turn-ended",
+                "title": "Turn Ended",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "What a provider may put in the log itself: the agent's own output (AgentOutput in src/server/agentTypes.ts), and that it is ready or that its turn ended. No HTTP route — the provider calls the host in process.",
+            "slice": "slice-agent-turn"
+          }
+        ],
+        "readmodels": [],
+        "events": [
+          {
+            "id": "agent-ready",
+            "title": "Agent Ready",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "agentSessionId",
+                "type": "String",
+                "example": "a41c0f8e-2b7d-4c1a-9f3e-5d6c7b8a9e0f"
+              },
+              {
+                "name": "model",
+                "type": "String",
+                "example": "claude-sonnet-5-5"
+              },
+              {
+                "name": "account",
+                "type": "String",
+                "example": "Claude Max"
+              },
+              {
+                "name": "status",
+                "type": "String",
+                "example": "idle"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "record-agent-output",
+                "title": "Record Agent Output",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "open-sessions",
+                "title": "Open sessions",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "A `status` event with status \"idle\" (or \"running\" when the first turn is already under way), carrying the agent's own session id, its model, the account it spends, its tools and slash commands.",
+            "slice": "slice-agent-turn"
+          },
+          {
+            "id": "agent-replied",
+            "title": "Agent Replied",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "messageId",
+                "type": "String",
+                "example": "msg_01"
+              },
+              {
+                "name": "turn",
+                "type": "Int",
+                "example": "1"
+              },
+              {
+                "name": "blocks",
+                "type": "Custom",
+                "cardinality": "List",
+                "example": "text, thinking, tool_use"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "record-agent-output",
+                "title": "Record Agent Output",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "permission-gate",
+                "title": "Permission gate",
+                "type": "OUTBOUND",
+                "elementType": "AUTOMATION"
+              },
+              {
+                "id": "transcript",
+                "title": "Transcript",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The log's `assistant` event: one message of the agent's turn, as blocks of text, thinking and tool calls. `text_delta` and `thinking_delta` events stream it before it is whole.",
+            "slice": "slice-agent-turn"
+          },
+          {
+            "id": "tool-result-recorded",
+            "title": "Tool Result Recorded",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "toolUseId",
+                "type": "String",
+                "example": "toolu_01"
+              },
+              {
+                "name": "content",
+                "type": "String",
+                "example": "src/claims/export.ts written"
+              },
+              {
+                "name": "isError",
+                "type": "Boolean",
+                "example": "false"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "record-agent-output",
+                "title": "Record Agent Output",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "transcript",
+                "title": "Transcript",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The log's `tool_result` event: what a tool call the agent made came back with.",
+            "slice": "slice-agent-turn"
+          },
+          {
+            "id": "turn-ended",
+            "title": "Turn Ended",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "turn",
+                "type": "Int",
+                "example": "1"
+              },
+              {
+                "name": "subtype",
+                "type": "String",
+                "example": "success"
+              },
+              {
+                "name": "isError",
+                "type": "Boolean",
+                "example": "false"
+              },
+              {
+                "name": "costUsd",
+                "type": "Double",
+                "example": "0.42",
+                "optional": true
+              },
+              {
+                "name": "durationMs",
+                "type": "Long",
+                "example": "83000"
+              },
+              {
+                "name": "numTurns",
+                "type": "Int",
+                "example": "6"
+              },
+              {
+                "name": "denials",
+                "type": "Int",
+                "example": "0"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "record-agent-output",
+                "title": "Record Agent Output",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "waiting-message-sender",
+                "title": "Waiting message sender",
+                "type": "OUTBOUND",
+                "elementType": "AUTOMATION"
+              },
+              {
+                "id": "transcript",
+                "title": "Transcript",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "open-sessions",
+                "title": "Open sessions",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The log's `result` event, then a `status` back to \"idle\" unless a waiting message goes out. A turn that could not start is a `note` with code \"api\" instead.",
+            "slice": "slice-agent-turn"
+          }
+        ],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-agent-answers-and-turn-ends",
+            "title": "The agent answers and the turn ends",
+            "given": [
+              {
+                "id": "step-26-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-27-record-agent-output",
+                "title": "Record Agent Output",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "output": "assistant message, then result",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "record-agent-output"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-28-agent-replied",
+                "title": "Agent Replied",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "blocks": "text: The claims list now has an Export CSV button.",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "turn": 1
+                  }
+                ],
+                "linkedId": "agent-replied"
+              },
+              {
+                "id": "step-29-turn-ended",
+                "title": "Turn Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "isError": false,
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "subtype": "success",
+                    "turn": 1
+                  }
+                ],
+                "linkedId": "turn-ended"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-plugins.feature.md S1"
+              }
+            ],
+            "linkedId": "slice-agent-turn",
+            "sliceName": "The agent works on the turn"
+          },
+          {
+            "id": "spec-failed-turn-ends-with-error",
+            "title": "A turn that fails ends with an error",
+            "given": [
+              {
+                "id": "step-30-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-31-record-agent-output",
+                "title": "Record Agent Output",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "output": "result",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "record-agent-output"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-32-turn-ended",
+                "title": "Turn Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "isError": true,
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "subtype": "error_during_execution",
+                    "turn": 1
+                  }
+                ],
+                "linkedId": "turn-ended"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S22"
+              }
+            ],
+            "linkedId": "slice-agent-turn",
+            "sliceName": "The agent works on the turn"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-ask-permission",
+        "title": "The agent asks for permission",
+        "sliceType": "AUTOMATION",
+        "status": "Done",
+        "index": 3,
+        "context": "Agent session",
+        "screens": [],
+        "processors": [
+          {
+            "id": "permission-gate",
+            "title": "Permission gate",
+            "type": "AUTOMATION",
+            "fields": [],
+            "dependencies": [
+              {
+                "id": "agent-replied",
+                "title": "Agent Replied",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "request-permission",
+                "title": "Request Permission",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "description": "The agent's own gate: in the session's mode, a tool call the mode does not let through is put to the user before it runs. A provider with no gate never asks.",
+            "slice": "slice-ask-permission"
+          }
+        ],
+        "commands": [
+          {
+            "id": "request-permission",
+            "title": "Request Permission",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "toolName",
+                "type": "String",
+                "example": "Bash"
+              },
+              {
+                "name": "input",
+                "type": "Custom",
+                "example": "{\"command\":\"rm -rf build\"}"
+              },
+              {
+                "name": "suggestions",
+                "type": "Custom",
+                "cardinality": "List",
+                "example": "",
+                "optional": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "permission-gate",
+                "title": "Permission gate",
+                "type": "INBOUND",
+                "elementType": "AUTOMATION"
+              },
+              {
+                "id": "permission-requested",
+                "title": "Permission Requested",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "requestPermission in src/server/agentChat.ts, called by the provider. A session that has ended answers deny at once, and nothing is recorded.",
+            "slice": "slice-ask-permission"
+          }
+        ],
+        "readmodels": [],
+        "events": [
+          {
+            "id": "permission-requested",
+            "title": "Permission Requested",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "requestId",
+                "type": "UUID",
+                "example": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                "generated": true,
+                "idAttribute": true
+              },
+              {
+                "name": "toolName",
+                "type": "String",
+                "example": "Bash"
+              },
+              {
+                "name": "input",
+                "type": "Custom",
+                "example": "{\"command\":\"rm -rf build\"}"
+              },
+              {
+                "name": "suggestions",
+                "type": "Custom",
+                "cardinality": "List",
+                "example": "",
+                "optional": true
+              },
+              {
+                "name": "title",
+                "type": "String",
+                "example": "Run a shell command",
+                "optional": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "request-permission",
+                "title": "Request Permission",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "open-permission-requests",
+                "title": "Open permission requests",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "transcript",
+                "title": "Transcript",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "open-sessions",
+                "title": "Open sessions",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The log's `permission_request` event; the session becomes awaiting_input until every open request is answered.",
+            "slice": "slice-ask-permission"
+          }
+        ],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-tool-call-asks-first",
+            "title": "A tool call the mode does not let through asks first",
+            "given": [
+              {
+                "id": "step-33-agent-replied",
+                "title": "Agent Replied",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "blocks": "tool_use: Bash rm -rf build",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "agent-replied"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-34-request-permission",
+                "title": "Request Permission",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "input": "rm -rf build",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "toolName": "Bash"
+                  }
+                ],
+                "linkedId": "request-permission"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-35-permission-requested",
+                "title": "Permission Requested",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "input": "rm -rf build",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "toolName": "Bash"
+                  }
+                ],
+                "linkedId": "permission-requested"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/opencode.feature.md S3 — no scenario for the pane itself"
+              }
+            ],
+            "linkedId": "slice-ask-permission",
+            "sliceName": "The agent asks for permission"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-answer-permission",
+        "title": "Answer a permission request",
+        "sliceType": "STATE_CHANGE",
+        "status": "Done",
+        "index": 4,
+        "context": "Agent session",
+        "screens": [
+          {
+            "id": "permission-card",
+            "title": "Permission card",
+            "type": "SCREEN",
+            "fields": [
+              {
+                "name": "requestId",
+                "type": "UUID",
+                "example": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f"
+              },
+              {
+                "name": "toolName",
+                "type": "String",
+                "example": "Bash"
+              },
+              {
+                "name": "input",
+                "type": "Custom",
+                "example": "rm -rf build"
+              },
+              {
+                "name": "behavior",
+                "type": "String",
+                "example": "allow"
+              },
+              {
+                "name": "message",
+                "type": "String",
+                "example": "Do not delete the build folder",
+                "optional": true
+              },
+              {
+                "name": "remember",
+                "type": "Boolean",
+                "example": "false",
+                "optional": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "open-permission-requests",
+                "title": "Open permission requests",
+                "type": "INBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "answer-permission",
+                "title": "Answer Permission",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "description": "A card in the transcript with what the agent wants to run and the choices: allow once, allow always (when the agent suggested a rule), or deny with a reason. A question the agent asks is answered on the same card.",
+            "slice": "slice-answer-permission"
+          }
+        ],
+        "processors": [],
+        "commands": [
+          {
+            "id": "answer-permission",
+            "title": "Answer Permission",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "requestId",
+                "type": "UUID",
+                "example": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f"
+              },
+              {
+                "name": "behavior",
+                "type": "String",
+                "example": "allow"
+              },
+              {
+                "name": "message",
+                "type": "String",
+                "example": "Do not delete the build folder",
+                "optional": true
+              },
+              {
+                "name": "remember",
+                "type": "Boolean",
+                "example": "false",
+                "optional": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "permission-card",
+                "title": "Permission card",
+                "type": "INBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "permission-answered",
+                "title": "Permission Answered",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "apiEndpoint": "POST /api/agent/chat/:id/permission",
+            "description": "answerPermission. A deny with no reason tells the agent \"Denied in SpecDriven\"; remember only counts when the agent suggested a rule. Refused with a 404 when the request has already been answered.",
+            "slice": "slice-answer-permission"
+          }
+        ],
+        "readmodels": [
+          {
+            "id": "open-permission-requests",
+            "title": "Open permission requests",
+            "type": "READMODEL",
+            "fields": [
+              {
+                "name": "requestId",
+                "type": "UUID",
+                "example": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                "idAttribute": true
+              },
+              {
+                "name": "toolName",
+                "type": "String",
+                "example": "Bash"
+              },
+              {
+                "name": "input",
+                "type": "Custom",
+                "example": "{\"command\":\"rm -rf build\"}"
+              },
+              {
+                "name": "canRemember",
+                "type": "Boolean",
+                "example": "false"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "permission-requested",
+                "title": "Permission Requested",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "permission-answered",
+                "title": "Permission Answered",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "permission-card",
+                "title": "Permission card",
+                "type": "OUTBOUND",
+                "elementType": "SCREEN"
+              }
+            ],
+            "description": "The requests of a session that have no answer yet.",
+            "listElement": true,
+            "slice": "slice-answer-permission"
+          }
+        ],
+        "events": [
+          {
+            "id": "permission-answered",
+            "title": "Permission Answered",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "requestId",
+                "type": "UUID",
+                "example": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                "idAttribute": true
+              },
+              {
+                "name": "behavior",
+                "type": "String",
+                "example": "allow"
+              },
+              {
+                "name": "via",
+                "type": "String",
+                "example": "user"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "open-permission-requests",
+                "title": "Open permission requests",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "answer-permission",
+                "title": "Answer Permission",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "stop-turn",
+                "title": "Stop Turn",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "transcript",
+                "title": "Transcript",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "open-sessions",
+                "title": "Open sessions",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "end-session",
+                "title": "End Session",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The log's `permission_resolved` event. `via` says who closed the card: the user, a stop (\"interrupt\"), or the session ending (\"ended\"). With no request left open the session is running again.",
+            "slice": "slice-answer-permission"
+          }
+        ],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-allow-lets-the-call-run",
+            "title": "Allow lets the call run",
+            "given": [
+              {
+                "id": "step-36-permission-requested",
+                "title": "Permission Requested",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "input": "rm -rf build",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "toolName": "Bash"
+                  }
+                ],
+                "linkedId": "permission-requested"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-37-answer-permission",
+                "title": "Answer Permission",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "behavior": "allow",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "answer-permission"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-38-permission-answered",
+                "title": "Permission Answered",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "behavior": "allow",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "via": "user"
+                  }
+                ],
+                "linkedId": "permission-answered"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/opencode.feature.md S3 — no scenario for the pane itself"
+              }
+            ],
+            "linkedId": "slice-answer-permission",
+            "sliceName": "Answer a permission request"
+          },
+          {
+            "id": "spec-deny-tells-the-agent-why",
+            "title": "Deny tells the agent why",
+            "given": [
+              {
+                "id": "step-39-permission-requested",
+                "title": "Permission Requested",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "input": "rm -rf build",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "toolName": "Bash"
+                  }
+                ],
+                "linkedId": "permission-requested"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-40-answer-permission",
+                "title": "Answer Permission",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "behavior": "deny",
+                    "message": "Do not delete the build folder",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "answer-permission"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-41-permission-answered",
+                "title": "Permission Answered",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "behavior": "deny",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "via": "user"
+                  }
+                ],
+                "linkedId": "permission-answered"
+              }
+            ],
+            "comments": [
+              {
+                "description": "src/server/agentChat.ts answerPermission — no scenario"
+              }
+            ],
+            "linkedId": "slice-answer-permission",
+            "sliceName": "Answer a permission request"
+          },
+          {
+            "id": "spec-second-answer-refused",
+            "title": "A second answer to the same request is refused",
+            "given": [
+              {
+                "id": "step-42-permission-requested",
+                "title": "Permission Requested",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "input": "rm -rf build",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "toolName": "Bash"
+                  }
+                ],
+                "linkedId": "permission-requested"
+              },
+              {
+                "id": "step-43-permission-answered",
+                "title": "Permission Answered",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "behavior": "allow",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "via": "user"
+                  }
+                ],
+                "linkedId": "permission-answered"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-44-answer-permission",
+                "title": "Answer Permission",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "behavior": "deny",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "answer-permission"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-45-error",
+                "title": "no such permission request — it may have been answered",
+                "type": "SPEC_ERROR"
+              }
+            ],
+            "comments": [
+              {
+                "description": "src/server/agentChat.ts answerPermission — no scenario"
+              }
+            ],
+            "linkedId": "slice-answer-permission",
+            "sliceName": "Answer a permission request"
+          },
+          {
+            "id": "spec-open-requests-list",
+            "title": "An answered request is no longer open",
+            "given": [
+              {
+                "id": "step-46-permission-requested",
+                "title": "Permission Requested",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "input": "rm -rf build",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "toolName": "Bash"
+                  }
+                ],
+                "linkedId": "permission-requested"
+              },
+              {
+                "id": "step-47-permission-answered",
+                "title": "Permission Answered",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "behavior": "allow",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "via": "user"
+                  }
+                ],
+                "linkedId": "permission-answered"
+              }
+            ],
+            "when": [],
+            "then": [
+              {
+                "id": "step-48-open-permission-requests",
+                "title": "Open permission requests",
+                "type": "SPEC_READMODEL",
+                "expectEmptyList": true,
+                "linkedId": "open-permission-requests"
+              }
+            ],
+            "comments": [
+              {
+                "description": "src/server/agentChat.ts resolvePending — no scenario"
+              }
+            ],
+            "linkedId": "slice-answer-permission",
+            "sliceName": "Answer a permission request"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-stop-turn",
+        "title": "Stop the turn",
+        "sliceType": "STATE_CHANGE",
+        "status": "Done",
+        "index": 5,
+        "context": "Agent session",
+        "screens": [
+          {
+            "id": "stop-button",
+            "title": "Stop button",
+            "type": "SCREEN",
+            "fields": [],
+            "dependencies": [
+              {
+                "id": "stop-turn",
+                "title": "Stop Turn",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "description": "Shown in the composer while the agent works or waits for an answer, for an agent that can be stopped.",
+            "slice": "slice-stop-turn"
+          }
+        ],
+        "processors": [],
+        "commands": [
+          {
+            "id": "stop-turn",
+            "title": "Stop Turn",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "stop-button",
+                "title": "Stop button",
+                "type": "INBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "turn-stopped",
+                "title": "Turn Stopped",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "permission-answered",
+                "title": "Permission Answered",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "apiEndpoint": "POST /api/agent/chat/:id/interrupt",
+            "description": "interruptChat. Refused with a 409 when nothing is running, or when the agent cannot be interrupted. The agent stays up for the next message, and messages that waited keep waiting: a Stop starts nothing.",
+            "slice": "slice-stop-turn"
+          }
+        ],
+        "readmodels": [],
+        "events": [
+          {
+            "id": "turn-stopped",
+            "title": "Turn Stopped",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "text",
+                "type": "String",
+                "example": "Stopped."
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "stop-turn",
+                "title": "Stop Turn",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "send-waiting-now",
+                "title": "Send Waiting Message Now",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "transcript",
+                "title": "Transcript",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "A `note` event with code \"interrupted\": \"Stopped.\" for the Stop button, \"Stopped for your message.\" for Send now. Every open permission request is answered deny, via \"interrupt\", first.",
+            "slice": "slice-stop-turn"
+          }
+        ],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-stop-ends-the-turn",
+            "title": "Stop ends the turn and the session stays up",
+            "given": [
+              {
+                "id": "step-49-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-50-stop-turn",
+                "title": "Stop Turn",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "stop-turn"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-51-turn-stopped",
+                "title": "Turn Stopped",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Stopped."
+                  }
+                ],
+                "linkedId": "turn-stopped"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S21"
+              }
+            ],
+            "linkedId": "slice-stop-turn",
+            "sliceName": "Stop the turn"
+          },
+          {
+            "id": "spec-stop-closes-open-card",
+            "title": "Stop closes an open permission card",
+            "given": [
+              {
+                "id": "step-52-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              },
+              {
+                "id": "step-53-permission-requested",
+                "title": "Permission Requested",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "input": "rm -rf build",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "toolName": "Bash"
+                  }
+                ],
+                "linkedId": "permission-requested"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-54-stop-turn",
+                "title": "Stop Turn",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "stop-turn"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-55-permission-answered",
+                "title": "Permission Answered",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "behavior": "deny",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "via": "interrupt"
+                  }
+                ],
+                "linkedId": "permission-answered"
+              },
+              {
+                "id": "step-56-turn-stopped",
+                "title": "Turn Stopped",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Stopped."
+                  }
+                ],
+                "linkedId": "turn-stopped"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S21"
+              }
+            ],
+            "linkedId": "slice-stop-turn",
+            "sliceName": "Stop the turn"
+          },
+          {
+            "id": "spec-nothing-to-stop",
+            "title": "Stop with nothing running is refused",
+            "given": [
+              {
+                "id": "step-57-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "status": "starting",
+                    "agent": "claude",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-58-agent-ready",
+                "title": "Agent Ready",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "idle",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "agent-ready"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-59-stop-turn",
+                "title": "Stop Turn",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "stop-turn"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-60-error",
+                "title": "Nothing is running",
+                "type": "SPEC_ERROR"
+              }
+            ],
+            "comments": [
+              {
+                "description": "src/server/agentChat.ts interruptChat — no scenario"
+              }
+            ],
+            "linkedId": "slice-stop-turn",
+            "sliceName": "Stop the turn"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-waiting-messages",
+        "title": "Send or take back a waiting message",
+        "sliceType": "STATE_CHANGE",
+        "status": "Done",
+        "index": 6,
+        "context": "Agent session",
+        "screens": [
+          {
+            "id": "waiting-bubbles",
+            "title": "Waiting messages at the foot of the transcript",
+            "type": "SCREEN",
+            "fields": [
+              {
+                "name": "messageId",
+                "type": "UUID",
+                "example": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d"
+              },
+              {
+                "name": "text",
+                "type": "String",
+                "example": "Also add a column for the adjuster"
+              },
+              {
+                "name": "label",
+                "type": "String",
+                "example": "Queued — sent when this turn ends"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "waiting-messages",
+                "title": "Waiting messages",
+                "type": "INBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "send-waiting-now",
+                "title": "Send Waiting Message Now",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "take-back-message",
+                "title": "Take Back Waiting Message",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "description": "A dashed bubble per waiting message, with Send now (for an agent that can be stopped) and a button that takes it back. After a stop or a failed turn the label reads \"Not sent yet\"; after the session ended, \"Not sent — the session ended\".",
+            "slice": "slice-waiting-messages"
+          }
+        ],
+        "processors": [],
+        "commands": [
+          {
+            "id": "send-waiting-now",
+            "title": "Send Waiting Message Now",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "messageId",
+                "type": "UUID",
+                "example": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "waiting-bubbles",
+                "title": "Waiting messages at the foot of the transcript",
+                "type": "INBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "turn-stopped",
+                "title": "Turn Stopped",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "message-sent",
+                "title": "Message Sent",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "apiEndpoint": "POST /api/agent/chat/:id/waiting/:messageId/send",
+            "description": "sendWaitingNow. The turn under way is stopped and the message is the next turn as soon as the agent has stopped, ahead of any that waited before it; with no turn under way it goes at once. Refused with a 404 once the message has gone, and with a 409 for an agent that cannot be interrupted.",
+            "slice": "slice-waiting-messages"
+          },
+          {
+            "id": "take-back-message",
+            "title": "Take Back Waiting Message",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "messageId",
+                "type": "UUID",
+                "example": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "waiting-bubbles",
+                "title": "Waiting messages at the foot of the transcript",
+                "type": "INBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "message-taken-back",
+                "title": "Message Taken Back",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "apiEndpoint": "DELETE /api/agent/chat/:id/waiting/:messageId",
+            "description": "removeWaitingMessage. Refused with a 404 once the message has gone.",
+            "slice": "slice-waiting-messages"
+          }
+        ],
+        "readmodels": [
+          {
+            "id": "waiting-messages",
+            "title": "Waiting messages",
+            "type": "READMODEL",
+            "fields": [
+              {
+                "name": "messageId",
+                "type": "UUID",
+                "example": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                "idAttribute": true
+              },
+              {
+                "name": "text",
+                "type": "String",
+                "example": "Also add a column for the adjuster"
+              },
+              {
+                "name": "label",
+                "type": "String",
+                "example": "Queued — sent when this turn ends"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "message-queued",
+                "title": "Message Queued",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "message-sent",
+                "title": "Message Sent",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "message-taken-back",
+                "title": "Message Taken Back",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "waiting-bubbles",
+                "title": "Waiting messages at the foot of the transcript",
+                "type": "OUTBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "waiting-message-sender",
+                "title": "Waiting message sender",
+                "type": "OUTBOUND",
+                "elementType": "AUTOMATION"
+              },
+              {
+                "id": "session-ended",
+                "title": "Session Ended",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "description": "The messages of a session that were queued and neither sent nor taken back, in the order they were sent; at most 10.",
+            "listElement": true,
+            "slice": "slice-waiting-messages"
+          }
+        ],
+        "events": [
+          {
+            "id": "message-taken-back",
+            "title": "Message Taken Back",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "messageId",
+                "type": "UUID",
+                "example": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                "idAttribute": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "waiting-messages",
+                "title": "Waiting messages",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "take-back-message",
+                "title": "Take Back Waiting Message",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The log's `unqueued` event: the user took a waiting message back before it was sent.",
+            "slice": "slice-waiting-messages"
+          }
+        ],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-send-now",
+            "title": "Send now stops the turn and sends the message",
+            "given": [
+              {
+                "id": "step-61-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              },
+              {
+                "id": "step-62-message-queued",
+                "title": "Message Queued",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "message-queued"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-63-send-waiting-now",
+                "title": "Send Waiting Message Now",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "send-waiting-now"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-64-turn-stopped",
+                "title": "Turn Stopped",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Stopped for your message."
+                  }
+                ],
+                "linkedId": "turn-stopped"
+              },
+              {
+                "id": "step-65-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "message-sent"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S21"
+              }
+            ],
+            "linkedId": "slice-waiting-messages",
+            "sliceName": "Send or take back a waiting message"
+          },
+          {
+            "id": "spec-take-back",
+            "title": "A waiting message is taken back unsent",
+            "given": [
+              {
+                "id": "step-66-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              },
+              {
+                "id": "step-67-message-queued",
+                "title": "Message Queued",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "message-queued"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-68-take-back-message",
+                "title": "Take Back Waiting Message",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "take-back-message"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-69-message-taken-back",
+                "title": "Message Taken Back",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "message-taken-back"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S21"
+              }
+            ],
+            "linkedId": "slice-waiting-messages",
+            "sliceName": "Send or take back a waiting message"
+          },
+          {
+            "id": "spec-take-back-gone",
+            "title": "A message that has gone cannot be taken back",
+            "given": [
+              {
+                "id": "step-70-message-queued",
+                "title": "Message Queued",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "message-queued"
+              },
+              {
+                "id": "step-71-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "message-sent"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-72-take-back-message",
+                "title": "Take Back Waiting Message",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "take-back-message"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-73-error",
+                "title": "no such waiting message — it may have been sent",
+                "type": "SPEC_ERROR"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S21"
+              }
+            ],
+            "linkedId": "slice-waiting-messages",
+            "sliceName": "Send or take back a waiting message"
+          },
+          {
+            "id": "spec-waiting-list",
+            "title": "Messages wait in the order they were sent",
+            "given": [
+              {
+                "id": "step-74-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              },
+              {
+                "id": "step-75-message-queued",
+                "title": "Message Queued",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "text": "Also add a column for the adjuster"
+                  },
+                  {
+                    "messageId": "0a1b2c3d-3333-4a5b-8c6d-7e8f9a0b1c2d",
+                    "text": "And sort by date of loss"
+                  }
+                ],
+                "linkedId": "message-queued"
+              }
+            ],
+            "when": [],
+            "then": [
+              {
+                "id": "step-76-waiting-messages",
+                "title": "Waiting messages",
+                "type": "SPEC_READMODEL",
+                "examples": [
+                  {
+                    "label": "Queued — sent when this turn ends",
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "text": "Also add a column for the adjuster"
+                  },
+                  {
+                    "label": "Queued — sent when this turn ends",
+                    "messageId": "0a1b2c3d-3333-4a5b-8c6d-7e8f9a0b1c2d",
+                    "text": "And sort by date of loss"
+                  }
+                ],
+                "linkedId": "waiting-messages"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S21"
+              }
+            ],
+            "linkedId": "slice-waiting-messages",
+            "sliceName": "Send or take back a waiting message"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-send-next-waiting",
+        "title": "A waiting message goes out when the turn ends",
+        "sliceType": "AUTOMATION",
+        "status": "Done",
+        "index": 7,
+        "context": "Agent session",
+        "screens": [],
+        "processors": [
+          {
+            "id": "waiting-message-sender",
+            "title": "Waiting message sender",
+            "type": "AUTOMATION",
+            "fields": [],
+            "dependencies": [
+              {
+                "id": "turn-ended",
+                "title": "Turn Ended",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "waiting-messages",
+                "title": "Waiting messages",
+                "type": "INBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "send-next-waiting",
+                "title": "Send Next Waiting Message",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "description": "Runs whenever a turn ends (sendNextWaiting): the first waiting message becomes the next turn and the session works on without going idle between — unless the turn was stopped or failed, which leaves the messages waiting.",
+            "slice": "slice-send-next-waiting"
+          }
+        ],
+        "commands": [
+          {
+            "id": "send-next-waiting",
+            "title": "Send Next Waiting Message",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "messageId",
+                "type": "UUID",
+                "example": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "waiting-message-sender",
+                "title": "Waiting message sender",
+                "type": "INBOUND",
+                "elementType": "AUTOMATION"
+              },
+              {
+                "id": "message-sent",
+                "title": "Message Sent",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The app's own doing, the same for every agent: the agent is handed one message a turn. No HTTP route.",
+            "slice": "slice-send-next-waiting"
+          }
+        ],
+        "readmodels": [],
+        "events": [],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-first-waiting-is-next-turn",
+            "title": "The first waiting message becomes the next turn",
+            "given": [
+              {
+                "id": "step-77-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              },
+              {
+                "id": "step-78-message-queued",
+                "title": "Message Queued",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "text": "Also add a column for the adjuster"
+                  },
+                  {
+                    "messageId": "0a1b2c3d-3333-4a5b-8c6d-7e8f9a0b1c2d",
+                    "text": "And sort by date of loss"
+                  }
+                ],
+                "linkedId": "message-queued"
+              },
+              {
+                "id": "step-79-turn-ended",
+                "title": "Turn Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "isError": false,
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "turn": 1
+                  }
+                ],
+                "linkedId": "turn-ended"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-80-send-next-waiting",
+                "title": "Send Next Waiting Message",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "send-next-waiting"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-81-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "message-sent"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S21"
+              }
+            ],
+            "linkedId": "slice-send-next-waiting",
+            "sliceName": "A waiting message goes out when the turn ends"
+          },
+          {
+            "id": "spec-stopped-turn-leaves-them-waiting",
+            "title": "A stopped turn leaves the messages waiting",
+            "given": [
+              {
+                "id": "step-82-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              },
+              {
+                "id": "step-83-message-queued",
+                "title": "Message Queued",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "message-queued"
+              },
+              {
+                "id": "step-84-turn-stopped",
+                "title": "Turn Stopped",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Stopped."
+                  }
+                ],
+                "linkedId": "turn-stopped"
+              },
+              {
+                "id": "step-85-turn-ended",
+                "title": "Turn Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "turn": 1
+                  }
+                ],
+                "linkedId": "turn-ended"
+              }
+            ],
+            "when": [],
+            "then": [
+              {
+                "id": "step-86-waiting-messages",
+                "title": "Waiting messages",
+                "type": "SPEC_READMODEL",
+                "examples": [
+                  {
+                    "label": "Not sent yet",
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "waiting-messages"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S21"
+              }
+            ],
+            "linkedId": "slice-send-next-waiting",
+            "sliceName": "A waiting message goes out when the turn ends"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-change-settings",
+        "title": "Change the model, effort or mode",
+        "sliceType": "STATE_CHANGE",
+        "status": "Done",
+        "index": 8,
+        "context": "Agent session",
+        "screens": [
+          {
+            "id": "composer-bar",
+            "title": "Composer bar",
+            "type": "SCREEN",
+            "fields": [
+              {
+                "name": "model",
+                "type": "String",
+                "example": "claude-opus-5-5"
+              },
+              {
+                "name": "effort",
+                "type": "String",
+                "example": "high"
+              },
+              {
+                "name": "permissionMode",
+                "type": "String",
+                "example": "acceptEdits"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "change-model",
+                "title": "Change Model",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "change-effort",
+                "title": "Change Effort",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "change-mode",
+                "title": "Change Mode",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "description": "The bar under the message box of a running session: the model chip, with the model and the effort, and the mode.",
+            "slice": "slice-change-settings"
+          }
+        ],
+        "processors": [],
+        "commands": [
+          {
+            "id": "change-model",
+            "title": "Change Model",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "model",
+                "type": "String",
+                "example": "claude-opus-5-5",
+                "optional": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "composer-bar",
+                "title": "Composer bar",
+                "type": "INBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "model-changed",
+                "title": "Model Changed",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "apiEndpoint": "PUT /api/agent/chat/:id/model",
+            "description": "setChatModel; null is the agent's own default. Refused when the session has ended or its agent is still starting.",
+            "slice": "slice-change-settings"
+          },
+          {
+            "id": "change-effort",
+            "title": "Change Effort",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "effort",
+                "type": "String",
+                "example": "high",
+                "optional": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "composer-bar",
+                "title": "Composer bar",
+                "type": "INBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "effort-changed",
+                "title": "Effort Changed",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "apiEndpoint": "PUT /api/agent/chat/:id/effort",
+            "description": "setChatEffort; null is the agent's own default. An agent with no effort setting is never handed one.",
+            "slice": "slice-change-settings"
+          },
+          {
+            "id": "change-mode",
+            "title": "Change Mode",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "permissionMode",
+                "type": "String",
+                "example": "acceptEdits"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "composer-bar",
+                "title": "Composer bar",
+                "type": "INBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "mode-changed",
+                "title": "Mode Changed",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "apiEndpoint": "PUT /api/agent/chat/:id/mode",
+            "description": "setChatPermissionMode. Refused when the agent has no permission modes, or does not offer the one asked for.",
+            "slice": "slice-change-settings"
+          }
+        ],
+        "readmodels": [],
+        "events": [
+          {
+            "id": "model-changed",
+            "title": "Model Changed",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "model",
+                "type": "String",
+                "example": "claude-opus-5-5",
+                "optional": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "change-model",
+                "title": "Change Model",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The log's `model` event.",
+            "slice": "slice-change-settings"
+          },
+          {
+            "id": "effort-changed",
+            "title": "Effort Changed",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "effort",
+                "type": "String",
+                "example": "high",
+                "optional": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "change-effort",
+                "title": "Change Effort",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The log's `effort` event.",
+            "slice": "slice-change-settings"
+          },
+          {
+            "id": "mode-changed",
+            "title": "Mode Changed",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "permissionMode",
+                "type": "String",
+                "example": "acceptEdits"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "change-mode",
+                "title": "Change Mode",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "The log's `mode` event.",
+            "slice": "slice-change-settings"
+          }
+        ],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-model-picked-in-running-session",
+            "title": "A model picked in a running session",
+            "given": [
+              {
+                "id": "step-87-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "status": "starting",
+                    "agent": "claude",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-88-agent-ready",
+                "title": "Agent Ready",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "idle",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "agent-ready"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-89-change-model",
+                "title": "Change Model",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "model": "claude-opus-5-5",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "change-model"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-90-model-changed",
+                "title": "Model Changed",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "model": "claude-opus-5-5",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "model-changed"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S6"
+              }
+            ],
+            "linkedId": "slice-change-settings",
+            "sliceName": "Change the model, effort or mode"
+          },
+          {
+            "id": "spec-mode-refused-without-gate",
+            "title": "An agent with no permission gate refuses a mode",
+            "given": [
+              {
+                "id": "step-91-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "agent": "pi",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-92-agent-ready",
+                "title": "Agent Ready",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "idle",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "agent-ready"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-93-change-mode",
+                "title": "Change Mode",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "permissionMode": "plan",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "change-mode"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-94-error",
+                "title": "Pi has no permission modes",
+                "type": "SPEC_ERROR"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S6"
+              }
+            ],
+            "linkedId": "slice-change-settings",
+            "sliceName": "Change the model, effort or mode"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-view-transcript",
+        "title": "Read the transcript",
+        "sliceType": "STATE_VIEW",
+        "status": "Done",
+        "index": 9,
+        "context": "Agent session",
+        "screens": [
+          {
+            "id": "transcript-view",
+            "title": "Transcript (Normal, Thinking, Verbose)",
+            "type": "SCREEN",
+            "fields": [
+              {
+                "name": "view",
+                "type": "String",
+                "example": "Normal"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "transcript",
+                "title": "Transcript",
+                "type": "INBOUND",
+                "elementType": "READMODEL"
+              }
+            ],
+            "description": "The pane draws the same events at three levels of detail, picked in the session popover and remembered per device. The user's messages, the agent's replies, permission cards, the line that ends a turn and every error show in all three.",
+            "slice": "slice-view-transcript"
+          }
+        ],
+        "processors": [],
+        "commands": [],
+        "readmodels": [
+          {
+            "id": "transcript",
+            "title": "Transcript",
+            "type": "READMODEL",
+            "fields": [
+              {
+                "name": "seq",
+                "type": "Int",
+                "example": "7",
+                "generated": true
+              },
+              {
+                "name": "at",
+                "type": "DateTime",
+                "example": "2026-11-24T09:16:23Z",
+                "generated": true
+              },
+              {
+                "name": "kind",
+                "type": "String",
+                "example": "assistant"
+              },
+              {
+                "name": "body",
+                "type": "Custom",
+                "example": "what the event carries"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "message-sent",
+                "title": "Message Sent",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "message-queued",
+                "title": "Message Queued",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "agent-replied",
+                "title": "Agent Replied",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "tool-result-recorded",
+                "title": "Tool Result Recorded",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "turn-ended",
+                "title": "Turn Ended",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "permission-requested",
+                "title": "Permission Requested",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "permission-answered",
+                "title": "Permission Answered",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "turn-stopped",
+                "title": "Turn Stopped",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "transcript-view",
+                "title": "Transcript (Normal, Thinking, Verbose)",
+                "type": "OUTBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "session-ended",
+                "title": "Session Ended",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "apiEndpoint": "GET /api/agent/chat/:id/events",
+            "description": "The session's log, every event numbered in order (getChatEvents; live over subscribeChat). The server keeps and sends the same events whatever view the pane draws them in.",
+            "listElement": true,
+            "slice": "slice-view-transcript"
+          }
+        ],
+        "events": [],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-same-events-every-view",
+            "title": "The log holds the turn in order, whatever the view",
+            "given": [
+              {
+                "id": "step-95-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              },
+              {
+                "id": "step-96-agent-replied",
+                "title": "Agent Replied",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "blocks": "tool_use: Write src/claims/export.ts",
+                    "turn": 1
+                  }
+                ],
+                "linkedId": "agent-replied"
+              },
+              {
+                "id": "step-97-tool-result-recorded",
+                "title": "Tool Result Recorded",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "content": "src/claims/export.ts written",
+                    "isError": false
+                  }
+                ],
+                "linkedId": "tool-result-recorded"
+              },
+              {
+                "id": "step-98-agent-replied",
+                "title": "Agent Replied",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "blocks": "text: The claims list now has an Export CSV button.",
+                    "turn": 1
+                  }
+                ],
+                "linkedId": "agent-replied"
+              },
+              {
+                "id": "step-99-turn-ended",
+                "title": "Turn Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "subtype": "success",
+                    "turn": 1
+                  }
+                ],
+                "linkedId": "turn-ended"
+              }
+            ],
+            "when": [],
+            "then": [
+              {
+                "id": "step-100-transcript",
+                "title": "Transcript",
+                "type": "SPEC_READMODEL",
+                "examples": [
+                  {
+                    "kind": "user",
+                    "seq": 3
+                  },
+                  {
+                    "kind": "assistant",
+                    "seq": 5
+                  },
+                  {
+                    "kind": "tool_result",
+                    "seq": 6
+                  },
+                  {
+                    "kind": "assistant",
+                    "seq": 7
+                  },
+                  {
+                    "kind": "result",
+                    "seq": 8
+                  }
+                ],
+                "linkedId": "transcript"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S20"
+              }
+            ],
+            "linkedId": "slice-view-transcript",
+            "sliceName": "Read the transcript"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-view-open-sessions",
+        "title": "See the open sessions",
+        "sliceType": "STATE_VIEW",
+        "status": "Done",
+        "index": 10,
+        "context": "Agent session",
+        "screens": [
+          {
+            "id": "session-tabs",
+            "title": "Session tabs",
+            "type": "SCREEN",
+            "fields": [
+              {
+                "name": "name",
+                "type": "String",
+                "example": "Add a CSV export to the claims list"
+              },
+              {
+                "name": "state",
+                "type": "String",
+                "example": "working"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "open-sessions",
+                "title": "Open sessions",
+                "type": "INBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "end-session",
+                "title": "End Session",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "description": "One tab per open session in the pane's header, each with its agent's mark, a dot for how it is doing (working, waiting for an answer, ready, ended, failed) and its name; × ends the session. With five open the + is greyed out.",
+            "slice": "slice-view-open-sessions"
+          }
+        ],
+        "processors": [],
+        "commands": [],
+        "readmodels": [
+          {
+            "id": "open-sessions",
+            "title": "Open sessions",
+            "type": "READMODEL",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "name",
+                "type": "String",
+                "example": "Add a CSV export to the claims list"
+              },
+              {
+                "name": "agent",
+                "type": "String",
+                "example": "claude"
+              },
+              {
+                "name": "status",
+                "type": "String",
+                "example": "running"
+              },
+              {
+                "name": "cwd",
+                "type": "String",
+                "example": "/Users/dana/dev/insurance-app"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "session-started",
+                "title": "Session Started",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "agent-ready",
+                "title": "Agent Ready",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "message-sent",
+                "title": "Message Sent",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "permission-requested",
+                "title": "Permission Requested",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "permission-answered",
+                "title": "Permission Answered",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "turn-ended",
+                "title": "Turn Ended",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "session-tabs",
+                "title": "Session tabs",
+                "type": "OUTBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "session-ended",
+                "title": "Session Ended",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "apiEndpoint": "GET /api/agent/chat",
+            "description": "Every session that has not been closed, in the order they started, ended ones included (listChatSessions). At most five.",
+            "listElement": true,
+            "slice": "slice-view-open-sessions"
+          }
+        ],
+        "events": [],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-tab-per-session",
+            "title": "Each open session has a tab that says how it is doing",
+            "given": [
+              {
+                "id": "step-101-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "agent": "claude",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  },
+                  {
+                    "name": "Fix the date filter",
+                    "agent": "codex",
+                    "sessionId": "7a2e3d4b-9c5f-4a6b-8d1e-2f3a4b5c6d7e"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-102-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              },
+              {
+                "id": "step-103-permission-requested",
+                "title": "Permission Requested",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "input": "rm -rf build",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "toolName": "Bash"
+                  }
+                ],
+                "linkedId": "permission-requested"
+              }
+            ],
+            "when": [],
+            "then": [
+              {
+                "id": "step-104-open-sessions",
+                "title": "Open sessions",
+                "type": "SPEC_READMODEL",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "status": "awaiting_input",
+                    "agent": "claude"
+                  },
+                  {
+                    "name": "Fix the date filter",
+                    "status": "idle",
+                    "agent": "codex"
+                  }
+                ],
+                "linkedId": "open-sessions"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S12"
+              }
+            ],
+            "linkedId": "slice-view-open-sessions",
+            "sliceName": "See the open sessions"
+          },
+          {
+            "id": "spec-ended-session-keeps-tab",
+            "title": "An ended session keeps its tab until it is closed",
+            "given": [
+              {
+                "id": "step-105-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "status": "starting",
+                    "agent": "claude",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-106-session-ended",
+                "title": "Session Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "ended",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-ended"
+              }
+            ],
+            "when": [],
+            "then": [
+              {
+                "id": "step-107-open-sessions",
+                "title": "Open sessions",
+                "type": "SPEC_READMODEL",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "status": "ended",
+                    "agent": "claude"
+                  }
+                ],
+                "linkedId": "open-sessions"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S12"
+              }
+            ],
+            "linkedId": "slice-view-open-sessions",
+            "sliceName": "See the open sessions"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-end-session",
+        "title": "End a session",
+        "sliceType": "STATE_CHANGE",
+        "status": "Done",
+        "index": 11,
+        "context": "Agent session",
+        "screens": [],
+        "processors": [],
+        "commands": [
+          {
+            "id": "end-session",
+            "title": "End Session",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "why",
+                "type": "String",
+                "example": "Session ended."
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "session-tabs",
+                "title": "Session tabs",
+                "type": "INBOUND",
+                "elementType": "SCREEN"
+              },
+              {
+                "id": "session-ended",
+                "title": "Session Ended",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "permission-answered",
+                "title": "Permission Answered",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "other-folder-closer",
+                "title": "Other folder's session closer",
+                "type": "INBOUND",
+                "elementType": "AUTOMATION"
+              }
+            ],
+            "aggregate": "Session",
+            "apiEndpoint": "DELETE /api/agent/chat/:id",
+            "description": "endChatSession: the agent is stopped, the record kept and the session forgotten, so its slot is free. A session whose agent is still working asks \"End this session?\" in the pane first.",
+            "slice": "slice-end-session"
+          }
+        ],
+        "readmodels": [],
+        "events": [
+          {
+            "id": "session-ended",
+            "title": "Session Ended",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "why",
+                "type": "String",
+                "example": "Session ended."
+              },
+              {
+                "name": "status",
+                "type": "String",
+                "example": "ended"
+              },
+              {
+                "name": "endedAt",
+                "type": "DateTime",
+                "example": "2026-11-24T10:02:00Z",
+                "generated": true
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "end-session",
+                "title": "End Session",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              },
+              {
+                "id": "open-sessions",
+                "title": "Open sessions",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "transcript",
+                "title": "Transcript",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "waiting-messages",
+                "title": "Waiting messages",
+                "type": "OUTBOUND",
+                "elementType": "READMODEL"
+              },
+              {
+                "id": "worktree-cleaner",
+                "title": "Worktree cleaner",
+                "type": "OUTBOUND",
+                "elementType": "AUTOMATION"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "A `note` event with the reason, then a `status` event with status \"ended\" (\"error\" when the agent died). Open permission requests are answered deny, via \"ended\", and what still waited is never sent.",
+            "slice": "slice-end-session"
+          }
+        ],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-closing-a-tab-ends-the-session",
+            "title": "Closing a tab ends the session",
+            "given": [
+              {
+                "id": "step-108-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "name": "Add a CSV export to the claims list",
+                    "status": "starting",
+                    "agent": "claude",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-109-agent-ready",
+                "title": "Agent Ready",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "idle",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "agent-ready"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-110-end-session",
+                "title": "End Session",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "end-session"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-111-session-ended",
+                "title": "Session Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "ended",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "why": "Session ended."
+                  }
+                ],
+                "linkedId": "session-ended"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S12"
+              }
+            ],
+            "linkedId": "slice-end-session",
+            "sliceName": "End a session"
+          },
+          {
+            "id": "spec-ending-closes-open-card",
+            "title": "Ending a session closes its open permission card",
+            "given": [
+              {
+                "id": "step-112-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              },
+              {
+                "id": "step-113-permission-requested",
+                "title": "Permission Requested",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "input": "rm -rf build",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "toolName": "Bash"
+                  }
+                ],
+                "linkedId": "permission-requested"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-114-end-session",
+                "title": "End Session",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "end-session"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-115-permission-answered",
+                "title": "Permission Answered",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "behavior": "deny",
+                    "requestId": "5e6f7a8b-4444-4c9d-8e0f-1a2b3c4d5e6f",
+                    "via": "ended"
+                  }
+                ],
+                "linkedId": "permission-answered"
+              },
+              {
+                "id": "step-116-session-ended",
+                "title": "Session Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "ended",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "why": "Session ended."
+                  }
+                ],
+                "linkedId": "session-ended"
+              }
+            ],
+            "comments": [
+              {
+                "description": "src/server/agentChat.ts finish — no scenario"
+              }
+            ],
+            "linkedId": "slice-end-session",
+            "sliceName": "End a session"
+          },
+          {
+            "id": "spec-waiting-never-sent",
+            "title": "What waited is never sent",
+            "given": [
+              {
+                "id": "step-117-message-sent",
+                "title": "Message Sent",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-1111-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Add a CSV export to the claims list"
+                  }
+                ],
+                "linkedId": "message-sent"
+              },
+              {
+                "id": "step-118-message-queued",
+                "title": "Message Queued",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "message-queued"
+              },
+              {
+                "id": "step-119-session-ended",
+                "title": "Session Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "ended",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-ended"
+              }
+            ],
+            "when": [],
+            "then": [
+              {
+                "id": "step-120-waiting-messages",
+                "title": "Waiting messages",
+                "type": "SPEC_READMODEL",
+                "examples": [
+                  {
+                    "label": "Not sent — the session ended",
+                    "messageId": "0a1b2c3d-2222-4a5b-8c6d-7e8f9a0b1c2d",
+                    "text": "Also add a column for the adjuster"
+                  }
+                ],
+                "linkedId": "waiting-messages"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S21"
+              }
+            ],
+            "linkedId": "slice-end-session",
+            "sliceName": "End a session"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-clean-up-worktree",
+        "title": "Clean up the session's worktree",
+        "sliceType": "AUTOMATION",
+        "status": "Done",
+        "index": 12,
+        "context": "Agent session",
+        "screens": [],
+        "processors": [
+          {
+            "id": "worktree-cleaner",
+            "title": "Worktree cleaner",
+            "type": "AUTOMATION",
+            "fields": [],
+            "dependencies": [
+              {
+                "id": "session-ended",
+                "title": "Session Ended",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "clean-up-worktree",
+                "title": "Clean Up Worktree",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "description": "Runs when a session that was started in a git worktree of its own ends (cleanUpWorktree, src/server/agentWorktree.ts).",
+            "slice": "slice-clean-up-worktree"
+          }
+        ],
+        "commands": [
+          {
+            "id": "clean-up-worktree",
+            "title": "Clean Up Worktree",
+            "type": "COMMAND",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "path",
+                "type": "String",
+                "example": "~/.specdriven/worktrees/insurance-app-b41e07/add-a-csv-export-to-the-claims-list-3f9a1c"
+              },
+              {
+                "name": "branch",
+                "type": "String",
+                "example": "specdriven/add-a-csv-export-to-the-claims-list-3f9a1c"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "worktree-cleaner",
+                "title": "Worktree cleaner",
+                "type": "INBOUND",
+                "elementType": "AUTOMATION"
+              },
+              {
+                "id": "worktree-removed",
+                "title": "Worktree Removed",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "worktree-kept",
+                "title": "Worktree Kept",
+                "type": "OUTBOUND",
+                "elementType": "EVENT"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "Removes the worktree when nothing in it is uncommitted, and keeps it when something is. The branch and every commit on it always stay.",
+            "slice": "slice-clean-up-worktree"
+          }
+        ],
+        "readmodels": [],
+        "events": [
+          {
+            "id": "worktree-removed",
+            "title": "Worktree Removed",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "branch",
+                "type": "String",
+                "example": "specdriven/add-a-csv-export-to-the-claims-list-3f9a1c"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "clean-up-worktree",
+                "title": "Clean Up Worktree",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "Not an entry in the session log: the folder is gone, and the request that ended the session answers worktree \"removed\".",
+            "slice": "slice-clean-up-worktree"
+          },
+          {
+            "id": "worktree-kept",
+            "title": "Worktree Kept",
+            "type": "EVENT",
+            "fields": [
+              {
+                "name": "sessionId",
+                "type": "UUID",
+                "example": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                "idAttribute": true
+              },
+              {
+                "name": "path",
+                "type": "String",
+                "example": "~/.specdriven/worktrees/insurance-app-b41e07/add-a-csv-export-to-the-claims-list-3f9a1c"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "clean-up-worktree",
+                "title": "Clean Up Worktree",
+                "type": "INBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "aggregate": "Session",
+            "description": "Not an entry in the session log: the request that ended the session answers worktree \"kept\", and the pane says where it is.",
+            "slice": "slice-clean-up-worktree"
+          }
+        ],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-clean-worktree-removed",
+            "title": "A worktree with nothing uncommitted is removed",
+            "given": [
+              {
+                "id": "step-121-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "worktreeBranch": "specdriven/add-a-csv-export-to-the-claims-list-3f9a1c"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-122-session-ended",
+                "title": "Session Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "ended",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-ended"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-123-clean-up-worktree",
+                "title": "Clean Up Worktree",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "branch": "specdriven/add-a-csv-export-to-the-claims-list-3f9a1c",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "clean-up-worktree"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-124-worktree-removed",
+                "title": "Worktree Removed",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "branch": "specdriven/add-a-csv-export-to-the-claims-list-3f9a1c",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "worktree-removed"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S9"
+              }
+            ],
+            "linkedId": "slice-clean-up-worktree",
+            "sliceName": "Clean up the session's worktree"
+          },
+          {
+            "id": "spec-dirty-worktree-kept",
+            "title": "A worktree with uncommitted work is kept",
+            "given": [
+              {
+                "id": "step-125-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "worktreeBranch": "specdriven/add-a-csv-export-to-the-claims-list-3f9a1c"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-126-session-ended",
+                "title": "Session Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "ended",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-ended"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-127-clean-up-worktree",
+                "title": "Clean Up Worktree",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "branch": "specdriven/add-a-csv-export-to-the-claims-list-3f9a1c",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "clean-up-worktree"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-128-worktree-kept",
+                "title": "Worktree Kept",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "path": "~/.specdriven/worktrees/insurance-app-b41e07/add-a-csv-export-to-the-claims-list-3f9a1c",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "worktree-kept"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S9"
+              }
+            ],
+            "linkedId": "slice-clean-up-worktree",
+            "sliceName": "Clean up the session's worktree"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      },
+      {
+        "id": "slice-close-on-folder-switch",
+        "title": "Switching folders closes the other folder's sessions",
+        "sliceType": "AUTOMATION",
+        "status": "Done",
+        "index": 13,
+        "context": "Agent session",
+        "screens": [],
+        "processors": [
+          {
+            "id": "other-folder-closer",
+            "title": "Other folder's session closer",
+            "type": "AUTOMATION",
+            "fields": [],
+            "dependencies": [
+              {
+                "id": "folder-switched",
+                "title": "Folder Switched",
+                "type": "INBOUND",
+                "elementType": "EVENT"
+              },
+              {
+                "id": "end-session",
+                "title": "End Session",
+                "type": "OUTBOUND",
+                "elementType": "COMMAND"
+              }
+            ],
+            "description": "closeOtherProjects: every session started while another folder was open is ended, as its tab's × would end it, before the switch is done. With several windows open a session ends only when no window shows its folder.",
+            "slice": "slice-close-on-folder-switch"
+          }
+        ],
+        "commands": [],
+        "readmodels": [],
+        "events": [
+          {
+            "id": "folder-switched",
+            "title": "Folder Switched",
+            "type": "EVENT",
+            "context": "EXTERNAL",
+            "fields": [
+              {
+                "name": "project",
+                "type": "String",
+                "example": "/Users/dana/dev/specs-bookshop"
+              }
+            ],
+            "dependencies": [
+              {
+                "id": "other-folder-closer",
+                "title": "Other folder's session closer",
+                "type": "OUTBOUND",
+                "elementType": "AUTOMATION"
+              }
+            ],
+            "aggregate": "App",
+            "description": "The user opened another specifications folder, or a code repository in its place. A fact of the app's folder handling, not of the session log.",
+            "slice": "slice-close-on-folder-switch"
+          }
+        ],
+        "tables": [],
+        "specifications": [
+          {
+            "id": "spec-other-folders-sessions-end",
+            "title": "Sessions of the folder left behind end",
+            "given": [
+              {
+                "id": "step-129-session-started",
+                "title": "Session Started",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "project": "/Users/dana/dev/specs-insurance",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d"
+                  }
+                ],
+                "linkedId": "session-started"
+              },
+              {
+                "id": "step-130-folder-switched",
+                "title": "Folder Switched",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "project": "/Users/dana/dev/specs-bookshop"
+                  }
+                ],
+                "linkedId": "folder-switched"
+              }
+            ],
+            "when": [
+              {
+                "id": "step-131-end-session",
+                "title": "End Session",
+                "type": "SPEC_COMMAND",
+                "examples": [
+                  {
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "why": "The folder was switched; this session belonged to another folder."
+                  }
+                ],
+                "linkedId": "end-session"
+              }
+            ],
+            "then": [
+              {
+                "id": "step-132-session-ended",
+                "title": "Session Ended",
+                "type": "SPEC_EVENT",
+                "examples": [
+                  {
+                    "status": "ended",
+                    "sessionId": "6f1d2c3a-8b4e-4f5a-9c0d-1e2f3a4b5c6d",
+                    "why": "The folder was switched; this session belonged to another folder."
+                  }
+                ],
+                "linkedId": "session-ended"
+              }
+            ],
+            "comments": [
+              {
+                "description": "specs/agents/agent-pane.feature.md S18"
+              }
+            ],
+            "linkedId": "slice-close-on-folder-switch",
+            "sliceName": "Switching folders closes the other folder's sessions"
+          }
+        ],
+        "aggregates": [
+          "Session"
+        ]
+      }
+    ]
   },
   "layout": {
-    "slices": {},
+    "slices": {
+      "slice-agent-turn": {
+        "width": 4
+      },
+      "slice-answer-permission": {
+        "width": 2
+      },
+      "slice-ask-permission": {
+        "width": 1
+      },
+      "slice-change-settings": {
+        "width": 3
+      },
+      "slice-clean-up-worktree": {
+        "width": 2
+      },
+      "slice-close-on-folder-switch": {
+        "width": 1
+      },
+      "slice-end-session": {
+        "width": 1
+      },
+      "slice-send-message": {
+        "width": 2
+      },
+      "slice-send-next-waiting": {
+        "width": 1
+      },
+      "slice-start-session": {
+        "width": 1
+      },
+      "slice-stop-turn": {
+        "width": 1
+      },
+      "slice-view-open-sessions": {
+        "width": 1
+      },
+      "slice-view-transcript": {
+        "width": 1
+      },
+      "slice-waiting-messages": {
+        "width": 3
+      }
+    },
     "lanes": [
       {
         "id": "ui",
@@ -23,7 +4857,241 @@
         "kind": "EVENTS"
       }
     ],
-    "elements": {}
+    "elements": {
+      "agent-provider": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "agent-ready": {
+        "column": 0,
+        "lane": "events"
+      },
+      "agent-replied": {
+        "column": 1,
+        "lane": "events"
+      },
+      "answer-permission": {
+        "column": 1,
+        "lane": "cmd"
+      },
+      "change-effort": {
+        "column": 1,
+        "lane": "cmd"
+      },
+      "change-mode": {
+        "column": 2,
+        "lane": "cmd"
+      },
+      "change-model": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "clean-up-worktree": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "composer-bar": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "effort-changed": {
+        "column": 1,
+        "lane": "events"
+      },
+      "end-session": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "folder-switched": {
+        "column": 0,
+        "lane": "events"
+      },
+      "message-box": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "message-queued": {
+        "column": 1,
+        "lane": "events"
+      },
+      "message-sent": {
+        "column": 0,
+        "lane": "events"
+      },
+      "message-taken-back": {
+        "column": 2,
+        "lane": "events"
+      },
+      "mode-changed": {
+        "column": 2,
+        "lane": "events"
+      },
+      "model-changed": {
+        "column": 0,
+        "lane": "events"
+      },
+      "new-session-screen": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "open-permission-requests": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "open-sessions": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "other-folder-closer": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "permission-answered": {
+        "column": 1,
+        "lane": "events"
+      },
+      "permission-card": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "permission-gate": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "permission-requested": {
+        "column": 0,
+        "lane": "events"
+      },
+      "record-agent-output": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "request-permission": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "send-message": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "send-next-waiting": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "send-waiting-now": {
+        "column": 1,
+        "lane": "cmd"
+      },
+      "session-ended": {
+        "column": 0,
+        "lane": "events"
+      },
+      "session-started": {
+        "column": 0,
+        "lane": "events"
+      },
+      "session-tabs": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "start-session": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "stop-button": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "stop-turn": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "take-back-message": {
+        "column": 2,
+        "lane": "cmd"
+      },
+      "tool-result-recorded": {
+        "column": 2,
+        "lane": "events"
+      },
+      "transcript": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "transcript-view": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "turn-ended": {
+        "column": 3,
+        "lane": "events"
+      },
+      "turn-stopped": {
+        "column": 0,
+        "lane": "events"
+      },
+      "waiting-bubbles": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "waiting-message-sender": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "waiting-messages": {
+        "column": 0,
+        "lane": "cmd"
+      },
+      "worktree-cleaner": {
+        "column": 0,
+        "lane": "ui"
+      },
+      "worktree-kept": {
+        "column": 1,
+        "lane": "events"
+      },
+      "worktree-removed": {
+        "column": 0,
+        "lane": "events"
+      }
+    }
   },
-  "links": {}
+  "links": {
+    "slice-agent-turn": {
+      "feature": "specs/agents/agent-plugins.feature.md"
+    },
+    "slice-change-settings": {
+      "feature": "specs/agents/agent-pane.feature.md"
+    },
+    "slice-clean-up-worktree": {
+      "feature": "specs/agents/agent-pane.feature.md"
+    },
+    "slice-close-on-folder-switch": {
+      "feature": "specs/agents/agent-pane.feature.md"
+    },
+    "slice-end-session": {
+      "feature": "specs/agents/agent-pane.feature.md"
+    },
+    "slice-send-message": {
+      "feature": "specs/agents/agent-pane.feature.md"
+    },
+    "slice-send-next-waiting": {
+      "feature": "specs/agents/agent-pane.feature.md"
+    },
+    "slice-start-session": {
+      "feature": "specs/agents/agent-pane.feature.md"
+    },
+    "slice-stop-turn": {
+      "feature": "specs/agents/agent-pane.feature.md"
+    },
+    "slice-view-open-sessions": {
+      "feature": "specs/agents/agent-pane.feature.md"
+    },
+    "slice-view-transcript": {
+      "feature": "specs/agents/agent-pane.feature.md"
+    },
+    "slice-waiting-messages": {
+      "feature": "specs/agents/agent-pane.feature.md"
+    }
+  }
 }
