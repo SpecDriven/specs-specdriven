@@ -980,9 +980,10 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
   in the line as a link, and the list asks again every two seconds for up
   to five minutes — and "Reconnect" for one that failed; a refusal is shown
   with the agent's words
-- and the ⋯ menu is there only while no session is open in the pane, and
-  only for an agent that manages its MCP servers before a session; a running
-  session has the popover's list
+- and the ⋯ menu is there only for an agent that manages its MCP servers
+  before a session, and stays while a session is open, its turn running or
+  not: then it is that session's agent, and the dialog is about the folder
+  the session works in — inside its worktree, when it has one
 - and the list is the agent's answer at that moment (GET
   /api/agent/agents/:agent/mcp with the picked folder as `cwd`, and POST the
   same with the server's name and enable, disable, reconnect or
@@ -996,7 +997,8 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
   memory folder by folder
 
 [test: the header's ⋯ menu offers MCP servers… before a session, for an agent that manages them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L502 ]
-[test: an agent that does not manage its MCP servers has no ⋯ menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L534 ]
+[test: the header's ⋯ menu stays while a session is open, for that session's agent where it works : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L534 ]
+[test: an agent that does not manage its MCP servers has no ⋯ menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L583 ]
 [test: the line under the title counts the servers, their tools and what they take of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L143 ]
 [test: the dialog lists the agent's servers, shows the one picked, and turns one off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L320 ]
 [test: Sign in opens the agent's page, keeps a link to it, and the list asks again until the server connects : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L371 ]
