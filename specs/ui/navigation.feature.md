@@ -149,7 +149,7 @@ leave the window blank).
 [test: a file that is not there in a synced folder is a stale link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L55 ]
 [test: a miss behind a failed pull names the pull, not the link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L59 ]
 [test: any other answer is reported as what it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L69 ]
-[test: a link to a feature that is not there says so and opens home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L393 ]
+[test: a link to a feature that is not there says so and opens home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L480 ]
 
 ## S5: link to a missing scenario @v1 [proposed]
 
@@ -237,6 +237,8 @@ leave the window blank).
   scrolled into view — the same highlight the up/down keys move, so Enter
   opens the full body
 
+[test: a scenario found in the palette opens its page, and with mod-Enter its card on the feature's page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L393 ]
+
 ## S10: Scenario navigation @v1 [proposed]
 
 **Created by:** vydra
@@ -272,6 +274,7 @@ Allow to collapse and expand the outline.
 [test: a link built by the app round-trips back to its route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L57 ]
 [test: desktopLink puts the folder's display name first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L85 ]
 [test: a link round-trips to its folder and its route : https://github.com/SpecDriven/specdriven-app/blob/main/tests/deepLink.test.ts#L108 ]
+[test: a feature's url and a scenario's, versioned or not, read as the Specs view they name and back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsRoute.test.ts#L8 ]
 
 ## S12: versionless scenario link opens the latest version @v1 [proposed]
 

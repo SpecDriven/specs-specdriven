@@ -649,9 +649,11 @@ one by hand.
 - Then: Specs is listed among the plugins as built in, with a switch and
   a place in the order, like Roadmap or the Notebook
 - and switching it off takes away the Specs tab, its icon on the rail, the
-  `g s` shortcut and the features and scenarios the command palette
-  offers; the sidebar turns to the first tab still on, and a link to a
-  feature opens home
+  `g s` shortcut, the features and scenarios the command palette finds or
+  lists under Recent, and the imports into a spec folder; the sidebar
+  turns to the first tab still on, and a link to a feature opens home
+- and while a feature is open the rail lights Specs, whichever tab the
+  sidebar shows, as it lights any tab whose page has the pane
 - and the feature files, their routes and the sync are untouched:
   switching Specs off hides the tab, the folder's specs are still synced
 - and the tabs stand in the list's order, so moving Specs in the list
@@ -674,6 +676,11 @@ one by hand.
 [test: the rail's Specs icon on a notebook entry does the same as `g s` : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L331 ]
 [test: the palette finds a feature while Specs is on, and none while it is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L343 ]
 [test: switching Specs off with a feature open goes home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L379 ]
+[test: the palette's Recent list offers the feature last opened, and not while Specs is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L428 ]
+[test: a Recent entry kept from before Specs was a tab still opens its feature : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L449 ]
+[test: the palette offers the Aha! import while its switch and Specs are on, and not with Specs off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L463 ]
+[test: a url that is not a feature's is not the Specs tab's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsRoute.test.ts#L25 ]
+[test: a tab with no home view always has its door, and the door is home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsRoute.test.ts#L29 ]
 
 ## S25: A folder's plugins are picked from its data the first time it opens @v1 [proposed]
 
