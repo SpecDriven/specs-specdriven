@@ -184,8 +184,8 @@ read-only site.
   session should check that source is up to date"); a branch level with
   origin, or a worktree session, starts at once
 
-[test: in code repository mode a branch behind origin asks to pull before the session, and Update & start pulls then starts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L391 ]
-[test: in code repository mode a branch level with origin starts at once; a specifications folder is never checked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L418 ]
+[test: in code repository mode a branch behind origin asks to pull before the session, and Update & start pulls then starts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L406 ]
+[test: in code repository mode a branch level with origin starts at once; a specifications folder is never checked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L433 ]
 [test: a coding agent session runs in the code repository, with no specifications folder behind it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L377 ]
 [test: a folder the pane picks inside the code repository is where the session runs : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L389 ]
 [test: a code gen session from the spec dialog needs a specifications folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/codeRepoMode.test.ts#L396 ]

@@ -234,8 +234,8 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
   not started until it is resolved; a branch already clean and up to date, or a
   folder that is not a code repository, starts with no dialog
 - and a session that gets its own worktree starts with no dialog either: the
-  app itself brings main level with origin before the worktree branches off
-  it, or refuses and says why (agent-pane "A session can run in its own git
+  app itself switches the folder to main and brings main level with origin
+  before the worktree branches off it, or refuses and says why (agent-pane "A session can run in its own git
   worktree")
 
 [test: a clean branch level with its upstream is online, up to date, not dirty : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L78 ]
@@ -249,7 +249,7 @@ The coding agent pane drives whatever coding agent a plugin supplies. The core d
 [test: an unreachable remote reports offline but still returns the last-known state : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L160 ]
 [test: refreshSource with merge advances a behind branch to its upstream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L179 ]
 [test: refreshSource on a branch already level with its upstream pulls nothing : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L196 ]
-[test: in code repository mode a branch behind origin asks to pull before the session, and Update & start pulls then starts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L391 ]
+[test: in code repository mode a branch behind origin asks to pull before the session, and Update & start pulls then starts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L406 ]
 [test: refreshSource with rebase replays local work on top of the upstream : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L204 ]
 [test: refreshSource refuses a dirty working tree rather than half-applying : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L224 ]
 [test: refreshSource reports a conflict instead of leaving a silent half-merge : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentSource.test.ts#L237 ]

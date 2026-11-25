@@ -257,18 +257,23 @@
   out — and the agent works there instead of in the folder, so its edits
   never touch the user's checkout and two sessions never share one
 - and where the repo has an `origin`, the session starts from up-to-date
-  code: the folder has to be on origin's default branch (the one origin's
-  HEAD names — asked of origin when no clone recorded it — else `main`,
-  else `master`; see "A coding session is told the repository's default
-  branch"), and before the worktree branches off it the app fetches
-  origin and fast-forwards a main that fell behind, leaving uncommitted
-  changes as they are
-- and what a fast-forward cannot fix refuses the session with a 409 that
-  says what to do, and nothing is made: another branch or a detached HEAD
-  checked out, a main with commits origin does not have, or a fast-forward
-  that uncommitted changes stand in the way of — the app never switches,
-  rebases or resets the user's checkout; the box's tooltip names the branch
-  sessions start from, and says so when the folder is not on it
+  code on origin's default branch (the one origin's HEAD names — asked of
+  origin when no clone recorded it — else `main`, else `master`; see "A
+  coding session is told the repository's default branch"): before the
+  worktree branches off it the app fetches origin, switches a folder on
+  another branch or a detached HEAD to main (making main from origin's when
+  there is no local copy yet), and fast-forwards a main that fell behind —
+  `git switch main` and `git pull`, done for the user — leaving untracked
+  files, and uncommitted changes on main, as they are; a notice says when
+  the folder was switched, and from which branch
+- and what would lose or carry work refuses the session with a 409 that
+  says what to do, and nothing is made or switched: uncommitted changes to
+  tracked files while another branch is checked out (they would ride along
+  onto main), a detached HEAD whose commits are on no branch, a main with
+  commits origin does not have, or a switch or fast-forward git refuses —
+  the app never rebases or resets the user's checkout; the box's tooltip
+  names the branch sessions start from, and says the folder will be
+  switched to it when it is not on it
 - and with origin out of reach the session still starts, from main as last
   fetched, and a notice that stays on screen says so, as does the session
   popover; a worktree session shows no "Start from up-to-date source"
@@ -304,16 +309,18 @@
 [test: the pane asks whether a folder can have a worktree, and on which branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L218 ]
 [test: a session name becomes a branch-safe slug : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L230 ]
 [test: a worktree session starts from main level with origin, and a main that fell behind is fast-forwarded first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L266 ]
-[test: a folder on another branch, or a main with commits origin lacks, is refused with nothing left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L289 ]
-[test: a main that cannot be fast-forwarded over uncommitted changes is refused, and the changes stay : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L325 ]
-[test: with origin out of reach the worktree starts from main as last fetched, and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L340 ]
-[test: the specifications folder, which the app keeps level itself, is neither fetched nor moved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L353 ]
-[test: the pane learns which branch a worktree session has to start from : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L368 ]
-[test: the Worktree box offers a worktree for a repo, remembers the pick, and the first message asks for one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L155 ]
-[test: a folder that is no repo greys the box out, and the remembered pick is not sent there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L178 ]
-[test: a worktree session shows the folder it was started in and its branch, and closing it says a kept worktree's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L201 ]
-[test: a worktree session on the code repo starts with no source dialog, and says when origin was out of reach : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L273 ]
-[test: the Worktree box says which branch the session starts from, and when the folder is not on it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L329 ]
+[test: a folder on another branch is switched to main and brought level with origin before the worktree branches off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L289 ]
+[test: a detached HEAD whose commit is on a branch is switched to main; a main with no local copy yet is made from origin's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L313 ]
+[test: what switching would lose or carry, and a main with commits origin lacks, is refused with nothing left behind : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L327 ]
+[test: a main that cannot be fast-forwarded over uncommitted changes is refused, and the changes stay : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L377 ]
+[test: with origin out of reach the worktree starts from main as last fetched, and says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L392 ]
+[test: the specifications folder, which the app keeps level itself, is neither fetched nor moved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L407 ]
+[test: the pane learns which branch a worktree session has to start from : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L422 ]
+[test: the Worktree box offers a worktree for a repo, remembers the pick, and the first message asks for one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L162 ]
+[test: a folder that is no repo greys the box out, and the remembered pick is not sent there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L185 ]
+[test: a worktree session shows the folder it was started in and its branch, and closing it says a kept worktree's place : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L208 ]
+[test: a worktree session on the code repo starts with no source dialog, and says when origin was out of reach : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L280 ]
+[test: the Worktree box says which branch the session starts from, and when the folder is not on it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L336 ]
 
 ## S10: A worktree session opens in a Ghostty shell @v1 [proposed]
 
@@ -354,7 +361,7 @@
 [test: a worktree session opens Ghostty in the folder its agent works in, inside the worktree : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L189 ]
 [test: with the setting off, Ghostty missing or the folder gone, nothing opens and the reason is said : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L198 ]
 [test: a launcher that fails is reported, not swallowed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/ghostty.test.ts#L223 ]
-[test: with Ghostty on, a click on the worktree's branch asks the server to open a shell there, and a refusal is toasted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L222 ]
+[test: with Ghostty on, a click on the worktree's branch asks the server to open a shell there, and a refusal is toasted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktreePane.test.tsx#L229 ]
 
 ## S11: The session popover shows the folder, the branch and the context window @v1 [proposed]
 
@@ -890,11 +897,11 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
 - and worktree sessions start from this same branch (see "A session can run
   in its own git worktree")
 
-[test: a coding session's agent is told the repository's default branch with its first turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L431 ]
-[test: a worktree session starts from the default branch origin names, and its agent is told the branch it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L447 ]
-[test: a first turn that is a /command leaves the git line for the next turn, which is told it once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L465 ]
-[test: a session in a folder that is no git repository is told nothing of git : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L500 ]
-[test: a session on a detached HEAD is told so, beside the default branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L506 ]
+[test: a coding session's agent is told the repository's default branch with its first turn : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L485 ]
+[test: a worktree session starts from the default branch origin names, and its agent is told the branch it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L501 ]
+[test: a first turn that is a /command leaves the git line for the next turn, which is told it once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L519 ]
+[test: a session in a folder that is no git repository is told nothing of git : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L554 ]
+[test: a session on a detached HEAD is told so, beside the default branch : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agentWorktree.test.ts#L560 ]
 [test: a clone knows its remote's default branch by whatever name it has, without asking the remote : https://github.com/SpecDriven/specdriven-app/blob/main/tests/defaultBranch.test.ts#L71 ]
 [test: a remote added by hand is asked, and its answer recorded as a clone would have : https://github.com/SpecDriven/specdriven-app/blob/main/tests/defaultBranch.test.ts#L80 ]
 [test: with the remote out of reach its main, else its master, stands in — and it is not asked again at once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/defaultBranch.test.ts#L93 ]
