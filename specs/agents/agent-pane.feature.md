@@ -998,7 +998,7 @@ Note: When Code agent pane has minimal width, the footer is difficult to use.
 
 [test: the header's ⋯ menu offers MCP servers… before a session, for an agent that manages them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L502 ]
 [test: the header's ⋯ menu stays while a session is open, for that session's agent where it works : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L534 ]
-[test: an agent that does not manage its MCP servers has no ⋯ menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L583 ]
+[test: an agent that does not manage its MCP servers has no ⋯ menu : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L588 ]
 [test: the line under the title counts the servers, their tools and what they take of the window : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L143 ]
 [test: the dialog lists the agent's servers, shows the one picked, and turns one off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L320 ]
 [test: Sign in opens the agent's page, keeps a link to it, and the list asks again until the server connects : https://github.com/SpecDriven/specdriven-app/blob/main/tests/mcpServersDialog.test.tsx#L371 ]
