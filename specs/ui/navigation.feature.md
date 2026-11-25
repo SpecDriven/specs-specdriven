@@ -119,6 +119,8 @@ leave the window blank).
   place (no history entry per keystroke)
 - Reloading the page restores the same feature and scenario selection
 
+[test: a feature picked in the tree goes back home on Back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L297 ]
+
 ## S3: deep link before a data repo is configured @v1 [proposed]
 
 **Created by:** vydra
@@ -147,6 +149,7 @@ leave the window blank).
 [test: a file that is not there in a synced folder is a stale link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L55 ]
 [test: a miss behind a failed pull names the pull, not the link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L59 ]
 [test: any other answer is reported as what it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L69 ]
+[test: a link to a feature that is not there says so and opens home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L393 ]
 
 ## S5: link to a missing scenario @v1 [proposed]
 
@@ -196,6 +199,8 @@ leave the window blank).
 - Given: the data repo contains `navigation.feature.md`
 - When: the user opens `/features/navigation`
 - Then: the app shows that feature — same view as clicking it in the sidebar
+
+[test: a feature's link opens that feature, with its url and the window's title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L280 ]
 
 ## S8: open a link from outside the app @v1 [proposed]
 
@@ -277,6 +282,8 @@ Allow to collapse and expand the outline.
 - Given: the scenario name exists as v1 and v2
 - When: the user opens the scenario url without the `/v<N>` segment
 - Then: v2 is selected, and the address bar shows the canonical `/v2` url
+
+[test: a versionless scenario link opens the scenario and settles on its versioned url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L290 ]
 
 ## S13: window title follows the selection @v1 [proposed]
 

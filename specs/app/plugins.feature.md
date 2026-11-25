@@ -369,6 +369,8 @@ its folder is.
 - And: clicking the tab only turns the sidebar to the list; the head's
   link and the rows open the pane
 
+[test: `c` makes a feature from home and a scenario on a feature page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L363 ]
+
 ## S13: A tab's rows use the sidebar row @v1 [proposed]
 
 - Given: a plugin's tab in the sidebar
@@ -664,10 +666,14 @@ one by hand.
 
 [test: Specs is listed first as a built-in plugin, and switching it off holds across a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L255 ]
 [test: a list from before Specs was a plugin reads with Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L282 ]
-[test: switched on, Specs is a tab where the list puts it, and its tree is the sidebar when picked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L187 ]
-[test: the rail carries the tabs in the list's order, Specs only while it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L213 ]
-[test: with Specs switched off a feature's link opens home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L227 ]
-[test: with every plugin switched off the sidebar says where to switch one on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L238 ]
+[test: switched on, Specs is a tab where the list puts it, and its tree is the sidebar when picked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L188 ]
+[test: the rail carries the tabs in the list's order, Specs only while it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L214 ]
+[test: with Specs switched off a feature's link opens home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L228 ]
+[test: with every plugin switched off the sidebar says where to switch one on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L239 ]
+[test: `g s` on a notebook entry turns the sidebar to the tree and opens the README : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L319 ]
+[test: the rail's Specs icon on a notebook entry does the same as `g s` : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L331 ]
+[test: the palette finds a feature while Specs is on, and none while it is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L343 ]
+[test: switching Specs off with a feature open goes home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L379 ]
 
 ## S25: A folder's plugins are picked from its data the first time it opens @v1 [proposed]
 
@@ -695,6 +701,6 @@ one by hand.
 [test: the list is made from the data once, what has data goes on and Specs goes off where another has some : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L294 ]
 [test: a folder of notebook entries opens on the Notebook alone, and one with specs too shows both : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L339 ]
 [test: a folder used before the check is looked at once, its tasks go on and its empty Specs off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L374 ]
-[test: a folder of notebook entries opens on the Notebook alone, with the README in the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L174 ]
-[test: a folder with features and notebook entries shows both, Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L204 ]
+[test: a folder of notebook entries opens on the Notebook alone, with the README in the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L175 ]
+[test: a folder with features and notebook entries shows both, Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L205 ]
 [test: a folder has Specs data once a feature file lies under its specs folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L324 ]
