@@ -96,3 +96,24 @@ Agent's Notion of a Coding Session vs. SpecDriven's Notion of a Coding Session
 [test: the prompt carries a spec without its test links : https://github.com/SpecDriven/specdriven-app/blob/main/tests/agent.test.ts#L71 ]
 [test: withoutTestLinks drops every test link and keeps the rest of the spec : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L398 ]
 [test: withoutTestLinks hands a spec with no test link back as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/parser.test.ts#L445 ]
+
+## S4: Start session is only on with a feature or scenarios selected @v1 [proposed]
+
+- Given: the Specs tab, with no spec or scenario checked for a session, no
+  scenario picked in the navigation pane and no feature open
+- Then: the Start session button is off, and its tooltip says to select a
+  feature or scenarios to start an AI session; clicking it opens nothing
+- When: a feature is opened, a scenario is opened, or one or more scenarios
+  are picked in the navigation pane (⌘- or Shift-click)
+- Then: the button is on, and the session runs over the selection: the
+  specs and scenarios checked for a session first, else the scenarios
+  picked in the navigation pane, grouped by feature, else the open
+  scenario alone, else the open feature whole
+- and the "Start AI Session" command in the palette and the feature's menu
+  is offered on the same terms
+
+[test: nothing checked, picked or open is nothing, so the Start session button is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startSessionDialog.test.tsx#L108 ]
+[test: the open feature runs whole : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startSessionDialog.test.tsx#L112 ]
+[test: the open scenario runs alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startSessionDialog.test.tsx#L116 ]
+[test: scenarios picked in the tree win over the open one, grouped by feature : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startSessionDialog.test.tsx#L122 ]
+[test: specs checked for a session win over everything else : https://github.com/SpecDriven/specdriven-app/blob/main/tests/startSessionDialog.test.tsx#L134 ]
