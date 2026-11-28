@@ -658,6 +658,7 @@ Final result:
 - **And** instructions past the limit, or that are not text, are refused, and nothing is drafted or saved
 
 [test: changed instructions keep the app's rules after them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L34 ]
+[test: line ends and the space around a prompt do not make it another one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L43 ]
 [test: changed instructions are written to the folder and read back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L78 ]
 [test: the built-in instructions take the folder's file away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L84 ]
 [test: a file written by hand is cut at the limit, and one that says the built-in text counts as none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L93 ]
