@@ -682,6 +682,7 @@ Final result:
 [test: an existing folder's own prompt is shown in place of the built-in one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L349 ]
 [test: another folder named after the step was shown brings back the step with the prompt it drafts with : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L373 ]
 [test: changed text is never sent over a folder's own prompt unseen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L384 ]
+[test: why the step is shown again is said only while it still holds : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L1 ]
 [test: a folder with no prompt of its own, or the one already asked about, needs no second look : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L364 ]
 [test: a folder without the file has no prompt of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L65 ]
 [test: the wizard is told the prompt of a folder on this computer only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L94 ]
