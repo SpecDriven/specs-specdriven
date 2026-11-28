@@ -41,8 +41,8 @@ Clicking on it, renders:
 [test: says so when the project holds no code it can read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L129 ]
 [test: refuses a folder that is not there, a relative path and a specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L145 ]
 [test: the snapshot holds the files the project does not ignore, and its build files : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L88 ]
-[test: asks for the code project first, and says what will happen to it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L202 ]
-[test: every button has the app's button look : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L274 ]
+[test: asks for the code project first, and says what will happen to it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L203 ]
+[test: every button has the app's button look : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L275 ]
 [test: a code project is named by an absolute path, a leading tilde being the home folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L446 ]
 
 ## S2: Modules from JavaScript and TypeScript workspaces @v1 [proposed]
@@ -69,7 +69,7 @@ Clicking on it, renders:
 [test: pnpm-workspace.yaml and lerna.json name their packages : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L73 ]
 [test: comments and trailing commas are allowed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L85 ]
 [test: a comment marker inside a string is text : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentManifests.test.ts#L98 ]
-[test: a directory or package name reads as words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L85 ]
+[test: a directory or package name reads as words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L86 ]
 
 ## S3: Modules from Maven and Gradle builds @v1 [proposed]
 
@@ -179,15 +179,15 @@ Clicking on it, renders:
 - **And** "Tick all", "Untick all" and "Reset" act on the whole tree
 - **And** Next waits until at least one folder is ticked and every folder to be made has a name
 
-[test: starts as proposed — every folder, ticked as the analysis ticked it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L94 ]
-[test: ticking a folder ticks what is inside it; nothing ticked cannot go on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L105 ]
-[test: a rename changes the name and the path it is made at; a blank one cannot go on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L119 ]
-[test: two folders of one name beside each other get different paths : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L129 ]
-[test: a folder moves into another, and back to the top : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L134 ]
-[test: a folder cannot move into itself, into what is inside it, or where it already is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L142 ]
-[test: an unticked folder that holds a ticked one is made, but not drafted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L151 ]
-[test: what a folder holds is said in a line : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L163 ]
-[test: a tree of folders — a tick, the name to edit, the languages, where to move it, and why it is proposed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L171 ]
+[test: starts as proposed — every folder, ticked as the analysis ticked it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L95 ]
+[test: ticking a folder ticks what is inside it; nothing ticked cannot go on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L106 ]
+[test: a rename changes the name and the path it is made at; a blank one cannot go on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L120 ]
+[test: two folders of one name beside each other get different paths : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L130 ]
+[test: a folder moves into another, and back to the top : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L135 ]
+[test: a folder cannot move into itself, into what is inside it, or where it already is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L143 ]
+[test: an unticked folder that holds a ticked one is made, but not drafted : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L152 ]
+[test: what a folder holds is said in a line : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L164 ]
+[test: a tree of folders — a tick, the name to edit, the languages, where to move it, and why it is proposed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L172 ]
 [test: two folders of the same name get different spec folders : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentModules.test.ts#L540 ]
 
 ## S11: Refine regroups by business area and names only modules that exist @v1 [proposed]
@@ -220,7 +220,7 @@ Clicking on it, renders:
 - **And** a turn that fails, or an answer that is no regrouping, is said in the dialog with the agent named, and the tree stays as it was
 - **And** a project with a single proposed folder has nothing to regroup, and says so
 
-[test: the review lists the proposed folders, and offers the agent's regrouping where there is an agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L214 ]
+[test: the review lists the proposed folders, and offers the agent's regrouping where there is an agent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L215 ]
 [test: a turn that fails, or an answer that is no regrouping, fails the job with the agent named : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentRefine.test.ts#L265 ]
 [test: without an agent the job says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentRefine.test.ts#L288 ]
 [test: a project of one folder has nothing to regroup, and no turn is spent : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentRefine.test.ts#L295 ]
@@ -235,9 +235,9 @@ Clicking on it, renders:
 - **And** nothing is written into the code project
 
 [test: makes the specification folder beside the project, set up and pointing back at it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L175 ]
-[test: a project's specification folder is specs-<project>, in characters a repository takes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L69 ]
+[test: a project's specification folder is specs-<project>, in characters a repository takes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L70 ]
 [test: it is named after the project and goes beside it, wherever the project is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L434 ]
-[test: the specification folder is a new one beside the project, named after it, unless one is there already : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L226 ]
+[test: the specification folder is a new one beside the project, named after it, unless one is there already : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L227 ]
 
 ## S14: A name that is taken is refused @v1 [proposed]
 
@@ -250,7 +250,7 @@ Clicking on it, renders:
 [test: a name that is taken is refused, a specification folder there named as one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L226 ]
 [test: a name a repository cannot have is refused : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L238 ]
 [test: a specification folder that is already there is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L139 ]
-[test: a name a repository cannot have is said why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L75 ]
+[test: a name a repository cannot have is said why : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L76 ]
 [test: the code project's own folder cannot be its specification folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractRoutes.test.ts#L457 ]
 
 ## S15: Add to a specification folder that already exists @v1 [proposed]
@@ -283,8 +283,8 @@ Clicking on it, renders:
 [test: without a name the default one is read, and its code is not the other's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L442 ]
 [test: a project that is not one of the folder's is not read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L449 ]
 [test: nothing is drafted into a folder other than the one the folders were made in : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L457 ]
-[test: a project that already has a specification folder is offered that one to add to : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L239 ]
-[test: the folder that is open is filled in as the existing one, without being chosen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L255 ]
+[test: a project that already has a specification folder is offered that one to add to : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L240 ]
+[test: the folder that is open is filled in as the existing one, without being chosen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L256 ]
 
 ## S16: Published to GitHub @v1 [proposed]
 
@@ -322,7 +322,7 @@ Clicking on it, renders:
 [test: a folder left on this computer is published later, with what it holds by then : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L293 ]
 [test: an open folder on this computer is offered the accounts it could be published under : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L312 ]
 [test: publishing later refuses a repository that holds someone's work : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L334 ]
-[test: Publish to GitHub is a modal dialog that waits for the accounts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L467 ]
+[test: Publish to GitHub is a modal dialog that waits for the accounts : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L480 ]
 [test: a folder that already pushes somewhere else is not published again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractPublish.test.ts#L325 ]
 [test: once published, the folder is published from then on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractionProgress.test.tsx#L205 ]
 
@@ -408,9 +408,9 @@ Clicking on it, renders:
 
 [test: cancel abandons the turn in flight; resume takes up what was not done : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L308 ]
 [test: a finished run is dismissed; its features stay : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L373 ]
-[test: the pill says how far a run is, and how it ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L398 ]
-[test: a folder's line says what came of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L408 ]
-[test: no pill without a run; with one, its label : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L449 ]
+[test: the pill says how far a run is, and how it ended : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L411 ]
+[test: a folder's line says what came of it : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L421 ]
+[test: no pill without a run; with one, its label : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L462 ]
 [test: what is asked of it is a copy, so nothing a caller does to the answer reaches the run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L386 ]
 [test: cancel, retry and dismiss on a folder that has no run : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L408 ]
 [test: asks once when a folder opens, and not at all without one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractionProgress.test.tsx#L122 ]
@@ -430,8 +430,8 @@ Clicking on it, renders:
 [test: a folder that fails is retried on its own; what was drafted is not drafted again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L189 ]
 [test: a run the app is closed on shows as interrupted on the next start, and is resumed by hand : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L332 ]
 [test: with no agent the run waits, interrupted, and goes on once one is there : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L356 ]
-[test: a run at work is polled; one with something left can be taken up again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L428 ]
-[test: the list links each drafted feature, and offers Retry for a folder that failed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L439 ]
+[test: a run at work is polled; one with something left can be taken up again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L441 ]
+[test: the list links each drafted feature, and offers Retry for a folder that failed : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L452 ]
 [test: a retry that names a folder with nothing left says so : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L416 ]
 [test: Cancel, Retry and Dismiss go to the server, and a refusal comes back in words : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractionProgress.test.tsx#L179 ]
 
@@ -501,7 +501,7 @@ Goal: ask user if this repo should be initialized and init the repo before conti
 [test: an empty repository is asked about, and set up only on a yes : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L114 ]
 [test: Not now leaves the folder as it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L131 ]
 [test: set up from where the new folder would go, the yes is already given : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSetUp.test.tsx#L140 ]
-[test: an empty repository where the new folder would go is offered to set up and add to : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L264 ]
+[test: an empty repository where the new folder would go is offered to set up and add to : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L265 ]
 
 ## S28: Tests are linked in a pass of their own @v1 [proposed]
 
@@ -640,10 +640,10 @@ Final result:
 - **And** with no agent, or no folder to draft, there is no such step: the folders are followed by the specification folder as before
 - **And** the prompt that matches tests to scenarios, and the one that regroups folders, are not shown
 
-[test: shows what the agent is told in two parts, the writing instructions to change and the app's rules to read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L312 ]
-[test: the built-in prompt is what the step starts from : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L332 ]
-[test: the built-in prompt is the writing instructions, then the app's rules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L23 ]
-[test: instructions that are empty or too long are named as a problem : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L42 ]
+[test: shows what the agent is told in two parts, the writing instructions to change and the app's rules to read : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L313 ]
+[test: the built-in prompt is what the step starts from : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L333 ]
+[test: the built-in prompt is the writing instructions, then the app's rules : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L24 ]
+[test: instructions that are empty or too long are named as a problem : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L50 ]
 [test: without instructions the agent is told the built-in prompt, and the folder keeps no file : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L224 ]
 
 ## S34: An edited prompt drafts the specs and is saved in the specification folder @v1 [proposed]
@@ -657,16 +657,16 @@ Final result:
 - **And** Retry and Resume ask as the run began, whatever the folder's file says by then
 - **And** instructions past the limit, or that are not text, are refused, and nothing is drafted or saved
 
-[test: changed instructions keep the app's rules after them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L33 ]
-[test: changed instructions are written to the folder and read back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L70 ]
-[test: the built-in instructions take the folder's file away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L76 ]
-[test: a file written by hand is cut at the limit, and one that says the built-in text counts as none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L85 ]
+[test: changed instructions keep the app's rules after them : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L34 ]
+[test: changed instructions are written to the folder and read back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L78 ]
+[test: the built-in instructions take the folder's file away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L84 ]
+[test: a file written by hand is cut at the limit, and one that says the built-in text counts as none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L93 ]
 [test: instructions sent with the request are what the agent is told, with the app's rules after them, and are kept in the folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L232 ]
 [test: a folder's own prompt is used when the request sends none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L244 ]
 [test: the built-in instructions sent with the request take the folder's file away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L252 ]
 [test: a retry asks as the run began, whatever the folder's file says by then : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L261 ]
 [test: a prompt that is too long or not text is refused, and nothing is drafted or saved : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L274 ]
-[test: text the user changed is what the drafting is asked to use : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L341 ]
+[test: text the user changed is what the drafting is asked to use : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L342 ]
 
 ## S35: A specification folder's own prompt is shown, not replaced unseen @v1 [proposed]
 
@@ -679,11 +679,11 @@ Final result:
 - **And** a folder that keeps no prompt, or the one already asked about, needs no second look
 - **And** a folder named by its GitHub url cannot be read before it is cloned: a prompt it keeps is used as it is, unless the user changed the text
 
-[test: an existing folder's own prompt is shown in place of the built-in one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L349 ]
-[test: another folder named after the step was shown brings back the step with the prompt it drafts with : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L373 ]
-[test: changed text is never sent over a folder's own prompt unseen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L384 ]
-[test: why the step is shown again is said only while it still holds : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L1 ]
-[test: a folder with no prompt of its own, or the one already asked about, needs no second look : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L364 ]
-[test: a folder without the file has no prompt of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L65 ]
-[test: the wizard is told the prompt of a folder on this computer only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L94 ]
+[test: an existing folder's own prompt is shown in place of the built-in one : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L350 ]
+[test: another folder named after the step was shown brings back the step with the prompt it drafts with : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L374 ]
+[test: changed text is never sent over a folder's own prompt unseen : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L385 ]
+[test: why the step is shown again is said only while it still holds : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L397 ]
+[test: a folder with no prompt of its own, or the one already asked about, needs no second look : https://github.com/SpecDriven/specdriven-app/blob/main/tests/extractSpecsDialog.test.tsx#L365 ]
+[test: a folder without the file has no prompt of its own : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L73 ]
+[test: the wizard is told the prompt of a folder on this computer only : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentPromptFile.test.ts#L102 ]
 [test: the wizard is told a folder's own prompt before anything is made, and null where there is none : https://github.com/SpecDriven/specdriven-app/blob/main/tests/intentExtraction.test.ts#L284 ]
