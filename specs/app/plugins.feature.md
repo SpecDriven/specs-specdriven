@@ -646,8 +646,9 @@ one by hand.
 
 - Given: a data folder is open
 - When: the user opens the Plugins page
-- Then: Specs is listed among the plugins as built in, with a switch and
-  a place in the order, like Roadmap or the Notebook
+- Then: Specs is listed among the plugins as built in, with a switch like
+  Roadmap or the Notebook, and while it is on it is first in the order: it
+  has no arrows, and nothing moves above it
 - and switching it off takes away the Specs tab, its icon on the rail, the
   `g s` shortcut, the features and scenarios the command palette finds or
   lists under Recent, and the imports into a spec folder; the sidebar
@@ -656,8 +657,9 @@ one by hand.
   sidebar shows, as it lights any tab whose page has the pane
 - and the feature files, their routes and the sync are untouched:
   switching Specs off hides the tab, the folder's specs are still synced
-- and the tabs stand in the list's order, so moving Specs in the list
-  moves its tab; with no tab remembered the first one is shown
+- and the tabs stand in the list's order, Specs first while it is on —
+  the leftmost tab, even when it is switched on after the others or a
+  stored list puts it later; with no tab remembered the first one is shown
 - and home is the folder's README.md whether Specs is on or off
 - and a list stored before Specs was a plugin, which never names it, is
   read with Specs on and first, as it was then; the first write puts Specs
@@ -668,7 +670,9 @@ one by hand.
 
 [test: Specs is listed first as a built-in plugin, and switching it off holds across a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L255 ]
 [test: a list from before Specs was a plugin reads with Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L282 ]
-[test: switched on, Specs is a tab where the list puts it, and its tree is the sidebar when picked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L190 ]
+[test: switched on after the notebook, Specs is still the first tab, and its tree is the sidebar when picked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L188 ]
+[test: Specs, while it is on, is always first in the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L145 ]
+[test: Specs has no arrows and nothing moves above it; the others move : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginsPageRollback.test.tsx#L172 ]
 [test: the rail carries the tabs in the list's order, Specs only while it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L216 ]
 [test: with Specs switched off a feature's link opens home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L230 ]
 [test: with every plugin switched off the sidebar says where to switch one on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L241 ]
