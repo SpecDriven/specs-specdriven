@@ -681,6 +681,8 @@ one by hand.
 [test: the palette offers the Aha! import while its switch and Specs are on, and not with Specs off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L486 ]
 [test: a url that is not a feature's is not the Specs tab's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsRoute.test.ts#L25 ]
 [test: a tab with no home view always has its door, and the door is home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsRoute.test.ts#L29 ]
+[test: switched off with a feature open and on again, Specs has let the feature go : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L395 ]
+[test: a reload tick shows the open feature as the folder now has it, and nothing of it with Specs off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L520 ]
 
 ## S25: A folder's plugins are picked from its data the first time it opens @v1 [proposed]
 
@@ -711,3 +713,17 @@ one by hand.
 [test: a folder of notebook entries opens on the Notebook alone, with the README in the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L177 ]
 [test: a folder with features and notebook entries shows both, Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L207 ]
 [test: a folder has Specs data once a feature file lies under its specs folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L324 ]
+
+## S26: Sync waits for the tabs that refresh on the tick @v1 [proposed]
+
+- Given: a data folder is open with several plugins on, and a feature is
+  open
+- When: the reload tick runs — on its interval, or from the Sync button
+- Then: each plugin's tab refreshes what it shows, and the Specs tab reads
+  the open feature again unless something on its page is being edited
+- and Sync's progress lasts until every tab that asked to be waited for
+  has finished; a tab that asks for nothing is not waited for
+- and a tab whose refresh fails is logged, and stops neither the other
+  tabs nor Sync
+
+[test: settle waits for every listener, in order, and logs the one that fails : https://github.com/SpecDriven/specdriven-app/blob/main/tests/kernel.test.ts#L130 ]
