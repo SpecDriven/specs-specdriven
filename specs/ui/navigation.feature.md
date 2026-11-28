@@ -119,7 +119,7 @@ leave the window blank).
   place (no history entry per keystroke)
 - Reloading the page restores the same feature and scenario selection
 
-[test: a feature picked in the tree goes back home on Back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L297 ]
+[test: a feature picked in the tree goes back home on Back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L299 ]
 
 ## S3: deep link before a data repo is configured @v1 [proposed]
 
@@ -149,7 +149,7 @@ leave the window blank).
 [test: a file that is not there in a synced folder is a stale link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L55 ]
 [test: a miss behind a failed pull names the pull, not the link : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L59 ]
 [test: any other answer is reported as what it is : https://github.com/SpecDriven/specdriven-app/blob/main/tests/linkSync.test.ts#L69 ]
-[test: a link to a feature that is not there says so and opens home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L480 ]
+[test: a link to a feature that is not there says so and opens home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L543 ]
 
 ## S5: link to a missing scenario @v1 [proposed]
 
@@ -200,7 +200,7 @@ leave the window blank).
 - When: the user opens `/features/navigation`
 - Then: the app shows that feature — same view as clicking it in the sidebar
 
-[test: a feature's link opens that feature, with its url and the window's title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L280 ]
+[test: a feature's link opens that feature, with its url and the window's title : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L282 ]
 
 ## S8: open a link from outside the app @v1 [proposed]
 
@@ -237,7 +237,7 @@ leave the window blank).
   scrolled into view — the same highlight the up/down keys move, so Enter
   opens the full body
 
-[test: a scenario found in the palette opens its page, and with mod-Enter its card on the feature's page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L393 ]
+[test: a scenario found in the palette opens its page, and with mod-Enter its card on the feature's page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L416 ]
 
 ## S10: Scenario navigation @v1 [proposed]
 
@@ -286,7 +286,7 @@ Allow to collapse and expand the outline.
 - When: the user opens the scenario url without the `/v<N>` segment
 - Then: v2 is selected, and the address bar shows the canonical `/v2` url
 
-[test: a versionless scenario link opens the scenario and settles on its versioned url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L290 ]
+[test: a versionless scenario link opens the scenario and settles on its versioned url : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L292 ]
 
 ## S13: window title follows the selection @v1 [proposed]
 
