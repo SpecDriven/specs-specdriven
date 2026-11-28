@@ -66,8 +66,8 @@ its folder is.
   where they were loaded from
 - and a built-in plugin can be switched off but never uninstalled
 
-[test: the browser loader registers the tab while the server says it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L210 ]
-[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L33 ]
+[test: the browser loader registers the tab while the server says it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L223 ]
+[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L34 ]
 
 ## S2: A plugin from the marketplace is installed with consent @v1 [proposed]
 
@@ -194,11 +194,11 @@ its folder is.
 [test: each data folder keeps its own plugins, and a new one shows Specs alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L114 ]
 [test: a fresh install shows Specs alone without a settings write : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L97 ]
 [test: an older device-wide list carries over to the folder that is open : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L161 ]
-[test: each data folder keeps its own profile; a new one shows Specs alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L273 ]
-[test: an older device-wide list is copied to the folders the file knows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L299 ]
+[test: each data folder keeps its own profile; a new one shows Specs alone : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L286 ]
+[test: an older device-wide list is copied to the folders the file knows : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L312 ]
 [test: an older file with a folder but no plugin list keeps the Notebook on in that folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L182 ]
 [test: a folder picked in this app still shows Specs alone after a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L198 ]
-[test: an older file with folders but no list gives them the defaults; one with repos does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L344 ]
+[test: an older file with folders but no list gives them the defaults; one with repos does not : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L357 ]
 
 ## S6: Plugin urls serve the app shell @v1 [proposed]
 
@@ -215,7 +215,7 @@ its folder is.
 - and with the plugin off the url goes home, and a url no plugin claims
   shows the not-found page
 
-[test: the plugin's urls serve the app shell whether it is on or off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L190 ]
+[test: the plugin's urls serve the app shell whether it is on or off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L203 ]
 
 ## S7: The marketplace is a git repository with an index @v1 [proposed]
 
@@ -271,8 +271,8 @@ its folder is.
 - and the list is device-local, like the switches it replaces: it does not
   follow the user to another machine
 
-[test: a settings file from before plugins is read as the matching profile : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L94 ]
-[test: the profile's order is the tab order, and an id nothing provides is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L144 ]
+[test: a settings file from before plugins is read as the matching profile : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L95 ]
+[test: the profile's order is the tab order, and an id nothing provides is reported : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L157 ]
 [test: a settings file with the old switches is rewritten as the profile on start, and works as it did : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L70 ]
 [test: PUT /api/state takes the profile whole, or a legacy switch as an alias : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L211 ]
 [test: Specs alone, and every other optional setting on except IntelliJ IDEA : https://github.com/SpecDriven/specdriven-app/blob/main/tests/demo.test.ts#L143 ]
@@ -295,7 +295,7 @@ its folder is.
 - and switching it on again mounts it afresh, with its tab, shortcuts and
   routes back, without a restart
 
-[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L33 ]
+[test: the Tests switch mounts the plugin's routes and unmounts them again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L34 ]
 [test: switching a folder plugin off unwinds its routes, and on mounts it again : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginSources.test.ts#L217 ]
 [test: effects unwind last-in-first-out, and only once : https://github.com/SpecDriven/specdriven-app/blob/main/tests/kernel.test.ts#L21 ]
 [test: a plugin waits for its injects and unmounts when one goes away : https://github.com/SpecDriven/specdriven-app/blob/main/tests/kernel.test.ts#L43 ]
@@ -369,7 +369,7 @@ its folder is.
 - And: clicking the tab only turns the sidebar to the list; the head's
   link and the rows open the pane
 
-[test: `c` makes a feature from home and a scenario on a feature page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L365 ]
+[test: `c` makes a feature from home and a scenario on a feature page : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L361 ]
 
 ## S13: A tab's rows use the sidebar row @v1 [proposed]
 
@@ -535,9 +535,9 @@ its folder is.
 - and a held plugin's row says so beside its version
 
 [test: a version that fails to load is rolled back to the one it replaced, which loads without a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginReleases.test.ts#L405 ]
-[test: a plugin that fails after a version change offers the version it replaced, and nothing else does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginsPageRollback.test.tsx#L124 ]
-[test: a roll back the server refuses says why under the plugin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginsPageRollback.test.tsx#L149 ]
-[test: a held plugin says so beside its version, and the hosted demo offers no roll back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginsPageRollback.test.tsx#L161 ]
+[test: a plugin that fails after a version change offers the version it replaced, and nothing else does : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginsPageRollback.test.tsx#L125 ]
+[test: a roll back the server refuses says why under the plugin : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginsPageRollback.test.tsx#L150 ]
+[test: a held plugin says so beside its version, and the hosted demo offers no roll back : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginsPageRollback.test.tsx#L162 ]
 
 ## S20: A release whose checksum does not match is refused @v1 [proposed]
 
@@ -669,20 +669,20 @@ one by hand.
   Plugins page
 
 [test: Specs is listed first as a built-in plugin, and switching it off holds across a restart : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L255 ]
-[test: a list from before Specs was a plugin reads with Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L282 ]
+[test: a list from before Specs was a plugin reads with Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L283 ]
 [test: switched on after the notebook, Specs is still the first tab, and its tree is the sidebar when picked : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L188 ]
 [test: Specs, while it is on, is always first in the list : https://github.com/SpecDriven/specdriven-app/blob/main/tests/plugins.test.ts#L145 ]
 [test: Specs has no arrows and nothing moves above it; the others move : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginsPageRollback.test.tsx#L172 ]
-[test: the rail carries the tabs in the list's order, Specs only while it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L216 ]
-[test: with Specs switched off a feature's link opens home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L230 ]
-[test: with every plugin switched off the sidebar says where to switch one on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L241 ]
-[test: `g s` on a notebook entry turns the sidebar to the tree and opens the README : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L321 ]
-[test: the rail's Specs icon on a notebook entry does the same as `g s` : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L333 ]
-[test: the palette finds a feature while Specs is on, and none while it is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L345 ]
-[test: switching Specs off with a feature open goes home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L381 ]
-[test: the palette's Recent list offers the feature last opened, and not while Specs is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L451 ]
-[test: a Recent entry kept from before Specs was a tab still opens its feature : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L472 ]
-[test: the palette offers the Aha! import while its switch and Specs are on, and not with Specs off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L486 ]
+[test: the rail carries the tabs in the list's order, Specs only while it is on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L212 ]
+[test: with Specs switched off a feature's link opens home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L226 ]
+[test: with every plugin switched off the sidebar says where to switch one on : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L237 ]
+[test: `g s` on a notebook entry turns the sidebar to the tree and opens the README : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L317 ]
+[test: the rail's Specs icon on a notebook entry does the same as `g s` : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L329 ]
+[test: the palette finds a feature while Specs is on, and none while it is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L341 ]
+[test: switching Specs off with a feature open goes home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L377 ]
+[test: the palette's Recent list offers the feature last opened, and not while Specs is off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L426 ]
+[test: a Recent entry kept from before Specs was a tab still opens its feature : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L447 ]
+[test: the palette offers the Aha! import while its switch and Specs are on, and not with Specs off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L461 ]
 [test: a url that is not a feature's is not the Specs tab's : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsRoute.test.ts#L25 ]
 [test: a tab with no home view always has its door, and the door is home : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsRoute.test.ts#L29 ]
 [test: switched off with a feature open and on again, Specs has let the feature go : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L395 ]
@@ -711,12 +711,12 @@ one by hand.
 - and plugins from the marketplace take no part: only the built-in ones
   are picked by their data
 
-[test: the list is made from the data once, what has data goes on and Specs goes off where another has some : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L294 ]
-[test: a folder of notebook entries opens on the Notebook alone, and one with specs too shows both : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L339 ]
-[test: a folder used before the check is looked at once, its tasks go on and its empty Specs off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L374 ]
-[test: a folder of notebook entries opens on the Notebook alone, with the README in the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L177 ]
-[test: a folder with features and notebook entries shows both, Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L207 ]
-[test: a folder has Specs data once a feature file lies under its specs folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L324 ]
+[test: the list is made from the data once, what has data goes on and Specs goes off where another has some : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L295 ]
+[test: a folder of notebook entries opens on the Notebook alone, and one with specs too shows both : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L340 ]
+[test: a folder used before the check is looked at once, its tasks go on and its empty Specs off : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L375 ]
+[test: a folder of notebook entries opens on the Notebook alone, with the README in the pane : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L175 ]
+[test: a folder with features and notebook entries shows both, Specs first : https://github.com/SpecDriven/specdriven-app/blob/main/tests/specsPlugin.test.tsx#L203 ]
+[test: a folder has Specs data once a feature file lies under its specs folder : https://github.com/SpecDriven/specdriven-app/blob/main/tests/pluginProfile.test.ts#L325 ]
 
 ## S26: Sync waits for the tabs that refresh on the tick @v1 [proposed]
 
